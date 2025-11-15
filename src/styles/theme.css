@@ -1,0 +1,272 @@
+/* AI Design Guardian - Color Theme Palette */
+
+:root {
+  /* Primary Brand Colors */
+  --color-primary-50: #f0f9ff;
+  --color-primary-100: #e0f2fe;
+  --color-primary-200: #bae6fd;
+  --color-primary-300: #7dd3fc;
+  --color-primary-400: #38bdf8;
+  --color-primary-500: #0ea5e9;
+  --color-primary-600: #0284c7;
+  --color-primary-700: #0369a1;
+  --color-primary-800: #075985;
+  --color-primary-900: #0c4a6e;
+
+  /* Secondary Purple Colors */
+  --color-secondary-50: #faf5ff;
+  --color-secondary-100: #f3e8ff;
+  --color-secondary-200: #e9d5ff;
+  --color-secondary-300: #d8b4fe;
+  --color-secondary-400: #c084fc;
+  --color-secondary-500: #a855f7;
+  --color-secondary-600: #9333ea;
+  --color-secondary-700: #7c3aed;
+  --color-secondary-800: #6b21a8;
+  --color-secondary-900: #581c87;
+
+  /* Neutral Gray Colors */
+  --color-gray-50: #f9fafb;
+  --color-gray-100: #f3f4f6;
+  --color-gray-200: #e5e7eb;
+  --color-gray-300: #d1d5db;
+  --color-gray-400: #9ca3af;
+  --color-gray-500: #6b7280;
+  --color-gray-600: #4b5563;
+  --color-gray-700: #374151;
+  --color-gray-800: #1f2937;
+  --color-gray-900: #111827;
+
+  /* Success Colors */
+  --color-success-50: #f0fdf4;
+  --color-success-100: #dcfce7;
+  --color-success-200: #bbf7d0;
+  --color-success-300: #86efac;
+  --color-success-400: #4ade80;
+  --color-success-500: #22c55e;
+  --color-success-600: #16a34a;
+  --color-success-700: #15803d;
+  --color-success-800: #166534;
+  --color-success-900: #14532d;
+
+  /* Warning Colors */
+  --color-warning-50: #fffbeb;
+  --color-warning-100: #fef3c7;
+  --color-warning-200: #fde68a;
+  --color-warning-300: #fcd34d;
+  --color-warning-400: #fbbf24;
+  --color-warning-500: #f59e0b;
+  --color-warning-600: #d97706;
+  --color-warning-700: #b45309;
+  --color-warning-800: #92400e;
+  --color-warning-900: #78350f;
+
+  /* Error Colors */
+  --color-error-50: #fef2f2;
+  --color-error-100: #fee2e2;
+  --color-error-200: #fecaca;
+  --color-error-300: #fca5a5;
+  --color-error-400: #f87171;
+  --color-error-500: #ef4444;
+  --color-error-600: #dc2626;
+  --color-error-700: #b91c1c;
+  --color-error-800: #991b1b;
+  --color-error-900: #7f1d1d;
+
+  /* Info Colors */
+  --color-info-50: #eff6ff;
+  --color-info-100: #dbeafe;
+  --color-info-200: #bfdbfe;
+  --color-info-300: #93c5fd;
+  --color-info-400: #60a5fa;
+  --color-info-500: #3b82f6;
+  --color-info-600: #2563eb;
+  --color-info-700: #1d4ed8;
+  --color-info-800: #1e40af;
+  --color-info-900: #1e3a8a;
+
+  /* Background Colors */
+  --color-bg-primary: #ffffff;
+  --color-bg-secondary: #f9fafb;
+  --color-bg-tertiary: #f3f4f6;
+  --color-bg-muted: #e5e7eb;
+  --color-bg-accent: #d1d5db;
+
+  /* Text Colors */
+  --color-text-primary: #111827;
+  --color-text-secondary: #374151;
+  --color-text-tertiary: #6b7280;
+  --color-text-muted: #9ca3af;
+  --color-text-inverse: #ffffff;
+
+  /* Border Colors */
+  --color-border-primary: #e5e7eb;
+  --color-border-secondary: #d1d5db;
+  --color-border-accent: #9ca3af;
+
+  /* Shadow Colors */
+  --color-shadow-sm: rgba(0, 0, 0, 0.05);
+  --color-shadow-md: rgba(0, 0, 0, 0.1);
+  --color-shadow-lg: rgba(0, 0, 0, 0.15);
+  --color-shadow-xl: rgba(0, 0, 0, 0.25);
+
+  /* Gradient Definitions */
+  --gradient-primary: linear-gradient(135deg, var(--color-primary-600), var(--color-secondary-600));
+  --gradient-secondary: linear-gradient(135deg, var(--color-gray-100), var(--color-gray-200));
+  --gradient-accent: linear-gradient(135deg, var(--color-primary-500), var(--color-primary-700));
+  --gradient-muted: linear-gradient(135deg, var(--color-gray-50), var(--color-gray-100));
+  --gradient-cta: linear-gradient(135deg, var(--color-primary-600), var(--color-secondary-600), var(--color-primary-700));
+  
+  /* Purple-focused Gradients */
+  --gradient-purple-primary: linear-gradient(135deg, var(--color-secondary-500), var(--color-secondary-700));
+  --gradient-purple-secondary: linear-gradient(135deg, var(--color-secondary-400), var(--color-secondary-600));
+  --gradient-purple-accent: linear-gradient(135deg, var(--color-secondary-300), var(--color-secondary-500));
+  --gradient-purple-muted: linear-gradient(135deg, var(--color-secondary-50), var(--color-secondary-100));
+  --gradient-purple-deep: linear-gradient(135deg, var(--color-secondary-600), var(--color-secondary-800));
+  
+  /* Blue-to-Purple Gradients */
+  --gradient-blue-purple: linear-gradient(135deg, var(--color-primary-500), var(--color-secondary-500));
+  --gradient-blue-purple-light: linear-gradient(135deg, var(--color-primary-400), var(--color-secondary-400));
+  --gradient-blue-purple-deep: linear-gradient(135deg, var(--color-primary-700), var(--color-secondary-700));
+  --gradient-blue-purple-muted: linear-gradient(135deg, var(--color-primary-100), var(--color-secondary-100));
+  
+  /* Background Gradients */
+  --gradient-bg-hero: linear-gradient(135deg, var(--color-primary-50), var(--color-secondary-50), #ffffff);
+  --gradient-bg-section: linear-gradient(135deg, var(--color-secondary-50), var(--color-gray-50));
+  --gradient-bg-card: linear-gradient(135deg, #ffffff, var(--color-secondary-50));
+  --gradient-bg-accent: linear-gradient(135deg, var(--color-secondary-100), var(--color-primary-100));
+}
+
+/* Dark Mode Color Overrides */
+[data-theme="dark"] {
+  /* Background Colors - Much Darker */
+  --color-bg-primary: #0a0a0a;
+  --color-bg-secondary: #111111;
+  --color-bg-tertiary: #1a1a1a;
+  --color-bg-muted: #2a2a2a;
+  --color-bg-accent: #3a3a3a;
+
+  /* Text Colors - Brighter for better contrast */
+  --color-text-primary: #ffffff;
+  --color-text-secondary: #e5e5e5;
+  --color-text-tertiary: #cccccc;
+  --color-text-muted: #999999;
+  --color-text-inverse: #0a0a0a;
+
+  /* Border Colors - Darker */
+  --color-border-primary: #2a2a2a;
+  --color-border-secondary: #3a3a3a;
+  --color-border-accent: #4a4a4a;
+
+  /* Shadow Colors - More intense */
+  --color-shadow-sm: rgba(0, 0, 0, 0.4);
+  --color-shadow-md: rgba(0, 0, 0, 0.5);
+  --color-shadow-lg: rgba(0, 0, 0, 0.6);
+  --color-shadow-xl: rgba(0, 0, 0, 0.7);
+
+  /* Gradient Definitions - Darker */
+  --gradient-primary: linear-gradient(135deg, var(--color-primary-500), var(--color-secondary-500));
+  --gradient-secondary: linear-gradient(135deg, #1a1a1a, #111111);
+  --gradient-accent: linear-gradient(135deg, var(--color-primary-400), var(--color-primary-600));
+  --gradient-muted: linear-gradient(135deg, #1a1a1a, #0a0a0a);
+  --gradient-cta: linear-gradient(135deg, var(--color-primary-500), var(--color-secondary-500), var(--color-primary-600));
+  
+  /* Purple-focused Gradients - Dark Mode */
+  --gradient-purple-primary: linear-gradient(135deg, var(--color-secondary-500), var(--color-secondary-700));
+  --gradient-purple-secondary: linear-gradient(135deg, var(--color-secondary-400), var(--color-secondary-600));
+  --gradient-purple-accent: linear-gradient(135deg, var(--color-secondary-300), var(--color-secondary-500));
+  --gradient-purple-muted: linear-gradient(135deg, #1a1a1a, #111111);
+  --gradient-purple-deep: linear-gradient(135deg, var(--color-secondary-600), var(--color-secondary-800));
+  
+  /* Blue-to-Purple Gradients - Dark Mode */
+  --gradient-blue-purple: linear-gradient(135deg, var(--color-primary-400), var(--color-secondary-400));
+  --gradient-blue-purple-light: linear-gradient(135deg, var(--color-primary-300), var(--color-secondary-300));
+  --gradient-blue-purple-deep: linear-gradient(135deg, var(--color-primary-600), var(--color-secondary-600));
+  --gradient-blue-purple-muted: linear-gradient(135deg, #111111, #1a1a1a);
+  
+  /* Background Gradients - Dark Mode */
+  --gradient-bg-hero: linear-gradient(135deg, #0a0a0a, #111111, #1a1a1a);
+  --gradient-bg-section: linear-gradient(135deg, #111111, #0a0a0a);
+  --gradient-bg-card: linear-gradient(135deg, #1a1a1a, #111111);
+  --gradient-bg-accent: linear-gradient(135deg, #111111, #0a0a0a);
+}
+
+/* Utility Classes for Theme Colors */
+.bg-theme-primary { background-color: var(--color-bg-primary); }
+.bg-theme-secondary { background-color: var(--color-bg-secondary); }
+.bg-theme-tertiary { background-color: var(--color-bg-tertiary); }
+.bg-theme-muted { background-color: var(--color-bg-muted); }
+.bg-theme-accent { background-color: var(--color-bg-accent); }
+
+.text-theme-primary { color: var(--color-text-primary); }
+.text-theme-secondary { color: var(--color-text-secondary); }
+.text-theme-tertiary { color: var(--color-text-tertiary); }
+.text-theme-muted { color: var(--color-text-muted); }
+.text-theme-inverse { color: var(--color-text-inverse); }
+
+.border-theme-primary { border-color: var(--color-border-primary); }
+.border-theme-secondary { border-color: var(--color-border-secondary); }
+.border-theme-accent { border-color: var(--color-border-accent); }
+
+.shadow-theme-sm { box-shadow: 0 1px 2px 0 var(--color-shadow-sm); }
+.shadow-theme-md { box-shadow: 0 4px 6px -1px var(--color-shadow-sm), 0 2px 4px -1px var(--color-shadow-sm); }
+.shadow-theme-lg { box-shadow: 0 10px 15px -3px var(--color-shadow-sm), 0 4px 6px -2px var(--color-shadow-sm); }
+.shadow-theme-xl { box-shadow: 0 20px 25px -5px var(--color-shadow-sm), 0 10px 10px -5px var(--color-shadow-sm); }
+
+.bg-gradient-theme-primary { background: var(--gradient-primary); }
+.bg-gradient-theme-secondary { background: var(--gradient-secondary); }
+.bg-gradient-theme-accent { background: var(--gradient-accent); }
+.bg-gradient-theme-muted { background: var(--gradient-muted); }
+.bg-gradient-theme-cta { background: var(--gradient-cta); }
+
+/* Purple Gradient Utility Classes */
+.bg-gradient-purple-primary { background: var(--gradient-purple-primary); }
+.bg-gradient-purple-secondary { background: var(--gradient-purple-secondary); }
+.bg-gradient-purple-accent { background: var(--gradient-purple-accent); }
+.bg-gradient-purple-muted { background: var(--gradient-purple-muted); }
+.bg-gradient-purple-deep { background: var(--gradient-purple-deep); }
+
+/* Blue-to-Purple Gradient Utility Classes */
+.bg-gradient-blue-purple { background: var(--gradient-blue-purple); }
+.bg-gradient-blue-purple-light { background: var(--gradient-blue-purple-light); }
+.bg-gradient-blue-purple-deep { background: var(--gradient-blue-purple-deep); }
+.bg-gradient-blue-purple-muted { background: var(--gradient-blue-purple-muted); }
+
+/* Background Gradient Utility Classes */
+.bg-gradient-bg-hero { background: var(--gradient-bg-hero); }
+.bg-gradient-bg-section { background: var(--gradient-bg-section); }
+.bg-gradient-bg-card { background: var(--gradient-bg-card); }
+.bg-gradient-bg-accent { background: var(--gradient-bg-accent); }
+
+/* Special Stats Section Colors */
+.bg-stats-section {
+  background: var(--gradient-bg-section);
+}
+
+[data-theme="dark"] .bg-stats-section {
+  background: var(--gradient-bg-section);
+}
+
+.text-stats-primary {
+  color: var(--color-gray-900);
+}
+
+[data-theme="dark"] .text-stats-primary {
+  color: #ffffff;
+}
+
+.text-stats-secondary {
+  color: var(--color-gray-700);
+}
+
+[data-theme="dark"] .text-stats-secondary {
+  color: #e5e5e5;
+}
+
+.text-stats-muted {
+  color: var(--color-gray-600);
+}
+
+[data-theme="dark"] .text-stats-muted {
+  color: #cccccc;
+}

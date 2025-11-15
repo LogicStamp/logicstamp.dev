@@ -1,0 +1,13 @@
+{
+  "rules": {
+    "no-hardcoded-colors": "error",
+    "no-hardcoded-spacing": "warn",
+    "require-function-documentation": "warn",
+    "require-component-documentation": "warn",
+    "require-hook-documentation": "warn"
+  },
+  "documentation": {
+    "methodology": "comprehensive",
+    "style": "jsdoc"
+  }
+}
