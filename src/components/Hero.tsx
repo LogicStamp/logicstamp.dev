@@ -543,6 +543,19 @@ export default function Hero() {
       <div className="mx-auto max-w-[90rem] px-6 lg:px-8">
         <AnimatedSection direction="up" delay={0}>
           <div className="mx-auto max-w-2xl lg:max-w-6xl text-center">
+            {/* Beta Badge */}
+            <div className="mb-4 flex items-center justify-center gap-2">
+              <span className="inline-flex items-center gap-1.5 rounded-full bg-gradient-blue-purple/10 px-3 py-1 text-xs font-medium text-secondary-700 dark:text-secondary-300 ring-1 ring-inset ring-secondary-500/20">
+                <svg className="h-3.5 w-3.5" fill="currentColor" viewBox="0 0 20 20">
+                  <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.857-9.809a.75.75 0 00-1.214-.882l-3.483 4.79-1.88-1.88a.75.75 0 10-1.06 1.061l2.5 2.5a.75.75 0 001.137-.089l4-5.5z" clipRule="evenodd" />
+                </svg>
+                Open Source
+              </span>
+              <span className="inline-flex items-center rounded-full bg-blue-50 dark:bg-blue-900/30 px-3 py-1 text-xs font-medium text-blue-700 dark:text-blue-300 ring-1 ring-inset ring-blue-600/20">
+                Beta
+              </span>
+            </div>
+
             <h1 className="text-4xl font-bold tracking-tight text-gray-900 dark:text-white sm:text-6xl lg:text-8xl">
               AI-Ready{' '}
               <span className="relative">
@@ -554,6 +567,7 @@ export default function Hero() {
             </h1>
             <p className="mt-6 text-lg lg:text-xl leading-8 text-gray-600 dark:text-gray-300">
               A tiny CLI that compiles your React/TypeScript codebase into machine-readable context bundles for AI and CI.
+              <br className="hidden sm:block" />
               Fast, deterministic, zero-config.
             </p>
             <div className="mt-10 flex items-center justify-center gap-x-6">
@@ -567,7 +581,9 @@ export default function Hero() {
                 </svg>
               </a>
               <a
-                href="https://github.com/logicstamp/logicstamp-context"
+                href="https://github.com/LogicStamp/logicstamp-context"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="text-sm lg:text-base font-semibold leading-6 text-gray-900 dark:text-white hover:text-secondary-600 dark:hover:text-secondary-400 transition-colors"
               >
                 View on GitHub <span aria-hidden="true">→</span>

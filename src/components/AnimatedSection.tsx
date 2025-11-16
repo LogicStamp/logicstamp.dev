@@ -7,7 +7,7 @@ interface AnimatedSectionProps {
   className?: string
   delay?: number
   direction?: 'up' | 'down' | 'left' | 'right'
-  duration?: number
+  duration?: number // total animation duration in ms
 }
 
 export default function AnimatedSection({
@@ -15,21 +15,27 @@ export default function AnimatedSection({
   className = '',
   delay = 0,
   direction = 'up',
-  duration = 600,
+  duration = 300,
 }: AnimatedSectionProps) {
   const [isVisible, setIsVisible] = useState(false)
   const ref = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
+    const effectiveDelay = Math.min(delay, 120)
+    let timeoutId: number | undefined
+
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
-          setTimeout(() => setIsVisible(true), delay)
+          timeoutId = window.setTimeout(() => {
+            setIsVisible(true)
+            observer.unobserve(entry.target)
+          }, effectiveDelay)
         }
       },
       {
-        threshold: 0.1,
-        rootMargin: '0px 0px -50px 0px',
+        threshold: 0,
+        rootMargin: '0px 0px -7.5% 0px',
       }
     )
 
@@ -38,28 +44,14 @@ export default function AnimatedSection({
     }
 
     return () => {
-      if (ref.current) {
-        observer.unobserve(ref.current)
+      observer.disconnect()
+      if (timeoutId !== undefined) {
+        window.clearTimeout(timeoutId)
       }
     }
-  }, [delay])
+  }, [delay, direction, duration])
 
-  const getTransform = () => {
-    switch (direction) {
-      case 'up':
-        return 'translateY(20px)'
-      case 'down':
-        return 'translateY(-20px)'
-      case 'left':
-        return 'translateX(20px)'
-      case 'right':
-        return 'translateX(-20px)'
-      default:
-        return 'translateY(20px)'
-    }
-  }
-
-  const getInitialTransform = () => {
+  const getOffsetTransform = () => {
     switch (direction) {
       case 'up':
         return 'translateY(20px)'
@@ -80,7 +72,7 @@ export default function AnimatedSection({
       className={className}
       style={{
         opacity: isVisible ? 1 : 0,
-        transform: isVisible ? 'translateY(0) translateX(0)' : getInitialTransform(),
+        transform: isVisible ? 'none' : getOffsetTransform(),
         transition: `opacity ${duration}ms ease-out, transform ${duration}ms ease-out`,
       }}
     >

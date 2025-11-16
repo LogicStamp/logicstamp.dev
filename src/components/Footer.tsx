@@ -5,7 +5,7 @@ import ThemeToggle from './ThemeToggle'
 const navigation = {
   product: [
     { name: 'Documentation', href: '/docs' },
-    { name: 'GitHub', href: 'https://github.com/logicstamp/logicstamp-context', external: true },
+    { name: 'GitHub', href: 'https://github.com/LogicStamp/logicstamp-context', external: true },
     { name: 'npm', href: 'https://www.npmjs.com/package/logicstamp-context', external: true },
   ],
   community: [
@@ -33,7 +33,7 @@ export default function Footer() {
                   </span>
                 </a>
                 <p className="mt-2 max-w-xs text-sm leading-relaxed text-gray-500 dark:text-gray-400">
-                  AI-ready context from your codebase. Fast, deterministic, zero-config.
+                  AI-ready context from your codebase. Open-source, zero-config.
                 </p>
               </div>
 
@@ -85,7 +85,7 @@ export default function Footer() {
                 <ThemeToggle compact />
                 <div className="flex items-center gap-3">
                   <a
-                    href="https://github.com/logicstamp/logicstamp-context"
+                    href="https://github.com/LogicStamp/logicstamp-context"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="text-gray-400 hover:text-gray-600 dark:hover:text-gray-300 transition-colors duration-200 hover-lift"

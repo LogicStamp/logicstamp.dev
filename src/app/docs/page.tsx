@@ -12,45 +12,45 @@ export const metadata: Metadata = {
 const docSections = [
   {
     title: 'Concepts Overview',
-    description: 'Understand LogicStamp at a high level before you dive into the CLI.',
+    description: 'Understand LogicStamp Context at a high level before you dive into the CLI.',
     pages: [
       {
         title: 'What is LogicStamp?',
         href: '/docs/what-is-logicstamp',
-        description: 'High-level explanation of LogicStamp, the problems it solves, and where it fits in your workflow.',
+        description: 'Learn about this open-source CLI, the problems it solves, and how to use it with AI tools.',
       },
     ],
   },
   {
     title: 'Getting Started',
-    description: 'Installation & setup for LogicStamp Context.',
+    description: 'Installation & setup for LogicStamp Context CLI.',
     pages: [
       {
         title: 'Installation & Quick Start',
         href: '/docs/getting-started',
-        description: 'Install LogicStamp Context CLI and generate your first context.json',
+        description: 'Install the CLI globally and generate your first context.json in seconds—zero config required.',
       },
     ],
   },
   {
     title: 'LogicStamp Context CLI',
-    description: 'All documentation for the LogicStamp Context CLI bundle in one place',
+    description: 'Complete documentation for all CLI commands and features.',
     pages: [
       {
         title: 'CLI Docs Hub',
         href: '/docs/logicstamp-context',
-        description: 'Overview of LogicStamp Context and links to commands, usage, and schema docs',
+        description: 'Commands, usage examples, token optimization, drift detection, and schema reference.',
       },
     ],
   },
   {
-    title: 'More Information',
-    description: 'Additional resources and documentation',
+    title: 'Open Source & Community',
+    description: 'Contribute, report issues, and join the community.',
     pages: [
       {
         title: 'GitHub Repository',
-        href: 'https://github.com/logicstamp/logicstamp-context',
-        description: 'View source code, issues, and full documentation on GitHub',
+        href: 'https://github.com/LogicStamp/logicstamp-context',
+        description: 'View source code, contribute, report issues, and access the full README. MIT licensed.',
         external: true,
       },
     ],
@@ -63,11 +63,16 @@ export default function DocumentationPage() {
       <DocsLayout>
         <AnimatedSection direction="up" delay={0}>
           <div className="mb-8">
-            <h1 className="text-2xl font-semibold text-gray-900 dark:text-white mb-2">
-              Documentation
-            </h1>
+            <div className="flex items-center gap-2 mb-2">
+              <h1 className="text-2xl font-semibold text-gray-900 dark:text-white">
+                Documentation
+              </h1>
+              <span className="inline-flex items-center rounded-full bg-blue-50 dark:bg-blue-900/30 px-2.5 py-0.5 text-xs font-medium text-blue-700 dark:text-blue-300 ring-1 ring-inset ring-blue-600/20">
+                Beta
+              </span>
+            </div>
             <p className="text-gray-600 dark:text-gray-300">
-              Quick start guide and resources
+              Open-source CLI for generating AI-ready context from React/TypeScript codebases. Zero config, built-in token optimization.
             </p>
           </div>
         </AnimatedSection>
