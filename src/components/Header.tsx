@@ -60,7 +60,7 @@ export default function Header() {
     { name: 'How it Works', href: isHomePage ? '#how-it-works' : '/#how-it-works' },
     { name: 'Integrations', href: isHomePage ? '#integrations' : '/#integrations' },
     { name: 'FAQ', href: isHomePage ? '#faq' : '/#faq' },
-    { name: 'Docs', href: '/docs/what-is-logicstamp' },
+    { name: 'Docs', href: '/docs' },
     { name: 'GitHub', href: 'https://github.com/logicstamp/logicstamp-context', external: true },
   ]
 
