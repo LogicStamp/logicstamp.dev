@@ -53,6 +53,20 @@ export default function Header() {
     return () => document.removeEventListener('mousedown', handleClickOutside)
   }, [mobileMenuOpen])
 
+  // Handle hash navigation when navigating from other pages
+  useEffect(() => {
+    const hash = window.location.hash
+    if (hash) {
+      // Wait a bit for the page to render
+      setTimeout(() => {
+        const element = document.querySelector(hash)
+        if (element) {
+          element.scrollIntoView({ behavior: 'smooth', block: 'start' })
+        }
+      }, 100)
+    }
+  }, [pathname])
+
   // Check if we're on the home page
   const isHomePage = pathname === '/'
 
@@ -68,8 +82,8 @@ export default function Header() {
     <>
     {/* Pill-shaped header container */}
     <header className="fixed top-2 left-4 right-4 z-50 mx-auto max-w-8xl">
-      <div className="bg-white/80 dark:bg-gray-900/80 rounded-full border border-white/10 dark:border-white/5 shadow-[0_4px_24px_rgba(0,0,0,0.15)] backdrop-blur-md h-16 min-h-16">
-        <nav className="flex items-center justify-between px-8 lg:px-10 h-full min-h-full" aria-label="Global">
+      <div className="bg-white/80 dark:bg-gray-900/80 rounded-full border border-white/10 dark:border-white/5 shadow-[0_2px_16px_rgba(0,0,0,0.08)] backdrop-blur-md h-14 min-h-14">
+        <nav className="flex items-center justify-between px-6 lg:px-8 h-full min-h-full" aria-label="Global">
           <div className="flex lg:flex-1">
             <a
               href={isHomePage ? "#" : "/"}
@@ -79,11 +93,11 @@ export default function Header() {
                   smoothScrollToTop();
                 }
               }}
-              className="flex items-center gap-2 pr-4 cursor-pointer group"
+              className="flex items-center gap-1.5 pr-4 cursor-pointer group"
             >
-              <span className="text-xl lg:text-2xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 dark:from-blue-400 dark:to-purple-400 bg-clip-text text-transparent flex items-center gap-2">
+              <span className="text-lg lg:text-xl font-semibold tracking-tight bg-gradient-to-r from-blue-600 to-purple-600 dark:from-blue-400 dark:to-purple-400 bg-clip-text text-transparent flex items-center gap-1.5">
                 <div className="logicstamp-logo-container">
-                  <LogicStampLogo className="logicstamp-logo" size={40} />
+                  <LogicStampLogo className="logicstamp-logo" size={32} />
                 </div>
                 LogicStamp
               </span>
@@ -107,14 +121,14 @@ export default function Header() {
           </div>
           
           {/* Desktop navigation */}
-          <div className="hidden lg:flex lg:items-center lg:gap-x-10">
+          <div className="hidden lg:flex lg:items-center lg:gap-x-8">
             {navigation.map((item) => (
               <a
                 key={item.name}
                 href={item.href}
                 target={item.external ? '_blank' : undefined}
                 rel={item.external ? 'noopener noreferrer' : undefined}
-                className="text-sm lg:text-base font-semibold leading-[1.4] text-gray-900 dark:text-white hover:text-shadow-lg hover:drop-shadow-[0_0_8px_rgba(59,130,246,0.3)] dark:hover:drop-shadow-[0_0_8px_rgba(147,197,253,0.4)] transition-all duration-300"
+                className="text-sm font-medium leading-[1.4] text-gray-900 dark:text-white hover:text-gray-600 dark:hover:text-gray-300 transition-colors duration-200"
               >
                 {item.name}
               </a>
@@ -126,7 +140,7 @@ export default function Header() {
             <ThemeToggle compact />
             <a
               href="/docs/getting-started"
-              className="ml-3 inline-flex items-center justify-center rounded-full bg-gradient-blue-purple px-5 py-2.5 text-base lg:text-lg font-semibold text-white shadow-sm hover:bg-gradient-blue-purple-deep focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-secondary-600 transition-all"
+              className="ml-2 inline-flex items-center justify-center rounded-full bg-gradient-blue-purple px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-gradient-blue-purple-deep focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-secondary-600 transition-all"
             >
               Get Started
             </a>
@@ -136,7 +150,7 @@ export default function Header() {
     </header>
 
     {/* Mobile menu dropdown */}
-    <div className={`lg:hidden fixed top-[5.5rem] left-4 right-4 z-50 mx-auto max-w-8xl pt-4 transition-all duration-300 ease-in-out mobile-menu-dropdown ${mobileMenuOpen ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-2 pointer-events-none'}`}>
+    <div className={`lg:hidden fixed top-[4.5rem] left-4 right-4 z-50 mx-auto max-w-8xl pt-4 transition-all duration-300 ease-in-out mobile-menu-dropdown ${mobileMenuOpen ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-2 pointer-events-none'}`}>
       <div className="bg-white dark:bg-gray-900 rounded-t-none rounded-b-2xl shadow-lg border border-gray-200/80 dark:border-gray-700/80 border-t-0">
         <div className="px-6 py-4">
           <div className="space-y-2">
@@ -146,14 +160,14 @@ export default function Header() {
                 href={item.href}
                 target={item.external ? '_blank' : undefined}
                 rel={item.external ? 'noopener noreferrer' : undefined}
-                className="block rounded-lg px-3 py-2 text-base lg:text-lg font-semibold leading-7 text-gray-900 dark:text-white hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors duration-200"
+                className="block rounded-lg px-3 py-2 text-sm font-medium leading-6 text-gray-900 dark:text-white hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors duration-200"
                 onClick={() => setMobileMenuOpen(false)}
               >
                 {item.name}
               </a>
             ))}
           </div>
-          
+
           {/* Theme toggle + Get Started button */}
           <div className="mt-4 pt-4 border-t border-gray-200 dark:border-gray-700 space-y-4">
             <div className="flex justify-center">
@@ -161,7 +175,7 @@ export default function Header() {
             </div>
             <a
               href="/docs/getting-started"
-              className="block w-full px-3 py-2.5 text-center text-base lg:text-lg font-semibold leading-7 text-white bg-gradient-blue-purple hover:bg-gradient-blue-purple-deep transition-colors duration-200 rounded-lg"
+              className="block w-full px-3 py-2 text-center text-sm font-medium leading-6 text-white bg-gradient-blue-purple hover:bg-gradient-blue-purple-deep transition-colors duration-200 rounded-lg"
               onClick={() => setMobileMenuOpen(false)}
             >
               Get Started
