@@ -578,6 +578,34 @@ export default function Hero() {
 
         {/* Dependency Graph Visualization with Context.json Preview */}
         <HeroVisualization />
+
+        {/* What Is LogicStamp Button */}
+        <AnimatedSection direction="up" delay={800}>
+          <div className="mt-16 sm:mt-20 flex justify-center">
+            <a
+              href="/docs/what-is-logicstamp"
+              className="group relative inline-flex items-center gap-3 px-8 py-4 rounded-full bg-gradient-bg-card border border-secondary-200/40 dark:border-secondary-400/40 shadow-md hover:shadow-lg hover:-translate-y-[3px] active:scale-[0.98] active:translate-y-0 transition-all duration-200 overflow-hidden"
+            >
+              {/* Subtle gradient background on hover */}
+              <div className="absolute inset-0 bg-gradient-blue-purple opacity-0 group-hover:opacity-10 dark:group-hover:opacity-20 transition-opacity duration-300" />
+
+              {/* Content */}
+              <span className="relative text-base sm:text-lg font-semibold text-gray-900 dark:text-white transition-colors duration-200">
+                What Is LogicStamp?
+              </span>
+
+              {/* Animated arrow */}
+              <svg
+                className="relative w-5 h-5 text-secondary-600 dark:text-secondary-400 transition-transform duration-200 group-hover:translate-x-1"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
+              </svg>
+            </a>
+          </div>
+        </AnimatedSection>
       </div>
     </section>
   )
