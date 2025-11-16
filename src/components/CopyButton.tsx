@@ -12,7 +12,23 @@ export default function CopyButton({ text, className = '' }: CopyButtonProps) {
 
   const handleCopy = async () => {
     try {
-      await navigator.clipboard.writeText(text)
+      // Prefer modern async clipboard API when available & in a secure context
+      if (typeof navigator !== 'undefined' && navigator.clipboard && window.isSecureContext) {
+        await navigator.clipboard.writeText(text)
+      } else {
+        // Fallback for mobile / non-secure contexts (e.g. http, some mobile browsers)
+        const textArea = document.createElement('textarea')
+        textArea.value = text
+        textArea.style.position = 'fixed'
+        textArea.style.left = '-9999px'
+        textArea.style.top = '0'
+        textArea.setAttribute('readonly', 'true')
+        document.body.appendChild(textArea)
+        textArea.select()
+        document.execCommand('copy')
+        document.body.removeChild(textArea)
+      }
+
       setCopied(true)
       setTimeout(() => setCopied(false), 2000)
     } catch (err) {
@@ -22,8 +38,9 @@ export default function CopyButton({ text, className = '' }: CopyButtonProps) {
 
   return (
     <button
+      type="button"
       onClick={handleCopy}
-      className={`absolute top-2 right-2 p-2 rounded-md transition-all duration-200 ${
+      className={`p-2 rounded-md transition-all duration-200 ${
         copied
           ? 'bg-green-500 dark:bg-green-600 text-white'
           : 'bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-300 hover:bg-gray-300 dark:hover:bg-gray-600'

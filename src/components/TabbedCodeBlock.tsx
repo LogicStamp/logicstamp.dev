@@ -90,7 +90,7 @@ export default function TabbedCodeBlock({ tabs }: TabbedCodeBlockProps) {
       
       {/* Code block */}
       <div className="relative bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 border border-gray-200 dark:border-gray-700 border-t-0 p-5 rounded-b-lg font-mono text-sm overflow-x-auto">
-        <CopyButton text={tabs[activeTab].copyText} />
+        <CopyButton text={tabs[activeTab].copyText} className="absolute top-2 right-2" />
         <code className="text-gray-900 dark:text-gray-100 whitespace-pre-wrap break-words">
           {tabs[activeTab].code}
         </code>

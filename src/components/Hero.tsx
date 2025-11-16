@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from 'react'
 import AnimatedSection from './AnimatedSection'
+import CopyButton from './CopyButton'
 
 // Graph structure: nodes represent components, edges represent dependencies
 const GRAPH_NODES = [
@@ -556,7 +557,7 @@ export default function Hero() {
               </span>
             </div>
 
-            <h1 className="text-4xl font-bold tracking-tight text-gray-900 dark:text-white sm:text-6xl lg:text-8xl">
+            <h1 className="text-5xl font-bold tracking-tight text-gray-900 dark:text-white sm:text-6xl lg:text-8xl text-balance">
               AI-Ready{' '}
               <span className="relative">
                 <span className="bg-gradient-blue-purple bg-clip-text text-transparent">Context</span>
@@ -588,6 +589,19 @@ export default function Hero() {
               >
                 View on GitHub <span aria-hidden="true">→</span>
               </a>
+            </div>
+
+            {/* Quick install snippet */}
+            <div className="mt-6 sm:mt-8 flex justify-center">
+              <div className="relative inline-flex items-center gap-3 rounded-xl bg-white/95 dark:bg-gray-950/90 px-4 sm:px-6 lg:px-8 py-2.5 sm:py-3 shadow-md ring-1 ring-gray-200/80 dark:ring-secondary-400/40">
+                <span className="hidden sm:inline text-xs sm:text-sm font-semibold uppercase tracking-wide text-gray-500 dark:text-gray-400">
+                  $
+                </span>
+                <code className="text-xs sm:text-sm lg:text-base font-mono text-gray-900 dark:text-gray-100">
+                  npm install -g logicstamp-context
+                </code>
+                <CopyButton text="npm install -g logicstamp-context" className="ml-2" />
+              </div>
             </div>
           </div>
         </AnimatedSection>
