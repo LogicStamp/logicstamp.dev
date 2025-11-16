@@ -33,8 +33,12 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
 
     setSystemPrefersDark(mediaQuery.matches)
 
-    const savedTheme = (localStorage.getItem('theme') as ThemePreference | null) || 'system'
-    setThemeState(savedTheme)
+    const cookieMatch = document.cookie.match(/(?:^|; )theme=([^;]+)/)
+    const cookieTheme = (cookieMatch ? decodeURIComponent(cookieMatch[1]) : null) as ThemePreference | null
+    const storageTheme = (localStorage.getItem('theme') as ThemePreference | null) || null
+    const initialTheme = cookieTheme || storageTheme || 'system'
+
+    setThemeState(initialTheme)
 
     mediaQuery.addEventListener('change', handleChange)
     setIsLoaded(true)
@@ -49,6 +53,11 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
     if (!isLoaded) return
 
     localStorage.setItem('theme', theme)
+    try {
+      document.cookie = `theme=${encodeURIComponent(theme)}; path=/; max-age=${60 * 60 * 24 * 365}`
+    } catch (e) {
+      // Cookie writes can fail in some environments; fail silently
+    }
 
     const effectiveDark = theme === 'dark' || (theme === 'system' && systemPrefersDark)
 

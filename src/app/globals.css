@@ -43,7 +43,7 @@ body {
   margin: 0 !important;
 }
 
-/* Dark mode backgrounds */
+/* Dark mode backgrounds based on system preference */
 @media (prefers-color-scheme: dark) {
   html {
     background: var(--gradient-bg-hero) !important;
@@ -54,15 +54,15 @@ body {
   }
 }
 
-/* Override for explicit dark theme */
-[data-theme="dark"] {
-  html {
-    background: var(--gradient-bg-hero) !important;
-  }
-  
-  body {
-    background: var(--gradient-bg-hero) !important;
-  }
+/* Override for explicit dark theme (via class or data attribute on <html>) */
+html.dark,
+html[data-theme="dark"] {
+  background: var(--gradient-bg-hero) !important;
+}
+
+html.dark body,
+html[data-theme="dark"] body {
+  background: var(--gradient-bg-hero) !important;
 }
 
 /* Additional override to ensure no black background */

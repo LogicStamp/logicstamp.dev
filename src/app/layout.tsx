@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import { cookies } from 'next/headers'
 import { GeistSans, GeistMono } from 'geist/font'
 import './globals.css'
 import Header from '@/components/Header'
@@ -21,8 +22,16 @@ export default function RootLayout({
 }: {
   children: React.ReactNode
 }) {
+  const cookieStore = cookies()
+  const themeCookie = cookieStore.get('theme')?.value as 'light' | 'dark' | 'system' | undefined
+  const htmlThemeClass = themeCookie === 'dark' ? 'dark' : ''
+
   return (
-    <html lang="en" className="bg-gradient-to-b from-sky-100 to-white dark:from-gray-900 dark:to-gray-800" suppressHydrationWarning>
+    <html
+      lang="en"
+      className={`${htmlThemeClass} bg-gradient-to-b from-sky-100 to-white dark:from-gray-900 dark:to-gray-800`}
+      suppressHydrationWarning
+    >
       <head>
         <link rel="icon" href="/icon.svg" type="image/svg+xml" />
         <link rel="shortcut icon" href="/icon.svg" type="image/svg+xml" />
@@ -31,8 +40,15 @@ export default function RootLayout({
             __html: `
               (function() {
                 try {
-                  var theme = localStorage.getItem('theme');
-                  if (theme === 'dark' || (!theme && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+                  var cookieMatch = document.cookie.match(/(?:^|; )theme=([^;]+)/);
+                  var cookieTheme = cookieMatch ? decodeURIComponent(cookieMatch[1]) : null;
+                  var storageTheme = localStorage.getItem('theme');
+                  var theme = cookieTheme || storageTheme || 'system';
+
+                  var prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+                  var effectiveDark = theme === 'dark' || (theme === 'system' && prefersDark);
+
+                  if (effectiveDark) {
                     document.documentElement.classList.add('dark');
                     document.documentElement.setAttribute('data-theme', 'dark');
                   } else {

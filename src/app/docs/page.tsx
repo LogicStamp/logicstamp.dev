@@ -17,6 +17,13 @@ const docSections = [
     ]
   },
   {
+    title: 'LogicStamp Context CLI',
+    description: 'All documentation for the LogicStamp Context CLI bundle in one place',
+    pages: [
+      { title: 'CLI Docs Hub', href: '/docs/logicstamp-context', description: 'Overview of LogicStamp Context and links to commands, usage, and schema docs' },
+    ]
+  },
+  {
     title: 'More Information',
     description: 'Additional resources and documentation',
     pages: [
