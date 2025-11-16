@@ -5,31 +5,55 @@ import AnimatedSection from '@/components/AnimatedSection'
 import DocsLayout from '@/components/DocsLayout'
 
 export const metadata: Metadata = {
-  title: 'Documentation | LogicStamp Context',
-  description: 'Get started with LogicStamp Context - AI-ready context from your codebase',
+  title: 'Documentation | LogicStamp',
+  description: 'Learn what LogicStamp is and get started with LogicStamp Context from your codebase.',
 }
 
 const docSections = [
   {
-    title: 'Getting Started',
-    description: 'Get up and running with LogicStamp Context',
+    title: 'Concepts Overview',
+    description: 'Understand LogicStamp at a high level before you dive into the CLI.',
     pages: [
-      { title: 'Installation & Quick Start', href: '/docs/getting-started', description: 'Install LogicStamp Context CLI and generate your first context.json' },
-    ]
+      {
+        title: 'What is LogicStamp?',
+        href: '/docs/what-is-logicstamp',
+        description: 'High-level explanation of LogicStamp, the problems it solves, and where it fits in your workflow.',
+      },
+    ],
+  },
+  {
+    title: 'Getting Started',
+    description: 'Installation & setup for LogicStamp Context.',
+    pages: [
+      {
+        title: 'Installation & Quick Start',
+        href: '/docs/getting-started',
+        description: 'Install LogicStamp Context CLI and generate your first context.json',
+      },
+    ],
   },
   {
     title: 'LogicStamp Context CLI',
     description: 'All documentation for the LogicStamp Context CLI bundle in one place',
     pages: [
-      { title: 'CLI Docs Hub', href: '/docs/logicstamp-context', description: 'Overview of LogicStamp Context and links to commands, usage, and schema docs' },
-    ]
+      {
+        title: 'CLI Docs Hub',
+        href: '/docs/logicstamp-context',
+        description: 'Overview of LogicStamp Context and links to commands, usage, and schema docs',
+      },
+    ],
   },
   {
     title: 'More Information',
     description: 'Additional resources and documentation',
     pages: [
-      { title: 'GitHub Repository', href: 'https://github.com/logicstamp/logicstamp-context', description: 'View source code, issues, and full documentation on GitHub', external: true },
-    ]
+      {
+        title: 'GitHub Repository',
+        href: 'https://github.com/logicstamp/logicstamp-context',
+        description: 'View source code, issues, and full documentation on GitHub',
+        external: true,
+      },
+    ],
   },
 ]
 
@@ -55,7 +79,7 @@ export default function DocumentationPage() {
               delay={100 + sectionIndex * 100}
             >
               <div className="bg-white dark:bg-gray-800 rounded-xl p-6 shadow-sm border border-gray-200 dark:border-gray-700">
-                <h2 className="text-xl font-semibold text-gray-900 dark:text-white mb-2">
+                <h2 className="text-xl font-semibold tracking-tight text-gray-900 dark:text-white mb-2">
                   {section.title}
                 </h2>
                 <p className="text-gray-600 dark:text-gray-300 mb-6">
@@ -72,7 +96,7 @@ export default function DocumentationPage() {
                     >
                       <div className="flex items-start justify-between">
                         <div className="flex-1">
-                          <h3 className="font-medium text-gray-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400">
+                          <h3 className="font-semibold text-gray-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400">
                             {page.title}
                           </h3>
                           <p className="text-sm text-gray-600 dark:text-gray-300 mt-1">
