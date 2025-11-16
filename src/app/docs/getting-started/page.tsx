@@ -4,6 +4,7 @@ import Footer from '@/components/Footer'
 import AnimatedSection from '@/components/AnimatedSection'
 import CopyButton from '@/components/CopyButton'
 import TabbedCodeBlock from '@/components/TabbedCodeBlock'
+import DocsLayout from '@/components/DocsLayout'
 
 export const metadata: Metadata = {
   title: 'Installation & Quick Start | LogicStamp Context Documentation',
@@ -13,20 +14,18 @@ export const metadata: Metadata = {
 export default function QuickStartPage() {
   return (
     <>
-      <div className="min-h-screen bg-gray-50 dark:bg-gray-900 pt-20">
-        {/* Content */}
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12 lg:py-16">
-          <AnimatedSection direction="up" delay={0}>
-            <div className="mb-12">
-              <h1 className="text-3xl lg:text-4xl font-semibold text-gray-900 dark:text-white mb-4">
-                Installation & Quick Start
-              </h1>
-              <p className="text-lg text-gray-600 dark:text-gray-300">
-                Install LogicStamp Context CLI and get up and running in 2 minutes
-              </p>
-            </div>
-          </AnimatedSection>
-          <div className="prose prose-lg dark:prose-invert max-w-none prose-headings:text-gray-900 dark:prose-headings:text-white prose-p:text-gray-700 dark:prose-p:text-gray-300 prose-code:text-gray-900 dark:prose-code:text-gray-100">
+      <DocsLayout>
+        <AnimatedSection direction="up" delay={0}>
+          <div className="mb-6">
+            <h1 className="text-3xl lg:text-4xl font-semibold text-gray-900 dark:text-white mb-3">
+              Installation & Quick Start
+            </h1>
+            <p className="text-lg text-gray-600 dark:text-gray-300">
+              Install LogicStamp Context CLI and get up and running in 2 minutes
+            </p>
+          </div>
+        </AnimatedSection>
+        <div className="prose prose-lg dark:prose-invert max-w-none prose-headings:text-gray-900 dark:prose-headings:text-white prose-p:text-gray-700 dark:prose-p:text-gray-300 prose-code:text-gray-900 dark:prose-code:text-gray-100 text-gray-800 dark:text-gray-100">
           <AnimatedSection direction="up" delay={100}>
             <div className="bg-blue-50 dark:bg-blue-900/20 border border-blue-200 dark:border-blue-800 rounded-lg p-8 mb-12">
             <h3 className="text-xl font-semibold text-blue-900 dark:text-blue-100 mb-4">
@@ -220,9 +219,8 @@ export default function QuickStartPage() {
             </p>
           </div>
           </AnimatedSection>
-          </div>
         </div>
-      </div>
+      </DocsLayout>
       <Footer />
     </>
   )

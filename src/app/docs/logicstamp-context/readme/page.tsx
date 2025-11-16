@@ -1,6 +1,7 @@
 import { Metadata } from 'next'
 import Footer from '@/components/Footer'
 import AnimatedSection from '@/components/AnimatedSection'
+import DocsLayout from '@/components/DocsLayout'
 
 export const metadata: Metadata = {
   title: 'LogicStamp Context README | Documentation',
@@ -10,21 +11,20 @@ export const metadata: Metadata = {
 export default function LogicStampReadmePage() {
   return (
     <>
-      <div className="min-h-screen bg-gray-50 dark:bg-gray-900 pt-20">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12 lg:py-16">
-          <AnimatedSection direction="up" delay={0}>
-            <div className="mb-8">
-              <h1 className="text-3xl lg:text-4xl font-semibold text-gray-900 dark:text-white mb-4">
-                LogicStamp Context Overview
-              </h1>
-              <p className="text-lg text-gray-600 dark:text-gray-300">
-                LogicStamp Context is a lightweight CLI that scans your React/TypeScript codebase and generates
-                AI-ready context bundles optimized for tools like Claude, ChatGPT, and other LLMs.
-              </p>
-            </div>
-          </AnimatedSection>
+      <DocsLayout>
+        <AnimatedSection direction="up" delay={0}>
+          <div className="mb-6">
+            <h1 className="text-3xl lg:text-4xl font-semibold text-gray-900 dark:text-white mb-3">
+              LogicStamp Context Overview
+            </h1>
+            <p className="text-lg text-gray-600 dark:text-gray-300">
+              LogicStamp Context is a lightweight CLI that scans your React/TypeScript codebase and generates
+              AI-ready context bundles optimized for tools like Claude, ChatGPT, and other LLMs.
+            </p>
+          </div>
+        </AnimatedSection>
 
-          <div className="prose prose-lg dark:prose-invert max-w-none prose-headings:text-gray-900 dark:prose-headings:text-white prose-p:text-gray-700 dark:prose-p:text-gray-300 text-gray-800 dark:text-gray-100">
+        <div className="prose prose-lg dark:prose-invert max-w-none prose-headings:text-gray-900 dark:prose-headings:text-white prose-p:text-gray-700 dark:prose-p:text-gray-300 text-gray-800 dark:text-gray-100">
             <AnimatedSection direction="up" delay={100}>
               <h2>What does it generate?</h2>
               <p>
@@ -88,9 +88,8 @@ export default function LogicStampReadmePage() {
                 </a>.
               </p>
             </AnimatedSection>
-          </div>
         </div>
-      </div>
+      </DocsLayout>
       <Footer />
     </>
   )
