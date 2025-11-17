@@ -87,7 +87,7 @@ export default function FAQ() {
   }
 
   return (
-    <section id="faq" className="py-24 sm:py-32 bg-gray-50 dark:bg-gray-900">
+    <section id="faq" className="pt-24 sm:pt-32 bg-gray-50 dark:bg-gray-900 pb-0">
       <div className="mx-auto max-w-[1320px] px-6 lg:px-8">
         <AnimatedSection direction="up" delay={0}>
           <div className="mx-auto max-w-2xl text-center">
@@ -103,7 +103,7 @@ export default function FAQ() {
           </div>
         </AnimatedSection>
 
-        <div className="mx-auto mt-16">
+        <div className="mx-auto mt-16 mb-16">
           <dl className="space-y-3">
             {faqs.map((faq, index) => {
               const isOpen = openItem === faq.id
@@ -119,7 +119,7 @@ export default function FAQ() {
                       relative rounded-2xl transition-all duration-200 ease-out
                       ${
                         isOpen
-                          ? 'bg-white/90 dark:bg-gray-900/80 border border-purple-500/40 shadow-[0_0_0_1px_rgba(168,85,247,0.45),0_18px_40px_rgba(15,23,42,0.75)]'
+                          ? 'bg-white/90 dark:bg-gray-900/80 border border-gray-900 dark:border-gray-100 shadow-[0_0_0_1px_rgba(0,0,0,0.45),0_18px_40px_rgba(15,23,42,0.75)] dark:shadow-[0_0_0_1px_rgba(255,255,255,0.45),0_18px_40px_rgba(15,23,42,0.75)]'
                           : 'bg-white/80 dark:bg-gray-900/60 border border-gray-200/60 dark:border-gray-800/80 hover:border-gray-400/80 dark:hover:border-gray-600/80 hover:bg-white dark:hover:bg-gray-900'
                       }
                     `}
@@ -138,16 +138,7 @@ export default function FAQ() {
                           aria-expanded={isOpen}
                           aria-controls={`faq-answer-${faq.id}`}
                         >
-                          <span
-                            className={`
-                              text-lg lg:text-xl font-semibold leading-7
-                              ${
-                                isOpen
-                                  ? 'text-purple-600 dark:text-purple-300'
-                                  : 'text-gray-900 dark:text-white'
-                              }
-                            `}
-                          >
+                          <span className="text-lg lg:text-xl font-semibold leading-7 text-gray-900 dark:text-white">
                             {faq.question}
                           </span>
                           <div
@@ -175,7 +166,7 @@ export default function FAQ() {
 
                             {/* Close icon */}
                             <svg
-                              className={`absolute inset-0 h-5 w-5 transition-all duration-200 ease-in-out text-purple-600 dark:text-purple-400 ${
+                              className={`absolute inset-0 h-5 w-5 transition-all duration-200 ease-in-out text-gray-900 dark:text-white ${
                                 isOpen
                                   ? 'opacity-100 rotate-0 scale-100'
                                   : 'opacity-0 -rotate-90 scale-75'
@@ -217,48 +208,48 @@ export default function FAQ() {
               )
             })}
           </dl>
-
-          {/* Documentation Link */}
-          <AnimatedSection direction="up" delay={800}>
-            <div className="mt-16 text-center">
-              <div className="relative overflow-hidden rounded-3xl border border-gray-200/70 dark:border-gray-800 bg-white/80 dark:bg-slate-950/70 px-6 py-8 sm:px-10 sm:py-10 shadow-[0_18px_40px_rgba(15,23,42,0.8)]">
-                {/* Subtle gradient wash */}
-                <div className="pointer-events-none absolute inset-0 bg-gradient-to-br from-purple-500/6 via-blue-500/4 to-transparent dark:from-purple-500/10 dark:via-blue-500/6 dark:to-transparent" />
-
-                <div className="relative z-10">
-                  <h3 className="text-2xl lg:text-3xl font-bold text-gray-900 dark:text-white mb-4">
-                    Need more detailed information?
-                  </h3>
-                  <p className="text-lg lg:text-xl text-gray-600 dark:text-gray-300 mb-8 max-w-2xl mx-auto leading-relaxed">
-                    Explore the LogicStamp docs for setup guides, profiles, token
-                    savings examples, CI workflows, and advanced configuration
-                    of <code className="font-mono text-sm">stamp context</code>.
-                  </p>
-                  <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                    <GetStartedButton href="docs/getting-started">
-                      <svg
-                        className="w-5 h-5"
-                        fill="none"
-                        stroke="currentColor"
-                        viewBox="0 0 24 24"
-                      >
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          strokeWidth={2}
-                          d="M13 10V3L4 14h7v7l9-11h-7z"
-                        />
-                      </svg>
-                      Quick Start Guide
-                    </GetStartedButton>
-                    <ReadTheDocsButton href="docs/" />
-                  </div>
-                </div>
-              </div>
-            </div>
-          </AnimatedSection>
         </div>
       </div>
+
+      {/* Documentation Link - Full Width */}
+      <AnimatedSection direction="up" delay={800}>
+        <div className="w-full">
+          <div className="relative overflow-hidden rounded-none px-6 py-8 sm:px-10 sm:py-10 lg:px-16 lg:py-12 pb-24 sm:pb-32">
+            {/* Subtle glass spark effect */}
+            <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-white/30 to-transparent dark:via-white/10 z-0" />
+            
+            <div className="relative z-10 max-w-4xl mx-auto text-center">
+              <h3 className="text-2xl lg:text-3xl font-bold text-gray-900 dark:text-white mb-4">
+                Need more detailed information?
+              </h3>
+              <p className="text-lg lg:text-xl text-gray-600 dark:text-gray-300 mb-8 max-w-2xl mx-auto leading-relaxed">
+                Explore the LogicStamp docs for setup guides, profiles, token
+                savings examples, CI workflows, and advanced configuration
+                of <code className="font-mono text-sm text-purple-600 dark:text-purple-400 bg-purple-50 dark:bg-purple-900/30 px-1.5 py-0.5 rounded">stamp context</code>.
+              </p>
+              <div className="flex flex-row items-center justify-center gap-2 sm:gap-4">
+                <GetStartedButton href="docs/getting-started">
+                  <svg
+                    className="w-5 h-5"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M13 10V3L4 14h7v7l9-11h-7z"
+                    />
+                  </svg>
+                  Quick Start
+                </GetStartedButton>
+                <ReadTheDocsButton href="docs/" />
+              </div>
+            </div>
+          </div>
+        </div>
+      </AnimatedSection>
     </section>
   )
 }
