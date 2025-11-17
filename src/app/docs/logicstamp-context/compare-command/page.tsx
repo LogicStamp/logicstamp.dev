@@ -2,6 +2,7 @@ import { Metadata } from 'next'
 import Footer from '@/components/Footer'
 import AnimatedSection from '@/components/AnimatedSection'
 import DocsLayout from '@/components/DocsLayout'
+import TabbedCodeBlock from '@/components/TabbedCodeBlock'
 
 export const metadata: Metadata = {
   title: '`compare` Command | LogicStamp Context Documentation',
@@ -27,8 +28,11 @@ export default function CompareCommandPage() {
         <div className="prose prose-lg dark:prose-invert max-w-none prose-headings:text-gray-900 dark:prose-headings:text-white prose-p:text-gray-700 dark:prose-p:text-gray-300 text-gray-800 dark:text-gray-100">
           <AnimatedSection direction="up" delay={100}>
             <h2>Quick Start</h2>
-            <pre>
-              <code>{`# Auto-mode: generate fresh context and compare with existing context.json
+            <TabbedCodeBlock
+              tabs={[
+                {
+                  label: 'Quick Start',
+                  code: `# Auto-mode: generate fresh context and compare with existing context.json
 stamp context compare
 
 # Auto-approve updates (like jest -u)
@@ -38,8 +42,21 @@ stamp context compare --approve
 stamp context compare old.json new.json
 
 # With token statistics
-stamp context compare --stats`}</code>
-            </pre>
+stamp context compare --stats`,
+                  copyText: `# Auto-mode: generate fresh context and compare with existing context.json
+stamp context compare
+
+# Auto-approve updates (like jest -u)
+stamp context compare --approve
+
+# Manual mode: compare two specific files
+stamp context compare old.json new.json
+
+# With token statistics
+stamp context compare --stats`
+                }
+              ]}
+            />
           </AnimatedSection>
 
           <AnimatedSection direction="up" delay={200}>
@@ -100,9 +117,15 @@ stamp context compare --stats`}</code>
               With the <code>--stats</code> flag, the command prints token counts for both files and the delta between
               them, allowing you to monitor how changes impact LLM context size:
             </p>
-            <pre>
-              <code>{`stamp context compare old.json new.json --stats`}</code>
-            </pre>
+            <TabbedCodeBlock
+              tabs={[
+                {
+                  label: 'With Stats',
+                  code: 'stamp context compare old.json new.json --stats',
+                  copyText: 'stamp context compare old.json new.json --stats'
+                }
+              ]}
+            />
 
             <h2>Exit Codes</h2>
             <ul>

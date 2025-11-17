@@ -2,6 +2,7 @@ import { Metadata } from 'next'
 import Footer from '@/components/Footer'
 import AnimatedSection from '@/components/AnimatedSection'
 import DocsLayout from '@/components/DocsLayout'
+import TabbedCodeBlock from '@/components/TabbedCodeBlock'
 
 export const metadata: Metadata = {
   title: '`stamp context validate` Command | LogicStamp Context Documentation',
@@ -26,9 +27,15 @@ export default function ValidateCommandPage() {
         <div className="prose prose-lg dark:prose-invert max-w-none prose-headings:text-gray-900 dark:prose-headings:text-white prose-p:text-gray-700 dark:prose-p:text-gray-300 text-gray-800 dark:text-gray-100">
             <AnimatedSection direction="up" delay={100}>
               <h2>Syntax</h2>
-              <pre>
-                <code>stamp context validate [file]</code>
-              </pre>
+              <TabbedCodeBlock
+                tabs={[
+                  {
+                    label: 'Syntax',
+                    code: 'stamp context validate [file]',
+                    copyText: 'stamp context validate [file]'
+                  }
+                ]}
+              />
               <p>
                 <strong>[file]</strong> – Optional path to the bundle file created by the <code>stamp context</code>{' '}
                 command. Defaults to <code>context.json</code> in the current working directory.
@@ -74,13 +81,23 @@ export default function ValidateCommandPage() {
 
             <AnimatedSection direction="up" delay={400}>
               <h2>Examples</h2>
-              <pre>
-                <code>{`# Validate the default output file in the current directory
-logicstamp-validate
+              <TabbedCodeBlock
+                tabs={[
+                  {
+                    label: 'Examples',
+                    code: `# Validate the default output file in the current directory
+stamp context validate
 
 # Validate a custom bundle file
-logicstamp-validate artifacts/review-context.json`}</code>
-              </pre>
+stamp context validate artifacts/review-context.json`,
+                    copyText: `# Validate the default output file in the current directory
+stamp context validate
+
+# Validate a custom bundle file
+stamp context validate artifacts/review-context.json`
+                  }
+                ]}
+              />
             </AnimatedSection>
 
             <AnimatedSection direction="up" delay={500}>

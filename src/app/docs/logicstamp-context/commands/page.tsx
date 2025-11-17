@@ -2,6 +2,7 @@ import { Metadata } from 'next'
 import Footer from '@/components/Footer'
 import AnimatedSection from '@/components/AnimatedSection'
 import DocsLayout from '@/components/DocsLayout'
+import TabbedCodeBlock from '@/components/TabbedCodeBlock'
 
 export const metadata: Metadata = {
   title: 'LogicStamp Context Commands | Documentation',
@@ -80,16 +81,29 @@ export default function LogicStampCommandsPage() {
 
             <AnimatedSection direction="up" delay={300}>
               <h2>Quick Reference</h2>
-              <pre>
-                <code>{`# Generate context for your repository
+              <TabbedCodeBlock
+                tabs={[
+                  {
+                    label: 'Quick Reference',
+                    code: `# Generate context for your repository
 stamp context
 
 # Scan a subdirectory and use the llm-safe profile
 stamp context ./src --profile llm-safe
 
 # Validate the generated bundle before committing
-stamp context validate       # defaults to ./context.json`}</code>
-              </pre>
+stamp context validate       # defaults to ./context.json`,
+                    copyText: `# Generate context for your repository
+stamp context
+
+# Scan a subdirectory and use the llm-safe profile
+stamp context ./src --profile llm-safe
+
+# Validate the generated bundle before committing
+stamp context validate       # defaults to ./context.json`
+                  }
+                ]}
+              />
             </AnimatedSection>
           </div>
         </DocsLayout>

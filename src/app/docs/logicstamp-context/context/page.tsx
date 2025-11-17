@@ -2,6 +2,7 @@ import { Metadata } from 'next'
 import Footer from '@/components/Footer'
 import AnimatedSection from '@/components/AnimatedSection'
 import DocsLayout from '@/components/DocsLayout'
+import TabbedCodeBlock from '@/components/TabbedCodeBlock'
 
 export const metadata: Metadata = {
   title: '`context` Command | LogicStamp Context Documentation',
@@ -26,9 +27,15 @@ export default function ContextCommandPage() {
         <div className="prose prose-lg dark:prose-invert max-w-none prose-headings:text-gray-900 dark:prose-headings:text-white prose-p:text-gray-700 dark:prose-p:text-gray-300 text-gray-800 dark:text-gray-100">
             <AnimatedSection direction="up" delay={100}>
               <h2>Syntax</h2>
-              <pre>
-                <code>stamp context [path] [options]</code>
-              </pre>
+              <TabbedCodeBlock
+                tabs={[
+                  {
+                    label: 'Syntax',
+                    code: 'stamp context [path] [options]',
+                    copyText: 'stamp context [path] [options]'
+                  }
+                ]}
+              />
               <p>
                 <strong>[path]</strong> (optional) – Directory to scan. Defaults to the current working directory. Paths
                 can be relative (for example, <code>./src</code>) or absolute.
@@ -151,8 +158,11 @@ export default function ContextCommandPage() {
 
             <AnimatedSection direction="up" delay={300}>
               <h2>Example Workflows</h2>
-              <pre>
-                <code>{`# Scan entire repo and write context.json (defaults)
+              <TabbedCodeBlock
+                tabs={[
+                  {
+                    label: 'Examples',
+                    code: `# Scan entire repo and write context.json (defaults)
 stamp context
 
 # Generate context for ./src with pretty-printed output
@@ -165,8 +175,24 @@ stamp context --include-code full --max-nodes 20
 stamp context --stats >> .ci/context-stats.jsonl
 
 # Dry run to confirm counts before overwriting an existing file
-stamp context ./packages/ui --dry-run`}</code>
-              </pre>
+stamp context ./packages/ui --dry-run`,
+                    copyText: `# Scan entire repo and write context.json (defaults)
+stamp context
+
+# Generate context for ./src with pretty-printed output
+stamp context ./src --format pretty
+
+# Include full source for deep AI reviews (limit nodes for safety)
+stamp context --include-code full --max-nodes 20
+
+# Gather metrics without writing a file (e.g., CI dashboards)
+stamp context --stats >> .ci/context-stats.jsonl
+
+# Dry run to confirm counts before overwriting an existing file
+stamp context ./packages/ui --dry-run`
+                  }
+                ]}
+              />
             </AnimatedSection>
 
             <AnimatedSection direction="up" delay={400}>

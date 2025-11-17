@@ -67,8 +67,8 @@ export default function LogicStampLogo({
         <defs>
           {/* Subtle glow halo around cube */}
           <radialGradient id="ls_halo" cx="50%" cy="50%" r="50%">
-            <stop offset="0%" stopColor="#9A56FF" stopOpacity="0.4" />
-            <stop offset="60%" stopColor="#9A56FF" stopOpacity="0.15" />
+            <stop offset="0%" stopColor="#9A56FF" stopOpacity="0.35" />
+            <stop offset="60%" stopColor="#9A56FF" stopOpacity="0.12" />
             <stop offset="100%" stopColor="#9A56FF" stopOpacity="0" />
           </radialGradient>
 

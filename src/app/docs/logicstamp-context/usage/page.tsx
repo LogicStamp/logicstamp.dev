@@ -2,6 +2,7 @@ import { Metadata } from 'next'
 import Footer from '@/components/Footer'
 import AnimatedSection from '@/components/AnimatedSection'
 import DocsLayout from '@/components/DocsLayout'
+import TabbedCodeBlock from '@/components/TabbedCodeBlock'
 
 export const metadata: Metadata = {
   title: 'Usage Guide | LogicStamp Context Documentation',
@@ -26,23 +27,42 @@ export default function UsagePage() {
         <div className="prose prose-lg dark:prose-invert max-w-none prose-headings:text-gray-900 dark:prose-headings:text-white prose-p:text-gray-700 dark:prose-p:text-gray-300 text-gray-800 dark:text-gray-100">
             <AnimatedSection direction="up" delay={100}>
               <h2>Quick Start</h2>
-              <pre>
-                <code>{`# Install globally
+              <TabbedCodeBlock
+                tabs={[
+                  {
+                    label: 'Quick Start',
+                    code: `# Install globally
 npm install -g logicstamp-context
 
 # Generate context for your project
 stamp context
 
-# Output: context.json with full component analysis`}</code>
-              </pre>
+# Output: context.json with full component analysis`,
+                    copyText: `# Install globally
+npm install -g logicstamp-context
+
+# Generate context for your project
+stamp context
+
+# Output: context.json with full component analysis`
+                  }
+                ]}
+              />
             </AnimatedSection>
 
             <AnimatedSection direction="up" delay={200}>
               <h2>Command Syntax</h2>
-              <pre>
-                <code>{`stamp context [path] [options]
-stamp context validate [file]`}</code>
-              </pre>
+              <TabbedCodeBlock
+                tabs={[
+                  {
+                    label: 'Syntax',
+                    code: `stamp context [path] [options]
+stamp context validate [file]`,
+                    copyText: `stamp context [path] [options]
+stamp context validate [file]`
+                  }
+                ]}
+              />
               <p>
                 Use <code>stamp context</code> to generate bundles and <code>stamp context validate</code> to verify
                 them before sharing or committing.

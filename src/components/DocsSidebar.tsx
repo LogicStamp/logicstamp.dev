@@ -19,6 +19,8 @@ const sections: DocsNavSection[] = [
     title: 'Overview',
     items: [
       { title: 'Docs Home', href: '/docs' },
+      { title: 'What is LogicStamp?', href: '/docs/what-is-logicstamp' },
+      { title: 'Complete Reference', href: '/docs/complete-reference' },
       { title: 'CLI Hub', href: '/docs/logicstamp-context' },
     ],
   },
@@ -68,6 +70,43 @@ function getIcon(href: string): ReactNode {
       >
         <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20" />
         <path d="M4 4.5A2.5 2.5 0 0 1 6.5 2H20v17H6.5A2.5 2.5 0 0 0 4 21.5z" />
+      </svg>
+    )
+  }
+
+  if (href === '/docs/what-is-logicstamp') {
+    // Info / question mark icon
+    return (
+      <svg
+        className="w-3.5 h-3.5"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth={2}
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      >
+        <circle cx="12" cy="12" r="10" />
+        <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3" />
+        <path d="M12 17h.01" />
+      </svg>
+    )
+  }
+
+  if (href === '/docs/complete-reference') {
+    // Book / reference icon
+    return (
+      <svg
+        className="w-3.5 h-3.5"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth={2}
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      >
+        <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20" />
+        <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z" />
       </svg>
     )
   }

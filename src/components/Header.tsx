@@ -1,7 +1,8 @@
 'use client'
-import { useState, useEffect } from 'react'
+import { useState, useEffect, Fragment } from 'react'
 import { usePathname } from 'next/navigation'
 import LogicStampLogo from './LogicStampLogo'
+import LogicStampWordmark from './LogicStampWordmark'
 import ThemeToggle from './ThemeToggle'
 
 export default function Header() {
@@ -80,10 +81,10 @@ export default function Header() {
 
   return (
     <>
-    {/* Pill-shaped header container */}
+    {/* Rounded header container */}
     <header className="fixed top-2 left-4 right-4 z-50 mx-auto max-w-8xl">
-      <div className="bg-white/80 dark:bg-gray-900/80 rounded-full border border-white/10 dark:border-white/5 shadow-[0_2px_16px_rgba(0,0,0,0.08)] backdrop-blur-md h-14 min-h-14">
-        <nav className="flex items-center justify-between px-6 lg:px-8 h-full min-h-full" aria-label="Global">
+      <div className="bg-white/80 dark:bg-gray-900/80 rounded-xl border border-gray-200/20 dark:border-white/10 shadow-lg shadow-black/15 backdrop-blur-md h-12 min-h-12">
+        <nav className="flex items-center justify-between pl-2 pr-6 lg:pl-4 lg:pr-8 h-full min-h-full" aria-label="Global">
           <div className="flex lg:flex-1">
             <a
               href={isHomePage ? "#" : "/"}
@@ -93,14 +94,13 @@ export default function Header() {
                   smoothScrollToTop();
                 }
               }}
-              className="flex items-center gap-1.5 pr-4 cursor-pointer group"
+              className="flex items-center gap-0 pr-4 cursor-pointer group"
             >
-              <span className="text-lg lg:text-xl font-semibold tracking-tight bg-gradient-to-r from-blue-600 to-purple-600 dark:from-blue-400 dark:to-purple-400 bg-clip-text text-transparent flex items-center gap-1.5">
-                <div className="logicstamp-logo-container">
-                  <LogicStampLogo className="logicstamp-logo" size={32} />
-                </div>
-                LogicStamp
-              </span>
+              <div className="logicstamp-logo-container">
+                <LogicStampLogo className="logicstamp-logo" size={32} />
+              </div>
+              <LogicStampWordmark height={21} className="hidden sm:block" />
+              <LogicStampWordmark height={17} className="block sm:hidden" />
             </a>
           </div>
           
@@ -122,16 +122,20 @@ export default function Header() {
           
           {/* Desktop navigation */}
           <div className="hidden lg:flex lg:items-center lg:gap-x-8">
-            {navigation.map((item) => (
-              <a
-                key={item.name}
-                href={item.href}
-                target={item.external ? '_blank' : undefined}
-                rel={item.external ? 'noopener noreferrer' : undefined}
-                className="text-sm font-medium leading-[1.4] text-gray-900 dark:text-white hover:text-gray-600 dark:hover:text-gray-300 transition-colors duration-200"
-              >
-                {item.name}
-              </a>
+            {navigation.map((item, index) => (
+              <Fragment key={item.name}>
+                <a
+                  href={item.href}
+                  target={item.external ? '_blank' : undefined}
+                  rel={item.external ? 'noopener noreferrer' : undefined}
+                  className="text-sm font-medium leading-[1.4] text-gray-900 dark:text-white hover:text-gray-600 dark:hover:text-gray-300 transition-colors duration-200"
+                >
+                  {item.name}
+                </a>
+                {index < navigation.length - 1 && (
+                  <div className="h-4 w-px bg-gray-300 dark:bg-gray-600" />
+                )}
+              </Fragment>
             ))}
           </div>
           
@@ -150,21 +154,25 @@ export default function Header() {
     </header>
 
     {/* Mobile menu dropdown */}
-    <div className={`lg:hidden fixed top-[4.5rem] left-4 right-4 z-50 mx-auto max-w-8xl pt-4 transition-all duration-300 ease-in-out mobile-menu-dropdown ${mobileMenuOpen ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-2 pointer-events-none'}`}>
+    <div className={`lg:hidden fixed top-[3.5rem] left-4 right-4 z-50 mx-auto max-w-8xl pt-1 transition-all duration-300 ease-in-out mobile-menu-dropdown ${mobileMenuOpen ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-2 pointer-events-none'}`}>
       <div className="bg-white dark:bg-gray-900 rounded-t-none rounded-b-2xl shadow-lg border border-gray-200/80 dark:border-gray-700/80 border-t-0">
         <div className="px-6 py-4">
-          <div className="space-y-2">
-            {navigation.map((item) => (
-              <a
-                key={item.name}
-                href={item.href}
-                target={item.external ? '_blank' : undefined}
-                rel={item.external ? 'noopener noreferrer' : undefined}
-                className="block rounded-lg px-3 py-2 text-sm font-medium leading-6 text-gray-900 dark:text-white hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors duration-200"
-                onClick={() => setMobileMenuOpen(false)}
-              >
-                {item.name}
-              </a>
+          <div className="space-y-0">
+            {navigation.map((item, index) => (
+              <Fragment key={item.name}>
+                <a
+                  href={item.href}
+                  target={item.external ? '_blank' : undefined}
+                  rel={item.external ? 'noopener noreferrer' : undefined}
+                  className="block rounded-lg px-3 py-2 text-sm font-medium leading-6 text-gray-900 dark:text-white hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors duration-200"
+                  onClick={() => setMobileMenuOpen(false)}
+                >
+                  {item.name}
+                </a>
+                {index < navigation.length - 1 && (
+                  <div className="h-px bg-gray-200 dark:bg-gray-700 mx-3" />
+                )}
+              </Fragment>
             ))}
           </div>
 
