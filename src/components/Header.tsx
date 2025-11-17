@@ -155,7 +155,7 @@ export default function Header() {
 
     {/* Mobile menu dropdown */}
     <div className={`lg:hidden fixed top-[3.5rem] left-4 right-4 z-50 mx-auto max-w-8xl pt-1 transition-all duration-300 ease-in-out mobile-menu-dropdown ${mobileMenuOpen ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-2 pointer-events-none'}`}>
-      <div className="bg-white/80 dark:bg-gray-900/80 rounded-xl shadow-lg border border-gray-200/20 dark:border-white/10 backdrop-blur-md">
+      <div className="bg-gray-50/90 dark:bg-gray-900/95 rounded-xl shadow-lg border border-gray-200/20 dark:border-white/10 backdrop-blur-md">
         <div className="px-6 py-4">
           <div className="space-y-0">
             {navigation.map((item, index) => (
