@@ -1,19 +1,26 @@
 'use client'
 
 import { useEffect, useState } from 'react'
+import { usePathname } from 'next/navigation'
 
 export default function ScrollToTopButton() {
   const [isVisible, setIsVisible] = useState(false)
+  const pathname = usePathname()
+
+  // Only show on docs pages
+  const isDocsPage = pathname?.startsWith('/docs')
 
   useEffect(() => {
+    if (!isDocsPage) return
+
     const toggleVisibility = () => {
-      setIsVisible(window.scrollY >1200)
+      setIsVisible(window.scrollY >700)
     }
 
     toggleVisibility()
     window.addEventListener('scroll', toggleVisibility)
     return () => window.removeEventListener('scroll', toggleVisibility)
-  }, [])
+  }, [isDocsPage])
 
   const scrollToTop = () => {
     window.scrollTo({
@@ -22,20 +29,20 @@ export default function ScrollToTopButton() {
     })
   }
 
+  // Don't render if not on docs page
+  if (!isDocsPage) return null
+
   return (
     <button
       onClick={scrollToTop}
-      className={`fixed bottom-6 right-6 z-50 group p-3 rounded-xl bg-white dark:bg-gray-800 shadow-lg hover:shadow-xl border border-gray-200 dark:border-gray-700 transition-all duration-200 hover:border-transparent focus:outline-none ${
+      className={`fixed bottom-6 right-6 z-50 p-3 rounded-xl bg-white/80 dark:bg-gray-900/80 border border-gray-200/20 dark:border-white/10 shadow-lg shadow-black/15 backdrop-blur-md transition-all duration-200 focus:outline-none ${
         isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4 pointer-events-none'
       }`}
       aria-label="Scroll to top"
     >
-      {/* Gradient background on hover */}
-      <div className="absolute inset-0 rounded-xl bg-gradient-to-br from-blue-500 via-purple-500 to-pink-500 opacity-0 group-hover:opacity-100 transition-opacity duration-200 -z-10"></div>
-
       {/* Up arrow icon */}
       <svg
-        className="w-4 h-4 text-gray-700 dark:text-gray-300 group-hover:text-white group-hover:-translate-y-0.5 transition-all duration-200"
+        className="w-4 h-4 text-gray-700 dark:text-gray-300"
         fill="none"
         stroke="currentColor"
         viewBox="0 0 24 24"

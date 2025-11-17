@@ -16,7 +16,7 @@ export default function GetStartedButton({
   const sizeClasses = {
     sm: 'px-5 py-2 text-sm',
     md: 'px-6 py-3 text-base',
-    lg: 'px-8 py-4 text-base lg:text-lg',
+    lg: 'px-6 py-3 sm:px-8 sm:py-4 text-sm sm:text-base lg:text-lg',
   }
 
   const variantClasses = {
@@ -29,7 +29,7 @@ export default function GetStartedButton({
   return (
     <a
       href={href}
-      className={`group inline-flex items-center gap-2 rounded-lg font-bold transition-all duration-200 ${sizeClasses[size]} ${variantClasses[variant]} ${className}`}
+      className={`group inline-flex items-center gap-2 rounded-lg font-bold transition-all duration-200 whitespace-nowrap ${sizeClasses[size]} ${variantClasses[variant]} ${className}`}
     >
       {children}
     </a>

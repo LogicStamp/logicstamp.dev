@@ -428,7 +428,7 @@ export default function WhyLogicStamp() {
             <p className="text-lg lg:text-xl text-gray-600 dark:text-gray-300 mb-8 font-medium">
               Join developers who&apos;ve ditched manual context and saved hours every week.
             </p>
-            <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+            <div className="flex flex-row items-center justify-center gap-2 sm:gap-4">
               <GetStartedButton href="/docs/getting-started">Get Started Now</GetStartedButton>
               <StarGitHubButton variant="secondary" showArrow={false} />
             </div>

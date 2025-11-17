@@ -476,7 +476,7 @@ export default function HowItWorks() {
             <p className="text-lg lg:text-xl text-gray-600 dark:text-gray-300 mb-8 font-medium">
               Ready to generate AI-ready context from your codebase?
             </p>
-            <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+            <div className="flex flex-row items-center justify-center gap-2 sm:gap-4">
               <GetStartedButton href="docs/getting-started">Get Started Now</GetStartedButton>
               <StarGitHubButton variant="secondary" showArrow={false} href="https://github.com/LogicStamp/logicstamp-context">
                 Star on GitHub
