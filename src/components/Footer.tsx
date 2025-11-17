@@ -31,8 +31,8 @@ export default function Footer() {
                   <div className="logicstamp-logo-container">
                     <LogicStampLogo className="logicstamp-logo" size={32} />
                   </div>
-                  <LogicStampWordmark variant="header" className="hidden sm:block" />
-                  <LogicStampWordmark variant="header" height={20} className="block sm:hidden" />
+                  <LogicStampWordmark className="hidden sm:block" />
+                  <LogicStampWordmark height={20} className="block sm:hidden" />
                 </a>
                 <p className="mt-2 max-w-xs text-sm leading-relaxed text-gray-500 dark:text-gray-400">
                   AI-ready context from your codebase. Open-source, zero-config.
