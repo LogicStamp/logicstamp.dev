@@ -239,7 +239,7 @@ function ContextJsonPreview({ animatedNodes }: { animatedNodes: Set<number> }) {
           isDarkMode ? 'text-gray-400' : 'text-gray-500'
         }`}>context.json</p>
       </div>
-      <div className={`flex-1 p-3 sm:p-4 lg:p-5 overflow-y-auto overflow-x-auto sm:overflow-x-hidden ${
+      <div className={`flex-1 p-3 sm:p-4 lg:p-5 overflow-hidden ${
         isDarkMode ? 'bg-gray-900' : 'bg-gray-50'
       }`}>
         <pre className={`text-sm sm:text-sm lg:text-sm font-mono leading-5 sm:leading-6 whitespace-pre ${
