@@ -4,9 +4,11 @@ import { useEffect, useState } from 'react'
 import AnimatedSection from './AnimatedSection'
 import GetStartedButton from './GetStartedButton'
 import StarGitHubButton from './StarGitHubButton'
+import { useTheme } from '../contexts/ThemeContext'
 
 // Terminal animation component for how it works demonstration
 function HowItWorksTerminalAnimation() {
+  const { isDarkMode } = useTheme()
   const [currentDemo, setCurrentDemo] = useState(0)
   const [displayText, setDisplayText] = useState('')
   const [showCursor, setShowCursor] = useState(true)
@@ -265,6 +267,102 @@ Token Stats:
     }
   }
 
+  // Colorize terminal output
+  const colorizeTerminalText = (text: string) => {
+    if (!text) return null
+    
+    const lines = text.split('\n')
+    return lines.map((line, lineIndex) => {
+      const parts: JSX.Element[] = []
+      
+      // Match patterns
+      const patterns = [
+        // Command prompt ($)
+        { regex: /^\$\s+/g, color: isDarkMode ? 'text-green-400' : 'text-green-600' },
+        // Commands (stamp, npm, etc.)
+        { regex: /\b(stamp|npm|i|install|-g|context|compare|validate|--stats|--compare-modes)\b/g, color: isDarkMode ? 'text-blue-400' : 'text-blue-600' },
+        // Numbers
+        { regex: /\b\d+\b/g, color: isDarkMode ? 'text-yellow-400' : 'text-yellow-600' },
+        // Paths and URLs
+        { regex: /(\/[\w\/\.-]+|https?:\/\/[^\s]+)/g, color: isDarkMode ? 'text-cyan-400' : 'text-cyan-600' },
+        // Success messages (✅)
+        { regex: /✅/g, color: isDarkMode ? 'text-green-400' : 'text-green-600' },
+        // Emojis (🔍, 🔨, 📊, etc.)
+        { regex: /[🔍🔨📊📋📦🔍✅📝⏱🔄]/g, color: isDarkMode ? 'text-yellow-400' : 'text-yellow-600' },
+        // Status words
+        { regex: /\b(PASS|FAIL|Completed|found|Analyzed|Scanning|Generating|Validating|Writing|Summary|Comparison|Mode|Tokens|Savings|Estimates)\b/gi, color: isDarkMode ? 'text-purple-400' : 'text-purple-600' },
+        // Percentages and special numbers
+        { regex: /(~|%|\+|-)\d+/g, color: isDarkMode ? 'text-orange-400' : 'text-orange-600' },
+      ]
+      
+      // Process line with patterns
+      const matches: Array<{ start: number; end: number; color: string; text: string }> = []
+      
+      patterns.forEach(({ regex, color }) => {
+        let match
+        regex.lastIndex = 0
+        while ((match = regex.exec(line)) !== null) {
+          matches.push({
+            start: match.index,
+            end: match.index + match[0].length,
+            color,
+            text: match[0]
+          })
+        }
+      })
+      
+      // Sort matches by start position
+      matches.sort((a, b) => a.start - b.start)
+      
+      // Remove overlapping matches (keep first)
+      const nonOverlapping: typeof matches = []
+      matches.forEach(match => {
+        const overlaps = nonOverlapping.some(existing => 
+          (match.start < existing.end && match.end > existing.start)
+        )
+        if (!overlaps) {
+          nonOverlapping.push(match)
+        }
+      })
+      
+      // Build parts
+      let currentIndex = 0
+      nonOverlapping.forEach(match => {
+        // Add text before match
+        if (match.start > currentIndex) {
+          parts.push(
+            <span key={`${lineIndex}-${currentIndex}`} className={isDarkMode ? 'text-gray-100' : 'text-gray-800'}>
+              {line.substring(currentIndex, match.start)}
+            </span>
+          )
+        }
+        // Add colored match
+        parts.push(
+          <span key={`${lineIndex}-${match.start}`} className={match.color}>
+            {match.text}
+          </span>
+        )
+        currentIndex = match.end
+      })
+      
+      // Add remaining text
+      if (currentIndex < line.length) {
+        parts.push(
+          <span key={`${lineIndex}-${currentIndex}`} className={isDarkMode ? 'text-gray-100' : 'text-gray-800'}>
+            {line.substring(currentIndex)}
+          </span>
+        )
+      }
+      
+      return (
+        <span key={lineIndex}>
+          {parts.length > 0 ? parts : <span className={isDarkMode ? 'text-gray-100' : 'text-gray-800'}>{line}</span>}
+          {lineIndex < lines.length - 1 && '\n'}
+        </span>
+      )
+    })
+  }
+
   return (
     <div className="space-y-4 sm:space-y-6">
       {/* Demo selector */}
@@ -288,22 +386,40 @@ Token Stats:
 
       {/* Terminal */}
       <div className="relative rounded-xl bg-gradient-bg-card p-2 ring-1 ring-inset ring-secondary-200/20 dark:ring-secondary-400/20 lg:rounded-2xl lg:p-4 hover-lift shadow-lg mx-2 sm:mx-0">
-        <div className="rounded-md bg-gray-900 shadow-2xl ring-1 ring-gray-900/10">
-        <div className="flex items-center gap-x-4 px-3 sm:px-4 py-2 sm:py-3 border-b border-gray-700">
+        <div className={`rounded-md shadow-2xl ring-1 ${
+          isDarkMode 
+            ? 'bg-gray-900 ring-gray-800/50' 
+            : 'bg-gray-50 ring-gray-200/50'
+        }`}>
+        <div className={`flex items-center gap-x-4 px-3 sm:px-4 py-2 sm:py-3 border-b ${
+          isDarkMode ? 'border-gray-700' : 'border-gray-200'
+        }`}>
           <div className="flex gap-x-1.5">
-            <div className="h-2 w-2 sm:h-3 sm:w-3 rounded-full bg-red-500" />
-            <div className="h-2 w-2 sm:h-3 sm:w-3 rounded-full bg-yellow-500" />
-            <div className="h-2 w-2 sm:h-3 sm:w-3 rounded-full bg-green-500" />
+            <div className={`h-2 w-2 sm:h-3 sm:w-3 rounded-full ${
+              isDarkMode ? 'bg-red-500' : 'bg-red-400'
+            }`} />
+            <div className={`h-2 w-2 sm:h-3 sm:w-3 rounded-full ${
+              isDarkMode ? 'bg-yellow-500' : 'bg-yellow-400'
+            }`} />
+            <div className={`h-2 w-2 sm:h-3 sm:w-3 rounded-full ${
+              isDarkMode ? 'bg-green-500' : 'bg-green-400'
+            }`} />
           </div>
-          <p className="text-xs lg:text-sm text-gray-400">LogicStamp Context CLI</p>
+          <p className={`text-xs lg:text-sm ${
+            isDarkMode ? 'text-gray-400' : 'text-gray-500'
+          }`}>LogicStamp Context CLI</p>
         </div>
-        <pre className="px-3 sm:px-6 py-3 sm:py-5 text-xs sm:text-sm lg:text-base leading-5 sm:leading-6 text-gray-300 font-mono whitespace-pre relative h-96 sm:h-[48rem] overflow-x-auto sm:overflow-hidden">
+        <pre className={`px-3 sm:px-6 py-3 sm:py-5 text-sm sm:text-base lg:text-lg leading-5 sm:leading-6 font-mono whitespace-pre relative h-96 sm:h-[48rem] overflow-x-auto sm:overflow-hidden ${
+          isDarkMode ? 'text-gray-100' : 'text-gray-800'
+        }`}>
           {/* Invisible full content to reserve space */}
           <code className="invisible whitespace-pre">{demos[currentDemo].content}</code>
-          {/* Visible animated content */}
-          <code className="absolute inset-0 px-3 sm:px-6 py-3 sm:py-5 bg-transparent whitespace-pre">
-            {displayText}
-            {showCursor && <span className="animate-pulse">▋</span>}
+          {/* Visible animated content with colors */}
+          <code className={`absolute inset-0 px-3 sm:px-6 py-3 sm:py-5 whitespace-pre ${
+            isDarkMode ? 'bg-gray-900' : 'bg-gray-50'
+          }`}>
+            {colorizeTerminalText(displayText)}
+            {showCursor && <span className={`animate-pulse ${isDarkMode ? 'text-gray-100' : 'text-gray-800'}`}>▋</span>}
           </code>
         </pre>
         </div>

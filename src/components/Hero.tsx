@@ -6,6 +6,7 @@ import CopyButton from './CopyButton'
 import GitHubStats from './GitHubStats'
 import StarGitHubButton from './StarGitHubButton'
 import ReadTheDocsButton from './ReadTheDocsButton'
+import { useTheme } from '../contexts/ThemeContext'
 
 // Graph structure: nodes represent components, edges represent dependencies
 const GRAPH_NODES = [
@@ -196,6 +197,8 @@ function DependencyGraph({ animatedNodes }: { animatedNodes: Set<number> }) {
 
 // Context.json Preview Component
 function ContextJsonPreview({ animatedNodes }: { animatedNodes: Set<number> }) {
+  const { isDarkMode } = useTheme()
+  
   const getNodePath = (nodeId: number) => {
     const node = GRAPH_NODES[nodeId]
     if (!node) return ''
@@ -213,19 +216,37 @@ function ContextJsonPreview({ animatedNodes }: { animatedNodes: Set<number> }) {
     .sort()
 
   return (
-    <div className="h-full flex flex-col rounded-md bg-gray-900 shadow-2xl ring-1 ring-gray-900/10">
-      <div className="flex items-center gap-x-4 px-3 sm:px-4 py-2 sm:py-3 border-b border-gray-700">
+    <div className={`h-full flex flex-col rounded-md shadow-2xl ring-1 ${
+      isDarkMode 
+        ? 'bg-gray-900 ring-gray-800/50' 
+        : 'bg-gray-50 ring-gray-200/50'
+    }`}>
+      <div className={`flex items-center gap-x-4 px-3 sm:px-4 py-2 sm:py-3 border-b ${
+        isDarkMode ? 'border-gray-700' : 'border-gray-200'
+      }`}>
         <div className="flex gap-x-1.5">
-          <div className="h-2 w-2 sm:h-3 sm:w-3 rounded-full bg-red-500" />
-          <div className="h-2 w-2 sm:h-3 sm:w-3 rounded-full bg-yellow-500" />
-          <div className="h-2 w-2 sm:h-3 sm:w-3 rounded-full bg-green-500" />
+          <div className={`h-2 w-2 sm:h-3 sm:w-3 rounded-full ${
+            isDarkMode ? 'bg-red-500' : 'bg-red-400'
+          }`} />
+          <div className={`h-2 w-2 sm:h-3 sm:w-3 rounded-full ${
+            isDarkMode ? 'bg-yellow-500' : 'bg-yellow-400'
+          }`} />
+          <div className={`h-2 w-2 sm:h-3 sm:w-3 rounded-full ${
+            isDarkMode ? 'bg-green-500' : 'bg-green-400'
+          }`} />
         </div>
-        <p className="text-xs lg:text-sm text-gray-400">context.json</p>
+        <p className={`text-xs lg:text-sm ${
+          isDarkMode ? 'text-gray-400' : 'text-gray-500'
+        }`}>context.json</p>
       </div>
-      <div className="flex-1 bg-gray-900 p-3 sm:p-4 lg:p-5 overflow-y-auto overflow-x-auto sm:overflow-x-hidden">
-        <pre className="text-xs sm:text-sm lg:text-[0.875rem] text-gray-300 font-mono leading-5 sm:leading-6 whitespace-pre">
+      <div className={`flex-1 p-3 sm:p-4 lg:p-5 overflow-y-auto overflow-x-auto sm:overflow-x-hidden ${
+        isDarkMode ? 'bg-gray-900' : 'bg-gray-50'
+      }`}>
+        <pre className={`text-sm sm:text-sm lg:text-sm font-mono leading-5 sm:leading-6 whitespace-pre ${
+          isDarkMode ? 'text-gray-100' : 'text-gray-800'
+        }`}>
           <code>
-            <span className="text-gray-500">[</span>
+            <span className={isDarkMode ? 'text-gray-400' : 'text-gray-500'}>[</span>
             {visibleBundles.length > 0 && (
               <>
                 {'\n'}
@@ -240,110 +261,110 @@ function ContextJsonPreview({ animatedNodes }: { animatedNodes: Set<number> }) {
                   return (
                     <span key={nodeId} className="block">
                       {'  '}
-                      <span className="text-gray-500">{'{'}</span>
+                      <span className={isDarkMode ? 'text-gray-500' : 'text-gray-400'}>{'{'}</span>
                       {'\n'}
                       {'    '}
-                      <span className="text-gray-300">"$schema"</span>
-                      <span className="text-gray-500">: </span>
-                      <span className="text-gray-300">"https://logicstamp.dev/schemas/context/v0.1.json"</span>
-                      <span className="text-gray-500">,</span>
+                      <span className={isDarkMode ? 'text-cyan-400' : 'text-cyan-600'}>"$schema"</span>
+                      <span className={isDarkMode ? 'text-gray-500' : 'text-gray-400'}>: </span>
+                      <span className={isDarkMode ? 'text-green-400' : 'text-green-600'}>"https://logicstamp.dev/schemas/context/v0.1.json"</span>
+                      <span className={isDarkMode ? 'text-gray-500' : 'text-gray-400'}>,</span>
                       {'\n'}
                       {'    '}
-                      <span className="text-gray-300">"position"</span>
-                      <span className="text-gray-500">: </span>
-                      <span className="text-gray-300">"{position}"</span>
-                      <span className="text-gray-500">,</span>
+                      <span className={isDarkMode ? 'text-cyan-400' : 'text-cyan-600'}>"position"</span>
+                      <span className={isDarkMode ? 'text-gray-500' : 'text-gray-400'}>: </span>
+                      <span className={isDarkMode ? 'text-green-400' : 'text-green-600'}>"{position}"</span>
+                      <span className={isDarkMode ? 'text-gray-500' : 'text-gray-400'}>,</span>
                       {'\n'}
                       {'    '}
-                      <span className="text-gray-300">"type"</span>
-                      <span className="text-gray-500">: </span>
-                      <span className="text-gray-300">"LogicStampBundle"</span>
-                      <span className="text-gray-500">,</span>
+                      <span className={isDarkMode ? 'text-cyan-400' : 'text-cyan-600'}>"type"</span>
+                      <span className={isDarkMode ? 'text-gray-500' : 'text-gray-400'}>: </span>
+                      <span className={isDarkMode ? 'text-purple-400' : 'text-purple-600'}>"LogicStampBundle"</span>
+                      <span className={isDarkMode ? 'text-gray-500' : 'text-gray-400'}>,</span>
                       {'\n'}
                       {'    '}
-                      <span className="text-gray-300">"schemaVersion"</span>
-                      <span className="text-gray-500">: </span>
-                      <span className="text-gray-300">"0.1"</span>
-                      <span className="text-gray-500">,</span>
+                      <span className={isDarkMode ? 'text-cyan-400' : 'text-cyan-600'}>"schemaVersion"</span>
+                      <span className={isDarkMode ? 'text-gray-500' : 'text-gray-400'}>: </span>
+                      <span className={isDarkMode ? 'text-yellow-400' : 'text-yellow-600'}>"0.1"</span>
+                      <span className={isDarkMode ? 'text-gray-500' : 'text-gray-400'}>,</span>
                       {'\n'}
                       {'    '}
-                      <span className="text-gray-300">"entryId"</span>
-                      <span className="text-gray-500">: </span>
-                      <span className="text-gray-300">"{getNodePath(nodeId)}"</span>
-                      <span className="text-gray-500">,</span>
+                      <span className={isDarkMode ? 'text-cyan-400' : 'text-cyan-600'}>"entryId"</span>
+                      <span className={isDarkMode ? 'text-gray-500' : 'text-gray-400'}>: </span>
+                      <span className={isDarkMode ? 'text-green-400' : 'text-green-600'}>"{getNodePath(nodeId)}"</span>
+                      <span className={isDarkMode ? 'text-gray-500' : 'text-gray-400'}>,</span>
                       {'\n'}
                       {'    '}
-                      <span className="text-gray-300">"depth"</span>
-                      <span className="text-gray-500">: </span>
-                      <span className="text-gray-300">1</span>
-                      <span className="text-gray-500">,</span>
+                      <span className={isDarkMode ? 'text-cyan-400' : 'text-cyan-600'}>"depth"</span>
+                      <span className={isDarkMode ? 'text-gray-500' : 'text-gray-400'}>: </span>
+                      <span className={isDarkMode ? 'text-yellow-400' : 'text-yellow-600'}>1</span>
+                      <span className={isDarkMode ? 'text-gray-500' : 'text-gray-400'}>,</span>
                       {'\n'}
                       {'    '}
-                      <span className="text-gray-300">"bundleHash"</span>
-                      <span className="text-gray-500">: </span>
-                      <span className="text-gray-300">"uifb:1826c1c7474a9f0113591904"</span>
-                      <span className="text-gray-500">,</span>
+                      <span className={isDarkMode ? 'text-cyan-400' : 'text-cyan-600'}>"bundleHash"</span>
+                      <span className={isDarkMode ? 'text-gray-500' : 'text-gray-400'}>: </span>
+                      <span className={isDarkMode ? 'text-green-400' : 'text-green-600'}>"uifb:1826c1c7474a9f0113591904"</span>
+                      <span className={isDarkMode ? 'text-gray-500' : 'text-gray-400'}>,</span>
                       {'\n'}
                       {'    '}
-                      <span className="text-gray-300">"graph"</span>
-                      <span className="text-gray-500">: </span>
-                      <span className="text-gray-500">{'{'}</span>
+                      <span className={isDarkMode ? 'text-cyan-400' : 'text-cyan-600'}>"graph"</span>
+                      <span className={isDarkMode ? 'text-gray-500' : 'text-gray-400'}>: </span>
+                      <span className={isDarkMode ? 'text-gray-500' : 'text-gray-400'}>{'{'}</span>
                       {'\n'}
                       {'      '}
-                      <span className="text-gray-300">"nodes"</span>
-                      <span className="text-gray-500">: [</span>
+                      <span className={isDarkMode ? 'text-cyan-400' : 'text-cyan-600'}>"nodes"</span>
+                      <span className={isDarkMode ? 'text-gray-500' : 'text-gray-400'}>: [</span>
                       {'\n'}
                       {'        '}
-                      <span className="text-gray-500">{'{'}</span>
+                      <span className={isDarkMode ? 'text-gray-500' : 'text-gray-400'}>{'{'}</span>
                       {'\n'}
                       {'          '}
-                      <span className="text-gray-300">"entryId"</span>
-                      <span className="text-gray-500">: </span>
-                      <span className="text-gray-300">"{getNodePath(nodeId)}"</span>
-                      <span className="text-gray-500">,</span>
+                      <span className={isDarkMode ? 'text-cyan-400' : 'text-cyan-600'}>"entryId"</span>
+                      <span className={isDarkMode ? 'text-gray-500' : 'text-gray-400'}>: </span>
+                      <span className={isDarkMode ? 'text-green-400' : 'text-green-600'}>"{getNodePath(nodeId)}"</span>
+                      <span className={isDarkMode ? 'text-gray-500' : 'text-gray-400'}>,</span>
                       {'\n'}
                       {'          '}
-                      <span className="text-gray-300">"contract"</span>
-                      <span className="text-gray-500">: </span>
-                      <span className="text-gray-500">{'{'}</span>
+                      <span className={isDarkMode ? 'text-cyan-400' : 'text-cyan-600'}>"contract"</span>
+                      <span className={isDarkMode ? 'text-gray-500' : 'text-gray-400'}>: </span>
+                      <span className={isDarkMode ? 'text-gray-500' : 'text-gray-400'}>{'{'}</span>
                       {'\n'}
                       {'            '}
-                      <span className="text-gray-300">"type"</span>
-                      <span className="text-gray-500">: </span>
-                      <span className="text-gray-300">"UIFContract"</span>
-                      <span className="text-gray-500">,</span>
+                      <span className={isDarkMode ? 'text-cyan-400' : 'text-cyan-600'}>"type"</span>
+                      <span className={isDarkMode ? 'text-gray-500' : 'text-gray-400'}>: </span>
+                      <span className={isDarkMode ? 'text-purple-400' : 'text-purple-600'}>"UIFContract"</span>
+                      <span className={isDarkMode ? 'text-gray-500' : 'text-gray-400'}>,</span>
                       {'\n'}
                       {'            '}
-                      <span className="text-gray-300">"kind"</span>
-                      <span className="text-gray-500">: </span>
-                      <span className="text-gray-300">"react:component"</span>
-                      <span className="text-gray-500">,</span>
+                      <span className={isDarkMode ? 'text-cyan-400' : 'text-cyan-600'}>"kind"</span>
+                      <span className={isDarkMode ? 'text-gray-500' : 'text-gray-400'}>: </span>
+                      <span className={isDarkMode ? 'text-green-400' : 'text-green-600'}>"react:component"</span>
+                      <span className={isDarkMode ? 'text-gray-500' : 'text-gray-400'}>,</span>
                       {'\n'}
                       {'            '}
-                      <span className="text-gray-300">"description"</span>
-                      <span className="text-gray-500">: </span>
-                      <span className="text-gray-300">"{node.label} - {node.type === 'root' ? 'Interactive component' : 'Component'}"</span>
-                      <span className="text-gray-500">,</span>
+                      <span className={isDarkMode ? 'text-cyan-400' : 'text-cyan-600'}>"description"</span>
+                      <span className={isDarkMode ? 'text-gray-500' : 'text-gray-400'}>: </span>
+                      <span className={isDarkMode ? 'text-green-400' : 'text-green-600'}>"{node.label} - {node.type === 'root' ? 'Interactive component' : 'Component'}"</span>
+                      <span className={isDarkMode ? 'text-gray-500' : 'text-gray-400'}>,</span>
                       {'\n'}
                       {'            '}
-                      <span className="text-gray-300">"version"</span>
-                      <span className="text-gray-500">: </span>
-                      <span className="text-gray-500">{'{'}</span>
+                      <span className={isDarkMode ? 'text-cyan-400' : 'text-cyan-600'}>"version"</span>
+                      <span className={isDarkMode ? 'text-gray-500' : 'text-gray-400'}>: </span>
+                      <span className={isDarkMode ? 'text-gray-500' : 'text-gray-400'}>{'{'}</span>
                       {'\n'}
                       {'              '}
-                      <span className="text-gray-300">"components"</span>
-                      <span className="text-gray-500">: [</span>
+                      <span className={isDarkMode ? 'text-cyan-400' : 'text-cyan-600'}>"components"</span>
+                      <span className={isDarkMode ? 'text-gray-500' : 'text-gray-400'}>: [</span>
                       {hasDeps ? (
                         <>
                           {'\n'}
                           {dependencies.slice(0, 1).map((dep, depIdx) => (
                             <span key={depIdx}>
                               {'                '}
-                              <span className="text-gray-300">"{dep.split('/').pop()?.replace('.tsx', '')}"</span>
+                              <span className={isDarkMode ? 'text-green-400' : 'text-green-600'}>"{dep.split('/').pop()?.replace('.tsx', '')}"</span>
                             </span>
                           ))}
                           {dependencies.length > 1 && (
-                            <span className="text-gray-600">
+                            <span className={isDarkMode ? 'text-gray-500' : 'text-gray-400'}>
                               {'\n'}
                               {'                '}// {dependencies.length - 1} more...
                             </span>
@@ -351,122 +372,122 @@ function ContextJsonPreview({ animatedNodes }: { animatedNodes: Set<number> }) {
                           {'\n'}
                         </>
                       ) : (
-                        <span className="text-gray-600"> </span>
+                        <span className={isDarkMode ? 'text-gray-500' : 'text-gray-400'}> </span>
                       )}
                       {'              '}
-                      <span className="text-gray-500">]</span>
+                      <span className={isDarkMode ? 'text-gray-500' : 'text-gray-400'}>]</span>
                       {'\n'}
                       {'            '}
-                      <span className="text-gray-500">{'}'}</span>
-                      <span className="text-gray-600">,</span>
+                      <span className={isDarkMode ? 'text-gray-500' : 'text-gray-400'}>{'}'}</span>
+                      <span className={isDarkMode ? 'text-gray-500' : 'text-gray-400'}>,</span>
                       {'\n'}
                       {'            '}
-                      <span className="text-gray-300">"logicSignature"</span>
-                      <span className="text-gray-500">: </span>
-                      <span className="text-gray-500">{'{'}</span>
+                      <span className={isDarkMode ? 'text-cyan-400' : 'text-cyan-600'}>"logicSignature"</span>
+                      <span className={isDarkMode ? 'text-gray-500' : 'text-gray-400'}>: </span>
+                      <span className={isDarkMode ? 'text-gray-500' : 'text-gray-400'}>{'{'}</span>
                       {'\n'}
                       {'              '}
-                      <span className="text-gray-300">"props"</span>
-                      <span className="text-gray-500">: </span>
-                      <span className="text-gray-500">{'{'}</span>
-                      <span className="text-gray-600">...</span>
-                      <span className="text-gray-500">{'}'}</span>
-                      <span className="text-gray-600">,</span>
+                      <span className={isDarkMode ? 'text-cyan-400' : 'text-cyan-600'}>"props"</span>
+                      <span className={isDarkMode ? 'text-gray-500' : 'text-gray-400'}>: </span>
+                      <span className={isDarkMode ? 'text-gray-500' : 'text-gray-400'}>{'{'}</span>
+                      <span className={isDarkMode ? 'text-gray-500' : 'text-gray-400'}>...</span>
+                      <span className={isDarkMode ? 'text-gray-500' : 'text-gray-400'}>{'}'}</span>
+                      <span className={isDarkMode ? 'text-gray-500' : 'text-gray-400'}>,</span>
                       {'\n'}
                       {'              '}
-                      <span className="text-gray-300">"emits"</span>
-                      <span className="text-gray-500">: </span>
-                      <span className="text-gray-500">{'{'}</span>
-                      <span className="text-gray-600">...</span>
-                      <span className="text-gray-500">{'}'}</span>
+                      <span className={isDarkMode ? 'text-cyan-400' : 'text-cyan-600'}>"emits"</span>
+                      <span className={isDarkMode ? 'text-gray-500' : 'text-gray-400'}>: </span>
+                      <span className={isDarkMode ? 'text-gray-500' : 'text-gray-400'}>{'{'}</span>
+                      <span className={isDarkMode ? 'text-gray-500' : 'text-gray-400'}>...</span>
+                      <span className={isDarkMode ? 'text-gray-500' : 'text-gray-400'}>{'}'}</span>
                       {'\n'}
                       {'            '}
-                      <span className="text-gray-500">{'}'}</span>
+                      <span className={isDarkMode ? 'text-gray-500' : 'text-gray-400'}>{'}'}</span>
                       {'\n'}
                       {'          '}
-                      <span className="text-gray-500">{'}'}</span>
-                      <span className="text-gray-600">,</span>
+                      <span className={isDarkMode ? 'text-gray-500' : 'text-gray-400'}>{'}'}</span>
+                      <span className={isDarkMode ? 'text-gray-500' : 'text-gray-400'}>,</span>
                       {'\n'}
                       {'          '}
-                      <span className="text-gray-300">"codeHeader"</span>
-                      <span className="text-gray-500">: </span>
-                      <span className="text-gray-300">null</span>
+                      <span className={isDarkMode ? 'text-cyan-400' : 'text-cyan-600'}>"codeHeader"</span>
+                      <span className={isDarkMode ? 'text-gray-500' : 'text-gray-400'}>: </span>
+                      <span className={isDarkMode ? 'text-blue-400' : 'text-blue-600'}>null</span>
                       {'\n'}
                       {'        '}
-                      <span className="text-gray-500">{'}'}</span>
+                      <span className={isDarkMode ? 'text-gray-500' : 'text-gray-400'}>{'}'}</span>
                       {hasDeps && (
                         <>
-                          <span className="text-gray-500">,</span>
+                          <span className={isDarkMode ? 'text-gray-500' : 'text-gray-400'}>,</span>
                           {'\n'}
                           {'        '}
-                          <span className="text-gray-600">// {dependencies.length} more node{dependencies.length > 1 ? 's' : ''}...</span>
+                          <span className={isDarkMode ? 'text-gray-500' : 'text-gray-400'}>// {dependencies.length} more node{dependencies.length > 1 ? 's' : ''}...</span>
                         </>
                       )}
                       {'\n'}
                       {'      '}
-                      <span className="text-gray-500">],</span>
+                      <span className={isDarkMode ? 'text-gray-500' : 'text-gray-400'}>],</span>
                       {'\n'}
                       {'      '}
-                      <span className="text-gray-300">"edges"</span>
-                      <span className="text-gray-500">: [</span>
+                      <span className={isDarkMode ? 'text-cyan-400' : 'text-cyan-600'}>"edges"</span>
+                      <span className={isDarkMode ? 'text-gray-500' : 'text-gray-400'}>: [</span>
                       {hasDeps ? (
                         <>
                           {'\n'}
                           {dependencies.slice(0, 1).map((dep, depIndex) => (
                             <span key={depIndex} className="block">
                               {'        '}
-                              <span className="text-gray-500">[</span>
+                              <span className={isDarkMode ? 'text-gray-500' : 'text-gray-400'}>[</span>
                               {'\n'}
                               {'          '}
-                              <span className="text-gray-300">"{getNodePath(nodeId)}"</span>
-                              <span className="text-gray-500">,</span>
+                              <span className={isDarkMode ? 'text-green-400' : 'text-green-600'}>"{getNodePath(nodeId)}"</span>
+                              <span className={isDarkMode ? 'text-gray-500' : 'text-gray-400'}>,</span>
                               {'\n'}
                               {'          '}
-                              <span className="text-gray-300">"{dep}"</span>
+                              <span className={isDarkMode ? 'text-green-400' : 'text-green-600'}>"{dep}"</span>
                               {'\n'}
                               {'        '}
-                              <span className="text-gray-500">]</span>
-                              {depIndex < Math.min(dependencies.length, 1) - 1 && <span className="text-gray-500">,</span>}
+                              <span className={isDarkMode ? 'text-gray-500' : 'text-gray-400'}>]</span>
+                              {depIndex < Math.min(dependencies.length, 1) - 1 && <span className={isDarkMode ? 'text-gray-500' : 'text-gray-400'}>,</span>}
                             </span>
                           ))}
                           {dependencies.length > 1 && (
-                            <span className="text-gray-600 block">
+                            <span className={`block ${isDarkMode ? 'text-gray-500' : 'text-gray-400'}`}>
                               {'        '}// {dependencies.length - 1} more edge{dependencies.length - 1 > 1 ? 's' : ''}...
                             </span>
                           )}
                         </>
                       ) : (
-                        <span className="text-gray-600"> </span>
+                        <span className={isDarkMode ? 'text-gray-500' : 'text-gray-400'}> </span>
                       )}
                       {'\n'}
                       {'      '}
-                      <span className="text-gray-500">]</span>
+                      <span className={isDarkMode ? 'text-gray-500' : 'text-gray-400'}>]</span>
                       {'\n'}
                       {'    '}
-                      <span className="text-gray-500">{'}'}</span>
-                      <span className="text-gray-600">,</span>
+                      <span className={isDarkMode ? 'text-gray-500' : 'text-gray-400'}>{'}'}</span>
+                      <span className={isDarkMode ? 'text-gray-500' : 'text-gray-400'}>,</span>
                       {'\n'}
                       {'    '}
-                      <span className="text-gray-300">"meta"</span>
-                      <span className="text-gray-500">: </span>
-                      <span className="text-gray-500">{'{'}</span>
+                      <span className={isDarkMode ? 'text-cyan-400' : 'text-cyan-600'}>"meta"</span>
+                      <span className={isDarkMode ? 'text-gray-500' : 'text-gray-400'}>: </span>
+                      <span className={isDarkMode ? 'text-gray-500' : 'text-gray-400'}>{'{'}</span>
                       {'\n'}
                       {'      '}
-                      <span className="text-gray-300">"missing"</span>
-                      <span className="text-gray-500">: [],</span>
+                      <span className={isDarkMode ? 'text-cyan-400' : 'text-cyan-600'}>"missing"</span>
+                      <span className={isDarkMode ? 'text-gray-500' : 'text-gray-400'}>: [],</span>
                       {'\n'}
                       {'      '}
-                      <span className="text-gray-300">"source"</span>
-                      <span className="text-gray-500">: </span>
-                      <span className="text-gray-300">"logicstamp-context@0.1.0"</span>
+                      <span className={isDarkMode ? 'text-cyan-400' : 'text-cyan-600'}>"source"</span>
+                      <span className={isDarkMode ? 'text-gray-500' : 'text-gray-400'}>: </span>
+                      <span className={isDarkMode ? 'text-green-400' : 'text-green-600'}>"logicstamp-context@0.1.0"</span>
                       {'\n'}
                       {'    '}
-                      <span className="text-gray-500">{'}'}</span>
+                      <span className={isDarkMode ? 'text-gray-500' : 'text-gray-400'}>{'}'}</span>
                       {'\n'}
                       {'  '}
-                      <span className="text-gray-500">{'}'}</span>
-                      {!isLast && <span className="text-gray-500">,</span>}
-                      {!isLast && <span className="text-gray-600">  // {visibleBundles.length - index - 1} more bundle{visibleBundles.length - index - 1 > 1 ? 's' : ''}...</span>}
+                      <span className={isDarkMode ? 'text-gray-500' : 'text-gray-400'}>{'}'}</span>
+                      {!isLast && <span className={isDarkMode ? 'text-gray-500' : 'text-gray-400'}>,</span>}
+                      {!isLast && <span className={isDarkMode ? 'text-gray-500' : 'text-gray-400'}>  // {visibleBundles.length - index - 1} more bundle{visibleBundles.length - index - 1 > 1 ? 's' : ''}...</span>}
                       {'\n'}
                     </span>
                   )
@@ -474,10 +495,10 @@ function ContextJsonPreview({ animatedNodes }: { animatedNodes: Set<number> }) {
               </>
             )}
             {visibleBundles.length === 0 && (
-              <span className="text-gray-600">  // Generating context bundles...</span>
+              <span className={isDarkMode ? 'text-gray-500' : 'text-gray-400'}>  // Generating context bundles...</span>
             )}
             {'\n'}
-            <span className="text-gray-500">]</span>
+            <span className={isDarkMode ? 'text-gray-500' : 'text-gray-400'}>]</span>
         </code>
       </pre>
       </div>

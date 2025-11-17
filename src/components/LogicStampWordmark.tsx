@@ -28,7 +28,7 @@ export default function LogicStampWordmark({
         stroke="#111213"
         strokeWidth="1.5"
         fontFamily="'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif"
-        fontSize="28"
+        fontSize="32"
         fontWeight="600"
         letterSpacing="0.06em"
       >
@@ -44,7 +44,7 @@ export default function LogicStampWordmark({
         stroke="#F4F4F5"
         strokeWidth="1.5"
         fontFamily="'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif"
-        fontSize="28"
+        fontSize="32"
         fontWeight="600"
         letterSpacing="0.06em"
       >
