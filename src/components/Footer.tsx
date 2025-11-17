@@ -1,5 +1,6 @@
 import AnimatedSection from './AnimatedSection'
 import LogicStampLogo from './LogicStampLogo'
+import LogicStampWordmark from './LogicStampWordmark'
 import ThemeToggle from './ThemeToggle'
 
 const navigation = {
@@ -26,11 +27,12 @@ export default function Footer() {
             <div className="flex flex-col gap-6 md:flex-row md:items-start md:justify-between">
               {/* Logo + Tagline */}
               <div className="min-w-0 pr-4 md:pr-8">
-                <a href="/" className="flex items-center gap-2 group">
-                  <LogicStampLogo className="logicstamp-logo" size={24} />
-                  <span className="text-base font-semibold tracking-tight bg-gradient-to-r from-blue-600 to-purple-600 dark:from-blue-400 dark:to-purple-400 bg-clip-text text-transparent">
-                    LogicStamp
-                  </span>
+                <a href="/" className="flex items-center gap-0 group">
+                  <div className="logicstamp-logo-container">
+                    <LogicStampLogo className="logicstamp-logo" size={32} />
+                  </div>
+                  <LogicStampWordmark height={21} className="hidden sm:block" />
+                  <LogicStampWordmark height={17} className="block sm:hidden" />
                 </a>
                 <p className="mt-2 max-w-xs text-sm leading-relaxed text-gray-500 dark:text-gray-400">
                   AI-ready context from your codebase. Open-source, zero-config.
