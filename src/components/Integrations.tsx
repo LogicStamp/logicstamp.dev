@@ -1,4 +1,6 @@
 import AnimatedSection from './AnimatedSection'
+import GetStartedButton from './GetStartedButton'
+import StarGitHubButton from './StarGitHubButton'
 
 // Framework logos as SVG components
 const ReactIcon = () => (
@@ -167,8 +169,21 @@ export default function Integrations() {
       <div className="mx-auto max-w-[1320px] px-6 lg:px-8">
         <AnimatedSection direction="up" delay={0}>
           <div className="mx-auto max-w-3xl text-center">
-            <h2 className="text-4xl font-bold tracking-tight text-gray-900 dark:text-white sm:text-5xl lg:text-7xl bg-gradient-to-r from-gray-900 via-gray-800 to-gray-900 dark:from-white dark:via-gray-200 dark:to-white bg-clip-text text-transparent">
-              Works with your favorite tools
+            {/* Open Source Badge */}
+            <div className="mb-6 flex items-center justify-center">
+              <span className="inline-flex items-center gap-1.5 rounded-full bg-gradient-blue-purple/10 px-4 py-1.5 text-sm font-semibold text-secondary-700 dark:text-secondary-300 ring-1 ring-inset ring-secondary-500/20">
+                <svg className="h-4 w-4" fill="currentColor" viewBox="0 0 20 20">
+                  <path d="M12.316 3.051a1 1 0 01.633 1.265l-4 12a1 1 0 11-1.898-.632l4-12a1 1 0 011.265-.633zM5.707 6.293a1 1 0 010 1.414L3.414 10l2.293 2.293a1 1 0 11-1.414 1.414l-3-3a1 1 0 010-1.414l3-3a1 1 0 011.414 0zm8.586 0a1 1 0 011.414 0l3 3a1 1 0 010 1.414l-3 3a1 1 0 11-1.414-1.414L16.586 10l-2.293-2.293a1 1 0 010-1.414z" />
+                </svg>
+                100% Open Source
+              </span>
+            </div>
+
+            <h2 className="text-4xl font-bold tracking-tight text-gray-900 dark:text-white sm:text-5xl lg:text-7xl">
+              Works with your{' '}
+              <span className="bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 bg-clip-text text-transparent">
+                favorite tools
+              </span>
             </h2>
             <p className="mt-6 text-xl lg:text-2xl leading-8 text-gray-600 dark:text-gray-300">
               Seamlessly integrate with your existing development workflow and boost productivity
@@ -198,22 +213,41 @@ export default function Integrations() {
                   direction="up" 
                   delay={400 + index * 100}
                 >
-                  <div className={`group relative overflow-hidden rounded-3xl border-2 ${integration.borderColor} bg-gradient-bg-card p-8 transition-all duration-500 hover:shadow-2xl hover:shadow-gray-200/50 dark:hover:shadow-gray-900/50`}>
-                    {/* Coming Soon Badge - Diagonal Rubber Band Style */}
+                  <div className={`group relative overflow-visible rounded-3xl border-2 ${integration.borderColor} bg-gradient-bg-card p-8 transition-all duration-500 hover:shadow-2xl hover:shadow-gray-200/50 dark:hover:shadow-gray-900/50`}>
+                    {/* Coming Soon Badge - Rubber Band Wrapping Corner */}
                     {integration.comingSoon && (
-                      <div className="absolute top-4 right-4 z-20 transform rotate-12 origin-center">
-                        <div className="relative px-3 py-1.5 sm:px-4 sm:py-2 bg-gradient-to-r from-orange-400 via-orange-500 to-orange-600 text-white font-bold text-xs sm:text-sm shadow-xl border-2 border-white/40">
+                      <div className="absolute top-0 right-0 z-20 overflow-visible">
+                        {/* Diagonal rubber band badge */}
+                        <div 
+                          className="absolute z-30 px-3 py-1.5 sm:px-4 sm:py-2 bg-gradient-to-r from-red-600 via-red-700 to-red-800 text-white font-bold text-xs sm:text-sm shadow-xl border-2 border-white/40 rounded"
+                          style={{
+                            top: '20px',
+                            right: '-4px',
+                            transform: 'rotate(12deg)',
+                            transformOrigin: 'top right'
+                          }}
+                        >
                           <span className="relative z-10 whitespace-nowrap">Coming Soon</span>
-                          {/* Rubber band effect - diagonal stripes */}
-                          <div className="absolute inset-0 opacity-30" style={{
-                            backgroundImage: 'repeating-linear-gradient(45deg, transparent, transparent 6px, rgba(255,255,255,0.15) 6px, rgba(255,255,255,0.15) 12px)'
+                          {/* Rubber band texture overlay */}
+                          <div className="absolute inset-0 opacity-30 rounded" style={{
+                            backgroundImage: 'repeating-linear-gradient(45deg, transparent, transparent 4px, rgba(255,255,255,0.15) 4px, rgba(255,255,255,0.15) 8px)'
                           }}></div>
-                          {/* Top and bottom edges for rubber band effect */}
-                          <div className="absolute top-0 left-0 right-0 h-0.5 bg-white/50"></div>
-                          <div className="absolute bottom-0 left-0 right-0 h-0.5 bg-white/50"></div>
+                          {/* Edge highlights */}
+                          <div className="absolute top-0 left-0 right-0 h-0.5 bg-white/50 rounded-t"></div>
+                          <div className="absolute bottom-0 left-0 right-0 h-0.5 bg-white/50 rounded-b"></div>
                         </div>
                         {/* Shadow effect for depth */}
-                        <div className="absolute inset-0 bg-black/30 blur-sm -z-10 transform translate-y-0.5 translate-x-0.5"></div>
+                        <div 
+                          className="absolute bg-black/20 blur-md -z-10 rounded"
+                          style={{
+                            top: '22px',
+                            right: '-2px',
+                            width: '100px',
+                            height: '28px',
+                            transform: 'rotate(12deg)',
+                            transformOrigin: 'top right'
+                          }}
+                        ></div>
                       </div>
                     )}
                     
@@ -290,6 +324,19 @@ export default function Integrations() {
             })}
           </div>
         </div>
+
+        {/* CTA Section */}
+        <AnimatedSection direction="up" delay={800}>
+          <div className="mt-20 text-center">
+            <p className="text-lg lg:text-xl text-gray-600 dark:text-gray-300 mb-8 font-medium">
+              See how LogicStamp works with your stack?
+            </p>
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+              <GetStartedButton href="docs/getting-started">Get Started Now</GetStartedButton>
+              <StarGitHubButton variant="secondary" showArrow={false} />
+            </div>
+          </div>
+        </AnimatedSection>
       </div>
     </section>
   )

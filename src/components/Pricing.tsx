@@ -375,7 +375,7 @@ export default function Pricing() {
                       : 'ring-1 ring-inset ring-secondary-200/20 dark:ring-secondary-400/20 text-gray-900 dark:text-white hover:ring-secondary-300 dark:hover:ring-secondary-500'
                   } transition-colors`}
                 >
-                  {tier.id === 'community' ? 'View on GitHub' : 
+                  {tier.id === 'community' ? 'Star on GitHub' : 
                    tier.id === 'enterprise' ? 'Contact Sales' : 'Get Started'}
                 </a>
                 <ul className="mt-8 space-y-3 text-sm lg:text-base leading-6 text-gray-600 dark:text-gray-300">

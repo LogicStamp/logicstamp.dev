@@ -3,6 +3,9 @@
 import { useEffect, useState } from 'react'
 import AnimatedSection from './AnimatedSection'
 import CopyButton from './CopyButton'
+import GitHubStats from './GitHubStats'
+import StarGitHubButton from './StarGitHubButton'
+import ReadTheDocsButton from './ReadTheDocsButton'
 
 // Graph structure: nodes represent components, edges represent dependencies
 const GRAPH_NODES = [
@@ -588,100 +591,131 @@ function HeroVisualization() {
 
 export default function Hero() {
   return (
-    <section className="relative overflow-hidden bg-gradient-bg-hero pt-28 pb-20 sm:pt-36 sm:pb-32 min-h-screen">
-      <div className="mx-auto max-w-[1320px] px-6 lg:px-8">
+    <section className="relative overflow-hidden bg-gradient-to-br from-blue-50 via-purple-50 to-pink-50 dark:from-gray-900 dark:via-purple-950/30 dark:to-pink-950/30 pt-28 pb-20 sm:pt-36 sm:pb-32 min-h-screen">
+      {/* Decorative background elements */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        <div className="absolute top-1/4 -left-20 w-96 h-96 bg-blue-500/10 rounded-full blur-3xl"></div>
+        <div className="absolute bottom-1/4 -right-20 w-96 h-96 bg-purple-500/10 rounded-full blur-3xl"></div>
+      </div>
+
+      {/* Background decoration */}
+      <div className="absolute inset-0 bg-gradient-to-br from-blue-500/5 via-purple-500/5 to-pink-500/5"></div>
+
+      <div className="mx-auto max-w-[90rem] px-6 lg:px-8 relative z-10">
         <AnimatedSection direction="up" delay={0}>
           <div className="mx-auto max-w-2xl lg:max-w-6xl text-center">
-            {/* Beta Badge */}
-            <div className="mb-4 flex items-center justify-center gap-2">
-              <span className="inline-flex items-center gap-1.5 rounded-full bg-gradient-blue-purple/10 px-3 py-1 text-xs font-medium text-secondary-700 dark:text-secondary-300 ring-1 ring-inset ring-secondary-500/20">
-                <svg className="h-3.5 w-3.5" fill="currentColor" viewBox="0 0 20 20">
+            {/* Launch Badge */}
+            <div className="mb-6 flex items-center justify-center gap-2 flex-wrap">
+              <span className="inline-flex items-center gap-1.5 rounded-full bg-gradient-to-r from-blue-500/10 via-purple-500/10 to-pink-500/10 px-4 py-1.5 text-sm font-semibold text-secondary-700 dark:text-secondary-300 ring-1 ring-inset ring-secondary-500/30 animate-pulse">
+                <svg className="h-4 w-4 text-green-600 dark:text-green-400" fill="currentColor" viewBox="0 0 20 20">
                   <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.857-9.809a.75.75 0 00-1.214-.882l-3.483 4.79-1.88-1.88a.75.75 0 10-1.06 1.061l2.5 2.5a.75.75 0 001.137-.089l4-5.5z" clipRule="evenodd" />
                 </svg>
-                Open Source
+                Launching Soon
               </span>
-              <span className="inline-flex items-center rounded-full bg-blue-50 dark:bg-blue-900/30 px-3 py-1 text-xs font-medium text-blue-700 dark:text-blue-300 ring-1 ring-inset ring-blue-600/20">
-                Beta
-              </span>
-            </div>
-
-            <h1 className="text-5xl font-bold tracking-tight text-gray-900 dark:text-white sm:text-6xl lg:text-8xl text-balance">
-              AI-Ready{' '}
-              <span className="relative">
-                <span className="bg-gradient-blue-purple bg-clip-text text-transparent">Context</span>
-                <span className="absolute inset-0 bg-gradient-purple-accent blur-sm -z-10 opacity-30"></span>
-              </span>
-              <br className="lg:hidden" />
-              <span className="lg:block lg:mt-0">From Your Codebase</span>
-            </h1>
-            <p className="mt-6 text-lg lg:text-xl leading-8 text-gray-600 dark:text-gray-300">
-              A tiny CLI that compiles your React/TypeScript codebase into machine-readable context bundles for AI and CI.
-              <br className="hidden sm:block" />
-              Fast, deterministic, zero-config.
-            </p>
-            <div className="mt-10 flex items-center justify-center gap-x-6">
-              <a
-                href="docs/getting-started"
-                className="inline-flex items-center gap-2 rounded-md bg-gradient-blue-purple px-6 py-3 text-sm lg:text-base font-semibold text-white shadow-sm hover:bg-gradient-blue-purple-deep focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-secondary-600 transition-all duration-200 hover-lift"
-              >
-                Get Started
-                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
+              <span className="inline-flex items-center gap-1.5 rounded-full bg-gradient-blue-purple/10 px-3 py-1 text-xs sm:text-sm font-medium text-secondary-700 dark:text-secondary-300 ring-1 ring-inset ring-secondary-500/20">
+                <svg className="h-3.5 w-3.5" fill="currentColor" viewBox="0 0 20 20">
+                  <path d="M12.316 3.051a1 1 0 01.633 1.265l-4 12a1 1 0 11-1.898-.632l4-12a1 1 0 011.265-.633zM5.707 6.293a1 1 0 010 1.414L3.414 10l2.293 2.293a1 1 0 11-1.414 1.414l-3-3a1 1 0 010-1.414l3-3a1 1 0 011.414 0zm8.586 0a1 1 0 011.414 0l3 3a1 1 0 010 1.414l-3 3a1 1 0 11-1.414-1.414L16.586 10l-2.293-2.293a1 1 0 010-1.414z" />
                 </svg>
-              </a>
-              <a
-                href="https://github.com/LogicStamp/logicstamp-context"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-sm lg:text-base font-semibold leading-6 text-gray-900 dark:text-white hover:text-secondary-600 dark:hover:text-secondary-400 transition-colors"
-              >
-                View on GitHub <span aria-hidden="true">→</span>
-              </a>
+                100% Open Source
+              </span>
+              <span className="inline-flex items-center rounded-full bg-blue-50 dark:bg-blue-900/30 px-3 py-1 text-xs sm:text-sm font-medium text-blue-700 dark:text-blue-300 ring-1 ring-inset ring-blue-600/20">
+                Public Beta
+              </span>
             </div>
 
-            {/* Quick install snippet */}
-            <div className="mt-6 sm:mt-8 flex justify-center">
-              <div className="relative inline-flex items-center gap-3 rounded-xl bg-white/95 dark:bg-gray-950/90 px-4 sm:px-6 lg:px-8 py-2.5 sm:py-3 shadow-md ring-1 ring-gray-200/80 dark:ring-secondary-400/40">
-                <span className="hidden sm:inline text-xs sm:text-sm font-semibold uppercase tracking-wide text-gray-500 dark:text-gray-400" aria-label="Command prompt">
-                  $
+            <h1 className="text-4xl font-extrabold tracking-tight text-gray-900 dark:text-white sm:text-6xl lg:text-7xl xl:text-8xl text-balance leading-tight">
+              Turn Your Codebase Into{' '}
+              <span className="relative inline-block">
+                <span className="bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 bg-clip-text text-transparent">
+                  AI Context
                 </span>
-                <code className="text-xs sm:text-sm lg:text-base font-mono text-gray-900 dark:text-gray-100" aria-label="Installation command">
-                  npm install -g logicstamp-context
-                </code>
-                <CopyButton text="npm install -g logicstamp-context" className="ml-2" />
+                <span className="absolute inset-0 bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 blur-xl -z-10 opacity-20 animate-pulse"></span>
+              </span>
+            </h1>
+            <p className="mt-8 text-xl lg:text-2xl leading-relaxed text-gray-600 dark:text-gray-300 font-medium max-w-4xl mx-auto">
+              The tiny CLI that transforms React/TypeScript codebases into{' '}
+              <span className="text-secondary-700 dark:text-secondary-300 font-semibold">machine-readable context bundles</span>
+              {' '}for AI assistants and CI pipelines.
+            </p>
+            <p className="mt-4 text-base lg:text-lg text-gray-500 dark:text-gray-400">
+              Fast • Deterministic • Zero Config • Open Source
+            </p>
+            <div className="mt-12 flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-6">
+              <StarGitHubButton />
+              <ReadTheDocsButton href="docs/" />
+            </div>
+
+            {/* Quick install snippet - More prominent */}
+            <div className="mt-10 sm:mt-12 flex justify-center">
+              <div className="relative group">
+                <div className="absolute -inset-1 bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 rounded-2xl blur opacity-25 group-hover:opacity-40 transition duration-300"></div>
+                <div className="relative inline-flex items-center gap-3 rounded-xl bg-white dark:bg-gray-900 px-6 sm:px-8 lg:px-10 py-4 sm:py-5 shadow-xl ring-1 ring-gray-300/50 dark:ring-gray-700/50">
+                  <span className="hidden sm:inline text-sm sm:text-base font-bold text-purple-600 dark:text-purple-400" aria-label="Command prompt">
+                    $
+                  </span>
+                  <code className="text-sm sm:text-base lg:text-lg font-mono font-semibold text-gray-900 dark:text-gray-100" aria-label="Installation command">
+                    npm install -g logicstamp-context
+                  </code>
+                  <CopyButton text="npm install -g logicstamp-context" className="ml-2" />
+                </div>
               </div>
             </div>
           </div>
         </AnimatedSection>
 
+        {/* GitHub Stats Section */}
+        <GitHubStats />
+
         {/* Dependency Graph Visualization with Context.json Preview */}
         <HeroVisualization />
 
-        {/* What Is LogicStamp Button */}
+        {/* Community & Contribution CTA */}
         <AnimatedSection direction="up" delay={800}>
-          <div className="mt-16 sm:mt-20 flex justify-center">
-            <a
-              href="/docs/what-is-logicstamp"
-              className="group relative inline-flex items-center gap-3 px-8 py-4 rounded-full bg-gradient-bg-card border border-secondary-200/40 dark:border-secondary-400/40 shadow-md hover:shadow-lg hover:-translate-y-[3px] active:scale-[0.98] active:translate-y-0 transition-all duration-200 overflow-hidden"
-            >
-              {/* Subtle gradient background on hover */}
-              <div className="absolute inset-0 bg-gradient-blue-purple opacity-0 group-hover:opacity-10 dark:group-hover:opacity-20 transition-opacity duration-300" />
+          <div className="mt-16 sm:mt-24">
+            <div className="mx-auto max-w-4xl">
+              <div className="text-center">
+                <div className="inline-flex items-center gap-2 mb-4 px-4 py-2 rounded-full bg-white/60 dark:bg-gray-800/60 backdrop-blur-sm">
+                  <svg className="w-5 h-5 text-purple-600 dark:text-purple-400" fill="currentColor" viewBox="0 0 20 20">
+                    <path d="M13 6a3 3 0 11-6 0 3 3 0 016 0zM18 8a2 2 0 11-4 0 2 2 0 014 0zM14 15a4 4 0 00-8 0v3h8v-3zM6 8a2 2 0 11-4 0 2 2 0 014 0zM16 18v-3a5.972 5.972 0 00-.75-2.906A3.005 3.005 0 0119 15v3h-3zM4.75 12.094A5.973 5.973 0 004 15v3H1v-3a3 3 0 013.75-2.906z" />
+                  </svg>
+                  <span className="text-sm font-semibold text-gray-700 dark:text-gray-300">Join the Movement</span>
+                </div>
 
-              {/* Content */}
-              <span className="relative text-base sm:text-lg font-semibold text-gray-900 dark:text-white transition-colors duration-200">
-                What Is LogicStamp?
-              </span>
+                <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 dark:text-white mb-4">
+                  Built by Developers,{' '}
+                  <span className="bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 bg-clip-text text-transparent">
+                    for Developers
+                  </span>
+                </h2>
 
-              {/* Animated arrow */}
-              <svg
-                className="relative w-5 h-5 text-secondary-600 dark:text-secondary-400 transition-transform duration-200 group-hover:translate-x-1"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
-              </svg>
-            </a>
+                <p className="text-lg text-gray-600 dark:text-gray-300 mb-8 max-w-2xl mx-auto">
+                  LogicStamp is 100% open source and community-driven. Contribute code, report issues, suggest features, or just star the repo to show your support.
+                </p>
+
+                <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+                  <a
+                    href="/docs/what-is-logicstamp"
+                    className="group inline-flex items-center gap-2 px-6 py-3 rounded-lg bg-white dark:bg-gray-800 text-gray-900 dark:text-white font-semibold shadow-lg hover:shadow-xl ring-1 ring-gray-300 dark:ring-gray-700 transition-all duration-200"
+                  >
+                    Learn More
+                    <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
+                    </svg>
+                  </a>
+                  <a
+                    href="https://github.com/LogicStamp/logicstamp-context/issues"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="group inline-flex items-center gap-2 px-6 py-3 rounded-lg bg-gradient-to-r from-blue-600 to-purple-600 text-white font-semibold shadow-lg hover:shadow-xl transition-all duration-200"
+                  >
+                    <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                      <path fillRule="evenodd" d="M10 3a1 1 0 011 1v5h5a1 1 0 110 2h-5v5a1 1 0 11-2 0v-5H4a1 1 0 110-2h5V4a1 1 0 011-1z" clipRule="evenodd" />
+                    </svg>
+                    Contribute
+                  </a>
+                </div>
+              </div>
+            </div>
           </div>
         </AnimatedSection>
       </div>

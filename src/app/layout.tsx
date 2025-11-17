@@ -4,6 +4,7 @@ import { GeistSans, GeistMono } from 'geist/font'
 import './globals.css'
 import Header from '@/components/Header'
 import ScrollToTop from '@/components/ScrollToTop'
+import ScrollToTopButton from '@/components/ScrollToTopButton'
 import { ThemeProvider } from '@/contexts/ThemeContext'
 
 export const metadata: Metadata = {
@@ -67,6 +68,7 @@ export default function RootLayout({
       <body className={`${GeistSans.variable} ${GeistMono.variable} font-sans bg-gradient-to-b from-sky-100 to-white dark:from-gray-900 dark:to-gray-800 min-h-screen`}>
         <ThemeProvider>
           <ScrollToTop />
+          <ScrollToTopButton />
           <Header />
           {children}
         </ThemeProvider>

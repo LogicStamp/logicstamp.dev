@@ -4,6 +4,7 @@ import { usePathname } from 'next/navigation'
 import LogicStampLogo from './LogicStampLogo'
 import LogicStampWordmark from './LogicStampWordmark'
 import ThemeToggle from './ThemeToggle'
+import GetStartedButton from './GetStartedButton'
 
 export default function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
@@ -75,7 +76,7 @@ export default function Header() {
     { name: 'How it Works', href: isHomePage ? '#how-it-works' : '/#how-it-works' },
     { name: 'Integrations', href: isHomePage ? '#integrations' : '/#integrations' },
     { name: 'FAQ', href: isHomePage ? '#faq' : '/#faq' },
-    { name: 'Docs', href: '/docs' },
+    { name: 'Docs', href: '/docs/' },
     { name: 'GitHub', href: 'https://github.com/logicstamp/logicstamp-context', external: true },
   ]
 
@@ -142,12 +143,9 @@ export default function Header() {
           {/* Desktop theme toggle + CTA */}
           <div className="hidden lg:flex lg:flex-1 lg:items-center lg:justify-end lg:gap-x-4">
             <ThemeToggle compact />
-            <a
-              href="/docs/getting-started"
-              className="ml-2 inline-flex items-center justify-center rounded-full bg-gradient-blue-purple px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-gradient-blue-purple-deep focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-secondary-600 transition-all"
-            >
-              Get Started
-            </a>
+            <div className="ml-2">
+              <GetStartedButton size="sm" />
+            </div>
           </div>
         </nav>
       </div>
@@ -181,13 +179,9 @@ export default function Header() {
             <div className="flex justify-center">
               <ThemeToggle compact />
             </div>
-            <a
-              href="/docs/getting-started"
-              className="block w-full px-3 py-2 text-center text-sm font-medium leading-6 text-white bg-gradient-blue-purple hover:bg-gradient-blue-purple-deep transition-colors duration-200 rounded-lg"
-              onClick={() => setMobileMenuOpen(false)}
-            >
-              Get Started
-            </a>
+            <div onClick={() => setMobileMenuOpen(false)}>
+              <GetStartedButton size="sm" className="w-full justify-center" />
+            </div>
           </div>
         </div>
       </div>
