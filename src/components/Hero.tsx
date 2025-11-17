@@ -625,32 +625,29 @@ export default function Hero() {
       <div className="mx-auto max-w-[90rem] px-6 lg:px-8 relative z-10">
         <AnimatedSection direction="up" delay={0}>
           <div className="mx-auto max-w-2xl lg:max-w-6xl text-center">
-            {/* Launch Badge */}
-            <div className="mb-6 flex items-center justify-center gap-2 flex-wrap">
-              <span className="inline-flex items-center gap-1.5 rounded-full bg-gradient-to-r from-blue-500/10 via-purple-500/10 to-pink-500/10 px-4 py-1.5 text-sm font-semibold text-secondary-700 dark:text-secondary-300 ring-1 ring-inset ring-secondary-500/30 animate-pulse">
-                <svg className="h-4 w-4 text-green-600 dark:text-green-400" fill="currentColor" viewBox="0 0 20 20">
-                  <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.857-9.809a.75.75 0 00-1.214-.882l-3.483 4.79-1.88-1.88a.75.75 0 10-1.06 1.061l2.5 2.5a.75.75 0 001.137-.089l4-5.5z" clipRule="evenodd" />
-                </svg>
-                Launching Soon
-              </span>
-              <span className="inline-flex items-center gap-1.5 rounded-full bg-gradient-blue-purple/10 px-3 py-1 text-xs sm:text-sm font-medium text-secondary-700 dark:text-secondary-300 ring-1 ring-inset ring-secondary-500/20">
-                <svg className="h-3.5 w-3.5" fill="currentColor" viewBox="0 0 20 20">
-                  <path d="M12.316 3.051a1 1 0 01.633 1.265l-4 12a1 1 0 11-1.898-.632l4-12a1 1 0 011.265-.633zM5.707 6.293a1 1 0 010 1.414L3.414 10l2.293 2.293a1 1 0 11-1.414 1.414l-3-3a1 1 0 010-1.414l3-3a1 1 0 011.414 0zm8.586 0a1 1 0 011.414 0l3 3a1 1 0 010 1.414l-3 3a1 1 0 11-1.414-1.414L16.586 10l-2.293-2.293a1 1 0 010-1.414z" />
-                </svg>
-                100% Open Source
-              </span>
-              <span className="inline-flex items-center rounded-full bg-blue-50 dark:bg-blue-900/30 px-3 py-1 text-xs sm:text-sm font-medium text-blue-700 dark:text-blue-300 ring-1 ring-inset ring-blue-600/20">
-                Public Beta
-              </span>
-            </div>
-
-            <h1 className="text-4xl font-extrabold tracking-tight text-gray-900 dark:text-white sm:text-6xl lg:text-7xl xl:text-8xl text-balance leading-tight">
-              Turn Your Codebase Into{' '}
-              <span className="relative inline-block">
-                <span className="bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 bg-clip-text text-transparent">
-                  AI Context
+            <h1 className="text-4xl font-extrabold tracking-tight text-gray-900 dark:text-white sm:text-6xl lg:text-7xl xl:text-8xl sm:text-balance leading-tight">
+              {/* Mobile: 2 lines */}
+              <span className="block sm:hidden">
+                <span className="block whitespace-nowrap">Turn Your Codebase</span>
+                <span className="block whitespace-nowrap">
+                  <span>Into </span>
+                  <span className="relative inline-block">
+                    <span className="bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 bg-clip-text text-transparent">
+                      AI Context
+                    </span>
+                    <span className="absolute inset-0 bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 blur-xl -z-10 opacity-20 animate-pulse"></span>
+                  </span>
                 </span>
-                <span className="absolute inset-0 bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 blur-xl -z-10 opacity-20 animate-pulse"></span>
+              </span>
+              {/* Desktop: single line */}
+              <span className="hidden sm:inline">
+                Turn Your Codebase Into{' '}
+                <span className="relative inline-block">
+                  <span className="bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 bg-clip-text text-transparent">
+                    AI Context
+                  </span>
+                  <span className="absolute inset-0 bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 blur-xl -z-10 opacity-20 animate-pulse"></span>
+                </span>
               </span>
             </h1>
             <p className="mt-8 text-xl lg:text-2xl leading-relaxed text-gray-600 dark:text-gray-300 font-medium max-w-4xl mx-auto">
@@ -661,7 +658,7 @@ export default function Hero() {
             <p className="mt-4 text-base lg:text-lg text-gray-500 dark:text-gray-400">
               Fast • Deterministic • Zero Config • Open Source
             </p>
-            <div className="mt-12 flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-6">
+            <div className="mt-12 flex flex-row items-center justify-center gap-2 sm:gap-4 lg:gap-6">
               <StarGitHubButton />
               <ReadTheDocsButton href="docs/" />
             </div>
@@ -680,6 +677,25 @@ export default function Hero() {
                   <CopyButton text="npm install -g logicstamp-context" className="ml-2" />
                 </div>
               </div>
+            </div>
+
+            {/* Launch Badge */}
+            <div className="mt-10 sm:mt-12 flex items-center justify-center gap-2 flex-wrap">
+              <span className="inline-flex items-center gap-1.5 rounded-full bg-gradient-to-r from-blue-500/10 via-purple-500/10 to-pink-500/10 px-4 py-1.5 text-sm font-semibold text-secondary-700 dark:text-secondary-300 ring-1 ring-inset ring-secondary-500/30 animate-pulse">
+                <svg className="h-4 w-4 text-green-600 dark:text-green-400" fill="currentColor" viewBox="0 0 20 20">
+                  <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.857-9.809a.75.75 0 00-1.214-.882l-3.483 4.79-1.88-1.88a.75.75 0 10-1.06 1.061l2.5 2.5a.75.75 0 001.137-.089l4-5.5z" clipRule="evenodd" />
+                </svg>
+                Launching Soon
+              </span>
+              <span className="inline-flex items-center gap-1.5 rounded-full bg-gradient-blue-purple/10 px-3 py-1 text-xs sm:text-sm font-medium text-secondary-700 dark:text-secondary-300 ring-1 ring-inset ring-secondary-500/20">
+                <svg className="h-3.5 w-3.5" fill="currentColor" viewBox="0 0 20 20">
+                  <path d="M12.316 3.051a1 1 0 01.633 1.265l-4 12a1 1 0 11-1.898-.632l4-12a1 1 0 011.265-.633zM5.707 6.293a1 1 0 010 1.414L3.414 10l2.293 2.293a1 1 0 11-1.414 1.414l-3-3a1 1 0 010-1.414l3-3a1 1 0 011.414 0zm8.586 0a1 1 0 011.414 0l3 3a1 1 0 010 1.414l-3 3a1 1 0 11-1.414-1.414L16.586 10l-2.293-2.293a1 1 0 010-1.414z" />
+                </svg>
+                100% Open Source
+              </span>
+              <span className="inline-flex items-center rounded-full bg-blue-50 dark:bg-blue-900/30 px-3 py-1 text-xs sm:text-sm font-medium text-blue-700 dark:text-blue-300 ring-1 ring-inset ring-blue-600/20">
+                Public Beta
+              </span>
             </div>
           </div>
         </AnimatedSection>
@@ -713,13 +729,13 @@ export default function Hero() {
                   LogicStamp is 100% open source and community-driven. Contribute code, report issues, suggest features, or just star the repo to show your support.
                 </p>
 
-                <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+                <div className="flex flex-row items-center justify-center gap-2 sm:gap-4">
                   <a
                     href="/docs/what-is-logicstamp"
-                    className="group inline-flex items-center gap-2 px-6 py-3 rounded-lg bg-white dark:bg-gray-800 text-gray-900 dark:text-white font-semibold shadow-lg hover:shadow-xl ring-1 ring-gray-300 dark:ring-gray-700 transition-all duration-200"
+                    className="group inline-flex items-center gap-2 px-4 sm:px-6 py-2.5 sm:py-3 rounded-lg bg-white dark:bg-gray-800 text-gray-900 dark:text-white text-sm sm:text-base font-semibold shadow-lg hover:shadow-xl ring-1 ring-gray-300 dark:ring-gray-700 transition-all duration-200 whitespace-nowrap"
                   >
                     Learn More
-                    <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <svg className="w-4 h-4 sm:w-5 sm:h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
                     </svg>
                   </a>
@@ -727,9 +743,9 @@ export default function Hero() {
                     href="https://github.com/LogicStamp/logicstamp-context/issues"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="group inline-flex items-center gap-2 px-6 py-3 rounded-lg bg-gradient-to-r from-blue-600 to-purple-600 text-white font-semibold shadow-lg hover:shadow-xl transition-all duration-200"
+                    className="group inline-flex items-center gap-2 px-4 sm:px-6 py-2.5 sm:py-3 rounded-lg bg-gradient-to-r from-blue-600 to-purple-600 text-white text-sm sm:text-base font-semibold shadow-lg hover:shadow-xl transition-all duration-200 whitespace-nowrap"
                   >
-                    <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                    <svg className="w-4 h-4 sm:w-5 sm:h-5" fill="currentColor" viewBox="0 0 20 20">
                       <path fillRule="evenodd" d="M10 3a1 1 0 011 1v5h5a1 1 0 110 2h-5v5a1 1 0 11-2 0v-5H4a1 1 0 110-2h5V4a1 1 0 011-1z" clipRule="evenodd" />
                     </svg>
                     Contribute

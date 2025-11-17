@@ -12,13 +12,13 @@ export default function StarGitHubButton({
   variant = 'primary',
   size = 'lg',
   className = '',
-  showArrow = true,
+  showArrow = false,
   children = 'Star on GitHub',
 }: StarGitHubButtonProps) {
   const sizeClasses = {
     sm: 'px-5 py-2 text-sm',
     md: 'px-6 py-3 text-base',
-    lg: 'px-8 py-4 text-base lg:text-lg',
+    lg: 'px-6 py-3 sm:px-8 sm:py-4 text-sm sm:text-base lg:text-lg',
   }
 
   const variantClasses = {
@@ -28,14 +28,14 @@ export default function StarGitHubButton({
       'bg-white dark:bg-gray-800 text-gray-900 dark:text-white shadow-lg hover:shadow-xl ring-1 ring-gray-300 dark:ring-gray-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-purple-600',
   }
 
-  const iconSize = size === 'sm' ? 'w-4 h-4' : size === 'md' ? 'w-5 h-5' : 'w-6 h-6'
+  const iconSize = size === 'sm' ? 'w-4 h-4' : size === 'md' ? 'w-5 h-5' : 'w-5 h-5 sm:w-6 sm:h-6'
 
   return (
     <a
       href={href}
       target="_blank"
       rel="noopener noreferrer"
-      className={`group inline-flex items-center gap-3 rounded-lg font-bold transition-all duration-200 ${sizeClasses[size]} ${variantClasses[variant]} ${className}`}
+      className={`group inline-flex items-center gap-2 sm:gap-3 rounded-lg font-bold transition-all duration-200 whitespace-nowrap ${sizeClasses[size]} ${variantClasses[variant]} ${className}`}
     >
       <svg className={iconSize} fill="currentColor" viewBox="0 0 24 24">
         <path
