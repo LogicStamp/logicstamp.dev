@@ -18,19 +18,43 @@ export default function AnimatedSection({
   duration = 300,
 }: AnimatedSectionProps) {
   const [isVisible, setIsVisible] = useState(false)
+  const [prefersReducedMotion, setPrefersReducedMotion] = useState(false)
   const ref = useRef<HTMLDivElement>(null)
 
+  // Check for reduced motion preference
   useEffect(() => {
-    const effectiveDelay = Math.min(delay, 120)
+    if (typeof window === 'undefined') return
+
+    const mediaQuery = window.matchMedia('(prefers-reduced-motion: reduce)')
+    setPrefersReducedMotion(mediaQuery.matches)
+
+    const handleChange = (e: MediaQueryListEvent) => {
+      setPrefersReducedMotion(e.matches)
+    }
+
+    mediaQuery.addEventListener('change', handleChange)
+    return () => mediaQuery.removeEventListener('change', handleChange)
+  }, [])
+
+  useEffect(() => {
+    if (typeof window === 'undefined') return
+
+    const effectiveDelay = prefersReducedMotion ? 0 : Math.min(delay, 120)
     let timeoutId: number | undefined
 
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
-          timeoutId = window.setTimeout(() => {
+          if (prefersReducedMotion) {
+            // Show immediately for users who prefer reduced motion
             setIsVisible(true)
             observer.unobserve(entry.target)
-          }, effectiveDelay)
+          } else {
+            timeoutId = window.setTimeout(() => {
+              setIsVisible(true)
+              observer.unobserve(entry.target)
+            }, effectiveDelay)
+          }
         }
       },
       {
@@ -49,9 +73,11 @@ export default function AnimatedSection({
         window.clearTimeout(timeoutId)
       }
     }
-  }, [delay, direction, duration])
+  }, [delay, direction, duration, prefersReducedMotion])
 
   const getOffsetTransform = () => {
+    if (prefersReducedMotion) return 'none'
+    
     switch (direction) {
       case 'up':
         return 'translateY(20px)'
@@ -66,6 +92,8 @@ export default function AnimatedSection({
     }
   }
 
+  const animationDuration = prefersReducedMotion ? 0 : duration
+
   return (
     <div
       ref={ref}
@@ -73,7 +101,9 @@ export default function AnimatedSection({
       style={{
         opacity: isVisible ? 1 : 0,
         transform: isVisible ? 'none' : getOffsetTransform(),
-        transition: `opacity ${duration}ms ease-out, transform ${duration}ms ease-out`,
+        transition: prefersReducedMotion
+          ? 'opacity 0ms'
+          : `opacity ${animationDuration}ms ease-out, transform ${animationDuration}ms ease-out`,
       }}
     >
       {children}

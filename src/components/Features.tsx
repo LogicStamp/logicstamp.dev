@@ -166,67 +166,101 @@ Token Stats:
   ]
 
   useEffect(() => {
+    if (typeof window === 'undefined') return
+
     let currentIndex = 0
-    let cursorInterval: NodeJS.Timeout
-    let typingInterval: NodeJS.Timeout
+    let cursorInterval: NodeJS.Timeout | undefined
+    let typingInterval: NodeJS.Timeout | undefined
 
     const startTyping = () => {
-      const currentContent = demos[currentDemo].content
-      currentIndex = 0
-      setDisplayText('')
-      setIsTyping(true)
-
-      // Cursor blinking animation
-      cursorInterval = setInterval(() => {
-        setShowCursor((prev) => !prev)
-      }, 530)
-
-      // Typing animation
-      const typeCharacter = () => {
-        if (currentIndex < currentContent.length) {
-          setDisplayText(currentContent.slice(0, currentIndex + 1))
-          currentIndex++
-
-          // Speed up typing for certain characters
-          const char = currentContent[currentIndex - 1]
-          const delay = char === '\n' ? 50 : char === ' ' ? 30 : 20
-
-          typingInterval = setTimeout(typeCharacter, delay)
-        } else {
-          // Typing is complete
+      try {
+        const currentContent = demos[currentDemo]?.content || ''
+        if (!currentContent) {
           setIsTyping(false)
-          clearInterval(cursorInterval)
-          setShowCursor(true)
+          return
         }
-      }
 
-      typingInterval = setTimeout(typeCharacter, 500)
+        currentIndex = 0
+        setDisplayText('')
+        setIsTyping(true)
+
+        // Cursor blinking animation
+        cursorInterval = setInterval(() => {
+          setShowCursor((prev) => !prev)
+        }, 530)
+
+        // Typing animation
+        const typeCharacter = () => {
+          try {
+            if (currentIndex < currentContent.length) {
+              setDisplayText(currentContent.slice(0, currentIndex + 1))
+              currentIndex++
+
+              // Speed up typing for certain characters
+              const char = currentContent[currentIndex - 1]
+              const delay = char === '\n' ? 50 : char === ' ' ? 30 : 20
+
+              typingInterval = setTimeout(typeCharacter, delay)
+            } else {
+              // Typing is complete
+              setIsTyping(false)
+              if (cursorInterval) clearInterval(cursorInterval)
+              setShowCursor(true)
+            }
+          } catch (error) {
+            console.error('Error in typing animation:', error)
+            setIsTyping(false)
+            if (cursorInterval) clearInterval(cursorInterval)
+            setShowCursor(true)
+            // Show full text on error
+            setDisplayText(currentContent)
+          }
+        }
+
+        typingInterval = setTimeout(typeCharacter, 500)
+      } catch (error) {
+        console.error('Error starting typing animation:', error)
+        setIsTyping(false)
+        setDisplayText(demos[currentDemo]?.content || '')
+      }
     }
 
     startTyping()
 
     return () => {
-      clearInterval(cursorInterval)
-      clearTimeout(typingInterval)
+      if (cursorInterval) clearInterval(cursorInterval)
+      if (typingInterval) clearTimeout(typingInterval)
     }
   }, [currentDemo])
 
   // Auto-cycle through demos - only when not typing
   useEffect(() => {
-    const interval = setInterval(() => {
-      if (!isTyping) {
-        setCurrentDemo((prev) => (prev + 1) % demos.length)
-      }
-    }, 8000) // Change demo every 8 seconds
+    if (typeof window === 'undefined') return
 
-    return () => clearInterval(interval)
+    try {
+      const interval = setInterval(() => {
+        if (!isTyping && demos.length > 0) {
+          setCurrentDemo((prev) => (prev + 1) % demos.length)
+        }
+      }, 8000) // Change demo every 8 seconds
+
+      return () => clearInterval(interval)
+    } catch (error) {
+      console.error('Error setting up auto-cycle:', error)
+    }
   }, [isTyping])
 
   // Handle manual demo switching
   const handleDemoSwitch = (index: number) => {
-    setCurrentDemo(index)
-    // Reset typing state when manually switching
-    setIsTyping(false)
+    try {
+      if (index >= 0 && index < demos.length) {
+        setCurrentDemo(index)
+        // Reset typing state when manually switching
+        setIsTyping(false)
+      }
+    } catch (error) {
+      console.error('Error switching demo:', error)
+    }
   }
 
   return (
@@ -279,7 +313,7 @@ Token Stats:
 export default function HowItWorks() {
   return (
     <section id="how-it-works" className="py-24 sm:py-32 bg-gradient-bg-section">
-      <div className="mx-auto max-w-7xl px-6 lg:px-8">
+      <div className="mx-auto max-w-[1320px] px-6 lg:px-8">
         <AnimatedSection direction="up" delay={0}>
           <div className="mx-auto max-w-4xl text-center">
             <h2 className="text-4xl font-bold tracking-tight text-gray-900 dark:text-white sm:text-5xl lg:text-7xl">
@@ -300,7 +334,7 @@ export default function HowItWorks() {
         </AnimatedSection>
         
         <AnimatedSection direction="up" delay={200}>
-          <div className="mx-auto mt-16 max-w-[90rem] sm:mt-20 lg:mt-24">
+          <div className="mx-auto mt-16 max-w-[1320px] sm:mt-20 lg:mt-24">
             <HowItWorksTerminalAnimation />
           </div>
         </AnimatedSection>

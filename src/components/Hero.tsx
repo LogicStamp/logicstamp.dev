@@ -31,23 +31,39 @@ const GRAPH_EDGES = [
 // Dependency Graph Visualization Component
 function DependencyGraph({ animatedNodes }: { animatedNodes: Set<number> }) {
   const [animatedEdges, setAnimatedEdges] = useState<Set<string>>(new Set())
+  const [hasError, setHasError] = useState(false)
 
   // Animate edges when their connected nodes are visible
   useEffect(() => {
-    setAnimatedEdges((prev) => {
-      const next = new Set(prev)
-      GRAPH_EDGES.forEach((edge) => {
-        if (
-          animatedNodes.has(edge.from) &&
-          animatedNodes.has(edge.to) &&
-          !next.has(edge.id)
-        ) {
-          next.add(edge.id)
-        }
+    try {
+      setAnimatedEdges((prev) => {
+        const next = new Set(prev)
+        GRAPH_EDGES.forEach((edge) => {
+          if (
+            animatedNodes.has(edge.from) &&
+            animatedNodes.has(edge.to) &&
+            !next.has(edge.id)
+          ) {
+            next.add(edge.id)
+          }
+        })
+        return next
       })
-      return next
-    })
+    } catch (error) {
+      console.error('Error animating graph edges:', error)
+      setHasError(true)
+    }
   }, [animatedNodes])
+
+  if (hasError) {
+    return (
+      <div className="relative w-full h-full flex items-center justify-center p-8">
+        <p className="text-gray-500 dark:text-gray-400 text-sm">
+          Graph visualization unavailable
+        </p>
+      </div>
+    )
+  }
 
   return (
     <div className="relative w-full h-full flex items-center justify-center p-8 overflow-x-auto sm:overflow-hidden">
@@ -55,6 +71,8 @@ function DependencyGraph({ animatedNodes }: { animatedNodes: Set<number> }) {
         viewBox="5 5 90 90"
         className="w-full h-full min-w-full"
         style={{ maxWidth: '100%', height: 'auto' }}
+        role="img"
+        aria-label="Component dependency graph visualization"
       >
         {/* Animated background gradient */}
         <defs>
@@ -467,29 +485,59 @@ function ContextJsonPreview({ animatedNodes }: { animatedNodes: Set<number> }) {
 // Hero Visualization Container (manages shared state)
 function HeroVisualization() {
   const [animatedNodes, setAnimatedNodes] = useState<Set<number>>(new Set())
+  const [prefersReducedMotion, setPrefersReducedMotion] = useState(false)
 
-  // Animate nodes appearing one by one
+  // Check for reduced motion preference
   useEffect(() => {
-    const nodeInterval = setInterval(() => {
-      setAnimatedNodes((prev) => {
-        if (prev.size < GRAPH_NODES.length) {
-          const next = new Set(prev)
-          next.add(prev.size)
-          return next
-        }
-        return prev
-      })
-    }, 200)
+    if (typeof window === 'undefined') return
 
-    return () => {
-      clearInterval(nodeInterval)
+    const mediaQuery = window.matchMedia('(prefers-reduced-motion: reduce)')
+    setPrefersReducedMotion(mediaQuery.matches)
+
+    const handleChange = (e: MediaQueryListEvent) => {
+      setPrefersReducedMotion(e.matches)
     }
+
+    mediaQuery.addEventListener('change', handleChange)
+    return () => mediaQuery.removeEventListener('change', handleChange)
   }, [])
+
+  // Animate nodes appearing one by one (skip if reduced motion)
+  useEffect(() => {
+    if (prefersReducedMotion) {
+      // Show all nodes immediately if reduced motion is preferred
+      setAnimatedNodes(new Set(GRAPH_NODES.map((_, i) => i)))
+      return
+    }
+
+    try {
+      const nodeInterval = setInterval(() => {
+        setAnimatedNodes((prev) => {
+          if (prev.size < GRAPH_NODES.length) {
+            const next = new Set(prev)
+            next.add(prev.size)
+            return next
+          }
+          return prev
+        })
+      }, 200)
+
+      return () => {
+        clearInterval(nodeInterval)
+      }
+    } catch (error) {
+      console.error('Error setting up node animation:', error)
+      // Fallback: show all nodes immediately
+      setAnimatedNodes(new Set(GRAPH_NODES.map((_, i) => i)))
+    }
+  }, [prefersReducedMotion])
 
   // Reset animation on mount
   useEffect(() => {
-    setAnimatedNodes(new Set())
-  }, [])
+    if (!prefersReducedMotion) {
+      setAnimatedNodes(new Set())
+    }
+  }, [prefersReducedMotion])
 
   return (
     <AnimatedSection direction="up" delay={400}>
@@ -541,7 +589,7 @@ function HeroVisualization() {
 export default function Hero() {
   return (
     <section className="relative overflow-hidden bg-gradient-bg-hero pt-28 pb-20 sm:pt-36 sm:pb-32 min-h-screen">
-      <div className="mx-auto max-w-[90rem] px-6 lg:px-8">
+      <div className="mx-auto max-w-[1320px] px-6 lg:px-8">
         <AnimatedSection direction="up" delay={0}>
           <div className="mx-auto max-w-2xl lg:max-w-6xl text-center">
             {/* Beta Badge */}
@@ -594,10 +642,10 @@ export default function Hero() {
             {/* Quick install snippet */}
             <div className="mt-6 sm:mt-8 flex justify-center">
               <div className="relative inline-flex items-center gap-3 rounded-xl bg-white/95 dark:bg-gray-950/90 px-4 sm:px-6 lg:px-8 py-2.5 sm:py-3 shadow-md ring-1 ring-gray-200/80 dark:ring-secondary-400/40">
-                <span className="hidden sm:inline text-xs sm:text-sm font-semibold uppercase tracking-wide text-gray-500 dark:text-gray-400">
+                <span className="hidden sm:inline text-xs sm:text-sm font-semibold uppercase tracking-wide text-gray-500 dark:text-gray-400" aria-label="Command prompt">
                   $
                 </span>
-                <code className="text-xs sm:text-sm lg:text-base font-mono text-gray-900 dark:text-gray-100">
+                <code className="text-xs sm:text-sm lg:text-base font-mono text-gray-900 dark:text-gray-100" aria-label="Installation command">
                   npm install -g logicstamp-context
                 </code>
                 <CopyButton text="npm install -g logicstamp-context" className="ml-2" />

@@ -26,47 +26,75 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
 
   // Load theme preference and system preference after mount
   useEffect(() => {
-    const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)')
-    const handleChange = (event: MediaQueryListEvent) => {
-      setSystemPrefersDark(event.matches)
-    }
+    if (typeof window === 'undefined' || typeof document === 'undefined') return
 
-    setSystemPrefersDark(mediaQuery.matches)
+    try {
+      const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)')
+      const handleChange = (event: MediaQueryListEvent) => {
+        setSystemPrefersDark(event.matches)
+      }
 
-    const cookieMatch = document.cookie.match(/(?:^|; )theme=([^;]+)/)
-    const cookieTheme = (cookieMatch ? decodeURIComponent(cookieMatch[1]) : null) as ThemePreference | null
-    const storageTheme = (localStorage.getItem('theme') as ThemePreference | null) || null
-    const initialTheme = cookieTheme || storageTheme || 'system'
+      setSystemPrefersDark(mediaQuery.matches)
 
-    setThemeState(initialTheme)
+      const cookieMatch = document.cookie.match(/(?:^|; )theme=([^;]+)/)
+      const cookieTheme = (cookieMatch ? decodeURIComponent(cookieMatch[1]) : null) as ThemePreference | null
+      
+      let storageTheme: ThemePreference | null = null
+      try {
+        storageTheme = (localStorage.getItem('theme') as ThemePreference | null) || null
+      } catch (e) {
+        // localStorage may not be available (e.g., in private browsing)
+        console.warn('localStorage not available:', e)
+      }
+      
+      const initialTheme = cookieTheme || storageTheme || 'system'
 
-    mediaQuery.addEventListener('change', handleChange)
-    setIsLoaded(true)
+      setThemeState(initialTheme)
 
-    return () => {
-      mediaQuery.removeEventListener('change', handleChange)
+      mediaQuery.addEventListener('change', handleChange)
+      setIsLoaded(true)
+
+      return () => {
+        mediaQuery.removeEventListener('change', handleChange)
+      }
+    } catch (error) {
+      console.error('Theme initialization failed:', error)
+      setIsLoaded(true) // Still mark as loaded to prevent infinite loading state
     }
   }, [])
 
   // Apply the effective theme to the document & persist preference
   useEffect(() => {
-    if (!isLoaded) return
+    if (!isLoaded || typeof document === 'undefined') return
 
-    localStorage.setItem('theme', theme)
     try {
-      document.cookie = `theme=${encodeURIComponent(theme)}; path=/; max-age=${60 * 60 * 24 * 365}`
-    } catch (e) {
-      // Cookie writes can fail in some environments; fail silently
-    }
+      // Try to save to localStorage
+      try {
+        localStorage.setItem('theme', theme)
+      } catch (e) {
+        // localStorage may not be available (e.g., in private browsing)
+        console.warn('Failed to save theme to localStorage:', e)
+      }
 
-    const effectiveDark = theme === 'dark' || (theme === 'system' && systemPrefersDark)
+      // Try to save to cookie
+      try {
+        document.cookie = `theme=${encodeURIComponent(theme)}; path=/; max-age=${60 * 60 * 24 * 365}`
+      } catch (e) {
+        // Cookie writes can fail in some environments; fail silently
+        console.warn('Failed to save theme to cookie:', e)
+      }
 
-    if (effectiveDark) {
-      document.documentElement.classList.add('dark')
-      document.documentElement.setAttribute('data-theme', 'dark')
-    } else {
-      document.documentElement.classList.remove('dark')
-      document.documentElement.setAttribute('data-theme', 'light')
+      const effectiveDark = theme === 'dark' || (theme === 'system' && systemPrefersDark)
+
+      if (effectiveDark) {
+        document.documentElement.classList.add('dark')
+        document.documentElement.setAttribute('data-theme', 'dark')
+      } else {
+        document.documentElement.classList.remove('dark')
+        document.documentElement.setAttribute('data-theme', 'light')
+      }
+    } catch (error) {
+      console.error('Failed to apply theme:', error)
     }
   }, [theme, systemPrefersDark, isLoaded])
 

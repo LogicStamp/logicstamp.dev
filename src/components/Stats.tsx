@@ -69,7 +69,7 @@ export default function Stats() {
 
   return (
     <section ref={sectionRef} className="py-24 sm:py-32 bg-stats-section">
-      <div className="mx-auto max-w-7xl px-6 lg:px-8">
+      <div className="mx-auto max-w-[1320px] px-6 lg:px-8">
         <AnimatedSection direction="up" delay={0}>
           <div className="mx-auto max-w-2xl text-center">
             <h2 className="text-3xl font-bold tracking-tight text-stats-primary sm:text-4xl lg:text-6xl">
@@ -80,7 +80,7 @@ export default function Stats() {
             </p>
           </div>
         </AnimatedSection>
-        <div className="mx-auto mt-16 max-w-7xl">
+        <div className="mx-auto mt-16 max-w-[1320px]">
           <dl className="grid grid-cols-1 gap-x-8 gap-y-16 text-center lg:grid-cols-4">
             {stats.map((stat, index) => (
               <AnimatedSection key={stat.name} direction="up" delay={200 + index * 100}>

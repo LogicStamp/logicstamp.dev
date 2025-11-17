@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useRef, useEffect } from 'react'
 import AnimatedSection from './AnimatedSection'
 
 // Essential FAQs - the most common questions users ask
@@ -39,14 +39,48 @@ const faqs = [
 
 export default function FAQ() {
   const [openItem, setOpenItem] = useState<number | null>(null)
+  const buttonRefs = useRef<(HTMLButtonElement | null)[]>([])
+
+  // Initialize refs array
+  useEffect(() => {
+    buttonRefs.current = buttonRefs.current.slice(0, faqs.length)
+  }, [])
 
   const toggleItem = (id: number) => {
     setOpenItem(prev => prev === id ? null : id)
   }
 
+  // Keyboard navigation for FAQ items
+  const handleKeyDown = (e: React.KeyboardEvent, index: number) => {
+    let newIndex = index
+
+    switch (e.key) {
+      case 'ArrowDown':
+        e.preventDefault()
+        newIndex = index < faqs.length - 1 ? index + 1 : 0
+        break
+      case 'ArrowUp':
+        e.preventDefault()
+        newIndex = index > 0 ? index - 1 : faqs.length - 1
+        break
+      case 'Home':
+        e.preventDefault()
+        newIndex = 0
+        break
+      case 'End':
+        e.preventDefault()
+        newIndex = faqs.length - 1
+        break
+      default:
+        return
+    }
+
+    buttonRefs.current[newIndex]?.focus()
+  }
+
   return (
     <section id="faq" className="py-24 sm:py-32 bg-gray-50 dark:bg-gray-900">
-      <div className="mx-auto max-w-7xl px-6 lg:px-8">
+      <div className="mx-auto max-w-[1320px] px-6 lg:px-8">
         <AnimatedSection direction="up" delay={0}>
           <div className="mx-auto max-w-2xl text-center">
             <h2 className="text-3xl font-bold tracking-tight text-gray-900 dark:text-white sm:text-4xl lg:text-6xl">
@@ -68,12 +102,19 @@ export default function FAQ() {
                 <div className="py-8">
                   <dt>
                     <button
+                      ref={(el) => {
+                        buttonRefs.current[index] = el
+                      }}
                       type="button"
-                      className="flex w-full items-center justify-between text-left text-gray-900 dark:text-white pr-8"
+                      id={`faq-question-${faq.id}`}
+                      className="flex w-full items-center justify-between text-left text-gray-900 dark:text-white pr-8 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-500 rounded-md"
                       onClick={() => toggleItem(faq.id)}
+                      onKeyDown={(e) => handleKeyDown(e, index)}
+                      aria-expanded={openItem === faq.id}
+                      aria-controls={`faq-answer-${faq.id}`}
                     >
                       <span className="text-lg lg:text-3xl font-semibold leading-7">{faq.question}</span>
-                      <div className="relative h-6 w-6 flex-shrink-0">
+                      <div className="relative h-6 w-6 flex-shrink-0" aria-hidden="true">
                         <svg
                           className={`absolute inset-0 h-6 w-6 transition-all duration-300 ease-in-out ${
                             openItem === faq.id ? 'opacity-0 rotate-90 scale-75' : 'opacity-100 rotate-0 scale-100'
@@ -82,7 +123,6 @@ export default function FAQ() {
                           viewBox="0 0 24 24"
                           strokeWidth="1.5"
                           stroke="currentColor"
-                          aria-hidden="true"
                         >
                           {/* Plus icon when closed */}
                           <path strokeLinecap="round" strokeLinejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
@@ -95,7 +135,6 @@ export default function FAQ() {
                           viewBox="0 0 24 24"
                           strokeWidth="1.5"
                           stroke="currentColor"
-                          aria-hidden="true"
                         >
                           {/* X icon when open */}
                           <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
@@ -103,11 +142,16 @@ export default function FAQ() {
                       </div>
                     </button>
                   </dt>
-                  <dd className={`overflow-hidden transition-all duration-300 ease-in-out ${
-                    openItem === faq.id ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'
-                  }`}>
+                  <dd
+                    id={`faq-answer-${faq.id}`}
+                    role="region"
+                    aria-labelledby={`faq-question-${faq.id}`}
+                    className={`overflow-hidden transition-all duration-300 ease-in-out ${
+                      openItem === faq.id ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'
+                    }`}
+                  >
                     <div className="mt-4 pr-12 pb-2">
-                  <p className="text-base lg:text-2xl leading-7 text-gray-600 dark:text-gray-300">
+                      <p className="text-base lg:text-2xl leading-7 text-gray-600 dark:text-gray-300">
                         {faq.answer}
                       </p>
                     </div>

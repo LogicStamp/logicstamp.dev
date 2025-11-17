@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from 'react'
+import { useState, useEffect, useRef, useCallback } from 'react'
 
 interface UseAnimatedCounterProps {
   end: number
@@ -21,7 +21,7 @@ export function useAnimatedCounter({
   const animationRef = useRef<number>()
   const startTimeRef = useRef<number>()
 
-  const startAnimation = () => {
+  const startAnimation = useCallback(() => {
     if (isAnimating || hasTriggered) return
     
     setIsAnimating(true)
@@ -52,7 +52,7 @@ export function useAnimatedCounter({
     }
     
     animationRef.current = requestAnimationFrame(animate)
-  }
+  }, [end, duration, isAnimating, hasTriggered])
 
   const reset = () => {
     if (animationRef.current) {
@@ -78,7 +78,7 @@ export function useAnimatedCounter({
         cancelAnimationFrame(animationRef.current)
       }
     }
-  }, [startOnMount, delay])
+  }, [startOnMount, delay, startAnimation])
 
   // Effect to handle external trigger
   useEffect(() => {
@@ -89,7 +89,7 @@ export function useAnimatedCounter({
       
       return () => clearTimeout(timer)
     }
-  }, [trigger, delay, isAnimating, hasTriggered])
+  }, [trigger, delay, isAnimating, hasTriggered, startAnimation])
 
   return {
     count,

@@ -109,7 +109,7 @@ export default function WhyLogicStamp() {
         <div className="absolute bottom-1/4 right-0 w-96 h-96 bg-green-500/5 rounded-full blur-3xl"></div>
       </div>
 
-      <div className="mx-auto max-w-7xl px-6 lg:px-8 relative z-10">
+      <div className="mx-auto max-w-[1320px] px-6 lg:px-8 relative z-10">
         <AnimatedSection direction="up" delay={0}>
           <div className="mx-auto max-w-3xl text-center mb-20">
             <h2 className="text-4xl font-bold tracking-tight text-gray-900 dark:text-white sm:text-5xl lg:text-7xl">

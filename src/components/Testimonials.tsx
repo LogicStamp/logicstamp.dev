@@ -1,5 +1,32 @@
 'use client'
+import { useState } from 'react'
 import AnimatedSection from './AnimatedSection'
+
+// Image component with error fallback
+function AvatarImage({ src, alt, name }: { src: string; alt: string; name: string }) {
+  const [imgSrc, setImgSrc] = useState(src)
+  const [hasError, setHasError] = useState(false)
+
+  const fallbackSrc = `https://ui-avatars.com/api/?name=${encodeURIComponent(name)}&background=random`
+
+  // Use regular img tag for better error handling
+  return (
+    <div className="relative h-10 w-10 flex-shrink-0">
+      <img
+        src={hasError ? fallbackSrc : imgSrc}
+        alt={alt}
+        className="rounded-full bg-gray-50 dark:bg-gray-700 object-cover h-10 w-10"
+        loading="lazy"
+        onError={() => {
+          if (!hasError) {
+            setHasError(true)
+            setImgSrc(fallbackSrc)
+          }
+        }}
+      />
+    </div>
+  )
+}
 
 const testimonials = [
   {
@@ -74,7 +101,7 @@ export default function Testimonials() {
 
   return (
     <section id="testimonials" className="py-24 sm:py-32 bg-gradient-bg-section overflow-hidden">
-      <div className="mx-auto max-w-7xl px-6 lg:px-8">
+      <div className="mx-auto max-w-[1320px] px-6 lg:px-8">
         <AnimatedSection direction="up" delay={0}>
           <div className="mx-auto max-w-2xl text-center">
             <h2 className="text-3xl font-bold tracking-tight text-gray-900 dark:text-white sm:text-4xl lg:text-6xl">
@@ -98,10 +125,10 @@ export default function Testimonials() {
                       <p className="text-base lg:text-lg leading-relaxed line-clamp-2 whitespace-normal">&ldquo;{testimonial.body}&rdquo;</p>
                     </blockquote>
                     <figcaption className="mt-4 flex items-center gap-x-3">
-                      <img
-                        className="h-10 w-10 rounded-full bg-gray-50 dark:bg-gray-700"
+                      <AvatarImage
                         src={testimonial.author.imageUrl}
-                        alt={testimonial.author.name}
+                        alt={`${testimonial.author.name} profile picture`}
+                        name={testimonial.author.name}
                       />
                       <div>
                         <div className="font-semibold text-base lg:text-lg text-gray-900 dark:text-white">
@@ -128,10 +155,10 @@ export default function Testimonials() {
                       <p className="text-base lg:text-lg leading-relaxed line-clamp-2 whitespace-normal">&ldquo;{testimonial.body}&rdquo;</p>
                     </blockquote>
                     <figcaption className="mt-4 flex items-center gap-x-3">
-                      <img
-                        className="h-10 w-10 rounded-full bg-gray-50 dark:bg-gray-700"
+                      <AvatarImage
                         src={testimonial.author.imageUrl}
-                        alt={testimonial.author.name}
+                        alt={`${testimonial.author.name} profile picture`}
+                        name={testimonial.author.name}
                       />
                       <div>
                         <div className="font-semibold text-base lg:text-lg text-gray-900 dark:text-white">
