@@ -792,6 +792,15 @@ export default function Hero() {
                     Contribute
                   </a>
                 </div>
+
+                {/* Mascot */}
+                <div className="mt-8 sm:mt-12 flex justify-center">
+                  <img
+                    src="/mascot/logicstamp-fox.svg"
+                    alt="LogicStamp Fox Mascot"
+                    className="w-32 h-32 sm:w-40 sm:h-40 lg:w-48 lg:h-48 opacity-90 hover:opacity-100 transition-opacity duration-300 fox-mascot"
+                  />
+                </div>
               </div>
             </div>
           </div>

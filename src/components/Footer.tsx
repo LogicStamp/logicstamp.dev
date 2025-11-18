@@ -137,18 +137,18 @@ export default function Footer() {
               <img
                 src="/mascot/logicstamp-fox.svg"
                 alt="LogicStamp Fox Mascot"
-                className="h-24 w-24 opacity-80 hover:opacity-100 transition-opacity"
+                className="h-24 w-24 opacity-80 hover:opacity-100 transition-opacity fox-mascot"
               />
             </div>
 
             {/* Theme toggle + social links - above MIT license */}
             <div className="flex flex-col items-center gap-4 md:flex-row md:items-center md:justify-end md:gap-4 pb-5">
               {/* Fox Mascot - Desktop only (to the left of theme toggle) */}
-              <div className="hidden md:flex items-center">
+              <div className="hidden md:flex items-center justify-center">
                 <img
                   src="/mascot/logicstamp-fox.svg"
                   alt="LogicStamp Fox Mascot"
-                  className="h-24 w-24 opacity-80 hover:opacity-100 transition-opacity"
+                  className="h-24 w-24 opacity-80 hover:opacity-100 transition-opacity fox-mascot"
                 />
               </div>
               <ThemeToggle compact />

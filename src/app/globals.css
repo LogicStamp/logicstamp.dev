@@ -435,3 +435,21 @@ header .animate-pulse {
     transform: translateX(0);
   }
 }
+
+/* Fox mascot SVG centering fix */
+.fox-mascot {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  /* Compensate for viewBox whitespace - the SVG has translate(10,4) which may cause asymmetry */
+  transform: translateX(-8px);
+  object-fit: contain;
+  object-position: center;
+}
+
+/* Desktop-specific adjustment for fox mascot */
+@media (min-width: 768px) {
+  .fox-mascot {
+    transform: translateX(-14px);
+  }
+}
