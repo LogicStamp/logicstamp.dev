@@ -392,7 +392,9 @@ stamp context validate context.json
 
 ## Output Format
 
-The generated `context.json` contains an array of bundles (one bundle per entry point).
+The generated `context.json` contains an array of bundles (one bundle per entry point). Each bundle represents a root component plus its complete dependency graph, with all related components and their contracts included within that bundle. This per-root bundle design is optimized for how developers and LLMs work—when you need help with a specific page or feature, the root bundle contains everything related to that feature in one self-contained unit.
+
+**Design note:** LogicStamp Context intentionally uses per-root bundles rather than per-component files because developers think in features/pages (roots), not individual atoms. Having the full dependency graph inside each root bundle means AI assistants see all related components together, improving understanding and suggestions. The structure naturally supports a future `--split` mode that would write each root bundle to its own file without breaking changes.
 
 **📋 Full Schema Reference:** See [`schema/logicstamp.context.schema.json`](schema/logicstamp.context.schema.json) for the complete JSON Schema definition.
 

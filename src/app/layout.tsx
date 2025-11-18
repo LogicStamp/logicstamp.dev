@@ -12,9 +12,9 @@ export const metadata: Metadata = {
   description: 'A tiny CLI that compiles your React/TypeScript codebase into machine-readable context bundles for AI and CI. Fast, deterministic, zero-config.',
   keywords: ['logicstamp', 'AI context', 'codebase analysis', 'React', 'TypeScript', 'Claude', 'ChatGPT', 'context bundles', 'token optimization'],
   icons: {
-    icon: '/icon.svg',
-    shortcut: '/icon.svg',
-    apple: '/icon.svg',
+    icon: '/mascot/logicstamp-fox.svg',
+    shortcut: '/mascot/logicstamp-fox.svg',
+    apple: '/mascot/logicstamp-fox.svg',
   },
 }
 
@@ -34,8 +34,8 @@ export default function RootLayout({
       suppressHydrationWarning
     >
       <head>
-        <link rel="icon" href="/icon.svg" type="image/svg+xml" />
-        <link rel="shortcut icon" href="/icon.svg" type="image/svg+xml" />
+        <link rel="icon" href="/mascot/logicstamp-fox.svg" type="image/svg+xml" />
+        <link rel="shortcut icon" href="/mascot/logicstamp-fox.svg" type="image/svg+xml" />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />

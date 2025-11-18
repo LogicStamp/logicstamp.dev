@@ -42,6 +42,9 @@ export default function QuickStartPage() {
           <AnimatedSection direction="up" delay={200}>
           <h2 className="text-2xl font-semibold text-gray-900 dark:text-white mt-12 mb-4">Step 1: Install LogicStamp Context</h2>
           <p className="text-gray-700 dark:text-gray-300 mb-4 text-base leading-relaxed">Install the CLI globally to use <code className="bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 px-1.5 py-0.5 rounded text-sm">stamp</code> command anywhere:</p>
+          <p className="text-sm text-gray-600 dark:text-gray-400 italic mb-4">
+            <strong>Note:</strong> Installing globally means the <code className="bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 px-1 py-0.5 rounded text-xs">stamp</code> command is available from any directory on your system, not just within a specific project folder.
+          </p>
           <TabbedCodeBlock
             tabs={[
               {
@@ -82,7 +85,7 @@ export default function QuickStartPage() {
             ]}
           />
 
-          <p className="mt-6 mb-6 text-gray-700 dark:text-gray-300 text-base leading-relaxed">This creates a <code className="bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 px-1.5 py-0.5 rounded text-sm">context.json</code> file in your project root containing structured bundles (one per entry point) with component contracts, dependency graphs, and code headers. The context is automatically validated after generation before being written to ensure schema compliance.</p>
+          <p className="mt-6 mb-6 text-gray-700 dark:text-gray-300 text-base leading-relaxed">This creates a <code className="bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 px-1.5 py-0.5 rounded text-sm">context.json</code> file in your project root containing structured bundles (one per root component/entry point) with component contracts, dependency graphs, and code headers. Each bundle contains a root component plus its complete dependency graph—all related components together in one self-contained unit. The context is automatically validated after generation before being written to ensure schema compliance.</p>
           </AnimatedSection>
 
           <AnimatedSection direction="up" delay={300}>

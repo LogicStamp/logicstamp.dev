@@ -49,6 +49,9 @@ export default function LogicStampReadmePage() {
                 After installation, the <code>stamp</code> command is available globally and can be run from any
                 React/TypeScript project.
               </p>
+              <p className="text-sm text-gray-600 dark:text-gray-400 italic mt-2">
+                <strong>Note:</strong> &quot;Global CLI&quot; means installing globally via <code>npm install -g</code> makes the <code>stamp</code> command available from any directory, not just within a specific project folder.
+              </p>
             </AnimatedSection>
 
             <AnimatedSection direction="up" delay={300}>

@@ -43,6 +43,12 @@ const faqs = [
     answer:
       'LogicStamp Context offers three modes: `none` (contracts only, ~80% savings), `header` (recommended, ~66% savings with JSDoc headers), and `full` (complete source). The header mode includes just enough context for AI to understand component logic without wasting tokens on implementation details. Use `--compare-modes` to see exact savings for your codebase.',
   },
+  {
+    id: 7,
+    question: 'Why bundles instead of individual component files?',
+    answer:
+      'LogicStamp Context generates per-root bundles (one bundle per page/feature component) rather than individual files per component. Each bundle contains the root component plus its complete dependency graph—all related components together. This design matches how developers work: when you need help with a specific page or feature, share that bundle and the AI has complete context in one self-contained unit.',
+  },
 ]
 
 export default function FAQ() {

@@ -716,7 +716,10 @@ stamp context validate context.json`
           <AnimatedSection direction="up" delay={1100}>
             <h2 className="text-2xl font-semibold text-gray-900 dark:text-white mt-12 mb-4">Output Format</h2>
             <p className="text-gray-700 dark:text-gray-300 mb-4 text-base leading-relaxed">
-              The generated <code className="bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 px-1.5 py-0.5 rounded text-sm">context.json</code> contains an array of bundles (one bundle per entry point).
+              The generated <code className="bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 px-1.5 py-0.5 rounded text-sm">context.json</code> contains an array of bundles (one bundle per entry point). Each bundle represents a root component plus its complete dependency graph, with all related components and their contracts included within that bundle. This per-root bundle design is optimized for how developers and LLMs work—when you need help with a specific page or feature, the root bundle contains everything related to that feature in one self-contained unit.
+            </p>
+            <p className="text-gray-700 dark:text-gray-300 mb-4 text-base leading-relaxed">
+              <strong>Design note:</strong> LogicStamp Context intentionally uses per-root bundles rather than per-component files because developers think in features/pages (roots), not individual atoms. Having the full dependency graph inside each root bundle means AI assistants see all related components together, improving understanding and suggestions. The structure naturally supports a future <code className="bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 px-1.5 py-0.5 rounded text-sm">--split</code> mode that would write each root bundle to its own file without breaking changes.
             </p>
             <p className="text-gray-600 dark:text-gray-400 mb-4 text-sm leading-relaxed">
               <strong>📋 Full Schema Reference:</strong> See the schema file for the complete JSON Schema definition.

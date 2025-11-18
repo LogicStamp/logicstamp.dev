@@ -5,7 +5,7 @@ import { join } from 'path'
 export async function GET() {
   try {
     // Read the SVG icon from public directory
-    const iconPath = join(process.cwd(), 'public', 'icon.svg')
+    const iconPath = join(process.cwd(), 'public', 'mascot', 'logicstamp-fox.svg')
     const iconContent = await readFile(iconPath, 'utf-8')
     
     // Serve it as favicon.ico with appropriate headers

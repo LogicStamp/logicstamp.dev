@@ -30,7 +30,7 @@ export default function LlmContextPage() {
               <ul>
                 <li>Generates AI-friendly context bundles from React/TypeScript projects without build steps.</li>
                 <li>
-                  Ships as a global CLI (<code>stamp</code>) with a <code>context</code> subcommand that scans{' '}
+                  Ships as a global CLI (install with <code>npm install -g logicstamp-context</code>, then use <code>stamp context</code> command) that scans{' '}
                   <code>.ts</code>/<code>.tsx</code>, extracts component contracts, and emits structured JSON.
                 </li>
                 <li>
@@ -38,11 +38,17 @@ export default function LlmContextPage() {
                 </li>
                 <li>Requires Node.js ≥ 18 with access to your project&apos;s source tree.</li>
               </ul>
+              <p className="text-sm text-gray-600 dark:text-gray-400 italic mt-2">
+                <strong>Note:</strong> &quot;Global CLI&quot; means the tool is installed globally on your system (via <code>npm install -g</code>), making the <code>stamp</code> command available from any directory in your terminal, not just within a specific project folder.
+              </p>
             </AnimatedSection>
 
             <AnimatedSection direction="up" delay={200}>
               <h2>What <code>context.json</code> Contains</h2>
               <p>Output is an array of LogicStamp bundles. Each bundle represents one entry point plus its graph.</p>
+              <p className="text-gray-700 dark:text-gray-300">
+                <strong>Design note:</strong> LogicStamp Context uses per-root bundles (one bundle per entry point) rather than per-component files. This means each bundle contains the root component plus its complete dependency graph—all related components and their relationships in one self-contained unit. This design is optimized for AI consumption: when you need help with a specific page or feature, share that root bundle and the AI has complete context.
+              </p>
               <ul>
                 <li>
                   Top-level fields include <code>position</code>, <code>type</code>, <code>schemaVersion</code>,{' '}
