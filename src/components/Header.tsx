@@ -74,9 +74,8 @@ export default function Header() {
 
   const navigation = [
     { name: 'How it Works', href: isHomePage ? '#how-it-works' : '/#how-it-works' },
-    { name: 'Integrations', href: isHomePage ? '#integrations' : '/#integrations' },
-    { name: 'FAQ', href: isHomePage ? '#faq' : '/#faq' },
     { name: 'Docs', href: '/docs/' },
+    { name: 'FAQ', href: isHomePage ? '#faq' : '/#faq' },
     { name: 'GitHub', href: 'https://github.com/logicstamp/logicstamp-context', external: true },
   ]
 
@@ -154,28 +153,62 @@ export default function Header() {
     {/* Mobile menu dropdown */}
     <div className={`lg:hidden fixed top-[3.5rem] left-4 right-4 z-50 mx-auto max-w-[1320px] pt-1 transition-all duration-300 ease-in-out mobile-menu-dropdown ${mobileMenuOpen ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-2 pointer-events-none'}`}>
       <div className="bg-gray-50/90 dark:bg-gray-900/95 rounded-xl shadow-lg border border-gray-200/20 dark:border-white/10 backdrop-blur-md">
-        <div className="px-6 py-4">
-          <div className="space-y-0">
+        <div className="px-8 py-6">
+          <div className="space-y-2">
             {navigation.map((item, index) => (
               <Fragment key={item.name}>
                 <a
                   href={item.href}
                   target={item.external ? '_blank' : undefined}
                   rel={item.external ? 'noopener noreferrer' : undefined}
-                  className="block rounded-lg px-3 py-2 text-sm font-medium leading-6 text-gray-900 dark:text-white hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors duration-200"
+                  className="block rounded-lg px-5 py-4 text-base font-medium leading-7 text-gray-900 dark:text-white hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors duration-200"
                   onClick={() => setMobileMenuOpen(false)}
                 >
                   {item.name}
                 </a>
                 {index < navigation.length - 1 && (
-                  <div className="h-px bg-gray-200 dark:bg-gray-700 mx-3" />
+                  <div className="h-px bg-gray-200 dark:bg-gray-700 mx-5" />
                 )}
               </Fragment>
             ))}
           </div>
 
+          {/* Social links */}
+          <div className="mt-6 pt-6 border-t border-gray-200 dark:border-gray-700">
+            <div className="flex items-center justify-center gap-6">
+              <a
+                href="https://github.com/LogicStamp/logicstamp-context"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors duration-200"
+                onClick={() => setMobileMenuOpen(false)}
+              >
+                <span className="sr-only">GitHub</span>
+                <svg className="h-6 w-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                  <path
+                    fillRule="evenodd"
+                    d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"
+                    clipRule="evenodd"
+                  />
+                </svg>
+              </a>
+              <a
+                href="https://www.npmjs.com/package/logicstamp-context"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors duration-200"
+                onClick={() => setMobileMenuOpen(false)}
+              >
+                <span className="sr-only">npm</span>
+                <svg className="h-6 w-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                  <path d="M0 7.334v8h6.666v1.332H12v-1.332h12v-8H0zm6.666 6.664H5.334v-4H3.999v4H1.335V8.667h5.331v5.331zm4 0v1.336H8.001V8.667h5.334v5.332h-2.669v-.001zm12.001 0h-1.33v-4h-1.336v4h-1.335v-4h-1.33v4h-2.671V8.667h8.002v5.331zM10.665 10H12v2.667h-1.335V10z" />
+                </svg>
+              </a>
+            </div>
+          </div>
+
           {/* Theme toggle + Get Started button */}
-          <div className="mt-4 pt-4 border-t border-gray-200 dark:border-gray-700 space-y-4">
+          <div className="mt-6 pt-6 border-t border-gray-200 dark:border-gray-700 space-y-6">
             <div className="flex justify-center">
               <ThemeToggle compact />
             </div>
