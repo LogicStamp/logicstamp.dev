@@ -25,13 +25,13 @@ export default function Footer() {
       {/* Faint gradient accent line */}
       <div className="h-px w-full bg-gradient-to-r from-transparent via-primary-200/60 dark:via-secondary-700/60 to-transparent" />
 
-      <div className="mx-auto max-w-[1320px] px-4 sm:px-6 lg:px-8 py-16">
+      <div className="mx-auto max-w-[1320px] px-4 sm:px-6 lg:px-8 py-12 md:py-16">
         <AnimatedSection direction="up" delay={0}>
           <div className="flex flex-col gap-8 md:gap-6">
             {/* Top row: logo + nav + controls */}
-            <div className="flex flex-col gap-6 md:flex-row md:items-start md:justify-between">
+            <div className="flex flex-col gap-8 md:gap-6 md:flex-row md:items-start md:justify-between">
               {/* Logo + Tagline + Newsletter */}
-              <div className="min-w-0 pr-4 md:pr-8">
+              <div className="min-w-0 pr-4 md:pr-8 pb-6 md:pb-0 border-b md:border-b-0 border-gray-200/60 dark:border-gray-800/70">
                 <a href="/" className="flex items-center gap-0 group">
                   <div className="logicstamp-logo-container">
                     <LogicStampLogo className="logicstamp-logo" size={32} />
@@ -44,7 +44,7 @@ export default function Footer() {
                 </p>
                 
                 {/* Newsletter Subscription */}
-                <div className="mt-6">
+                <div className="mt-6 pt-6 border-t border-gray-200/60 dark:border-gray-800/70">
                   <h3 className="text-lg font-bold text-gray-900 dark:text-white mb-2">
                     Let's keep in touch
                   </h3>
@@ -69,7 +69,7 @@ export default function Footer() {
               </div>
 
               {/* Product / Contact / Legal columns */}
-              <div className="flex flex-wrap gap-y-4 gap-x-12 lg:gap-x-20 text-sm md:justify-center">
+              <div className="flex flex-wrap gap-y-6 gap-x-12 lg:gap-x-20 text-sm md:justify-center pb-6 md:pb-0 border-b md:border-b-0 border-gray-200/60 dark:border-gray-800/70">
                 <div>
                   <h3 className="text-sm font-semibold uppercase tracking-wide text-gray-500 dark:text-gray-400">
                     Product
@@ -132,7 +132,7 @@ export default function Footer() {
               </div>
 
               {/* Theme toggle + icons */}
-              <div className="flex flex-col items-start gap-4 md:items-end">
+              <div className="flex flex-col items-start gap-4 md:items-end pb-6 md:pb-0 border-b md:border-b-0 border-gray-200/60 dark:border-gray-800/70">
                 <ThemeToggle compact />
                 <div className="flex items-center gap-4">
                   <a
