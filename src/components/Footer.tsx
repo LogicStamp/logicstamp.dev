@@ -30,7 +30,7 @@ export default function Footer() {
           <div className="flex flex-col gap-8 md:gap-6">
             {/* Top row: logo + nav + controls */}
             <div className="flex flex-col gap-6 md:flex-row md:items-start md:justify-between">
-              {/* Logo + Tagline */}
+              {/* Logo + Tagline + Newsletter */}
               <div className="min-w-0 pr-4 md:pr-8">
                 <a href="/" className="flex items-center gap-0 group">
                   <div className="logicstamp-logo-container">
@@ -42,6 +42,30 @@ export default function Footer() {
                 <p className="mt-2 max-w-xs text-sm leading-relaxed text-gray-500 dark:text-gray-400">
                   AI-ready context from your codebase. <br /> Open-source, zero-config.
                 </p>
+                
+                {/* Newsletter Subscription */}
+                <div className="mt-6">
+                  <h3 className="text-lg font-bold text-gray-900 dark:text-white mb-2">
+                    Let's keep in touch
+                  </h3>
+                  <p className="text-sm text-gray-600 dark:text-gray-400 mb-4">
+                    Enter your email to stay up to date with the latest updates from LogicStamp.
+                  </p>
+                  <form className="flex flex-col gap-3 max-w-md">
+                    <input
+                      type="email"
+                      placeholder="your@email.com"
+                      className="w-full px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-900 text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400 focus:outline-none focus:ring-1 focus:ring-gray-400 dark:focus:ring-gray-600 focus:border-gray-400 dark:focus:border-gray-600 transition-colors"
+                      required
+                    />
+                    <button
+                      type="submit"
+                      className="w-full px-6 py-2 rounded-lg bg-gray-900 dark:bg-white text-white dark:text-gray-900 font-medium hover:bg-gray-800 dark:hover:bg-gray-100 transition-colors"
+                    >
+                      Subscribe to our newsletter
+                    </button>
+                  </form>
+                </div>
               </div>
 
               {/* Product / Contact / Legal columns */}
