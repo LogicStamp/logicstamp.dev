@@ -25,12 +25,11 @@ export default function LogicStampWordmark({
         x="-2"
         y="28"
         fill="#111213"
-        stroke="#111213"
-        strokeWidth="0.5"
         fontFamily="'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif"
         fontSize="36"
-        fontWeight="700"
-        letterSpacing="0.06em"
+        fontWeight="600"
+        letterSpacing="0.1em"
+        textRendering="optimizeLegibility"
       >
         LogicStamp
       </text>
@@ -41,12 +40,11 @@ export default function LogicStampWordmark({
         x="-2"
         y="28"
         fill="#F4F4F5"
-        stroke="#F4F4F5"
-        strokeWidth="0.5"
         fontFamily="'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif"
         fontSize="36"
-        fontWeight="700"
-        letterSpacing="0.06em"
+        fontWeight="600"
+        letterSpacing="0.1em"
+        textRendering="optimizeLegibility"
       >
         LogicStamp
       </text>
