@@ -1,6 +1,4 @@
 import AnimatedSection from './AnimatedSection'
-import GetStartedButton from './GetStartedButton'
-import StarGitHubButton from './StarGitHubButton'
 
 // Framework logos as SVG components
 const ReactIcon = () => (
@@ -17,28 +15,33 @@ const NextIcon = () => (
   </svg>
 )
 
+const TypeScriptIcon = () => (
+  <svg viewBox="0 0 24 24" className="w-8 h-8">
+    <rect width="24" height="24" rx="4" fill="#3178C6" />
+    <path d="M1.125 0C.502 0 0 .502 0 1.125v21.75C0 23.498.502 24 1.125 24h21.75c.623 0 1.125-.502 1.125-1.125V1.125C24 .502 23.498 0 22.875 0zm17.363 9.75c.612 0 1.154.037 1.627.111a6.38 6.38 0 0 1 1.306.34v2.458a3.95 3.95 0 0 0-.643-.361 5.093 5.093 0 0 0-.717-.26 5.453 5.453 0 0 0-1.426-.2c-.3 0-.573.028-.819.086a2.1 2.1 0 0 0-.623.242c-.17.104-.3.229-.393.374a.888.888 0 0 0-.14.49c0 .196.053.373.156.529.104.156.252.304.443.444s.423.276.696.41c.273.135.582.274.926.416.47.197.892.407 1.266.628.374.222.695.473.963.753.268.279.472.598.614.957.142.359.214.776.214 1.253 0 .657-.125 1.21-.373 1.656a3.033 3.033 0 0 1-1.012 1.085 4.38 4.38 0 0 1-1.487.596c-.566.12-1.163.18-1.79.18a9.916 9.916 0 0 1-1.84-.164 5.544 5.544 0 0 1-1.512-.493v-2.63a5.033 5.033 0 0 0 3.237 1.2c.333 0 .624-.03.872-.09.249-.06.456-.144.623-.25.166-.108.29-.234.373-.38a1.023 1.023 0 0 0-.074-1.089 2.12 2.12 0 0 0-.537-.5 5.597 5.597 0 0 0-.807-.444 7.29 7.29 0 0 0-1.007-.436c-.918-.383-1.602-.852-2.053-1.405-.45-.553-.676-1.222-.676-2.005 0-.614.123-1.141.369-1.582.246-.441.58-.804 1.004-1.089a4.494 4.494 0 0 1 1.47-.629 5.684 5.684 0 0 1 1.77-.272zm-15.113.188h9.563v2.166H9.506v9.646H6.789v-9.646H3.375z" fill="#fff" />
+  </svg>
+)
+
 const VueIcon = () => (
   <svg viewBox="0 0 24 24" className="w-8 h-8">
     <path d="M24,1.61H14.06L12,5.16,9.94,1.61H0L12,22.39ZM12,14.08,5.16,2.23H9.59L12,6.41l2.41-4.18h4.43Z" fill="#4FC08D" />
   </svg>
 )
 
-const TailwindIcon = () => (
+const SvelteIcon = () => (
   <svg viewBox="0 0 24 24" className="w-8 h-8">
-    <path d="M12.001,4.8c-3.2,0-5.2,1.6-6,4.8c1.2-1.6,2.6-2.2,4.2-1.8c0.913,0.228,1.565,0.89,2.288,1.624 C13.666,10.618,15.027,12,18.001,12c3.2,0,5.2-1.6,6-4.8c-1.2,1.6-2.6,2.2-4.2,1.8c-0.913-0.228-1.565-0.89-2.288-1.624 C16.337,6.182,14.976,4.8,12.001,4.8z M6.001,12c-3.2,0-5.2,1.6-6,4.8c1.2-1.6,2.6-2.2,4.2-1.8c0.913,0.228,1.565,0.89,2.288,1.624 c1.177,1.194,2.538,2.576,5.512,2.576c3.2,0,5.2-1.6,6-4.8c-1.2,1.6-2.6,2.2-4.2,1.8c-0.913-0.228-1.565-0.89-2.288-1.624 C10.337,13.382,8.976,12,6.001,12z" fill="#06B6D4" />
+    <path d="M17.46 0c-.288 0-.577.07-.832.207L8.51 4.416 3.372 1.983C3.136 1.857 2.883 1.79 2.624 1.79c-.288 0-.577.07-.832.207-.54.29-.878.85-.878 1.466v14.07c0 .617.338 1.177.878 1.466.255.137.544.207.832.207.259 0 .512-.067.748-.193l5.138-2.433 8.118 4.21c.255.137.544.207.832.207.288 0 .577-.07.832-.207.54-.29.878-.85.878-1.466V1.657c0-.617-.338-1.177-.878-1.466C18.037.054 17.748-.015 17.46 0zm-.05 2.143l-7.287 3.58-4.523 2.14v10.273l4.523 2.342 7.287-3.453V2.143z" fill="#FF3E00" />
   </svg>
 )
 
-const MaterialUIIcon = () => (
+const CLIIcon = () => (
   <svg viewBox="0 0 24 24" className="w-8 h-8">
-    <path d="M0 2.475v10.39l3 1.733V7.67l6 3.465 6-3.465v3.465l-6 3.463v3.464l6 3.463 9-5.195V9.402l-3 1.733v3.463l-6 3.464-3-1.732 6-3.465V2.475L9 7.67 0 2.475zm24 0l-3 1.73v3.465l3-1.732V2.475z" fill="#0081CB" />
-  </svg>
-)
-
-const StyledComponentsIcon = () => (
-  <svg viewBox="0 0 24 24" className="w-8 h-8">
-    <path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm0 22C6.477 22 2 17.523 2 12S6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z" fill="#DB7093" />
-    <path d="M12 4c-4.411 0-8 3.589-8 8s3.589 8 8 8 8-3.589 8-8-3.589-8-8-8zm0 14c-3.309 0-6-2.691-6-6s2.691-6 6-6 6 2.691 6 6-2.691 6-6 6z" fill="#DB7093" />
+    <rect width="24" height="24" rx="2" fill="#000" className="dark:fill-gray-800" />
+    <rect x="4" y="5" width="16" height="14" rx="1" fill="none" stroke="currentColor" strokeWidth="1.5" className="text-gray-200 dark:text-gray-700" />
+    <path d="M7 9l2 2-2 2m3-2h5" stroke="#00FF00" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" fill="none" />
+    <circle cx="8" cy="16" r="1" fill="#00FF00" />
+    <circle cx="11" cy="16" r="1" fill="#FFAA00" />
+    <circle cx="14" cy="16" r="1" fill="#FF0000" />
   </svg>
 )
 
@@ -64,7 +67,7 @@ const integrations = [
   {
     name: 'TypeScript',
     description: 'Deep TypeScript analysis for types, interfaces, and generics',
-    icon: VueIcon,
+    icon: TypeScriptIcon,
     color: 'from-blue-500 to-blue-700',
     bgColor: 'bg-blue-50 dark:bg-blue-900/20',
     borderColor: 'border-blue-200 dark:border-blue-800',
@@ -83,7 +86,7 @@ const integrations = [
   {
     name: 'Svelte',
     description: 'Svelte component analysis with reactive statements',
-    icon: MaterialUIIcon,
+    icon: SvelteIcon,
     color: 'from-orange-400 to-red-500',
     bgColor: 'bg-orange-50 dark:bg-orange-900/20',
     borderColor: 'border-orange-200 dark:border-orange-800',
@@ -93,7 +96,7 @@ const integrations = [
   {
     name: 'Full CLI',
     description: 'Complete LogicStamp CLI with verification and watch mode',
-    icon: StyledComponentsIcon,
+    icon: CLIIcon,
     color: 'from-purple-400 to-indigo-500',
     bgColor: 'bg-purple-50 dark:bg-purple-900/20',
     borderColor: 'border-purple-200 dark:border-purple-800',
@@ -165,21 +168,11 @@ const tools = [
 
 export default function Integrations() {
   return (
-    <section id="integrations" className="py-24 sm:py-32 bg-gradient-bg-accent">
+    <section id="integrations" className="py-20 sm:py-28 bg-gradient-bg-accent">
       <div className="mx-auto max-w-[1320px] px-6 lg:px-8">
         <AnimatedSection direction="up" delay={0}>
           <div className="mx-auto max-w-3xl text-center">
-            {/* Open Source Badge */}
-            <div className="mb-6 flex items-center justify-center">
-              <span className="inline-flex items-center gap-1.5 rounded-full bg-gradient-blue-purple/10 px-4 py-1.5 text-sm font-semibold text-secondary-700 dark:text-secondary-300 ring-1 ring-inset ring-secondary-500/20">
-                <svg className="h-4 w-4" fill="currentColor" viewBox="0 0 20 20">
-                  <path d="M12.316 3.051a1 1 0 01.633 1.265l-4 12a1 1 0 11-1.898-.632l4-12a1 1 0 011.265-.633zM5.707 6.293a1 1 0 010 1.414L3.414 10l2.293 2.293a1 1 0 11-1.414 1.414l-3-3a1 1 0 010-1.414l3-3a1 1 0 011.414 0zm8.586 0a1 1 0 011.414 0l3 3a1 1 0 010 1.414l-3 3a1 1 0 11-1.414-1.414L16.586 10l-2.293-2.293a1 1 0 010-1.414z" />
-                </svg>
-                100% Open Source
-              </span>
-            </div>
-
-            <h2 className="text-4xl font-bold tracking-tight text-gray-900 dark:text-white sm:text-5xl lg:text-7xl">
+            <h2 className="text-3xl font-bold tracking-tight text-gray-900 dark:text-white sm:text-4xl lg:text-5xl">
               Works with your{' '}
               <span className="bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 bg-clip-text text-transparent">
                 favorite tools
@@ -192,7 +185,7 @@ export default function Integrations() {
         </AnimatedSection>
 
         {/* Frameworks */}
-        <div className="mx-auto mt-20 max-w-[1320px]">
+        <div className="mx-auto mt-12 max-w-[1320px]">
           <AnimatedSection direction="up" delay={200}>
             <div className="text-center mb-16">
               <h3 className="text-3xl font-bold text-gray-900 dark:text-white lg:text-4xl mb-4">
@@ -219,9 +212,9 @@ export default function Integrations() {
                       <div className="absolute top-0 right-0 z-20 overflow-visible">
                         {/* Diagonal rubber band badge */}
                         <div 
-                          className="absolute z-30 px-3 py-1.5 sm:px-4 sm:py-2 bg-gradient-to-r from-red-600 via-red-700 to-red-800 text-white font-bold text-xs sm:text-sm shadow-xl border-2 border-white/40 rounded"
+                          className="absolute z-30 px-2 py-1 sm:px-2.5 sm:py-1.5 bg-gradient-to-r from-red-600 via-red-700 to-red-800 text-white font-bold text-[10px] sm:text-xs shadow-xl border-[1.5px] border-white/40 rounded"
                           style={{
-                            top: '20px',
+                            top: '16px',
                             right: '-4px',
                             transform: 'rotate(12deg)',
                             transformOrigin: 'top right'
@@ -240,10 +233,10 @@ export default function Integrations() {
                         <div 
                           className="absolute bg-black/20 blur-md -z-10 rounded"
                           style={{
-                            top: '22px',
+                            top: '18px',
                             right: '-2px',
-                            width: '100px',
-                            height: '28px',
+                            width: '80px',
+                            height: '22px',
                             transform: 'rotate(12deg)',
                             transformOrigin: 'top right'
                           }}
@@ -325,18 +318,6 @@ export default function Integrations() {
           </div>
         </div>
 
-        {/* CTA Section */}
-        <AnimatedSection direction="up" delay={800}>
-          <div className="mt-20 text-center">
-            <p className="text-lg lg:text-xl text-gray-600 dark:text-gray-300 mb-8 font-medium">
-              See how LogicStamp works with your stack?
-            </p>
-            <div className="flex flex-row items-center justify-center gap-2 sm:gap-4">
-              <GetStartedButton href="docs/getting-started">Get Started Now</GetStartedButton>
-              <StarGitHubButton variant="secondary" showArrow={false} />
-            </div>
-          </div>
-        </AnimatedSection>
       </div>
     </section>
   )

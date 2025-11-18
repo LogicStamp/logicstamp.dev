@@ -111,13 +111,13 @@ export default function DocsLayout({ children }: { children: React.ReactNode }) 
   }, [sidebarOpen])
 
   return (
-    <div className="min-h-screen bg-gray-50 dark:bg-gray-900 pt-20">
+    <div className="min-h-screen bg-gray-50 dark:bg-gray-900 pt-[5.5rem] lg:pt-24">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-6 py-8 lg:py-10">
         {/* Mobile sidebar toggle button */}
         <button
           ref={toggleButtonRef}
           onClick={() => setSidebarOpen(!sidebarOpen)}
-          className={`lg:hidden fixed top-[3.5rem] z-40 p-1.5 rounded-md bg-white/70 dark:bg-gray-800/70 backdrop-blur-sm shadow-lg border border-gray-200/50 dark:border-gray-700/50 hover:bg-white/90 dark:hover:bg-gray-800/90 transition-all duration-300 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-500 ${
+          className={`lg:hidden fixed z-40 p-1.5 rounded-md bg-white/70 dark:bg-gray-800/70 backdrop-blur-sm shadow-lg border border-gray-200/50 dark:border-gray-700/50 hover:bg-white/90 dark:hover:bg-gray-800/90 transition-all duration-300 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-500 top-[4.75rem] ${
             sidebarOpen ? 'left-[260px]' : 'left-4'
           } ${
             sidebarOpen || isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-2 pointer-events-none'
@@ -148,8 +148,9 @@ export default function DocsLayout({ children }: { children: React.ReactNode }) 
             aria-modal="true"
             aria-labelledby="mobile-sidebar-title"
             className={`
-              lg:hidden fixed top-[3.5rem] bottom-0 left-0 z-30 w-64 bg-gray-50 dark:bg-gray-900 border-r border-gray-200 dark:border-gray-700 pt-4 pb-8 px-4 overflow-y-auto
-              transition-transform duration-300 ease-in-out
+              lg:hidden fixed bottom-0 left-0 z-30 w-64 bg-gray-50 dark:bg-gray-900 border-r border-gray-200 dark:border-gray-700 pt-4 pb-8 px-4 overflow-y-auto
+              transition-all duration-300 ease-in-out
+              top-[4.75rem]
               ${sidebarOpen ? 'translate-x-0' : '-translate-x-full'}
             `}
           >

@@ -67,8 +67,8 @@ export default function LogicStampLogo({
         <defs>
           {/* Subtle glow halo around cube */}
           <radialGradient id="ls_halo" cx="50%" cy="50%" r="50%">
-            <stop offset="0%" stopColor="#9A56FF" stopOpacity="0.35" />
-            <stop offset="60%" stopColor="#9A56FF" stopOpacity="0.12" />
+            <stop offset="0%" stopColor="#9A56FF" stopOpacity="0.22" />
+            <stop offset="60%" stopColor="#9A56FF" stopOpacity="0.08" />
             <stop offset="100%" stopColor="#9A56FF" stopOpacity="0" />
           </radialGradient>
 
@@ -93,7 +93,7 @@ export default function LogicStampLogo({
 
           {/* Glow filter for center node */}
           <filter id="ls_glow">
-            <feGaussianBlur stdDeviation="1.5" result="coloredBlur"/>
+            <feGaussianBlur stdDeviation="1" result="coloredBlur"/>
             <feMerge>
               <feMergeNode in="coloredBlur"/>
               <feMergeNode in="SourceGraphic"/>
@@ -105,7 +105,7 @@ export default function LogicStampLogo({
         <circle 
           cx="32" 
           cy="32" 
-          r="30" 
+          r="28" 
           fill="url(#ls_halo)" 
           className="cube-halo"
         />

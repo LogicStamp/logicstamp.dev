@@ -2,8 +2,6 @@
 
 import { useState } from 'react'
 import AnimatedSection from './AnimatedSection'
-import GetStartedButton from './GetStartedButton'
-import StarGitHubButton from './StarGitHubButton'
 
 export default function WhyLogicStamp() {
   const [activeTab, setActiveTab] = useState<'before' | 'after'>('before')
@@ -71,16 +69,6 @@ export default function WhyLogicStamp() {
       <div className="mx-auto max-w-[1320px] px-6 lg:px-8 relative z-10">
         <AnimatedSection direction="up" delay={0}>
           <div className="mx-auto max-w-3xl text-center mb-16">
-            {/* Open Source Badge */}
-            <div className="mb-6 flex items-center justify-center">
-              <span className="inline-flex items-center gap-1.5 rounded-full bg-gradient-blue-purple/10 px-4 py-1.5 text-sm font-semibold text-secondary-700 dark:text-secondary-300 ring-1 ring-inset ring-secondary-500/20">
-                <svg className="h-4 w-4" fill="currentColor" viewBox="0 0 20 20">
-                  <path d="M12.316 3.051a1 1 0 01.633 1.265l-4 12a1 1 0 11-1.898-.632l4-12a1 1 0 011.265-.633zM5.707 6.293a1 1 0 010 1.414L3.414 10l2.293 2.293a1 1 0 11-1.414 1.414l-3-3a1 1 0 010-1.414l3-3a1 1 0 011.414 0zm8.586 0a1 1 0 011.414 0l3 3a1 1 0 010 1.414l-3 3a1 1 0 11-1.414-1.414L16.586 10l-2.293-2.293a1 1 0 010-1.414z" />
-                </svg>
-                100% Open Source
-              </span>
-            </div>
-
             <h2 className="text-4xl font-bold tracking-tight text-gray-900 dark:text-white sm:text-5xl lg:text-6xl">
               Stop Pasting Code.{' '}
               <span className="relative inline-block">
@@ -422,18 +410,6 @@ export default function WhyLogicStamp() {
           </div>
         </AnimatedSection>
 
-        {/* CTA Section */}
-        <AnimatedSection direction="up" delay={800}>
-          <div className="text-center">
-            <p className="text-lg lg:text-xl text-gray-600 dark:text-gray-300 mb-8 font-medium">
-              Join developers who&apos;ve ditched manual context and saved hours every week.
-            </p>
-            <div className="flex flex-row items-center justify-center gap-2 sm:gap-4">
-              <GetStartedButton href="/docs/getting-started">Get Started Now</GetStartedButton>
-              <StarGitHubButton variant="secondary" showArrow={false} />
-            </div>
-          </div>
-        </AnimatedSection>
       </div>
     </section>
   )

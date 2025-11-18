@@ -81,10 +81,14 @@ export default function Header() {
 
   return (
     <>
-    {/* Rounded header container */}
-    <header className="fixed top-2 left-4 right-4 z-50 mx-auto max-w-[1320px]">
-      <div className="bg-white/80 dark:bg-gray-900/80 rounded-xl border border-gray-200/20 dark:border-white/10 shadow-lg shadow-black/15 backdrop-blur-md h-12 min-h-12">
-        <nav className="flex items-center justify-between pl-2 pr-6 lg:pl-4 lg:pr-8 h-full min-h-full" aria-label="Global">
+    {/* Premium header container */}
+    <header className="fixed top-0 left-0 right-0 z-50 transition-all duration-300">
+      <div className="mx-auto max-w-[1400px] px-4 lg:px-6 py-4 transition-all duration-300">
+        <div className="relative overflow-hidden rounded-2xl bg-white/60 dark:bg-gray-900/60 border border-gray-200/50 dark:border-white/5 backdrop-blur-xl backdrop-saturate-150 shadow-[0_8px_32px_rgba(0,0,0,0.04)] dark:shadow-[0_8px_32px_rgba(0,0,0,0.3)] transition-all duration-300">
+          {/* Subtle gradient overlay */}
+          <div className="absolute inset-0 bg-gradient-to-br from-white/40 via-transparent to-transparent dark:from-white/5 dark:via-transparent dark:to-transparent pointer-events-none" />
+
+          <nav className="relative flex items-center justify-between px-4 lg:px-6 h-14 lg:h-16" aria-label="Global">
           <div className="flex lg:flex-1">
             <a
               href={isHomePage ? "#" : "/"}
@@ -94,13 +98,13 @@ export default function Header() {
                   smoothScrollToTop();
                 }
               }}
-              className="flex items-center gap-0 pr-4 cursor-pointer group"
+              className="flex items-center gap-0.5 lg:gap-1 cursor-pointer group focus:outline-none focus:ring-0 active:bg-transparent logo-link"
             >
               <div className="logicstamp-logo-container">
-                <LogicStampLogo className="logicstamp-logo" size={32} />
+                <LogicStampLogo className="logicstamp-logo" size={52} />
               </div>
-              <LogicStampWordmark height={21} className="hidden sm:block" />
-              <LogicStampWordmark height={17} className="block sm:hidden" />
+              <LogicStampWordmark height={22} className="hidden sm:block" />
+              <LogicStampWordmark height={18} className="block sm:hidden" />
             </a>
           </div>
           
@@ -108,7 +112,7 @@ export default function Header() {
           <div className="flex lg:hidden items-center gap-3">
             <button
               type="button"
-              className="inline-flex items-center justify-center rounded-md p-2 text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
+              className="inline-flex items-center justify-center rounded-lg p-2.5 text-gray-700 dark:text-gray-300 hover:bg-gray-100/60 dark:hover:bg-gray-800/60 transition-all duration-200 active:scale-95"
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
             >
               <span className="sr-only">{mobileMenuOpen ? 'Close main menu' : 'Open main menu'}</span>
@@ -121,70 +125,79 @@ export default function Header() {
           </div>
           
           {/* Desktop navigation */}
-          <div className="hidden lg:flex lg:items-center lg:gap-x-8">
-            {navigation.map((item, index) => (
-              <Fragment key={item.name}>
-                <a
-                  href={item.href}
-                  target={item.external ? '_blank' : undefined}
-                  rel={item.external ? 'noopener noreferrer' : undefined}
-                  className="text-sm font-medium leading-[1.4] text-gray-900 dark:text-white hover:text-gray-600 dark:hover:text-gray-300 transition-colors duration-200"
-                >
-                  {item.name}
-                </a>
-                {index < navigation.length - 1 && (
-                  <div className="h-4 w-px bg-gray-300 dark:bg-gray-600" />
+          <div className="hidden lg:flex lg:items-center lg:gap-x-1">
+            {navigation.map((item) => (
+              <a
+                key={item.name}
+                href={item.href}
+                target={item.external ? '_blank' : undefined}
+                rel={item.external ? 'noopener noreferrer' : undefined}
+                className="relative px-3 py-2 text-sm font-medium text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition-all duration-200 rounded-lg hover:bg-gray-100/50 dark:hover:bg-gray-800/50 group"
+              >
+                <span className="relative z-10">{item.name}</span>
+                {item.external && (
+                  <svg className="inline-block ml-1 w-3 h-3 opacity-50 group-hover:opacity-100 transition-opacity" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                  </svg>
                 )}
-              </Fragment>
+              </a>
             ))}
           </div>
           
           {/* Desktop theme toggle + CTA */}
-          <div className="hidden lg:flex lg:flex-1 lg:items-center lg:justify-end lg:gap-x-4">
-            <ThemeToggle compact />
-            <div className="ml-2">
-              <GetStartedButton size="sm" />
+          <div className="hidden lg:flex lg:flex-1 lg:items-center lg:justify-end lg:gap-x-3">
+            <div className="pr-1">
+              <ThemeToggle compact />
             </div>
+            <div className="h-5 w-px bg-gray-300/50 dark:bg-gray-600/50" />
+            <GetStartedButton size="sm" />
           </div>
         </nav>
+        </div>
       </div>
     </header>
 
     {/* Mobile menu dropdown */}
-    <div className={`lg:hidden fixed top-[3.5rem] left-4 right-4 z-50 mx-auto max-w-[1320px] pt-1 transition-all duration-300 ease-in-out mobile-menu-dropdown ${mobileMenuOpen ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-2 pointer-events-none'}`}>
-      <div className="bg-gray-50/90 dark:bg-gray-900/95 rounded-xl shadow-lg border border-gray-200/20 dark:border-white/10 backdrop-blur-md">
-        <div className="px-8 py-6">
-          <div className="space-y-2">
-            {navigation.map((item, index) => (
-              <Fragment key={item.name}>
-                <a
-                  href={item.href}
-                  target={item.external ? '_blank' : undefined}
-                  rel={item.external ? 'noopener noreferrer' : undefined}
-                  className="block rounded-lg px-5 py-4 text-base font-medium leading-7 text-gray-900 dark:text-white hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors duration-200"
-                  onClick={() => setMobileMenuOpen(false)}
-                >
-                  {item.name}
-                </a>
-                {index < navigation.length - 1 && (
-                  <div className="h-px bg-gray-200 dark:bg-gray-700 mx-5" />
+    <div className={`lg:hidden fixed left-0 right-0 z-50 px-4 lg:px-6 transition-all duration-300 ease-in-out mobile-menu-dropdown top-[4.75rem] ${
+      mobileMenuOpen ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-2 pointer-events-none'
+    }`}>
+      <div className="mx-auto max-w-[1400px]">
+        <div className="relative overflow-hidden bg-white/80 dark:bg-gray-900/80 rounded-2xl shadow-[0_8px_32px_rgba(0,0,0,0.08)] dark:shadow-[0_8px_32px_rgba(0,0,0,0.4)] border border-gray-200/50 dark:border-white/5 backdrop-blur-xl backdrop-saturate-150">
+          {/* Subtle gradient overlay */}
+          <div className="absolute inset-0 bg-gradient-to-br from-white/40 via-transparent to-transparent dark:from-white/5 dark:via-transparent dark:to-transparent pointer-events-none" />
+        <div className="relative px-6 py-6">
+          <div className="space-y-1">
+            {navigation.map((item) => (
+              <a
+                key={item.name}
+                href={item.href}
+                target={item.external ? '_blank' : undefined}
+                rel={item.external ? 'noopener noreferrer' : undefined}
+                className="flex items-center justify-between rounded-xl px-4 py-3.5 text-base font-medium text-gray-900 dark:text-white hover:bg-gray-100/60 dark:hover:bg-gray-800/60 transition-all duration-200 active:scale-[0.98] group"
+                onClick={() => setMobileMenuOpen(false)}
+              >
+                <span>{item.name}</span>
+                {item.external && (
+                  <svg className="w-4 h-4 opacity-50 group-hover:opacity-100 transition-opacity" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                  </svg>
                 )}
-              </Fragment>
+              </a>
             ))}
           </div>
 
           {/* Social links */}
-          <div className="mt-6 pt-6 border-t border-gray-200 dark:border-gray-700">
-            <div className="flex items-center justify-center gap-6">
+          <div className="mt-5 pt-5 border-t border-gray-200/50 dark:border-gray-700/50">
+            <div className="flex items-center justify-center gap-4">
               <a
                 href="https://github.com/LogicStamp/logicstamp-context"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors duration-200"
+                className="p-2.5 rounded-lg text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white hover:bg-gray-100/60 dark:hover:bg-gray-800/60 transition-all duration-200 active:scale-95"
                 onClick={() => setMobileMenuOpen(false)}
               >
                 <span className="sr-only">GitHub</span>
-                <svg className="h-6 w-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                <svg className="h-5 w-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                   <path
                     fillRule="evenodd"
                     d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"
@@ -196,11 +209,11 @@ export default function Header() {
                 href="https://www.npmjs.com/package/logicstamp-context"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors duration-200"
+                className="p-2.5 rounded-lg text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white hover:bg-gray-100/60 dark:hover:bg-gray-800/60 transition-all duration-200 active:scale-95"
                 onClick={() => setMobileMenuOpen(false)}
               >
                 <span className="sr-only">npm</span>
-                <svg className="h-6 w-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                <svg className="h-5 w-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                   <path d="M0 7.334v8h6.666v1.332H12v-1.332h12v-8H0zm6.666 6.664H5.334v-4H3.999v4H1.335V8.667h5.331v5.331zm4 0v1.336H8.001V8.667h5.334v5.332h-2.669v-.001zm12.001 0h-1.33v-4h-1.336v4h-1.335v-4h-1.33v4h-2.671V8.667h8.002v5.331zM10.665 10H12v2.667h-1.335V10z" />
                 </svg>
               </a>
@@ -208,7 +221,7 @@ export default function Header() {
           </div>
 
           {/* Theme toggle + Get Started button */}
-          <div className="mt-6 pt-6 border-t border-gray-200 dark:border-gray-700 space-y-6">
+          <div className="mt-5 pt-5 border-t border-gray-200/50 dark:border-gray-700/50 space-y-4">
             <div className="flex justify-center">
               <ThemeToggle compact />
             </div>
@@ -216,6 +229,7 @@ export default function Header() {
               <GetStartedButton size="sm" className="w-full justify-center" />
             </div>
           </div>
+        </div>
         </div>
       </div>
     </div>

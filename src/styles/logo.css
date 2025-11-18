@@ -1,25 +1,72 @@
 /* LogicStamp Seal Logo Styles */
 .logicstamp-logo-container {
   position: relative;
-  width: 2.5rem;
-  height: 2.5rem;
+  width: 3.25rem;
+  height: 3.25rem;
   display: flex;
   align-items: center;
   justify-content: center;
   transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  background: transparent !important;
+  border: none !important;
+  outline: none !important;
+}
+
+/* Ensure no background or border on hover, focus, or active states */
+.logicstamp-logo-container:hover,
+.logicstamp-logo-container:focus,
+.logicstamp-logo-container:active {
+  background: transparent !important;
+  border: none !important;
+  outline: none !important;
+}
+
+/* Ensure parent link has no background or border */
+a:has(.logicstamp-logo-container),
+a:has(.logicstamp-logo-container):hover,
+a:has(.logicstamp-logo-container):focus,
+a:has(.logicstamp-logo-container):active,
+.logo-link,
+.logo-link:hover,
+.logo-link:focus,
+.logo-link:active,
+.logo-link:visited {
+  background: transparent !important;
+  border: none !important;
+  outline: none !important;
+  box-shadow: none !important;
+  -webkit-tap-highlight-color: transparent !important;
+  tap-highlight-color: transparent !important;
+  -webkit-touch-callout: none !important;
+  user-select: none !important;
+  -webkit-user-select: none !important;
+  -moz-user-select: none !important;
+  -ms-user-select: none !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  text-decoration: none !important;
+  -webkit-appearance: none !important;
+  appearance: none !important;
+}
+
+/* Remove any pseudo-element backgrounds */
+.logo-link::before,
+.logo-link::after {
+  display: none !important;
+  content: none !important;
 }
 
 .logicstamp-logo {
   width: 100%;
   height: 100%;
   transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-  filter: drop-shadow(0 2px 8px rgba(154, 86, 255, 0.4)) drop-shadow(0 0 2px rgba(154, 86, 255, 0.3));
+  filter: none !important;
 }
 
 .logicstamp-logo-container:hover .logicstamp-logo,
 .logicstamp-logo.logo-spinning {
-  transform: scale(1.15);
-  filter: drop-shadow(0 6px 16px rgba(154, 86, 255, 0.65)) drop-shadow(0 0 8px rgba(154, 86, 255, 0.5));
+  transform: none !important;
+  filter: none !important;
 }
 
 /* Spinning cube animation - similar to Cursor logo */
@@ -53,20 +100,20 @@
 
 .logicstamp-logo-container:hover .ls-cube circle,
 .logicstamp-logo.logo-spinning .ls-cube circle {
-  filter: drop-shadow(0 0 6px rgba(255, 255, 255, 0.9)) drop-shadow(0 0 3px rgba(154, 86, 255, 0.6));
+  filter: none !important;
 }
 
 /* Cube halo glow */
 .logicstamp-logo .cube-halo {
   transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   opacity: 0.6;
-  animation: halo-pulse 3s ease-in-out infinite;
+  animation: none !important;
 }
 
 .logicstamp-logo-container:hover .cube-halo,
 .logicstamp-logo.logo-spinning .cube-halo {
-  opacity: 0.85;
-  transform: scale(1.1);
+  opacity: 0.6 !important;
+  transform: none !important;
 }
 
 /* Logic matrix grid */
@@ -78,14 +125,14 @@
 .logicstamp-logo .node-connections {
   opacity: 0.35;
   transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-  animation: connection-glow 3s ease-in-out infinite;
+  animation: none !important;
 }
 
 .logicstamp-logo-container:hover .node-connections,
 .logicstamp-logo.logo-spinning .node-connections {
-  opacity: 0.6;
-  stroke: rgba(255, 255, 255, 0.45);
-  stroke-width: 0.8;
+  opacity: 0.35 !important;
+  stroke: rgba(255, 255, 255, 0.4) !important;
+  stroke-width: 0.8 !important;
 }
 
 /* Logic nodes - tighter grid */
@@ -99,38 +146,38 @@
 
 .logicstamp-logo-container:hover .logic-nodes circle:not(.center-node),
 .logicstamp-logo.logo-spinning .logic-nodes circle:not(.center-node) {
-  fill: rgba(255, 255, 255, 0.85);
-  r: 2;
+  fill: rgba(255, 255, 255, 0.75) !important;
+  r: 2 !important;
 }
 
 /* Center node - enhanced glow */
 .logicstamp-logo .center-node {
-  animation: center-pulse 2s ease-in-out infinite;
+  animation: none !important;
   fill: rgba(255, 255, 255, 0.95);
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .logicstamp-logo-container:hover .center-node,
 .logicstamp-logo.logo-spinning .center-node {
-  animation: center-pulse 1s ease-in-out infinite;
-  fill: rgba(255, 255, 255, 1);
-  r: 3;
-  filter: drop-shadow(0 0 8px rgba(255, 255, 255, 0.9)) drop-shadow(0 0 4px rgba(154, 86, 255, 0.7));
+  animation: none !important;
+  fill: rgba(255, 255, 255, 0.95) !important;
+  r: 3.5 !important;
+  filter: none !important;
 }
 
 /* Code stamp brackets */
 .logicstamp-logo .code-stamp {
   opacity: 0.75;
   transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-  filter: drop-shadow(0 0 2px rgba(255, 255, 255, 0.4));
+  filter: none !important;
 }
 
 .logicstamp-logo-container:hover .code-stamp,
 .logicstamp-logo.logo-spinning .code-stamp {
-  opacity: 1;
-  stroke: rgba(255, 255, 255, 0.95);
-  stroke-width: 2.2;
-  filter: drop-shadow(0 0 4px rgba(255, 255, 255, 0.7));
+  opacity: 0.75 !important;
+  stroke: rgba(255, 255, 255, 0.8) !important;
+  stroke-width: 2 !important;
+  filter: none !important;
 }
 
 /* Animations */
@@ -168,21 +215,21 @@
 
 /* Dark mode adjustments */
 .dark .logicstamp-logo {
-  filter: drop-shadow(0 2px 8px rgba(154, 86, 255, 0.5)) drop-shadow(0 0 2px rgba(154, 86, 255, 0.4));
+  filter: none !important;
 }
 
 .dark .logicstamp-logo-container:hover .logicstamp-logo,
 .dark .logicstamp-logo.logo-spinning {
-  filter: drop-shadow(0 6px 16px rgba(154, 86, 255, 0.75)) drop-shadow(0 0 8px rgba(154, 86, 255, 0.6));
+  filter: none !important;
 }
 
 .dark .logicstamp-logo .cube-halo {
-  opacity: 0.7;
+  opacity: 0.6;
 }
 
 .dark .logicstamp-logo-container:hover .cube-halo,
 .dark .logicstamp-logo.logo-spinning .cube-halo {
-  opacity: 0.9;
+  opacity: 0.6 !important;
 }
 
 .dark .logicstamp-logo .node-connections {
@@ -191,7 +238,7 @@
 
 .dark .logicstamp-logo-container:hover .node-connections,
 .dark .logicstamp-logo.logo-spinning .node-connections {
-  stroke: rgba(255, 255, 255, 0.5);
+  stroke: rgba(255, 255, 255, 0.35) !important;
 }
 
 .dark .logicstamp-logo .logic-nodes {
@@ -210,8 +257,8 @@
 
 .dark .logicstamp-logo-container:hover .code-stamp,
 .dark .logicstamp-logo.logo-spinning .code-stamp {
-  stroke: rgba(255, 255, 255, 1);
-  opacity: 1;
+  stroke: rgba(255, 255, 255, 0.8) !important;
+  opacity: 0.85 !important;
 }
 
 /* Reduced motion support */

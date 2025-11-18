@@ -196,6 +196,26 @@ export default function DocsSidebar() {
 
   return (
     <nav className="text-sm space-y-7">
+      {/* Mascot at the top */}
+      <div className="mb-6 pb-6 border-b border-gray-200 dark:border-gray-700">
+        <Link
+          href="/docs"
+          className="flex items-center justify-center group focus:outline-none"
+        >
+          <img
+            src="/mascot/logicstamp-fox.svg"
+            alt="LogicStamp Fox Mascot"
+            className="w-16 h-16 sm:w-20 sm:h-20 opacity-90 group-hover:opacity-100 transition-opacity duration-300"
+          />
+        </Link>
+        <p className="mt-3 text-center text-sm font-medium text-gray-600 dark:text-gray-400">
+          Meet the Logic{' '}
+          <span className="bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 bg-clip-text text-transparent">
+            Fox
+          </span>
+        </p>
+      </div>
+      
       {sections.map((section) => (
         <div key={section.title}>
           <p className="mb-2 text-xs font-semibold uppercase tracking-wide text-gray-500 dark:text-gray-400">

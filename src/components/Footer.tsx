@@ -137,7 +137,7 @@ export default function Footer() {
               <img
                 src="/mascot/logicstamp-fox.svg"
                 alt="LogicStamp Fox Mascot"
-                className="h-24 w-24 opacity-80 hover:opacity-100 transition-opacity fox-mascot"
+                className="h-24 w-24 opacity-100 fox-mascot"
               />
             </div>
 
@@ -148,7 +148,7 @@ export default function Footer() {
                 <img
                   src="/mascot/logicstamp-fox.svg"
                   alt="LogicStamp Fox Mascot"
-                  className="h-24 w-24 opacity-80 hover:opacity-100 transition-opacity fox-mascot"
+                  className="h-24 w-24 opacity-100 fox-mascot"
                 />
               </div>
               <ThemeToggle compact />
