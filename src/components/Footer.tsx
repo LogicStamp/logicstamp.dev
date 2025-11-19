@@ -120,7 +120,7 @@ export default function Footer() {
             {/* Newsletter + Theme toggle + social links + Fox - above MIT license */}
             <div className="flex flex-col gap-6 md:flex-row md:items-end md:justify-between pb-5 border-t border-gray-200/60 dark:border-gray-800/70 md:border-t-0 pt-6 md:pt-0">
               {/* Newsletter Subscription - Desktop: left side, Mobile: full width */}
-              <div className="w-full md:w-auto md:flex-1 md:max-w-md">
+              <div className="w-full md:w-auto md:flex-1 md:max-w-md md:border-t md:border-gray-200/60 md:dark:border-gray-800/70 md:pt-6">
                 <h3 className="text-lg font-bold text-gray-900 dark:text-white mb-2">
                   Let's keep in touch
                 </h3>

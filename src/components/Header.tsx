@@ -162,7 +162,7 @@ export default function Header() {
     </header>
 
     {/* Mobile menu dropdown */}
-    <div className={`lg:hidden fixed left-0 right-0 z-50 px-4 lg:px-6 transition-all duration-300 ease-in-out mobile-menu-dropdown top-[4.75rem] ${
+    <div className={`lg:hidden fixed left-0 right-0 z-[110] px-4 lg:px-6 transition-all duration-300 ease-in-out mobile-menu-dropdown top-[4.75rem] ${
       mobileMenuOpen ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-2 pointer-events-none'
     }`}>
       <div className="mx-auto max-w-[1400px]">
