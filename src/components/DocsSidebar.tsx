@@ -32,9 +32,11 @@ const sections: DocsNavSection[] = [
     title: 'CLI',
     items: [
       { title: 'CLI Commands', href: '/docs/logicstamp-context/commands' },
+      { title: '`init` command', href: '/docs/logicstamp-context/init' },
       { title: '`context` command', href: '/docs/logicstamp-context/context' },
       { title: '`compare` command', href: '/docs/logicstamp-context/compare-command' },
       { title: '`validate` command', href: '/docs/logicstamp-context/validate' },
+      { title: '`clean` command', href: '/docs/logicstamp-context/clean' },
     ],
   },
   {
@@ -129,7 +131,7 @@ function getIcon(href: string): ReactNode {
     )
   }
 
-  if (href.includes('/commands') || href.includes('/context') || href.includes('/compare') || href.includes('/validate')) {
+  if (href.includes('/commands') || href.includes('/context') || href.includes('/compare') || href.includes('/validate') || href.includes('/init') || href.includes('/clean')) {
     // Command-style icon
     return (
       <svg

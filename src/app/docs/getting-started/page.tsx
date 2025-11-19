@@ -63,7 +63,29 @@ export default function QuickStartPage() {
             After installation, the <code className="bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 px-1.5 py-0.5 rounded text-sm">stamp</code> command will be available globally.
           </p>
 
-          <h2 className="text-2xl font-semibold text-gray-900 dark:text-white mt-12 mb-4">Step 2: Generate Context</h2>
+          <h2 className="text-2xl font-semibold text-gray-900 dark:text-white mt-12 mb-4">Step 2: Initialize (Optional)</h2>
+          <p className="text-gray-700 dark:text-gray-300 mb-4 text-base leading-relaxed">You can optionally run <code className="bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 px-1.5 py-0.5 rounded text-sm">stamp init</code> to set up <code className="bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 px-1.5 py-0.5 rounded text-sm">.gitignore</code> patterns and generate <code className="bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 px-1.5 py-0.5 rounded text-sm">LLM_CONTEXT.md</code> before generating context. Alternatively, <code className="bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 px-1.5 py-0.5 rounded text-sm">stamp context</code> will prompt you on first run:</p>
+          <TabbedCodeBlock
+            tabs={[
+              {
+                label: 'Explicit Init',
+                code: 'stamp init',
+                copyText: 'stamp init'
+              },
+              {
+                label: 'Skip Init',
+                code: '# Just run stamp context - it will prompt on first run',
+                copyText: '# Just run stamp context - it will prompt on first run'
+              }
+            ]}
+          />
+          <p className="mt-2 mb-6 text-sm text-gray-600 dark:text-gray-400 leading-relaxed">
+            The <code className="bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 px-1.5 py-0.5 rounded text-sm">stamp init</code> command sets up <code className="bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 px-1.5 py-0.5 rounded text-sm">.gitignore</code> patterns to exclude context files from version control and optionally generates <code className="bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 px-1.5 py-0.5 rounded text-sm">LLM_CONTEXT.md</code> to help AI assistants understand your project structure.
+          </p>
+          </AnimatedSection>
+
+          <AnimatedSection direction="up" delay={300}>
+          <h2 className="text-2xl font-semibold text-gray-900 dark:text-white mt-12 mb-4">Step 3: Generate Context</h2>
           <p className="text-gray-700 dark:text-gray-300 mb-4 text-base leading-relaxed">Generate AI-ready context for your project. The default profile (<code className="bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 px-1.5 py-0.5 rounded text-sm">llm-chat</code>) is optimized for AI chat interfaces:</p>
           <TabbedCodeBlock
             tabs={[
@@ -85,12 +107,26 @@ export default function QuickStartPage() {
             ]}
           />
 
-          <p className="mt-6 mb-6 text-gray-700 dark:text-gray-300 text-base leading-relaxed">This creates a <code className="bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 px-1.5 py-0.5 rounded text-sm">context.json</code> file in your project root containing structured bundles (one per root component/entry point) with component contracts, dependency graphs, and code headers. Each bundle contains a root component plus its complete dependency graph—all related components together in one self-contained unit. The context is automatically validated after generation before being written to ensure schema compliance.</p>
+          <p className="mt-6 mb-6 text-gray-700 dark:text-gray-300 text-base leading-relaxed">This creates <strong>multiple <code className="bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 px-1.5 py-0.5 rounded text-sm">context.json</code> files</strong> (one per folder containing components) plus a <code className="bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 px-1.5 py-0.5 rounded text-sm">context_main.json</code> index file at the output root. Each folder's <code className="bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 px-1.5 py-0.5 rounded text-sm">context.json</code> contains structured bundles (one bundle per root component/entry point) with component contracts, dependency graphs, and code headers. Each bundle contains a root component plus its complete dependency graph—all related components together in one self-contained unit. The context is automatically validated after generation before being written to ensure schema compliance.</p>
+          
+          <div className="bg-blue-50 dark:bg-blue-900/20 border border-blue-200 dark:border-blue-800 rounded-lg p-6 mt-4 mb-6">
+            <h3 className="text-lg font-semibold text-blue-900 dark:text-blue-100 mb-2">
+              📁 Folder-Based Organization
+            </h3>
+            <p className="text-blue-800 dark:text-blue-200 text-sm leading-relaxed">
+              The output structure mirrors your project layout. For example, if you have components in <code className="bg-blue-100 dark:bg-blue-900/40 text-blue-900 dark:text-blue-100 px-1 py-0.5 rounded text-xs">src/components/</code> and <code className="bg-blue-100 dark:bg-blue-900/40 text-blue-900 dark:text-blue-100 px-1 py-0.5 rounded text-xs">src/utils/</code>, you'll get:
+            </p>
+            <ul className="text-blue-800 dark:text-blue-200 text-sm mt-2 space-y-1 ml-4">
+              <li>• <code className="bg-blue-100 dark:bg-blue-900/40 text-blue-900 dark:text-blue-100 px-1 py-0.5 rounded text-xs">context_main.json</code> (index with folder metadata)</li>
+              <li>• <code className="bg-blue-100 dark:bg-blue-900/40 text-blue-900 dark:text-blue-100 px-1 py-0.5 rounded text-xs">src/components/context.json</code></li>
+              <li>• <code className="bg-blue-100 dark:bg-blue-900/40 text-blue-900 dark:text-blue-100 px-1 py-0.5 rounded text-xs">src/utils/context.json</code></li>
+            </ul>
+          </div>
           </AnimatedSection>
 
-          <AnimatedSection direction="up" delay={300}>
-          <h2 className="text-2xl font-semibold text-gray-900 dark:text-white mt-12 mb-4">Step 3: Use in Your IDE</h2>
-          <p className="text-gray-700 dark:text-gray-300 mb-6 text-base leading-relaxed">The <code className="bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 px-1.5 py-0.5 rounded text-sm">context.json</code> file in your project root provides structured context about your codebase to AI coding assistants.</p>
+          <AnimatedSection direction="up" delay={400}>
+          <h2 className="text-2xl font-semibold text-gray-900 dark:text-white mt-12 mb-4">Step 4: Use in Your IDE</h2>
+          <p className="text-gray-700 dark:text-gray-300 mb-6 text-base leading-relaxed">The <code className="bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 px-1.5 py-0.5 rounded text-sm">context.json</code> files (one per folder) plus the <code className="bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 px-1.5 py-0.5 rounded text-sm">context_main.json</code> index provide structured context about your codebase to AI coding assistants.</p>
           
           <div className="bg-blue-50 dark:bg-blue-900/20 border border-blue-200 dark:border-blue-800 rounded-lg p-8 mt-6 mb-8">
             <h3 className="text-xl font-semibold text-blue-900 dark:text-blue-100 mb-4">
@@ -112,43 +148,43 @@ export default function QuickStartPage() {
           </div>
 
           <h4 className="mt-8 mb-3 text-lg font-semibold text-gray-900 dark:text-white">Example Prompts</h4>
-          <p className="text-gray-700 dark:text-gray-300 mb-4 text-base leading-relaxed">Explicitly reference context.json in your prompts for consistent results:</p>
+          <p className="text-gray-700 dark:text-gray-300 mb-4 text-base leading-relaxed">Explicitly reference context files in your prompts for consistent results. You can reference the main index or specific folder contexts:</p>
           <TabbedCodeBlock
             tabs={[
               {
                 label: 'Component Analysis',
-                code: 'Using the context.json file, explain how the Button component works',
-                copyText: 'Using the context.json file, explain how the Button component works'
+                code: 'Using the context.json files, explain how the Button component works',
+                copyText: 'Using the context.json files, explain how the Button component works'
               },
               {
                 label: 'Architecture Review',
-                code: 'Based on context.json, suggest improvements to the authentication flow',
-                copyText: 'Based on context.json, suggest improvements to the authentication flow'
+                code: 'Based on context_main.json and the folder context files, suggest improvements to the authentication flow',
+                copyText: 'Based on context_main.json and the folder context files, suggest improvements to the authentication flow'
               },
               {
                 label: 'Dependency Mapping',
-                code: 'Reference context.json to understand the component dependencies',
-                copyText: 'Reference context.json to understand the component dependencies'
+                code: 'Reference the context.json files to understand the component dependencies',
+                copyText: 'Reference the context.json files to understand the component dependencies'
               },
               {
                 label: 'Manual Reference',
-                code: 'Please read context.json from the project root and use it to understand the codebase structure',
-                copyText: 'Please read context.json from the project root and use it to understand the codebase structure'
+                code: 'Please read context_main.json and the relevant folder context.json files to understand the codebase structure',
+                copyText: 'Please read context_main.json and the relevant folder context.json files to understand the codebase structure'
               }
             ]}
           />
 
           <div className="bg-gray-100 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg p-6 mt-6 mb-4">
-            <p className="text-base text-gray-600 dark:text-gray-400 leading-relaxed"><strong>Tip:</strong> Regenerate context.json after major refactors to keep your AI assistant up-to-date with your codebase structure.</p>
+            <p className="text-base text-gray-600 dark:text-gray-400 leading-relaxed"><strong>Tip:</strong> Regenerate context files after major refactors to keep your AI assistant up-to-date with your codebase structure. Use <code className="bg-gray-200 dark:bg-gray-700 text-gray-900 dark:text-gray-100 px-1.5 py-0.5 rounded text-sm">stamp context compare</code> to detect changes across all folders.</p>
           </div>
 
           <div className="bg-gray-100 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg p-6 mt-4 mb-6">
-            <p className="text-base text-gray-600 dark:text-gray-400 leading-relaxed"><strong>Alternative:</strong> You can also copy context.json to clipboard and paste into chat-based AI assistants (Claude, ChatGPT, etc.) if needed.</p>
+            <p className="text-base text-gray-600 dark:text-gray-400 leading-relaxed"><strong>Alternative:</strong> You can also copy specific context.json files to clipboard and paste into chat-based AI assistants (Claude, ChatGPT, etc.) if needed. Start with <code className="bg-gray-200 dark:bg-gray-700 text-gray-900 dark:text-gray-100 px-1.5 py-0.5 rounded text-sm">context_main.json</code> to see the project structure, then load relevant folder contexts.</p>
           </div>
           </AnimatedSection>
 
-          <AnimatedSection direction="up" delay={400}>
-          <h2 className="text-2xl font-semibold text-gray-900 dark:text-white mt-12 mb-4">Step 4: Optimize Tokens (Optional)</h2>
+          <AnimatedSection direction="up" delay={500}>
+          <h2 className="text-2xl font-semibold text-gray-900 dark:text-white mt-12 mb-4">Step 5: Optimize Tokens (Optional)</h2>
           <p className="text-gray-700 dark:text-gray-300 mb-4 text-base leading-relaxed">Compare token costs across different code inclusion modes to choose the best option for your needs. The <code className="bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 px-1.5 py-0.5 rounded text-sm">--compare-modes</code> flag generates <code className="bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 px-1.5 py-0.5 rounded text-sm">context.json</code> and displays a comparison table:</p>
           <TabbedCodeBlock
             tabs={[
@@ -190,8 +226,8 @@ export default function QuickStartPage() {
           </div>
           </AnimatedSection>
 
-          <AnimatedSection direction="up" delay={500}>
-          <h2 className="text-2xl font-semibold text-gray-900 dark:text-white mt-12 mb-4">Step 5: Validate Context (Optional)</h2>
+          <AnimatedSection direction="up" delay={600}>
+          <h2 className="text-2xl font-semibold text-gray-900 dark:text-white mt-12 mb-4">Step 6: Validate Context (Optional)</h2>
           <p className="text-gray-700 dark:text-gray-300 mb-4 text-base leading-relaxed">Verify your generated context file matches the expected schema before sharing or committing:</p>
           <TabbedCodeBlock
             tabs={[
@@ -212,13 +248,13 @@ export default function QuickStartPage() {
           </p>
           </AnimatedSection>
 
-          <AnimatedSection direction="up" delay={600}>
+          <AnimatedSection direction="up" delay={700}>
           <div className="bg-green-50 dark:bg-green-900/20 border border-green-200 dark:border-green-800 rounded-lg p-8 mt-12">
             <h3 className="text-xl font-semibold text-green-900 dark:text-green-100 mb-4">
               ✅ You're all set!
             </h3>
             <p className="text-green-800 dark:text-green-200 text-base leading-relaxed">
-              You've successfully generated AI-ready context! Your <code className="bg-green-100 dark:bg-green-900/40 text-green-900 dark:text-green-100 px-1.5 py-0.5 rounded text-sm">context.json</code> file is ready to share with AI assistants. For advanced features and more details, check out the <a href="https://github.com/logicstamp/logicstamp-context" target="_blank" rel="noopener noreferrer" className="underline text-green-900 dark:text-green-100 hover:text-green-700 dark:hover:text-green-300">GitHub repository</a>.
+              You've successfully generated AI-ready context! Your <code className="bg-green-100 dark:bg-green-900/40 text-green-900 dark:text-green-100 px-1.5 py-0.5 rounded text-sm">context.json</code> files (one per folder) plus the <code className="bg-green-100 dark:bg-green-900/40 text-green-900 dark:text-green-100 px-1.5 py-0.5 rounded text-sm">context_main.json</code> index are ready to share with AI assistants. For advanced features and more details, check out the <a href="https://github.com/logicstamp/logicstamp-context" target="_blank" rel="noopener noreferrer" className="underline text-green-900 dark:text-green-100 hover:text-green-700 dark:hover:text-green-300">GitHub repository</a>.
             </p>
           </div>
           </AnimatedSection>

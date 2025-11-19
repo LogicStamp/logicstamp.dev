@@ -32,62 +32,85 @@ export default function CompareCommandPage() {
               tabs={[
                 {
                   label: 'Quick Start',
-                  code: `# Auto-mode: generate fresh context and compare with existing context.json
+                  code: `# Auto-mode: Compare all context files (multi-file mode)
 stamp context compare
 
 # Auto-approve updates (like jest -u)
 stamp context compare --approve
 
-# Manual mode: compare two specific files
+# Single-file: Compare two specific files
 stamp context compare old.json new.json
 
-# With token statistics
-stamp context compare --stats`,
-                  copyText: `# Auto-mode: generate fresh context and compare with existing context.json
+# Multi-file: Compare two indices
+stamp context compare old/context_main.json new/context_main.json
+
+# Show per-folder token statistics
+stamp context compare --stats
+
+# Clean up orphaned files automatically
+stamp context compare --approve --clean-orphaned`,
+                  copyText: `# Auto-mode: Compare all context files (multi-file mode)
 stamp context compare
 
 # Auto-approve updates (like jest -u)
 stamp context compare --approve
 
-# Manual mode: compare two specific files
+# Single-file: Compare two specific files
 stamp context compare old.json new.json
 
-# With token statistics
-stamp context compare --stats`
+# Multi-file: Compare two indices
+stamp context compare old/context_main.json new/context_main.json
+
+# Show per-folder token statistics
+stamp context compare --stats
+
+# Clean up orphaned files automatically
+stamp context compare --approve --clean-orphaned`
                 }
               ]}
             />
           </AnimatedSection>
 
           <AnimatedSection direction="up" delay={200}>
-            <h2>Behavior</h2>
+            <h2>Two Comparison Modes</h2>
             <p>
-              In its default mode, <code>stamp context compare</code> acts like Jest snapshots:
+              The compare command supports <strong>two comparison modes</strong>:
             </p>
+            <h3>1. Multi-File Mode (Auto or Manual with context_main.json)</h3>
             <ul>
-              <li>
-                <strong>Auto-mode</strong> (<code>stamp context compare</code>) first runs{' '}
-                <code>stamp context</code> to generate a fresh context, then compares it against your existing{' '}
-                <code>context.json</code>.
-              </li>
-              <li>
-                <strong>Manual mode</strong> (<code>stamp context compare old.json new.json</code>) compares the two
-                files you pass in.
-              </li>
+              <li>Compares <strong>all context files</strong> across your project</li>
+              <li>Uses <code>context_main.json</code> as the root index</li>
+              <li>Detects: <strong>ADDED FILE</strong> (new folders), <strong>ORPHANED FILE</strong> (removed folders), <strong>DRIFT</strong> (changed files), and <strong>PASS</strong> (unchanged files)</li>
+              <li>Shows three-tier output: folder-level summary → component-level summary → detailed per-folder changes</li>
+            </ul>
+            <h3>2. Single-File Mode</h3>
+            <ul>
+              <li>Compares two specific <code>context.json</code> files</li>
+              <li>Detects added/removed/changed components</li>
+              <li>Shows detailed component-level diffs</li>
             </ul>
           </AnimatedSection>
 
           <AnimatedSection direction="up" delay={250}>
-            <h2>What It Does</h2>
+            <h2>What It Detects</h2>
             <p>
-              The command creates lightweight signatures for each component and detects:
+              In multi-file mode, the command detects:
             </p>
             <ul>
-              <li>Added components – new components in the new context.</li>
-              <li>Removed components – components that existed in the old but not the new context.</li>
+              <li><strong>ADDED FILE</strong> – New folders with context files</li>
+              <li><strong>ORPHANED FILE</strong> – Folders removed from project (but context files still exist on disk)</li>
+              <li><strong>DRIFT</strong> – Changed files with component-level details</li>
+              <li><strong>PASS</strong> – Unchanged files</li>
+            </ul>
+            <p>
+              In single-file mode, it detects:
+            </p>
+            <ul>
+              <li>Added components – new components in the new context</li>
+              <li>Removed components – components that existed in the old but not the new context</li>
               <li>
                 Changed components – components that exist in both but have differences in semantic hash, imports, hooks,
-                exports, or other signature fields.
+                exports, or other signature fields
               </li>
             </ul>
           </AnimatedSection>
@@ -98,10 +121,10 @@ stamp context compare --stats`
             <ul>
               <li>
                 <strong>Interactive mode (local dev)</strong> – <code>stamp context compare</code> prompts to update
-                <code>context.json</code> when drift is detected.
+                all affected context files when drift is detected.
               </li>
               <li>
-                <strong>Auto-approve mode</strong> – <code>stamp context compare --approve</code> updates without
+                <strong>Auto-approve mode</strong> – <code>stamp context compare --approve</code> updates all files without
                 prompting (CI-safe, like <code>jest -u</code>).
               </li>
               <li>
@@ -109,23 +132,28 @@ stamp context compare --stats`
                 is detected.
               </li>
             </ul>
+            <p>
+              Use <code>--clean-orphaned</code> with <code>--approve</code> to automatically delete stale context files from removed folders.
+            </p>
           </AnimatedSection>
 
           <AnimatedSection direction="up" delay={400}>
             <h2>Token Statistics</h2>
             <p>
-              With the <code>--stats</code> flag, the command prints token counts for both files and the delta between
-              them, allowing you to monitor how changes impact LLM context size:
+              With the <code>--stats</code> flag, the command shows per-folder token count statistics and deltas, allowing you to monitor how changes impact LLM context size across your project:
             </p>
             <TabbedCodeBlock
               tabs={[
                 {
                   label: 'With Stats',
-                  code: 'stamp context compare old.json new.json --stats',
-                  copyText: 'stamp context compare old.json new.json --stats'
+                  code: 'stamp context compare --stats',
+                  copyText: 'stamp context compare --stats'
                 }
               ]}
             />
+            <p>
+              Token stats show the delta for each folder with changes, helping you understand the cost impact of modifications.
+            </p>
 
             <h2>Exit Codes</h2>
             <ul>

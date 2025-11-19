@@ -12,9 +12,11 @@ export const metadata: Metadata = {
 const pages = [
   { title: 'README / Overview', href: '/docs/logicstamp-context/readme', description: 'High-level overview of LogicStamp Context and what it generates.' },
   { title: 'Commands', href: '/docs/logicstamp-context/commands', description: 'List of available CLI commands and global options.' },
+  { title: '`init` Command', href: '/docs/logicstamp-context/init', description: 'Initialize LogicStamp in your project by setting up .gitignore patterns and LLM_CONTEXT.md.' },
   { title: '`context` Command', href: '/docs/logicstamp-context/context', description: 'Details for the primary context generation command.' },
-  { title: '`compare` Command', href: '/docs/logicstamp-context/compare-command', description: 'How to compare two context files and detect drift.' },
+  { title: '`compare` Command', href: '/docs/logicstamp-context/compare-command', description: 'Compare all context files to detect drift across your project.' },
   { title: '`validate` Command', href: '/docs/logicstamp-context/validate', description: 'Validate generated context files before sharing or committing.' },
+  { title: '`clean` Command', href: '/docs/logicstamp-context/clean', description: 'Remove all generated context artifacts from your project.' },
   { title: 'Usage Guides', href: '/docs/logicstamp-context/usage', description: 'Practical examples and workflows using LogicStamp Context.' },
   { title: 'LLM Context Format', href: '/docs/logicstamp-context/llm-context', description: 'Schema and structure of the generated context for LLMs.' },
   { title: 'Changelog', href: '/docs/logicstamp-context/changelog', description: 'Release notes and version history.' },

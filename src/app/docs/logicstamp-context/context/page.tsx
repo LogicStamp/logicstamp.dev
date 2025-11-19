@@ -43,15 +43,44 @@ export default function ContextCommandPage() {
             </AnimatedSection>
 
             <AnimatedSection direction="up" delay={200}>
+              <h2>Output Structure</h2>
+              <p>
+                LogicStamp Context generates <strong>folder-organized, multi-file output</strong>:
+              </p>
+              <ul>
+                <li>Multiple <code>context.json</code> files, one per folder containing components</li>
+                <li>Directory structure mirrors your project layout</li>
+                <li><code>context_main.json</code> index file at the output root with folder metadata</li>
+              </ul>
+              <p>
+                Each folder containing components gets its own <code>context.json</code> file with bundles for that folder's components. The <code>context_main.json</code> file serves as a directory index with summary statistics and folder metadata.
+              </p>
+            </AnimatedSection>
+
+            <AnimatedSection direction="up" delay={250}>
+              <h2>First Run Behavior</h2>
+              <p>
+                On first run in interactive mode, <code>stamp context</code> will prompt you to:
+              </p>
+              <ul>
+                <li>Add LogicStamp patterns to <code>.gitignore</code> (to exclude context files from version control)</li>
+                <li>Generate <code>LLM_CONTEXT.md</code> in the project root (to help AI assistants understand your project structure)</li>
+              </ul>
+              <p>
+                Your preferences are saved in <code>.logicstamp/config.json</code> and respected on subsequent runs. See <code>stamp init</code> for explicit setup or to skip these prompts.
+              </p>
+            </AnimatedSection>
+
+            <AnimatedSection direction="up" delay={300}>
               <h2>Behavior</h2>
               <p>
-                Each run of <code>stamp context</code> performs a full scan, generates one or more bundles, and then{' '}
+                Each run of <code>stamp context</code> performs a full scan, generates context files organized by folder, and then{' '}
                 <strong>automatically validates</strong> the generated context before writing it to disk. The CLI output
                 shows both the generation and validation steps so you can see when schema issues are caught.
               </p>
             </AnimatedSection>
 
-            <AnimatedSection direction="up" delay={250}>
+            <AnimatedSection direction="up" delay={350}>
               <h2>Options</h2>
               <table>
                 <thead>
@@ -96,7 +125,7 @@ export default function ContextCommandPage() {
                     <td>
                       <code>context.json</code>
                     </td>
-                    <td>Output file path.</td>
+                    <td>Output directory or file path. If a <code>.json</code> file is specified, its directory is used as the output directory. Otherwise, the path is used as the output directory. Context files will be written maintaining folder structure within this directory.</td>
                   </tr>
                   <tr>
                     <td>
@@ -162,28 +191,40 @@ export default function ContextCommandPage() {
                 tabs={[
                   {
                     label: 'Examples',
-                    code: `# Scan entire repo and write context.json (defaults)
+                    code: `# Scan entire repo and write context files (defaults)
 stamp context
+# Creates: context_main.json + context.json files in each folder
 
 # Generate context for ./src with pretty-printed output
 stamp context ./src --format pretty
 
 # Include full source for deep AI reviews (limit nodes for safety)
 stamp context --include-code full --max-nodes 20
+
+# Custom output directory
+stamp context --out ./output
+# Or specify a file to use its directory
+stamp context --out ./output/context.json
 
 # Gather metrics without writing a file (e.g., CI dashboards)
 stamp context --stats >> .ci/context-stats.jsonl
 
 # Dry run to confirm counts before overwriting an existing file
 stamp context ./packages/ui --dry-run`,
-                    copyText: `# Scan entire repo and write context.json (defaults)
+                    copyText: `# Scan entire repo and write context files (defaults)
 stamp context
+# Creates: context_main.json + context.json files in each folder
 
 # Generate context for ./src with pretty-printed output
 stamp context ./src --format pretty
 
 # Include full source for deep AI reviews (limit nodes for safety)
 stamp context --include-code full --max-nodes 20
+
+# Custom output directory
+stamp context --out ./output
+# Or specify a file to use its directory
+stamp context --out ./output/context.json
 
 # Gather metrics without writing a file (e.g., CI dashboards)
 stamp context --stats >> .ci/context-stats.jsonl

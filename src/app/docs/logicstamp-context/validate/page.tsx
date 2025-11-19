@@ -37,19 +37,28 @@ export default function ValidateCommandPage() {
                 ]}
               />
               <p>
-                <strong>[file]</strong> – Optional path to the bundle file created by the <code>stamp context</code>{' '}
-                command. Defaults to <code>context.json</code> in the current working directory.
+                <strong>[file]</strong> – Optional path to a context file created by the <code>stamp context</code>{' '}
+                command. Defaults to <code>context.json</code> in the current working directory. Can be a folder context file or the main index file.
               </p>
             </AnimatedSection>
 
             <AnimatedSection direction="up" delay={200}>
               <h2>What it checks</h2>
+              <h3>For Folder Context Files (<code>context.json</code>)</h3>
               <ul>
                 <li>File exists and parses as valid JSON.</li>
                 <li>Top-level value is an array of <code>LogicStampBundle</code> objects.</li>
                 <li>Each bundle has required fields like <code>type</code>, <code>schemaVersion</code>, <code>entryId</code>, <code>graph</code>, and <code>meta</code>.</li>
                 <li>Contracts stored within nodes are <code>UIFContract</code> with schema version <code>0.3</code>.</li>
                 <li>Warnings are emitted when bundle hashes or schema versions diverge from expected values.</li>
+              </ul>
+              <h3>For Main Index File (<code>context_main.json</code>)</h3>
+              <ul>
+                <li>File exists and parses as valid JSON.</li>
+                <li>Structure matches <code>LogicStampIndex</code> schema.</li>
+                <li>Contains required fields: <code>type</code>, <code>schemaVersion</code>, <code>projectRoot</code>, <code>summary</code>, <code>folders</code>, <code>meta</code>.</li>
+                <li>Each folder entry has valid structure with <code>path</code>, <code>contextFile</code>, <code>bundles</code>, <code>components</code>, etc.</li>
+                <li>Warnings are emitted when schema versions diverge from expected values.</li>
               </ul>
             </AnimatedSection>
 
@@ -85,15 +94,27 @@ export default function ValidateCommandPage() {
                 tabs={[
                   {
                     label: 'Examples',
-                    code: `# Validate the default output file in the current directory
+                    code: `# Validate the default context.json in the current directory (folder context)
 stamp context validate
 
-# Validate a custom bundle file
+# Validate a specific folder's context file
+stamp context validate src/components/context.json
+
+# Validate the main index file
+stamp context validate context_main.json
+
+# Validate custom named bundle
 stamp context validate artifacts/review-context.json`,
-                    copyText: `# Validate the default output file in the current directory
+                    copyText: `# Validate the default context.json in the current directory (folder context)
 stamp context validate
 
-# Validate a custom bundle file
+# Validate a specific folder's context file
+stamp context validate src/components/context.json
+
+# Validate the main index file
+stamp context validate context_main.json
+
+# Validate custom named bundle
 stamp context validate artifacts/review-context.json`
                   }
                 ]}
@@ -103,10 +124,26 @@ stamp context validate artifacts/review-context.json`
             <AnimatedSection direction="up" delay={500}>
               <h2>CI/CD Usage</h2>
               <ul>
-                <li>Pair with the <code>context</code> command to block merges when bundles become invalid.</li>
+                <li>Pair with the <code>context</code> command to block merges when context files become invalid.</li>
+                <li>Validate both folder context files and the main index to ensure consistency.</li>
                 <li>Combine with <code>npm run</code> scripts or Git hooks for automated checks.</li>
                 <li>Use the exit code to fail pipelines and prompt regeneration of context files.</li>
               </ul>
+              <TabbedCodeBlock
+                tabs={[
+                  {
+                    label: 'CI Example',
+                    code: `# Validate all context files
+stamp context validate context_main.json && \\
+stamp context validate context.json && \\
+stamp context validate src/components/context.json`,
+                    copyText: `# Validate all context files
+stamp context validate context_main.json && \\
+stamp context validate context.json && \\
+stamp context validate src/components/context.json`
+                  }
+                ]}
+              />
             </AnimatedSection>
           </div>
         </DocsLayout>
