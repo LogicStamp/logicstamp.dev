@@ -112,13 +112,13 @@ export default function DocsLayout({ children }: { children: React.ReactNode }) 
 
   return (
     <div className="min-h-screen bg-gradient-bg-section pt-[5.5rem] lg:pt-24">
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-6 py-8 lg:py-10">
+      <div className="max-w-[1400px] mx-auto px-4 lg:px-6 py-8 lg:py-10">
         {/* Mobile sidebar toggle button */}
         <button
           ref={toggleButtonRef}
           onClick={() => setSidebarOpen(!sidebarOpen)}
-          className={`lg:hidden fixed z-40 p-1.5 rounded-md bg-white/70 dark:bg-gray-800/70 backdrop-blur-sm shadow-lg border border-gray-200/50 dark:border-gray-700/50 hover:bg-white/90 dark:hover:bg-gray-800/90 transition-all duration-300 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-500 top-[4.75rem] ${
-            sidebarOpen ? 'left-[260px]' : 'left-4'
+          className={`lg:hidden fixed z-[100] top-1/2 -translate-y-1/2 transition-all duration-300 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-500 pointer-events-auto ${
+            sidebarOpen ? 'left-60' : 'left-0'
           } ${
             sidebarOpen || isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-2 pointer-events-none'
           }`}
@@ -127,15 +127,15 @@ export default function DocsLayout({ children }: { children: React.ReactNode }) 
           aria-controls="mobile-docs-sidebar"
         >
           <svg
-            className={`w-4 h-4 text-gray-700 dark:text-gray-300 transition-transform duration-300 ${sidebarOpen ? 'rotate-180' : ''}`}
+            className={`w-8 h-32 text-gray-700 dark:text-gray-300 transition-transform duration-300 ${sidebarOpen ? 'rotate-180' : ''}`}
             viewBox="0 0 24 24"
             fill="none"
             stroke="currentColor"
-            strokeWidth={2}
+            strokeWidth={3}
             strokeLinecap="round"
             strokeLinejoin="round"
           >
-            <polyline points="9 18 15 12 9 6" />
+            <path d="M8 2 L10 12 L8 22" />
           </svg>
         </button>
 
@@ -158,7 +158,7 @@ export default function DocsLayout({ children }: { children: React.ReactNode }) 
             <DocsSidebar />
           </aside>
 
-          {/* Desktop sidebar - always visible */}
+          {/* Desktop sidebar - always visible, scrollable with styled scrollbar */}
           <aside className="hidden lg:block w-64 shrink-0 sticky top-24 self-start">
             <DocsSidebar />
           </aside>

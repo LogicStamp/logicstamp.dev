@@ -2,7 +2,7 @@
 
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
-import type { ReactNode } from 'react'
+import { useState, useEffect, type ReactNode } from 'react'
 
 type DocsNavItem = {
   title: string
@@ -195,11 +195,23 @@ function getIcon(href: string): ReactNode {
 
 export default function DocsSidebar() {
   const pathname = usePathname()
+  const [isCliOpen, setIsCliOpen] = useState(true)
+
+  // Auto-open CLI section if any CLI item is active
+  useEffect(() => {
+    const cliSection = sections.find((s) => s.title === 'CLI')
+    if (cliSection) {
+      const hasActiveCliItem = cliSection.items.some((item) => isActive(pathname, item.href))
+      if (hasActiveCliItem) {
+        setIsCliOpen(true)
+      }
+    }
+  }, [pathname])
 
   return (
-    <nav className="text-sm space-y-7">
-      {/* Mascot at the top */}
-      <div className="mb-6 pb-6 border-b border-gray-200 dark:border-gray-700">
+    <nav className="text-sm flex flex-col lg:max-h-[calc(100vh-8rem)]">
+      {/* Mascot at the top - fixed, not scrollable */}
+      <div className="mb-6 pb-6 border-b border-gray-200 dark:border-gray-700 shrink-0">
         <Link
           href="/docs"
           className="flex items-center justify-center group focus:outline-none"
@@ -218,37 +230,94 @@ export default function DocsSidebar() {
         </p>
       </div>
       
-      {sections.map((section) => (
-        <div key={section.title}>
-          <p className="mb-2 text-xs font-semibold uppercase tracking-wide text-gray-500 dark:text-gray-400">
-            {section.title}
-          </p>
-          <ul className="space-y-1">
-            {section.items.map((item) => {
-              const active = isActive(pathname, item.href)
-              return (
-                <li key={item.href}>
-                  <Link
-                    href={item.href}
-                    className={`block rounded-md border-l-2 px-2 py-1.5 transition-colors ${
-                      active
-                        ? 'border-blue-500 bg-blue-50 text-blue-700 font-semibold dark:border-blue-400 dark:bg-blue-900/40 dark:text-blue-200'
-                        : 'border-transparent text-gray-700 hover:border-gray-300 hover:bg-gray-100 hover:text-blue-700 dark:border-transparent dark:text-gray-300 dark:hover:border-gray-700 dark:hover:bg-gray-800 dark:hover:text-blue-200'
+      {/* Scrollable content starting from Overview */}
+      <div className="flex-1 overflow-y-auto lg:pr-2 sidebar-scrollable space-y-7">
+        {sections.map((section) => {
+          const isCliSection = section.title === 'CLI'
+          
+          return (
+            <div key={section.title}>
+              {isCliSection ? (
+                <>
+                  <div className="mb-2 flex items-center gap-2">
+                    <button
+                      onClick={() => setIsCliOpen(!isCliOpen)}
+                      className="flex items-center justify-center w-6 h-6 rounded border border-gray-300 dark:border-gray-600 text-gray-600 dark:text-gray-400 text-sm font-normal transition-colors hover:border-gray-400 dark:hover:border-gray-500 focus:outline-none"
+                      aria-expanded={isCliOpen}
+                      aria-label={isCliOpen ? 'Collapse CLI section' : 'Expand CLI section'}
+                    >
+                      {isCliOpen ? '−' : '+'}
+                    </button>
+                    <span className="text-xs font-semibold uppercase tracking-wide text-gray-500 dark:text-gray-400">
+                      {section.title}
+                    </span>
+                  </div>
+                  <div
+                    className={`overflow-hidden transition-all duration-300 ease-in-out ${
+                      isCliOpen ? 'max-h-[500px] opacity-100' : 'max-h-0 opacity-0'
                     }`}
                   >
-                    <span className="flex items-center gap-2">
-                      <span className="inline-flex items-center justify-center text-gray-400 dark:text-gray-500">
-                        {getIcon(item.href)}
-                      </span>
-                      <span>{item.title}</span>
-                    </span>
-                  </Link>
-                </li>
-              )
-            })}
-          </ul>
-        </div>
-      ))}
+                    <ul className="space-y-1">
+                      {section.items.map((item) => {
+                        const active = isActive(pathname, item.href)
+                        return (
+                          <li key={item.href}>
+                            <Link
+                              href={item.href}
+                              className={`block rounded-md border-l-2 px-2 py-1.5 transition-colors ${
+                                active
+                                  ? 'border-blue-500 bg-blue-50 text-blue-700 font-semibold dark:border-blue-400 dark:bg-blue-900/40 dark:text-blue-200'
+                                  : 'border-transparent text-gray-700 hover:border-gray-300 hover:bg-gray-100 hover:text-blue-700 dark:border-transparent dark:text-gray-300 dark:hover:border-gray-700 dark:hover:bg-gray-800 dark:hover:text-blue-200'
+                              }`}
+                            >
+                              <span className="flex items-center gap-2">
+                                <span className="inline-flex items-center justify-center text-gray-400 dark:text-gray-500">
+                                  {getIcon(item.href)}
+                                </span>
+                                <span>{item.title}</span>
+                              </span>
+                            </Link>
+                          </li>
+                        )
+                      })}
+                    </ul>
+                  </div>
+                </>
+              ) : (
+                <>
+                  <p className="mb-2 text-xs font-semibold uppercase tracking-wide text-gray-500 dark:text-gray-400">
+                    {section.title}
+                  </p>
+                  <ul className="space-y-1">
+                    {section.items.map((item) => {
+                      const active = isActive(pathname, item.href)
+                      return (
+                        <li key={item.href}>
+                          <Link
+                            href={item.href}
+                            className={`block rounded-md border-l-2 px-2 py-1.5 transition-colors ${
+                              active
+                                ? 'border-blue-500 bg-blue-50 text-blue-700 font-semibold dark:border-blue-400 dark:bg-blue-900/40 dark:text-blue-200'
+                                : 'border-transparent text-gray-700 hover:border-gray-300 hover:bg-gray-100 hover:text-blue-700 dark:border-transparent dark:text-gray-300 dark:hover:border-gray-700 dark:hover:bg-gray-800 dark:hover:text-blue-200'
+                            }`}
+                          >
+                            <span className="flex items-center gap-2">
+                              <span className="inline-flex items-center justify-center text-gray-400 dark:text-gray-500">
+                                {getIcon(item.href)}
+                              </span>
+                              <span>{item.title}</span>
+                            </span>
+                          </Link>
+                        </li>
+                      )
+                    })}
+                  </ul>
+                </>
+              )}
+            </div>
+          )
+        })}
+      </div>
     </nav>
   )
 }
