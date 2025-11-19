@@ -266,10 +266,10 @@ export default function WhyLogicStamp() {
                           </span>
                           <div className="flex-1">
                             <p className="text-sm font-medium text-gray-900 dark:text-white">
-                              Get an optimized context.json bundle
+                              Get optimized context.json files
                             </p>
                             <p className="text-xs text-gray-600 dark:text-gray-400 mt-1">
-                              Only type signatures, contracts, and dependency graphs. 65% smaller than raw source.
+                              Multiple context files (one per folder) plus index. Only type signatures, contracts, and dependency graphs. 65% smaller than raw source.
                             </p>
                           </div>
                         </div>

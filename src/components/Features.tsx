@@ -30,8 +30,15 @@ $ stamp context
 📦 Generating context for 22 root components (depth=1)...
 🔍 Validating generated context...
 ✅ Validation passed
-📝 Writing to: /project/context.json
-✅ Context written successfully
+📝 Writing context files for 5 folders...
+   ✓ context.json (2 bundles)
+   ✓ src/context.json (3 bundles)
+   ✓ src/components/context.json (5 bundles)
+   ✓ src/utils/context.json (2 bundles)
+   ✓ app/context.json (3 bundles)
+📝 Writing main context index...
+   ✓ context_main.json (index of 5 folders)
+✅ 6 context files written successfully
 
 📊 Summary:
    Total components: 24
@@ -75,7 +82,7 @@ full     |        45,155 |        40,138 | 0%
 ⏱  Completed in 3256ms`
     },
     {
-      title: 'Context Drift Detection',
+      title: 'Multi-File Compare',
       content: `$ stamp context compare --stats
 🔄 Auto-compare mode: generating fresh context...
 
@@ -88,8 +95,15 @@ full     |        45,155 |        40,138 | 0%
 📦 Generating context for 22 root components (depth=1)...
 🔍 Validating generated context...
 ✅ Validation passed
-📝 Writing to: /tmp/context-1763129398922.json
-✅ Context written successfully
+📝 Writing context files for 5 folders...
+   ✓ context.json (2 bundles)
+   ✓ src/context.json (3 bundles)
+   ✓ src/components/context.json (5 bundles)
+   ✓ src/utils/context.json (2 bundles)
+   ✓ app/context.json (3 bundles)
+📝 Writing main context index...
+   ✓ context_main.json (index of 5 folders)
+✅ 6 context files written successfully
 
 📊 Summary:
    Total components: 24
@@ -111,27 +125,57 @@ full     |        45,155 |        40,138 | 0%
 
 ⏱  Completed in 3472ms
 
-🔍 Comparing with existing context.json...
+🔍 Comparing with existing context files (multi-file mode)...
 
 
 ✅  PASS
 
-Token Stats:
-  Old: 9,488 (GPT-4o-mini) | 8,434 (Claude)
-  New: 9,488 (GPT-4o-mini) | 8,434 (Claude)
-  Δ 0 (+0.00%)`
+📁 Folder Summary:
+   Total folders: 14
+   ✓  Unchanged folders: 14
+
+📂 Folder Details:
+
+   ✅ PASS: src/cli/context.json
+      Path: src/cli
+
+   ✅ PASS: src/core/context.json
+      Path: src/core`
     },
     {
       title: 'Validate Context',
       content: `$ stamp context validate
-🔍 Validating "/project/context.json"...
-✅ Valid context file with 22 bundle(s)
-   Total nodes: 25
-   Total edges: 3`
+🔍 Validating "context.json"...
+✅ Valid context file with 4 bundle(s)
+   Total nodes: 37
+   Total edges: 42
+
+$ stamp context validate context_main.json
+🔍 Validating "context_main.json"...
+✅ Valid index file with 5 folder(s)
+   Total components: 42
+   Total bundles: 15`
     },
     {
-      title: 'context.json',
-      content: `[
+      title: 'Init & Clean',
+      content: `$ stamp init
+✅ Created .gitignore with LogicStamp patterns
+✅ Created LLM_CONTEXT.md
+
+$ stamp context clean
+🧹 This will remove:
+  - context_main.json
+  - src/components/context.json
+  - src/hooks/context.json
+  - src/ui/context.json
+  - .logicstamp/
+
+💡 Run with --all --yes to confirm and delete these files.`
+    },
+    {
+      title: 'context.json (folder)',
+      content: `// src/components/context.json
+[
   {
     "$schema": "https://logicstamp.dev/schemas/context/v0.1.json",
     "type": "LogicStampBundle",
@@ -278,7 +322,7 @@ Token Stats:
         // Command prompt ($)
         { regex: /^\$\s+/g, color: isDarkMode ? 'text-green-400' : 'text-green-600' },
         // Commands (stamp, npm, etc.)
-        { regex: /\b(stamp|npm|i|install|-g|context|compare|validate|--stats|--compare-modes)\b/g, color: isDarkMode ? 'text-blue-400' : 'text-blue-600' },
+        { regex: /\b(stamp|npm|i|install|-g|context|compare|validate|init|clean|--stats|--compare-modes|--approve|--clean-orphaned)\b/g, color: isDarkMode ? 'text-blue-400' : 'text-blue-600' },
         // Numbers
         { regex: /\b\d+\b/g, color: isDarkMode ? 'text-yellow-400' : 'text-yellow-600' },
         // Paths and URLs

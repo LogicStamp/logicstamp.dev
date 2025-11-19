@@ -35,7 +35,7 @@ const faqs = [
     id: 5,
     question: 'How do I get started?',
     answer:
-      'Install globally with `npm i -g logicstamp-context`, navigate to your project directory, and run `stamp context`. The CLI generates `context.json` with AI-ready bundles. Share this file with Claude, ChatGPT, or any AI assistant for instant codebase understanding. Use `stamp context validate` to verify the output.',
+      'Install globally with `npm i -g logicstamp-context`, navigate to your project directory, and run `stamp context`. The CLI generates multiple `context.json` files (one per folder) plus a `context_main.json` index with AI-ready bundles. Share these files with Claude, ChatGPT, or any AI assistant for instant codebase understanding. Use `stamp context validate` to verify the output.',
   },
   {
     id: 6,

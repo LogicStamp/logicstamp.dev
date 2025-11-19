@@ -71,7 +71,7 @@ export default function ContextJsonPreview({ animatedNodes }: ContextJsonPreview
         </div>
         <p className={`text-xs lg:text-sm ${
           isDarkMode ? 'text-gray-400' : 'text-gray-500'
-        }`}>context.json</p>
+        }`}>src/components/context.json</p>
       </div>
       <div className={`flex-1 p-3 sm:p-4 lg:p-5 overflow-x-auto sm:overflow-hidden ${
         isDarkMode ? 'bg-gray-900' : 'bg-gray-50'
