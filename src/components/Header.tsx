@@ -125,22 +125,26 @@ export default function Header() {
           </div>
           
           {/* Desktop navigation */}
-          <div className="hidden lg:flex lg:items-center lg:gap-x-1">
-            {navigation.map((item) => (
-              <a
-                key={item.name}
-                href={item.href}
-                target={item.external ? '_blank' : undefined}
-                rel={item.external ? 'noopener noreferrer' : undefined}
-                className="relative px-3 py-2 text-sm font-medium text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition-all duration-200 rounded-lg hover:bg-gray-100/50 dark:hover:bg-gray-800/50 group"
-              >
-                <span className="relative z-10">{item.name}</span>
-                {item.external && (
-                  <svg className="inline-block ml-1 w-3 h-3 opacity-50 group-hover:opacity-100 transition-opacity" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
-                  </svg>
+          <div className="hidden lg:flex lg:items-center lg:gap-x-2">
+            {navigation.map((item, index) => (
+              <Fragment key={item.name}>
+                {index > 0 && (
+                  <div className="h-5 w-px bg-gray-300/50 dark:bg-gray-600/50 mx-2" />
                 )}
-              </a>
+                <a
+                  href={item.href}
+                  target={item.external ? '_blank' : undefined}
+                  rel={item.external ? 'noopener noreferrer' : undefined}
+                  className="relative px-4 py-2 text-sm font-medium text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition-all duration-200 rounded-lg hover:bg-gray-100/50 dark:hover:bg-gray-800/50 group"
+                >
+                  <span className="relative z-10">{item.name}</span>
+                  {item.external && (
+                    <svg className="inline-block ml-1 w-3.5 h-3.5 opacity-50 group-hover:opacity-100 transition-opacity" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                    </svg>
+                  )}
+                </a>
+              </Fragment>
             ))}
           </div>
           
@@ -166,23 +170,27 @@ export default function Header() {
           {/* Subtle gradient overlay */}
           <div className="absolute inset-0 bg-gradient-to-br from-white/40 via-transparent to-transparent dark:from-white/5 dark:via-transparent dark:to-transparent pointer-events-none" />
         <div className="relative px-6 py-6">
-          <div className="space-y-1">
-            {navigation.map((item) => (
-              <a
-                key={item.name}
-                href={item.href}
-                target={item.external ? '_blank' : undefined}
-                rel={item.external ? 'noopener noreferrer' : undefined}
-                className="flex items-center justify-between rounded-xl px-4 py-3.5 text-base font-medium text-gray-900 dark:text-white hover:bg-gray-100/60 dark:hover:bg-gray-800/60 transition-all duration-200 active:scale-[0.98] group"
-                onClick={() => setMobileMenuOpen(false)}
-              >
-                <span>{item.name}</span>
-                {item.external && (
-                  <svg className="w-4 h-4 opacity-50 group-hover:opacity-100 transition-opacity" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
-                  </svg>
+          <div className="space-y-2">
+            {navigation.map((item, index) => (
+              <Fragment key={item.name}>
+                {index > 0 && (
+                  <div className="h-px bg-gray-200/50 dark:bg-gray-700/50 my-2" />
                 )}
-              </a>
+                <a
+                  href={item.href}
+                  target={item.external ? '_blank' : undefined}
+                  rel={item.external ? 'noopener noreferrer' : undefined}
+                  className="flex items-center justify-between rounded-xl px-4 py-3.5 text-base font-medium text-gray-900 dark:text-white hover:bg-gray-100/60 dark:hover:bg-gray-800/60 transition-all duration-200 active:scale-[0.98] group"
+                  onClick={() => setMobileMenuOpen(false)}
+                >
+                  <span>{item.name}</span>
+                  {item.external && (
+                    <svg className="w-4 h-4 opacity-50 group-hover:opacity-100 transition-opacity" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                    </svg>
+                  )}
+                </a>
+              </Fragment>
             ))}
           </div>
 
