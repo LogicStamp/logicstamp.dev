@@ -7,21 +7,27 @@
 npm install -g logicstamp-context
 
 # Generate context for your project
-logicstamp-context
+stamp context
 
-# Output: context.json with full component analysis
+# Output: Multiple context.json files (one per folder) plus context_main.json index
 ```
+
+**Note**: "Global CLI" means the tool is installed globally on your system (via `npm install -g`), making the `stamp` command available from any directory in your terminal, not just within a specific project folder.
+- **Local install**: `npm install logicstamp-context` → only available in that project
+- **Global install**: `npm install -g logicstamp-context` → available everywhere via `stamp` command
 
 ## Command Syntax
 
 ```bash
-logicstamp-context [path] [options]
-logicstamp-validate [file]
+stamp context [path] [options]
+stamp context validate [file]
+stamp context compare [oldFile] [newFile] [options]
+stamp context clean [path] [options]
 ```
 
 ## Commands
 
-### `context` (default)
+### `stamp context`
 
 Generates LogicStamp bundles from a directory.
 
@@ -36,7 +42,7 @@ Generates LogicStamp bundles from a directory.
 | `--depth <n>` | `-d` | `1` | Dependency traversal depth (0=self only, 1=direct deps, etc.) |
 | `--include-code <mode>` | `-c` | `header` | Code inclusion: `none`, `header`, or `full` |
 | `--format <fmt>` | `-f` | `json` | Output format: `json`, `pretty`, or `ndjson` |
-| `--out <file>` | `-o` | `context.json` | Output file path |
+| `--out <file>` | `-o` | `context.json` | Output directory or file path. If a `.json` file is specified, its directory is used as the output directory. Otherwise, the path is used as the output directory. Context files will be written maintaining folder structure within this directory. |
 | `--max-nodes <n>` | `-m` | `100` | Maximum nodes to include (prevents huge bundles) |
 | `--profile <name>` | | `llm-chat` | Apply preset profile (see below) |
 | `--strict` | `-s` | `false` | Fail if any dependency is missing |
@@ -50,19 +56,20 @@ Generates LogicStamp bundles from a directory.
 - Use `--dry-run` to inspect totals without producing files.
 - Use `--stats` to emit machine-readable summary lines (combine with shell redirection).
 
-### `logicstamp-validate`
+### `stamp context validate`
 
 Checks that a generated bundle file matches the expected schema and structure.
 
 ```bash
-logicstamp-validate             # validates ./context.json by default
-logicstamp-validate review.json # validate a custom bundle
+stamp context validate             # validates ./context.json by default
+stamp context validate review.json # validate a custom bundle
 ```
 
 **What it checks**
 
 - File exists (defaults to `./context.json`) and parses as JSON.
-- Top-level shape matches `LogicStampBundle[]`.
+- For folder context files: Top-level shape matches `LogicStampBundle[]`.
+- For main index: Structure matches `LogicStampIndex` with folder metadata.
 - Each bundle has the correct types, graph metadata, and contract versions.
 - Warns on unexpected schema versions or hash formats.
 
@@ -70,6 +77,177 @@ logicstamp-validate review.json # validate a custom bundle
 
 - `0` – File is valid (warnings may still print).
 - `1` – Critical issues (missing fields, invalid JSON, file not found).
+
+### `stamp context compare`
+
+Compares context files to detect drift and changes across your project. Supports both single-file and multi-file comparison modes.
+
+```bash
+# Auto-mode: Compare all context files (multi-file mode)
+stamp context compare
+
+# Single-file: Compare two specific files
+stamp context compare old.json new.json
+
+# Multi-file: Compare two indices
+stamp context compare old/context_main.json new/context_main.json
+
+# Auto-approve updates (like jest -u)
+stamp context compare --approve
+
+# Show per-folder token statistics
+stamp context compare --stats
+
+# Clean up orphaned files automatically
+stamp context compare --approve --clean-orphaned
+```
+
+**What it does**
+
+The compare command has **two modes**:
+
+1. **Multi-File Mode** (Auto or Manual with `context_main.json`):
+   - Compares **all context files** across your project
+   - Uses `context_main.json` as the root index
+   - Detects:
+     - **ADDED FILE** – New folders with context files
+     - **ORPHANED FILE** – Folders removed from project
+     - **DRIFT** – Changed files with component-level details
+     - **PASS** – Unchanged files
+   - Shows three-tier output:
+     - Folder-level summary
+     - Component-level summary
+     - Detailed per-folder changes
+
+2. **Single-File Mode**:
+   - Compares two specific `context.json` files
+   - Detects added/removed/changed components
+   - Shows detailed component-level diffs
+
+**Key options**
+
+| Option | Description |
+|--------|-------------|
+| `--approve` | Auto-approve updates (non-interactive, CI-safe) |
+| `--clean-orphaned` | Auto-delete orphaned files with `--approve` |
+| `--stats` | Show token count statistics per folder |
+| `--help` | Show help message |
+
+**Exit codes**
+
+- `0` – PASS (no drift) OR drift approved and updated
+- `1` – DRIFT detected but not approved
+
+**Example output (Multi-File Mode)**
+
+```bash
+$ stamp context compare
+
+✅  PASS
+
+📁 Folder Summary:
+   Total folders: 14
+   ✓  Unchanged folders: 14
+
+📂 Folder Details:
+
+   ✅ PASS: src/cli/context.json
+      Path: src/cli
+
+   ✅ PASS: src/core/context.json
+      Path: src/core
+```
+
+**Example with drift**
+
+```bash
+$ stamp context compare
+
+⚠️  DRIFT
+
+📁 Folder Summary:
+   Total folders: 14
+   ➕ Added folders: 1
+   ~  Changed folders: 2
+   ✓  Unchanged folders: 11
+
+📦 Component Summary:
+   + Added: 3
+   ~ Changed: 2
+
+📂 Folder Details:
+
+   ➕ ADDED FILE: src/new-feature/context.json
+      Path: src/new-feature
+
+   ⚠️  DRIFT: src/cli/commands/context.json
+      Path: src/cli/commands
+      ~ Changed components (1):
+        ~ compare.ts
+          Δ hash
+            old: uif:abc123...
+            new: uif:def456...
+
+Update all context files? (y/N)
+```
+
+**CI Integration**
+
+```bash
+# Fail build if drift detected
+stamp context compare || exit 1
+
+# Auto-approve in CI (like jest -u)
+stamp context compare --approve
+
+# Show token impact
+stamp context compare --stats
+```
+
+**See also:** [COMPARE_COMMAND.md](./COMPARE_COMMAND.md) for comprehensive documentation.
+
+### `stamp context clean`
+
+Removes all generated context artifacts from your project. Safe by default (dry run), requires `--all --yes` to actually delete files.
+
+```bash
+# Show what would be removed (dry run)
+stamp context clean
+
+# Actually delete all context artifacts
+stamp context clean --all --yes
+
+# Clean specific directory
+stamp context clean ./src --all --yes
+```
+
+**What it removes**
+
+- `context_main.json` – Main index file
+- `**/context.json` – All folder context files (recursively)
+- `.logicstamp/` – Cache directory (if present, automatically included)
+
+**Key options**
+
+| Option | Description |
+|--------|-------------|
+| `--all` | Include all context files in the deletion operation |
+| `--yes` | Confirm deletion (required with `--all`) |
+| `--help` | Show help message |
+
+**Safety features**
+
+- **Dry run by default** – Shows what would be removed without deleting
+- **Requires both flags** – Both `--all` and `--yes` must be specified to delete
+- **Ignores build directories** – Automatically skips `node_modules/`, `dist/`, `build/`, `.next/`
+
+**Use cases**
+
+- Reset context files before regenerating
+- Clean before switching git branches
+- Remove context artifacts from a project
+
+**See also:** [CLEAN.md](./CLEAN.md) for comprehensive documentation.
 
 ## Profiles
 
@@ -82,7 +260,7 @@ Balanced mode optimized for AI chat:
 - Max nodes: 100
 
 ```bash
-logicstamp-context --profile llm-chat
+stamp context --profile llm-chat
 ```
 
 ### `llm-safe`
@@ -92,7 +270,7 @@ Conservative mode for token-limited contexts:
 - Max nodes: 30
 
 ```bash
-logicstamp-context --profile llm-safe
+stamp context --profile llm-safe
 ```
 
 ### `ci-strict`
@@ -102,7 +280,7 @@ Strict validation mode for CI/CD:
 - Fails on missing deps
 
 ```bash
-logicstamp-context --profile ci-strict
+stamp context --profile ci-strict
 ```
 
 ## Code Inclusion Modes
@@ -111,7 +289,7 @@ logicstamp-context --profile ci-strict
 Only contract metadata. Smallest size, fastest to process.
 
 ```bash
-logicstamp-context --include-code none
+stamp context --include-code none
 ```
 
 **Use when:** You only need structure, props, and logic signatures.
@@ -120,7 +298,7 @@ logicstamp-context --include-code none
 Includes JSDoc `@uif` header blocks. Good balance of context and size.
 
 ```bash
-logicstamp-context --include-code header
+stamp context --include-code header
 ```
 
 **Use when:** You want contract reference without full implementation.
@@ -129,7 +307,7 @@ logicstamp-context --include-code header
 Includes entire source files. Largest bundles but complete context.
 
 ```bash
-logicstamp-context --include-code full --max-nodes 20
+stamp context --include-code full --max-nodes 20
 ```
 
 **Use when:** AI needs to see or modify implementation details.
@@ -140,21 +318,21 @@ logicstamp-context --include-code full --max-nodes 20
 One-line JSON, ideal for programmatic use.
 
 ```bash
-logicstamp-context --format json
+stamp context --format json
 ```
 
 ### `pretty` - Human-Readable
 Formatted JSON with indentation.
 
 ```bash
-logicstamp-context --format pretty
+stamp context --format pretty
 ```
 
 ### `ndjson` - Streaming
 Newline-delimited JSON (one bundle per line).
 
 ```bash
-logicstamp-context --format ndjson
+stamp context --format ndjson
 ```
 
 ## Examples
@@ -163,59 +341,68 @@ logicstamp-context --format ndjson
 
 ```bash
 # Scan current directory
-logicstamp-context
+stamp context
 
 # Scan specific directory
-logicstamp-context ./src
+stamp context ./src
 
-# Custom output file
-logicstamp-context --out my-context.json
+# Custom output directory
+stamp context --out ./output
+
+# Or specify a file to use its directory
+stamp context --out ./output/context.json
 
 # Skip file write, but review summary locally
-logicstamp-context ./src --dry-run
+stamp context ./src --dry-run
 ```
 
 ### AI-Optimized Contexts
 
 ```bash
 # For Claude/ChatGPT (balanced)
-logicstamp-context --profile llm-chat
+stamp context --profile llm-chat
 
 # For token-limited models (conservative)
-logicstamp-context --profile llm-safe --out safe-context.json
+stamp context --profile llm-safe --out safe-context.json
 
 # Include full source for deep analysis
-logicstamp-context --include-code full --max-nodes 10
+stamp context --include-code full --max-nodes 10
 ```
 
 ### Deep Dependency Analysis
 
 ```bash
 # Two levels of dependencies
-logicstamp-context --depth 2
+stamp context --depth 2
 
 # Three levels with full code
-logicstamp-context --depth 3 --include-code full --max-nodes 50
+stamp context --depth 3 --include-code full --max-nodes 50
 ```
 
 ### CI/CD Integration
 
 ```bash
 # Strict mode - fails on missing dependencies
-logicstamp-context --profile ci-strict
+stamp context --profile ci-strict
 
 # Custom strict configuration
-logicstamp-context --strict --include-code none
+stamp context --strict --include-code none
 ```
 
 ### Validation & QA
 
 ```bash
 # Validate a generated bundle before committing
-logicstamp-validate          # defaults to ./context.json
+stamp context validate       # defaults to ./context.json
+
+# Validate the main index
+stamp context validate context_main.json
+
+# Validate a specific folder's context
+stamp context validate src/components/context.json
 
 # Capture stats for monitoring without writing a file
-logicstamp-context --stats >> .ci/context-stats.jsonl
+stamp context --stats >> .ci/context-stats.jsonl
 ```
 
 ### Stats Output Format
@@ -252,17 +439,42 @@ The `--stats` flag outputs a single line of JSON with the following structure (s
 
 ```bash
 # Generate stats and parse in CI
-STATS=$(logicstamp-context --stats)
+STATS=$(stamp context --stats)
 COMPONENTS=$(echo $STATS | jq '.totalComponents')
 echo "Analyzed $COMPONENTS components"
 
 # Append to monitoring log
-logicstamp-context --stats | jq -c '. + {timestamp: now}' >> .ci/stats.jsonl
+stamp context --stats | jq -c '. + {timestamp: now}' >> .ci/stats.jsonl
 ```
 
-## Bundle Structure
+## Output Structure
 
-The generated context.json contains an array of bundles (one bundle per root component/entry point). Each bundle represents a complete dependency graph, with all related components and their contracts included within that bundle.
+LogicStamp Context generates **folder-organized, multi-file output**:
+
+### File Organization
+
+```
+output/
+├── context_main.json          # Main index with folder metadata
+├── context.json               # Root folder bundles (if any)
+├── src/
+│   └── context.json          # Bundles from src/ folder
+└── src/components/
+    └── context.json          # Bundles from src/components/
+```
+
+Each folder containing components gets its own `context.json` file. The directory structure mirrors your project layout.
+
+### Main Index (`context_main.json`)
+
+The `context_main.json` file serves as a directory index with:
+- Summary statistics (total components, bundles, folders, tokens)
+- List of all folders with their context file paths
+- Folder metadata including component lists, root detection, and token estimates
+
+### Folder Context Files
+
+Each folder's `context.json` contains an array of bundles (one bundle per root component/entry point). Each bundle represents a complete dependency graph, with all related components and their contracts included within that bundle.
 
 ### Design: Per-Root Bundles vs Per-Component Files
 
@@ -282,30 +494,7 @@ True per-component splitting (where each component is its own file) would be use
 
 These are advanced concerns for future LogicStamp platform features, not v1 "context generation for AI chat" use cases.
 
-**Current structure:**
-```json
-[
-  // Bundle 1: DashboardPage + its dependency graph
-  {
-    "entryId": "src/pages/DashboardPage.tsx",
-    "graph": {
-      "nodes": [
-        { "entryId": "src/pages/DashboardPage.tsx", "contract": {...} },
-        { "entryId": "src/components/Card.tsx", "contract": {...} },
-        { "entryId": "src/components/Button.tsx", "contract": {...} }
-      ],
-      "edges": [["DashboardPage", "Card"], ["Card", "Button"]]
-    }
-  },
-  // Bundle 2: Another root component + its graph
-  {
-    "entryId": "src/pages/SettingsPage.tsx",
-    "graph": {...}
-  }
-]
-```
-
-Each bundle is modular, self-contained, and includes complete UIF contracts for every component in its dependency graph.
+**Example: `src/components/context.json`**
 
 ```json
 [
@@ -357,6 +546,37 @@ Each bundle is modular, self-contained, and includes complete UIF contracts for 
     }
   }
 ]
+```
+
+**Example: `context_main.json` (Main Index)**
+
+```json
+{
+  "type": "LogicStampIndex",
+  "schemaVersion": "0.1",
+  "projectRoot": ".",
+  "projectRootResolved": "/absolute/path/to/project",
+  "createdAt": "2025-01-15T10:30:00.000Z",
+  "summary": {
+    "totalComponents": 42,
+    "totalBundles": 15,
+    "totalFolders": 5,
+    "totalTokenEstimate": 13895
+  },
+  "folders": [
+    {
+      "path": "src/components",
+      "contextFile": "src/components/context.json",
+      "bundles": 3,
+      "components": ["Button.tsx", "Card.tsx"],
+      "isRoot": false,
+      "tokenEstimate": 5234
+    }
+  ],
+  "meta": {
+    "source": "logicstamp-context@0.1.0"
+  }
+}
 ```
 
 ## Understanding the Output
@@ -424,10 +644,10 @@ The `meta.missing` array tracks dependencies that couldn't be resolved. An empty
 **Using `--strict-missing` for CI validation:**
 ```bash
 # Exit with error if ANY missing dependencies found
-logicstamp-context --strict-missing
+stamp context --strict-missing
 
 # In CI pipeline
-logicstamp-context --strict-missing || exit 1
+stamp context --strict-missing || exit 1
 ```
 
 **Best practices:**
@@ -442,7 +662,7 @@ logicstamp-context --strict-missing || exit 1
 
 ```bash
 # Generate context
-logicstamp-context --profile llm-chat
+stamp context --profile llm-chat
 
 # Share with AI
 # "Here's my codebase context: [paste context.json]"
@@ -467,7 +687,7 @@ Generate context and reference in prompts:
 
 ```bash
 # Generate fresh context
-logicstamp-context --out .vscode/context.json
+stamp context --out .vscode/context.json
 
 # Reference in AI prompts
 ```
@@ -478,7 +698,7 @@ logicstamp-context --out .vscode/context.json
 
 ```bash
 # Generate comprehensive context
-logicstamp-context --depth 1 --include-code header
+stamp context --depth 1 --include-code header
 
 # Result: context.json with all components and dependencies
 ```
@@ -490,17 +710,17 @@ Share with AI:
 
 ```bash
 # Focus on src directory only
-logicstamp-context ./src/components --out components-context.json
+stamp context ./src/components --out components-context.json
 
 # Deep dive with full source
-logicstamp-context ./src/components --depth 2 --include-code full
+stamp context ./src/components --depth 2 --include-code full
 ```
 
 ### 3. Documentation Generation
 
 ```bash
 # Generate minimal context for docs
-logicstamp-context --include-code none --format pretty --out docs/api.json
+stamp context --include-code none --format pretty --out docs/api.json
 ```
 
 Use the output to auto-generate API documentation.
@@ -509,7 +729,7 @@ Use the output to auto-generate API documentation.
 
 ```bash
 # Balanced context for review
-logicstamp-context --profile llm-chat --out review-context.json
+stamp context --profile llm-chat --out review-context.json
 ```
 
 Share with reviewer or AI:
@@ -536,7 +756,7 @@ Typical performance metrics:
 ### "No components found to analyze"
 - Ensure directory contains `.ts` or `.tsx` files
 - Check that files contain React components or TypeScript modules
-- Try specifying a different directory: `logicstamp-context ./src`
+- Try specifying a different directory: `stamp context ./src`
 
 ### Bundle too large
 - Reduce `--depth` (try `--depth 0` or `--depth 1`)
@@ -562,7 +782,7 @@ Missing dependencies appear in `meta.missing` and usually fall into two categori
 cat context.json | jq '.[] | .meta.missing'
 
 # Run with strict validation
-logicstamp-context --strict-missing
+stamp context --strict-missing
 ```
 
 ### Slow analysis

@@ -1,18 +1,24 @@
-# Compare Command Documentation
+## Compare Command Documentation
 
-The `compare` command is a powerful tool for detecting drift between context.json files. It works like **Jest snapshots** - automatically comparing your current code against a baseline context.
+The `compare` command is a powerful tool for detecting drift between context files. It works like **Jest snapshots** – automatically comparing your current code against a baseline context.
 
-## Quick Start
+### Quick Start
 
 ```bash
-# Auto-mode: Generate fresh context and compare with existing context.json
+# Auto-mode: Generate fresh context and compare ALL context files
 stamp context compare
 
 # Auto-approve updates (like jest -u)
 stamp context compare --approve
 
+# Clean up orphaned files automatically
+stamp context compare --approve --clean-orphaned
+
 # Manual mode: Compare two specific files
 stamp context compare old.json new.json
+
+# Multi-file mode: Compare two context_main.json indices
+stamp context compare old/context_main.json new/context_main.json
 
 # With token statistics
 stamp context compare --stats
@@ -20,224 +26,393 @@ stamp context compare --stats
 
 ---
 
-## What It Does
+### What It Does
 
-The compare command creates a lightweight signature for each component and detects:
+The compare command now supports **two comparison modes**:
 
-1. **Added components** - New components in the new context
-2. **Removed components** - Components that existed in old but not in new
-3. **Changed components** - Components that exist in both but have differences:
-   - Semantic hash changes (logic/structure changed)
-   - Import changes (dependencies changed)
-   - Hook changes (state management changed)
-   - Export changes (default ↔ named)
+#### Single-File Mode
+Creates a lightweight signature for each component in a single context file and detects:
+- **Added components** – New components in the new context
+- **Removed components** – Components that existed in old but not in new
+- **Changed components** – Components with differences in:
+  - Semantic hash (logic/structure changed)
+  - Imports (dependencies changed)
+  - Hooks (state management changed)
+  - Functions, components, props, emits, exports
+
+#### Multi-File Mode (NEW)
+Compares **all context files** across your project using `context_main.json` as the root index and detects:
+- **ADDED FILE** – New folders with context files
+- **ORPHANED FILE** – Folders removed from the project
+- **DRIFT** – Changed files with component-level changes
+- **PASS** – Unchanged files
 
 ---
 
-## Two Modes of Operation
+### Three Modes of Operation
 
-### Auto-Mode (Recommended)
+#### 1. Auto-Mode (Recommended) - Multi-File
 
 ```bash
 stamp context compare
 ```
 
 **What happens:**
-1. Generates a fresh context based on your current code
-2. Compares it with existing `context.json`
-3. Shows you what changed
-4. **Prompts you to update** if drift detected (in terminal)
-5. **Exits with error** if drift detected (in CI)
+1. Checks if `context_main.json` exists (errors if not found)
+2. Generates fresh context files based on your current code (all folders)
+3. Compares **all context files** using the indices
+4. Shows a **three-tier output**:
+   - Folder-level summary (added/orphaned/changed/unchanged)
+   - Component-level summary (total added/removed/changed)
+   - Detailed per-folder component changes
+5. **Prompts you to update** if drift detected (in terminal)
+6. **Exits with error** if drift detected (in CI)
 
-This is perfect for local development - just run it after making changes!
+This is perfect for local development – just run it after making changes!
 
-### Manual Mode
+**Example output:**
+```bash
+✅  PASS
+
+📁 Folder Summary:
+   Total folders: 14
+   ✓  Unchanged folders: 14
+
+📂 Folder Details:
+
+   ✅ PASS: src/cli/context.json
+      Path: src/cli
+
+   ✅ PASS: src/core/context.json
+      Path: src/core
+   ...
+```
+
+#### 2. Manual Mode - Single File
 
 ```bash
 stamp context compare old.json new.json
 ```
 
 **What happens:**
-1. Compares two specific context files
-2. Shows differences
+1. Compares two specific context files (folder `context.json` files)
+2. Shows component-level differences
 3. **Prompts to update old.json** with new.json (in terminal)
 4. **Exits with error** if drift detected (in CI)
 
 Use this when you want to compare specific snapshots or versions.
 
+#### 3. Manual Mode - Multi-File
+
+```bash
+stamp context compare old/context_main.json new/context_main.json
+```
+
+**What happens:**
+1. Auto-detects that you're comparing `context_main.json` files
+2. Loads both indices and compares **all referenced context files**
+3. Shows three-tier output (folder summary + component summary + details)
+4. **Prompts to update all files** if drift detected (in terminal)
+5. **Exits with error** if drift detected (in CI)
+
+Use this when comparing different branches, commits, or environments.
+
 ---
 
-## Approval Workflow (Jest-Style)
+### Approval Workflow (Jest-Style)
 
 The compare command follows Jest snapshot patterns:
 
-### 1. Interactive Mode (Local Dev)
+#### 1. Interactive Mode (Local Dev)
 
 ```bash
-$ stamp context compare
-
-⚠️  DRIFT
-
-Changed components: 1
-  ~ src/components/Button.tsx
-    Δ hash
-
-Update context.json? (y/N) y
-✅ context.json updated successfully
+stamp context compare
 ```
 
-- **Only in terminals** (TTY mode)
+Typical output:
+
+```bash
+⚠️  DRIFT
+
+📁 Folder Summary:
+   Total folders: 14
+   ➕ Added folders: 1
+   ~  Changed folders: 2
+   ✓  Unchanged folders: 11
+
+📦 Component Summary:
+   + Added: 3
+   ~ Changed: 2
+
+📂 Folder Details:
+
+   ➕ ADDED FILE: src/new-feature/context.json
+      Path: src/new-feature
+
+   ⚠️  DRIFT: src/cli/commands/context.json
+      Path: src/cli/commands
+      + Added components (1):
+        + compare.ts
+      ~ Changed components (1):
+        ~ context.ts
+          Δ hash
+            old: uif:abc123456789012345678901
+            new: uif:def456789012345678901234
+
+Update all context files? (y/N) y
+✅ 15 context files updated successfully
+```
+
+- Only in terminals (TTY mode)
 - Prompts Y/N if drift detected
-- Updates if you type `y`
+- Updates **all affected files** if you type `y`
 - Declines if you press Enter or type anything else
 
-### 2. Auto-Approve Mode (CI-Safe)
+#### 2. Auto-Approve Mode (CI-Safe)
 
 ```bash
-$ stamp context compare --approve
-
-⚠️  DRIFT
-
-Changed components: 1
-  ~ src/components/Button.tsx
-    Δ hash
-
-🔄 --approve flag set, updating context.json...
-✅ context.json updated successfully
+stamp context compare --approve
 ```
 
-- **Non-interactive** - no prompts
-- **Deterministic** - always updates if drift
-- **Works everywhere** - scripts, CI, terminals
+Typical output:
+
+```bash
+⚠️  DRIFT
+
+📁 Folder Summary:
+   Total folders: 14
+   ~  Changed folders: 1
+
+🔄 --approve flag set, updating all context files...
+   ✓ Updated src/cli/commands/context.json
+   ✓ Updated context_main.json
+✅ 2 context files updated successfully
+```
+
+- Non-interactive – no prompts
+- Deterministic – always updates if drift
+- Works everywhere – scripts, CI, terminals
 - Like `jest -u` for snapshots
 
-### 3. CI Mode (Auto-Detected)
+#### 3. CI Mode (Auto-Detected)
 
 ```bash
-$ stamp context compare
-
-⚠️  DRIFT
-
-Changed components: 1
-  ~ src/components/Button.tsx
-    Δ hash
+stamp context compare
 ```
 
-- **Never prompts** (non-TTY detected)
-- **Exits with code 1** if drift
-- **Never hangs or blocks**
-- Safe for automated pipelines
+Typical output:
+
+```bash
+⚠️  DRIFT
+
+📁 Folder Summary:
+   Total folders: 14
+   ~  Changed folders: 1
+
+📦 Component Summary:
+   ~ Changed: 2
+```
+
+- Never prompts (non-TTY detected)
+- Exits with code 1 if drift
+- Never hangs or blocks
 
 ---
 
-## Output Format
+### Output Format
 
-### PASS (No Drift)
+#### Multi-File PASS (No Drift)
 
 ```bash
-$ stamp context compare old.json new.json
+stamp context compare
 
-✅ PASS
+✅  PASS
+
+📁 Folder Summary:
+   Total folders: 14
+   ✓  Unchanged folders: 14
+
+📂 Folder Details:
+
+   ✅ PASS: context.json
+      Path: .
+
+   ✅ PASS: src/cli/context.json
+      Path: src/cli
+   ...
 ```
 
 Exit code: `0`
 
-### DRIFT Detected
+#### Multi-File DRIFT Detected
 
 ```bash
-$ stamp context compare old.json new.json
+stamp context compare
 
 ⚠️  DRIFT
 
-Added components: 2
-  + src/components/NewButton.tsx
-  + src/utils/tokens.ts
+📁 Folder Summary:
+   Total folders: 15
+   ➕ Added folders: 1
+   🗑️  Orphaned folders: 1
+   ~  Changed folders: 2
+   ✓  Unchanged folders: 11
 
-Removed components: 1
-  - src/components/OldButton.tsx
+📦 Component Summary:
+   + Added: 5
+   - Removed: 2
+   ~ Changed: 3
 
-Changed components: 3
-  ~ src/components/Card.tsx
-    Δ imports
-      - ./old-dependency
-      + ./new-dependency
-    Δ hooks
-      + useState
-      + useEffect
-  ~ src/App.tsx
-    Δ hash
-      old: uifb:abc123456789012345678901
-      new: uifb:def456789012345678901234
-  ~ src/utils/helpers.ts
-    Δ exports
-      named → default
+📂 Folder Details:
+
+   ➕ ADDED FILE: src/new-feature/context.json
+      Path: src/new-feature
+
+   🗑️  ORPHANED FILE: src/old-feature/context.json
+      Path: src/old-feature
+
+   ⚠️  DRIFT: src/components/context.json
+      Path: src/components
+      + Added components (2):
+        + NewButton.tsx
+        + Modal.tsx
+      - Removed components (1):
+        - OldButton.tsx
+      ~ Changed components (2):
+        ~ Card.tsx
+          Δ imports
+            - ./old-dependency
+            + ./new-dependency
+          Δ hooks
+            + useState
+            + useEffect
+        ~ Button.tsx
+          Δ hash
+            old: uif:abc123456789012345678901
+            new: uif:def456789012345678901234
+      Token Δ: +641 (GPT-4) | +569 (Claude)
+
+   ✅ PASS: src/utils/context.json
+      Path: src/utils
+
+🗑️  Orphaned Files on Disk:
+   (These files exist on disk but are not in the new index)
+
+   🗑️  src/deprecated/context.json
 ```
 
 Exit code: `1`
 
-**Detailed Diff Breakdown:**
+**Folder Status Indicators:**
+- **➕ ADDED FILE** – New folder with context file
+- **🗑️ ORPHANED FILE** – Folder removed (context file still exists)
+- **⚠️ DRIFT** – Folder has component changes
+- **✅ PASS** – Folder unchanged
 
-- **hash**: Shows old and new semantic hash values
-- **imports**: Shows removed (`-`) and added (`+`) imports
+**Detailed Diff Breakdown:**
+- **hash**: Shows old and new semantic hash values (indicates structure/logic changed)
+- **imports**: Shows removed (`-`) and added (`+`) import dependencies
 - **hooks**: Shows removed (`-`) and added (`+`) React hooks
+- **functions**: Shows removed (`-`) and added (`+`) functions in the module
+- **components**: Shows removed (`-`) and added (`+`) React components used
+- **props**: Shows removed (`-`) and added (`+`) component props
+- **emits**: Shows removed (`-`) and added (`+`) events/callbacks
 - **exports**: Shows export kind change (e.g., `named → default`)
 
 ---
 
-## With Token Statistics
+### Orphaned File Cleanup
 
-Add `--stats` to see token cost impact:
+When folders are removed from your project, their context files may still exist on disk. Use `--clean-orphaned` to automatically delete them:
 
 ```bash
-$ stamp context compare old.json new.json --stats
+stamp context compare --approve --clean-orphaned
+```
 
-⚠️  DRIFT
+**What happens:**
+1. Detects orphaned files (exist on disk but not in new index)
+2. With `--approve`: Automatically deletes them
+3. Without `--approve`: Only reports them
 
-Added components: 2
-  + src/components/NewButton.tsx
-  + src/utils/tokens.ts
+**Example:**
+```bash
+🗑️  Orphaned Files on Disk:
+   🗑️  src/old-feature/context.json
 
-Changed components: 2
-  ~ src/cli/commands/context.ts
-    Δ imports
-      + ../../utils/tokens.js
-      + ./validate.js
-  ~ src/cli/index.ts
-    Δ hash
-      old: uifb:1a2b3c4d5e6f7890abcdef12
-      new: uifb:9876543210fedcba09876543
-    Δ imports
-      - ./old-module
-      + ./new-module
-
-Token Stats:
-  Old: 8,484 (GPT-4o-mini) | 7,542 (Claude)
-  New: 9,125 (GPT-4o-mini) | 8,111 (Claude)
-  Δ +641 (+7.56%)
+🗑️  Cleaning up orphaned files...
+   🗑️  Deleted: src/old-feature/context.json
+   ✓ Deleted 1 orphaned file(s)
 ```
 
 ---
 
-## Exit Codes
+### With Token Statistics
+
+Add `--stats` to see per-folder token cost impact:
+
+```bash
+stamp context compare --stats
+```
+
+Typical output:
+
+```bash
+⚠️  DRIFT
+
+📁 Folder Summary:
+   Total folders: 14
+   ~  Changed folders: 2
+
+📦 Component Summary:
+   + Added: 3
+   ~ Changed: 2
+
+📂 Folder Details:
+
+   ⚠️  DRIFT: src/cli/commands/context.json
+      Path: src/cli/commands
+      + Added components (1):
+        + compare.ts
+      ~ Changed components (1):
+        ~ context.ts
+          Δ imports
+            + ../../utils/tokens.js
+      Token Δ: +1,234 (GPT-4) | +1,098 (Claude)
+
+   ⚠️  DRIFT: src/core/context.json
+      Path: src/core
+      ~ Changed components (1):
+        ~ pack.ts
+          Δ functions
+            + multiFileCompare
+      Token Δ: +892 (GPT-4) | +793 (Claude)
+```
+
+Token stats show the delta for each folder with changes.
+
+---
+
+### Exit Codes
 
 | Code | Meaning | Use Case |
 |------|---------|----------|
-| `0` | PASS - No drift detected | CI validation passed |
-| `0` | DRIFT approved and updated | User approved changes or --approve used |
-| `1` | DRIFT - Changes detected but not approved | CI validation failed |
-| `1` | DRIFT - User declined update (typed 'n') | Local dev declined changes |
+| `0` | PASS – No drift detected | CI validation passed |
+| `0` | DRIFT approved and updated | User approved changes or `--approve` used |
+| `1` | DRIFT – Changes detected but not approved | CI validation failed |
+| `1` | DRIFT – User declined update (typed `n`) | Local dev declined changes |
 | `1` | Error (file not found, invalid JSON, generation failed) | Fatal error occurred |
 
 **Key Points:**
+
 - Exit 0 = Success (no drift OR drift was approved/updated)
 - Exit 1 = Failure (drift not approved OR error)
 - This matches Jest snapshot behavior exactly
 
 ---
 
-## CI/CD Integration
+### CI/CD Integration
 
-### GitHub Actions Example (Recommended - Auto-Mode)
+#### GitHub Actions Example (Auto-Mode Multi-File)
 
 ```yaml
 name: Context Drift Check
@@ -257,8 +432,6 @@ jobs:
 
       - name: Check for context drift
         run: |
-          # Auto-mode: generates fresh context and compares with committed context.json
-          # Will exit 1 if drift detected (no prompts in CI)
           stamp context compare --stats
         continue-on-error: true
         id: drift_check
@@ -272,7 +445,7 @@ jobs:
               issue_number: context.issue.number,
               owner: context.repo.owner,
               repo: context.repo.repo,
-              body: '⚠️ Context drift detected! Run `stamp context compare --approve` locally to update context.json, then commit the changes.'
+              body: '⚠️ Context drift detected across multiple folders! Run `stamp context compare --approve` locally to update all context files, then commit the changes.'
             })
 
       - name: Fail if drift detected
@@ -280,10 +453,10 @@ jobs:
         run: exit 1
 ```
 
-### GitHub Actions Example (Manual Comparison)
+#### GitHub Actions Example (Manual Multi-File Comparison)
 
 ```yaml
-name: Context Drift Check (Manual)
+name: Context Drift Check (Multi-File)
 
 on:
   pull_request:
@@ -295,23 +468,23 @@ jobs:
     steps:
       - uses: actions/checkout@v3
         with:
-          fetch-depth: 0  # Need history for base comparison
+          fetch-depth: 0
 
       - name: Install LogicStamp Context
         run: npm install -g logicstamp-context
 
       - name: Generate PR context
-        run: stamp context --out pr-context.json
+        run: stamp context --out pr-context
 
       - name: Checkout base branch
         run: git checkout ${{ github.base_ref }}
 
       - name: Generate base context
-        run: stamp context --out base-context.json
+        run: stamp context --out base-context
 
-      - name: Compare contexts
+      - name: Compare all context files
         run: |
-          stamp context compare base-context.json pr-context.json --stats
+          stamp context compare base-context/context_main.json pr-context/context_main.json --stats
 
       - name: Comment on PR if drift detected
         if: failure()
@@ -322,500 +495,172 @@ jobs:
               issue_number: context.issue.number,
               owner: context.repo.owner,
               repo: context.repo.repo,
-              body: '⚠️ Context drift detected! Please review the changes.'
+              body: '⚠️ Context drift detected! Please review the folder-level and component-level changes.'
             })
 ```
 
-### GitLab CI Example
-
-```yaml
-compare-context:
-  stage: test
-  script:
-    - npm install -g logicstamp-context
-    - stamp context --out new-context.json
-    - git fetch origin $CI_MERGE_REQUEST_TARGET_BRANCH_NAME
-    - git checkout origin/$CI_MERGE_REQUEST_TARGET_BRANCH_NAME
-    - stamp context --out base-context.json
-    - git checkout $CI_COMMIT_SHA
-    - stamp context compare base-context.json new-context.json --stats
-  allow_failure: false
-  only:
-    - merge_requests
-```
-
-### Simple Shell Script (Auto-Mode)
+#### Shell Script (Auto-Mode)
 
 ```bash
 #!/bin/bash
 # check-drift.sh
 
-# Auto-mode: generate fresh and compare with committed context.json
 if stamp context compare --stats; then
-  echo "✅ No context drift detected"
+  echo "✅ No context drift detected across all folders"
   exit 0
 else
-  echo "⚠️  Context drift detected - see details above"
-  echo "Run 'stamp context compare --approve' to update"
+  echo "⚠️  Context drift detected - see folder details above"
+  echo "Run 'stamp context compare --approve' to update all files"
   exit 1
 fi
-```
-
-### Shell Script with Manual Comparison
-
-```bash
-#!/bin/bash
-# compare-contexts.sh
-
-set -e
-
-# Generate current context
-stamp context --out current.json
-
-# Generate previous context (from main branch)
-git stash
-git checkout main
-stamp context --out previous.json
-git checkout -
-git stash pop || true
-
-# Compare
-if stamp context compare previous.json current.json --stats; then
-  echo "✅ No context drift detected"
-  exit 0
-else
-  echo "⚠️  Context drift detected - see details above"
-  exit 1
-fi
-
-# Cleanup
-rm previous.json current.json
 ```
 
 ---
 
-## Local Development Workflow
+### Local Development Workflow
 
-### Typical Workflow
+#### Typical Workflow
 
 ```bash
-# 1. Generate initial context
-$ stamp context
-✅ Context written successfully
+stamp context
+stamp context compare
+```
 
-# 2. Make code changes
-$ vim src/components/Button.tsx
+Example:
 
-# 3. Check for drift
-$ stamp context compare
+```bash
+stamp context
+✅ 15 context files written successfully
+
+stamp context compare
 ⚠️  DRIFT
 
-Changed components: 1
-  ~ src/components/Button.tsx
-    Δ hash
+📁 Folder Summary:
+   Total folders: 14
+   ~  Changed folders: 1
 
-Update context.json? (y/N) y
-✅ context.json updated successfully
+📂 Folder Details:
 
-# 4. Commit both code and context
-$ git add src/components/Button.tsx context.json
-$ git commit -m "feat: update Button component"
+   ⚠️  DRIFT: src/components/context.json
+      Path: src/components
+      ~ Changed components (1):
+        ~ Button.tsx
+          Δ hash
+            old: uif:abc123456789012345678901
+            new: uif:def456789012345678901234
+
+Update all context files? (y/N) y
+✅ 2 context files updated successfully
 ```
 
-### Quick Update Workflow
+#### Quick Update Workflow
 
 ```bash
-# After making changes, quickly update context
-$ stamp context compare --approve
+stamp context compare --approve
 ```
 
-This is like `jest -u` - perfect for rapid iteration!
+Like `jest -u` – perfect for rapid iteration across all folders.
 
-### Pre-Commit Hook
-
-Add to `.git/hooks/pre-commit`:
+#### Pre-Commit Hook
 
 ```bash
 #!/bin/bash
 
-# Check for context drift before committing
 if ! stamp context compare; then
   echo ""
-  echo "❌ Context drift detected!"
+  echo "❌ Context drift detected across multiple folders!"
   echo "Run 'stamp context compare --approve' to update, or commit anyway with --no-verify"
   exit 1
 fi
 ```
 
 Make it executable:
+
 ```bash
 chmod +x .git/hooks/pre-commit
 ```
 
 ---
 
-## How It Works
+### How It Works
 
-### 1. LiteSig Index Creation
+#### Single-File Mode
 
-For each bundle in the context file, extract a lightweight signature:
+1. **LiteSig Index Creation** – Creates lightweight signatures for each component
+2. **Index by Entry ID** – Maps normalized entryId to LiteSig
+3. **Compute Diff** – Detects added/removed/changed components
+4. **Generate Output** – Shows PASS or DRIFT with detailed deltas
 
-```typescript
-interface LiteSig {
-  semanticHash: string;        // Structure + logic hash
-  imports: string[];           // Import dependencies
-  hooks: string[];             // React hooks used
-  exportKind: 'default' | 'named' | 'none';  // Export type
-}
-```
+#### Multi-File Mode (NEW)
 
-### 2. Index by Entry ID
+1. **Load Indices** – Loads both `context_main.json` files
+2. **Discover Folders** – Gets list of all context files from both indices
+3. **Compare Per-Folder** – For each folder:
+   - If in both: Compare context files (PASS or DRIFT)
+   - If only in new: ADDED FILE
+   - If only in old: ORPHANED FILE
+4. **Find Orphaned on Disk** – Checks if old files still exist on disk
+5. **Aggregate Results** – Combines into three-tier output:
+   - Folder-level summary
+   - Component-level summary
+   - Detailed per-folder changes
+6. **Handle Approval** – If approved, copies all new files and optionally cleans orphaned files
 
-```typescript
-Map<string, LiteSig>
-// Key: normalized entryId (lowercase)
-// Value: LiteSig for that component
-```
-
-### 3. Compute Diff
-
-```typescript
-// Added: in new but not in old
-for (const id of newIdx.keys()) {
-  if (!oldIdx.has(id)) added.push(id);
-}
-
-// Removed: in old but not in new
-for (const id of oldIdx.keys()) {
-  if (!newIdx.has(id)) removed.push(id);
-}
-
-// Changed: in both but different
-for (const id of newIdx.keys()) {
-  if (oldIdx.has(id)) {
-    const a = oldIdx.get(id);
-    const b = newIdx.get(id);
-    const deltas = [];
-
-    if (a.semanticHash !== b.semanticHash) deltas.push('hash');
-    if (JSON.stringify(a.imports) !== JSON.stringify(b.imports)) deltas.push('imports');
-    if (JSON.stringify(a.hooks) !== JSON.stringify(b.hooks)) deltas.push('hooks');
-    if (a.exportKind !== b.exportKind) deltas.push('exports');
-
-    if (deltas.length) changed.push({ id, deltas });
-  }
-}
-```
-
-### 4. Generate Output
-
-- PASS if no changes
-- DRIFT if any added/removed/changed
-- Optional token stats if `--stats` provided
+**Key Design Decisions:**
+- **Truth comes from bundles**, not metadata (summary counts can drift)
+- **Bundle→folder mapping** is checked (in `context_main.json`)
+- **Folder structure** is compared (exists/missing/orphaned)
+- **Metadata fields are NOT compared** (totalComponents, totalBundles are derived stats)
 
 ---
 
-## Delta Types Explained
+### Delta Types Explained
 
-### Hash Changes
-
-Shows the old and new semantic hash values:
-
-```
-Δ hash
-  old: uifb:abc123456789012345678901
-  new: uifb:def456789012345678901234
-```
-
-**Meaning**: Component's structure or logic changed (function added/removed, prop types changed, etc.)
-
-### Import Changes
-
-Shows added (`+`) and removed (`-`) imports:
-
-```
-Δ imports
-  - ./old-dependency
-  - ./another-old-dep
-  + ./new-dependency
-  + ./shiny-new-module
-```
-
-**Meaning**: Import dependencies were added or removed
-
-**Special case** - If only order changed:
-```
-Δ imports
-  (order changed)
-```
-
-### Hook Changes
-
-Shows added (`+`) and removed (`-`) React hooks:
-
-```
-Δ hooks
-  - useContext
-  + useState
-  + useEffect
-```
-
-**Meaning**: React hooks usage changed (state management modified)
-
-### Export Changes
-
-Shows export kind transition:
-
-```
-Δ exports
-  default → named
-```
-
-**Meaning**: Export type changed (e.g., from `export default` to `export const`)
-
-**Possible values:**
-- `default → named`
-- `named → default`
-- `none → default`
-- `default → none`
+- **Hash changes** – component structure or logic changed.
+- **Import changes** – import dependencies added/removed or order changed.
+- **Hook changes** – React hooks usage changed.
+- **Function changes** – functions declared in the module added/removed.
+- **Component changes** – referenced React components changed.
+- **Prop changes** – component API surface changed.
+- **Event/emit changes** – event/callback interface changed.
+- **Export changes** – export type changed (e.g., from `export default` to `export const`).
 
 ---
 
-## Use Cases
+### Use Cases
 
-### 1. Pre-Merge Validation
-
-Ensure context changes are intentional before merging:
-
-```bash
-# In CI
-stamp context compare base.json pr.json || exit 1
-```
-
-### 2. Cost Impact Analysis
-
-See how changes affect token costs:
-
-```bash
-stamp context compare base.json pr.json --stats
-```
-
-If the delta is significant, consider if changes are necessary.
-
-### 3. Breaking Change Detection
-
-Detect when component signatures change:
-
-```bash
-# Changed exports = potential breaking change
-# Changed hooks = different behavior
-# Changed imports = different dependencies
-```
-
-### 4. Documentation Triggers
-
-Trigger doc updates when context drifts:
-
-```bash
-if ! stamp context compare base.json new.json; then
-  echo "Context changed - updating docs..."
-  npm run generate-docs
-fi
-```
+- **Multi-folder drift detection** – See which folders have changes at a glance
+- **Pre-merge validation** – Ensure context changes are intentional before merging
+- **Cost impact analysis** – See per-folder token cost impact with `--stats`
+- **Breaking change detection** – Detect when component signatures change across the project
+- **Folder reorganization** – Detect ADDED/ORPHANED files when restructuring
+- **Orphaned file cleanup** – Automatically remove stale context files with `--clean-orphaned`
 
 ---
 
-## Performance
+### Performance & Limitations
 
-- **Fast**: O(n) complexity with hash-based indexing
-- **Lightweight**: Only indexes essential signature data
-- **Memory efficient**: Doesn't load full source code
-- **Typical speed**: <100ms for most projects
+- **Performance**
+  - Fast: O(n × m) where n = folders, m = components per folder
+  - Lightweight: only essential signature data
+  - Typical: <500ms for most projects with multi-file mode
 
----
-
-## Limitations
-
-1. **Entry ID matching**: Uses case-insensitive exact match
-2. **No fuzzy matching**: Renamed files show as removed + added
-3. **No semantic analysis**: Only compares signatures, not behavior
-4. **Bundle-level only**: Doesn't compare individual nodes deeply
+- **Limitations**
+  - Entry ID matching uses case-insensitive exact match
+  - No fuzzy matching; renamed files show as removed + added
+  - No deep semantic analysis; compares signatures, not behavior
+  - Orphaned file detection requires files to exist on disk
 
 ---
 
-## Tips & Best Practices
+### Summary
 
-### 1. Commit Context Files
+The compare command is your **context drift detector** with multi-file support:
 
-```bash
-# Add to git for easy comparison
-git add context.json
-git commit -m "feat: add new components"
-```
+- **Local dev**: auto-detects changes across all folders and prompts to update
+- **CI/CD**: detects drift across the entire project and fails builds automatically
+- **Jest-style**: familiar `--approve` flag workflow
+- **Zero config**: just run `stamp context compare`
+- **Three-tier output**: folder summary → component summary → detailed changes
+- **Orphaned file cleanup**: automatically clean up stale files with `--clean-orphaned`
 
-### 2. Use in PR Workflow
-
-```bash
-# Generate on each PR
-stamp context --out pr-context.json
-
-# Compare against main
-stamp context compare base-context.json pr-context.json
-```
-
-### 3. Monitor Token Growth
-
-```bash
-# Track token costs over time
-stamp context compare old.json new.json --stats | tee cost-report.txt
-```
-
-### 4. Combine with Strict Mode
-
-```bash
-# Ensure no drift AND no missing deps
-stamp context --strict-missing --out new.json
-stamp context compare base.json new.json
-```
-
----
-
-## Troubleshooting
-
-### "DRIFT" but no visible changes?
-
-- Check semantic hashes - internal structure may have changed
-- Verify import order (imports are order-sensitive)
-- Look for whitespace/formatting changes that affect hashes
-
-### Compare shows many false positives?
-
-- Ensure both contexts generated from same commit
-- Check if file paths are normalized consistently
-- Verify both contexts use same profile/options
-
-### Token delta seems wrong?
-
-- Token estimates are approximations (~4 chars/token)
-- Full tokenizer integration coming in future version
-- Use `--stats` to see breakdown
-
----
-
-## Advanced Usage
-
-### Compare Specific Modes
-
-```bash
-# Compare none mode vs header mode
-stamp context --include-code none --out none.json
-stamp context --include-code header --out header.json
-stamp context compare none.json header.json --stats
-```
-
-### Batch Comparison
-
-```bash
-# Compare multiple versions
-for version in v1 v2 v3; do
-  git checkout $version
-  stamp context --out $version-context.json
-done
-
-stamp context compare v1-context.json v2-context.json
-stamp context compare v2-context.json v3-context.json
-```
-
-### Integration with Package Scripts
-
-```json
-{
-  "scripts": {
-    "context": "stamp context",
-    "context:compare": "stamp context compare base-context.json context.json --stats",
-    "pretest": "npm run context:compare"
-  }
-}
-```
-
----
-
-## Related Commands
-
-- `stamp context` - Generate context
-- `stamp context --compare-modes` - Compare token costs across modes
-- `stamp context --stats` - Get JSON stats
-- `stamp context validate` - Validate context schema
-
----
-
-## Help
-
-```bash
-$ stamp context compare --help
-
-╭─────────────────────────────────────────────────╮
-│  Stamp Context Compare - Drift Detection        │
-│  Compare context files for changes              │
-╰─────────────────────────────────────────────────╯
-
-USAGE:
-  stamp context compare [options]                 Auto-compare with fresh context
-  stamp context compare <old.json> <new.json>     Compare two specific files
-
-ARGUMENTS:
-  <old.json>                          Path to old context file
-  <new.json>                          Path to new context file
-
-OPTIONS:
-  --approve                           Auto-approve updates (non-interactive, CI-safe)
-  --stats                             Show token count statistics
-  -h, --help                          Show this help
-
-EXAMPLES:
-  stamp context compare
-    Auto-mode: generate fresh context, compare with context.json
-    → Interactive: prompts Y/N to update if drift detected
-    → CI: exits with code 1 if drift detected (no prompt)
-
-  stamp context compare --approve
-    Auto-approve and update context.json if drift detected (like jest -u)
-
-  stamp context compare --stats
-    Show token count delta
-
-  stamp context compare old.json new.json
-    Compare two specific files (prompts Y/N to update old.json if drift)
-
-  stamp context compare || exit 1
-    CI validation: fail build if drift detected
-
-EXIT CODES:
-  0                                   PASS - No drift OR drift approved and updated
-  1                                   DRIFT - Changes detected but not approved
-
-BEHAVIOR:
-  • --approve: Non-interactive, deterministic, updates immediately if drift
-  • Interactive (TTY): Prompts "Update context.json? (y/N)" if drift
-  • CI (non-TTY): Never prompts, exits 1 if drift detected
-  • Validation runs during generation (fresh context always valid)
-
-NOTES:
-  This matches Jest snapshot workflow:
-    jest          → prompts to update snapshots locally
-    jest -u       → updates snapshots without prompt
-    CI            → fails if snapshots don't match
-```
-
----
-
-## Summary
-
-The compare command is your **context drift detector**:
-
-✅ **Local Dev**: Auto-detects changes, prompts to update
-✅ **CI/CD**: Detects drift, fails builds automatically
-✅ **Jest-Style**: Familiar `--approve` flag workflow
-✅ **Zero Config**: Just run `stamp context compare`
-
-**Questions? Issues?** Report at https://github.com/yourusername/logicstamp-context/issues

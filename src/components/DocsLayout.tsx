@@ -3,6 +3,7 @@
 import { useState, useEffect, useRef } from 'react'
 import { usePathname } from 'next/navigation'
 import DocsSidebar from '@/components/DocsSidebar'
+import DocsTOC from '@/components/DocsTOC'
 
 export default function DocsLayout({ children }: { children: React.ReactNode }) {
   const [sidebarOpen, setSidebarOpen] = useState(false)
@@ -175,6 +176,9 @@ export default function DocsLayout({ children }: { children: React.ReactNode }) 
           <main className="flex-1">
             <div className="max-w-3xl space-y-8 lg:ml-4">{children}</div>
           </main>
+
+          {/* Right TOC - only visible on XL+ screens */}
+          <DocsTOC />
         </div>
       </div>
     </div>
