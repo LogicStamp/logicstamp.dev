@@ -135,7 +135,7 @@ export default function Header() {
                   href={item.href}
                   target={item.external ? '_blank' : undefined}
                   rel={item.external ? 'noopener noreferrer' : undefined}
-                  className="relative px-4 py-2 text-sm font-medium text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition-all duration-200 rounded-lg hover:bg-gray-100/50 dark:hover:bg-gray-800/50 group"
+                  className="relative px-4 py-2 text-sm font-medium text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition-all duration-200 rounded-lg group"
                 >
                   <span className="relative z-10">{item.name}</span>
                   {item.external && (
@@ -180,7 +180,7 @@ export default function Header() {
                   href={item.href}
                   target={item.external ? '_blank' : undefined}
                   rel={item.external ? 'noopener noreferrer' : undefined}
-                  className="flex items-center justify-between rounded-xl px-4 py-3.5 text-base font-medium text-gray-900 dark:text-white hover:bg-gray-100/60 dark:hover:bg-gray-800/60 transition-all duration-200 active:scale-[0.98] group"
+                  className="flex items-center justify-between rounded-xl px-4 py-3.5 text-base font-medium text-gray-900 dark:text-white transition-all duration-200 active:scale-[0.98] group"
                   onClick={() => setMobileMenuOpen(false)}
                 >
                   <span>{item.name}</span>

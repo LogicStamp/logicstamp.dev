@@ -99,7 +99,7 @@ export default function QuickStartPage() {
             <div className="relative">
               <div className="flex flex-col sm:flex-row items-start gap-4 sm:gap-6">
                 <div className="flex-shrink-0 sticky top-20 sm:top-24 z-20 opacity-0 translate-x-[-1rem] animate-[fadeInSlide_0.5s_ease-out_0.2s_forwards]">
-                  <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-2xl bg-gradient-to-br from-blue-500 to-blue-600 text-white font-bold text-lg sm:text-xl flex items-center justify-center shadow-lg">
+                  <div className="w-10 h-10 sm:w-14 sm:h-14 rounded-2xl bg-gradient-to-br from-blue-500 to-blue-600 text-white font-bold text-base sm:text-xl flex items-center justify-center shadow-lg">
                     1
                   </div>
                 </div>
@@ -152,7 +152,7 @@ export default function QuickStartPage() {
             <div className="relative">
               <div className="flex flex-col sm:flex-row items-start gap-4 sm:gap-6">
                 <div className="flex-shrink-0 sticky top-20 sm:top-24 z-20 opacity-0 translate-x-[-1rem] animate-[fadeInSlide_0.5s_ease-out_0.25s_forwards]">
-                  <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-2xl bg-gradient-to-br from-purple-500 to-purple-600 text-white font-bold text-lg sm:text-xl flex items-center justify-center shadow-lg">
+                  <div className="w-10 h-10 sm:w-14 sm:h-14 rounded-2xl bg-gradient-to-br from-purple-500 to-purple-600 text-white font-bold text-base sm:text-xl flex items-center justify-center shadow-lg">
                     2
                   </div>
                 </div>
@@ -209,7 +209,7 @@ export default function QuickStartPage() {
             <div className="relative">
               <div className="flex flex-col sm:flex-row items-start gap-4 sm:gap-6">
                 <div className="flex-shrink-0 sticky top-20 sm:top-24 z-20 opacity-0 translate-x-[-1rem] animate-[fadeInSlide_0.5s_ease-out_0.3s_forwards]">
-                  <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-2xl bg-gradient-to-br from-green-500 to-emerald-600 text-white font-bold text-lg sm:text-xl flex items-center justify-center shadow-lg">
+                  <div className="w-10 h-10 sm:w-14 sm:h-14 rounded-2xl bg-gradient-to-br from-green-500 to-emerald-600 text-white font-bold text-base sm:text-xl flex items-center justify-center shadow-lg">
                     3
                   </div>
                 </div>
@@ -293,7 +293,7 @@ export default function QuickStartPage() {
             <div className="relative">
               <div className="flex flex-col sm:flex-row items-start gap-4 sm:gap-6">
                 <div className="flex-shrink-0 sticky top-20 sm:top-24 z-20 opacity-0 translate-x-[-1rem] animate-[fadeInSlide_0.5s_ease-out_0.4s_forwards]">
-                  <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-2xl bg-gradient-to-br from-orange-500 to-red-600 text-white font-bold text-lg sm:text-xl flex items-center justify-center shadow-lg">
+                  <div className="w-10 h-10 sm:w-14 sm:h-14 rounded-2xl bg-gradient-to-br from-orange-500 to-red-600 text-white font-bold text-base sm:text-xl flex items-center justify-center shadow-lg">
                     4
                   </div>
                 </div>
@@ -417,7 +417,7 @@ export default function QuickStartPage() {
             <div className="relative">
               <div className="flex flex-col sm:flex-row items-start gap-4 sm:gap-6">
                 <div className="flex-shrink-0 sticky top-20 sm:top-24 z-20 opacity-0 translate-x-[-1rem] animate-[fadeInSlide_0.5s_ease-out_0.5s_forwards]">
-                  <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-2xl bg-gradient-to-br from-amber-500 to-yellow-600 text-white font-bold text-lg sm:text-xl flex items-center justify-center shadow-lg">
+                  <div className="w-10 h-10 sm:w-14 sm:h-14 rounded-2xl bg-gradient-to-br from-amber-500 to-yellow-600 text-white font-bold text-base sm:text-xl flex items-center justify-center shadow-lg">
                     5
                   </div>
                 </div>
@@ -516,7 +516,7 @@ export default function QuickStartPage() {
             <div className="relative">
               <div className="flex flex-col sm:flex-row items-start gap-4 sm:gap-6">
                 <div className="flex-shrink-0 sticky top-20 sm:top-24 z-20 opacity-0 translate-x-[-1rem] animate-[fadeInSlide_0.5s_ease-out_0.6s_forwards]">
-                  <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-2xl bg-gradient-to-br from-rose-500 to-pink-600 text-white font-bold text-lg sm:text-xl flex items-center justify-center shadow-lg">
+                  <div className="w-10 h-10 sm:w-14 sm:h-14 rounded-2xl bg-gradient-to-br from-rose-500 to-pink-600 text-white font-bold text-base sm:text-xl flex items-center justify-center shadow-lg">
                     6
                   </div>
                 </div>

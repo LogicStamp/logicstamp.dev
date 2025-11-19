@@ -158,7 +158,7 @@ export default function GitHubStats() {
           {statItems.map((item, index) => (
             <div
               key={index}
-              className="flex flex-col items-center p-4 rounded-xl bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm border border-gray-200/50 dark:border-gray-700/50 shadow-sm hover:shadow-md hover:-translate-y-1 transition-all duration-200"
+              className="flex flex-col items-center p-4 rounded-xl bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm border border-gray-200/50 dark:border-gray-700/50 shadow-sm"
             >
               <div className={`p-2.5 rounded-lg ${item.bgColor} ${item.color} mb-3`}>
                 {item.icon}

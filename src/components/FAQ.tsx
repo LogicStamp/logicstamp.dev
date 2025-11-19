@@ -175,8 +175,8 @@ export default function FAQ() {
                       relative rounded-2xl transition-all duration-200 ease-out
                       ${
                         isOpen
-                          ? 'bg-white/90 dark:bg-gray-900/80 border border-gray-900 dark:border-gray-100 shadow-[0_0_0_1px_rgba(0,0,0,0.45),0_18px_40px_rgba(15,23,42,0.75)] dark:shadow-[0_0_0_1px_rgba(255,255,255,0.45),0_18px_40px_rgba(15,23,42,0.75)]'
-                          : 'bg-white/80 dark:bg-gray-900/60 border border-gray-200/60 dark:border-gray-800/80 hover:border-gray-400/80 dark:hover:border-gray-600/80 hover:bg-white dark:hover:bg-gray-900'
+                          ? 'border border-gray-900 dark:border-gray-100 shadow-[0_0_0_1px_rgba(0,0,0,0.45),0_18px_40px_rgba(15,23,42,0.75)] dark:shadow-[0_0_0_1px_rgba(255,255,255,0.45),0_18px_40px_rgba(15,23,42,0.75)]'
+                          : 'border border-gray-200/60 dark:border-gray-800/80 hover:border-gray-400/80 dark:hover:border-gray-600/80'
                       }
                     `}
                   >
