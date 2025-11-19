@@ -450,7 +450,7 @@ $ stamp context clean
               className={`px-4 py-2 text-xs sm:text-sm lg:text-base rounded-full transition-all duration-300 whitespace-nowrap flex-shrink-0 font-medium ${
                 currentDemo === index
                   ? 'bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 text-white shadow-lg shadow-purple-500/50 scale-105'
-                  : 'bg-white/80 dark:bg-gray-900/80 backdrop-blur-sm text-gray-700 dark:text-gray-300 hover:bg-white dark:hover:bg-gray-900 border border-gray-200/50 dark:border-gray-700/50 hover:border-gray-300 dark:hover:border-gray-600 hover:scale-105'
+                  : 'bg-white/80 dark:bg-gray-900/80 backdrop-blur-sm text-gray-700 dark:text-gray-300 border border-gray-200/50 dark:border-gray-700/50'
               }`}
             >
               {demo.title}
@@ -460,15 +460,7 @@ $ stamp context clean
       </div>
 
       {/* Terminal */}
-      <div className="group relative rounded-2xl bg-white/80 dark:bg-gray-900/80 backdrop-blur-xl p-2 ring-1 ring-inset ring-gray-200/20 dark:ring-gray-700/20 lg:rounded-2xl lg:p-4 hover:shadow-2xl transition-all duration-500 overflow-hidden">
-        {/* Gradient overlay on hover */}
-        <div className="absolute inset-0 bg-gradient-to-br from-blue-500/5 via-purple-500/5 to-pink-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-        
-        {/* Animated border gradient */}
-        <div className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500">
-          <div className="absolute inset-[1px] rounded-2xl bg-white dark:bg-gray-900" />
-          <div className="absolute inset-0 rounded-2xl bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 animate-border-spin" />
-        </div>
+      <div className="relative rounded-2xl bg-white/80 dark:bg-gray-900/80 backdrop-blur-xl p-2 ring-1 ring-inset ring-gray-200/20 dark:ring-gray-700/20 lg:rounded-2xl lg:p-4 transition-all duration-500 overflow-hidden">
 
         <div className={`relative rounded-md shadow-xl ring-1 ${
           isDarkMode 

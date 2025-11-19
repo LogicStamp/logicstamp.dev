@@ -1,7 +1,6 @@
 'use client'
 
-import { useEffect, useState } from 'react'
-import AnimatedSection from '../AnimatedSection'
+import { useEffect, useState, forwardRef } from 'react'
 import DependencyGraph from './DependencyGraph'
 import ContextJsonPreview from './ContextJsonPreview'
 
@@ -17,7 +16,14 @@ const GRAPH_NODES = [
   { id: 7, label: 'Footer', x: 80, y: 50, type: 'component' as const },
 ]
 
-export default function HeroVisualization() {
+interface HeroVisualizationProps {
+  graphStyle?: React.CSSProperties
+  terminalStyle?: React.CSSProperties
+  arrowOpacity?: number
+}
+
+const HeroVisualization = forwardRef<HTMLDivElement, HeroVisualizationProps>(
+  function HeroVisualization({ graphStyle, terminalStyle, arrowOpacity = 1 }, ref) {
   const [animatedNodes, setAnimatedNodes] = useState<Set<number>>(new Set())
   const [prefersReducedMotion, setPrefersReducedMotion] = useState(false)
 
@@ -74,11 +80,13 @@ export default function HeroVisualization() {
   }, [prefersReducedMotion])
 
   return (
-    <AnimatedSection direction="up" delay={400}>
-      <div className="mt-16 flow-root sm:mt-24">
+    <div ref={ref} className="mt-16 flow-root sm:mt-24">
         <div className="relative flex flex-col lg:grid lg:grid-cols-2 gap-6 lg:gap-12">
           {/* Left: Dependency Graph */}
-          <div className="relative rounded-xl bg-gradient-bg-card p-2 ring-1 ring-inset ring-secondary-200/20 dark:ring-secondary-400/20 lg:rounded-2xl lg:p-4 hover-lift shadow-lg h-96 sm:h-[48rem] overflow-x-auto sm:overflow-hidden">
+          <div 
+            className="relative rounded-xl bg-gradient-bg-card p-2 ring-1 ring-inset ring-secondary-200/20 dark:ring-secondary-400/20 lg:rounded-2xl lg:p-4 hover-lift shadow-lg h-96 sm:h-[48rem] overflow-x-auto sm:overflow-hidden"
+            style={graphStyle}
+          >
             <DependencyGraph animatedNodes={animatedNodes} />
           </div>
           
@@ -110,7 +118,13 @@ export default function HeroVisualization() {
                 animation: pulse-glow 2s ease-in-out infinite;
               }
             `}</style>
-            <div className="flex items-center justify-center w-12 h-12 rounded-full bg-gradient-to-r from-blue-500/20 to-purple-500/20 backdrop-blur-sm border border-secondary-200/30 dark:border-secondary-400/30 pulse-glow-container">
+            <div 
+              className="flex items-center justify-center w-12 h-12 rounded-full bg-gradient-to-r from-blue-500/20 to-purple-500/20 backdrop-blur-sm border border-secondary-200/30 dark:border-secondary-400/30 pulse-glow-container"
+              style={{ 
+                opacity: arrowOpacity,
+                transition: 'opacity 0.6s cubic-bezier(0.4, 0, 0.2, 1)'
+              }}
+            >
               <svg
                 className="w-6 h-6 text-secondary-600 dark:text-secondary-300 flow-arrow-horizontal"
                 fill="none"
@@ -139,7 +153,13 @@ export default function HeroVisualization() {
                 animation: flowDown 2s ease-in-out infinite;
               }
             `}</style>
-            <div className="flex items-center justify-center w-12 h-12 rounded-full bg-gradient-to-b from-blue-500/20 to-purple-500/20 backdrop-blur-sm border border-secondary-200/30 dark:border-secondary-400/30 pulse-glow-container">
+            <div 
+              className="flex items-center justify-center w-12 h-12 rounded-full bg-gradient-to-b from-blue-500/20 to-purple-500/20 backdrop-blur-sm border border-secondary-200/30 dark:border-secondary-400/30 pulse-glow-container"
+              style={{ 
+                opacity: arrowOpacity,
+                transition: 'opacity 0.6s cubic-bezier(0.4, 0, 0.2, 1)'
+              }}
+            >
               <svg
                 className="w-6 h-6 text-secondary-600 dark:text-secondary-300 flow-arrow-vertical"
                 fill="none"
@@ -152,12 +172,16 @@ export default function HeroVisualization() {
           </div>
           
           {/* Right: Context.json Preview */}
-          <div className="relative rounded-xl bg-gradient-bg-card p-2 ring-1 ring-inset ring-secondary-200/20 dark:ring-secondary-400/20 lg:rounded-2xl lg:p-4 hover-lift shadow-lg h-96 sm:h-[48rem] overflow-x-auto sm:overflow-hidden">
+          <div 
+            className="relative rounded-xl bg-gradient-bg-card p-2 ring-1 ring-inset ring-secondary-200/20 dark:ring-secondary-400/20 lg:rounded-2xl lg:p-4 hover-lift shadow-lg h-96 sm:h-[48rem] overflow-x-auto sm:overflow-hidden"
+            style={terminalStyle}
+          >
             <ContextJsonPreview animatedNodes={animatedNodes} />
           </div>
         </div>
       </div>
-    </AnimatedSection>
   )
-}
+})
+
+export default HeroVisualization
 

@@ -1,7 +1,6 @@
 'use client'
 
 import { useEffect, useState } from 'react'
-import AnimatedSection from './AnimatedSection'
 
 interface GitHubStatsData {
   stars: number
@@ -137,8 +136,7 @@ export default function GitHubStats() {
   ]
 
   return (
-    <AnimatedSection direction="up" delay={200}>
-      <div className="mt-12 sm:mt-16">
+    <div className="mt-20 sm:mt-32 lg:mt-48">
         <div className="flex items-center justify-center gap-2 mb-6">
           <svg
             className="w-6 h-6 text-gray-700 dark:text-gray-300"
@@ -202,6 +200,5 @@ export default function GitHubStats() {
           </a>
         </div>
       </div>
-    </AnimatedSection>
   )
 }

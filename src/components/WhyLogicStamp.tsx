@@ -248,19 +248,9 @@ export default function WhyLogicStamp() {
               solutionInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
             }`}
           >
-            <div className="group relative rounded-2xl bg-white/80 dark:bg-gray-900/80 backdrop-blur-xl p-8 shadow-sm hover:shadow-xl transition-all duration-500 border border-emerald-200/50 dark:border-emerald-900/50 overflow-hidden">
+            <div className="relative rounded-2xl bg-white/80 dark:bg-gray-900/80 backdrop-blur-xl p-8 shadow-sm transition-all duration-500 border border-emerald-200/50 dark:border-emerald-900/50 overflow-hidden">
               {/* Gradient overlay */}
               <div className="absolute inset-0 bg-gradient-to-br from-emerald-50/50 to-green-100/30 dark:from-emerald-900/20 dark:to-green-800/10 opacity-60" />
-              
-              {/* Animated border gradient */}
-              <div className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500">
-                <div className="absolute inset-[1px] rounded-2xl bg-white dark:bg-gray-900" />
-                <div className="absolute inset-0 rounded-2xl bg-gradient-to-r from-emerald-400 via-green-500 to-teal-600" style={{ 
-                  background: 'linear-gradient(90deg, #10b981, #14b8a6, #0d9488)',
-                  animation: 'gradient-shift 3s ease infinite',
-                  backgroundSize: '200% 200%'
-                }} />
-              </div>
               
               {/* Content */}
               <div className="relative z-10">
@@ -291,7 +281,7 @@ export default function WhyLogicStamp() {
                 </div>
 
                 {/* Terminal window */}
-                <div className={`mb-6 rounded-lg bg-gray-900 p-4 font-mono text-sm shadow-inner transition-all duration-700 delay-300 ${
+                <div className={`mb-6 rounded-lg bg-gray-900 p-4 font-mono text-sm shadow-inner transition-all duration-700 delay-300 min-h-[140px] ${
                   solutionInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
                 }`}>
                   <div className="flex items-center gap-2 mb-3">
@@ -300,18 +290,18 @@ export default function WhyLogicStamp() {
                     <div className="w-3 h-3 rounded-full bg-green-500"></div>
                     <span className="text-gray-500 text-xs ml-2">terminal</span>
                   </div>
-                  <div className="text-green-400">
+                  <div className="text-green-400 min-h-[20px]">
                     {terminalText}
                     {!commandExecuted && showCursor && <span className="animate-blink">_</span>}
                   </div>
-                  {showOutput && (
-                    <div className="mt-2 text-gray-300 text-xs space-y-1">
-                      <div className="opacity-80">✓ Scanning 42 components...</div>
-                      <div className="opacity-80">✓ Building dependency graphs...</div>
-                      <div className="opacity-80">✓ Generating context bundles...</div>
-                      <div className="text-green-400">✓ Complete! Context ready in 4.2s</div>
-                    </div>
-                  )}
+                  <div className={`mt-2 text-gray-300 text-xs space-y-1 transition-opacity duration-300 ${
+                    showOutput ? 'opacity-100' : 'opacity-0'
+                  }`}>
+                    <div className="opacity-80">✓ Scanning 42 components...</div>
+                    <div className="opacity-80">✓ Building dependency graphs...</div>
+                    <div className="opacity-80">✓ Generating context bundles...</div>
+                    <div className="text-green-400">✓ Complete! Context ready in 4.2s</div>
+                  </div>
                 </div>
 
                 <div className={`p-4 rounded-lg bg-emerald-50 dark:bg-emerald-900/20 border border-emerald-200 dark:border-emerald-800 transition-all duration-700 delay-500 ${
@@ -353,26 +343,17 @@ export default function WhyLogicStamp() {
                 }`}
                 style={{ transitionDelay: `${index * 100 + 200}ms` }}
               >
-                <div className="relative h-full rounded-2xl bg-white/80 dark:bg-gray-900/80 backdrop-blur-xl p-6 shadow-sm hover:shadow-xl transition-all duration-500 border border-gray-200/50 dark:border-gray-700/50 hover:border-gray-300 dark:hover:border-gray-600 overflow-hidden">
-                  {/* Gradient overlay on hover */}
-                  <div className={`absolute inset-0 bg-gradient-to-br ${benefit.gradient} opacity-0 group-hover:opacity-100 transition-opacity duration-500`} />
-                  
-                  {/* Animated border gradient */}
-                  <div className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500">
-                    <div className="absolute inset-[1px] rounded-2xl bg-white dark:bg-gray-900" />
-                    <div className={`absolute inset-0 rounded-2xl bg-gradient-to-r ${benefit.borderGradient}`} />
-                  </div>
-                  
+                <div className="relative h-full rounded-2xl bg-white/80 dark:bg-gray-900/80 backdrop-blur-xl p-6 shadow-sm transition-all duration-500 border border-gray-200/50 dark:border-gray-700/50 overflow-hidden">
                   <div className="relative z-10">
                     <div className="flex items-start gap-4">
-                      <div className={`inline-flex items-center justify-center w-12 h-12 rounded-xl bg-gradient-to-br ${benefit.iconBg} group-hover:scale-110 transition-transform duration-500`}>
+                      <div className={`inline-flex items-center justify-center w-12 h-12 rounded-xl bg-gradient-to-br ${benefit.iconBg}`}>
                         <div className="text-gray-700 dark:text-gray-300">
                           {benefit.icon}
                         </div>
                       </div>
                       <div className="flex-1">
                         <div className="flex items-start justify-between gap-2 mb-2">
-                          <h4 className="font-semibold text-gray-900 dark:text-white group-hover:text-transparent group-hover:bg-gradient-to-r group-hover:bg-clip-text group-hover:from-blue-600 group-hover:to-purple-600 transition-all duration-500">
+                          <h4 className="font-semibold text-gray-900 dark:text-white">
                             {benefit.title}
                           </h4>
                           <div className="flex flex-col items-end">

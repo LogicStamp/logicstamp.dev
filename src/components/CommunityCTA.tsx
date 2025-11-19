@@ -1,11 +1,8 @@
 'use client'
 
-import AnimatedSection from './AnimatedSection'
-
 export default function CommunityCTA() {
   return (
-    <AnimatedSection direction="up" delay={800}>
-      <div className="mt-16 sm:mt-24">
+    <div className="mt-16 sm:mt-24">
         <div className="mx-auto max-w-4xl">
           <div className="text-center">
             <div className="inline-flex items-center gap-2 mb-4 px-4 py-2 rounded-full bg-white/60 dark:bg-gray-800/60 backdrop-blur-sm">
@@ -51,7 +48,6 @@ export default function CommunityCTA() {
           </div>
         </div>
       </div>
-    </AnimatedSection>
   )
 }
 
