@@ -3,67 +3,47 @@
 import { useState, useEffect, useRef } from 'react'
 import AnimatedSection from './AnimatedSection'
 
+// Custom hook for intersection observer
+function useInView(threshold = 0.1) {
+  const ref = useRef<HTMLDivElement>(null)
+  const [inView, setInView] = useState(false)
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setInView(true)
+          observer.disconnect()
+        }
+      },
+      { threshold }
+    )
+
+    if (ref.current) {
+      observer.observe(ref.current)
+    }
+
+    return () => observer.disconnect()
+  }, [threshold])
+
+  return { ref, inView }
+}
+
 export default function WhyLogicStamp() {
   const [hoveredBenefit, setHoveredBenefit] = useState<number | null>(null)
-  const [showSolution, setShowSolution] = useState(false)
   const [terminalText, setTerminalText] = useState('')
   const [showCursor, setShowCursor] = useState(true)
   const [commandExecuted, setCommandExecuted] = useState(false)
   const [showOutput, setShowOutput] = useState(false)
-  const problemRef = useRef<HTMLDivElement>(null)
-  const solutionRef = useRef<HTMLDivElement>(null)
-  const [visibleProblemSteps, setVisibleProblemSteps] = useState<number[]>([])
-  const [visibleSolutionSteps, setVisibleSolutionSteps] = useState<number[]>([])
-  const [matrixRain, setMatrixRain] = useState<string[]>([])
-
-  // Matrix rain effect for background
-  useEffect(() => {
-    const chars = '01'
-    const generateRain = () => {
-      return Array.from({ length: 20 }, () => 
-        Array.from({ length: Math.random() * 10 + 5 }, () => 
-          chars[Math.floor(Math.random() * chars.length)]
-        ).join('')
-      )
-    }
-    setMatrixRain(generateRain())
-    const interval = setInterval(() => {
-      setMatrixRain(generateRain())
-    }, 3000)
-    return () => clearInterval(interval)
-  }, [])
-
-  // Scroll-triggered animation for solution reveal
-  useEffect(() => {
-    const handleScroll = () => {
-      if (problemRef.current) {
-        const problemRect = problemRef.current.getBoundingClientRect()
-        const windowHeight = window.innerHeight
-        
-        // Show problem summary as it comes into view
-        const problemTop = problemRect.top
-        if (problemTop < windowHeight * 0.8) {
-          // Reveal problem summary
-          setTimeout(() => {
-            setVisibleProblemSteps([1])
-          }, 200)
-        }
-        
-        // Show solution when problem is scrolled past
-        if (problemRect.bottom < windowHeight * 0.5 && !showSolution) {
-          setShowSolution(true)
-        }
-      }
-    }
-
-    window.addEventListener('scroll', handleScroll)
-    handleScroll() // Check initial position
-    return () => window.removeEventListener('scroll', handleScroll)
-  }, [showSolution])
+  
+  const { ref: titleRef, inView: titleInView } = useInView(0.1)
+  const { ref: problemRef, inView: problemInView } = useInView(0.1)
+  const { ref: solutionRef, inView: solutionInView } = useInView(0.1)
+  const { ref: benefitsRef, inView: benefitsInView } = useInView(0.1)
 
   // Terminal typing animation for solution
   useEffect(() => {
-    if (showSolution && !commandExecuted) {
+    if (solutionInView && !commandExecuted) {
       const command = '$ stamp context'
       let index = 0
       const typeInterval = setInterval(() => {
@@ -73,15 +53,14 @@ export default function WhyLogicStamp() {
         } else {
           clearInterval(typeInterval)
           setCommandExecuted(true)
-          // Show output after command
           setTimeout(() => {
             setShowOutput(true)
-          }, 500)
+          }, 300)
         }
       }, 80)
       return () => clearInterval(typeInterval)
     }
-  }, [showSolution, commandExecuted])
+  }, [solutionInView, commandExecuted])
 
   // Cursor blink effect
   useEffect(() => {
@@ -90,15 +69,6 @@ export default function WhyLogicStamp() {
     }, 500)
     return () => clearInterval(interval)
   }, [])
-
-  // Show solution summary
-  useEffect(() => {
-    if (showOutput) {
-      setTimeout(() => {
-        setVisibleSolutionSteps([1])
-      }, 300)
-    }
-  }, [showOutput])
 
   const benefits = [
     {
@@ -111,19 +81,23 @@ export default function WhyLogicStamp() {
       description: 'Strips out imports, boilerplate, and implementation details. Only contracts and type signatures.',
       stat: '~65%',
       statLabel: 'Token Savings',
-      color: 'blue',
+      gradient: 'from-blue-500/20 via-blue-600/20 to-indigo-600/20',
+      borderGradient: 'from-blue-400 via-blue-500 to-indigo-600',
+      iconBg: 'from-blue-500/10 to-indigo-600/10',
     },
     {
       icon: (
         <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
         </svg>
       ),
       title: 'Automatic dependency graphs',
       description: 'AI sees your entire codebase structure, imports, and component relationships instantly.',
       stat: '100%',
       statLabel: 'Visibility',
-      color: 'purple',
+      gradient: 'from-purple-500/20 via-violet-600/20 to-pink-600/20',
+      borderGradient: 'from-purple-500 via-violet-600 to-pink-600',
+      iconBg: 'from-purple-500/10 to-pink-600/10',
     },
     {
       icon: (
@@ -135,7 +109,9 @@ export default function WhyLogicStamp() {
       description: 'Run stamp context before each AI session. Fresh context in seconds, not stale READMEs.',
       stat: '<5s',
       statLabel: 'Generation Time',
-      color: 'green',
+      gradient: 'from-emerald-500/20 via-green-600/20 to-teal-600/20',
+      borderGradient: 'from-emerald-500 via-green-600 to-teal-600',
+      iconBg: 'from-emerald-500/10 to-teal-600/10',
     },
     {
       icon: (
@@ -147,285 +123,286 @@ export default function WhyLogicStamp() {
       description: 'Track architectural changes with stamp context compare in your build pipeline.',
       stat: '✓',
       statLabel: 'CI Ready',
-      color: 'emerald',
+      gradient: 'from-cyan-500/20 via-teal-600/20 to-green-600/20',
+      borderGradient: 'from-cyan-500 via-teal-600 to-green-600',
+      iconBg: 'from-cyan-500/10 to-green-600/10',
     },
   ]
 
   return (
-    <section className="py-24 sm:py-32 bg-gradient-bg-section overflow-hidden relative">
-      {/* Matrix rain background effect */}
-      <div className="absolute inset-0 overflow-hidden pointer-events-none opacity-[0.02] dark:opacity-[0.05]">
-        {matrixRain.map((rain, i) => (
-          <div
-            key={i}
-            className="absolute text-green-500 font-mono text-xs animate-matrix-fall"
-            style={{
-              left: `${(i * 5) % 100}%`,
-              animationDelay: `${i * 0.2}s`,
-              animationDuration: `${10 + Math.random() * 10}s`
-            }}
-          >
-            {rain}
-          </div>
-        ))}
+    <section id="why-logicstamp" className="relative py-24 sm:py-32 overflow-hidden bg-gradient-to-b from-white via-gray-50/50 to-white dark:from-gray-950 dark:via-gray-900/50 dark:to-gray-950">
+      {/* Ambient background effects */}
+      <div className="absolute inset-0 overflow-hidden">
+        <div className="absolute top-1/4 -left-40 w-80 h-80 bg-purple-500/5 rounded-full blur-3xl animate-pulse" />
+        <div className="absolute bottom-1/4 -right-40 w-80 h-80 bg-blue-500/5 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '2s' }} />
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-gradient-to-r from-indigo-500/5 to-purple-500/5 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '4s' }} />
       </div>
 
-      {/* Decorative background elements */}
-      <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute top-1/4 left-0 w-96 h-96 bg-blue-500/5 rounded-full blur-3xl animate-pulse-slow"></div>
-        <div className="absolute bottom-1/4 right-0 w-96 h-96 bg-purple-500/5 rounded-full blur-3xl animate-pulse-slow" style={{ animationDelay: '2s' }}></div>
-      </div>
-
-      <div className="mx-auto max-w-[1400px] px-6 lg:px-8 relative z-10">
-        <AnimatedSection direction="up" delay={0}>
-          <div className="mx-auto max-w-3xl text-center mb-16">
-            <h2 className="text-4xl font-bold tracking-tight text-gray-900 dark:text-white sm:text-5xl lg:text-6xl">
-              Stop Pasting Code.{' '}
-              <span className="relative inline-block">
-                <span className="bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 bg-clip-text text-transparent animate-gradient-x">
-                  Start Stamping Context.
-                </span>
-              </span>
-            </h2>
-            <p className="mt-6 text-lg lg:text-xl leading-8 text-gray-600 dark:text-gray-300">
-              One command. Instant AI-ready context bundles. Zero manual work.
-            </p>
-          </div>
-        </AnimatedSection>
+      <div className="relative mx-auto max-w-[1400px] px-6 lg:px-8">
+        {/* Header */}
+        <div 
+          ref={titleRef}
+          className={`mx-auto max-w-3xl text-center transition-all duration-1000 ${
+            titleInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+          }`}
+        >
+          <h2 className="text-4xl font-bold tracking-tight text-gray-900 dark:text-white sm:text-5xl lg:text-6xl">
+            Stop Pasting Code.{' '}
+            <br />
+            <span className="bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 bg-clip-text text-transparent">
+              Start Stamping Context.
+            </span>
+          </h2>
+          <p className="mt-6 text-lg sm:text-xl leading-8 text-gray-600 dark:text-gray-300">
+            One command. Instant AI-ready context bundles. Zero manual work.
+          </p>
+        </div>
 
         {/* Problem → Solution Flow */}
-        <div className="mx-auto max-w-6xl space-y-12">
+        <div className="mt-20 mx-auto max-w-6xl space-y-8">
           {/* Problem Card */}
-          <div ref={problemRef} className="relative">
-            <AnimatedSection direction="left" delay={200}>
-              <div className="relative group max-w-5xl mx-auto">
-                <div className="relative rounded-2xl bg-gradient-to-br from-red-50 to-red-100 dark:from-red-900/80 dark:to-red-800/80 p-8 shadow-xl ring-1 ring-red-200/50 dark:ring-red-800/50 transform transition-transform duration-300 group-hover:scale-[1.01]">
-                  <div className="flex items-start gap-4 mb-6">
-                    <div className="flex-shrink-0 p-3 rounded-xl bg-red-100 dark:bg-red-900/80 animate-shake-slow">
-                      <svg
-                        className="w-6 h-6 text-red-600 dark:text-red-400"
-                        fill="none"
-                        stroke="currentColor"
-                        viewBox="0 0 24 24"
-                      >
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          strokeWidth={2}
-                          d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"
-                        />
-                      </svg>
-                    </div>
-                    <div className="flex-1">
-                      <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-2 font-mono">
-                        <span className="text-red-600">⚠</span> The Manual Grind
-                      </h3>
-                      <p className="text-gray-600 dark:text-gray-400">
-                        30+ minutes of copying, pasting, and explaining your codebase
-                      </p>
-                    </div>
+          <div 
+            ref={problemRef}
+            className={`transition-all duration-1000 ${
+              problemInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+            }`}
+          >
+            <div className="group relative rounded-2xl bg-white/80 dark:bg-gray-900/80 backdrop-blur-xl p-8 shadow-sm hover:shadow-xl transition-all duration-500 border border-red-200/50 dark:border-red-900/50 overflow-hidden">
+              {/* Gradient overlay */}
+              <div className="absolute inset-0 bg-gradient-to-br from-red-50/50 to-red-100/30 dark:from-red-900/20 dark:to-red-800/10 opacity-60" />
+              
+              {/* Content */}
+              <div className="relative z-10">
+                <div className="flex items-start gap-4 mb-6">
+                  <div className="inline-flex items-center justify-center w-12 h-12 rounded-xl bg-red-100 dark:bg-red-900/50">
+                    <svg
+                      className="w-6 h-6 text-red-600 dark:text-red-400"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"
+                      />
+                    </svg>
                   </div>
+                  <div className="flex-1">
+                    <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-2">
+                      The Manual Grind
+                    </h3>
+                    <p className="text-gray-600 dark:text-gray-300">
+                      30+ minutes of copying, pasting, and explaining your codebase
+                    </p>
+                  </div>
+                </div>
 
-                  {/* Code editor window */}
-                  {visibleProblemSteps.length > 0 && (
-                    <div className="mb-6 rounded-lg bg-gray-900 p-4 font-mono text-sm shadow-inner animate-slide-up">
-                      <div className="flex items-center gap-2 mb-3">
-                        <div className="w-3 h-3 rounded-full bg-red-500"></div>
-                        <div className="w-3 h-3 rounded-full bg-yellow-500"></div>
-                        <div className="w-3 h-3 rounded-full bg-green-500"></div>
-                        <span className="text-gray-500 text-xs ml-2">editor</span>
-                      </div>
-                      <div className="flex gap-1 mb-2 border-b border-gray-700 overflow-x-auto">
-                        <div className="px-2 sm:px-3 py-1 text-xs bg-gray-800 text-gray-400 border-t border-l border-r border-gray-700 rounded-t whitespace-nowrap flex-shrink-0">Button.tsx</div>
-                        <div className="px-2 sm:px-3 py-1 text-xs bg-gray-900 text-gray-500 border-t border-l border-r border-gray-700 rounded-t whitespace-nowrap flex-shrink-0">Icon.tsx</div>
-                        <div className="px-2 sm:px-3 py-1 text-xs bg-gray-900 text-gray-500 border-t border-l border-r border-gray-700 rounded-t whitespace-nowrap flex-shrink-0">ThemeProvider.tsx</div>
-                        <div className="px-2 sm:px-3 py-1 text-xs bg-gray-900 text-gray-500 border-t border-l border-r border-gray-700 rounded-t whitespace-nowrap flex-shrink-0">...</div>
-                      </div>
-                      <div className="text-gray-300 text-xs space-y-1">
-                        <div className="opacity-60">// Copying entire file...</div>
-                        <div className="opacity-40">import React from &apos;react&apos;</div>
-                        <div className="opacity-40">import {'{'} Icon {'}'} from &apos;./Icon&apos;</div>
-                        <div className="opacity-40">import {'{'} useTheme {'}'} from &apos;./ThemeProvider&apos;</div>
-                        <div className="opacity-40">// ... 200+ more lines of boilerplate</div>
-                        <div className="text-red-400 mt-2">⚠ Missing: API client dependency</div>
-                      </div>
-                    </div>
-                  )}
+                {/* Code editor window */}
+                <div className={`mb-6 rounded-lg bg-gray-900 p-4 font-mono text-sm shadow-inner transition-all duration-700 delay-300 ${
+                  problemInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
+                }`}>
+                  <div className="flex items-center gap-2 mb-3">
+                    <div className="w-3 h-3 rounded-full bg-red-500"></div>
+                    <div className="w-3 h-3 rounded-full bg-yellow-500"></div>
+                    <div className="w-3 h-3 rounded-full bg-green-500"></div>
+                    <span className="text-gray-500 text-xs ml-2">editor</span>
+                  </div>
+                  <div className="text-gray-300 text-xs space-y-1">
+                    <div className="opacity-60">// Copying entire file...</div>
+                    <div className="opacity-40">import React from 'react'</div>
+                    <div className="opacity-40">import {'{'} Icon {'}'} from './Icon'</div>
+                    <div className="opacity-40">import {'{'} useTheme {'}'} from './ThemeProvider'</div>
+                    <div className="opacity-40">// ... 200+ more lines of boilerplate</div>
+                    <div className="text-red-400 mt-2">⚠ Missing: API client dependency</div>
+                  </div>
+                </div>
 
-                  {visibleProblemSteps.length > 0 && (
-                    <div className="mt-6 p-6 rounded-lg bg-red-100 dark:bg-red-900/80 border border-red-200 dark:border-red-800 animate-slide-up">
-                      <p className="text-sm font-semibold text-red-900 dark:text-red-300 font-mono">
-                        <span className="animate-blink">▸</span> Result: 30+ minutes wasted copying files, searching for dependencies, and manually explaining your codebase. Incomplete context leads to confused AI responses. Pay for 3x more tokens than needed. Frustrated developer.
-                      </p>
-                    </div>
-                  )}
+                <div className={`p-4 rounded-lg bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 transition-all duration-700 delay-500 ${
+                  problemInView ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-4'
+                }`}>
+                  <p className="text-sm font-medium text-red-900 dark:text-red-300">
+                    Result: 30+ minutes wasted copying files, searching for dependencies, and manually explaining your codebase. Incomplete context leads to confused AI responses. Pay for 3x more tokens than needed. Frustrated developer.
+                  </p>
                 </div>
               </div>
-            </AnimatedSection>
+            </div>
           </div>
 
           {/* Arrow indicator */}
-          {showSolution && (
-            <div className="flex justify-center animate-slide-down">
-              <svg className="w-12 h-12 text-green-500 animate-bounce" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <div className={`flex justify-center transition-all duration-700 ${
+            solutionInView ? 'opacity-100 scale-100' : 'opacity-0 scale-0'
+          }`}>
+            <div className="p-3 rounded-full bg-gradient-to-br from-emerald-100 to-green-100 dark:from-emerald-900/30 dark:to-green-900/30">
+              <svg className="w-8 h-8 text-emerald-600 dark:text-emerald-400 animate-bounce" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 14l-7 7m0 0l-7-7m7 7V3" />
               </svg>
             </div>
-          )}
+          </div>
 
           {/* Solution Card */}
           <div 
-            ref={solutionRef} 
-            className={`relative transform transition-all duration-1000 ${
-              showSolution ? 'translate-y-0 opacity-100' : 'translate-y-20 opacity-0'
+            ref={solutionRef}
+            className={`transition-all duration-1000 ${
+              solutionInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
             }`}
           >
-            <AnimatedSection direction="right" delay={0}>
-              <div className="relative group max-w-5xl mx-auto">
-                <div className="relative rounded-2xl bg-gradient-to-br from-green-50 to-emerald-50 dark:from-green-900/80 dark:to-emerald-900/80 p-8 shadow-xl ring-1 ring-green-200/50 dark:ring-green-800/50 transform transition-transform duration-300 group-hover:scale-[1.01]">
-                  <div className="flex items-start gap-4 mb-6">
-                    <div className="flex-shrink-0 p-3 rounded-xl bg-green-100 dark:bg-green-900/80">
-                      <svg
-                        className="w-6 h-6 text-green-600 dark:text-green-400"
-                        fill="none"
-                        stroke="currentColor"
-                        viewBox="0 0 24 24"
-                      >
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          strokeWidth={2}
-                          d="M13 10V3L4 14h7v7l9-11h-7z"
-                        />
-                      </svg>
-                    </div>
-                    <div className="flex-1">
-                      <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-2 font-mono">
-                        <span className="text-green-600">✓</span> The LogicStamp Way
-                      </h3>
-                      <p className="text-gray-600 dark:text-gray-400">
-                        One command. 5 seconds. Perfect context every time.
-                      </p>
-                    </div>
+            <div className="group relative rounded-2xl bg-white/80 dark:bg-gray-900/80 backdrop-blur-xl p-8 shadow-sm hover:shadow-xl transition-all duration-500 border border-emerald-200/50 dark:border-emerald-900/50 overflow-hidden">
+              {/* Gradient overlay */}
+              <div className="absolute inset-0 bg-gradient-to-br from-emerald-50/50 to-green-100/30 dark:from-emerald-900/20 dark:to-green-800/10 opacity-60" />
+              
+              {/* Animated border gradient */}
+              <div className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+                <div className="absolute inset-[1px] rounded-2xl bg-white dark:bg-gray-900" />
+                <div className="absolute inset-0 rounded-2xl bg-gradient-to-r from-emerald-400 via-green-500 to-teal-600" style={{ 
+                  background: 'linear-gradient(90deg, #10b981, #14b8a6, #0d9488)',
+                  animation: 'gradient-shift 3s ease infinite',
+                  backgroundSize: '200% 200%'
+                }} />
+              </div>
+              
+              {/* Content */}
+              <div className="relative z-10">
+                <div className="flex items-start gap-4 mb-6">
+                  <div className="inline-flex items-center justify-center w-12 h-12 rounded-xl bg-gradient-to-br from-emerald-500/10 to-green-600/10">
+                    <svg
+                      className="w-6 h-6 text-emerald-600 dark:text-emerald-400"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M13 10V3L4 14h7v7l9-11h-7z"
+                      />
+                    </svg>
                   </div>
+                  <div className="flex-1">
+                    <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-2">
+                      The LogicStamp Way
+                    </h3>
+                    <p className="text-gray-600 dark:text-gray-300">
+                      One command. 5 seconds. Perfect context every time.
+                    </p>
+                  </div>
+                </div>
 
-                  {/* Terminal window */}
-                  {showSolution && (
-                    <div className="mb-6 rounded-lg bg-gray-900 p-4 font-mono text-sm shadow-inner animate-slide-up">
-                      <div className="flex items-center gap-2 mb-3">
-                        <div className="w-3 h-3 rounded-full bg-red-500"></div>
-                        <div className="w-3 h-3 rounded-full bg-yellow-500"></div>
-                        <div className="w-3 h-3 rounded-full bg-green-500"></div>
-                        <span className="text-gray-500 text-xs ml-2">terminal</span>
-                      </div>
-                      <div className="text-green-400">
-                        {terminalText}
-                        {!commandExecuted && showCursor && <span className="animate-blink">_</span>}
-                      </div>
-                      {showOutput && (
-                        <div className="mt-2 text-gray-300 text-xs space-y-1 animate-typewriter">
-                          <div className="opacity-80">✓ Scanning 42 components...</div>
-                          <div className="opacity-80">✓ Building dependency graphs...</div>
-                          <div className="opacity-80">✓ Generating context bundles...</div>
-                          <div className="text-green-400">✓ Complete! Context ready in 4.2s</div>
-                        </div>
-                      )}
-                    </div>
-                  )}
-
-                  {visibleSolutionSteps.length > 0 && (
-                    <div className="mt-6 p-6 rounded-lg bg-green-100 dark:bg-green-900/80 border border-green-200 dark:border-green-800 animate-slide-up">
-                      <p className="text-sm font-semibold text-green-900 dark:text-green-300 font-mono">
-                        <span className="animate-blink">▸</span> Result: 30 minutes → 5 seconds. One command (<code className="text-xs text-green-700 dark:text-green-300 font-mono bg-green-200 dark:bg-green-900/50 px-1.5 py-0.5 rounded">$ stamp context</code>) generates optimized context.json files with complete dependency graphs. 65% cost savings. AI instantly understands your entire codebase. Happy developer.
-                      </p>
+                {/* Terminal window */}
+                <div className={`mb-6 rounded-lg bg-gray-900 p-4 font-mono text-sm shadow-inner transition-all duration-700 delay-300 ${
+                  solutionInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
+                }`}>
+                  <div className="flex items-center gap-2 mb-3">
+                    <div className="w-3 h-3 rounded-full bg-red-500"></div>
+                    <div className="w-3 h-3 rounded-full bg-yellow-500"></div>
+                    <div className="w-3 h-3 rounded-full bg-green-500"></div>
+                    <span className="text-gray-500 text-xs ml-2">terminal</span>
+                  </div>
+                  <div className="text-green-400">
+                    {terminalText}
+                    {!commandExecuted && showCursor && <span className="animate-blink">_</span>}
+                  </div>
+                  {showOutput && (
+                    <div className="mt-2 text-gray-300 text-xs space-y-1">
+                      <div className="opacity-80">✓ Scanning 42 components...</div>
+                      <div className="opacity-80">✓ Building dependency graphs...</div>
+                      <div className="opacity-80">✓ Generating context bundles...</div>
+                      <div className="text-green-400">✓ Complete! Context ready in 4.2s</div>
                     </div>
                   )}
                 </div>
+
+                <div className={`p-4 rounded-lg bg-emerald-50 dark:bg-emerald-900/20 border border-emerald-200 dark:border-emerald-800 transition-all duration-700 delay-500 ${
+                  solutionInView ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-4'
+                }`}>
+                  <p className="text-sm font-medium text-emerald-900 dark:text-emerald-300">
+                    Result: 30 minutes → 5 seconds. One command (<code className="text-xs font-mono bg-emerald-200 dark:bg-emerald-900/50 px-1.5 py-0.5 rounded">$ stamp context</code>) generates optimized context.json files with complete dependency graphs. 65% cost savings. AI instantly understands your entire codebase. Happy developer.
+                  </p>
+                </div>
               </div>
-            </AnimatedSection>
+            </div>
           </div>
         </div>
 
         {/* Key Benefits Grid */}
-        <AnimatedSection direction="up" delay={400}>
-          <div className="mt-32 mb-16">
-            <h3 className="text-3xl font-bold text-center text-gray-900 dark:text-white mb-12">
-              Why Developers Choose{' '}
-              <span className="relative inline-block">
-                <span className="bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 bg-clip-text text-transparent animate-gradient-x">
-                  LogicStamp
-                </span>
-              </span>
+        <div className="mt-24">
+          <div 
+            ref={benefitsRef}
+            className={`text-center mb-12 transition-all duration-1000 ${
+              benefitsInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+            }`}
+          >
+            <h3 className="text-2xl font-semibold text-gray-900 dark:text-white sm:text-3xl mb-3">
+              Why Developers Choose LogicStamp
             </h3>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              {benefits.map((benefit, index) => (
-                <div
-                  key={index}
-                  onMouseEnter={() => setHoveredBenefit(index)}
-                  onMouseLeave={() => setHoveredBenefit(null)}
-                  className={`relative p-6 rounded-2xl transition-all duration-300 cursor-pointer ${
-                    hoveredBenefit === index
-                      ? 'bg-white dark:bg-gray-800 shadow-xl transform scale-[1.02] ring-2 ring-opacity-50'
-                      : 'bg-white/50 dark:bg-gray-800/50 shadow-lg'
-                  } ${
-                    hoveredBenefit === index && benefit.color === 'blue' ? 'ring-blue-500' :
-                    hoveredBenefit === index && benefit.color === 'purple' ? 'ring-purple-500' :
-                    hoveredBenefit === index && benefit.color === 'green' ? 'ring-green-500' :
-                    hoveredBenefit === index && benefit.color === 'emerald' ? 'ring-emerald-500' : ''
-                  }`}
-                >
-                  <div className="flex items-start gap-4">
-                    <div
-                      className={`flex-shrink-0 p-3 rounded-xl bg-gradient-to-br transition-all duration-300 ${
-                        benefit.color === 'blue'
-                          ? 'from-blue-500 to-blue-600'
-                          : benefit.color === 'purple'
-                          ? 'from-purple-500 to-purple-600'
-                          : benefit.color === 'green'
-                          ? 'from-green-500 to-green-600'
-                          : 'from-emerald-500 to-emerald-600'
-                      }`}
-                    >
-                      <div className="text-white">{benefit.icon}</div>
-                    </div>
-                    <div className="flex-1">
-                      <div className="flex items-start justify-between gap-2 mb-2">
-                        <h4 className="font-semibold text-gray-900 dark:text-white">{benefit.title}</h4>
-                        <div className="flex flex-col items-end">
-                          <span
-                            className={`text-lg font-bold font-mono ${
-                              benefit.color === 'blue'
-                                ? 'text-blue-600 dark:text-blue-400'
-                                : benefit.color === 'purple'
-                                ? 'text-purple-600 dark:text-purple-400'
-                                : benefit.color === 'green'
-                                ? 'text-green-600 dark:text-green-400'
-                                : 'text-emerald-600 dark:text-emerald-400'
-                            } ${hoveredBenefit === index ? 'animate-counter' : ''}`}
-                          >
-                            {benefit.stat}
-                          </span>
-                          <span className="text-xs text-gray-500 dark:text-gray-400">{benefit.statLabel}</span>
+            <p className="text-base sm:text-lg text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
+              Professional-grade tooling for modern development workflows
+            </p>
+          </div>
+          
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-5xl mx-auto">
+            {benefits.map((benefit, index) => (
+              <div
+                key={index}
+                className={`group relative transition-all duration-700 ${
+                  benefitsInView 
+                    ? 'opacity-100 translate-y-0' 
+                    : 'opacity-0 translate-y-8'
+                }`}
+                style={{ transitionDelay: `${index * 100 + 200}ms` }}
+              >
+                <div className="relative h-full rounded-2xl bg-white/80 dark:bg-gray-900/80 backdrop-blur-xl p-6 shadow-sm hover:shadow-xl transition-all duration-500 border border-gray-200/50 dark:border-gray-700/50 hover:border-gray-300 dark:hover:border-gray-600 overflow-hidden">
+                  {/* Gradient overlay on hover */}
+                  <div className={`absolute inset-0 bg-gradient-to-br ${benefit.gradient} opacity-0 group-hover:opacity-100 transition-opacity duration-500`} />
+                  
+                  {/* Animated border gradient */}
+                  <div className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+                    <div className="absolute inset-[1px] rounded-2xl bg-white dark:bg-gray-900" />
+                    <div className={`absolute inset-0 rounded-2xl bg-gradient-to-r ${benefit.borderGradient}`} />
+                  </div>
+                  
+                  <div className="relative z-10">
+                    <div className="flex items-start gap-4">
+                      <div className={`inline-flex items-center justify-center w-12 h-12 rounded-xl bg-gradient-to-br ${benefit.iconBg} group-hover:scale-110 transition-transform duration-500`}>
+                        <div className="text-gray-700 dark:text-gray-300">
+                          {benefit.icon}
                         </div>
                       </div>
-                      <p className="text-sm text-gray-700 dark:text-gray-300">{benefit.description}</p>
+                      <div className="flex-1">
+                        <div className="flex items-start justify-between gap-2 mb-2">
+                          <h4 className="font-semibold text-gray-900 dark:text-white group-hover:text-transparent group-hover:bg-gradient-to-r group-hover:bg-clip-text group-hover:from-blue-600 group-hover:to-purple-600 transition-all duration-500">
+                            {benefit.title}
+                          </h4>
+                          <div className="flex flex-col items-end">
+                            <span className="text-lg font-bold font-mono bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+                              {benefit.stat}
+                            </span>
+                            <span className="text-xs text-gray-500 dark:text-gray-400">{benefit.statLabel}</span>
+                          </div>
+                        </div>
+                        <p className="text-sm text-gray-600 dark:text-gray-300 leading-relaxed">
+                          {benefit.description}
+                        </p>
+                      </div>
                     </div>
                   </div>
-                  {hoveredBenefit === index && (
-                    <div className="absolute inset-0 pointer-events-none rounded-2xl ring-2 ring-inset ring-white/20 dark:ring-white/10"></div>
-                  )}
                 </div>
-              ))}
-            </div>
+              </div>
+            ))}
           </div>
-        </AnimatedSection>
+        </div>
 
         {/* The Hook */}
-        <AnimatedSection direction="up" delay={600}>
-          <div className="relative mb-16">
-            <div className="relative max-w-4xl mx-auto">
-              <div className="flex flex-col sm:flex-row items-center gap-4 bg-gradient-to-r from-blue-50 to-purple-50 dark:from-blue-900/20 dark:to-purple-900/20 px-8 py-6 rounded-3xl border border-blue-200/50 dark:border-blue-800/50 shadow-lg hover-lift group">
-                <div className="flex-shrink-0 p-3 rounded-2xl bg-gradient-to-br from-blue-500 to-purple-500 group-hover:animate-spin-slow">
+        <div className={`mt-16 transition-all duration-1000 delay-600 ${
+          benefitsInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+        }`}>
+          <div className="relative max-w-4xl mx-auto">
+            <div className="relative rounded-3xl bg-gradient-to-r from-blue-50 via-purple-50 to-pink-50 dark:from-blue-900/20 dark:via-purple-900/20 dark:to-pink-900/20 p-8 border border-purple-200/50 dark:border-purple-800/50 overflow-hidden">
+              <div className="absolute inset-0 bg-gradient-to-r from-blue-500/5 via-purple-500/5 to-pink-500/5" />
+              <div className="relative z-10 flex flex-col sm:flex-row items-center gap-4">
+                <div className="flex-shrink-0 p-3 rounded-2xl bg-gradient-to-br from-blue-500 to-purple-500">
                   <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path
                       strokeLinecap="round"
@@ -437,31 +414,18 @@ export default function WhyLogicStamp() {
                 </div>
                 <div className="flex-1 text-center sm:text-left">
                   <p className="text-base lg:text-lg text-gray-700 dark:text-gray-300">
-                    <strong className="text-gray-900 dark:text-white font-mono">LogicStamp is your codebase's stamp of approval.</strong>{' '}
+                    <strong className="text-gray-900 dark:text-white">LogicStamp is your codebase's stamp of approval.</strong>{' '}
                     One command generates a verified, AI-optimized snapshot of your entire project structure—like an official document stamped and certified for AI consumption.
                   </p>
                 </div>
               </div>
             </div>
           </div>
-        </AnimatedSection>
-
+        </div>
       </div>
 
-      {/* Add custom styles */}
       <style jsx>{`
-        @keyframes matrix-fall {
-          0% {
-            transform: translateY(-100vh);
-            opacity: 1;
-          }
-          100% {
-            transform: translateY(100vh);
-            opacity: 0;
-          }
-        }
-
-        @keyframes gradient-x {
+        @keyframes gradient-shift {
           0%, 100% {
             background-position: 0% 50%;
           }
@@ -469,55 +433,7 @@ export default function WhyLogicStamp() {
             background-position: 100% 50%;
           }
         }
-
-        @keyframes pulse-slow {
-          0%, 100% {
-            opacity: 0.2;
-          }
-          50% {
-            opacity: 0.3;
-          }
-        }
-
-        @keyframes pulse-fast {
-          0%, 100% {
-            opacity: 1;
-          }
-          50% {
-            opacity: 0.5;
-          }
-        }
-
-        @keyframes shake-slow {
-          0%, 100% {
-            transform: rotate(0deg);
-          }
-          25% {
-            transform: rotate(-2deg);
-          }
-          75% {
-            transform: rotate(2deg);
-          }
-        }
-
-        @keyframes glitch {
-          0%, 100% {
-            transform: translate(0);
-          }
-          20% {
-            transform: translate(-2px, 2px);
-          }
-          40% {
-            transform: translate(-2px, -2px);
-          }
-          60% {
-            transform: translate(2px, 2px);
-          }
-          80% {
-            transform: translate(2px, -2px);
-          }
-        }
-
+        
         @keyframes blink {
           0%, 49% {
             opacity: 1;
@@ -526,117 +442,9 @@ export default function WhyLogicStamp() {
             opacity: 0;
           }
         }
-
-        @keyframes slide-up {
-          from {
-            transform: translateY(20px);
-            opacity: 0;
-          }
-          to {
-            transform: translateY(0);
-            opacity: 1;
-          }
-        }
-
-        @keyframes slide-down {
-          from {
-            transform: translateY(-20px);
-            opacity: 0;
-          }
-          to {
-            transform: translateY(0);
-            opacity: 1;
-          }
-        }
-
-        @keyframes typewriter {
-          from {
-            width: 0;
-          }
-          to {
-            width: 100%;
-          }
-        }
-
-        @keyframes counter {
-          0% {
-            transform: scale(1);
-          }
-          50% {
-            transform: scale(1.2);
-          }
-          100% {
-            transform: scale(1);
-          }
-        }
-
-        @keyframes spin-slow {
-          from {
-            transform: rotate(0deg);
-          }
-          to {
-            transform: rotate(360deg);
-          }
-        }
-
-        .animate-matrix-fall {
-          animation: matrix-fall linear infinite;
-        }
-
-        .animate-gradient-x {
-          background-size: 200% 200%;
-          animation: gradient-x 3s ease infinite;
-        }
-
-        .animate-pulse-slow {
-          animation: pulse-slow 4s ease-in-out infinite;
-        }
-
-        .animate-pulse-fast {
-          animation: pulse-fast 1s ease-in-out infinite;
-        }
-
-        .animate-shake-slow {
-          animation: shake-slow 4s ease-in-out infinite;
-        }
-
-        .animate-glitch {
-          animation: glitch 0.3s ease-in-out;
-        }
-
+        
         .animate-blink {
           animation: blink 1s infinite;
-        }
-
-        .animate-slide-up {
-          animation: slide-up 0.5s ease-out;
-        }
-
-        .animate-slide-down {
-          animation: slide-down 0.5s ease-out;
-        }
-
-        .animate-typewriter {
-          overflow: hidden;
-          white-space: nowrap;
-          animation: typewriter 2s steps(40, end);
-        }
-
-        .animate-counter {
-          animation: counter 0.5s ease-in-out;
-        }
-
-        .animate-spin-slow {
-          animation: spin-slow 8s linear infinite;
-        }
-
-        .hover-lift {
-          transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-
-        .hover-lift:hover {
-          transform: translateY(-4px);
-          box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
         }
       `}</style>
     </section>

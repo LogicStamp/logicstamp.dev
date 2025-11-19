@@ -2,10 +2,12 @@
 
 import { useTheme } from '@/contexts/ThemeContext'
 
-const options = [
-  { id: 'light', label: 'Light' as const },
-  { id: 'system', label: 'System' as const },
-  { id: 'dark', label: 'Dark' as const },
+type ThemePreference = 'light' | 'dark' | 'system'
+
+const options: Array<{ id: ThemePreference; label: string }> = [
+  { id: 'light', label: 'Light' },
+  { id: 'system', label: 'System' },
+  { id: 'dark', label: 'Dark' },
 ]
 
 export default function ThemeToggle({ compact = false }: { compact?: boolean }) {

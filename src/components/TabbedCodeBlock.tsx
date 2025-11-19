@@ -117,7 +117,7 @@ export default function TabbedCodeBlock({ tabs }: TabbedCodeBlockProps) {
         {tabs.map((tab, index) => (
           <button
             key={index}
-            ref={(el) => (tabButtonRefs.current[index] = el)}
+            ref={(el) => { tabButtonRefs.current[index] = el }}
             role="tab"
             aria-selected={activeTab === index}
             aria-controls={`${panelId}-${index}`}
