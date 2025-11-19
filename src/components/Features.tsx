@@ -473,7 +473,7 @@ $ stamp context clean
 export default function HowItWorks() {
   return (
     <section id="how-it-works" className="py-24 sm:py-32 bg-gradient-bg-section">
-      <div className="mx-auto max-w-[1320px] px-6 lg:px-8">
+      <div className="mx-auto max-w-[1400px] px-6 lg:px-8">
         <AnimatedSection direction="up" delay={0}>
           <div className="mx-auto max-w-4xl text-center">
             <h2 className="text-4xl font-bold tracking-tight text-gray-900 dark:text-white sm:text-5xl lg:text-7xl">
@@ -497,7 +497,7 @@ export default function HowItWorks() {
         </AnimatedSection>
         
         <AnimatedSection direction="up" delay={200}>
-          <div className="mx-auto mt-16 max-w-[1320px] sm:mt-20 lg:mt-24">
+          <div className="mx-auto mt-16 max-w-[1400px] sm:mt-20 lg:mt-24">
             <HowItWorksTerminalAnimation />
           </div>
         </AnimatedSection>

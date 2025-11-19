@@ -169,7 +169,7 @@ const tools = [
 export default function Integrations() {
   return (
     <section id="integrations" className="py-20 sm:py-28 bg-gradient-bg-accent">
-      <div className="mx-auto max-w-[1320px] px-6 lg:px-8">
+      <div className="mx-auto max-w-[1400px] px-6 lg:px-8">
         <AnimatedSection direction="up" delay={0}>
           <div className="mx-auto max-w-3xl text-center">
             <h2 className="text-3xl font-bold tracking-tight text-gray-900 dark:text-white sm:text-4xl lg:text-5xl">
@@ -185,7 +185,7 @@ export default function Integrations() {
         </AnimatedSection>
 
         {/* Frameworks */}
-        <div className="mx-auto mt-12 max-w-[1320px]">
+        <div className="mx-auto mt-12 max-w-[1400px]">
           <AnimatedSection direction="up" delay={200}>
             <div className="text-center mb-16">
               <h3 className="text-3xl font-bold text-gray-900 dark:text-white lg:text-4xl mb-4">
@@ -283,7 +283,7 @@ export default function Integrations() {
         </div>
 
         {/* Tools */}
-        <div className="mx-auto mt-24 max-w-[1320px]">
+        <div className="mx-auto mt-24 max-w-[1400px]">
           <AnimatedSection direction="up" delay={200}>
             <div className="text-center mb-16">
               <h3 className="text-3xl font-bold text-gray-900 dark:text-white lg:text-4xl mb-4">
