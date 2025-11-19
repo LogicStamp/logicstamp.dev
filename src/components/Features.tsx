@@ -1,12 +1,38 @@
 'use client'
 
-import { useEffect, useState } from 'react'
-import AnimatedSection from './AnimatedSection'
+import { useEffect, useState, useRef } from 'react'
 import { useTheme } from '../contexts/ThemeContext'
+
+// Custom hook for intersection observer
+function useInView(threshold = 0.1) {
+  const ref = useRef<HTMLDivElement>(null)
+  const [inView, setInView] = useState(false)
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setInView(true)
+          observer.disconnect()
+        }
+      },
+      { threshold }
+    )
+
+    if (ref.current) {
+      observer.observe(ref.current)
+    }
+
+    return () => observer.disconnect()
+  }, [threshold])
+
+  return { ref, inView }
+}
 
 // Terminal animation component for how it works demonstration
 function HowItWorksTerminalAnimation() {
   const { isDarkMode } = useTheme()
+  const { ref: terminalRef, inView: terminalInView } = useInView(0.1)
   const [currentDemo, setCurrentDemo] = useState(0)
   const [displayText, setDisplayText] = useState('')
   const [showCursor, setShowCursor] = useState(true)
@@ -212,7 +238,7 @@ $ stamp context clean
   ]
 
   useEffect(() => {
-    if (typeof window === 'undefined') return
+    if (typeof window === 'undefined' || !terminalInView) return
 
     let currentIndex = 0
     let cursorInterval: NodeJS.Timeout | undefined
@@ -271,13 +297,15 @@ $ stamp context clean
       }
     }
 
-    startTyping()
+    // Small delay before starting to let the fade-in animation complete
+    const startDelay = setTimeout(startTyping, 300)
 
     return () => {
       if (cursorInterval) clearInterval(cursorInterval)
       if (typingInterval) clearTimeout(typingInterval)
+      clearTimeout(startDelay)
     }
-  }, [currentDemo])
+  }, [currentDemo, terminalInView])
 
   // Auto-cycle through demos - only when not typing
   useEffect(() => {
@@ -406,18 +434,23 @@ $ stamp context clean
   }
 
   return (
-    <div className="space-y-4 sm:space-y-6">
+    <div 
+      ref={terminalRef}
+      className={`space-y-4 sm:space-y-6 transition-all duration-1000 ${
+        terminalInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+      }`}
+    >
       {/* Demo selector */}
       <div className="w-full px-2 sm:px-4">
-        <div className="flex flex-wrap gap-1 sm:gap-2 justify-center">
+        <div className="flex flex-wrap gap-2 sm:gap-3 justify-center">
           {demos.map((demo, index) => (
             <button
               key={index}
               onClick={() => handleDemoSwitch(index)}
-              className={`px-2 py-1 text-xs sm:text-sm lg:text-base rounded-full transition-all duration-200 whitespace-nowrap flex-shrink-0 ${
+              className={`px-4 py-2 text-xs sm:text-sm lg:text-base rounded-full transition-all duration-300 whitespace-nowrap flex-shrink-0 font-medium ${
                 currentDemo === index
-                  ? 'bg-primary-600 text-white'
-                  : 'bg-gray-200 text-gray-700 hover:bg-gray-300 dark:bg-gray-700 dark:text-gray-300 dark:hover:bg-gray-600'
+                  ? 'bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 text-white shadow-lg shadow-purple-500/50 scale-105'
+                  : 'bg-white/80 dark:bg-gray-900/80 backdrop-blur-sm text-gray-700 dark:text-gray-300 hover:bg-white dark:hover:bg-gray-900 border border-gray-200/50 dark:border-gray-700/50 hover:border-gray-300 dark:hover:border-gray-600 hover:scale-105'
               }`}
             >
               {demo.title}
@@ -427,43 +460,52 @@ $ stamp context clean
       </div>
 
       {/* Terminal */}
-      <div className="relative rounded-xl bg-gradient-bg-card p-2 ring-1 ring-inset ring-secondary-200/20 dark:ring-secondary-400/20 lg:rounded-2xl lg:p-4 hover-lift shadow-lg mx-2 sm:mx-0">
-        <div className={`rounded-md shadow-2xl ring-1 ${
+      <div className="group relative rounded-2xl bg-white/80 dark:bg-gray-900/80 backdrop-blur-xl p-2 ring-1 ring-inset ring-gray-200/20 dark:ring-gray-700/20 lg:rounded-2xl lg:p-4 hover:shadow-2xl transition-all duration-500 overflow-hidden">
+        {/* Gradient overlay on hover */}
+        <div className="absolute inset-0 bg-gradient-to-br from-blue-500/5 via-purple-500/5 to-pink-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+        
+        {/* Animated border gradient */}
+        <div className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+          <div className="absolute inset-[1px] rounded-2xl bg-white dark:bg-gray-900" />
+          <div className="absolute inset-0 rounded-2xl bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 animate-border-spin" />
+        </div>
+
+        <div className={`relative rounded-md shadow-xl ring-1 ${
           isDarkMode 
             ? 'bg-gray-900 ring-gray-800/50' 
             : 'bg-gray-50 ring-gray-200/50'
         }`}>
-        <div className={`flex items-center gap-x-4 px-3 sm:px-4 py-2 sm:py-3 border-b ${
-          isDarkMode ? 'border-gray-700' : 'border-gray-200'
-        }`}>
-          <div className="flex gap-x-1.5">
-            <div className={`h-2 w-2 sm:h-3 sm:w-3 rounded-full ${
-              isDarkMode ? 'bg-red-500' : 'bg-red-400'
-            }`} />
-            <div className={`h-2 w-2 sm:h-3 sm:w-3 rounded-full ${
-              isDarkMode ? 'bg-yellow-500' : 'bg-yellow-400'
-            }`} />
-            <div className={`h-2 w-2 sm:h-3 sm:w-3 rounded-full ${
-              isDarkMode ? 'bg-green-500' : 'bg-green-400'
-            }`} />
-          </div>
-          <p className={`text-xs lg:text-sm ${
-            isDarkMode ? 'text-gray-400' : 'text-gray-500'
-          }`}>LogicStamp Context CLI</p>
-        </div>
-        <pre className={`px-3 sm:px-6 py-3 sm:py-5 text-sm sm:text-sm lg:text-sm leading-5 sm:leading-6 font-mono whitespace-pre relative h-96 sm:h-[40rem] lg:h-[36rem] overflow-x-auto sm:overflow-hidden ${
-          isDarkMode ? 'text-gray-100' : 'text-gray-800'
-        }`}>
-          {/* Invisible full content to reserve space */}
-          <code className="invisible whitespace-pre">{demos[currentDemo].content}</code>
-          {/* Visible animated content with colors */}
-          <code className={`absolute inset-0 px-3 sm:px-6 py-3 sm:py-5 whitespace-pre ${
-            isDarkMode ? 'bg-gray-900' : 'bg-gray-50'
+          <div className={`flex items-center gap-x-4 px-3 sm:px-4 py-2 sm:py-3 border-b ${
+            isDarkMode ? 'border-gray-700' : 'border-gray-200'
           }`}>
-            {colorizeTerminalText(displayText)}
-            {showCursor && <span className={`animate-pulse ${isDarkMode ? 'text-gray-100' : 'text-gray-800'}`}>▋</span>}
-          </code>
-        </pre>
+            <div className="flex gap-x-1.5">
+              <div className={`h-2 w-2 sm:h-3 sm:w-3 rounded-full ${
+                isDarkMode ? 'bg-red-500' : 'bg-red-400'
+              }`} />
+              <div className={`h-2 w-2 sm:h-3 sm:w-3 rounded-full ${
+                isDarkMode ? 'bg-yellow-500' : 'bg-yellow-400'
+              }`} />
+              <div className={`h-2 w-2 sm:h-3 sm:w-3 rounded-full ${
+                isDarkMode ? 'bg-green-500' : 'bg-green-400'
+              }`} />
+            </div>
+            <p className={`text-xs lg:text-sm ${
+              isDarkMode ? 'text-gray-400' : 'text-gray-500'
+            }`}>LogicStamp Context CLI</p>
+          </div>
+          <pre className={`px-3 sm:px-6 py-3 sm:py-5 text-sm sm:text-sm lg:text-sm leading-5 sm:leading-6 font-mono whitespace-pre relative h-96 sm:h-[40rem] lg:h-[36rem] overflow-x-auto sm:overflow-hidden ${
+            isDarkMode ? 'text-gray-100' : 'text-gray-800'
+          }`}>
+            {/* Invisible full content to reserve space */}
+            <code className="invisible whitespace-pre">{demos[currentDemo].content}</code>
+            {/* Visible animated content with colors */}
+            <code className={`absolute inset-0 px-3 sm:px-6 py-3 sm:py-5 whitespace-pre ${
+              isDarkMode ? 'bg-gray-900' : 'bg-gray-50'
+            }`}>
+              {colorizeTerminalText(displayText)}
+              {showCursor && <span className={`animate-pulse ${isDarkMode ? 'text-gray-100' : 'text-gray-800'}`}>▋</span>}
+            </code>
+          </pre>
         </div>
       </div>
     </div>
@@ -471,38 +513,66 @@ $ stamp context clean
 }
 
 export default function HowItWorks() {
-  return (
-    <section id="how-it-works" className="py-24 sm:py-32 bg-gradient-bg-section">
-      <div className="mx-auto max-w-[1400px] px-6 lg:px-8">
-        <AnimatedSection direction="up" delay={0}>
-          <div className="mx-auto max-w-4xl text-center">
-            <h2 className="text-4xl font-bold tracking-tight text-gray-900 dark:text-white sm:text-5xl lg:text-7xl">
-              How it{' '}
-              <span className="bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 bg-clip-text text-transparent">
-                works
-              </span>
-            </h2>
-            <div className="mt-8 flex items-center justify-center space-x-4 text-lg lg:text-xl text-gray-600 dark:text-gray-300">
-              <span className="flex items-center">
-                <div className="w-2 h-2 bg-green-500 rounded-full mr-2"></div>
-                Instant setup
-              </span>
-              <span className="text-gray-400">→</span>
-              <span className="flex items-center">
-                <div className="w-2 h-2 bg-blue-500 rounded-full mr-2"></div>
-                AI-ready context
-              </span>
-            </div>
-          </div>
-        </AnimatedSection>
-        
-        <AnimatedSection direction="up" delay={200}>
-          <div className="mx-auto mt-16 max-w-[1400px] sm:mt-20 lg:mt-24">
-            <HowItWorksTerminalAnimation />
-          </div>
-        </AnimatedSection>
+  const { ref: titleRef, inView: titleInView } = useInView(0.1)
 
+  return (
+    <section id="how-it-works" className="relative py-24 sm:py-32 overflow-hidden bg-gradient-to-b from-gray-50/50 via-white to-gray-50/50 dark:from-gray-900/50 dark:via-gray-950 dark:to-gray-900/50">
+      {/* Ambient background effects */}
+      <div className="absolute inset-0 overflow-hidden">
+        <div className="absolute -top-40 -right-40 w-80 h-80 bg-blue-500/5 rounded-full blur-3xl animate-pulse" />
+        <div className="absolute -bottom-40 -left-40 w-80 h-80 bg-purple-500/5 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '2s' }} />
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-gradient-to-r from-cyan-500/5 to-purple-500/5 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '4s' }} />
       </div>
+
+      <div className="relative mx-auto max-w-[1400px] px-6 lg:px-8">
+        {/* Header */}
+        <div 
+          ref={titleRef}
+          className={`mx-auto max-w-4xl text-center transition-all duration-1000 ${
+            titleInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+          }`}
+        >
+          <h2 className="text-4xl font-bold tracking-tight text-gray-900 dark:text-white sm:text-5xl lg:text-7xl">
+            How it{' '}
+            <span className="bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 bg-clip-text text-transparent">
+              works
+            </span>
+          </h2>
+          <div className={`mt-8 flex items-center justify-center space-x-4 text-lg lg:text-xl text-gray-600 dark:text-gray-300 transition-all duration-1000 delay-200 ${
+            titleInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
+          }`}>
+            <span className="flex items-center">
+              <div className="w-2 h-2 bg-green-500 rounded-full mr-2 animate-pulse"></div>
+              Instant setup
+            </span>
+            <span className="text-gray-400">→</span>
+            <span className="flex items-center">
+              <div className="w-2 h-2 bg-blue-500 rounded-full mr-2 animate-pulse" style={{ animationDelay: '0.5s' }}></div>
+              AI-ready context
+            </span>
+          </div>
+        </div>
+        
+        {/* Terminal Animation */}
+        <div className="mx-auto mt-16 max-w-[1400px] sm:mt-20 lg:mt-24">
+          <HowItWorksTerminalAnimation />
+        </div>
+      </div>
+
+      <style jsx>{`
+        @keyframes border-spin {
+          0% {
+            transform: rotate(0deg);
+          }
+          100% {
+            transform: rotate(360deg);
+          }
+        }
+        
+        .animate-border-spin {
+          animation: border-spin 3s linear infinite;
+        }
+      `}</style>
     </section>
   )
 }
