@@ -40,7 +40,7 @@ export default function LogicStampWordmark({
         x="-2"
         y="28"
         fill="#F4F4F5"
-        fontFamily="'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif"
+        fontFamily="'Geist Sans', 'Geist', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif"
         fontSize="36"
         fontWeight="600"
         letterSpacing="0.1em"

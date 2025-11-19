@@ -32,7 +32,7 @@ export default function LogicStampContextDocsPage() {
             <h1 className="text-3xl lg:text-4xl font-semibold text-gray-900 dark:text-white mb-4">
               LogicStamp Context CLI
             </h1>
-            <p className="text-lg text-gray-600 dark:text-gray-300">
+            <p className="text-lg text-gray-900 dark:text-white">
               Centralized documentation for the LogicStamp Context CLI used to generate AI-ready context
               from your React/TypeScript codebase.
             </p>
@@ -52,7 +52,7 @@ export default function LogicStampContextDocsPage() {
                 <h2 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">
                   {page.title}
                 </h2>
-                <p className="text-sm text-gray-600 dark:text-gray-300">
+                <p className="text-sm text-gray-900 dark:text-white">
                   {page.description}
                 </p>
               </Link>

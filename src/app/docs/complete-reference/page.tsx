@@ -19,60 +19,62 @@ export default function CompleteReferencePage() {
             <h1 className="text-3xl lg:text-4xl font-semibold text-gray-900 dark:text-white mb-3">
               Complete Reference
             </h1>
-            <p className="text-lg text-gray-600 dark:text-gray-300">
+            <p className="text-lg text-gray-900 dark:text-white">
               Comprehensive documentation for LogicStamp Context CLI - all commands, options, features, and examples.
             </p>
           </div>
         </AnimatedSection>
 
-        <div className="prose prose-lg dark:prose-invert max-w-none prose-headings:text-gray-900 dark:prose-headings:text-white prose-p:text-gray-700 dark:prose-p:text-gray-300 prose-code:text-gray-900 dark:prose-code:text-gray-100 text-gray-800 dark:text-gray-100">
+        <div className="prose prose-lg dark:prose-invert max-w-none prose-headings:text-gray-900 dark:prose-headings:text-white prose-p:text-gray-900 dark:prose-p:text-white prose-code:text-gray-900 dark:prose-code:text-gray-100 text-gray-900 dark:text-white">
           
           {/* What's New */}
           <AnimatedSection direction="up" delay={100}>
             <h2 className="text-2xl font-semibold text-gray-900 dark:text-white mt-12 mb-4">What's New in v0.1.0</h2>
             <div className="space-y-4">
               <div className="bg-blue-50 dark:bg-blue-900/20 border border-blue-200 dark:border-blue-800 rounded-lg p-6">
-                <h3 className="text-lg font-semibold text-blue-900 dark:text-blue-100 mb-3">🎉 Token Cost Optimization</h3>
+                <h3 className="text-lg font-semibold text-blue-900 dark:text-blue-100 mb-3">📁 Multi-File Output Structure</h3>
                 <ul className="text-blue-800 dark:text-blue-200 space-y-2 text-base">
-                  <li>• Automatic token estimates for GPT-4o-mini and Claude</li>
-                  <li>• Mode comparison showing savings (none/header/full)</li>
-                  <li>• <code className="bg-blue-100 dark:bg-blue-900/40 text-blue-900 dark:text-blue-100 px-1.5 py-0.5 rounded text-sm">--compare-modes</code> flag for detailed token analysis</li>
+                  <li>• Generates multiple <code className="bg-blue-100 dark:bg-blue-900/40 text-blue-900 dark:text-blue-100 px-1.5 py-0.5 rounded text-sm">context.json</code> files (one per folder)</li>
+                  <li>• Creates <code className="bg-blue-100 dark:bg-blue-900/40 text-blue-900 dark:text-blue-100 px-1.5 py-0.5 rounded text-sm">context_main.json</code> index file for project-wide navigation</li>
+                  <li>• Folder-organized structure mirrors your project layout</li>
+                  <li>• Better organization for large codebases</li>
                 </ul>
               </div>
 
               <div className="bg-green-50 dark:bg-green-900/20 border border-green-200 dark:border-green-800 rounded-lg p-6">
-                <h3 className="text-lg font-semibold text-green-900 dark:text-green-100 mb-3">🔍 Context Drift Detection</h3>
+                <h3 className="text-lg font-semibold text-green-900 dark:text-green-100 mb-3">🔍 Multi-File Context Drift Detection</h3>
                 <ul className="text-green-800 dark:text-green-200 space-y-2 text-base">
-                  <li>• New <code className="bg-green-100 dark:bg-green-900/40 text-green-900 dark:text-green-100 px-1.5 py-0.5 rounded text-sm">compare</code> command for tracking changes</li>
-                  <li>• Detects added/removed/changed components</li>
-                  <li>• CI-friendly exit codes and token delta stats</li>
+                  <li>• <code className="bg-green-100 dark:bg-green-900/40 text-green-900 dark:text-green-100 px-1.5 py-0.5 rounded text-sm">compare</code> command now supports multi-file mode</li>
+                  <li>• Detects ADDED/ORPHANED folders across entire project</li>
+                  <li>• <code className="bg-green-100 dark:bg-green-900/40 text-green-900 dark:text-green-100 px-1.5 py-0.5 rounded text-sm">--approve</code> flag for Jest-style auto-updates</li>
+                  <li>• <code className="bg-green-100 dark:bg-green-900/40 text-green-900 dark:text-green-100 px-1.5 py-0.5 rounded text-sm">--clean-orphaned</code> to automatically remove stale files</li>
                 </ul>
               </div>
 
               <div className="bg-purple-50 dark:bg-purple-900/20 border border-purple-200 dark:border-purple-800 rounded-lg p-6">
-                <h3 className="text-lg font-semibold text-purple-900 dark:text-purple-100 mb-3">⚛️ Next.js App Router Support</h3>
+                <h3 className="text-lg font-semibold text-purple-900 dark:text-purple-100 mb-3">🛠️ New Commands</h3>
                 <ul className="text-purple-800 dark:text-purple-200 space-y-2 text-base">
-                  <li>• Detects <code className="bg-purple-100 dark:bg-purple-900/40 text-purple-900 dark:text-purple-100 px-1.5 py-0.5 rounded text-sm">'use client'</code> and <code className="bg-purple-100 dark:bg-purple-900/40 text-purple-900 dark:text-purple-100 px-1.5 py-0.5 rounded text-sm">'use server'</code> directives</li>
-                  <li>• Identifies files in Next.js App Router (<code className="bg-purple-100 dark:bg-purple-900/40 text-purple-900 dark:text-purple-100 px-1.5 py-0.5 rounded text-sm">/app</code> directory)</li>
-                  <li>• Adds metadata to contracts for framework-aware analysis</li>
+                  <li>• <code className="bg-purple-100 dark:bg-purple-900/40 text-purple-900 dark:text-purple-100 px-1.5 py-0.5 rounded text-sm">stamp init</code> - Initialize LogicStamp in your project</li>
+                  <li>• <code className="bg-purple-100 dark:bg-purple-900/40 text-purple-900 dark:text-purple-100 px-1.5 py-0.5 rounded text-sm">stamp context clean</code> - Remove all context artifacts</li>
+                  <li>• Smart setup prompts on first run</li>
                 </ul>
               </div>
 
               <div className="bg-yellow-50 dark:bg-yellow-900/20 border border-yellow-200 dark:border-yellow-800 rounded-lg p-6">
-                <h3 className="text-lg font-semibold text-yellow-900 dark:text-yellow-100 mb-3">✅ Enhanced Component Detection</h3>
+                <h3 className="text-lg font-semibold text-yellow-900 dark:text-yellow-100 mb-3">⚛️ Next.js App Router Support</h3>
                 <ul className="text-yellow-800 dark:text-yellow-200 space-y-2 text-base">
-                  <li>• Fixed React component detection for HTML-only JSX</li>
-                  <li>• Improved dependency resolution (relative paths prioritized)</li>
-                  <li>• Better handling of cross-directory component references</li>
+                  <li>• Detects <code className="bg-yellow-100 dark:bg-yellow-900/40 text-yellow-900 dark:text-yellow-100 px-1.5 py-0.5 rounded text-sm">'use client'</code> and <code className="bg-yellow-100 dark:bg-yellow-900/40 text-yellow-900 dark:text-yellow-100 px-1.5 py-0.5 rounded text-sm">'use server'</code> directives</li>
+                  <li>• Identifies files in Next.js App Router (<code className="bg-yellow-100 dark:bg-yellow-900/40 text-yellow-900 dark:text-yellow-100 px-1.5 py-0.5 rounded text-sm">/app</code> directory)</li>
+                  <li>• Adds metadata to contracts for framework-aware analysis</li>
                 </ul>
               </div>
 
               <div className="bg-gray-50 dark:bg-gray-800/50 border border-gray-200 dark:border-gray-700 rounded-lg p-6">
                 <h3 className="text-lg font-semibold text-gray-900 dark:text-gray-100 mb-3">🛡️ CI/CD Improvements</h3>
-                <ul className="text-gray-800 dark:text-gray-200 space-y-2 text-base">
-                  <li>• <code className="bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 px-1.5 py-0.5 rounded text-sm">--strict-missing</code> flag for dependency validation</li>
-                  <li>• Enhanced <code className="bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 px-1.5 py-0.5 rounded text-sm">--stats</code> output with mode estimates</li>
-                  <li>• JSON output optimized for CI parsing</li>
+                <ul className="text-gray-900 dark:text-white space-y-2 text-base">
+                  <li>• <code className="bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 px-1.5 py-0.5 rounded text-sm">--stats</code> output optimized for CI parsing</li>
+                  <li>• Token estimates for GPT-4o-mini and Claude</li>
+                  <li>• Per-folder token statistics in compare command</li>
                 </ul>
               </div>
             </div>
@@ -81,10 +83,12 @@ export default function CompleteReferencePage() {
           {/* What does it generate */}
           <AnimatedSection direction="up" delay={200}>
             <h2 className="text-2xl font-semibold text-gray-900 dark:text-white mt-12 mb-4">What Does It Generate?</h2>
-            <p className="text-gray-700 dark:text-gray-300 mb-4 text-base leading-relaxed">
-              LogicStamp Context analyzes your React components and outputs a structured JSON file containing:
+            <p className="text-gray-900 dark:text-white mb-4 text-base leading-relaxed">
+              LogicStamp Context analyzes your React components and generates a <strong>folder-organized, multi-file output structure</strong>:
             </p>
-            <ul className="text-gray-700 dark:text-gray-300 space-y-2 text-base ml-4">
+            <ul className="text-gray-900 dark:text-white space-y-2 text-base ml-4">
+              <li>• <strong>Multiple <code className="bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 px-1.5 py-0.5 rounded text-sm">context.json</code> files</strong> - One per folder containing components</li>
+              <li>• <strong><code className="bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 px-1.5 py-0.5 rounded text-sm">context_main.json</code> index</strong> - Main index file with folder metadata and project summary</li>
               <li>• <strong>Component structure</strong>: variables, hooks, components, functions</li>
               <li>• <strong>Logic signatures</strong>: props, events, state types</li>
               <li>• <strong>Dependency graph</strong>: how components relate to each other</li>
@@ -92,20 +96,20 @@ export default function CompleteReferencePage() {
               <li>• <strong>Semantic hashes</strong>: for tracking changes</li>
               <li>• <strong>Next.js metadata</strong>: App Router directives and file location (when applicable)</li>
             </ul>
-            <p className="text-gray-700 dark:text-gray-300 mt-4 text-base leading-relaxed">
-              This output is designed to be easily understood by AI assistants, helping them provide better suggestions and understand your codebase architecture.
+            <p className="text-gray-900 dark:text-white mt-4 text-base leading-relaxed">
+              This folder-organized structure mirrors your project layout and is designed to be easily understood by AI assistants, helping them provide better suggestions and understand your codebase architecture.
             </p>
           </AnimatedSection>
 
           {/* Next.js Support */}
           <AnimatedSection direction="up" delay={300}>
             <h2 className="text-2xl font-semibold text-gray-900 dark:text-white mt-12 mb-4">Next.js App Router Support</h2>
-            <p className="text-gray-700 dark:text-gray-300 mb-4 text-base leading-relaxed">
+            <p className="text-gray-900 dark:text-white mb-4 text-base leading-relaxed">
               LogicStamp Context automatically detects and annotates Next.js App Router components:
             </p>
 
             <h3 className="text-xl font-semibold text-gray-900 dark:text-white mt-6 mb-3">Detected Features</h3>
-            <ul className="text-gray-700 dark:text-gray-300 space-y-2 text-base ml-4">
+            <ul className="text-gray-900 dark:text-white space-y-2 text-base ml-4">
               <li>• <code className="bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 px-1.5 py-0.5 rounded text-sm">'use client'</code> directive - Marks Client Components</li>
               <li>• <code className="bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 px-1.5 py-0.5 rounded text-sm">'use server'</code> directive - Marks Server Actions</li>
               <li>• <strong>App Router location</strong> - Identifies files in <code className="bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 px-1.5 py-0.5 rounded text-sm">/app</code> directory</li>
@@ -139,20 +143,20 @@ export default function CompleteReferencePage() {
             />
 
             <h3 className="text-xl font-semibold text-gray-900 dark:text-white mt-6 mb-3">Benefits for AI Analysis</h3>
-            <ul className="text-gray-700 dark:text-gray-300 space-y-2 text-base ml-4">
+            <ul className="text-gray-900 dark:text-white space-y-2 text-base ml-4">
               <li>• <strong>Framework-aware suggestions</strong> - AI knows which APIs are available (client vs server)</li>
               <li>• <strong>Better refactoring</strong> - AI understands boundaries between client/server code</li>
               <li>• <strong>Accurate recommendations</strong> - AI won't suggest client-only hooks in Server Components</li>
             </ul>
 
             <h3 className="text-xl font-semibold text-gray-900 dark:text-white mt-6 mb-3">Supported Scenarios</h3>
-            <ul className="text-gray-700 dark:text-gray-300 space-y-2 text-base ml-4">
+            <ul className="text-gray-900 dark:text-white space-y-2 text-base ml-4">
               <li>✅ Client Components with <code className="bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 px-1.5 py-0.5 rounded text-sm">'use client'</code></li>
               <li>✅ Server Actions with <code className="bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 px-1.5 py-0.5 rounded text-sm">'use server'</code></li>
               <li>✅ Server Components in <code className="bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 px-1.5 py-0.5 rounded text-sm">/app</code> directory (no directive)</li>
               <li>✅ Regular components outside <code className="bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 px-1.5 py-0.5 rounded text-sm">/app</code> (no metadata)</li>
             </ul>
-            <p className="text-gray-600 dark:text-gray-400 mt-4 text-sm leading-relaxed">
+            <p className="text-gray-900 dark:text-white mt-4 text-sm leading-relaxed">
               <strong>Note:</strong> The <code className="bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 px-1.5 py-0.5 rounded text-sm">nextjs</code> field is only added when relevant, keeping contracts clean for non-Next.js projects.
             </p>
           </AnimatedSection>
@@ -164,29 +168,43 @@ export default function CompleteReferencePage() {
               tabs={[
                 {
                   label: 'Command Syntax',
-                  code: `stamp context [path] [options]
-stamp context compare <old.json> <new.json> [options]
-stamp context validate [file]`,
-                  copyText: `stamp context [path] [options]
-stamp context compare <old.json> <new.json> [options]
-stamp context validate [file]`
+                  code: `stamp init [path] [options]
+stamp context [path] [options]
+stamp context validate [file]
+stamp context compare [oldFile] [newFile] [options]
+stamp context clean [path] [options]`,
+                  copyText: `stamp init [path] [options]
+stamp context [path] [options]
+stamp context validate [file]
+stamp context compare [oldFile] [newFile] [options]
+stamp context clean [path] [options]`
                 }
               ]}
             />
 
-            <h3 className="text-xl font-semibold text-gray-900 dark:text-white mt-6 mb-3">stamp context [path]</h3>
-            <p className="text-gray-700 dark:text-gray-300 mb-4 text-base leading-relaxed">
-              Scans a directory and writes an AI-ready context file containing a collection of bundles (one bundle per entry point). Shows token estimates and mode comparison in output. Automatically validates the generated context before writing.
+            <h3 className="text-xl font-semibold text-gray-900 dark:text-white mt-6 mb-3">stamp init [path]</h3>
+            <p className="text-gray-900 dark:text-white mb-4 text-base leading-relaxed">
+              Initialize LogicStamp in your project by setting up <code className="bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 px-1.5 py-0.5 rounded text-sm">.gitignore</code> patterns and generating <code className="bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 px-1.5 py-0.5 rounded text-sm">LLM_CONTEXT.md</code>. Optional - <code className="bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 px-1.5 py-0.5 rounded text-sm">stamp context</code> will auto-prompt on first run.
             </p>
 
-            <h3 className="text-xl font-semibold text-gray-900 dark:text-white mt-6 mb-3">stamp context compare</h3>
-            <p className="text-gray-700 dark:text-gray-300 mb-4 text-base leading-relaxed">
-              Compares two context files and reports drift. Detects added/removed components, changed imports, hooks, exports, and semantic hashes. Exits with code 1 if drift is detected (CI-friendly).
+            <h3 className="text-xl font-semibold text-gray-900 dark:text-white mt-6 mb-3">stamp context [path]</h3>
+            <p className="text-gray-900 dark:text-white mb-4 text-base leading-relaxed">
+              Scans a directory and generates multiple <code className="bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 px-1.5 py-0.5 rounded text-sm">context.json</code> files (one per folder) plus a <code className="bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 px-1.5 py-0.5 rounded text-sm">context_main.json</code> index file. Each folder's <code className="bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 px-1.5 py-0.5 rounded text-sm">context.json</code> contains bundles for that folder's components. Shows token estimates in output. Automatically validates the generated context before writing.
             </p>
 
             <h3 className="text-xl font-semibold text-gray-900 dark:text-white mt-6 mb-3">stamp context validate [file]</h3>
-            <p className="text-gray-700 dark:text-gray-300 mb-4 text-base leading-relaxed">
-              Checks an existing context file for schema and structural issues before sharing it with an AI or committing it to a repo. When no file is specified it looks for <code className="bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 px-1.5 py-0.5 rounded text-sm">context.json</code> in the current directory.
+            <p className="text-gray-900 dark:text-white mb-4 text-base leading-relaxed">
+              Checks an existing context file (folder context or main index) for schema and structural issues before sharing it with an AI or committing it to a repo. When no file is specified it looks for <code className="bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 px-1.5 py-0.5 rounded text-sm">context.json</code> in the current directory. Can validate both folder context files and the <code className="bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 px-1.5 py-0.5 rounded text-sm">context_main.json</code> index.
+            </p>
+
+            <h3 className="text-xl font-semibold text-gray-900 dark:text-white mt-6 mb-3">stamp context compare [oldFile] [newFile]</h3>
+            <p className="text-gray-900 dark:text-white mb-4 text-base leading-relaxed">
+              Compares context files to detect drift across your project. Supports <strong>multi-file mode</strong> (auto-detects <code className="bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 px-1.5 py-0.5 rounded text-sm">context_main.json</code>) and <strong>single-file mode</strong> (compares two specific files). Detects ADDED/ORPHANED folders, component changes, and token cost deltas. Use <code className="bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 px-1.5 py-0.5 rounded text-sm">--approve</code> for Jest-style auto-updates. Exits with code 1 if drift is detected (CI-friendly).
+            </p>
+
+            <h3 className="text-xl font-semibold text-gray-900 dark:text-white mt-6 mb-3">stamp context clean [path]</h3>
+            <p className="text-gray-900 dark:text-white mb-4 text-base leading-relaxed">
+              Removes all generated context artifacts (<code className="bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 px-1.5 py-0.5 rounded text-sm">context_main.json</code>, all folder <code className="bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 px-1.5 py-0.5 rounded text-sm">context.json</code> files, and <code className="bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 px-1.5 py-0.5 rounded text-sm">.logicstamp/</code> directory). Safe by default (dry run), requires <code className="bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 px-1.5 py-0.5 rounded text-sm">--all --yes</code> to actually delete.
             </p>
           </AnimatedSection>
 
@@ -225,7 +243,7 @@ stamp context validate [file]`
                   <tr className="bg-gray-50 dark:bg-gray-900/50">
                     <td className="border border-gray-300 dark:border-gray-700 px-4 py-2"><code>--out &lt;file&gt;</code></td>
                     <td className="border border-gray-300 dark:border-gray-700 px-4 py-2"><code>-o</code></td>
-                    <td className="border border-gray-300 dark:border-gray-700 px-4 py-2">Output file</td>
+                    <td className="border border-gray-300 dark:border-gray-700 px-4 py-2">Output directory or file path. If a <code>.json</code> file is specified, its directory is used. Otherwise, the path is used as the output directory. All context files will be written within this directory structure.</td>
                     <td className="border border-gray-300 dark:border-gray-700 px-4 py-2"><code>context.json</code></td>
                   </tr>
                   <tr>
@@ -246,12 +264,6 @@ stamp context validate [file]`
                     <td className="border border-gray-300 dark:border-gray-700 px-4 py-2">Fail on missing dependencies</td>
                     <td className="border border-gray-300 dark:border-gray-700 px-4 py-2"><code>false</code></td>
                   </tr>
-                  <tr className="bg-gray-50 dark:bg-gray-900/50">
-                    <td className="border border-gray-300 dark:border-gray-700 px-4 py-2"><code>--strict-missing</code></td>
-                    <td className="border border-gray-300 dark:border-gray-700 px-4 py-2">-</td>
-                    <td className="border border-gray-300 dark:border-gray-700 px-4 py-2">Exit with error code 1 if any missing dependencies found (CI-friendly)</td>
-                    <td className="border border-gray-300 dark:border-gray-700 px-4 py-2"><code>false</code></td>
-                  </tr>
                   <tr>
                     <td className="border border-gray-300 dark:border-gray-700 px-4 py-2"><code>--predict-behavior</code></td>
                     <td className="border border-gray-300 dark:border-gray-700 px-4 py-2">-</td>
@@ -270,12 +282,6 @@ stamp context validate [file]`
                     <td className="border border-gray-300 dark:border-gray-700 px-4 py-2">Emit single-line JSON stats with token estimates (intended for CI)</td>
                     <td className="border border-gray-300 dark:border-gray-700 px-4 py-2"><code>false</code></td>
                   </tr>
-                  <tr className="bg-gray-50 dark:bg-gray-900/50">
-                    <td className="border border-gray-300 dark:border-gray-700 px-4 py-2"><code>--compare-modes</code></td>
-                    <td className="border border-gray-300 dark:border-gray-700 px-4 py-2">-</td>
-                    <td className="border border-gray-300 dark:border-gray-700 px-4 py-2">Show detailed token comparison table across modes (none/header/full)</td>
-                    <td className="border border-gray-300 dark:border-gray-700 px-4 py-2"><code>false</code></td>
-                  </tr>
                   <tr>
                     <td className="border border-gray-300 dark:border-gray-700 px-4 py-2"><code>--help</code></td>
                     <td className="border border-gray-300 dark:border-gray-700 px-4 py-2"><code>-h</code></td>
@@ -290,7 +296,7 @@ stamp context validate [file]`
           {/* Profiles */}
           <AnimatedSection direction="up" delay={600}>
             <h2 className="text-2xl font-semibold text-gray-900 dark:text-white mt-12 mb-4">Profiles</h2>
-            <p className="text-gray-700 dark:text-gray-300 mb-4 text-base leading-relaxed">
+            <p className="text-gray-900 dark:text-white mb-4 text-base leading-relaxed">
               Profiles are preset configurations optimized for different use cases:
             </p>
 
@@ -332,10 +338,10 @@ stamp context validate [file]`
           {/* Behavioral Predictions */}
           <AnimatedSection direction="up" delay={700}>
             <h2 className="text-2xl font-semibold text-gray-900 dark:text-white mt-12 mb-4">Behavioral Predictions</h2>
-            <p className="text-gray-700 dark:text-gray-300 mb-4 text-base leading-relaxed">
+            <p className="text-gray-900 dark:text-white mb-4 text-base leading-relaxed">
               The <code className="bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 px-1.5 py-0.5 rounded text-sm">--predict-behavior</code> flag enables experimental behavioral analysis that adds predicted component behaviors to the contract output. These predictions include:
             </p>
-            <ul className="text-gray-700 dark:text-gray-300 space-y-2 text-base ml-4">
+            <ul className="text-gray-900 dark:text-white space-y-2 text-base ml-4">
               <li>• Form validation patterns</li>
               <li>• Side effect management (useEffect)</li>
               <li>• Data fetching/mutation patterns</li>
@@ -371,12 +377,12 @@ stamp context --profile llm-safe --predict-behavior`
           {/* Token Optimization */}
           <AnimatedSection direction="up" delay={800}>
             <h2 className="text-2xl font-semibold text-gray-900 dark:text-white mt-12 mb-4">Token Optimization</h2>
-            <p className="text-gray-700 dark:text-gray-300 mb-4 text-base leading-relaxed">
+            <p className="text-gray-900 dark:text-white mb-4 text-base leading-relaxed">
               LogicStamp Context includes built-in token cost analysis and optimization features:
             </p>
 
             <h3 className="text-xl font-semibold text-gray-900 dark:text-white mt-6 mb-3">Automatic Token Estimates</h3>
-            <p className="text-gray-700 dark:text-gray-300 mb-4 text-base leading-relaxed">
+            <p className="text-gray-900 dark:text-white mb-4 text-base leading-relaxed">
               Every context generation shows token costs for both GPT-4o-mini and Claude:
             </p>
             <TabbedCodeBlock
@@ -402,39 +408,30 @@ stamp context --profile llm-safe --predict-behavior`
                 }
               ]}
             />
-            <p className="text-gray-700 dark:text-gray-300 mt-4 text-base leading-relaxed">
+            <p className="text-gray-900 dark:text-white mt-4 text-base leading-relaxed">
               This helps you:
             </p>
-            <ul className="text-gray-700 dark:text-gray-300 space-y-2 text-base ml-4">
+            <ul className="text-gray-900 dark:text-white space-y-2 text-base ml-4">
               <li>• <strong>Understand costs</strong> at a glance</li>
               <li>• <strong>Choose the right mode</strong> for your budget</li>
               <li>• <strong>See savings</strong> compared to including full source code</li>
             </ul>
 
-            <h3 className="text-xl font-semibold text-gray-900 dark:text-white mt-6 mb-3">Mode Comparison Table</h3>
-            <p className="text-gray-700 dark:text-gray-300 mb-4 text-base leading-relaxed">
-              Use <code className="bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 px-1.5 py-0.5 rounded text-sm">--compare-modes</code> for a detailed comparison:
+            <h3 className="text-xl font-semibold text-gray-900 dark:text-white mt-6 mb-3">Mode Comparison</h3>
+            <p className="text-gray-900 dark:text-white mb-4 text-base leading-relaxed">
+              Token estimates are automatically shown for all three modes in the output:
             </p>
-            <TabbedCodeBlock
-              tabs={[
-                {
-                  label: 'Compare Modes',
-                  code: 'stamp context --compare-modes',
-                  copyText: 'stamp context --compare-modes'
-                }
-              ]}
-            />
-            <p className="text-gray-700 dark:text-gray-300 mt-4 text-base leading-relaxed">
+            <p className="text-gray-900 dark:text-white mt-4 text-base leading-relaxed">
               <strong>When to use each mode:</strong>
             </p>
-            <ul className="text-gray-700 dark:text-gray-300 space-y-2 text-base ml-4">
+            <ul className="text-gray-900 dark:text-white space-y-2 text-base ml-4">
               <li>• <code className="bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 px-1.5 py-0.5 rounded text-sm">none</code> - API documentation, CI validation (no code snippets)</li>
               <li>• <code className="bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 px-1.5 py-0.5 rounded text-sm">header</code> - AI chat, code review (JSDoc headers + contracts)</li>
               <li>• <code className="bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 px-1.5 py-0.5 rounded text-sm">full</code> - Deep analysis, debugging (complete source code)</li>
             </ul>
 
             <h3 className="text-xl font-semibold text-gray-900 dark:text-white mt-6 mb-3">Stats for CI/CD</h3>
-            <p className="text-gray-700 dark:text-gray-300 mb-4 text-base leading-relaxed">
+            <p className="text-gray-900 dark:text-white mb-4 text-base leading-relaxed">
               Use <code className="bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 px-1.5 py-0.5 rounded text-sm">--stats</code> to get machine-readable token data:
             </p>
             <TabbedCodeBlock
@@ -446,7 +443,7 @@ stamp context --profile llm-safe --predict-behavior`
                 }
               ]}
             />
-            <p className="text-gray-700 dark:text-gray-300 mt-4 text-base leading-relaxed">
+            <p className="text-gray-900 dark:text-white mt-4 text-base leading-relaxed">
               Output JSON includes:
             </p>
             <TabbedCodeBlock
@@ -483,102 +480,155 @@ stamp context --profile llm-safe --predict-behavior`
           {/* Context Drift Detection */}
           <AnimatedSection direction="up" delay={900}>
             <h2 className="text-2xl font-semibold text-gray-900 dark:text-white mt-12 mb-4">Context Drift Detection</h2>
-            <p className="text-gray-700 dark:text-gray-300 mb-4 text-base leading-relaxed">
-              The <code className="bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 px-1.5 py-0.5 rounded text-sm">compare</code> command helps you track changes between context versions:
+            <p className="text-gray-900 dark:text-white mb-4 text-base leading-relaxed">
+              The <code className="bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 px-1.5 py-0.5 rounded text-sm">compare</code> command helps you track changes across your entire project. It supports <strong>multi-file mode</strong> (compares all context files using <code className="bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 px-1.5 py-0.5 rounded text-sm">context_main.json</code>) and <strong>single-file mode</strong> (compares two specific files).
             </p>
 
-            <h3 className="text-xl font-semibold text-gray-900 dark:text-white mt-6 mb-3">Basic Comparison</h3>
+            <h3 className="text-xl font-semibold text-gray-900 dark:text-white mt-6 mb-3">Multi-File Mode (Auto)</h3>
             <TabbedCodeBlock
               tabs={[
                 {
-                  label: 'Compare Files',
-                  code: 'stamp context compare old.json new.json',
-                  copyText: 'stamp context compare old.json new.json'
+                  label: 'Compare All Files',
+                  code: `# Auto-mode: Compare all context files
+stamp context compare
+
+# Auto-approve updates (Jest-style)
+stamp context compare --approve
+
+# Clean orphaned files automatically
+stamp context compare --approve --clean-orphaned`,
+                  copyText: `# Auto-mode: Compare all context files
+stamp context compare
+
+# Auto-approve updates (Jest-style)
+stamp context compare --approve
+
+# Clean orphaned files automatically
+stamp context compare --approve --clean-orphaned`
                 }
               ]}
             />
-            <p className="text-gray-700 dark:text-gray-300 mt-4 text-base leading-relaxed">
-              Output shows:
+            <p className="text-gray-900 dark:text-white mt-4 text-base leading-relaxed">
+              Multi-file mode automatically:
             </p>
+            <ul className="text-gray-900 dark:text-white space-y-2 text-base ml-4">
+              <li>• Generates fresh context files based on your current code</li>
+              <li>• Compares all context files using <code className="bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 px-1.5 py-0.5 rounded text-sm">context_main.json</code> as the index</li>
+              <li>• Detects ADDED folders, ORPHANED folders, DRIFT, and unchanged files (PASS)</li>
+              <li>• Shows three-tier output: folder summary → component summary → detailed changes</li>
+            </ul>
+
+            <h3 className="text-xl font-semibold text-gray-900 dark:text-white mt-6 mb-3">Single-File Mode</h3>
+            <TabbedCodeBlock
+              tabs={[
+                {
+                  label: 'Compare Two Files',
+                  code: `# Compare two specific context files
+stamp context compare old.json new.json
+
+# Compare two main indices
+stamp context compare old/context_main.json new/context_main.json`,
+                  copyText: `# Compare two specific context files
+stamp context compare old.json new.json
+
+# Compare two main indices
+stamp context compare old/context_main.json new/context_main.json`
+                }
+              ]}
+            />
+
+            <h3 className="text-xl font-semibold text-gray-900 dark:text-white mt-6 mb-3">Example Output (Multi-File Mode)</h3>
             <TabbedCodeBlock
               tabs={[
                 {
                   label: 'Output Example',
-                  code: `✅ PASS
+                  code: `⚠️  DRIFT
 
-# or if changes detected:
+📁 Folder Summary:
+   Total folders: 14
+   ➕ Added folders: 1
+   🗑️  Orphaned folders: 1
+   ~  Changed folders: 2
+   ✓  Unchanged folders: 11
 
-⚠️  DRIFT
+📦 Component Summary:
+   + Added: 3
+   - Removed: 2
+   ~ Changed: 2
 
-Added components: 2
-  + src/components/NewButton.tsx
-  + src/utils/helpers.ts
+📂 Folder Details:
 
-Removed components: 1
-  - src/components/OldButton.tsx
+   ➕ ADDED FILE: src/new-feature/context.json
+      Path: src/new-feature
 
-Changed components: 3
-  ~ src/components/Card.tsx
-    Δ imports, hooks
-  ~ src/App.tsx
-    Δ hash`,
-                  copyText: `✅ PASS
+   🗑️  ORPHANED FILE: src/old-feature/context.json
+      Path: src/old-feature
 
-# or if changes detected:
+   ⚠️  DRIFT: src/components/context.json
+      Path: src/components
+      + Added components (1):
+        + NewButton.tsx
+      ~ Changed components (1):
+        ~ Card.tsx
+          Δ hash
+            old: uif:abc123...
+            new: uif:def456...
+      Token Δ: +641 (GPT-4) | +569 (Claude)
 
-⚠️  DRIFT
+   ✅ PASS: src/utils/context.json
+      Path: src/utils`,
+                  copyText: `⚠️  DRIFT
 
-Added components: 2
-  + src/components/NewButton.tsx
-  + src/utils/helpers.ts
+📁 Folder Summary:
+   Total folders: 14
+   ➕ Added folders: 1
+   🗑️  Orphaned folders: 1
+   ~  Changed folders: 2
+   ✓  Unchanged folders: 11
 
-Removed components: 1
-  - src/components/OldButton.tsx
+📦 Component Summary:
+   + Added: 3
+   - Removed: 2
+   ~ Changed: 2
 
-Changed components: 3
-  ~ src/components/Card.tsx
-    Δ imports, hooks
-  ~ src/App.tsx
-    Δ hash`
+📂 Folder Details:
+
+   ➕ ADDED FILE: src/new-feature/context.json
+      Path: src/new-feature
+
+   🗑️  ORPHANED FILE: src/old-feature/context.json
+      Path: src/old-feature
+
+   ⚠️  DRIFT: src/components/context.json
+      Path: src/components
+      + Added components (1):
+        + NewButton.tsx
+      ~ Changed components (1):
+        ~ Card.tsx
+          Δ hash
+            old: uif:abc123...
+            new: uif:def456...
+      Token Δ: +641 (GPT-4) | +569 (Claude)
+
+   ✅ PASS: src/utils/context.json
+      Path: src/utils`
                 }
               ]}
             />
 
-            <h3 className="text-xl font-semibold text-gray-900 dark:text-white mt-6 mb-3">With Token Stats</h3>
-            <TabbedCodeBlock
-              tabs={[
-                {
-                  label: 'Compare with Stats',
-                  code: 'stamp context compare old.json new.json --stats',
-                  copyText: 'stamp context compare old.json new.json --stats'
-                }
-              ]}
-            />
-            <p className="text-gray-700 dark:text-gray-300 mt-4 text-base leading-relaxed">
-              Shows token cost changes:
-            </p>
-            <TabbedCodeBlock
-              tabs={[
-                {
-                  label: 'Token Stats Output',
-                  code: `Token Stats:
-  Old: 8,484 (GPT-4o-mini) | 7,542 (Claude)
-  New: 9,125 (GPT-4o-mini) | 8,111 (Claude)
-  Δ +641 (+7.56%)`,
-                  copyText: `Token Stats:
-  Old: 8,484 (GPT-4o-mini) | 7,542 (Claude)
-  New: 9,125 (GPT-4o-mini) | 8,111 (Claude)
-  Δ +641 (+7.56%)`
-                }
-              ]}
-            />
+            <h3 className="text-xl font-semibold text-gray-900 dark:text-white mt-6 mb-3">Key Options</h3>
+            <ul className="text-gray-900 dark:text-white space-y-2 text-base ml-4">
+              <li>• <code className="bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 px-1.5 py-0.5 rounded text-sm">--approve</code> - Auto-approve updates (non-interactive, CI-safe, like <code className="bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 px-1.5 py-0.5 rounded text-sm">jest -u</code>)</li>
+              <li>• <code className="bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 px-1.5 py-0.5 rounded text-sm">--clean-orphaned</code> - Automatically delete orphaned files (requires <code className="bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 px-1.5 py-0.5 rounded text-sm">--approve</code>)</li>
+              <li>• <code className="bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 px-1.5 py-0.5 rounded text-sm">--stats</code> - Show per-folder token cost statistics</li>
+            </ul>
 
             <h3 className="text-xl font-semibold text-gray-900 dark:text-white mt-6 mb-3">Exit Codes</h3>
-            <ul className="text-gray-700 dark:text-gray-300 space-y-2 text-base ml-4">
-              <li>• <code className="bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 px-1.5 py-0.5 rounded text-sm">0</code> - No drift (PASS)</li>
-              <li>• <code className="bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 px-1.5 py-0.5 rounded text-sm">1</code> - Drift detected or error</li>
+            <ul className="text-gray-900 dark:text-white space-y-2 text-base ml-4">
+              <li>• <code className="bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 px-1.5 py-0.5 rounded text-sm">0</code> - PASS (no drift) OR drift approved and updated</li>
+              <li>• <code className="bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 px-1.5 py-0.5 rounded text-sm">1</code> - DRIFT detected but not approved</li>
             </ul>
-            <p className="text-gray-700 dark:text-gray-300 mt-4 text-base leading-relaxed">
+            <p className="text-gray-900 dark:text-white mt-4 text-base leading-relaxed">
               Perfect for CI/CD validation:
             </p>
             <TabbedCodeBlock
@@ -586,9 +636,15 @@ Changed components: 3
                 {
                   label: 'CI Example',
                   code: `# In your CI pipeline
-stamp context compare base.json pr.json || echo "Context drift detected!"`,
+stamp context compare --stats || exit 1
+
+# Auto-approve in CI
+stamp context compare --approve --clean-orphaned`,
                   copyText: `# In your CI pipeline
-stamp context compare base.json pr.json || echo "Context drift detected!"`
+stamp context compare --stats || exit 1
+
+# Auto-approve in CI
+stamp context compare --approve --clean-orphaned`
                 }
               ]}
             />
@@ -658,23 +714,19 @@ stamp context --include-code full`
               tabs={[
                 {
                   label: 'Token Analysis',
-                  code: `# Show detailed mode comparison
-stamp context --compare-modes
-
-# Get JSON stats for CI
+                  code: `# Get JSON stats for CI
 stamp context --stats
 
 # See token costs for specific mode
 stamp context --include-code none
+stamp context --include-code header
 stamp context --include-code full`,
-                  copyText: `# Show detailed mode comparison
-stamp context --compare-modes
-
-# Get JSON stats for CI
+                  copyText: `# Get JSON stats for CI
 stamp context --stats
 
 # See token costs for specific mode
 stamp context --include-code none
+stamp context --include-code header
 stamp context --include-code full`
                 }
               ]}
@@ -686,27 +738,33 @@ stamp context --include-code full`
                 {
                   label: 'CI Examples',
                   code: `# Use llm-safe profile for smaller output
-stamp context --profile llm-safe --out safe-context.json
+stamp context --profile llm-safe
 
 # Strict mode: fail if any dependencies missing
-stamp context --strict-missing
+stamp context --strict
 
 # Generate stats for CI monitoring
 stamp context --stats > stats.json
 
 # Validate generated context
-stamp context validate context.json`,
+stamp context validate context_main.json
+
+# Check for drift across all folders
+stamp context compare --stats`,
                   copyText: `# Use llm-safe profile for smaller output
-stamp context --profile llm-safe --out safe-context.json
+stamp context --profile llm-safe
 
 # Strict mode: fail if any dependencies missing
-stamp context --strict-missing
+stamp context --strict
 
 # Generate stats for CI monitoring
 stamp context --stats > stats.json
 
 # Validate generated context
-stamp context validate context.json`
+stamp context validate context_main.json
+
+# Check for drift across all folders
+stamp context compare --stats`
                 }
               ]}
             />
@@ -715,19 +773,110 @@ stamp context validate context.json`
           {/* Output Format */}
           <AnimatedSection direction="up" delay={1100}>
             <h2 className="text-2xl font-semibold text-gray-900 dark:text-white mt-12 mb-4">Output Format</h2>
-            <p className="text-gray-700 dark:text-gray-300 mb-4 text-base leading-relaxed">
-              The generated <code className="bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 px-1.5 py-0.5 rounded text-sm">context.json</code> contains an array of bundles (one bundle per entry point). Each bundle represents a root component plus its complete dependency graph, with all related components and their contracts included within that bundle. This per-root bundle design is optimized for how developers and LLMs work—when you need help with a specific page or feature, the root bundle contains everything related to that feature in one self-contained unit.
+            <p className="text-gray-900 dark:text-white mb-4 text-base leading-relaxed">
+              LogicStamp Context generates a <strong>folder-organized, multi-file output structure</strong>:
             </p>
-            <p className="text-gray-700 dark:text-gray-300 mb-4 text-base leading-relaxed">
-              <strong>Design note:</strong> LogicStamp Context intentionally uses per-root bundles rather than per-component files because developers think in features/pages (roots), not individual atoms. Having the full dependency graph inside each root bundle means AI assistants see all related components together, improving understanding and suggestions. The structure naturally supports a future <code className="bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 px-1.5 py-0.5 rounded text-sm">--split</code> mode that would write each root bundle to its own file without breaking changes.
-            </p>
-            <p className="text-gray-600 dark:text-gray-400 mb-4 text-sm leading-relaxed">
-              <strong>📋 Full Schema Reference:</strong> See the schema file for the complete JSON Schema definition.
+
+            <h3 className="text-xl font-semibold text-gray-900 dark:text-white mt-6 mb-3">File Organization</h3>
+            <p className="text-gray-900 dark:text-white mb-4 text-base leading-relaxed">
+              The command generates multiple <code className="bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 px-1.5 py-0.5 rounded text-sm">context.json</code> files (one per folder containing components) plus a <code className="bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 px-1.5 py-0.5 rounded text-sm">context_main.json</code> index file:
             </p>
             <TabbedCodeBlock
               tabs={[
                 {
-                  label: 'Example Output',
+                  label: 'File Structure',
+                  code: `output/
+├── context_main.json          # Main index with folder metadata
+├── context.json               # Root folder bundles (if any)
+├── src/
+│   └── context.json          # Bundles from src/ folder
+├── src/components/
+│   └── context.json          # Bundles from src/components/
+└── src/utils/
+    └── context.json          # Bundles from src/utils/`,
+                  copyText: `output/
+├── context_main.json          # Main index with folder metadata
+├── context.json               # Root folder bundles (if any)
+├── src/
+│   └── context.json          # Bundles from src/ folder
+├── src/components/
+│   └── context.json          # Bundles from src/components/
+└── src/utils/
+    └── context.json          # Bundles from src/utils/`
+                }
+              ]}
+            />
+
+            <h3 className="text-xl font-semibold text-gray-900 dark:text-white mt-6 mb-3">Main Index (context_main.json)</h3>
+            <p className="text-gray-900 dark:text-white mb-4 text-base leading-relaxed">
+              The <code className="bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 px-1.5 py-0.5 rounded text-sm">context_main.json</code> file provides a complete directory index with folder metadata and project summary:
+            </p>
+            <TabbedCodeBlock
+              tabs={[
+                {
+                  label: 'Main Index Example',
+                  code: `{
+  "type": "LogicStampIndex",
+  "schemaVersion": "0.1",
+  "projectRoot": ".",
+  "createdAt": "2025-01-15T10:30:00.000Z",
+  "summary": {
+    "totalComponents": 42,
+    "totalBundles": 15,
+    "totalFolders": 5,
+    "totalTokenEstimate": 13895
+  },
+  "folders": [
+    {
+      "path": "src/components",
+      "contextFile": "src/components/context.json",
+      "bundles": 3,
+      "components": ["Button.tsx", "Card.tsx"],
+      "isRoot": false,
+      "tokenEstimate": 5234
+    }
+  ],
+  "meta": {
+    "source": "logicstamp-context@0.1.0"
+  }
+}`,
+                  copyText: `{
+  "type": "LogicStampIndex",
+  "schemaVersion": "0.1",
+  "projectRoot": ".",
+  "createdAt": "2025-01-15T10:30:00.000Z",
+  "summary": {
+    "totalComponents": 42,
+    "totalBundles": 15,
+    "totalFolders": 5,
+    "totalTokenEstimate": 13895
+  },
+  "folders": [
+    {
+      "path": "src/components",
+      "contextFile": "src/components/context.json",
+      "bundles": 3,
+      "components": ["Button.tsx", "Card.tsx"],
+      "isRoot": false,
+      "tokenEstimate": 5234
+    }
+  ],
+  "meta": {
+    "source": "logicstamp-context@0.1.0"
+  }
+}`
+                }
+              ]}
+            />
+
+            <h3 className="text-xl font-semibold text-gray-900 dark:text-white mt-6 mb-3">Folder Context Files</h3>
+            <p className="text-gray-900 dark:text-white mb-4 text-base leading-relaxed">
+              Each folder's <code className="bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 px-1.5 py-0.5 rounded text-sm">context.json</code> contains an array of bundles (one bundle per root component/entry point). Each bundle represents a root component plus its complete dependency graph, with all related components and their contracts included within that bundle.
+            </p>
+            <TabbedCodeBlock
+              tabs={[
+                {
+                  label: 'Folder Context Example',
                   code: `[
   {
     "$schema": "https://logicstamp.dev/schemas/context/v0.1.json",
@@ -827,29 +976,32 @@ stamp context validate context.json`
                 }
               ]}
             />
+            <p className="text-gray-900 dark:text-white mt-4 text-base leading-relaxed">
+              <strong>Design note:</strong> LogicStamp Context intentionally uses per-root bundles rather than per-component files because developers think in features/pages (roots), not individual atoms. Having the full dependency graph inside each root bundle means AI assistants see all related components together, improving understanding and suggestions.
+            </p>
 
             <h3 className="text-xl font-semibold text-gray-900 dark:text-white mt-6 mb-3">Understanding the Meta Field</h3>
-            <p className="text-gray-700 dark:text-gray-300 mb-4 text-base leading-relaxed">
+            <p className="text-gray-900 dark:text-white mb-4 text-base leading-relaxed">
               The <code className="bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 px-1.5 py-0.5 rounded text-sm">meta</code> section provides metadata about bundle generation and dependency resolution:
             </p>
 
             <h4 className="text-lg font-semibold text-gray-900 dark:text-white mt-4 mb-3">missing Array</h4>
-            <p className="text-gray-700 dark:text-gray-300 mb-4 text-base leading-relaxed">
+            <p className="text-gray-900 dark:text-white mb-4 text-base leading-relaxed">
               Tracks dependencies that couldn't be resolved during analysis. An empty array <code className="bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 px-1.5 py-0.5 rounded text-sm">[]</code> means all dependencies were successfully found.
             </p>
-            <p className="text-gray-700 dark:text-gray-300 mb-4 text-base leading-relaxed">
+            <p className="text-gray-900 dark:text-white mb-4 text-base leading-relaxed">
               When dependencies are missing, each entry contains:
             </p>
-            <ul className="text-gray-700 dark:text-gray-300 space-y-2 text-base ml-4">
+            <ul className="text-gray-900 dark:text-white space-y-2 text-base ml-4">
               <li>• <code className="bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 px-1.5 py-0.5 rounded text-sm">name</code> - The import specifier that couldn't be resolved</li>
               <li>• <code className="bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 px-1.5 py-0.5 rounded text-sm">reason</code> - Why it couldn't be found (e.g., "file not found", "external package")</li>
               <li>• <code className="bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 px-1.5 py-0.5 rounded text-sm">referencedBy</code> - The component that tried to import it</li>
             </ul>
 
-            <p className="text-gray-700 dark:text-gray-300 mt-4 text-base leading-relaxed">
+            <p className="text-gray-900 dark:text-white mt-4 text-base leading-relaxed">
               <strong>Common reasons for missing dependencies:</strong>
             </p>
-            <ul className="text-gray-700 dark:text-gray-300 space-y-2 text-base ml-4">
+            <ul className="text-gray-900 dark:text-white space-y-2 text-base ml-4">
               <li>• <code className="bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 px-1.5 py-0.5 rounded text-sm">file not found</code> - Referenced file doesn't exist (deleted or moved)</li>
               <li>• <code className="bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 px-1.5 py-0.5 rounded text-sm">external package</code> - Third-party npm package (intentionally excluded)</li>
               <li>• <code className="bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 px-1.5 py-0.5 rounded text-sm">outside scan path</code> - File exists but outside the specified scan directory</li>
@@ -858,10 +1010,10 @@ stamp context validate context.json`
             </ul>
 
             <h4 className="text-lg font-semibold text-gray-900 dark:text-white mt-4 mb-3">source Field</h4>
-            <p className="text-gray-700 dark:text-gray-300 mb-4 text-base leading-relaxed">
+            <p className="text-gray-900 dark:text-white mb-4 text-base leading-relaxed">
               Identifies the generator and version (e.g., <code className="bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 px-1.5 py-0.5 rounded text-sm">"logicstamp-context@0.1.0"</code>). Useful for:
             </p>
-            <ul className="text-gray-700 dark:text-gray-300 space-y-2 text-base ml-4">
+            <ul className="text-gray-900 dark:text-white space-y-2 text-base ml-4">
               <li>• Debugging context generation issues</li>
               <li>• Ensuring compatibility with consuming tools</li>
               <li>• Tracking which version generated historical contexts</li>
@@ -873,30 +1025,30 @@ stamp context validate context.json`
             <h2 className="text-2xl font-semibold text-gray-900 dark:text-white mt-12 mb-4">Use Cases</h2>
 
             <h3 className="text-xl font-semibold text-gray-900 dark:text-white mt-6 mb-3">AI-Assisted Development</h3>
-            <p className="text-gray-700 dark:text-gray-300 mb-4 text-base leading-relaxed">
+            <p className="text-gray-900 dark:text-white mb-4 text-base leading-relaxed">
               Share context with Claude or ChatGPT to get:
             </p>
-            <ul className="text-gray-700 dark:text-gray-300 space-y-2 text-base ml-4">
+            <ul className="text-gray-900 dark:text-white space-y-2 text-base ml-4">
               <li>• Architecture suggestions</li>
               <li>• Refactoring recommendations</li>
               <li>• Bug fixes based on full component understanding</li>
             </ul>
 
             <h3 className="text-xl font-semibold text-gray-900 dark:text-white mt-6 mb-3">Documentation</h3>
-            <p className="text-gray-700 dark:text-gray-300 mb-4 text-base leading-relaxed">
+            <p className="text-gray-900 dark:text-white mb-4 text-base leading-relaxed">
               Generate up-to-date component documentation automatically:
             </p>
-            <ul className="text-gray-700 dark:text-gray-300 space-y-2 text-base ml-4">
+            <ul className="text-gray-900 dark:text-white space-y-2 text-base ml-4">
               <li>• API contracts</li>
               <li>• Dependency trees</li>
               <li>• Component relationships</li>
             </ul>
 
             <h3 className="text-xl font-semibold text-gray-900 dark:text-white mt-6 mb-3">Code Review</h3>
-            <p className="text-gray-700 dark:text-gray-300 mb-4 text-base leading-relaxed">
+            <p className="text-gray-900 dark:text-white mb-4 text-base leading-relaxed">
               Quickly understand component structure and dependencies:
             </p>
-            <ul className="text-gray-700 dark:text-gray-300 space-y-2 text-base ml-4">
+            <ul className="text-gray-900 dark:text-white space-y-2 text-base ml-4">
               <li>• Identify circular dependencies</li>
               <li>• Find unused components</li>
               <li>• Track component complexity</li>
@@ -908,7 +1060,7 @@ stamp context validate context.json`
             <h2 className="text-2xl font-semibold text-gray-900 dark:text-white mt-12 mb-4">Troubleshooting</h2>
 
             <h3 className="text-xl font-semibold text-gray-900 dark:text-white mt-6 mb-3">Handling Missing Dependencies</h3>
-            <p className="text-gray-700 dark:text-gray-300 mb-4 text-base leading-relaxed">
+            <p className="text-gray-900 dark:text-white mb-4 text-base leading-relaxed">
               If your generated context shows missing dependencies in the <code className="bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 px-1.5 py-0.5 rounded text-sm">meta.missing</code> array:
             </p>
 
@@ -960,22 +1112,22 @@ stamp context validate context.json`
             <h3 className="text-xl font-semibold text-gray-900 dark:text-white mt-6 mb-3">Common Issues</h3>
             <div className="space-y-4">
               <div>
-                <p className="text-gray-700 dark:text-gray-300 mb-2 text-base leading-relaxed">
+                <p className="text-gray-900 dark:text-white mb-2 text-base leading-relaxed">
                   <strong>Q: Why is my context.json huge?</strong>
                 </p>
-                <ul className="text-gray-700 dark:text-gray-300 space-y-1 text-sm ml-4">
+                <ul className="text-gray-900 dark:text-white space-y-1 text-sm ml-4">
                   <li>• Use <code className="bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 px-1.5 py-0.5 rounded text-xs">--include-code none</code> to exclude all source code (smallest)</li>
                   <li>• Use <code className="bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 px-1.5 py-0.5 rounded text-xs">--include-code header</code> (default) for balanced output</li>
                   <li>• Use <code className="bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 px-1.5 py-0.5 rounded text-xs">--profile llm-safe</code> for token-constrained scenarios</li>
-                  <li>• Check <code className="bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 px-1.5 py-0.5 rounded text-xs">--compare-modes</code> to see token savings</li>
+                  <li>• Token estimates are automatically shown in the output for all modes</li>
                 </ul>
               </div>
 
               <div>
-                <p className="text-gray-700 dark:text-gray-300 mb-2 text-base leading-relaxed">
+                <p className="text-gray-900 dark:text-white mb-2 text-base leading-relaxed">
                   <strong>Q: Validation failed - what went wrong?</strong>
                 </p>
-                <ul className="text-gray-700 dark:text-gray-300 space-y-1 text-sm ml-4">
+                <ul className="text-gray-900 dark:text-white space-y-1 text-sm ml-4">
                   <li>• Check for schema mismatches (outdated schema version)</li>
                   <li>• Verify JSON is well-formed (no trailing commas, proper escaping)</li>
                   <li>• Ensure all required fields are present</li>
@@ -983,10 +1135,10 @@ stamp context validate context.json`
               </div>
 
               <div>
-                <p className="text-gray-700 dark:text-gray-300 mb-2 text-base leading-relaxed">
+                <p className="text-gray-900 dark:text-white mb-2 text-base leading-relaxed">
                   <strong>Q: How do I ignore certain directories?</strong>
                 </p>
-                <ul className="text-gray-700 dark:text-gray-300 space-y-1 text-sm ml-4">
+                <ul className="text-gray-900 dark:text-white space-y-1 text-sm ml-4">
                   <li>• LogicStamp respects <code className="bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 px-1.5 py-0.5 rounded text-xs">.gitignore</code> automatically</li>
                   <li>• <code className="bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 px-1.5 py-0.5 rounded text-xs">node_modules/</code> and common build directories are excluded by default</li>
                   <li>• Scan specific directories: <code className="bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 px-1.5 py-0.5 rounded text-xs">stamp context ./src</code></li>
@@ -998,14 +1150,14 @@ stamp context validate context.json`
           {/* How it Works */}
           <AnimatedSection direction="up" delay={1400}>
             <h2 className="text-2xl font-semibold text-gray-900 dark:text-white mt-12 mb-4">How It Works</h2>
-            <ol className="text-gray-700 dark:text-gray-300 space-y-3 text-base ml-4 list-decimal">
+            <ol className="text-gray-900 dark:text-white space-y-3 text-base ml-4 list-decimal">
               <li><strong>Scan</strong>: Finds all <code className="bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 px-1.5 py-0.5 rounded text-sm">.ts</code> and <code className="bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 px-1.5 py-0.5 rounded text-sm">.tsx</code> files in your project</li>
               <li><strong>Analyze</strong>: Parses React components using TypeScript AST</li>
               <li><strong>Extract</strong>: Builds component contracts with structure and signatures</li>
               <li><strong>Graph</strong>: Creates dependency graph showing relationships</li>
               <li><strong>Bundle</strong>: Packages context bundles optimized for AI consumption</li>
             </ol>
-            <p className="text-gray-700 dark:text-gray-300 mt-4 text-base leading-relaxed">
+            <p className="text-gray-900 dark:text-white mt-4 text-base leading-relaxed">
               All in one command, no pre-compilation needed!
             </p>
           </AnimatedSection>
@@ -1013,7 +1165,7 @@ stamp context validate context.json`
           {/* Requirements */}
           <AnimatedSection direction="up" delay={1500}>
             <h2 className="text-2xl font-semibold text-gray-900 dark:text-white mt-12 mb-4">Requirements</h2>
-            <ul className="text-gray-700 dark:text-gray-300 space-y-2 text-base ml-4">
+            <ul className="text-gray-900 dark:text-white space-y-2 text-base ml-4">
               <li>• Node.js &gt;= 18.0.0</li>
               <li>• TypeScript/React codebase</li>
             </ul>

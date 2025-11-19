@@ -20,12 +20,12 @@ export default function QuickStartPage() {
             <h1 className="text-3xl lg:text-4xl font-semibold text-gray-900 dark:text-white mb-3">
               Installation & Quick Start
             </h1>
-            <p className="text-lg text-gray-600 dark:text-gray-300">
+            <p className="text-lg text-gray-900 dark:text-white">
               Install LogicStamp Context CLI and get up and running in 2 minutes
             </p>
           </div>
         </AnimatedSection>
-        <div className="prose prose-lg dark:prose-invert max-w-none prose-headings:text-gray-900 dark:prose-headings:text-white prose-p:text-gray-700 dark:prose-p:text-gray-300 prose-code:text-gray-900 dark:prose-code:text-gray-100 text-gray-800 dark:text-gray-100">
+        <div className="prose prose-lg dark:prose-invert max-w-none prose-headings:text-gray-900 dark:prose-headings:text-white prose-p:text-gray-900 dark:prose-p:text-white prose-code:text-gray-900 dark:prose-code:text-gray-100 text-gray-900 dark:text-white">
           <AnimatedSection direction="up" delay={100}>
             <div className="bg-blue-50 dark:bg-blue-900/20 border border-blue-200 dark:border-blue-800 rounded-lg p-8 mb-12">
             <h3 className="text-xl font-semibold text-blue-900 dark:text-blue-100 mb-4">
@@ -41,7 +41,7 @@ export default function QuickStartPage() {
 
           <AnimatedSection direction="up" delay={200}>
           <h2 className="text-2xl font-semibold text-gray-900 dark:text-white mt-12 mb-4">Step 1: Install LogicStamp Context</h2>
-          <p className="text-gray-700 dark:text-gray-300 mb-4 text-base leading-relaxed">Install the CLI globally to use <code className="bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 px-1.5 py-0.5 rounded text-sm">stamp</code> command anywhere:</p>
+          <p className="text-gray-900 dark:text-white mb-4 text-base leading-relaxed">Install the CLI globally to use <code className="bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 px-1.5 py-0.5 rounded text-sm">stamp</code> command anywhere:</p>
           <p className="text-sm text-gray-600 dark:text-gray-400 italic mb-4">
             <strong>Note:</strong> Installing globally means the <code className="bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 px-1 py-0.5 rounded text-xs">stamp</code> command is available from any directory on your system, not just within a specific project folder.
           </p>
@@ -64,7 +64,7 @@ export default function QuickStartPage() {
           </p>
 
           <h2 className="text-2xl font-semibold text-gray-900 dark:text-white mt-12 mb-4">Step 2: Initialize (Optional)</h2>
-          <p className="text-gray-700 dark:text-gray-300 mb-4 text-base leading-relaxed">You can optionally run <code className="bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 px-1.5 py-0.5 rounded text-sm">stamp init</code> to set up <code className="bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 px-1.5 py-0.5 rounded text-sm">.gitignore</code> patterns and generate <code className="bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 px-1.5 py-0.5 rounded text-sm">LLM_CONTEXT.md</code> before generating context. Alternatively, <code className="bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 px-1.5 py-0.5 rounded text-sm">stamp context</code> will prompt you on first run:</p>
+          <p className="text-gray-900 dark:text-white mb-4 text-base leading-relaxed">You can optionally run <code className="bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 px-1.5 py-0.5 rounded text-sm">stamp init</code> to set up <code className="bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 px-1.5 py-0.5 rounded text-sm">.gitignore</code> patterns and generate <code className="bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 px-1.5 py-0.5 rounded text-sm">LLM_CONTEXT.md</code> before generating context. Alternatively, <code className="bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 px-1.5 py-0.5 rounded text-sm">stamp context</code> will prompt you on first run:</p>
           <TabbedCodeBlock
             tabs={[
               {
@@ -86,7 +86,7 @@ export default function QuickStartPage() {
 
           <AnimatedSection direction="up" delay={300}>
           <h2 className="text-2xl font-semibold text-gray-900 dark:text-white mt-12 mb-4">Step 3: Generate Context</h2>
-          <p className="text-gray-700 dark:text-gray-300 mb-4 text-base leading-relaxed">Generate AI-ready context for your project. The default profile (<code className="bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 px-1.5 py-0.5 rounded text-sm">llm-chat</code>) is optimized for AI chat interfaces:</p>
+          <p className="text-gray-900 dark:text-white mb-4 text-base leading-relaxed">Generate AI-ready context for your project. The default profile (<code className="bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 px-1.5 py-0.5 rounded text-sm">llm-chat</code>) is optimized for AI chat interfaces:</p>
           <TabbedCodeBlock
             tabs={[
               {
@@ -107,7 +107,7 @@ export default function QuickStartPage() {
             ]}
           />
 
-          <p className="mt-6 mb-6 text-gray-700 dark:text-gray-300 text-base leading-relaxed">This creates <strong>multiple <code className="bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 px-1.5 py-0.5 rounded text-sm">context.json</code> files</strong> (one per folder containing components) plus a <code className="bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 px-1.5 py-0.5 rounded text-sm">context_main.json</code> index file at the output root. Each folder's <code className="bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 px-1.5 py-0.5 rounded text-sm">context.json</code> contains structured bundles (one bundle per root component/entry point) with component contracts, dependency graphs, and code headers. Each bundle contains a root component plus its complete dependency graph—all related components together in one self-contained unit. The context is automatically validated after generation before being written to ensure schema compliance.</p>
+          <p className="mt-6 mb-6 text-gray-900 dark:text-white text-base leading-relaxed">This creates <strong>multiple <code className="bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 px-1.5 py-0.5 rounded text-sm">context.json</code> files</strong> (one per folder containing components) plus a <code className="bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 px-1.5 py-0.5 rounded text-sm">context_main.json</code> index file at the output root. Each folder's <code className="bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 px-1.5 py-0.5 rounded text-sm">context.json</code> contains structured bundles (one bundle per root component/entry point) with component contracts, dependency graphs, and code headers. Each bundle contains a root component plus its complete dependency graph—all related components together in one self-contained unit. The context is automatically validated after generation before being written to ensure schema compliance.</p>
           
           <div className="bg-blue-50 dark:bg-blue-900/20 border border-blue-200 dark:border-blue-800 rounded-lg p-6 mt-4 mb-6">
             <h3 className="text-lg font-semibold text-blue-900 dark:text-blue-100 mb-2">
@@ -148,7 +148,7 @@ export default function QuickStartPage() {
           </div>
 
           <h4 className="mt-8 mb-3 text-lg font-semibold text-gray-900 dark:text-white">Example Prompts</h4>
-          <p className="text-gray-700 dark:text-gray-300 mb-4 text-base leading-relaxed">Explicitly reference context files in your prompts for consistent results. You can reference the main index or specific folder contexts:</p>
+          <p className="text-gray-900 dark:text-white mb-4 text-base leading-relaxed">Explicitly reference context files in your prompts for consistent results. You can reference the main index or specific folder contexts:</p>
           <TabbedCodeBlock
             tabs={[
               {
@@ -185,7 +185,7 @@ export default function QuickStartPage() {
 
           <AnimatedSection direction="up" delay={500}>
           <h2 className="text-2xl font-semibold text-gray-900 dark:text-white mt-12 mb-4">Step 5: Optimize Tokens (Optional)</h2>
-          <p className="text-gray-700 dark:text-gray-300 mb-4 text-base leading-relaxed">Compare token costs across different code inclusion modes to choose the best option for your needs. The <code className="bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 px-1.5 py-0.5 rounded text-sm">--compare-modes</code> flag generates <code className="bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 px-1.5 py-0.5 rounded text-sm">context.json</code> and displays a comparison table:</p>
+          <p className="text-gray-900 dark:text-white mb-4 text-base leading-relaxed">Compare token costs across different code inclusion modes to choose the best option for your needs. The <code className="bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 px-1.5 py-0.5 rounded text-sm">--compare-modes</code> flag generates <code className="bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 px-1.5 py-0.5 rounded text-sm">context.json</code> and displays a comparison table:</p>
           <TabbedCodeBlock
             tabs={[
               {
@@ -212,10 +212,10 @@ export default function QuickStartPage() {
           />
 
           <div className="mt-6 mb-6 space-y-3">
-            <p className="text-gray-700 dark:text-gray-300 text-base leading-relaxed">
+            <p className="text-gray-900 dark:text-white text-base leading-relaxed">
               <strong>Code inclusion modes:</strong>
             </p>
-            <ul className="text-gray-700 dark:text-gray-300 text-base leading-relaxed space-y-2 ml-4">
+            <ul className="text-gray-900 dark:text-white text-base leading-relaxed space-y-2 ml-4">
               <li>• <code className="bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 px-1.5 py-0.5 rounded text-sm">none</code> - Contracts only, ~79% token savings. Use for API docs or CI validation.</li>
               <li>• <code className="bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 px-1.5 py-0.5 rounded text-sm">header</code> - JSDoc headers + contracts, ~65% savings (default). Best for AI chat.</li>
               <li>• <code className="bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 px-1.5 py-0.5 rounded text-sm">full</code> - Complete source code. Use with <code className="bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 px-1.5 py-0.5 rounded text-sm">--max-nodes</code> to limit size.</li>
@@ -228,7 +228,7 @@ export default function QuickStartPage() {
 
           <AnimatedSection direction="up" delay={600}>
           <h2 className="text-2xl font-semibold text-gray-900 dark:text-white mt-12 mb-4">Step 6: Validate Context (Optional)</h2>
-          <p className="text-gray-700 dark:text-gray-300 mb-4 text-base leading-relaxed">Verify your generated context file matches the expected schema before sharing or committing:</p>
+          <p className="text-gray-900 dark:text-white mb-4 text-base leading-relaxed">Verify your generated context file matches the expected schema before sharing or committing:</p>
           <TabbedCodeBlock
             tabs={[
               {

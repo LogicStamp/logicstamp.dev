@@ -91,6 +91,109 @@ html, body {
   }
 }
 
+/* Docs Layout Typography & Spacing */
+.docs-content {
+  line-height: 1.75;
+}
+
+.docs-content p {
+  line-height: 1.75;
+  margin-bottom: 1.5rem;
+  margin-top: 0;
+}
+
+.docs-content p + p {
+  margin-top: 0;
+}
+
+.docs-content ul,
+.docs-content ol {
+  line-height: 1.75;
+  margin-bottom: 1.5rem;
+  margin-top: 0;
+  padding-left: 1.5rem;
+}
+
+.docs-content ul li,
+.docs-content ol li {
+  margin-bottom: 0.75rem;
+  line-height: 1.75;
+}
+
+.docs-content ul li:last-child,
+.docs-content ol li:last-child {
+  margin-bottom: 0;
+}
+
+.docs-content h1 {
+  line-height: 1.2;
+  margin-bottom: 1rem;
+}
+
+.docs-content h2 {
+  margin-top: 4rem;
+  margin-bottom: 1.5rem;
+  line-height: 1.3;
+}
+
+.docs-content h2:first-child {
+  margin-top: 0;
+}
+
+.docs-content h3 {
+  margin-top: 2.5rem;
+  margin-bottom: 1rem;
+  line-height: 1.4;
+}
+
+.docs-content h4 {
+  margin-top: 2rem;
+  margin-bottom: 0.75rem;
+  line-height: 1.4;
+}
+
+.docs-content code {
+  line-height: 1.5;
+}
+
+.docs-content pre {
+  margin-top: 1.5rem;
+  margin-bottom: 1.5rem;
+  line-height: 1.6;
+}
+
+.docs-content blockquote {
+  margin-top: 1.5rem;
+  margin-bottom: 1.5rem;
+  padding-left: 1rem;
+  border-left: 4px solid;
+}
+
+.docs-content table {
+  margin-top: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.docs-content hr {
+  margin-top: 3rem;
+  margin-bottom: 3rem;
+}
+
+/* Override prose spacing for better readability */
+.docs-content .prose p {
+  margin-bottom: 1.5rem;
+}
+
+.docs-content .prose ul,
+.docs-content .prose ol {
+  margin-bottom: 1.5rem;
+}
+
+/* Ensure sections have proper spacing */
+.docs-content > * + * {
+  margin-top: 0;
+}
+
 /* Prevent layout shifts */
 * {
   box-sizing: border-box;

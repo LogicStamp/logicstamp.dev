@@ -71,7 +71,7 @@ export default function DocumentationPage() {
                 Beta
               </span>
             </div>
-            <p className="text-gray-600 dark:text-gray-300">
+            <p className="text-gray-900 dark:text-white">
               Open-source CLI for generating AI-ready context from React/TypeScript codebases. Zero config, built-in token optimization.
             </p>
           </div>
@@ -87,7 +87,7 @@ export default function DocumentationPage() {
                 <h2 className="text-xl font-semibold tracking-tight text-gray-900 dark:text-white mb-2">
                   {section.title}
                 </h2>
-                <p className="text-gray-600 dark:text-gray-300 mb-6">
+                <p className="text-gray-900 dark:text-white mb-6">
                   {section.description}
                 </p>
                 <div className="space-y-3">
@@ -104,7 +104,7 @@ export default function DocumentationPage() {
                           <h3 className="font-semibold text-gray-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400">
                             {page.title}
                           </h3>
-                          <p className="text-sm text-gray-600 dark:text-gray-300 mt-1">
+                          <p className="text-sm text-gray-900 dark:text-white mt-1">
                             {page.description}
                           </p>
                         </div>

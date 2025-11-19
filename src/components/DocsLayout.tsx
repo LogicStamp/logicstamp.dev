@@ -174,7 +174,7 @@ export default function DocsLayout({ children }: { children: React.ReactNode }) 
           )}
 
           <main className="flex-1">
-            <div className="max-w-3xl space-y-8 lg:ml-4">{children}</div>
+            <div className="max-w-3xl space-y-12 lg:ml-4 docs-content">{children}</div>
           </main>
 
           {/* Right TOC - only visible on XL+ screens */}

@@ -18,14 +18,14 @@ export default function LogicStampCommandsPage() {
               <h1 className="text-3xl lg:text-4xl font-semibold text-gray-900 dark:text-white mb-3">
                 Commands
               </h1>
-              <p className="text-lg text-gray-600 dark:text-gray-300">
+              <p className="text-lg text-gray-900 dark:text-white">
                 LogicStamp Context ships as a single CLI entry point, <code>stamp</code>, with <code>context</code>{' '}
                 subcommands.
               </p>
             </div>
         </AnimatedSection>
 
-        <div className="prose prose-lg dark:prose-invert max-w-none prose-headings:text-gray-900 dark:prose-headings:text-white prose-p:text-gray-700 dark:prose-p:text-gray-300 text-gray-800 dark:text-gray-100">
+        <div className="prose prose-lg dark:prose-invert max-w-none prose-headings:text-gray-900 dark:prose-headings:text-white prose-p:text-gray-900 dark:prose-p:text-white text-gray-900 dark:text-white">
             <AnimatedSection direction="up" delay={100}>
               <h2>Available Commands</h2>
               <table>

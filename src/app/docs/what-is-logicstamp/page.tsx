@@ -24,7 +24,7 @@ export default function WhatIsLogicStampPage() {
                 Beta
               </span>
             </div>
-            <p className="text-lg text-gray-600 dark:text-gray-300 mb-4">
+            <p className="text-lg text-gray-900 dark:text-white mb-4">
               <span className="font-semibold">LogicStamp Context</span> is an open-source CLI that generates{' '}
               <span className="font-semibold">AI-ready context bundles</span> from your React/TypeScript codebase.
               No setup, no configuration—just install and run.
@@ -57,11 +57,11 @@ export default function WhatIsLogicStampPage() {
             <h2 className="text-2xl font-semibold text-gray-900 dark:text-white">
               The problem LogicStamp solves
             </h2>
-            <p className="text-gray-600 dark:text-gray-300">
+            <p className="text-gray-900 dark:text-white">
               Today, working with AI on a real project usually means copying full source files, README snippets, and
               screenshots into a chat window. That approach:
             </p>
-            <ul className="list-disc list-inside space-y-2 text-gray-600 dark:text-gray-300">
+            <ul className="list-disc list-inside space-y-2 text-gray-900 dark:text-white">
               <li>
                 Wastes tokens on boilerplate, imports, and low-signal code instead of the contracts that actually
                 matter.
@@ -76,7 +76,7 @@ export default function WhatIsLogicStampPage() {
                 Is impossible to automate in CI/CD – you cannot diff “whatever the last engineer pasted into ChatGPT”.
               </li>
             </ul>
-            <p className="text-gray-600 dark:text-gray-300">
+            <p className="text-gray-900 dark:text-white">
               LogicStamp replaces this manual process with a repeatable CLI that scans your codebase and emits a{' '}
               <code className="px-1 py-0.5 rounded bg-gray-100 dark:bg-gray-800 text-sm">context.json</code> describing
               the structure and contracts of your system in a way that LLMs can consume directly.
@@ -88,18 +88,18 @@ export default function WhatIsLogicStampPage() {
         <AnimatedSection direction="up" delay={150}>
           <section className="mb-10 space-y-4">
             <h2 className="text-2xl font-semibold text-gray-900 dark:text-white">Core idea</h2>
-            <p className="text-gray-600 dark:text-gray-300">
+            <p className="text-gray-900 dark:text-white">
               Think of LogicStamp as an <span className="font-semibold">architectural blueprint</span> generator for
               your codebase. Instead of giving an AI every brick and nail (every line of source), you hand it a compact
               blueprint that shows:
             </p>
-            <ul className="list-disc list-inside space-y-2 text-gray-600 dark:text-gray-300">
+            <ul className="list-disc list-inside space-y-2 text-gray-900 dark:text-white">
               <li>Which components, modules, and files exist.</li>
               <li>How they import and depend on one another.</li>
               <li>Public contracts: props, function signatures, types, and interfaces.</li>
               <li>Where key behaviors live, without dumping entire implementations.</li>
             </ul>
-            <p className="text-gray-600 dark:text-gray-300">
+            <p className="text-gray-900 dark:text-white">
               This blueprint is optimized for AI: high-signal, low-noise, easy to stream into a chat, an agent, or a
               RAG pipeline.
             </p>
@@ -112,11 +112,11 @@ export default function WhatIsLogicStampPage() {
             <h2 className="text-2xl font-semibold text-gray-900 dark:text-white">
               What LogicStamp Context provides
             </h2>
-            <p className="text-gray-600 dark:text-gray-300">
+            <p className="text-gray-900 dark:text-white">
               The <span className="font-semibold">LogicStamp Context CLI</span> is a lightweight, zero-config tool
               that provides:
             </p>
-            <ul className="list-disc list-inside space-y-2 text-gray-600 dark:text-gray-300">
+            <ul className="list-disc list-inside space-y-2 text-gray-900 dark:text-white">
               <li>
                 <span className="font-semibold">Context generation</span> – scan a React/TypeScript codebase
                 and emit a structured{' '}
@@ -140,7 +140,7 @@ export default function WhatIsLogicStampPage() {
                 before sharing it with teammates or committing to CI.
               </li>
             </ul>
-            <p className="text-gray-600 dark:text-gray-300">
+            <p className="text-gray-900 dark:text-white">
               All features are exposed through simple CLI commands:{' '}
               <code className="px-1 py-0.5 rounded bg-gray-100 dark:bg-gray-800 text-sm">stamp context</code>,{' '}
               <code className="px-1 py-0.5 rounded bg-gray-100 dark:bg-gray-800 text-sm">stamp context compare</code>,
@@ -160,19 +160,19 @@ export default function WhatIsLogicStampPage() {
             <div className="bg-gray-50 dark:bg-gray-800/50 rounded-lg p-5 space-y-3">
               <div className="flex items-start gap-3">
                 <span className="flex-shrink-0 flex items-center justify-center w-6 h-6 rounded-full bg-gradient-blue-purple text-white text-sm font-semibold">1</span>
-                <p className="text-gray-700 dark:text-gray-300 pt-0.5">
+                <p className="text-gray-900 dark:text-white pt-0.5">
                   Install globally: <code className="px-1.5 py-0.5 rounded bg-gray-200 dark:bg-gray-700 text-sm">npm install -g logicstamp-context</code>
                 </p>
               </div>
               <div className="flex items-start gap-3">
                 <span className="flex-shrink-0 flex items-center justify-center w-6 h-6 rounded-full bg-gradient-blue-purple text-white text-sm font-semibold">2</span>
-                <p className="text-gray-700 dark:text-gray-300 pt-0.5">
+                <p className="text-gray-900 dark:text-white pt-0.5">
                   Generate context: <code className="px-1.5 py-0.5 rounded bg-gray-200 dark:bg-gray-700 text-sm">stamp context</code>
                 </p>
               </div>
               <div className="flex items-start gap-3">
                 <span className="flex-shrink-0 flex items-center justify-center w-6 h-6 rounded-full bg-gradient-blue-purple text-white text-sm font-semibold">3</span>
-                <p className="text-gray-700 dark:text-gray-300 pt-0.5">
+                <p className="text-gray-900 dark:text-white pt-0.5">
                   Share the generated <code className="px-1.5 py-0.5 rounded bg-gray-200 dark:bg-gray-700 text-sm">context.json</code> with
                   your AI tool (Claude, ChatGPT, or custom agents) instead of pasting full source files.
                 </p>
@@ -198,7 +198,7 @@ export default function WhatIsLogicStampPage() {
             <h2 className="text-2xl font-semibold text-gray-900 dark:text-white">
               When LogicStamp is a great fit
             </h2>
-            <ul className="list-disc list-inside space-y-2 text-gray-600 dark:text-gray-300">
+            <ul className="list-disc list-inside space-y-2 text-gray-900 dark:text-white">
               <li>You regularly ask AI to work on the same codebase (feature work, refactors, debugging).</li>
               <li>Your project is large enough that pasting full files hits token or context limits.</li>
               <li>
@@ -210,7 +210,7 @@ export default function WhatIsLogicStampPage() {
             <h3 className="text-xl font-semibold text-gray-900 dark:text-white mt-6">
               What LogicStamp is not
             </h3>
-            <ul className="list-disc list-inside space-y-2 text-gray-600 dark:text-gray-300">
+            <ul className="list-disc list-inside space-y-2 text-gray-900 dark:text-white">
               <li>It is not an LLM or chat UI itself; it powers the context you feed into those tools.</li>
               <li>It is not a replacement for good code comments or high-level design docs.</li>
               <li>

@@ -17,14 +17,14 @@ export default function LlmContextPage() {
             <h1 className="text-3xl lg:text-4xl font-semibold text-gray-900 dark:text-white mb-3">
               LogicStamp Context – LLM Guide
             </h1>
-            <p className="text-lg text-gray-600 dark:text-gray-300">
+            <p className="text-lg text-gray-900 dark:text-white">
               Understand the structure of the <code>context.json</code> bundles that LogicStamp Context generates for
               LLM consumption and how to interpret them.
             </p>
           </div>
         </AnimatedSection>
 
-        <div className="prose prose-lg dark:prose-invert max-w-none prose-headings:text-gray-900 dark:prose-headings:text-white prose-p:text-gray-700 dark:prose-p:text-gray-300 text-gray-800 dark:text-gray-100">
+        <div className="prose prose-lg dark:prose-invert max-w-none prose-headings:text-gray-900 dark:prose-headings:text-white prose-p:text-gray-900 dark:prose-p:text-white text-gray-900 dark:text-white">
             <AnimatedSection direction="up" delay={100}>
               <h2>Overview</h2>
               <ul>
@@ -46,7 +46,7 @@ export default function LlmContextPage() {
             <AnimatedSection direction="up" delay={200}>
               <h2>What <code>context.json</code> Contains</h2>
               <p>Output is an array of LogicStamp bundles. Each bundle represents one entry point plus its graph.</p>
-              <p className="text-gray-700 dark:text-gray-300">
+              <p className="text-gray-900 dark:text-white">
                 <strong>Design note:</strong> LogicStamp Context uses per-root bundles (one bundle per entry point) rather than per-component files. This means each bundle contains the root component plus its complete dependency graph—all related components and their relationships in one self-contained unit. This design is optimized for AI consumption: when you need help with a specific page or feature, share that root bundle and the AI has complete context.
               </p>
               <ul>
