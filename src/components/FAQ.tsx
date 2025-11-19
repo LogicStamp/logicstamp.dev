@@ -1,9 +1,34 @@
 'use client'
 
 import { useState, useRef, useEffect } from 'react'
-import AnimatedSection from './AnimatedSection'
 import GetStartedButton from './GetStartedButton'
 import ReadTheDocsButton from './ReadTheDocsButton'
+
+// Custom hook for intersection observer
+function useInView(threshold = 0.1) {
+  const ref = useRef<HTMLDivElement>(null)
+  const [inView, setInView] = useState(false)
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setInView(true)
+          observer.disconnect()
+        }
+      },
+      { threshold }
+    )
+
+    if (ref.current) {
+      observer.observe(ref.current)
+    }
+
+    return () => observer.disconnect()
+  }, [threshold])
+
+  return { ref, inView }
+}
 
 // Essential FAQs - the most common questions users ask
 const faqs = [
@@ -54,6 +79,9 @@ const faqs = [
 export default function FAQ() {
   const [openItem, setOpenItem] = useState<number | null>(null)
   const buttonRefs = useRef<(HTMLButtonElement | null)[]>([])
+  const { ref: titleRef, inView: titleInView } = useInView(0.1)
+  const { ref: faqsRef, inView: faqsInView } = useInView(0.1)
+  const { ref: docsRef, inView: docsInView } = useInView(0.1)
 
   // Initialize refs array
   useEffect(() => {
@@ -93,32 +121,54 @@ export default function FAQ() {
   }
 
   return (
-    <section id="faq" className="pt-24 sm:pt-32 bg-gray-50 dark:bg-gray-900 pb-0">
-      <div className="mx-auto max-w-[1400px] px-6 lg:px-8">
-        <AnimatedSection direction="up" delay={0}>
-          <div className="mx-auto max-w-2xl text-center">
-            <h2 className="text-3xl font-bold tracking-tight text-gray-900 dark:text-white sm:text-4xl lg:text-6xl">
-              FAQs
-            </h2>
-            <p className="mt-6 text-base lg:text-xl leading-8 text-gray-600 dark:text-gray-300">
-              Quick answers to common{' '}
-              <span className="bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 bg-clip-text text-transparent font-semibold">
-                questions
-              </span>
-            </p>
-          </div>
-        </AnimatedSection>
+    <section id="faq" className="relative pt-24 sm:pt-32 overflow-hidden bg-gradient-to-b from-gray-50/50 via-white to-gray-50/50 dark:from-gray-900/50 dark:via-gray-950 dark:to-gray-900/50 pb-0">
+      {/* Ambient background effects */}
+      <div className="absolute inset-0 overflow-hidden">
+        <div className="absolute -top-40 -right-40 w-80 h-80 bg-blue-500/5 rounded-full blur-3xl animate-pulse" />
+        <div className="absolute -bottom-40 -left-40 w-80 h-80 bg-purple-500/5 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '2s' }} />
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-gradient-to-r from-cyan-500/5 to-purple-500/5 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '4s' }} />
+      </div>
 
-        <div className="mx-auto mt-16 mb-16">
+      <div className="relative mx-auto max-w-[1400px] px-6 lg:px-8">
+        {/* Header */}
+        <div 
+          ref={titleRef}
+          className={`mx-auto max-w-2xl text-center transition-all duration-1000 ${
+            titleInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+          }`}
+        >
+          <h2 className="text-3xl font-bold tracking-tight text-gray-900 dark:text-white sm:text-4xl lg:text-6xl">
+            FAQs
+          </h2>
+          <p className={`mt-6 text-base lg:text-xl leading-8 text-gray-600 dark:text-gray-300 transition-all duration-1000 delay-200 ${
+            titleInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
+          }`}>
+            Quick answers to common{' '}
+            <span className="bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 bg-clip-text text-transparent font-semibold">
+              questions
+            </span>
+          </p>
+        </div>
+
+        <div 
+          ref={faqsRef}
+          className={`mx-auto mt-16 mb-16 transition-all duration-1000 ${
+            faqsInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+          }`}
+        >
           <dl className="space-y-3">
             {faqs.map((faq, index) => {
               const isOpen = openItem === faq.id
 
               return (
-                <AnimatedSection
+                <div
                   key={faq.id}
-                  direction="up"
-                  delay={120 + index * 80}
+                  className={`transition-all duration-700 ${
+                    faqsInView 
+                      ? 'opacity-100 translate-y-0' 
+                      : 'opacity-0 translate-y-8'
+                  }`}
+                  style={{ transitionDelay: `${index * 100 + 200}ms` }}
                 >
                   <div
                     className={`
@@ -210,7 +260,7 @@ export default function FAQ() {
                       </dd>
                     </div>
                   </div>
-                </AnimatedSection>
+                </div>
               )
             })}
           </dl>
@@ -218,44 +268,47 @@ export default function FAQ() {
       </div>
 
       {/* Documentation Link - Full Width */}
-      <AnimatedSection direction="up" delay={800}>
-        <div className="w-full">
-          <div className="relative overflow-hidden rounded-none px-6 py-8 sm:px-10 sm:py-10 lg:px-16 lg:py-12 pb-24 sm:pb-32">
-            {/* Subtle glass spark effect */}
-            <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-white/30 to-transparent dark:via-white/10 z-0" />
-            
-            <div className="relative z-10 max-w-4xl mx-auto text-center">
-              <h3 className="text-2xl lg:text-3xl font-bold text-gray-900 dark:text-white mb-4">
-                Need more detailed information?
-              </h3>
-              <p className="text-lg lg:text-xl text-gray-600 dark:text-gray-300 mb-8 max-w-2xl mx-auto leading-relaxed">
-                Explore the LogicStamp docs for setup guides, profiles, token
-                savings examples, CI workflows, and advanced configuration
-                of <code className="font-mono text-sm text-purple-600 dark:text-purple-400 bg-purple-50 dark:bg-purple-900/30 px-1.5 py-0.5 rounded">stamp context</code>.
-              </p>
-              <div className="flex flex-row items-center justify-center gap-2 sm:gap-4">
-                <GetStartedButton href="docs/getting-started">
-                  <svg
-                    className="w-5 h-5"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M13 10V3L4 14h7v7l9-11h-7z"
-                    />
-                  </svg>
-                  Quick Start
-                </GetStartedButton>
-                <ReadTheDocsButton href="docs/" />
-              </div>
+      <div 
+        ref={docsRef}
+        className={`w-full transition-all duration-1000 delay-300 ${
+          docsInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+        }`}
+      >
+        <div className="relative overflow-hidden rounded-none px-6 py-8 sm:px-10 sm:py-10 lg:px-16 lg:py-12 pb-24 sm:pb-32">
+          {/* Subtle glass spark effect */}
+          <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-white/30 to-transparent dark:via-white/10 z-0" />
+          
+          <div className="relative z-10 max-w-4xl mx-auto text-center">
+            <h3 className="text-2xl lg:text-3xl font-bold text-gray-900 dark:text-white mb-4">
+              Need more detailed information?
+            </h3>
+            <p className="text-lg lg:text-xl text-gray-600 dark:text-gray-300 mb-8 max-w-2xl mx-auto leading-relaxed">
+              Explore the LogicStamp docs for setup guides, profiles, token
+              savings examples, CI workflows, and advanced configuration
+              of <code className="font-mono text-sm text-purple-600 dark:text-purple-400 bg-purple-50 dark:bg-purple-900/30 px-1.5 py-0.5 rounded">stamp context</code>.
+            </p>
+            <div className="flex flex-row items-center justify-center gap-2 sm:gap-4">
+              <GetStartedButton href="docs/getting-started">
+                <svg
+                  className="w-5 h-5"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M13 10V3L4 14h7v7l9-11h-7z"
+                  />
+                </svg>
+                Quick Start
+              </GetStartedButton>
+              <ReadTheDocsButton href="docs/" />
             </div>
           </div>
         </div>
-      </AnimatedSection>
+      </div>
     </section>
   )
 }
