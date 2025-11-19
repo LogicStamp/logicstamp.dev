@@ -343,7 +343,7 @@ export default function WhyLogicStamp() {
                 }`}
                 style={{ transitionDelay: `${index * 100 + 200}ms` }}
               >
-                <div className="relative h-full rounded-2xl bg-white/80 dark:bg-gray-900/80 backdrop-blur-xl p-6 shadow-sm transition-all duration-500 border border-gray-200/50 dark:border-gray-700/50 overflow-hidden">
+                <div className="relative h-full rounded-2xl p-6 shadow-sm transition-all duration-500 border border-gray-200/50 dark:border-gray-700/50 overflow-hidden">
                   <div className="relative z-10">
                     <div className="flex items-start gap-4">
                       <div className={`inline-flex items-center justify-center w-12 h-12 rounded-xl bg-gradient-to-br ${benefit.iconBg}`}>
