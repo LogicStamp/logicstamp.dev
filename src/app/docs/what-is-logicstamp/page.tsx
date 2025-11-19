@@ -77,9 +77,11 @@ export default function WhatIsLogicStampPage() {
               </li>
             </ul>
             <p className="text-gray-900 dark:text-white">
-              LogicStamp replaces this manual process with a repeatable CLI that scans your codebase and emits a{' '}
-              <code className="px-1 py-0.5 rounded bg-gray-100 dark:bg-gray-800 text-sm">context.json</code> describing
-              the structure and contracts of your system in a way that LLMs can consume directly.
+              LogicStamp replaces this manual process with a repeatable CLI that scans your codebase and emits{' '}
+              <span className="font-semibold">folder-organized context files</span> (
+              <code className="px-1 py-0.5 rounded bg-gray-100 dark:bg-gray-800 text-sm">context.json</code> per folder
+              plus a <code className="px-1 py-0.5 rounded bg-gray-100 dark:bg-gray-800 text-sm">context_main.json</code> index)
+              describing the structure and contracts of your system in a way that LLMs can consume directly.
             </p>
           </section>
         </AnimatedSection>
@@ -119,8 +121,9 @@ export default function WhatIsLogicStampPage() {
             <ul className="list-disc list-inside space-y-2 text-gray-900 dark:text-white">
               <li>
                 <span className="font-semibold">Context generation</span> – scan a React/TypeScript codebase
-                and emit a structured{' '}
-                <code className="px-1 py-0.5 rounded bg-gray-100 dark:bg-gray-800 text-sm">context.json</code> file
+                and emit folder-organized context files (one{' '}
+                <code className="px-1 py-0.5 rounded bg-gray-100 dark:bg-gray-800 text-sm">context.json</code> per folder
+                plus a <code className="px-1 py-0.5 rounded bg-gray-100 dark:bg-gray-800 text-sm">context_main.json</code> index)
                 containing component contracts, logic signatures, and dependency graphs.
               </li>
               <li>
@@ -132,20 +135,30 @@ export default function WhatIsLogicStampPage() {
                 others, so AI can reason about data flows and relationships across files.
               </li>
               <li>
-                <span className="font-semibold">Context drift detection</span> – compare two context files to track changes
-                between commits, PRs, or deployments. CI-friendly exit codes included.
+                <span className="font-semibold">Context drift detection</span> – compare all context files (multi-file mode)
+                or specific files to track changes between commits, PRs, or deployments. Detects added, orphaned, and changed
+                folders with component-level details. CI-friendly exit codes included.
               </li>
               <li>
-                <span className="font-semibold">Validation</span> – ensure a context file is well-formed and schema-compliant
-                before sharing it with teammates or committing to CI.
+                <span className="font-semibold">Validation</span> – ensure context files are well-formed and schema-compliant
+                before sharing with teammates or committing to CI. Supports both folder context files and the main index.
+              </li>
+              <li>
+                <span className="font-semibold">Project initialization</span> – set up <code className="px-1 py-0.5 rounded bg-gray-100 dark:bg-gray-800 text-sm">.gitignore</code> patterns
+                and generate <code className="px-1 py-0.5 rounded bg-gray-100 dark:bg-gray-800 text-sm">LLM_CONTEXT.md</code> to help AI assistants understand your project structure.
+              </li>
+              <li>
+                <span className="font-semibold">Cleanup utilities</span> – remove all generated context artifacts when resetting
+                or switching branches. Safe by default with dry-run mode.
               </li>
             </ul>
             <p className="text-gray-900 dark:text-white">
               All features are exposed through simple CLI commands:{' '}
+              <code className="px-1 py-0.5 rounded bg-gray-100 dark:bg-gray-800 text-sm">stamp init</code>,{' '}
               <code className="px-1 py-0.5 rounded bg-gray-100 dark:bg-gray-800 text-sm">stamp context</code>,{' '}
-              <code className="px-1 py-0.5 rounded bg-gray-100 dark:bg-gray-800 text-sm">stamp context compare</code>,
-              and{' '}
-              <code className="px-1 py-0.5 rounded bg-gray-100 dark:bg-gray-800 text-sm">stamp context validate</code>.
+              <code className="px-1 py-0.5 rounded bg-gray-100 dark:bg-gray-800 text-sm">stamp context compare</code>,{' '}
+              <code className="px-1 py-0.5 rounded bg-gray-100 dark:bg-gray-800 text-sm">stamp context validate</code>, and{' '}
+              <code className="px-1 py-0.5 rounded bg-gray-100 dark:bg-gray-800 text-sm">stamp context clean</code>.
               Install globally with npm and start generating context in seconds.
             </p>
           </section>
@@ -168,20 +181,23 @@ export default function WhatIsLogicStampPage() {
                 <span className="flex-shrink-0 flex items-center justify-center w-6 h-6 rounded-full bg-gradient-blue-purple text-white text-sm font-semibold">2</span>
                 <p className="text-gray-900 dark:text-white pt-0.5">
                   Generate context: <code className="px-1.5 py-0.5 rounded bg-gray-200 dark:bg-gray-700 text-sm">stamp context</code>
+                  {' '}(on first run, you'll be prompted to set up <code className="px-1.5 py-0.5 rounded bg-gray-200 dark:bg-gray-700 text-sm">.gitignore</code> and <code className="px-1.5 py-0.5 rounded bg-gray-200 dark:bg-gray-700 text-sm">LLM_CONTEXT.md</code>)
                 </p>
               </div>
               <div className="flex items-start gap-3">
                 <span className="flex-shrink-0 flex items-center justify-center w-6 h-6 rounded-full bg-gradient-blue-purple text-white text-sm font-semibold">3</span>
                 <p className="text-gray-900 dark:text-white pt-0.5">
-                  Share the generated <code className="px-1.5 py-0.5 rounded bg-gray-200 dark:bg-gray-700 text-sm">context.json</code> with
-                  your AI tool (Claude, ChatGPT, or custom agents) instead of pasting full source files.
+                  Share the generated context files (
+                  <code className="px-1.5 py-0.5 rounded bg-gray-200 dark:bg-gray-700 text-sm">context.json</code> per folder
+                  plus <code className="px-1.5 py-0.5 rounded bg-gray-200 dark:bg-gray-700 text-sm">context_main.json</code> index)
+                  with your AI tool (Claude, ChatGPT, or custom agents) instead of pasting full source files.
                 </p>
               </div>
               <div className="flex items-start gap-3">
                 <span className="flex-shrink-0 flex items-center justify-center w-6 h-6 rounded-full bg-gray-200 dark:bg-gray-700 text-gray-600 dark:text-gray-400 text-sm font-semibold">4</span>
                 <p className="text-gray-600 dark:text-gray-400 pt-0.5 italic">
-                  Optional: Use <code className="px-1.5 py-0.5 rounded bg-gray-200 dark:bg-gray-700 text-sm">stamp context compare</code> in
-                  CI to track context drift between branches.
+                  Optional: Use <code className="px-1.5 py-0.5 rounded bg-gray-200 dark:bg-gray-700 text-sm">stamp context compare</code> to
+                  detect drift across all folders (auto-mode) or compare specific files. Perfect for CI workflows.
                 </p>
               </div>
             </div>

@@ -37,14 +37,16 @@ npm install -g logicstamp-context
 # Generate context for your project
 stamp context
 
-# Output: context.json with full component analysis`,
+# Output: Multiple context.json files (one per folder) 
+# plus context_main.json index`,
                     copyText: `# Install globally
 npm install -g logicstamp-context
 
 # Generate context for your project
 stamp context
 
-# Output: context.json with full component analysis`
+# Output: Multiple context.json files (one per folder) 
+# plus context_main.json index`
                   }
                 ]}
               />
@@ -56,16 +58,25 @@ stamp context
                 tabs={[
                   {
                     label: 'Syntax',
-                    code: `stamp context [path] [options]
-stamp context validate [file]`,
-                    copyText: `stamp context [path] [options]
-stamp context validate [file]`
+                    code: `stamp init [path] [options]
+stamp context [path] [options]
+stamp context validate [file]
+stamp context compare [options]
+stamp context clean [path] [options]`,
+                    copyText: `stamp init [path] [options]
+stamp context [path] [options]
+stamp context validate [file]
+stamp context compare [options]
+stamp context clean [path] [options]`
                   }
                 ]}
               />
               <p>
-                Use <code>stamp context</code> to generate bundles and <code>stamp context validate</code> to verify
-                them before sharing or committing.
+                Use <code>stamp init</code> to set up your project (optional, <code>stamp context</code> will prompt on first run),{' '}
+                <code>stamp context</code> to generate folder-organized context files,{' '}
+                <code>stamp context validate</code> to verify them,{' '}
+                <code>stamp context compare</code> to detect drift across all folders, and{' '}
+                <code>stamp context clean</code> to remove context artifacts.
               </p>
             </AnimatedSection>
 
@@ -100,8 +111,14 @@ stamp context validate [file]`
                   Use <code>--stats</code> to emit machine-readable summary lines and append them to logs or dashboards.
                 </li>
                 <li>
+                  Use <code>stamp context compare</code> in CI to detect context drift across all folders. Use <code>--approve</code> for auto-updates (like Jest snapshots).
+                </li>
+                <li>
                   Combine <code>stamp context</code> and <code>stamp context validate</code> in pre-commit hooks or CI
-                  jobs to keep <code>context.json</code> in sync with your codebase.
+                  jobs to keep context files in sync with your codebase.
+                </li>
+                <li>
+                  Use <code>stamp context clean --all --yes</code> to reset context files before regenerating or switching branches.
                 </li>
               </ul>
             </AnimatedSection>

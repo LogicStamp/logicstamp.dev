@@ -5,7 +5,7 @@ import DocsLayout from '@/components/DocsLayout'
 
 export const metadata: Metadata = {
   title: 'LLM Context Format | LogicStamp Context Documentation',
-  description: 'Guide to the structure of context.json bundles generated for LLM consumption.',
+  description: 'Guide to the structure of folder-organized context files (context.json per folder plus context_main.json index) generated for LLM consumption.',
 }
 
 export default function LlmContextPage() {
@@ -18,7 +18,7 @@ export default function LlmContextPage() {
               LogicStamp Context – LLM Guide
             </h1>
             <p className="text-lg text-gray-900 dark:text-white">
-              Understand the structure of the <code>context.json</code> bundles that LogicStamp Context generates for
+              Understand the structure of the folder-organized context files (multiple <code>context.json</code> files plus <code>context_main.json</code> index) that LogicStamp Context generates for
               LLM consumption and how to interpret them.
             </p>
           </div>
@@ -44,11 +44,26 @@ export default function LlmContextPage() {
             </AnimatedSection>
 
             <AnimatedSection direction="up" delay={200}>
-              <h2>What <code>context.json</code> Contains</h2>
-              <p>Output is an array of LogicStamp bundles. Each bundle represents one entry point plus its graph.</p>
+              <h2>Output Structure</h2>
+              <p>
+                LogicStamp Context generates <strong>folder-organized, multi-file output</strong>:
+              </p>
+              <ul>
+                <li>
+                  <strong>Multiple <code>context.json</code> files</strong> – one per folder containing components. Each file contains an array of LogicStamp bundles (one bundle per entry point/root component).
+                </li>
+                <li>
+                  <strong><code>context_main.json</code> index</strong> – main index file with folder metadata, summary statistics, and references to all folder context files.
+                </li>
+              </ul>
               <p className="text-gray-900 dark:text-white">
                 <strong>Design note:</strong> LogicStamp Context uses per-root bundles (one bundle per entry point) rather than per-component files. This means each bundle contains the root component plus its complete dependency graph—all related components and their relationships in one self-contained unit. This design is optimized for AI consumption: when you need help with a specific page or feature, share that root bundle and the AI has complete context.
               </p>
+            </AnimatedSection>
+
+            <AnimatedSection direction="up" delay={250}>
+              <h2>What Each <code>context.json</code> Contains</h2>
+              <p>Each folder's <code>context.json</code> is an array of LogicStamp bundles. Each bundle represents one entry point plus its graph.</p>
               <ul>
                 <li>
                   Top-level fields include <code>position</code>, <code>type</code>, <code>schemaVersion</code>,{' '}
@@ -67,6 +82,32 @@ export default function LlmContextPage() {
             </AnimatedSection>
 
             <AnimatedSection direction="up" delay={300}>
+              <h2>The <code>context_main.json</code> Index</h2>
+              <p>
+                The <code>context_main.json</code> file provides a complete directory index with:
+              </p>
+              <ul>
+                <li>
+                  <code>summary</code> – overall statistics (total components, bundles, folders, token estimates)
+                </li>
+                <li>
+                  <code>folders</code> – array of folder entries, each with:
+                  <ul>
+                    <li><code>path</code> – relative path from project root</li>
+                    <li><code>contextFile</code> – path to this folder's context.json</li>
+                    <li><code>bundles</code> – number of bundles in this folder</li>
+                    <li><code>components</code> – list of component file names</li>
+                    <li><code>isRoot</code> – whether this is an application entry point</li>
+                    <li><code>tokenEstimate</code> – token count for this folder's context</li>
+                  </ul>
+                </li>
+              </ul>
+              <p>
+                Use the index to discover which folders have context files and navigate to specific folder contexts.
+              </p>
+            </AnimatedSection>
+
+            <AnimatedSection direction="up" delay={350}>
               <h2>The <code>meta</code> Section</h2>
               <p>The <code>meta</code> object provides metadata about bundle generation and dependency resolution:</p>
               <ul>
@@ -84,6 +125,12 @@ export default function LlmContextPage() {
             <AnimatedSection direction="up" delay={400}>
               <h2>Best Practices for LLM Consumers</h2>
               <ul>
+                <li>
+                  Start with <code>context_main.json</code> to understand the project structure and locate relevant folder contexts.
+                </li>
+                <li>
+                  Load specific folder <code>context.json</code> files based on the area of code you're working with.
+                </li>
                 <li>Check <code>meta.missing</code> before assuming complete component coverage.</li>
                 <li>Suggest increasing <code>--depth</code> if many &quot;max depth exceeded&quot; entries appear.</li>
                 <li>Flag <code>file not found</code> entries as potential bugs in the codebase.</li>

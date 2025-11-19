@@ -194,6 +194,32 @@ html, body {
   margin-top: 0;
 }
 
+/* Reduce spacing inside colored feature boxes (rounded boxes with colored backgrounds) */
+.docs-content .rounded-lg[class*="bg-"] p,
+.docs-content .rounded-lg[class*="dark:bg-"] p {
+  margin-bottom: 0.75rem;
+}
+
+.docs-content .rounded-lg[class*="bg-"] ul,
+.docs-content .rounded-lg[class*="bg-"] ol,
+.docs-content .rounded-lg[class*="dark:bg-"] ul,
+.docs-content .rounded-lg[class*="dark:bg-"] ol {
+  margin-bottom: 0.75rem;
+}
+
+.docs-content .rounded-lg[class*="bg-"] li,
+.docs-content .rounded-lg[class*="dark:bg-"] li {
+  margin-bottom: 0.5rem;
+}
+
+.docs-content .rounded-lg[class*="bg-"] h3,
+.docs-content .rounded-lg[class*="bg-"] h4,
+.docs-content .rounded-lg[class*="dark:bg-"] h3,
+.docs-content .rounded-lg[class*="dark:bg-"] h4 {
+  margin-top: 0;
+  margin-bottom: 0.75rem;
+}
+
 /* Prevent layout shifts */
 * {
   box-sizing: border-box;
