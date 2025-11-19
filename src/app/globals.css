@@ -298,6 +298,17 @@ header .animate-pulse {
   }
 }
 
+@keyframes fadeInSlide {
+  from {
+    opacity: 0;
+    transform: translateX(-1rem);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
 @keyframes pulse {
   0%, 100% {
     transform: scale(1);
@@ -612,5 +623,46 @@ header .animate-pulse {
 
   .dark .sidebar-scrollable::-webkit-scrollbar-thumb {
     background-color: rgba(107, 114, 128, 0.7);
+  }
+}
+
+/* Mobile fixes for Step 4 AI tools grid */
+@media (max-width: 640px) {
+  /* Ensure grid containers don't overflow */
+  .grid.grid-cols-1 {
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+  }
+  
+  /* Ensure cards don't overflow on mobile */
+  .grid.grid-cols-1 > div,
+  .grid.grid-cols-1 > * {
+    max-width: 100%;
+    width: 100%;
+    box-sizing: border-box;
+    overflow: hidden;
+  }
+  
+  /* Prevent flex items from overflowing */
+  .flex.items-center {
+    max-width: 100%;
+    min-width: 0;
+    box-sizing: border-box;
+  }
+  
+  /* Ensure text containers respect parent width */
+  .flex-1.min-w-0 {
+    max-width: 100%;
+    min-width: 0;
+    overflow: hidden;
+    box-sizing: border-box;
+  }
+  
+  /* Prevent text from breaking layout */
+  .flex-1.min-w-0 p {
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    max-width: 100%;
   }
 }
