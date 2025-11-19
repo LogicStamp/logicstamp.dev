@@ -111,7 +111,7 @@ export default function DocsLayout({ children }: { children: React.ReactNode }) 
   }, [sidebarOpen])
 
   return (
-    <div className="min-h-screen bg-gray-50 dark:bg-gray-900 pt-[5.5rem] lg:pt-24">
+    <div className="min-h-screen bg-gradient-bg-section pt-[5.5rem] lg:pt-24">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-6 py-8 lg:py-10">
         {/* Mobile sidebar toggle button */}
         <button
@@ -148,7 +148,7 @@ export default function DocsLayout({ children }: { children: React.ReactNode }) 
             aria-modal="true"
             aria-labelledby="mobile-sidebar-title"
             className={`
-              lg:hidden fixed bottom-0 left-0 z-30 w-64 bg-gray-50 dark:bg-gray-900 border-r border-gray-200 dark:border-gray-700 pt-4 pb-8 px-4 overflow-y-auto
+              lg:hidden fixed bottom-0 left-0 z-30 w-64 bg-gradient-bg-section border-r border-gray-200 dark:border-gray-700 pt-4 pb-8 px-4 overflow-y-auto
               transition-all duration-300 ease-in-out
               top-[4.75rem]
               ${sidebarOpen ? 'translate-x-0' : '-translate-x-full'}
