@@ -451,7 +451,7 @@ $ stamp context clean
             isDarkMode ? 'text-gray-400' : 'text-gray-500'
           }`}>LogicStamp Context CLI</p>
         </div>
-        <pre className={`px-3 sm:px-6 py-3 sm:py-5 text-sm sm:text-base lg:text-lg leading-5 sm:leading-6 font-mono whitespace-pre relative h-96 sm:h-[48rem] overflow-x-auto sm:overflow-hidden ${
+        <pre className={`px-3 sm:px-6 py-3 sm:py-5 text-sm sm:text-sm lg:text-sm leading-5 sm:leading-6 font-mono whitespace-pre relative h-96 sm:h-[40rem] lg:h-[36rem] overflow-x-auto sm:overflow-hidden ${
           isDarkMode ? 'text-gray-100' : 'text-gray-800'
         }`}>
           {/* Invisible full content to reserve space */}
