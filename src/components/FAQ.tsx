@@ -245,7 +245,6 @@ export default function FAQ() {
                       {/* Answer */}
                       <dd
                         id={`faq-answer-${faq.id}`}
-                        role="region"
                         aria-labelledby={`faq-question-${faq.id}`}
                         className={`
                           grid transition-[grid-template-rows,opacity,margin] duration-200 ease-out

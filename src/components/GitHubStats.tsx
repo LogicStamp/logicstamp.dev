@@ -36,19 +36,32 @@ export default function GitHubStats() {
         const repoResponse = await fetch(`https://api.github.com/repos/${repo}`)
 
         if (!repoResponse.ok) {
+          // If repository doesn't exist (404), use placeholder data silently
+          if (repoResponse.status === 404) {
+            setStats(PLACEHOLDER_DATA)
+            setLoading(false)
+            return
+          }
           throw new Error('Failed to fetch GitHub stats')
         }
 
         const repoData = await repoResponse.json()
 
         // Fetch contributors count
-        const contributorsResponse = await fetch(
-          `https://api.github.com/repos/${repo}/contributors?per_page=1`
-        )
-        const contributorsLink = contributorsResponse.headers.get('Link')
-        const contributorsCount = contributorsLink
-          ? parseInt(contributorsLink.match(/page=(\d+)>; rel="last"/)?.[1] || '1')
-          : 1
+        let contributorsCount = 1
+        try {
+          const contributorsResponse = await fetch(
+            `https://api.github.com/repos/${repo}/contributors?per_page=1`
+          )
+          if (contributorsResponse.ok) {
+            const contributorsLink = contributorsResponse.headers.get('Link')
+            contributorsCount = contributorsLink
+              ? parseInt(contributorsLink.match(/page=(\d+)>; rel="last"/)?.[1] || '1')
+              : 1
+          }
+        } catch (err) {
+          // If contributors fetch fails, use default value silently
+        }
 
         setStats({
           stars: repoData.stargazers_count || 0,
@@ -62,10 +75,9 @@ export default function GitHubStats() {
         })
         setLoading(false)
       } catch (err) {
-        console.error('Error fetching GitHub stats:', err)
+        // Silently handle errors and use placeholder data
         setError(true)
         setLoading(false)
-        // Use placeholder data on error
         setStats(PLACEHOLDER_DATA)
       }
     }
@@ -149,9 +161,9 @@ export default function GitHubStats() {
               clipRule="evenodd"
             />
           </svg>
-          <h3 className="text-lg font-semibold text-gray-900 dark:text-white">
+          <h2 className="text-lg font-semibold text-gray-900 dark:text-white">
             Open Source & Active Development
-          </h3>
+          </h2>
         </div>
 
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 max-w-4xl mx-auto">

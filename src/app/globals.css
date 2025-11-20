@@ -78,6 +78,7 @@ html, body {
   .line-clamp-2 {
     display: -webkit-box;
     -webkit-line-clamp: 2;
+    line-clamp: 2;
     -webkit-box-orient: vertical;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -86,6 +87,7 @@ html, body {
   .line-clamp-4 {
     display: -webkit-box;
     -webkit-line-clamp: 4;
+    line-clamp: 4;
     -webkit-box-orient: vertical;
     overflow: hidden;
   }
@@ -364,17 +366,7 @@ header .animate-pulse {
   transform: translateY(-2px);
 }
 
-/* Dark mode hover effects */
-@media (prefers-color-scheme: dark) {
-  .hover-lift:hover {
-    /* No additional shadow effects needed */
-  }
-}
-
-/* Alternative approach using dark: prefix for Tailwind dark mode */
-.dark .hover-lift:hover {
-  /* No additional shadow effects needed */
-}
+/* Dark mode hover effects - no additional styles needed */
 
 /* Gradient text animation */
 .animate-gradient {

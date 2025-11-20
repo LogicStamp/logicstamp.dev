@@ -40,12 +40,21 @@ export default function RootLayout({
         <link rel="shortcut icon" href="/icon.svg?v=4" type="image/svg+xml" />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
         <script
           dangerouslySetInnerHTML={{
             __html: `
               (function() {
                 try {
+                  // Load Google Fonts asynchronously to prevent render blocking
+                  var link = document.createElement('link');
+                  link.href = 'https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap';
+                  link.rel = 'stylesheet';
+                  link.media = 'print';
+                  link.onload = function() { this.media = 'all'; this.onload = null; };
+                  link.onerror = function() { this.onerror = null; };
+                  document.head.appendChild(link);
+                  
+                  // Theme initialization
                   var cookieMatch = document.cookie.match(/(?:^|; )theme=([^;]+)/);
                   var cookieTheme = cookieMatch ? decodeURIComponent(cookieMatch[1]) : null;
                   var storageTheme = localStorage.getItem('theme');
@@ -66,6 +75,7 @@ export default function RootLayout({
             `,
           }}
         />
+        <noscript><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" /></noscript>
       </head>
       <body className={`${GeistSans.variable} ${GeistMono.variable} font-sans bg-gradient-to-b from-sky-100 to-white dark:from-gray-900 dark:to-gray-800 min-h-screen`}>
         <ThemeProvider>
