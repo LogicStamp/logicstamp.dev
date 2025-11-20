@@ -71,7 +71,7 @@ const HeroVisualizationWrapper = forwardRef<HTMLDivElement, { inView: boolean }>
         
         // Calculate when element enters viewport
         const startPoint = windowHeight * 1.1 // Start animation when element is 80% down viewport
-        const endPoint = windowHeight * 0 // Complete animation when element is 40% down viewport
+        const endPoint = windowHeight * 0.4 // Complete animation when element is 40% down viewport
         
         // Calculate progress (0 to 1)
         let progress = 0

@@ -6,7 +6,7 @@ import DocsLayout from '@/components/DocsLayout'
 
 export const metadata: Metadata = {
   title: 'LogicStamp Context CLI | Documentation',
-  description: 'Overview of the LogicStamp Context CLI and links to detailed docs pages.',
+  description: 'Complete documentation for LogicStamp Context CLI - commands, usage examples, token optimization, drift detection, and schema reference.',
 }
 
 const pages = [
@@ -27,34 +27,71 @@ export default function LogicStampContextDocsPage() {
   return (
     <>
       <DocsLayout>
+        {/* Hero Section */}
         <AnimatedSection direction="up" delay={0}>
-          <div className="mb-10">
-            <h1 className="text-3xl lg:text-4xl font-semibold text-gray-900 dark:text-white mb-4">
-              LogicStamp Context CLI
-            </h1>
-            <p className="text-lg text-gray-900 dark:text-white">
-              Centralized documentation for the LogicStamp Context CLI used to generate AI-ready context
-              from your React/TypeScript codebase.
-            </p>
+          <div className="relative mb-8 sm:mb-12 lg:mb-16">
+            {/* Background gradient */}
+            <div className="absolute inset-0 bg-gradient-to-br from-blue-50 via-indigo-50/30 to-purple-50/20 dark:from-blue-950/20 dark:via-indigo-950/10 dark:to-purple-950/5 rounded-3xl -m-4 sm:-m-6 lg:-m-8 blur-3xl opacity-70" />
+            
+            <div className="relative">
+              {/* Badge */}
+              <div className="inline-flex items-center gap-2 px-3 py-1.5 bg-gradient-to-r from-blue-100 to-indigo-100 dark:from-blue-900/40 dark:to-indigo-900/40 text-blue-700 dark:text-blue-300 text-sm font-semibold rounded-full mb-4 sm:mb-6 backdrop-blur-sm border border-blue-200/50 dark:border-blue-700/50">
+                <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                  <path fillRule="evenodd" d="M3 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm0 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm0 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm0 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z" clipRule="evenodd" />
+                </svg>
+                CLI Documentation Hub
+              </div>
+
+              <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black text-transparent bg-clip-text bg-gradient-to-r from-gray-900 to-gray-700 dark:from-white dark:to-gray-300 mb-4 sm:mb-6 tracking-tight leading-[1.1]">
+                LogicStamp Context CLI
+              </h1>
+              
+              <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-gray-600 dark:text-gray-400 leading-relaxed max-w-3xl mb-6 sm:mb-8">
+                Complete documentation for LogicStamp Context CLI - commands, usage examples, token optimization, drift detection, and schema reference.
+              </p>
+
+              {/* Quick stats */}
+              <div className="flex flex-wrap gap-4 sm:gap-6 mt-6 sm:mt-8">
+                <div className="flex items-center gap-2">
+                  <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse" />
+                  <span className="text-xs sm:text-sm font-medium text-gray-600 dark:text-gray-400">5 Commands</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse" />
+                  <span className="text-xs sm:text-sm font-medium text-gray-600 dark:text-gray-400">15+ Options</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse" />
+                  <span className="text-xs sm:text-sm font-medium text-gray-600 dark:text-gray-400">Zero config</span>
+                </div>
+              </div>
+            </div>
           </div>
         </AnimatedSection>
 
         <AnimatedSection direction="up" delay={100}>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8">
             {pages.map((page, index) => (
               <Link
                 key={index}
                 href={page.href}
                 target={(page as any).external ? '_blank' : undefined}
                 rel={(page as any).external ? 'noopener noreferrer' : undefined}
-                className="block bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 p-5 hover:border-blue-400 dark:hover:border-blue-500 hover:shadow-sm transition-colors"
+                className="block p-4 sm:p-6 bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 hover:border-blue-300 dark:hover:border-blue-500 hover:bg-blue-50 dark:hover:bg-blue-900/20 transition-colors group shadow-sm hover:shadow-md"
               >
-                <h2 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">
-                  {page.title}
-                </h2>
-                <p className="text-sm text-gray-900 dark:text-white">
-                  {page.description}
-                </p>
+                <div className="flex items-start justify-between">
+                  <div className="flex-1">
+                    <h2 className="text-lg sm:text-xl font-semibold text-gray-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400 mb-2">
+                      {page.title}
+                    </h2>
+                    <p className="text-sm sm:text-base text-gray-600 dark:text-gray-400">
+                      {page.description}
+                    </p>
+                  </div>
+                  <svg className="w-5 h-5 text-gray-400 group-hover:text-blue-500 ml-2 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                  </svg>
+                </div>
               </Link>
             ))}
           </div>
