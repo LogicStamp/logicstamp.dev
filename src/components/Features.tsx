@@ -2,6 +2,7 @@
 
 import { useEffect, useState, useRef } from 'react'
 import { useTheme } from '../contexts/ThemeContext'
+import { ChevronRight } from 'lucide-react'
 
 // Custom hook for intersection observer
 function useInView(threshold = 0.1) {
@@ -348,21 +349,21 @@ $ stamp context clean
       // Match patterns
       const patterns = [
         // Command prompt ($)
-        { regex: /^\$\s+/g, color: isDarkMode ? 'text-green-400' : 'text-green-600' },
+        { regex: /^\$\s+/g, color: 'text-green-400' },
         // Commands (stamp, npm, etc.)
-        { regex: /\b(stamp|npm|i|install|-g|context|compare|validate|init|clean|--stats|--compare-modes|--approve|--clean-orphaned)\b/g, color: isDarkMode ? 'text-blue-400' : 'text-blue-600' },
+        { regex: /\b(stamp|npm|i|install|-g|context|compare|validate|init|clean|--stats|--compare-modes|--approve|--clean-orphaned)\b/g, color: 'text-blue-400' },
         // Numbers
-        { regex: /\b\d+\b/g, color: isDarkMode ? 'text-yellow-400' : 'text-yellow-600' },
+        { regex: /\b\d+\b/g, color: 'text-yellow-400' },
         // Paths and URLs
-        { regex: /(\/[\w\/\.-]+|https?:\/\/[^\s]+)/g, color: isDarkMode ? 'text-cyan-400' : 'text-cyan-600' },
+        { regex: /(\/[\w\/\.-]+|https?:\/\/[^\s]+)/g, color: 'text-cyan-400' },
         // Success messages (✅)
-        { regex: /✅/g, color: isDarkMode ? 'text-green-400' : 'text-green-600' },
+        { regex: /✅/g, color: 'text-green-400' },
         // Emojis (🔍, 🔨, 📊, etc.)
-        { regex: /[🔍🔨📊📋📦🔍✅📝⏱🔄]/g, color: isDarkMode ? 'text-yellow-400' : 'text-yellow-600' },
+        { regex: /[🔍🔨📊📋📦🔍✅📝⏱🔄]/g, color: 'text-yellow-400' },
         // Status words
-        { regex: /\b(PASS|FAIL|Completed|found|Analyzed|Scanning|Generating|Validating|Writing|Summary|Comparison|Mode|Tokens|Savings|Estimates)\b/gi, color: isDarkMode ? 'text-purple-400' : 'text-purple-600' },
+        { regex: /\b(PASS|FAIL|Completed|found|Analyzed|Scanning|Generating|Validating|Writing|Summary|Comparison|Mode|Tokens|Savings|Estimates)\b/gi, color: 'text-purple-400' },
         // Percentages and special numbers
-        { regex: /(~|%|\+|-)\d+/g, color: isDarkMode ? 'text-orange-400' : 'text-orange-600' },
+        { regex: /(~|%|\+|-)\d+/g, color: 'text-orange-400' },
       ]
       
       // Process line with patterns
@@ -401,7 +402,7 @@ $ stamp context clean
         // Add text before match
         if (match.start > currentIndex) {
           parts.push(
-            <span key={`${lineIndex}-${currentIndex}`} className={isDarkMode ? 'text-gray-100' : 'text-gray-800'}>
+            <span key={`${lineIndex}-${currentIndex}`} className="text-gray-100">
               {line.substring(currentIndex, match.start)}
             </span>
           )
@@ -418,7 +419,7 @@ $ stamp context clean
       // Add remaining text
       if (currentIndex < line.length) {
         parts.push(
-          <span key={`${lineIndex}-${currentIndex}`} className={isDarkMode ? 'text-gray-100' : 'text-gray-800'}>
+          <span key={`${lineIndex}-${currentIndex}`} className="text-gray-100">
             {line.substring(currentIndex)}
           </span>
         )
@@ -426,7 +427,7 @@ $ stamp context clean
       
       return (
         <span key={lineIndex}>
-          {parts.length > 0 ? parts : <span className={isDarkMode ? 'text-gray-100' : 'text-gray-800'}>{line}</span>}
+          {parts.length > 0 ? parts : <span className="text-gray-100">{line}</span>}
           {lineIndex < lines.length - 1 && '\n'}
         </span>
       )
@@ -462,40 +463,25 @@ $ stamp context clean
       {/* Terminal */}
       <div className="relative rounded-2xl bg-white/80 dark:bg-gray-900/80 backdrop-blur-xl p-2 ring-1 ring-inset ring-gray-200/20 dark:ring-gray-700/20 lg:rounded-2xl lg:p-4 transition-all duration-500 overflow-hidden">
 
-        <div className={`relative rounded-md shadow-xl ring-1 ${
-          isDarkMode 
-            ? 'bg-gray-900 ring-gray-800/50' 
-            : 'bg-gray-50 ring-gray-200/50'
-        }`}>
-          <div className={`flex items-center gap-x-4 px-3 sm:px-4 py-2 sm:py-3 border-b ${
-            isDarkMode ? 'border-gray-700' : 'border-gray-200'
-          }`}>
-            <div className="flex gap-x-1.5">
-              <div className={`h-2 w-2 sm:h-3 sm:w-3 rounded-full ${
-                isDarkMode ? 'bg-red-500' : 'bg-red-400'
-              }`} />
-              <div className={`h-2 w-2 sm:h-3 sm:w-3 rounded-full ${
-                isDarkMode ? 'bg-yellow-500' : 'bg-yellow-400'
-              }`} />
-              <div className={`h-2 w-2 sm:h-3 sm:w-3 rounded-full ${
-                isDarkMode ? 'bg-green-500' : 'bg-green-400'
-              }`} />
+        <div className="relative rounded-md shadow-xl ring-1 bg-gray-900 ring-gray-800/50">
+          <div className="flex items-center justify-between px-3 sm:px-4 py-2 sm:py-3 border-b border-gray-700 bg-gray-800">
+            <div className="flex items-center gap-3">
+              <ChevronRight className="w-5 h-5 text-green-400" />
+              <span className="text-xs lg:text-sm font-mono text-gray-400">LogicStamp Context CLI</span>
             </div>
-            <p className={`text-xs lg:text-sm ${
-              isDarkMode ? 'text-gray-400' : 'text-gray-500'
-            }`}>LogicStamp Context CLI</p>
+            <div className="flex gap-2">
+              <div className="w-3 h-3 rounded-full bg-red-500" />
+              <div className="w-3 h-3 rounded-full bg-yellow-500" />
+              <div className="w-3 h-3 rounded-full bg-green-500" />
+            </div>
           </div>
-          <pre className={`px-3 sm:px-6 py-3 sm:py-5 text-sm sm:text-sm lg:text-sm leading-5 sm:leading-6 font-mono whitespace-pre relative h-96 sm:h-[40rem] lg:h-[36rem] overflow-x-auto sm:overflow-hidden ${
-            isDarkMode ? 'text-gray-100' : 'text-gray-800'
-          }`}>
+          <pre className="px-3 sm:px-6 py-3 sm:py-5 text-sm sm:text-sm lg:text-sm leading-5 sm:leading-6 font-mono whitespace-pre relative h-96 sm:h-[40rem] lg:h-[36rem] overflow-x-auto sm:overflow-hidden text-gray-100">
             {/* Invisible full content to reserve space */}
             <code className="invisible whitespace-pre">{demos[currentDemo].content}</code>
             {/* Visible animated content with colors */}
-            <code className={`absolute inset-0 px-3 sm:px-6 py-3 sm:py-5 whitespace-pre ${
-              isDarkMode ? 'bg-gray-900' : 'bg-gray-50'
-            }`}>
+            <code className="absolute inset-0 px-3 sm:px-6 py-3 sm:py-5 whitespace-pre bg-gray-900">
               {colorizeTerminalText(displayText)}
-              {showCursor && <span className={`animate-pulse ${isDarkMode ? 'text-gray-100' : 'text-gray-800'}`}>▋</span>}
+              {showCursor && <span className="animate-pulse text-gray-100">▋</span>}
             </code>
           </pre>
         </div>

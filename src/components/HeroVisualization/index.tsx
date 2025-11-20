@@ -173,7 +173,7 @@ const HeroVisualization = forwardRef<HTMLDivElement, HeroVisualizationProps>(
           
           {/* Right: Context.json Preview */}
           <div 
-            className="relative rounded-xl bg-gradient-bg-card p-2 ring-1 ring-inset ring-secondary-200/20 dark:ring-secondary-400/20 lg:rounded-2xl lg:p-4 hover-lift shadow-lg h-96 sm:h-[48rem] overflow-x-auto sm:overflow-hidden"
+            className="relative h-96 sm:h-[48rem] overflow-x-auto sm:overflow-hidden"
             style={terminalStyle}
           >
             <ContextJsonPreview animatedNodes={animatedNodes} />

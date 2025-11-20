@@ -163,102 +163,102 @@ export default function FAQ() {
               return (
                 <div
                   key={faq.id}
-                  className={`transition-all duration-700 ${
-                    faqsInView 
-                      ? 'opacity-100 translate-y-0' 
-                      : 'opacity-0 translate-y-8'
-                  }`}
-                  style={{ transitionDelay: `${index * 100 + 200}ms` }}
+                  className={`
+                    relative rounded-2xl p-6 sm:p-8
+                    ${
+                      faqsInView 
+                        ? 'opacity-100 translate-y-0' 
+                        : 'opacity-0 translate-y-8'
+                    }
+                    ${
+                      isOpen
+                        ? 'border border-gray-900 dark:border-gray-100 shadow-[0_0_0_1px_rgba(0,0,0,0.45),0_18px_40px_rgba(15,23,42,0.75)] dark:shadow-[0_0_0_1px_rgba(255,255,255,0.45),0_18px_40px_rgba(15,23,42,0.75)]'
+                        : 'border border-gray-200/60 dark:border-gray-800/80 hover:border-gray-400/80 dark:hover:border-gray-600/80'
+                    }
+                  `}
+                  style={{ 
+                    transitionProperty: 'opacity, transform, border-color, box-shadow',
+                    transitionDuration: '700ms, 700ms, 200ms, 200ms',
+                    transitionTimingFunction: 'ease-out, ease-out, ease-out, ease-out',
+                    transitionDelay: `${index * 100 + 200}ms, ${index * 100 + 200}ms, 0ms, 0ms`
+                  }}
                 >
-                  <div
-                    className={`
-                      relative rounded-2xl transition-all duration-200 ease-out
-                      ${
-                        isOpen
-                          ? 'border border-gray-900 dark:border-gray-100 shadow-[0_0_0_1px_rgba(0,0,0,0.45),0_18px_40px_rgba(15,23,42,0.75)] dark:shadow-[0_0_0_1px_rgba(255,255,255,0.45),0_18px_40px_rgba(15,23,42,0.75)]'
-                          : 'border border-gray-200/60 dark:border-gray-800/80 hover:border-gray-400/80 dark:hover:border-gray-600/80'
-                      }
-                    `}
-                  >
-                    <div className="p-6 sm:p-8">
-                      <dt>
-                        <button
-                          ref={el => {
-                            buttonRefs.current[index] = el
-                          }}
-                          type="button"
-                          id={`faq-question-${faq.id}`}
-                          className="flex w-full items-center justify-between text-left pr-8 rounded-md focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-purple-500"
-                          onClick={() => toggleItem(faq.id)}
-                          onKeyDown={e => handleKeyDown(e, index)}
-                          aria-expanded={isOpen}
-                          aria-controls={`faq-answer-${faq.id}`}
-                        >
-                          <span className="text-lg lg:text-xl font-semibold leading-7 text-gray-900 dark:text-white">
-                            {faq.question}
-                          </span>
-                          <div
-                            className="relative h-5 w-5 flex-shrink-0 ml-4"
-                            aria-hidden="true"
-                          >
-                            {/* Plus icon */}
-                            <svg
-                              className={`absolute inset-0 h-5 w-5 transition-all duration-200 ease-in-out text-gray-500 dark:text-gray-400 ${
-                                isOpen
-                                  ? 'opacity-0 rotate-90 scale-75'
-                                  : 'opacity-100 rotate-0 scale-100'
-                              }`}
-                              fill="none"
-                              viewBox="0 0 24 24"
-                              strokeWidth="2"
-                              stroke="currentColor"
-                            >
-                              <path
-                                strokeLinecap="round"
-                                strokeLinejoin="round"
-                                d="M12 4.5v15m7.5-7.5h-15"
-                              />
-                            </svg>
-
-                            {/* Close icon */}
-                            <svg
-                              className={`absolute inset-0 h-5 w-5 transition-all duration-200 ease-in-out text-gray-900 dark:text-white ${
-                                isOpen
-                                  ? 'opacity-100 rotate-0 scale-100'
-                                  : 'opacity-0 -rotate-90 scale-75'
-                              }`}
-                              fill="none"
-                              viewBox="0 0 24 24"
-                              strokeWidth="2"
-                              stroke="currentColor"
-                            >
-                              <path
-                                strokeLinecap="round"
-                                strokeLinejoin="round"
-                                d="M6 18L18 6M6 6l12 12"
-                              />
-                            </svg>
-                          </div>
-                        </button>
-                      </dt>
-
-                      {/* Answer */}
-                      <dd
-                        id={`faq-answer-${faq.id}`}
-                        aria-labelledby={`faq-question-${faq.id}`}
-                        className={`
-                          grid transition-[grid-template-rows,opacity,margin] duration-200 ease-out
-                          ${isOpen ? 'grid-rows-[1fr] opacity-100 mt-4' : 'grid-rows-[0fr] opacity-0 mt-0'}
-                        `}
+                  <dt>
+                      <button
+                        ref={el => {
+                          buttonRefs.current[index] = el
+                        }}
+                        type="button"
+                        id={`faq-question-${faq.id}`}
+                        className="flex w-full items-center justify-between text-left pr-8 rounded-md focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-purple-500"
+                        onClick={() => toggleItem(faq.id)}
+                        onKeyDown={e => handleKeyDown(e, index)}
+                        aria-expanded={isOpen}
+                        aria-controls={`faq-answer-${faq.id}`}
                       >
-                        <div className="overflow-hidden">
-                          <p className="text-base lg:text-lg leading-7 text-gray-600 dark:text-gray-300 pr-2 sm:pr-8">
-                            {faq.answer}
-                          </p>
+                        <span className="text-lg lg:text-xl font-semibold leading-7 text-gray-900 dark:text-white">
+                          {faq.question}
+                        </span>
+                        <div
+                          className="relative h-5 w-5 flex-shrink-0 ml-4"
+                          aria-hidden="true"
+                        >
+                          {/* Plus icon */}
+                          <svg
+                            className={`absolute inset-0 h-5 w-5 transition-all duration-200 ease-in-out text-gray-500 dark:text-gray-400 ${
+                              isOpen
+                                ? 'opacity-0 rotate-90 scale-75'
+                                : 'opacity-100 rotate-0 scale-100'
+                            }`}
+                            fill="none"
+                            viewBox="0 0 24 24"
+                            strokeWidth="2"
+                            stroke="currentColor"
+                          >
+                            <path
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                              d="M12 4.5v15m7.5-7.5h-15"
+                            />
+                          </svg>
+
+                          {/* Close icon */}
+                          <svg
+                            className={`absolute inset-0 h-5 w-5 transition-all duration-200 ease-in-out text-gray-900 dark:text-white ${
+                              isOpen
+                                ? 'opacity-100 rotate-0 scale-100'
+                                : 'opacity-0 -rotate-90 scale-75'
+                            }`}
+                            fill="none"
+                            viewBox="0 0 24 24"
+                            strokeWidth="2"
+                            stroke="currentColor"
+                          >
+                            <path
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                              d="M6 18L18 6M6 6l12 12"
+                            />
+                          </svg>
                         </div>
-                      </dd>
-                    </div>
-                  </div>
+                      </button>
+                    </dt>
+
+                    {/* Answer */}
+                    <dd
+                      id={`faq-answer-${faq.id}`}
+                      aria-labelledby={`faq-question-${faq.id}`}
+                      className={`
+                        grid transition-[grid-template-rows,opacity,margin] duration-200 ease-out
+                        ${isOpen ? 'grid-rows-[1fr] opacity-100 mt-4' : 'grid-rows-[0fr] opacity-0 mt-0'}
+                      `}
+                    >
+                      <div className="overflow-hidden">
+                        <p className="text-base lg:text-lg leading-7 text-gray-600 dark:text-gray-300 pr-2 sm:pr-8">
+                          {faq.answer}
+                        </p>
+                      </div>
+                    </dd>
                 </div>
               )
             })}

@@ -586,36 +586,169 @@ header .animate-pulse {
   }
 }
 
-/* Styled scrollbar for desktop sidebar */
-@media (min-width: 1024px) {
-  .sidebar-scrollable {
-    /* Custom scrollbar for WebKit browsers (Chrome, Safari, Edge) */
-    scrollbar-width: auto;
-    scrollbar-color: rgba(156, 163, 175, 0.7) transparent;
-  }
+/* Styled scrollbar for sidebar and demo components */
+.sidebar-scrollable {
+  /* Firefox */
+  scrollbar-width: thin !important;
+  scrollbar-color: rgba(156, 163, 175, 0.7) transparent !important;
+}
 
-  .sidebar-scrollable::-webkit-scrollbar {
-    width: 8px;
-  }
+/* WebKit browsers (Chrome, Safari, Edge) */
+.sidebar-scrollable::-webkit-scrollbar {
+  width: 8px !important;
+  height: 8px !important;
+  display: block !important;
+}
 
-  .sidebar-scrollable::-webkit-scrollbar-track {
-    background: transparent;
-    border-radius: 4px;
-  }
+.sidebar-scrollable::-webkit-scrollbar-track {
+  background: transparent !important;
+  border-radius: 4px !important;
+}
 
-  .sidebar-scrollable::-webkit-scrollbar-thumb {
-    background-color: rgba(156, 163, 175, 0.7);
-    border-radius: 4px;
-  }
+.sidebar-scrollable::-webkit-scrollbar-thumb {
+  background-color: rgba(156, 163, 175, 0.7) !important;
+  border-radius: 4px !important;
+  transition: background-color 0.2s !important;
+  border: none !important;
+}
 
-  /* Dark mode scrollbar */
-  .dark .sidebar-scrollable {
-    scrollbar-color: rgba(107, 114, 128, 0.7) transparent;
-  }
+.sidebar-scrollable::-webkit-scrollbar-thumb:hover {
+  background-color: rgba(156, 163, 175, 0.9) !important;
+}
 
-  .dark .sidebar-scrollable::-webkit-scrollbar-thumb {
-    background-color: rgba(107, 114, 128, 0.7);
-  }
+.sidebar-scrollable::-webkit-scrollbar-corner {
+  background: transparent !important;
+}
+
+/* Dark mode scrollbar */
+.dark .sidebar-scrollable,
+html.dark .sidebar-scrollable,
+[data-theme="dark"] .sidebar-scrollable {
+  scrollbar-color: rgba(107, 114, 128, 0.7) transparent !important;
+}
+
+.dark .sidebar-scrollable::-webkit-scrollbar-thumb,
+html.dark .sidebar-scrollable::-webkit-scrollbar-thumb,
+[data-theme="dark"] .sidebar-scrollable::-webkit-scrollbar-thumb {
+  background-color: rgba(107, 114, 128, 0.7) !important;
+}
+
+.dark .sidebar-scrollable::-webkit-scrollbar-thumb:hover,
+html.dark .sidebar-scrollable::-webkit-scrollbar-thumb:hover,
+[data-theme="dark"] .sidebar-scrollable::-webkit-scrollbar-thumb:hover {
+  background-color: rgba(107, 114, 128, 0.9) !important;
+}
+
+/* Styled scrollbar for dark backgrounds (like terminal) */
+.bg-gray-900.sidebar-scrollable,
+.sidebar-scrollable.bg-gray-900,
+div.bg-gray-900.sidebar-scrollable {
+  scrollbar-color: rgba(107, 114, 128, 0.6) transparent !important;
+}
+
+.bg-gray-900.sidebar-scrollable::-webkit-scrollbar-thumb,
+.sidebar-scrollable.bg-gray-900::-webkit-scrollbar-thumb,
+div.bg-gray-900.sidebar-scrollable::-webkit-scrollbar-thumb {
+  background-color: rgba(107, 114, 128, 0.6) !important;
+}
+
+.bg-gray-900.sidebar-scrollable::-webkit-scrollbar-thumb:hover,
+.sidebar-scrollable.bg-gray-900::-webkit-scrollbar-thumb:hover,
+div.bg-gray-900.sidebar-scrollable::-webkit-scrollbar-thumb:hover {
+  background-color: rgba(107, 114, 128, 0.8) !important;
+}
+
+/* Additional dark mode scrollbar rules with higher specificity for demo page */
+.dark div.sidebar-scrollable,
+.dark .sidebar-scrollable,
+html.dark div.sidebar-scrollable,
+html.dark .sidebar-scrollable,
+[data-theme="dark"] div.sidebar-scrollable,
+[data-theme="dark"] .sidebar-scrollable {
+  scrollbar-color: rgba(107, 114, 128, 0.7) transparent !important;
+}
+
+.dark div.sidebar-scrollable::-webkit-scrollbar,
+.dark .sidebar-scrollable::-webkit-scrollbar,
+html.dark div.sidebar-scrollable::-webkit-scrollbar,
+html.dark .sidebar-scrollable::-webkit-scrollbar,
+[data-theme="dark"] div.sidebar-scrollable::-webkit-scrollbar,
+[data-theme="dark"] .sidebar-scrollable::-webkit-scrollbar {
+  width: 8px !important;
+  height: 8px !important;
+  display: block !important;
+}
+
+.dark div.sidebar-scrollable::-webkit-scrollbar-track,
+.dark .sidebar-scrollable::-webkit-scrollbar-track,
+html.dark div.sidebar-scrollable::-webkit-scrollbar-track,
+html.dark .sidebar-scrollable::-webkit-scrollbar-track,
+[data-theme="dark"] div.sidebar-scrollable::-webkit-scrollbar-track,
+[data-theme="dark"] .sidebar-scrollable::-webkit-scrollbar-track {
+  background: transparent !important;
+  border-radius: 4px !important;
+}
+
+.dark div.sidebar-scrollable::-webkit-scrollbar-thumb,
+.dark .sidebar-scrollable::-webkit-scrollbar-thumb,
+html.dark div.sidebar-scrollable::-webkit-scrollbar-thumb,
+html.dark .sidebar-scrollable::-webkit-scrollbar-thumb,
+[data-theme="dark"] div.sidebar-scrollable::-webkit-scrollbar-thumb,
+[data-theme="dark"] .sidebar-scrollable::-webkit-scrollbar-thumb {
+  background-color: rgba(107, 114, 128, 0.7) !important;
+  border-radius: 4px !important;
+  transition: background-color 0.2s !important;
+  border: none !important;
+}
+
+.dark div.sidebar-scrollable::-webkit-scrollbar-thumb:hover,
+.dark .sidebar-scrollable::-webkit-scrollbar-thumb:hover,
+html.dark div.sidebar-scrollable::-webkit-scrollbar-thumb:hover,
+html.dark .sidebar-scrollable::-webkit-scrollbar-thumb:hover,
+[data-theme="dark"] div.sidebar-scrollable::-webkit-scrollbar-thumb:hover,
+[data-theme="dark"] .sidebar-scrollable::-webkit-scrollbar-thumb:hover {
+  background-color: rgba(107, 114, 128, 0.9) !important;
+}
+
+.dark div.sidebar-scrollable::-webkit-scrollbar-corner,
+.dark .sidebar-scrollable::-webkit-scrollbar-corner,
+html.dark div.sidebar-scrollable::-webkit-scrollbar-corner,
+html.dark .sidebar-scrollable::-webkit-scrollbar-corner,
+[data-theme="dark"] div.sidebar-scrollable::-webkit-scrollbar-corner,
+[data-theme="dark"] .sidebar-scrollable::-webkit-scrollbar-corner {
+  background: transparent !important;
+}
+
+/* ULTRA SPECIFIC dark mode scrollbar fix - max specificity */
+.dark .overflow-y-auto.sidebar-scrollable::-webkit-scrollbar-thumb,
+.dark .overflow-x-auto.sidebar-scrollable::-webkit-scrollbar-thumb,
+html.dark .overflow-y-auto.sidebar-scrollable::-webkit-scrollbar-thumb,
+html.dark .overflow-x-auto.sidebar-scrollable::-webkit-scrollbar-thumb {
+  background-color: rgb(107, 114, 128) !important;
+  opacity: 0.7 !important;
+}
+
+.dark .overflow-y-auto.sidebar-scrollable::-webkit-scrollbar-thumb:hover,
+.dark .overflow-x-auto.sidebar-scrollable::-webkit-scrollbar-thumb:hover,
+html.dark .overflow-y-auto.sidebar-scrollable::-webkit-scrollbar-thumb:hover,
+html.dark .overflow-x-auto.sidebar-scrollable::-webkit-scrollbar-thumb:hover {
+  background-color: rgb(107, 114, 128) !important;
+  opacity: 0.9 !important;
+}
+
+.dark .overflow-y-auto.sidebar-scrollable::-webkit-scrollbar-track,
+.dark .overflow-x-auto.sidebar-scrollable::-webkit-scrollbar-track,
+html.dark .overflow-y-auto.sidebar-scrollable::-webkit-scrollbar-track,
+html.dark .overflow-x-auto.sidebar-scrollable::-webkit-scrollbar-track {
+  background-color: transparent !important;
+}
+
+.dark .overflow-y-auto.sidebar-scrollable,
+.dark .overflow-x-auto.sidebar-scrollable,
+html.dark .overflow-y-auto.sidebar-scrollable,
+html.dark .overflow-x-auto.sidebar-scrollable {
+  scrollbar-color: rgb(107, 114, 128) transparent !important;
+  scrollbar-width: thin !important;
 }
 
 /* Mobile fixes for Step 4 AI tools grid */
@@ -657,4 +790,27 @@ header .animate-pulse {
     overflow-wrap: break-word;
     max-width: 100%;
   }
+}
+
+/* NUCLEAR OPTION: Force dark scrollbars in dark mode - FINAL OVERRIDE */
+.dark *::-webkit-scrollbar-thumb,
+html.dark *::-webkit-scrollbar-thumb {
+  background-color: rgb(107, 114, 128) !important;
+}
+
+.dark *::-webkit-scrollbar-track,
+html.dark *::-webkit-scrollbar-track {
+  background-color: transparent !important;
+}
+
+.dark *::-webkit-scrollbar,
+html.dark *::-webkit-scrollbar {
+  width: 8px !important;
+  height: 8px !important;
+}
+
+.dark *,
+html.dark * {
+  scrollbar-color: rgb(107, 114, 128) transparent !important;
+  scrollbar-width: thin !important;
 }
