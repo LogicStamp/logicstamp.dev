@@ -50,7 +50,13 @@ const docSections = [
       {
         title: 'Complete Reference',
         href: '/docs/complete-reference',
-        description: 'Comprehensive documentation including all commands, options, features, examples, and troubleshooting guides.',
+        description:
+          'Comprehensive documentation including all commands, options, features, examples, and troubleshooting guides.',
+      },
+      {
+        title: 'Hashes',
+        href: '/docs/hashes',
+        description: 'Understand fileHash, semanticHash, and bundleHash and how LogicStamp tracks changes across layers.',
       },
     ],
   },

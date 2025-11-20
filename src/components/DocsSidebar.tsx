@@ -44,6 +44,7 @@ const sections: DocsNavSection[] = [
     items: [
       { title: 'Usage Guides', href: '/docs/logicstamp-context/usage' },
       { title: 'LLM Context Format', href: '/docs/logicstamp-context/llm-context' },
+      { title: 'Hashes', href: '/docs/hashes' },
     ],
   },
   {
