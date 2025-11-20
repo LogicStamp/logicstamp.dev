@@ -26,6 +26,7 @@ export default function CommunityCTA() {
             <div className="flex flex-row items-center justify-center gap-2 sm:gap-4">
               <a
                 href="/docs/what-is-logicstamp"
+                aria-label="Learn more about LogicStamp"
                 className="group inline-flex items-center gap-2 px-4 sm:px-6 py-2.5 sm:py-3 rounded-lg bg-white dark:bg-gray-800 text-gray-900 dark:text-white text-sm sm:text-base font-semibold shadow-lg hover:shadow-xl ring-1 ring-gray-300 dark:ring-gray-700 transition-all duration-200 whitespace-nowrap"
               >
                 Learn More
