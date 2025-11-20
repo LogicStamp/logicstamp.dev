@@ -1,5 +1,3 @@
-'use client'
-
 export default function CommunityCTA() {
   return (
     <div className="mt-16 sm:mt-24">

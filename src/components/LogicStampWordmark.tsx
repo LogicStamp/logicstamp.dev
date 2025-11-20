@@ -1,5 +1,3 @@
-'use client'
-
 interface LogicStampWordmarkProps {
   className?: string
   height?: number

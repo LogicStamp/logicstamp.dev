@@ -1,9 +1,34 @@
 'use client'
 
 import { useState, useEffect, useRef } from 'react'
-import { motion, AnimatePresence } from 'framer-motion'
 import { ChevronRight, Upload, Play, FileCode2, Zap, Package, Code2 } from 'lucide-react'
 import CopyButton from './CopyButton'
+
+// Custom hook for intersection observer
+function useInView(threshold = 0.1) {
+  const ref = useRef<HTMLDivElement>(null)
+  const [inView, setInView] = useState(false)
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setInView(true)
+          observer.disconnect()
+        }
+      },
+      { threshold }
+    )
+
+    if (ref.current) {
+      observer.observe(ref.current)
+    }
+
+    return () => observer.disconnect()
+  }, [threshold])
+
+  return { ref, inView }
+}
 
 // Sample code examples
 const codeExamples = {
@@ -365,12 +390,19 @@ export default function Demo() {
   const [uploadedFiles, setUploadedFiles] = useState<UploadedFile[]>([])
   const [activeFileIndex, setActiveFileIndex] = useState(0)
   const [filesReadyForContextGeneration, setFilesReadyForContextGeneration] = useState(false)
-  const terminalRef = useRef<HTMLDivElement>(null)
+  const terminalScrollRef = useRef<HTMLDivElement>(null)
+
+  // Intersection observer hooks for animations
+  const { ref: headerRef, inView: headerInView } = useInView(0.1)
+  const { ref: pillsRef, inView: pillsInView } = useInView(0.1)
+  const { ref: contentRef, inView: contentInView } = useInView(0.1)
+  const { ref: terminalRef, inView: terminalInView } = useInView(0.1)
+  const { ref: ctaRef, inView: ctaInView } = useInView(0.1)
 
   // Auto-scroll terminal
   useEffect(() => {
-    if (terminalRef.current) {
-      terminalRef.current.scrollTop = terminalRef.current.scrollHeight
+    if (terminalScrollRef.current) {
+      terminalScrollRef.current.scrollTop = terminalScrollRef.current.scrollHeight
     }
   }, [terminalOutput])
 
@@ -471,10 +503,11 @@ export default function Demo() {
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {/* Header */}
-        <motion.div 
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          className="text-center mb-12"
+        <div 
+          ref={headerRef}
+          className={`text-center mb-12 transition-all duration-1000 ${
+            headerInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+          }`}
         >
           <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-gray-900 dark:text-white mb-4">
             Try{' '}
@@ -485,14 +518,14 @@ export default function Demo() {
           <p className="text-lg sm:text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto px-4">
             Paste your React/TypeScript code below and see how LogicStamp transforms it into an AI-optimized context bundle
           </p>
-        </motion.div>
+        </div>
 
         {/* Example selector pills */}
-        <motion.div 
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.1 }}
-          className="flex flex-wrap justify-center gap-3 mb-8"
+        <div 
+          ref={pillsRef}
+          className={`flex flex-wrap justify-center gap-3 mb-8 transition-all duration-1000 delay-100 ${
+            pillsInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+          }`}
         >
           {Object.entries(codeExamples).map(([key, example]) => (
             <button
@@ -520,23 +553,21 @@ export default function Demo() {
               max={5}
             />
           </label>
-        </motion.div>
+        </div>
 
         {/* Main content area */}
-        <motion.div 
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.2 }}
-          className="grid lg:grid-cols-2 gap-6"
+        <div 
+          ref={contentRef}
+          className={`grid lg:grid-cols-2 gap-6 transition-all duration-1000 delay-200 ${
+            contentInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+          }`}
         >
           {/* Code editor panel */}
           <div className="relative">
             {/* Files ready for context generation indicator */}
             {filesReadyForContextGeneration && uploadedFiles.length > 0 && (
-              <motion.div
-                initial={{ opacity: 0, y: -10 }}
-                animate={{ opacity: 1, y: 0 }}
-                className="mb-4 px-4 py-3 bg-green-50 dark:bg-green-900/20 border border-green-200 dark:border-green-800 rounded-lg"
+              <div
+                className="mb-4 px-4 py-3 bg-green-50 dark:bg-green-900/20 border border-green-200 dark:border-green-800 rounded-lg transition-all duration-300"
               >
                 <div className="flex items-center gap-2 text-green-700 dark:text-green-400">
                   <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
@@ -544,7 +575,7 @@ export default function Demo() {
                     {uploadedFiles.length} file{uploadedFiles.length > 1 ? 's' : ''} ready for context generation
                   </span>
                 </div>
-              </motion.div>
+              </div>
             )}
 
             <div className="bg-white dark:bg-gray-900 rounded-2xl shadow-2xl ring-1 ring-gray-200/50 dark:ring-gray-800/50 overflow-hidden">
@@ -604,11 +635,10 @@ export default function Demo() {
             </div>
 
             {/* Generate button */}
-            <motion.button
+            <button
               onClick={handleGenerate}
               disabled={isProcessing || !userCode.trim()}
-              whileTap={{ scale: 0.98 }}
-              className={`mt-6 w-full py-4 rounded-xl font-semibold text-white shadow-xl transition-all flex items-center justify-center gap-3 ${
+              className={`mt-6 w-full py-4 rounded-xl font-semibold text-white shadow-xl transition-all flex items-center justify-center gap-3 active:scale-95 ${
                 isProcessing 
                   ? 'bg-gray-400 cursor-not-allowed' 
                   : 'bg-gradient-to-r from-blue-600 to-purple-600'
@@ -625,17 +655,17 @@ export default function Demo() {
                   Generate Context Bundle
                 </>
               )}
-            </motion.button>
+            </button>
           </div>
 
           {/* Output panel */}
           <div className="space-y-6 w-full min-w-0">
             {/* Terminal output */}
-            <motion.div
-              initial={{ opacity: 0, x: 20 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ delay: 0.3 }}
-              className="bg-gray-900 rounded-2xl shadow-2xl ring-1 ring-gray-800/50 overflow-hidden"
+            <div
+              ref={terminalRef}
+              className={`bg-gray-900 rounded-2xl shadow-2xl ring-1 ring-gray-800/50 overflow-hidden transition-all duration-1000 delay-300 ${
+                terminalInView ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-8'
+              }`}
             >
               <div className="bg-gray-800 px-6 py-3 flex items-center justify-between border-b border-gray-700">
                 <div className="flex items-center gap-3">
@@ -649,46 +679,37 @@ export default function Demo() {
                 </div>
               </div>
               <div
-                ref={terminalRef}
+                ref={terminalScrollRef}
                 className="h-[280px] overflow-y-auto overflow-x-auto p-6 font-mono text-sm bg-gray-900 sidebar-scrollable"
               >
-                <AnimatePresence>
-                  {terminalOutput.map((line, index) => (
-                    <motion.div
-                      key={index}
-                      initial={{ opacity: 0, x: -10 }}
-                      animate={{ opacity: 1, x: 0 }}
-                      transition={{ duration: 0.2 }}
-                      className={`break-words ${
-                        line.type === 'command' ? 'text-white font-semibold' :
-                        line.type === 'info' ? 'text-blue-400' :
-                        line.type === 'success' ? 'text-green-400' :
-                        line.type === 'result' ? 'text-yellow-400' :
-                        line.type === 'progress' ? 'text-purple-400' :
-                        line.type === 'detail' ? 'text-gray-400' :
-                        line.type === 'tip' ? 'text-cyan-400' :
-                        'text-gray-400'
-                      } ${line.type === 'empty' ? 'h-4' : ''}`}
-                    >
-                      {line.text}
-                    </motion.div>
-                  ))}
-                </AnimatePresence>
+                {terminalOutput.map((line, index) => (
+                  <div
+                    key={index}
+                    className={`break-words transition-all duration-200 ${
+                      line.type === 'command' ? 'text-white font-semibold' :
+                      line.type === 'info' ? 'text-blue-400' :
+                      line.type === 'success' ? 'text-green-400' :
+                      line.type === 'result' ? 'text-yellow-400' :
+                      line.type === 'progress' ? 'text-purple-400' :
+                      line.type === 'detail' ? 'text-gray-400' :
+                      line.type === 'tip' ? 'text-cyan-400' :
+                      'text-gray-400'
+                    } ${line.type === 'empty' ? 'h-4' : ''}`}
+                  >
+                    {line.text}
+                  </div>
+                ))}
                 {terminalOutput.length === 0 && (
                   <div className="text-gray-500">Ready to process your code...</div>
                 )}
               </div>
-            </motion.div>
+            </div>
 
             {/* Context bundle output */}
-            <AnimatePresence>
-              {showOutput && (contextBundle || contextMain) && (
-                <motion.div
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: -20 }}
-                  className="bg-gray-50 dark:bg-gray-900 rounded-2xl shadow-2xl ring-1 ring-gray-200/50 dark:ring-gray-800/50 overflow-hidden w-full max-w-full"
-                >
+            {showOutput && (contextBundle || contextMain) && (
+              <div
+                className="bg-gray-50 dark:bg-gray-900 rounded-2xl shadow-2xl ring-1 ring-gray-200/50 dark:ring-gray-800/50 overflow-hidden w-full max-w-full transition-all duration-300"
+              >
                   <div className="bg-gray-50 dark:bg-gray-800 px-4 sm:px-6 py-3 flex items-center justify-between gap-2 border-b border-gray-200 dark:border-gray-700">
                     <div className="flex items-center gap-2 sm:gap-3 min-w-0 flex-1">
                       <div className="flex gap-1.5 flex-shrink-0">
@@ -748,16 +769,13 @@ export default function Demo() {
                       )}
                     </pre>
                   </div>
-                </motion.div>
+                </div>
               )}
-            </AnimatePresence>
 
             {/* Stats cards */}
             {showOutput && (
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                className="grid grid-cols-3 gap-1.5 sm:gap-4 w-full max-w-full"
+              <div
+                className="grid grid-cols-3 gap-1.5 sm:gap-4 w-full max-w-full transition-all duration-500"
               >
                 <div className="bg-white dark:bg-gray-900 rounded-xl p-2 sm:p-4 text-center shadow-lg min-w-0 overflow-hidden">
                   <Zap className="w-5 h-5 sm:w-8 sm:h-8 text-yellow-500 mx-auto mb-1 sm:mb-2" />
@@ -774,17 +792,17 @@ export default function Demo() {
                   <div className="text-lg sm:text-2xl font-bold text-gray-900 dark:text-white truncate">1,200</div>
                   <div className="text-[10px] sm:text-sm text-gray-600 dark:text-gray-400 truncate">Tokens Saved</div>
                 </div>
-              </motion.div>
+              </div>
             )}
           </div>
-        </motion.div>
+        </div>
 
         {/* CTA Section */}
-        <motion.div 
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.5 }}
-          className="mt-16 text-center"
+        <div 
+          ref={ctaRef}
+          className={`mt-16 text-center transition-all duration-1000 delay-500 ${
+            ctaInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+          }`}
         >
           <div className="bg-gradient-to-r from-blue-600/10 via-purple-600/10 to-pink-600/10 rounded-2xl p-8 backdrop-blur-sm">
             <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">
@@ -815,7 +833,7 @@ export default function Demo() {
               </a>
             </div>
           </div>
-        </motion.div>
+        </div>
       </div>
     </section>
   )
