@@ -70,8 +70,8 @@ const HeroVisualizationWrapper = forwardRef<HTMLDivElement, { inView: boolean }>
         const elementHeight = rect.height
         
         // Calculate when element enters viewport
-        const startPoint = windowHeight * 0.6 // Start animation when element is 60% down viewport
-        const endPoint = windowHeight * 0.2 // Complete animation when element is 20% down viewport
+        const startPoint = windowHeight * 1.1 // Start animation when element is 80% down viewport
+        const endPoint = windowHeight * 0 // Complete animation when element is 40% down viewport
         
         // Calculate progress (0 to 1)
         let progress = 0
@@ -97,8 +97,8 @@ const HeroVisualizationWrapper = forwardRef<HTMLDivElement, { inView: boolean }>
     }, [ref, inView, prefersReducedMotion])
 
     // Apply different animation progress to each panel
-    const graphProgress = Math.min(1, scrollProgress * 1.2) // Graph animates slightly faster
-    const terminalProgress = Math.min(1, Math.max(0, (scrollProgress - 0.15) * 1.3)) // Terminal starts after graph
+    const graphProgress = Math.min(1, scrollProgress * 1.3) // Graph animates faster
+    const terminalProgress = Math.min(1, Math.max(0, (scrollProgress - 0.05) * 1.4)) // Terminal starts quickly after graph
 
     const graphOpacity = graphProgress
     const graphBlur = Math.max(0, 10 - graphProgress * 10)
