@@ -9,10 +9,12 @@ export async function GET() {
     const iconContent = await readFile(iconPath, 'utf-8')
     
     // Serve it as favicon.ico with appropriate headers
+    // Using max-age=31536000 (1 year) with immutable for optimal favicon caching
+    // Favicons rarely change, so long-term caching is appropriate
     return new NextResponse(iconContent, {
       headers: {
         'Content-Type': 'image/svg+xml',
-        'Cache-Control': 'public, max-age=0, must-revalidate',
+        'Cache-Control': 'public, max-age=31536000, immutable',
       },
     })
   } catch (error) {

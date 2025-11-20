@@ -461,10 +461,8 @@ $ stamp context clean
       </div>
 
       {/* Terminal */}
-      <div className="relative rounded-2xl bg-white/80 dark:bg-gray-900/80 backdrop-blur-xl p-2 ring-1 ring-inset ring-gray-200/20 dark:ring-gray-700/20 lg:rounded-2xl lg:p-4 transition-all duration-500 overflow-hidden">
-
-        <div className="relative rounded-md shadow-xl ring-1 bg-gray-900 ring-gray-800/50">
-          <div className="flex items-center justify-between px-3 sm:px-4 py-2 sm:py-3 border-b border-gray-700 bg-gray-800">
+      <div className="relative rounded-2xl shadow-2xl ring-1 bg-gray-900 ring-gray-800/50 overflow-hidden">
+          <div className="bg-gray-800 px-6 py-3 flex items-center justify-between border-b border-gray-700">
             <div className="flex items-center gap-3">
               <ChevronRight className="w-5 h-5 text-green-400" />
               <span className="text-xs lg:text-sm font-mono text-gray-400">LogicStamp Context CLI</span>
@@ -475,17 +473,16 @@ $ stamp context clean
               <div className="w-3 h-3 rounded-full bg-green-500" />
             </div>
           </div>
-          <pre className="px-3 sm:px-6 py-3 sm:py-5 text-sm sm:text-sm lg:text-sm leading-5 sm:leading-6 font-mono whitespace-pre relative h-96 sm:h-[40rem] lg:h-[36rem] overflow-x-auto sm:overflow-hidden text-gray-100">
+          <pre className="p-6 text-sm sm:text-sm lg:text-sm leading-5 sm:leading-6 font-mono whitespace-pre relative h-96 sm:h-[40rem] lg:h-[36rem] overflow-y-auto overflow-x-auto bg-gray-900 text-gray-100">
             {/* Invisible full content to reserve space */}
             <code className="invisible whitespace-pre">{demos[currentDemo].content}</code>
             {/* Visible animated content with colors */}
-            <code className="absolute inset-0 px-3 sm:px-6 py-3 sm:py-5 whitespace-pre bg-gray-900">
+            <code className="absolute inset-0 p-6 whitespace-pre bg-gray-900">
               {colorizeTerminalText(displayText)}
               {showCursor && <span className="animate-pulse text-gray-100">▋</span>}
             </code>
           </pre>
         </div>
-      </div>
     </div>
   )
 }

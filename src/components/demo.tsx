@@ -462,14 +462,14 @@ export default function Demo() {
   }
 
   return (
-    <section className="min-h-screen bg-gradient-to-br from-blue-50 via-purple-50 to-pink-50 dark:from-gray-900 dark:via-purple-950/30 dark:to-pink-950/30 pt-28 pb-20">
+    <section className="min-h-screen bg-gradient-to-br from-blue-50 via-purple-50 to-pink-50 dark:from-gray-900 dark:via-purple-950/30 dark:to-pink-950/30 pt-28 pb-20 overflow-x-hidden">
       {/* Decorative background elements */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         <div className="absolute top-1/3 -left-32 w-[500px] h-[500px] bg-blue-500/10 rounded-full blur-3xl"></div>
         <div className="absolute bottom-1/3 -right-32 w-[500px] h-[500px] bg-purple-500/10 rounded-full blur-3xl"></div>
       </div>
 
-      <div className="max-w-7xl mx-auto px-6 lg:px-8 relative z-10">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {/* Header */}
         <motion.div 
           initial={{ opacity: 0, y: 20 }}
@@ -482,7 +482,7 @@ export default function Demo() {
               LogicStamp Context
             </span>
           </h1>
-          <p className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
+          <p className="text-lg sm:text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto px-4">
             Paste your React/TypeScript code below and see how LogicStamp transforms it into an AI-optimized context bundle
           </p>
         </motion.div>
@@ -550,19 +550,21 @@ export default function Demo() {
             <div className="bg-white dark:bg-gray-900 rounded-2xl shadow-2xl ring-1 ring-gray-200/50 dark:ring-gray-800/50 overflow-hidden">
               <div className="bg-gray-50 dark:bg-gray-800 px-6 py-3 flex items-center justify-between border-b border-gray-200 dark:border-gray-700">
                 <div className="flex items-center gap-3">
+                  <Code2 className="w-4 h-4 text-green-400 flex-shrink-0" />
+                  <span className="font-mono text-sm text-gray-500 dark:text-gray-400 truncate max-w-[200px] sm:max-w-none">{fileName}</span>
+                </div>
+                <div className="flex items-center gap-3">
+                  {uploadedFiles.length > 1 && (
+                    <div className="flex items-center gap-1 text-xs text-gray-500 dark:text-gray-400">
+                      <span>{activeFileIndex + 1} of {uploadedFiles.length}</span>
+                    </div>
+                  )}
                   <div className="flex gap-1.5">
                     <div className="w-3 h-3 bg-red-500 rounded-full"></div>
                     <div className="w-3 h-3 bg-yellow-500 rounded-full"></div>
                     <div className="w-3 h-3 bg-green-500 rounded-full"></div>
                   </div>
-                  <Code2 className="w-4 h-4 text-gray-500 dark:text-gray-400" />
-                  <span className="font-mono text-sm text-gray-500 dark:text-gray-400">{fileName}</span>
                 </div>
-                {uploadedFiles.length > 1 && (
-                  <div className="flex items-center gap-1 text-xs text-gray-500 dark:text-gray-400">
-                    <span>{activeFileIndex + 1} of {uploadedFiles.length}</span>
-                  </div>
-                )}
               </div>
 
               {/* File tabs for multiple files */}
@@ -587,11 +589,11 @@ export default function Demo() {
                   ))}
                 </div>
               )}
-              <div className="relative">
+              <div className="relative overflow-hidden">
                 <textarea
                   value={userCode}
                   onChange={(e) => setUserCode(e.target.value)}
-                  className="w-full h-[500px] p-6 bg-gray-50 dark:bg-gray-900 text-gray-900 dark:text-gray-100 font-mono text-sm resize-none focus:outline-none"
+                  className="w-full h-[400px] lg:h-[350px] p-6 bg-gray-50 dark:bg-gray-900 text-gray-900 dark:text-gray-100 font-mono text-sm resize-none focus:outline-none overflow-x-auto"
                   placeholder="Paste your React/TypeScript code here..."
                   spellCheck={false}
                 />
@@ -627,7 +629,7 @@ export default function Demo() {
           </div>
 
           {/* Output panel */}
-          <div className="space-y-6">
+          <div className="space-y-6 w-full min-w-0">
             {/* Terminal output */}
             <motion.div
               initial={{ opacity: 0, x: 20 }}
@@ -648,7 +650,7 @@ export default function Demo() {
               </div>
               <div
                 ref={terminalRef}
-                className="h-[280px] overflow-y-auto p-6 font-mono text-sm bg-gray-900 sidebar-scrollable"
+                className="h-[280px] overflow-y-auto overflow-x-auto p-6 font-mono text-sm bg-gray-900 sidebar-scrollable"
               >
                 <AnimatePresence>
                   {terminalOutput.map((line, index) => (
@@ -657,7 +659,7 @@ export default function Demo() {
                       initial={{ opacity: 0, x: -10 }}
                       animate={{ opacity: 1, x: 0 }}
                       transition={{ duration: 0.2 }}
-                      className={`${
+                      className={`break-words ${
                         line.type === 'command' ? 'text-white font-semibold' :
                         line.type === 'info' ? 'text-blue-400' :
                         line.type === 'success' ? 'text-green-400' :
@@ -685,35 +687,37 @@ export default function Demo() {
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0, y: -20 }}
-                  className="bg-gray-50 dark:bg-gray-900 rounded-2xl shadow-2xl ring-1 ring-gray-200/50 dark:ring-gray-800/50 overflow-hidden"
+                  className="bg-gray-50 dark:bg-gray-900 rounded-2xl shadow-2xl ring-1 ring-gray-200/50 dark:ring-gray-800/50 overflow-hidden w-full max-w-full"
                 >
-                  <div className="bg-gray-50 dark:bg-gray-800 px-6 py-3 flex items-center justify-between border-b border-gray-200 dark:border-gray-700">
-                    <div className="flex items-center gap-3">
-                      <div className="flex gap-1.5">
+                  <div className="bg-gray-50 dark:bg-gray-800 px-4 sm:px-6 py-3 flex items-center justify-between gap-2 border-b border-gray-200 dark:border-gray-700">
+                    <div className="flex items-center gap-2 sm:gap-3 min-w-0 flex-1">
+                      <div className="flex gap-1.5 flex-shrink-0">
                         <div className="w-3 h-3 bg-red-500 rounded-full"></div>
                         <div className="w-3 h-3 bg-yellow-500 rounded-full"></div>
                         <div className="w-3 h-3 bg-green-500 rounded-full"></div>
                       </div>
-                      <span className="font-mono text-sm text-gray-500 dark:text-gray-400">
+                      <span className="font-mono text-xs sm:text-sm text-gray-500 dark:text-gray-400 truncate">
                         {activeContextView === 'main' ? 'context_main.json' :
                          activeContextView === 'folder' ? 'context.json (folder)' :
                          'context.json'}
                       </span>
                     </div>
-                    <CopyButton text={JSON.stringify(
-                      activeContextView === 'main' ? contextMain :
-                      activeContextView === 'folder' && contextJsons ? Object.values(contextJsons)[0] :
-                      contextBundle,
-                      null, 2
-                    )} />
+                    <div className="flex-shrink-0">
+                      <CopyButton text={JSON.stringify(
+                        activeContextView === 'main' ? contextMain :
+                        activeContextView === 'folder' && contextJsons ? Object.values(contextJsons)[0] :
+                        contextBundle,
+                        null, 2
+                      )} />
+                    </div>
                   </div>
 
                   {/* Context view toggle buttons */}
                   {contextMain && contextJsons && (
-                    <div className="bg-gray-100 dark:bg-gray-800/50 px-4 py-2 flex items-center gap-2 border-b border-gray-200 dark:border-gray-700">
+                    <div className="bg-gray-100 dark:bg-gray-800/50 px-2 sm:px-4 py-2 flex items-center gap-1.5 sm:gap-2 overflow-x-auto border-b border-gray-200 dark:border-gray-700">
                       <button
                         onClick={() => setActiveContextView('main')}
-                        className={`px-3 py-1.5 rounded-lg text-xs font-medium transition-all ${
+                        className={`px-2 sm:px-3 py-1.5 rounded-lg text-[10px] sm:text-xs font-medium transition-all whitespace-nowrap flex-shrink-0 ${
                           activeContextView === 'main'
                             ? 'bg-white dark:bg-gray-700 text-gray-900 dark:text-white shadow-sm'
                             : 'text-gray-600 dark:text-gray-400 hover:bg-gray-200 dark:hover:bg-gray-700/50'
@@ -723,7 +727,7 @@ export default function Demo() {
                       </button>
                       <button
                         onClick={() => setActiveContextView('folder')}
-                        className={`px-3 py-1.5 rounded-lg text-xs font-medium transition-all ${
+                        className={`px-2 sm:px-3 py-1.5 rounded-lg text-[10px] sm:text-xs font-medium transition-all whitespace-nowrap flex-shrink-0 ${
                           activeContextView === 'folder'
                             ? 'bg-white dark:bg-gray-700 text-gray-900 dark:text-white shadow-sm'
                             : 'text-gray-600 dark:text-gray-400 hover:bg-gray-200 dark:hover:bg-gray-700/50'
@@ -734,8 +738,8 @@ export default function Demo() {
                     </div>
                   )}
 
-                  <div className="h-[280px] overflow-y-auto p-6 bg-gray-50 dark:bg-gray-900 sidebar-scrollable">
-                    <pre className="text-sm text-gray-800 dark:text-gray-100 font-mono leading-6">
+                  <div className="h-[280px] overflow-y-auto overflow-x-auto p-3 sm:p-6 bg-gray-50 dark:bg-gray-900 sidebar-scrollable w-full">
+                    <pre className="text-xs sm:text-sm text-gray-800 dark:text-gray-100 font-mono leading-6 whitespace-pre-wrap break-all max-w-full">
                       {JSON.stringify(
                         activeContextView === 'main' ? contextMain :
                         activeContextView === 'folder' && contextJsons ? Object.values(contextJsons)[0] :
@@ -753,22 +757,22 @@ export default function Demo() {
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
-                className="grid grid-cols-3 gap-4"
+                className="grid grid-cols-3 gap-1.5 sm:gap-4 w-full max-w-full"
               >
-                <div className="bg-white dark:bg-gray-900 rounded-xl p-4 text-center shadow-lg">
-                  <Zap className="w-8 h-8 text-yellow-500 mx-auto mb-2" />
-                  <div className="text-2xl font-bold text-gray-900 dark:text-white">78%</div>
-                  <div className="text-sm text-gray-600 dark:text-gray-400">Size Reduction</div>
+                <div className="bg-white dark:bg-gray-900 rounded-xl p-2 sm:p-4 text-center shadow-lg min-w-0 overflow-hidden">
+                  <Zap className="w-5 h-5 sm:w-8 sm:h-8 text-yellow-500 mx-auto mb-1 sm:mb-2" />
+                  <div className="text-lg sm:text-2xl font-bold text-gray-900 dark:text-white truncate">78%</div>
+                  <div className="text-[10px] sm:text-sm text-gray-600 dark:text-gray-400 truncate">Size Reduction</div>
                 </div>
-                <div className="bg-white dark:bg-gray-900 rounded-xl p-4 text-center shadow-lg">
-                  <Package className="w-8 h-8 text-blue-500 mx-auto mb-2" />
-                  <div className="text-2xl font-bold text-gray-900 dark:text-white">2.4KB</div>
-                  <div className="text-sm text-gray-600 dark:text-gray-400">Bundle Size</div>
+                <div className="bg-white dark:bg-gray-900 rounded-xl p-2 sm:p-4 text-center shadow-lg min-w-0 overflow-hidden">
+                  <Package className="w-5 h-5 sm:w-8 sm:h-8 text-blue-500 mx-auto mb-1 sm:mb-2" />
+                  <div className="text-lg sm:text-2xl font-bold text-gray-900 dark:text-white truncate">2.4KB</div>
+                  <div className="text-[10px] sm:text-sm text-gray-600 dark:text-gray-400 truncate">Bundle Size</div>
                 </div>
-                <div className="bg-white dark:bg-gray-900 rounded-xl p-4 text-center shadow-lg">
-                  <FileCode2 className="w-8 h-8 text-purple-500 mx-auto mb-2" />
-                  <div className="text-2xl font-bold text-gray-900 dark:text-white">1,200</div>
-                  <div className="text-sm text-gray-600 dark:text-gray-400">Tokens Saved</div>
+                <div className="bg-white dark:bg-gray-900 rounded-xl p-2 sm:p-4 text-center shadow-lg min-w-0 overflow-hidden">
+                  <FileCode2 className="w-5 h-5 sm:w-8 sm:h-8 text-purple-500 mx-auto mb-1 sm:mb-2" />
+                  <div className="text-lg sm:text-2xl font-bold text-gray-900 dark:text-white truncate">1,200</div>
+                  <div className="text-[10px] sm:text-sm text-gray-600 dark:text-gray-400 truncate">Tokens Saved</div>
                 </div>
               </motion.div>
             )}

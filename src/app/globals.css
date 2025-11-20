@@ -43,16 +43,8 @@ body {
   margin: 0 !important;
 }
 
-/* Dark mode backgrounds based on system preference */
-@media (prefers-color-scheme: dark) {
-  html {
-    background: var(--gradient-bg-hero) !important;
-  }
-  
-  body {
-    background: var(--gradient-bg-hero) !important;
-  }
-}
+/* Dark mode backgrounds - only apply when explicitly set via class or data attribute */
+/* System preference is handled by ThemeContext, not CSS media queries */
 
 /* Override for explicit dark theme (via class or data attribute on <html>) */
 html.dark,
@@ -64,6 +56,18 @@ html.dark body,
 html[data-theme="dark"] body {
   background: var(--gradient-bg-hero) !important;
 }
+
+/* Light theme is default, no need for complex selectors */
+html[data-theme="light"] {
+  background: var(--gradient-bg-hero) !important;
+}
+
+html[data-theme="light"] body {
+  background: var(--gradient-bg-hero) !important;
+}
+
+/* Remove broad transitions - they cause performance issues */
+/* Theme changes should be instant, not animated */
 
 /* Additional override to ensure no black background */
 html, body {
