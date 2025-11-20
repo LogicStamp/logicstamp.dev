@@ -308,72 +308,115 @@ export default function QuickStartPage() {
 
                   {/* Compatible tools grid */}
                   <div className="w-full mb-6 sm:mb-8">
-                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4 w-full">
+                    <div className="grid grid-cols-1 gap-6 lg:grid-cols-2">
                       {[
                         { 
                           name: "Cursor", 
-                          status: "Auto-detects", 
-                          icon: (
-                            <svg className="w-5 h-5 sm:w-6 sm:h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 15l-2 5L9 9l11 4-5 2zm0 0l5 5M7.188 2.239l.777 2.897M5.25 8.718l-3.126-.975a1.125 1.125 0 00-1.147-.85L4.5 9.75l3.126.975a1.125 1.125 0 001.186-.883l.777-2.897m-5.243 0a.75.75 0 01.278-.995 3.75 3.75 0 013.57-.005a.75.75 0 01.278.995m-4.125 0a2.25 2.25 0 00-.75 2.25c0 .414.336.75.75.75h4.5a.75.75 0 00.75-.75 2.25 2.25 0 00-.75-2.25H6.75z" />
+                          description: "Auto-detects context.json files in your project",
+                          features: ["Automatic file detection", "Seamless integration", "Real-time updates"],
+                          icon: () => (
+                            <svg className="w-10 h-10" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                              <path strokeLinecap="round" strokeLinejoin="round" d="M15 15l-2 5L9 9l11 4-5 2zm0 0l5 5M7.188 2.239l.777 2.897M5.25 8.718l-3.126-.975a1.125 1.125 0 00-1.147-.85L4.5 9.75l3.126.975a1.125 1.125 0 001.186-.883l.777-2.897m-5.243 0a.75.75 0 01.278-.995 3.75 3.75 0 013.57-.005a.75.75 0 01.278.995m-4.125 0a2.25 2.25 0 00-.75 2.25c0 .414.336.75.75.75h4.5a.75.75 0 00.75-.75 2.25 2.25 0 00-.75-2.25H6.75z" />
                             </svg>
-                          )
+                          ),
+                          iconBg: "from-gray-500/10 to-gray-700/10",
                         },
                         { 
                           name: "Windsurf", 
-                          status: "Scans project", 
-                          icon: (
-                            <svg className="w-5 h-5 sm:w-6 sm:h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M2 12c0 2 2 3 4 3s4-1 4-3M10 12c0 2 2 3 4 3s4-1 4-3M18 12c0 2 2 3 4 3s4-1 4-3" />
+                          description: "Scans your project for context files automatically",
+                          features: ["Project-wide scanning", "Smart file detection", "Instant context loading"],
+                          icon: () => (
+                            <svg className="w-10 h-10" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
+                              <path strokeLinecap="round" strokeLinejoin="round" d="M2 12c0 2 2 3 4 3s4-1 4-3M10 12c0 2 2 3 4 3s4-1 4-3M18 12c0 2 2 3 4 3s4-1 4-3" />
                               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M2 12h20M2 8h20M2 16h20" />
                             </svg>
-                          )
+                          ),
+                          iconBg: "from-blue-500/10 to-blue-600/10",
                         },
                         { 
                           name: "GitHub Copilot", 
-                          status: "In chat", 
-                          icon: (
-                            <svg className="w-5 h-5 sm:w-6 sm:h-6" fill="currentColor" viewBox="0 0 24 24">
+                          description: "Use context files directly in chat conversations",
+                          features: ["Chat integration", "File reference support", "Context-aware suggestions"],
+                          icon: () => (
+                            <svg className="w-10 h-10" viewBox="0 0 24 24" fill="currentColor">
                               <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
                             </svg>
-                          )
+                          ),
+                          iconBg: "from-gray-500/10 to-gray-700/10",
                         },
                         { 
                           name: "Claude", 
-                          status: "Copy & paste", 
-                          icon: (
-                            <svg className="w-5 h-5 sm:w-6 sm:h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
+                          description: "Copy and paste context files for detailed analysis",
+                          features: ["Manual file upload", "Detailed code analysis", "Context understanding"],
+                          icon: () => (
+                            <svg className="w-10 h-10" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                              <path strokeLinecap="round" strokeLinejoin="round" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
                             </svg>
-                          )
+                          ),
+                          iconBg: "from-orange-500/10 to-orange-600/10",
                         },
                         { 
                           name: "ChatGPT", 
-                          status: "Upload files", 
-                          icon: (
-                            <svg className="w-5 h-5 sm:w-6 sm:h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
+                          description: "Upload context files directly to conversations",
+                          features: ["File upload support", "Multi-file context", "Conversation history"],
+                          icon: () => (
+                            <svg className="w-10 h-10" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                              <path strokeLinecap="round" strokeLinejoin="round" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
                             </svg>
-                          )
+                          ),
+                          iconBg: "from-green-500/10 to-green-600/10",
                         },
                         { 
                           name: "Other IDEs", 
-                          status: "Manual", 
-                          icon: (
-                            <svg className="w-5 h-5 sm:w-6 sm:h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
+                          description: "Manual integration with any IDE or editor",
+                          features: ["Custom integration", "File system access", "Universal compatibility"],
+                          icon: () => (
+                            <svg className="w-10 h-10" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                              <path strokeLinecap="round" strokeLinejoin="round" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
                             </svg>
-                          )
+                          ),
+                          iconBg: "from-purple-500/10 to-purple-600/10",
                         }
-                      ].map((tool) => (
-                        <div key={tool.name} className="w-full max-w-full min-w-0 flex items-center gap-3 p-3 sm:p-4 bg-white dark:bg-gray-900 rounded-lg sm:rounded-xl border border-gray-200 dark:border-gray-700 hover:shadow-lg transition-all hover:-translate-y-0.5">
-                          <div className="flex-shrink-0 text-gray-700 dark:text-gray-300">{tool.icon}</div>
-                          <div className="flex-1 min-w-0">
-                            <p className="font-semibold text-sm sm:text-base text-gray-900 dark:text-white leading-tight">{tool.name}</p>
-                            <p className="text-xs text-gray-500 dark:text-gray-400 leading-tight mt-0.5">{tool.status}</p>
+                      ].map((tool) => {
+                        const IconComponent = tool.icon
+                        return (
+                          <div
+                            key={tool.name}
+                            className="group relative transition-all duration-700"
+                          >
+                            <div className="relative h-full rounded-2xl p-8 shadow-sm transition-all duration-500 border border-gray-200/50 dark:border-gray-700/50 overflow-hidden">
+                              <div className="relative z-10">
+                                {/* Icon */}
+                                <div className={`inline-flex items-center justify-center w-16 h-16 rounded-xl bg-gradient-to-br ${tool.iconBg} text-gray-700 dark:text-gray-300`}>
+                                  <IconComponent />
+                                </div>
+                                
+                                <h4 className="mt-6 text-xl font-semibold text-gray-900 dark:text-white">
+                                  {tool.name}
+                                </h4>
+                                
+                                <p className="mt-3 text-gray-600 dark:text-gray-300 text-sm sm:text-base leading-relaxed">
+                                  {tool.description}
+                                </p>
+                                
+                                <ul className="mt-6 space-y-2.5">
+                                  {tool.features.map((feature) => (
+                                    <li 
+                                      key={feature} 
+                                      className="flex items-start gap-x-3 text-sm text-gray-600 dark:text-gray-400"
+                                    >
+                                      <svg className="h-5 w-5 flex-shrink-0 text-emerald-500 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 20 20">
+                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                                      </svg>
+                                      <span>{feature}</span>
+                                    </li>
+                                  ))}
+                                </ul>
+                              </div>
+                            </div>
                           </div>
-                        </div>
-                      ))}
+                        )
+                      })}
                     </div>
                   </div>
 
@@ -623,10 +666,10 @@ export default function QuickStartPage() {
                       Star on GitHub
                     </a>
                     <Link
-                      href="/docs/cli-reference"
+                      href="/docs/logicstamp-context/commands"
                       className="inline-flex items-center justify-center gap-2 px-4 sm:px-6 py-2.5 sm:py-3 bg-white dark:bg-gray-800 text-gray-900 dark:text-white font-semibold rounded-xl border-2 border-gray-200 dark:border-gray-700 hover:shadow-xl transition-all duration-200 hover:-translate-y-0.5 text-sm sm:text-base"
                     >
-                      Explore CLI Reference
+                      Explore CLI Commands
                       <svg className="w-4 h-4 sm:w-5 sm:h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
                       </svg>
