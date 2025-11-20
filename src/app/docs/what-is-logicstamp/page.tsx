@@ -2,6 +2,7 @@ import { Metadata } from 'next'
 import Link from 'next/link'
 import Footer from '@/components/Footer'
 import AnimatedSection from '@/components/AnimatedSection'
+import CopyButton from '@/components/CopyButton'
 import TabbedCodeBlock from '@/components/TabbedCodeBlock'
 import DocsLayout from '@/components/DocsLayout'
 
@@ -381,7 +382,8 @@ export default function WhatIsLogicStampPage() {
                           </p>
                         </div>
                       )}
-                      <div className="bg-gray-100 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg p-3 sm:p-4 font-mono text-xs sm:text-sm text-gray-900 dark:text-gray-100">
+                      <div className="relative bg-gray-100 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg p-3 sm:p-4 font-mono text-xs sm:text-sm text-gray-900 dark:text-gray-100">
+                        <CopyButton text={item.code} className="absolute top-2 right-2" />
                         {item.code}
                       </div>
                     </div>
