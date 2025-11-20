@@ -20,7 +20,7 @@ const pages = [
   { title: 'Usage Guides', href: '/docs/logicstamp-context/usage', description: 'Practical examples and workflows using LogicStamp Context.' },
   { title: 'LLM Context Format', href: '/docs/logicstamp-context/llm-context', description: 'Schema and structure of the generated context for LLMs.' },
   { title: 'Changelog', href: '/docs/logicstamp-context/changelog', description: 'Release notes and version history.' },
-  { title: 'GitHub Repository', href: 'https://github.com/logicstamp/logicstamp-context', description: 'Full source code and canonical documentation.', external: true },
+  { title: 'GitHub Repository', href: 'https://github.com/LogicStamp/logicstamp-context', description: 'Full source code and canonical documentation.', external: true },
 ]
 
 export default function LogicStampContextDocsPage() {

@@ -75,7 +75,7 @@ export default function DocsTOC() {
   }, [headings])
 
   const getIssueUrl = () => {
-    const GITHUB_REPO = 'https://github.com/LogicStamp/logicstamp.dev'
+    const GITHUB_REPO = 'https://github.com/LogicStamp/logicstamp-context'
     return `${GITHUB_REPO}/issues/new`
   }
 

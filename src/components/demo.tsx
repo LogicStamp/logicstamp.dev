@@ -825,7 +825,7 @@ export default function Demo() {
                 </div>
               </div>
               <a
-                href="https://github.com/amitek/logicstamp-context"
+                href="https://github.com/LogicStamp/logicstamp-context"
                 className="px-6 py-3 bg-white dark:bg-gray-800 rounded-lg font-semibold text-gray-900 dark:text-white hover:shadow-lg transition-all flex items-center gap-2"
               >
                 View on GitHub

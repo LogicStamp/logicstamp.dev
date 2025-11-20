@@ -75,7 +75,7 @@ export default function Header() {
   const navigation = [
     { name: 'Try Demo', href: '/demo' },
     { name: 'Docs', href: '/docs/' },
-    { name: 'GitHub', href: 'https://github.com/logicstamp/logicstamp-context', external: true },
+    { name: 'GitHub', href: 'https://github.com/LogicStamp/logicstamp-context', external: true },
   ]
 
   return (

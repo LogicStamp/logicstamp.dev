@@ -83,7 +83,7 @@ export default function LogicStampReadmePage() {
               <p>
                 For full details including schema reference, advanced options, and examples, see the{' '}
                 <a
-                  href="https://github.com/logicstamp/logicstamp-context"
+                  href="https://github.com/LogicStamp/logicstamp-context"
                   target="_blank"
                   rel="noopener noreferrer"
                 >

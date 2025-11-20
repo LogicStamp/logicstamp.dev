@@ -29,7 +29,6 @@ export default function GitHubStats() {
   useEffect(() => {
     const fetchGitHubStats = async () => {
       try {
-        // TODO: Replace with your actual GitHub repo
         const repo = 'LogicStamp/logicstamp-context'
 
         // Fetch repo stats
