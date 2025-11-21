@@ -28,6 +28,13 @@ jobs:
 
       - name: Run linter
         run: npm run lint
+      - name: Debug tsconfig and components
+        run: |
+          echo "== tsconfig =="
+          cat tsconfig.json
+          echo ""
+          echo "== src/components =="
+          ls -R src/components
 
       - name: Type check
         run: npm run type-check
