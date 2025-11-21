@@ -794,6 +794,12 @@ stamp context compare --stats`
                       type: "Why don’t I see context for some components?",
                       desc: "LogicStamp only analyzes .ts and .tsx files that export React components or functions.",
                       solution: "Ensure your file has a named or default export that defines the component or function you care about."
+                    },
+                    {
+                      type: "How do I get the best results in AI chat?",
+                      desc: "AI assistants work best when you give them a single, structured view of your project.",
+                      solution:
+                        "When prompting an AI assistant, explicitly tell it to use the per-folder context.json files and the root context_main.json to understand your project structure."
                     }
                   ]
                 }

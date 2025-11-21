@@ -446,7 +446,16 @@ export default function QuickStartPage() {
 
                   <div className="bg-amber-50/50 dark:bg-amber-950/20 border-l-4 border-amber-500 p-3 sm:p-4 mb-4 sm:mb-6 rounded-r-lg">
                     <p className="text-xs sm:text-sm text-gray-700 dark:text-gray-300">
-                      <span className="font-semibold text-amber-900 dark:text-amber-200">💡 Best Practice:</span> Explicitly reference context files in your prompts for consistent results across all AI assistants.
+                      <span className="font-semibold text-amber-900 dark:text-amber-200">💡 Best Practice:</span>{' '}
+                      When prompting an AI assistant, explicitly tell it to use the per-folder{' '}
+                      <code className="px-1 bg-gray-100 dark:bg-gray-800 rounded font-mono text-[0.7rem] sm:text-xs">
+                        context.json
+                      </code>{' '}
+                      files and the root{' '}
+                      <code className="px-1 bg-gray-100 dark:bg-gray-800 rounded font-mono text-[0.7rem] sm:text-xs">
+                        context_main.json
+                      </code>{' '}
+                      to understand your project structure. This produces the most consistent and grounded results across all assistants.
                     </p>
                   </div>
 
