@@ -1,3 +1,6 @@
+'use client'
+
+import { FormEvent, useState } from 'react'
 import AnimatedSection from './AnimatedSection'
 import LogicStampLogo from './LogicStampLogo'
 import LogicStampWordmark from './LogicStampWordmark'
@@ -20,6 +23,62 @@ const navigation = {
 }
 
 export default function Footer() {
+  const [email, setEmail] = useState('')
+  const [isSubmitting, setIsSubmitting] = useState(false)
+  const [successMessage, setSuccessMessage] = useState<string | null>(null)
+  const [errorMessage, setErrorMessage] = useState<string | null>(null)
+
+  const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault()
+
+    if (!email.trim()) {
+      setErrorMessage('Please enter an email address.')
+      setSuccessMessage(null)
+      return
+    }
+
+    setIsSubmitting(true)
+    setErrorMessage(null)
+    setSuccessMessage(null)
+
+    try {
+      const response = await fetch('/api/newsletter', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ email }),
+      })
+
+      const data: { success?: boolean; message?: string; error?: string } = await response.json().catch(
+        () => ({})
+      )
+
+      if (response.ok && data.success) {
+        const baseMessage = data.message === 'Already subscribed'
+          ? 'You are already on the list.'
+          : 'You are in! You\'ll hear from us soon.'
+
+        setSuccessMessage(`✔ ${baseMessage}`)
+        setErrorMessage(null)
+        setEmail('')
+      } else {
+        const userFriendlyError =
+          data.error === 'Invalid email'
+            ? 'Please enter a valid email address.'
+            : data.error || 'We could not subscribe you right now. Please try again in a moment.'
+
+        setErrorMessage(userFriendlyError)
+        setSuccessMessage(null)
+      }
+    } catch (error) {
+      setErrorMessage('We could not subscribe you right now. Please check your connection and try again.')
+      setSuccessMessage(null)
+    } finally {
+      setIsSubmitting(false)
+    }
+  }
+
   return (
     <footer className="border-t border-gray-200/70 dark:border-gray-800/80 bg-white/80 dark:bg-gray-950/60 backdrop-blur">
       {/* Faint gradient accent line */}
@@ -127,19 +186,33 @@ export default function Footer() {
                 <p className="text-sm text-gray-600 dark:text-gray-400 mb-4">
                   Enter your email to stay up to date with the latest updates from LogicStamp.
                 </p>
-                <form className="flex flex-col gap-3">
+                <form className="flex flex-col gap-3" onSubmit={handleSubmit}>
                   <input
                     type="email"
                     placeholder="your@email.com"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
                     className="w-full px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-900 text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400 focus:outline-none focus:ring-1 focus:ring-gray-400 dark:focus:ring-gray-600 focus:border-gray-400 dark:focus:border-gray-600 transition-colors"
                     required
+                    disabled={isSubmitting}
                   />
                   <button
                     type="submit"
-                    className="w-full px-6 py-2 rounded-lg bg-gray-900 dark:bg-white text-white dark:text-gray-900 font-medium hover:bg-gray-800 dark:hover:bg-gray-100 transition-colors"
+                    disabled={isSubmitting}
+                    className="w-full px-6 py-2 rounded-lg bg-gray-900 dark:bg-white text-white dark:text-gray-900 font-medium hover:bg-gray-800 dark:hover:bg-gray-100 transition-colors disabled:opacity-70 disabled:cursor-not-allowed"
                   >
-                    Subscribe to our newsletter
+                    {isSubmitting ? 'Subscribing...' : 'Subscribe to our newsletter'}
                   </button>
+                  {successMessage && (
+                    <p className="text-sm text-green-600 dark:text-green-400">
+                      {successMessage}
+                    </p>
+                  )}
+                  {errorMessage && (
+                    <p className="text-sm text-red-600 dark:text-red-400">
+                      {errorMessage}
+                    </p>
+                  )}
                 </form>
               </div>
 
