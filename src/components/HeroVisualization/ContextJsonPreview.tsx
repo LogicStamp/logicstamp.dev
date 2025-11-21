@@ -60,7 +60,7 @@ export default function ContextJsonPreview({ animatedNodes }: ContextJsonPreview
           <div className="w-3 h-3 rounded-full bg-green-500" />
         </div>
       </div>
-      <div className="flex-1 p-6 overflow-y-auto overflow-x-auto bg-gray-900">
+      <div className="flex-1 p-6 overflow-y-auto overflow-x-auto bg-gray-900 sidebar-scrollable">
         <pre className="text-sm sm:text-sm lg:text-sm font-mono leading-5 sm:leading-6 whitespace-pre text-gray-100">
           <code>
             <span className="text-gray-400">[</span>
