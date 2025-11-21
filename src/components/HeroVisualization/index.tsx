@@ -81,7 +81,7 @@ const HeroVisualization = forwardRef<HTMLDivElement, HeroVisualizationProps>(
 
   return (
     <div ref={ref} className="mt-16 flow-root sm:mt-24">
-        <div className="relative flex flex-col lg:grid lg:grid-cols-2 gap-6 lg:gap-12">
+        <div className="relative flex flex-col lg:grid lg:grid-cols-2 gap-6 lg:gap-10 max-w-[1340px] mx-auto">
           {/* Left: Dependency Graph */}
           <div 
             className="relative rounded-xl bg-gradient-bg-card p-2 ring-1 ring-inset ring-secondary-200/20 dark:ring-secondary-400/20 lg:rounded-2xl lg:p-4 hover-lift shadow-lg h-96 sm:h-[48rem] overflow-x-auto sm:overflow-hidden"
