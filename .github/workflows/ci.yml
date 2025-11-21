@@ -29,20 +29,6 @@ jobs:
       - name: Run linter
         run: npm run lint
 
-      - name: Debug TypeScript config and components
-        run: |
-          echo "PWD:"
-          pwd
-          echo ""
-          echo "tsconfig.json:"
-          cat tsconfig.json
-          echo ""
-          echo "src/components contents:"
-          ls -R src/components || echo "src/components missing"
-          echo ""
-          echo "src/app/demo contents:"
-          ls -R src/app/demo || echo "src/app/demo missing"
-
       - name: Type check
         run: npm run type-check
 
