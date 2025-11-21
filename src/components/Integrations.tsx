@@ -242,8 +242,31 @@ export default function Integrations() {
               Supported Frameworks
             </h3>
             <p className="text-base sm:text-lg text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
-              AI-ready context generation for modern frontend frameworks and TypeScript codebases
+              AI-ready context generation for modern frontend frameworks and TypeScript codebases.
             </p>
+            <div className="mt-4 max-w-2xl mx-auto rounded-xl border border-gray-200/70 px-4 py-3 text-left text-sm text-gray-900 dark:border-gray-700/70 dark:text-gray-100 flex gap-3 bg-transparent dark:bg-transparent">
+              <div className="mt-0.5 flex-shrink-0">
+                <svg
+                  className="h-4 w-4 text-blue-500 dark:text-blue-300"
+                  viewBox="0 0 20 20"
+                  fill="currentColor"
+                  aria-hidden="true"
+                >
+                  <path d="M10 2a6 6 0 00-3.74 10.64c.24.19.38.48.38.79V14a1 1 0 001 1h4a1 1 0 001-1v-.57c0-.31.14-.6.38-.79A6 6 0 0010 2z" />
+                  <path d="M8 16a2 2 0 002 2 2 2 0 002-2H8z" />
+                </svg>
+              </div>
+              <div>
+                <p className="font-semibold leading-snug">
+                  TypeScript-first by design
+                </p>
+                <p className="mt-1 leading-snug text-blue-900/80 dark:text-blue-100/80">
+                  LogicStamp Context currently analyzes <code>.ts</code> and <code>.tsx</code> files only. JavaScript{' '}
+                  <code>.js</code> and <code>.jsx</code> files are not analyzed yet, so components written in JS won&apos;t
+                  appear in context bundles.
+                </p>
+              </div>
+            </div>
           </div>
           
           <div className="grid grid-cols-1 gap-6 lg:grid-cols-2 xl:grid-cols-3">

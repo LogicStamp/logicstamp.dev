@@ -53,11 +53,6 @@ const docSections = [
         description:
           'Comprehensive documentation including all commands, options, features, examples, and troubleshooting guides.',
       },
-      {
-        title: 'Hashes',
-        href: '/docs/hashes',
-        description: 'Understand fileHash, semanticHash, and bundleHash and how LogicStamp tracks changes across layers.',
-      },
     ],
   },
   {
@@ -100,6 +95,12 @@ export default function DocumentationPage() {
               
               <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-gray-600 dark:text-gray-400 leading-relaxed max-w-3xl mb-6 sm:mb-8">
                 Open-source CLI for generating AI-ready context from React/TypeScript codebases. Zero config, built-in token optimization.
+              </p>
+
+              <p className="text-xs sm:text-sm text-gray-500 dark:text-gray-500 max-w-3xl">
+                <span className="font-semibold">TypeScript-only analysis:</span> LogicStamp Context currently analyzes{' '}
+                <code>.ts</code> and <code>.tsx</code> files. JavaScript <code>.js</code> and <code>.jsx</code> files
+                are not analyzed yet, so JS components will not appear in generated context bundles.
               </p>
 
               {/* Quick stats */}

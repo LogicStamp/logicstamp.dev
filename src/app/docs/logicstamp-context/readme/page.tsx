@@ -21,6 +21,12 @@ export default function LogicStampReadmePage() {
               LogicStamp Context is a lightweight CLI that scans your React/TypeScript codebase and generates
               AI-ready context bundles optimized for tools like Claude, ChatGPT, and other LLMs.
             </p>
+            <p className="mt-3 text-sm text-gray-600 dark:text-gray-400">
+              <span className="font-semibold">TypeScript-first:</span> the analyzer currently targets{' '}
+              <code>.ts</code> and <code>.tsx</code> files only. JavaScript <code>.js</code> and <code>.jsx</code>{' '}
+              files are not analyzed yet, so mixed or JS-only projects will only see TypeScript components in{' '}
+              <code>context.json</code>.
+            </p>
           </div>
         </AnimatedSection>
 
