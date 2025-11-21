@@ -776,24 +776,24 @@ stamp context compare --stats`
                   ]
                 },
                 {
-                  title: "Common Issues",
+                  title: "Common Questions",
                   icon: "❓",
                   color: "yellow",
                   items: [
                     {
-                      type: "Context file is huge",
-                      desc: "Use --include-code none for smallest output, or --profile llm-safe for token-constrained scenarios.",
-                      solution: "Token estimates are automatically shown in the output for all modes."
+                      type: "How do I scan only a specific folder?",
+                      desc: "By default, LogicStamp respects .gitignore and skips node_modules/, .next/, dist/, and other build directories.",
+                      solution: "Scan a directory directly: stamp context ./src"
                     },
                     {
-                      type: "Validation failed",
-                      desc: "Check for schema mismatches, verify JSON is well-formed, ensure all required fields are present.",
-                      solution: "Run stamp context validate to see detailed error messages."
+                      type: "How do I exclude additional folders?",
+                      desc: "LogicStamp uses .gitignore as the source of truth for what to skip.",
+                      solution: "Add folders to .gitignore or pass a direct path (e.g. stamp context ./src) to restrict the scan."
                     },
                     {
-                      type: "How to ignore directories",
-                      desc: "LogicStamp respects .gitignore automatically. node_modules/ and common build directories are excluded by default.",
-                      solution: "Scan specific directories: stamp context ./src"
+                      type: "Why don’t I see context for some components?",
+                      desc: "LogicStamp only analyzes .ts and .tsx files that export React components or functions.",
+                      solution: "Ensure your file has a named or default export that defines the component or function you care about."
                     }
                   ]
                 }
