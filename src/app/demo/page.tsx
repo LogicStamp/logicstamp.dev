@@ -1,5 +1,5 @@
 import { Metadata } from 'next'
-import Demo from '../../app/demo/page'
+import Demo from '../../components/Demo'
 import Footer from '@/components/Footer'
 import AnimatedSection from '@/components/AnimatedSection'
 
