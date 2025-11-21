@@ -1,195 +1,134 @@
-# Branching Strategy
+## Branching Strategy
 
-This document outlines the branching strategy for the LogicStamp project to ensure open source compliance and maintainable development workflows.
+This repository uses a **simple feature → `main` branching model** for both:
 
-## Branch Types
+- **LogicStamp Bundle** (npm package)
+- **LogicStamp Site** (`logicstamp.dev`)
 
-### 1. `main` (Production/Stable)
-- **Purpose**: Contains production-ready, stable code
-- **Protection**: 
-  - Direct pushes are restricted
-  - Requires pull request reviews
-  - Requires passing CI/CD checks
-  - No force pushes allowed
-- **Merges from**: `develop` (via release branches) or hotfix branches
-- **Tags**: All releases are tagged (e.g., `v1.0.0`)
+There is **no `develop` branch**. All changes go through short‑lived feature branches into `main`.
 
-### 2. `develop` (Development/Integration)
-- **Purpose**: Integration branch for features
-- **Protection**: 
-  - Requires pull request reviews
-  - Requires passing CI/CD checks
-- **Merges from**: Feature branches, bugfix branches
-- **Merges to**: Release branches, `main` (via releases)
+---
 
-### 3. Feature Branches (`feature/*`)
-- **Naming**: `feature/description` or `feature/issue-number-description`
-- **Examples**: 
-  - `feature/add-dark-mode`
-  - `feature/123-improve-docs`
-- **Purpose**: New features or enhancements
-- **Branch from**: `develop`
-- **Merge to**: `develop` via Pull Request
-- **Lifecycle**: Delete after merge
+## 1. LogicStamp Bundle (npm package)
 
-### 4. Bugfix Branches (`bugfix/*`)
-- **Naming**: `bugfix/description` or `bugfix/issue-number-description`
-- **Examples**: 
-  - `bugfix/fix-header-layout`
-  - `bugfix/456-memory-leak`
-- **Purpose**: Fixes for bugs in `develop`
-- **Branch from**: `develop`
-- **Merge to**: `develop` via Pull Request
-- **Lifecycle**: Delete after merge
+### Branches
 
-### 5. Release Branches (`release/*`)
-- **Naming**: `release/v1.0.0` or `release/1.0.0`
-- **Purpose**: Prepare new production releases
-- **Branch from**: `develop`
-- **Merge to**: Both `main` and `develop`
-- **Activities**: 
-  - Final bug fixes
-  - Version bumping
-  - Documentation updates
-  - Release notes
-- **Lifecycle**: Delete after merge to `main`
+- **`main`** – always **release‑ready**
+- **`feature/*`, `fix/*`, `docs/*`** – short‑lived branches for work
 
-### 6. Hotfix Branches (`hotfix/*`)
-- **Naming**: `hotfix/description` or `hotfix/v1.0.1`
-- **Purpose**: Critical fixes for production
-- **Branch from**: `main`
-- **Merge to**: Both `main` and `develop`
-- **Lifecycle**: Delete after merge
+### Typical flow
 
-## Workflow Examples
+1. **Create a feature branch from `main`:**
 
-### Adding a New Feature
+   ```bash
+   git checkout main
+   git pull origin main
+   git checkout -b feature/short-description
+   ```
+
+2. **Do the work, commit, and push:**
+
+   ```bash
+   git add .
+   git commit -m "feat: short description"
+   git push origin feature/short-description
+   ```
+
+3. **Open a Pull Request targeting `main`.**
+4. After review and passing checks, **merge into `main`** and delete the branch.
+
+### Releasing to npm
+
+When you want to publish a new version:
 
 ```bash
-# 1. Start from develop
-git checkout develop
-git pull origin develop
-
-# 2. Create feature branch
-git checkout -b feature/add-new-component
-
-# 3. Make changes and commit
-git add .
-git commit -m "feat: add new component"
-
-# 4. Push and create PR
-git push origin feature/add-new-component
-# Create PR: feature/add-new-component -> develop
-```
-
-### Creating a Release
-
-```bash
-# 1. Create release branch from develop
-git checkout develop
-git pull origin develop
-git checkout -b release/v1.0.0
-
-# 2. Update version, changelog, etc.
-# 3. Final testing and bug fixes
-git commit -m "chore: prepare release v1.0.0"
-
-# 4. Merge to main
-git checkout main
-git merge release/v1.0.0
-git tag v1.0.0
-git push origin main --tags
-
-# 5. Merge back to develop
-git checkout develop
-git merge release/v1.0.0
-git push origin develop
-
-# 6. Delete release branch
-git branch -d release/v1.0.0
-git push origin --delete release/v1.0.0
-```
-
-### Creating a Hotfix
-
-```bash
-# 1. Create hotfix from main
+# From main, with a clean working tree
 git checkout main
 git pull origin main
-git checkout -b hotfix/critical-security-fix
 
-# 2. Fix the issue
-git commit -m "fix: critical security vulnerability"
+# Bump version (pick one)
+npm version patch   # or: minor / major
 
-# 3. Merge to main
-git checkout main
-git merge hotfix/critical-security-fix
-git tag v1.0.1
-git push origin main --tags
+# Push commit + tag
+git push --follow-tags
 
-# 4. Merge to develop
-git checkout develop
-git merge hotfix/critical-security-fix
-git push origin develop
-
-# 5. Delete hotfix branch
-git branch -d hotfix/critical-security-fix
-git push origin --delete hotfix/critical-security-fix
+# Publish to npm
+npm publish
 ```
 
-## Branch Protection Rules
+`main` always reflects what is currently released (or ready to be released), and Git tags map to npm versions.
 
-### For `main` branch:
-- ✅ Require pull request reviews (at least 1 approval)
-- ✅ Require status checks to pass
-- ✅ Require branches to be up to date
-- ✅ Include administrators
-- ✅ Restrict force pushes
-- ✅ Restrict deletions
+---
 
-### For `develop` branch:
-- ✅ Require pull request reviews (at least 1 approval)
-- ✅ Require status checks to pass
-- ⚠️ Allow force pushes (only for maintainers, use with caution)
-- ✅ Restrict deletions
+## 2. LogicStamp Site (`logicstamp.dev`)
 
-## Commit Message Convention
+The site uses the same **feature → `main`** model, but “releases” are deployments.
+
+### Branches
+
+- **`main`** – deployed to **production** via Vercel
+- **`feature/*`** – new sections, design tweaks, docs changes
+
+### Typical flow
+
+1. **Create a feature branch from `main`:**
+
+   ```bash
+   git checkout main
+   git pull origin main
+   git checkout -b feature/update-landing-copy
+   ```
+
+2. Make changes, commit, and push the branch.
+3. **Open a PR targeting `main`.**
+4. Vercel creates a **preview deployment** for the PR.
+5. If the preview looks good and checks pass, **merge into `main`**.
+6. `main` deploys automatically to production.
+
+No `develop` branch is needed; PR previews act as the staging environment.
+
+---
+
+## 3. Branch Protection & Conventions
+
+### `main` branch protection (recommended)
+
+- Require **pull request reviews** (at least 1 approval)
+- Require **status checks** (lint, tests, build, etc.) to pass
+- Require branches to be **up to date** before merging
+- Disallow **force pushes** and **deletions**
+
+### Branch naming
+
+- `feature/add-x`
+- `fix/bug-y`
+- `docs/update-z`
+
+### Commit messages
 
 We follow [Conventional Commits](https://www.conventionalcommits.org/):
 
-- `feat:` New feature
-- `fix:` Bug fix
-- `docs:` Documentation changes
-- `style:` Code style changes (formatting, etc.)
-- `refactor:` Code refactoring
-- `test:` Adding or updating tests
-- `chore:` Maintenance tasks
-- `perf:` Performance improvements
+- `feat:` new feature
+- `fix:` bug fix
+- `docs:` docs-only changes
+- `style:` formatting-only changes
+- `refactor:` internal refactors
+- `test:` tests
+- `chore:` tooling / maintenance
+- `perf:` performance improvements
 - `ci:` CI/CD changes
 
-## Initial Setup
+---
 
-To set up this branching strategy:
+## 4. Best Practices
 
-```bash
-# Ensure you're on main
-git checkout main
+1. **Keep branches short‑lived** – merge within days, not weeks.
+2. **One change per branch** – avoid mixing unrelated work.
+3. **Sync with `main` regularly** – `git pull --rebase origin main` on feature branches.
+4. **Always use PRs** – even for maintainers.
+5. **Use preview deploys** (site) to validate UX and docs before merging.
+6. **Tag bundle releases** on `main` so they map cleanly to npm versions.
 
-# Create and push develop branch
-git checkout -b develop
-git push -u origin develop
+This lightweight strategy keeps both repos simple while still being safe and review‑friendly.
 
-# Set develop as default branch (optional, do via GitHub UI)
-# Settings > Branches > Default branch > develop
-```
-
-## Best Practices
-
-1. **Keep branches short-lived**: Merge feature/bugfix branches within days, not weeks
-2. **Regularly sync with base**: Rebase or merge from `develop` regularly
-3. **Clear branch names**: Use descriptive names that explain the purpose
-4. **One feature per branch**: Keep branches focused on a single feature or fix
-5. **Clean up**: Delete merged branches to keep the repository clean
-6. **Use pull requests**: Always use PRs for code review, even for maintainers
-7. **Tag releases**: Always tag releases in `main` for version tracking
 

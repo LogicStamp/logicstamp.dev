@@ -18,10 +18,10 @@ By participating in this project, you agree to maintain a respectful and inclusi
    ```bash
    git remote add upstream https://github.com/original-owner/logicstamp.dev.git
    ```
-4. **Create a branch** from `develop`:
+4. **Create a branch** from `main`:
    ```bash
-   git checkout develop
-   git pull upstream develop
+   git checkout main
+   git pull upstream main
    git checkout -b feature/your-feature-name
    ```
 
@@ -29,11 +29,11 @@ By participating in this project, you agree to maintain a respectful and inclusi
 
 ### Branching Strategy
 
-We follow a Git Flow-inspired branching strategy. See [BRANCHING_STRATEGY.md](./BRANCHING_STRATEGY.md) for details.
+We use a simple **feature → `main`** strategy. See [BRANCHING_STRATEGY.md](./BRANCHING_STRATEGY.md) for details.
 
-- **Feature branches**: `feature/description` - for new features
-- **Bugfix branches**: `bugfix/description` - for bug fixes
-- **Hotfix branches**: `hotfix/description` - for critical production fixes
+- **Feature branches**: `feature/description` – new features, design tweaks, docs changes
+- **Fix branches**: `fix/description` – bug fixes
+- **Docs branches**: `docs/description` – documentation‑only work
 
 ### Making Changes
 
@@ -60,7 +60,7 @@ We follow a Git Flow-inspired branching strategy. See [BRANCHING_STRATEGY.md](./
 2. **Create a Pull Request**:
    - Go to the original repository on GitHub
    - Click "New Pull Request"
-   - Select your branch and target `develop` (not `main`)
+   - Select your branch and target **`main`**
    - Fill out the PR template
 
 3. **PR Requirements**:
@@ -140,7 +140,7 @@ npm run lint
 
 ## Pull Request Process
 
-1. **Update your branch**: Rebase or merge from `develop` before submitting
+1. **Update your branch**: Rebase or merge from `main` before submitting
 2. **Write a good PR description**:
    - What changes were made
    - Why the changes were needed
