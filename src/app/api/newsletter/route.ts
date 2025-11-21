@@ -1,14 +1,23 @@
 import { NextResponse } from 'next/server'
 import { createClient } from '@supabase/supabase-js'
 
-const supabase = createClient(
-  process.env.SUPABASE_URL!,
-  process.env.SUPABASE_SERVICE_ROLE_KEY!, // server-only
-  { auth: { persistSession: false } }
-)
-
 export async function POST(request: Request) {
   try {
+    const supabaseUrl = process.env.SUPABASE_URL
+    const supabaseServiceRoleKey = process.env.SUPABASE_SERVICE_ROLE_KEY
+
+    if (!supabaseUrl || !supabaseServiceRoleKey) {
+      console.error('Newsletter API env error: SUPABASE_URL or SUPABASE_SERVICE_ROLE_KEY not set')
+      return NextResponse.json(
+        { success: false, error: 'Newsletter service not configured' },
+        { status: 500 }
+      )
+    }
+
+    const supabase = createClient(supabaseUrl, supabaseServiceRoleKey, {
+      auth: { persistSession: false },
+    })
+
     const { email } = await request.json().catch(() => ({} as { email?: unknown }))
 
     if (!email || typeof email !== 'string') {
