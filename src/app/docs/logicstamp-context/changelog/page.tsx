@@ -25,37 +25,85 @@ export default function ChangelogPage() {
         </AnimatedSection>
 
         <div className="prose prose-lg dark:prose-invert max-w-none prose-headings:text-gray-900 dark:prose-headings:text-white prose-p:text-gray-900 dark:prose-p:text-white text-gray-900 dark:text-white">
-            <AnimatedSection direction="up" delay={100}>
-              <h2>0.1.2 – Unified CLI</h2>
-              <h3>Breaking Changes</h3>
-              <p>
-                The CLI has been unified under a single <code>stamp</code> binary for better usability and future
-                expansion.
-              </p>
-              <pre>
-                <code>{`# Old commands (deprecated)
-logicstamp-context [path]
-logicstamp-validate [file]
-logicstamp-context compare old new
+          <AnimatedSection direction="up" delay={100}>
+            <p>
+              All notable changes to <code>logicstamp-context</code> are documented on this page.
+            </p>
+            <p>
+              The format is based on{' '}
+              <a href="https://keepachangelog.com/en/1.0.0/" target="_blank" rel="noreferrer">
+                Keep a Changelog
+              </a>{' '}
+              and adheres to{' '}
+              <a href="https://semver.org/spec/v2.0.0.html" target="_blank" rel="noreferrer">
+                Semantic Versioning
+              </a>
+              .
+            </p>
 
-# New commands
-stamp context [path]
-stamp context validate [file]
-stamp context compare old new`}</code>
-              </pre>
-              <p>
-                Migration is straightforward: replace <code>logicstamp-context</code> with <code>stamp context</code>{' '}
-                and <code>logicstamp-validate</code> with <code>stamp context validate</code>.
-              </p>
+            <h2 id="0-1-0">[0.1.0] – 2025-01-15</h2>
+            <h3>Added</h3>
+            <ul>
+              <li>Initial standalone release of LogicStamp Context.</li>
+              <li>Scans React/TypeScript codebases and generates AI-friendly context bundles.</li>
+              <li>
+                New per-folder <code>context.json</code> and root-level <code>context_main.json</code> structure for
+                deterministic project mapping.
+              </li>
+              <li>AST-based component analysis (no pre-compilation required).</li>
+              <li>Three preset profiles: <code>llm-safe</code>, <code>llm-chat</code>, <code>ci-strict</code>.</li>
+              <li>
+                Code inclusion modes: <code>none</code>, <code>header</code>, <code>full</code>.
+              </li>
+              <li>
+                Output formats: <code>json</code>, <code>pretty</code>, <code>ndjson</code>.
+              </li>
+              <li>Depth-based dependency traversal.</li>
+              <li>Deterministic bundle and semantic hashing.</li>
+              <li>Missing dependency tracking with diagnostics.</li>
+              <li>Standalone CLI with a comprehensive help system.</li>
+              <li>Cross-platform path normalization.</li>
+              <li>In-memory contract generation pipeline.</li>
+              <li>Zero configuration required.</li>
+              <li>Works on any React/TypeScript project.</li>
+            </ul>
 
-              <h3>Highlights</h3>
-              <ul>
-                <li>Automatic validation on context generation before writing files.</li>
-                <li>Improved help output and a cleaner command structure.</li>
-                <li>Single binary prepares the ecosystem for a broader <code>@logicstamp/cli</code> package.</li>
-              </ul>
-            </AnimatedSection>
-          </div>
+            <h3>Features</h3>
+            <ul>
+              <li>Outputs ready for AI tools (Claude, ChatGPT, Cursor, VS Code assistants).</li>
+              <li>Fast analysis: ~3–5 seconds for typical 50–150 file projects.</li>
+              <li>Designed for reproducibility and CI integration.</li>
+            </ul>
+
+            <h3>Documentation</h3>
+            <ul>
+              <li>Complete README with installation, usage, and examples.</li>
+              <li>Detailed USAGE guide covering all CLI flags and profiles.</li>
+              <li>
+                Example <code>context.json</code> output for quick reference.
+              </li>
+              <li>MIT License included.</li>
+            </ul>
+
+            <h2 id="unreleased">[Unreleased]</h2>
+            <h3>Planned</h3>
+            <ul>
+              <li>Watch mode for continuous generation.</li>
+              <li>Custom profile configuration and overrides.</li>
+              <li>Bundle caching.</li>
+              <li>Output size optimization.</li>
+              <li>Additional output formats.</li>
+              <li>Integration examples for popular AI assistants.</li>
+            </ul>
+
+            <h3>Known Limitations (to be addressed)</h3>
+            <ul>
+              <li>No watch mode yet.</li>
+              <li>No incremental caching.</li>
+              <li>No custom profiles beyond the three presets.</li>
+            </ul>
+          </AnimatedSection>
+        </div>
         </DocsLayout>
       <Footer />
     </>
