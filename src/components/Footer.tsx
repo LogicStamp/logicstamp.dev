@@ -217,7 +217,7 @@ export default function Footer() {
               </div>
 
               {/* Fox Mascot + Theme toggle + social links - Desktop: right side */}
-              <div className="flex flex-col items-center gap-4 md:flex-row md:items-center md:justify-end md:gap-4">
+              <div className="flex flex-col items-center gap-5 border-t border-gray-200/60 dark:border-gray-800/70 pt-6 mt-2 md:flex-row md:items-center md:justify-end md:gap-4 md:border-t-0 md:pt-0 md:mt-0">
                 {/* Fox Mascot - Desktop only (to the left of theme toggle) */}
                 <div className="hidden md:flex items-center justify-center">
                   <img
