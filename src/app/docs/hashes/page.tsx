@@ -217,7 +217,7 @@ export default function HashesPage() {
                     <li>Extract AST structure and logic signature.</li>
                     <li>Build payload:</li>
                   </ol>
-                  <pre className="mt-2 mb-2 overflow-x-auto rounded-md bg-gray-950/90 text-[0.7rem] sm:text-xs text-gray-100 p-3 font-mono">
+                  <pre className="mt-2 mb-2 overflow-x-auto rounded-md bg-gray-950/90 text-[0.7rem] sm:text-xs text-gray-100 p-3 font-mono whitespace-pre-wrap break-words max-w-full">
 {`{
   "schemaVersion": "0.3",
   "structure": { "...": "..." },
@@ -318,7 +318,7 @@ export default function HashesPage() {
                       Sorted list of nodes (by <code className="px-1 py-0.5 bg-gray-100 dark:bg-gray-800 rounded text-[0.7rem] font-mono">entryId</code>):
                     </li>
                   </ul>
-                  <pre className="mt-2 mb-3 overflow-x-auto rounded-md bg-gray-950/90 text-[0.7rem] sm:text-xs text-gray-100 p-3 font-mono">
+                  <pre className="mt-2 mb-3 overflow-x-auto rounded-md bg-gray-950/90 text-[0.7rem] sm:text-xs text-gray-100 p-3 font-mono whitespace-pre-wrap break-words max-w-full">
 {`{
   "schemaVersion": "0.1",
   "depth": 1,
@@ -345,7 +345,7 @@ export default function HashesPage() {
                   </ol>
                   <p className="mt-2 text-xs sm:text-sm text-emerald-900/90 dark:text-emerald-100">
                     Example:{' '}
-                    <code className="px-1.5 py-0.5 bg-emerald-100 dark:bg-emerald-900/50 rounded text-[0.75rem] font-mono">
+                    <code className="px-1.5 py-0.5 bg-emerald-100 dark:bg-emerald-900/50 rounded text-[0.75rem] font-mono break-all">
                       uifb:abc123e4f99aa01deef02bb1
                     </code>
                   </p>
@@ -422,7 +422,7 @@ export default function HashesPage() {
                     <tr className="border-b border-gray-100 dark:border-gray-800">
                       <td className="py-2 pr-4 text-gray-800 dark:text-gray-200">File-level</td>
                       <td className="py-2 pr-4">
-                        <code className="px-1.5 py-0.5 bg-gray-100 dark:bg-gray-800 rounded text-[0.75rem] font-mono">
+                        <code className="px-1.5 py-0.5 bg-gray-100 dark:bg-gray-800 rounded text-[0.75rem] font-mono text-gray-900 dark:text-gray-100">
                           fileHash
                         </code>
                       </td>
@@ -431,7 +431,7 @@ export default function HashesPage() {
                     <tr className="border-b border-gray-100 dark:border-gray-800">
                       <td className="py-2 pr-4 text-gray-800 dark:text-gray-200">Component-level</td>
                       <td className="py-2 pr-4">
-                        <code className="px-1.5 py-0.5 bg-gray-100 dark:bg-gray-800 rounded text-[0.75rem] font-mono">
+                        <code className="px-1.5 py-0.5 bg-gray-100 dark:bg-gray-800 rounded text-[0.75rem] font-mono text-gray-900 dark:text-gray-100">
                           semanticHash
                         </code>
                       </td>
@@ -440,7 +440,7 @@ export default function HashesPage() {
                     <tr>
                       <td className="py-2 pr-4 text-gray-800 dark:text-gray-200">Bundle-level</td>
                       <td className="py-2 pr-4">
-                        <code className="px-1.5 py-0.5 bg-gray-100 dark:bg-gray-800 rounded text-[0.75rem] font-mono">
+                        <code className="px-1.5 py-0.5 bg-gray-100 dark:bg-gray-800 rounded text-[0.75rem] font-mono text-gray-900 dark:text-gray-100">
                           bundleHash
                         </code>
                       </td>

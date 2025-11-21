@@ -44,6 +44,17 @@ const docSections = [
     ],
   },
   {
+    title: 'Guides',
+    description: 'Scenario-based walkthroughs and opinionated playbooks.',
+    pages: [
+      {
+        title: 'Guides',
+        href: '/docs/guides',
+        description: 'Browse all LogicStamp guides, including usage walkthroughs, context format, and best practices.',
+      },
+    ],
+  },
+  {
     title: 'Reference',
     description: 'Complete reference documentation and advanced topics.',
     pages: [
