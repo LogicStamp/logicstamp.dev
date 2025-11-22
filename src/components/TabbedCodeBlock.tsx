@@ -1,7 +1,7 @@
 'use client'
 
 import { useState, useRef, useEffect } from 'react'
-import CopyButton from './CopyButton'
+import CopyButton from './ui/CopyButton'
 
 interface Tab {
   label: string

@@ -3,8 +3,8 @@ import { useState, useEffect, Fragment } from 'react'
 import { usePathname } from 'next/navigation'
 import LogicStampLogo from './LogicStampLogo'
 import LogicStampWordmark from './LogicStampWordmark'
-import ThemeToggle from './ThemeToggle'
-import GetStartedButton from './GetStartedButton'
+import ThemeToggle from './ui/ThemeToggle'
+import GetStartedButton from './ui/GetStartedButton'
 
 export default function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)

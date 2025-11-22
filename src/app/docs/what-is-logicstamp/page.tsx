@@ -2,7 +2,7 @@ import { Metadata } from 'next'
 import Link from 'next/link'
 import Footer from '@/components/Footer'
 import AnimatedSection from '@/components/AnimatedSection'
-import CopyButton from '@/components/CopyButton'
+import CopyButton from '@/components/ui/CopyButton'
 import TabbedCodeBlock from '@/components/TabbedCodeBlock'
 import DocsLayout from '@/components/DocsLayout'
 

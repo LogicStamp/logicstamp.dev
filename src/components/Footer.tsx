@@ -4,7 +4,7 @@ import { FormEvent, useState } from 'react'
 import AnimatedSection from './AnimatedSection'
 import LogicStampLogo from './LogicStampLogo'
 import LogicStampWordmark from './LogicStampWordmark'
-import ThemeToggle from './ThemeToggle'
+import ThemeToggle from './ui/ThemeToggle'
 
 const navigation = {
   product: [

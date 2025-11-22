@@ -1,10 +1,10 @@
 'use client'
 
 import { useEffect, useRef, useState, forwardRef } from 'react'
-import CopyButton from './CopyButton'
+import CopyButton from './ui/CopyButton'
 import GitHubStats from './GitHubStats'
-import StarGitHubButton from './StarGitHubButton'
-import ReadTheDocsButton from './ReadTheDocsButton'
+import StarGitHubButton from './ui/StarGitHubButton'
+import ReadTheDocsButton from './ui/ReadTheDocsButton'
 import HeroVisualization from './HeroVisualization'
 import CommunityCTA from './CommunityCTA'
 

@@ -4,7 +4,7 @@ import { GeistSans, GeistMono } from 'geist/font'
 import './globals.css'
 import Header from '@/components/Header'
 import ScrollToTop from '@/components/ScrollToTop'
-import ScrollToTopButton from '@/components/ScrollToTopButton'
+import ScrollToTopButton from '@/components/ui/ScrollToTopButton'
 import { ThemeProvider } from '@/contexts/ThemeContext'
 
 export const metadata: Metadata = {
