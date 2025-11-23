@@ -352,7 +352,7 @@ export default function WhatIsLogicStampPage() {
               ].map((item, idx) => (
                 <div key={idx} className="relative">
                   <div className="flex flex-col sm:flex-row items-start gap-4 sm:gap-6">
-                    <div className="flex-shrink-0 sticky top-20 sm:top-24 z-20 opacity-0 translate-x-[-1rem] animate-[fadeInSlide_0.5s_ease-out_0.25s_forwards]">
+                    <div className="flex-shrink-0 relative sm:sticky sm:top-24 z-20 opacity-0 translate-x-[-1rem] animate-[fadeInSlide_0.5s_ease-out_0.25s_forwards]">
                       <div className={`w-10 h-10 sm:w-14 sm:h-14 rounded-2xl bg-gradient-to-br ${
                         item.color === 'blue' ? 'from-blue-500 to-blue-600' :
                         item.color === 'purple' ? 'from-purple-500 to-purple-600' :

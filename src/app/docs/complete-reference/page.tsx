@@ -241,7 +241,7 @@ export default function CompleteReferencePage() {
                 return (
                   <div key={idx} className="relative">
                     <div className="flex flex-col sm:flex-row items-start gap-4 sm:gap-6">
-                      <div className={`flex-shrink-0 sticky top-20 sm:top-24 z-20 opacity-0 translate-x-[-1rem] ${getDelayClass(idx)}`}>
+                      <div className={`flex-shrink-0 relative sm:sticky sm:top-24 z-20 opacity-0 translate-x-[-1rem] ${getDelayClass(idx)}`}>
                         <div className={`w-10 h-10 sm:w-14 sm:h-14 rounded-2xl bg-gradient-to-br ${getGradientClasses(cmd.color)} text-white font-bold text-base sm:text-xl flex items-center justify-center shadow-lg`}>
                           {idx + 1}
                         </div>
