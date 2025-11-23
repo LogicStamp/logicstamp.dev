@@ -1,17 +1,55 @@
 # LogicStamp Landing Page
 
-A standalone Next.js landing page application.
+<div align="center">
 
-## Getting Started
+**The official landing page and documentation site for LogicStamp**
+
+[![Next.js](https://img.shields.io/badge/Next.js-14-black)](https://nextjs.org/)
+[![TypeScript](https://img.shields.io/badge/TypeScript-5.3-blue)](https://www.typescriptlang.org/)
+[![Tailwind CSS](https://img.shields.io/badge/Tailwind-3.4-38bdf8)](https://tailwindcss.com/)
+[![License](https://img.shields.io/badge/License-MIT-green.svg)](./LICENSE)
+
+[Website](https://logicstamp.dev) • [Documentation](./logicstamp-docs/) • [GitHub](https://github.com/LogicStamp/logicstamp-context) • [Contributing](./CONTRIBUTING.md)
+
+</div>
+
+---
+
+## About
+
+This is the official landing page and documentation website for **LogicStamp**, a powerful tool for generating structured context bundles for LLMs. LogicStamp helps developers create efficient, maintainable context files that improve AI-assisted development workflows.
+
+The site is built with Next.js 14, TypeScript, and Tailwind CSS, featuring a modern, responsive design with dark mode support.
+
+## Features
+
+- 🚀 **Next.js 14** with App Router for optimal performance
+- 💎 **TypeScript** for type-safe development
+- 🎨 **Tailwind CSS** for modern, responsive styling
+- 🌙 **Dark Mode** support with smooth theme transitions
+- 📱 **Fully Responsive** design for all devices
+- ⚡ **Fast Performance** with optimized builds
+- 🧪 **Comprehensive Testing** with Vitest and React Testing Library
+- 📚 **Documentation** integrated directly into the site
+- 🎯 **SEO Optimized** for better discoverability
+
+## Quick Start
 
 ### Prerequisites
 
-- Node.js 18+ 
-- npm or yarn or pnpm
+- **Node.js** 18 or higher
+- **npm**, **yarn**, or **pnpm** package manager
 
 ### Installation
 
-1. Install dependencies:
+1. Clone the repository:
+
+```bash
+git clone https://github.com/LogicStamp/logicstamp.dev.git
+cd logicstamp.dev
+```
+
+2. Install dependencies:
 
 ```bash
 npm install
@@ -21,9 +59,9 @@ yarn install
 pnpm install
 ```
 
-2. Set up environment variables (if needed):
+3. Set up environment variables (if needed):
 
-Create a `.env.local` file in the root directory for any environment-specific configuration:
+Create a `.env.local` file in the root directory:
 
 ```env
 NEXT_PUBLIC_SITE_URL=http://localhost:3000
@@ -31,7 +69,7 @@ NEXT_PUBLIC_SITE_URL=http://localhost:3000
 
 ### Development
 
-Run the development server:
+Start the development server:
 
 ```bash
 npm run dev
@@ -41,7 +79,9 @@ yarn dev
 pnpm dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000) in your browser to see the result.
+
+The page auto-updates as you edit files. The `src/app` directory is where most of your edits happen.
 
 ### Build
 
@@ -49,54 +89,145 @@ Build the application for production:
 
 ```bash
 npm run build
-# or
-yarn build
-# or
-pnpm build
 ```
 
-### Start Production Server
+This creates an optimized production build in the `.next` folder.
+
+### Production
 
 Start the production server:
 
 ```bash
 npm start
-# or
-yarn start
-# or
-pnpm start
+```
+
+### Testing
+
+Run the test suite:
+
+```bash
+# Run tests in watch mode
+npm test
+
+# Run tests with UI
+npm run test:ui
+
+# Run tests once
+npm run test:run
+
+# Run tests with coverage
+npm run test:coverage
+```
+
+### Type Checking
+
+Verify TypeScript types:
+
+```bash
+npm run type-check
+```
+
+### Linting
+
+Check code quality:
+
+```bash
+npm run lint
 ```
 
 ## Project Structure
 
 ```
-standalone-landing/
+logicstamp.dev/
 ├── src/
-│   ├── app/              # Next.js app directory (pages and routes)
-│   ├── components/       # React components
-│   ├── contexts/         # React contexts
-│   ├── hooks/            # Custom React hooks
-│   ├── lib/              # Utility libraries
-│   └── styles/           # Global styles
-├── next.config.js        # Next.js configuration
-├── tailwind.config.ts    # Tailwind CSS configuration
-├── tsconfig.json         # TypeScript configuration
-└── package.json          # Dependencies and scripts
+│   ├── app/                    # Next.js App Router pages and routes
+│   │   ├── api/                # API routes
+│   │   ├── demo/               # Demo page
+│   │   ├── docs/               # Documentation pages
+│   │   │   ├── getting-started/
+│   │   │   ├── guides/
+│   │   │   ├── logicstamp-context/
+│   │   │   └── ...
+│   │   ├── layout.tsx          # Root layout
+│   │   └── page.tsx            # Home page
+│   ├── components/             # React components
+│   │   ├── sections/           # Page sections (Hero, Features, FAQ, etc.)
+│   │   ├── ui/                 # Reusable UI components
+│   │   └── ...
+│   ├── contexts/               # React contexts (Theme, etc.)
+│   ├── hooks/                  # Custom React hooks
+│   └── styles/                 # Global styles and themes
+├── __tests__/                  # Test files
+├── logicstamp-docs/            # Documentation source files
+├── public/                     # Static assets
+├── next.config.js              # Next.js configuration
+├── tailwind.config.ts          # Tailwind CSS configuration
+├── tsconfig.json               # TypeScript configuration
+├── vitest.config.ts            # Vitest test configuration
+└── package.json                # Dependencies and scripts
 ```
 
-## Features
+## Documentation
 
-- Next.js 14 with App Router
-- TypeScript
-- Tailwind CSS
-- Responsive design
-- Dark mode support
+Comprehensive documentation is available both on the site and in the repository:
+
+- **[Getting Started Guide](./logicstamp-docs/USAGE.md)** - Quick start with LogicStamp
+- **[CLI Commands](./logicstamp-docs/cli/)** - Complete command reference
+- **[Schema Documentation](./logicstamp-docs/SCHEMA.md)** - Context file schema
+- **[Best Practices](./src/app/docs/best-practices/page.tsx)** - Development best practices
+
+Visit the [documentation section](./src/app/docs/) on the site for the full documentation experience.
+
+## Technology Stack
+
+- **Framework**: [Next.js 14](https://nextjs.org/) with App Router
+- **Language**: [TypeScript](https://www.typescriptlang.org/)
+- **Styling**: [Tailwind CSS](https://tailwindcss.com/)
+- **Icons**: [Lucide React](https://lucide.dev/)
+- **Testing**: [Vitest](https://vitest.dev/) + [React Testing Library](https://testing-library.com/react)
+- **Font**: [Geist](https://vercel.com/font)
 
 ## Contributing
 
-We welcome contributions! Please see [CONTRIBUTING.md](./CONTRIBUTING.md) for guidelines on how to contribute to this project.
+We welcome contributions! Please see our [Contributing Guide](./CONTRIBUTING.md) for details on:
+
+- Code of conduct
+- Development workflow
+- Branching strategy
+- Pull request process
+- Code style guidelines
+
+Before contributing, please read:
+- [CONTRIBUTING.md](./CONTRIBUTING.md) - Contribution guidelines
+- [BRANCHING_STRATEGY.md](./BRANCHING_STRATEGY.md) - Git workflow
+- [ENV_SETUP.md](./ENV_SETUP.md) - Environment setup
+
+## Related Projects
+
+- **[logicstamp-context](https://github.com/LogicStamp/logicstamp-context)** - The LogicStamp CLI tool
+- **[logicstamp](https://github.com/LogicStamp/logicstamp)** - Main LogicStamp project
+
+## Security
+
+For security concerns, please review our [Security Audit](./SECURITY_AUDIT.md) and [Privacy & Security](./PRIVACY_SECURITY.md) documentation.
 
 ## License
 
 This project is licensed under the MIT License - see the [LICENSE](./LICENSE) file for details.
 
+## Support
+
+- 📖 [Documentation](./logicstamp-docs/)
+- 💬 [GitHub Discussions](https://github.com/LogicStamp/logicstamp-context/discussions)
+- 🐛 [Issue Tracker](https://github.com/LogicStamp/logicstamp-context/issues)
+- 📧 [Contact](https://logicstamp.dev)
+
+---
+
+<div align="center">
+
+Made with ❤️ by the LogicStamp team
+
+[Website](https://logicstamp.dev) • [GitHub](https://github.com/LogicStamp/logicstamp-context)
+
+</div>

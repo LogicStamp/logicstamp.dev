@@ -1,7 +1,7 @@
 import { describe, it, expect, vi, beforeEach } from 'vitest'
 import { render, screen } from '../utils/test-utils'
 import { setupIntersectionObserverMock } from '../utils/test-utils'
-import CTA from '@/components/sections/CTA'
+import GetStarted from '@/components/sections/GetStarted'
 
 // Mock child components
 vi.mock('@/components/ui/ReadTheDocsButton', () => ({
@@ -10,14 +10,14 @@ vi.mock('@/components/ui/ReadTheDocsButton', () => ({
   ),
 }))
 
-describe('CTA Component', () => {
+describe('GetStarted Component', () => {
   beforeEach(() => {
     setupIntersectionObserverMock()
     vi.clearAllMocks()
   })
 
-  it('renders the CTA section', () => {
-    render(<CTA />)
+  it('renders the GetStarted section', () => {
+    render(<GetStarted />)
 
     expect(
       screen.getByRole('heading', { name: /ready to supercharge/i })
@@ -25,7 +25,7 @@ describe('CTA Component', () => {
   })
 
   it('renders the main heading with gradient text', () => {
-    render(<CTA />)
+    render(<GetStarted />)
 
     const heading = screen.getByRole('heading', { name: /ready to supercharge/i })
     expect(heading).toBeInTheDocument()
@@ -33,7 +33,7 @@ describe('CTA Component', () => {
   })
 
   it('renders the description text', () => {
-    render(<CTA />)
+    render(<GetStarted />)
 
     expect(
       screen.getByText(/generate AI-ready context from your codebase/i)
@@ -41,7 +41,7 @@ describe('CTA Component', () => {
   })
 
   it('renders the install button with correct link', () => {
-    render(<CTA />)
+    render(<GetStarted />)
 
     const installButton = screen.getByRole('link', { name: /install now/i })
     expect(installButton).toBeInTheDocument()
@@ -54,7 +54,7 @@ describe('CTA Component', () => {
   })
 
   it('renders the read docs button', () => {
-    render(<CTA />)
+    render(<GetStarted />)
 
     const docsButton = screen.getByTestId('read-docs-button')
     expect(docsButton).toBeInTheDocument()
@@ -62,7 +62,7 @@ describe('CTA Component', () => {
   })
 
   it('renders the testimonial quote', () => {
-    render(<CTA />)
+    render(<GetStarted />)
 
     expect(
       screen.getByText(/stop pasting code. start sharing structured context/i)
@@ -71,14 +71,14 @@ describe('CTA Component', () => {
   })
 
   it('has correct section ID for navigation', () => {
-    render(<CTA />)
+    render(<GetStarted />)
 
     const section = screen.getByRole('heading', { name: /ready to supercharge/i }).closest('section')
     expect(section).toHaveAttribute('id', 'get-started')
   })
 
   it('renders buttons in a flex container', () => {
-    const { container } = render(<CTA />)
+    const { container } = render(<GetStarted />)
 
     const buttonsContainer = screen.getByRole('link', { name: /install now/i }).parentElement
     expect(buttonsContainer).toHaveClass('flex')

@@ -29,7 +29,7 @@ function useInView(threshold = 0.1) {
   return { ref, inView }
 }
 
-export default function CTA() {
+export default function GetStarted() {
   const { ref: contentRef, inView: contentInView } = useInView(0.1)
 
   return (

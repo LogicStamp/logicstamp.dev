@@ -23,8 +23,8 @@ vi.mock('@/components/sections/FAQ', () => ({
   default: () => <div data-testid="faq">FAQ Section</div>,
 }))
 
-vi.mock('@/components/sections/CTA', () => ({
-  default: () => <div data-testid="cta">CTA Section</div>,
+vi.mock('@/components/sections/GetStarted', () => ({
+  default: () => <div data-testid="get-started">Get Started Section</div>,
 }))
 
 vi.mock('@/components/Footer', () => ({
@@ -52,7 +52,7 @@ describe('Home Page', () => {
     expect(screen.getByTestId('features')).toBeInTheDocument()
     expect(screen.getByTestId('integrations')).toBeInTheDocument()
     expect(screen.getByTestId('faq')).toBeInTheDocument()
-    expect(screen.getByTestId('cta')).toBeInTheDocument()
+      expect(screen.getByTestId('get-started')).toBeInTheDocument()
     expect(screen.getByTestId('footer')).toBeInTheDocument()
   })
 
@@ -69,7 +69,7 @@ describe('Home Page', () => {
       'features',
       'integrations',
       'faq',
-      'cta',
+      'get-started',
       'footer',
     ])
   })
