@@ -34,10 +34,15 @@ const VueIcon = () => (
   </svg>
 )
 
-const SvelteIcon = () => (
+const MCPIcon = () => (
   <svg viewBox="0 0 24 24" className="w-10 h-10">
-    <path d="M20.35 6.65C18.67 2.91 14.78 1.17 11.04 2.85L6.09 5.13C4.85 5.72 3.89 6.79 3.41 8.09C2.93 9.39 2.96 10.82 3.5 12.1C3.13 12.63 2.85 13.23 2.69 13.86C2.37 15.29 2.65 16.8 3.46 18.01C5.14 21.75 9.03 23.49 12.77 21.81L17.72 19.53C18.96 18.94 19.92 17.87 20.4 16.57C20.88 15.27 20.85 13.84 20.31 12.56C20.68 12.03 20.96 11.43 21.12 10.8C21.44 9.37 21.16 7.86 20.35 6.65Z" fill="#FF3E00" />
-    <path d="M12.51 10.81C13.34 10.42 14.32 10.73 14.76 11.5C15.2 12.27 14.97 13.25 14.14 13.64L11.67 14.93C10.84 15.32 9.86 15.01 9.42 14.24C8.98 13.47 9.21 12.49 10.04 12.1L12.51 10.81Z" fill="#fff" />
+    {/* MCP - Model Context Protocol icon representing connectivity */}
+    <circle cx="6" cy="6" r="2" fill="currentColor" className="text-blue-600 dark:text-blue-400" />
+    <circle cx="18" cy="6" r="2" fill="currentColor" className="text-blue-600 dark:text-blue-400" />
+    <circle cx="6" cy="18" r="2" fill="currentColor" className="text-blue-600 dark:text-blue-400" />
+    <circle cx="18" cy="18" r="2" fill="currentColor" className="text-blue-600 dark:text-blue-400" />
+    <circle cx="12" cy="12" r="2.5" fill="currentColor" className="text-purple-600 dark:text-purple-400" />
+    <path d="M6 6L12 12M18 6L12 12M6 18L12 12M18 18L12 12" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" className="text-gray-400 dark:text-gray-500" />
   </svg>
 )
 
@@ -80,6 +85,17 @@ const integrations = [
     features: ['Type signature extraction', 'Interface documentation', 'Generic parameter tracking'],
   },
   {
+    name: 'MCP',
+    description: 'Model Context Protocol integration for AI assistants',
+    icon: MCPIcon,
+    gradient: 'from-blue-500/20 via-purple-500/20 to-indigo-600/20',
+    borderGradient: 'from-blue-500 via-purple-500 to-indigo-600',
+    iconBg: 'from-blue-500/10 to-indigo-600/10',
+    features: ['Context bundle access', 'Real-time codebase queries', 'AI assistant integration'],
+    comingSoon: true,
+    isFeatured: true,
+  },
+  {
     name: 'Vue',
     description: 'Vue 3 support with Composition API and SFC analysis',
     icon: VueIcon,
@@ -87,16 +103,6 @@ const integrations = [
     borderGradient: 'from-emerald-500 via-green-500 to-teal-600',
     iconBg: 'from-emerald-500/10 to-teal-600/10',
     features: ['SFC structure analysis', 'Composition API tracking', 'Template dependencies'],
-    comingSoon: true,
-  },
-  {
-    name: 'Svelte',
-    description: 'Svelte component analysis with reactive statements',
-    icon: SvelteIcon,
-    gradient: 'from-orange-500/20 via-red-500/20 to-red-600/20',
-    borderGradient: 'from-orange-500 via-red-500 to-red-600',
-    iconBg: 'from-orange-500/10 to-red-600/10',
-    features: ['Reactive variable tracking', 'Store dependency graphs', 'Component prop analysis'],
     comingSoon: true,
   },
   {
@@ -279,15 +285,28 @@ export default function Integrations() {
                     frameworksInView 
                       ? 'opacity-100 translate-y-0' 
                       : 'opacity-0 translate-y-8'
-                  }`}
+                  } ${integration.isFeatured ? 'xl:scale-[1.02]' : ''}`}
                   style={{ transitionDelay: `${index * 100 + 500}ms` }}
                 >
-                  <div className="relative h-full rounded-2xl p-8 shadow-sm transition-all duration-500 border border-gray-200/50 dark:border-gray-700/50 overflow-hidden">
+                  <div className={`relative h-full rounded-2xl transition-all duration-500 overflow-hidden ${
+                    integration.isFeatured 
+                      ? 'p-10 shadow-2xl border-2 border-blue-500/60 dark:border-blue-400/40 bg-gradient-to-br from-blue-50/50 via-purple-50/30 to-indigo-50/50 dark:from-blue-950/30 dark:via-purple-950/20 dark:to-indigo-950/30 ring-2 ring-blue-500/20 dark:ring-blue-400/10' 
+                      : 'p-8 shadow-sm border border-gray-200/50 dark:border-gray-700/50'
+                  }`}>
+                    
+                    {/* Featured Glow Effect */}
+                    {integration.isFeatured && (
+                      <div className="absolute inset-0 bg-gradient-to-r from-blue-500/10 via-purple-500/10 to-indigo-500/10 dark:from-blue-500/5 dark:via-purple-500/5 dark:to-indigo-500/5 rounded-2xl blur-xl opacity-50 animate-pulse" />
+                    )}
                     
                     {/* Coming Soon Badge */}
                     {integration.comingSoon && (
                       <div className="absolute top-6 right-6 z-10">
-                        <span className="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-gradient-to-r from-amber-500/10 to-orange-500/10 text-amber-700 dark:text-amber-400 border border-amber-500/20 backdrop-blur-sm">
+                        <span className={`inline-flex items-center px-3 py-1 rounded-full text-xs font-medium backdrop-blur-sm ${
+                          integration.isFeatured 
+                            ? 'bg-gradient-to-r from-blue-500/20 to-purple-500/20 text-blue-700 dark:text-blue-300 border border-blue-500/30 dark:border-blue-400/20' 
+                            : 'bg-gradient-to-r from-amber-500/10 to-orange-500/10 text-amber-700 dark:text-amber-400 border border-amber-500/20'
+                        }`}>
                           Coming Soon
                         </span>
                       </div>
@@ -295,15 +314,28 @@ export default function Integrations() {
                     
                     <div className="relative z-10">
                       {/* Icon */}
-                      <div className={`inline-flex items-center justify-center w-16 h-16 rounded-xl bg-gradient-to-br ${integration.iconBg}`}>
-                        <IconComponent />
+                      <div className={`inline-flex items-center justify-center rounded-xl bg-gradient-to-br ${integration.iconBg} ${
+                        integration.isFeatured ? 'w-20 h-20' : 'w-16 h-16'
+                      }`}>
+                        <div className={integration.isFeatured ? 'scale-110' : ''}>
+                          <IconComponent />
+                        </div>
                       </div>
                       
-                      <h4 className="mt-6 text-xl font-semibold text-gray-900 dark:text-white">
+                      <h4 className={`mt-6 font-semibold text-gray-900 dark:text-white ${
+                        integration.isFeatured ? 'text-2xl' : 'text-xl'
+                      }`}>
                         {integration.name}
+                        {integration.isFeatured && (
+                          <span className="ml-2 inline-flex items-center px-2 py-0.5 rounded text-xs font-bold bg-gradient-to-r from-blue-600 to-purple-600 text-white">
+                            Featured
+                          </span>
+                        )}
                       </h4>
                       
-                      <p className="mt-3 text-gray-600 dark:text-gray-300 text-sm sm:text-base leading-relaxed">
+                      <p className={`mt-3 text-gray-600 dark:text-gray-300 leading-relaxed ${
+                        integration.isFeatured ? 'text-base sm:text-lg' : 'text-sm sm:text-base'
+                      }`}>
                         {integration.description}
                       </p>
                       

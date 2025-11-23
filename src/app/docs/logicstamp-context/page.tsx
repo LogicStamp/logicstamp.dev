@@ -69,33 +69,40 @@ export default function LogicStampContextDocsPage() {
           </div>
         </AnimatedSection>
 
-        <AnimatedSection direction="up" delay={100}>
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8">
-            {pages.map((page, index) => (
-              <Link
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8">
+          {pages.map((page, index) => {
+            const isExternal = (page as any).external
+            
+            return (
+              <AnimatedSection
                 key={index}
-                href={page.href}
-                target={(page as any).external ? '_blank' : undefined}
-                rel={(page as any).external ? 'noopener noreferrer' : undefined}
-                className="block p-4 sm:p-6 bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 hover:border-blue-300 dark:hover:border-blue-500 hover:bg-blue-50 dark:hover:bg-blue-900/20 transition-colors group shadow-sm hover:shadow-md"
+                direction="up"
+                delay={100 + index * 100}
               >
-                <div className="flex items-start justify-between">
-                  <div className="flex-1">
-                    <h2 className="text-lg sm:text-xl font-semibold text-gray-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400 mb-2">
-                      {page.title}
-                    </h2>
-                    <p className="text-sm sm:text-base text-gray-600 dark:text-gray-400">
-                      {page.description}
-                    </p>
+                <Link
+                  href={page.href}
+                  target={isExternal ? '_blank' : undefined}
+                  rel={isExternal ? 'noopener noreferrer' : undefined}
+                  className="block bg-white dark:bg-gray-800 rounded-xl p-4 sm:p-6 shadow-sm border border-gray-200 dark:border-gray-700 hover:shadow-md transition-shadow group"
+                >
+                  <div className="flex items-start justify-between">
+                    <div className="flex-1">
+                      <h2 className="text-xl sm:text-2xl font-semibold tracking-tight text-gray-900 dark:text-white mb-2 sm:mb-3 group-hover:text-blue-600 dark:group-hover:text-blue-400">
+                        {page.title}
+                      </h2>
+                      <p className="text-sm sm:text-base text-gray-600 dark:text-gray-400">
+                        {page.description}
+                      </p>
+                    </div>
+                    <svg className="w-5 h-5 text-gray-400 group-hover:text-blue-500 ml-2 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                    </svg>
                   </div>
-                  <svg className="w-5 h-5 text-gray-400 group-hover:text-blue-500 ml-2 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                  </svg>
-                </div>
-              </Link>
-            ))}
-          </div>
-        </AnimatedSection>
+                </Link>
+              </AnimatedSection>
+            )
+          })}
+        </div>
       </DocsLayout>
       <Footer />
     </>
