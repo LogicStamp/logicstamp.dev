@@ -54,7 +54,7 @@ const faqs = [
     id: 4,
     question: 'What frameworks are supported?',
     answer:
-      'Currently supports React and TypeScript projects (including Next.js). Coming soon: Vue 3, Svelte, and other modern frameworks. Works with any React/TypeScript codebase regardless of styling solution (Tailwind, styled-components, CSS modules, etc.).',
+      'Currently supports React and TypeScript projects (including Next.js). Coming soon: Vue 3, MCP integration, and other modern frameworks. Works with any React/TypeScript codebase regardless of styling solution (Tailwind, styled-components, CSS modules, etc.).',
   },
   {
     id: 5,
