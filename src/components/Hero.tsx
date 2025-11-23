@@ -2,7 +2,7 @@
 
 import { useEffect, useRef, useState, forwardRef } from 'react'
 import CopyButton from './ui/CopyButton'
-import GitHubStats from './GitHubStats'
+// import GitHubStats from './GitHubStats'
 import StarGitHubButton from './ui/StarGitHubButton'
 import ReadTheDocsButton from './ui/ReadTheDocsButton'
 import HeroVisualization from './HeroVisualization'
@@ -271,14 +271,28 @@ export default function Hero() {
           </div>
         </div>
 
-        {/* GitHub Stats Section */}
+        {/* Welcome to Public Beta Section */}
         <div 
           ref={statsRef}
           className={`transition-all duration-1000 delay-600 ${
             statsInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
           }`}
         >
-          <GitHubStats />
+          <div className="mt-20 sm:mt-32 lg:mt-48 text-center">
+            <div className="inline-flex items-center gap-3 rounded-2xl bg-gradient-to-r from-blue-500/10 via-purple-500/10 to-pink-500/10 px-8 py-6 border border-gray-200/50 dark:border-gray-700/50 shadow-lg backdrop-blur-sm">
+              <svg className="w-8 h-8 text-blue-600 dark:text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+              </svg>
+              <div>
+                <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white">
+                  Welcome aboard!
+                </h2>
+                <p className="mt-2 text-sm sm:text-base text-gray-600 dark:text-gray-400">
+                  GitHub stats will unlock automatically as the project gains traction.
+                </p>
+              </div>
+            </div>
+          </div>
         </div>
 
         {/* Dependency Graph Visualization with Context.json Preview */}
