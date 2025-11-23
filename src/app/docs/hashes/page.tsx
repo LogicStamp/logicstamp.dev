@@ -50,8 +50,8 @@ export default function HashesPage() {
           <section className="relative mb-8 sm:mb-12 lg:mb-16">
             <div className="absolute -inset-1 bg-gradient-to-r from-slate-500 to-slate-700 rounded-2xl blur opacity-20 dark:opacity-10" />
             <div className="relative bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded-2xl p-4 sm:p-6 lg:p-8 shadow-xl">
-              <div className="flex items-center gap-3 mb-4 sm:mb-6">
-                <div className="p-2 bg-slate-100 dark:bg-slate-900/30 rounded-lg">
+              <div className="flex items-baseline gap-3 mb-4 sm:mb-6">
+                <div className="p-2 bg-slate-100 dark:bg-slate-900/30 rounded-lg flex-shrink-0 -mt-0.5">
                   <svg
                     className="w-5 h-5 sm:w-6 sm:h-6 text-slate-700 dark:text-slate-300"
                     fill="none"
@@ -144,8 +144,8 @@ export default function HashesPage() {
           <section className="relative mb-8 sm:mb-12 lg:mb-16">
             <div className="absolute -inset-1 bg-gradient-to-r from-indigo-600 to-purple-600 rounded-2xl blur opacity-20 dark:opacity-10" />
             <div className="relative bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded-2xl p-4 sm:p-6 lg:p-8 shadow-xl">
-              <div className="flex items-center gap-3 mb-4 sm:mb-6">
-                <div className="p-2 bg-indigo-100 dark:bg-indigo-900/30 rounded-lg">
+              <div className="flex items-baseline gap-3 mb-4 sm:mb-6">
+                <div className="p-2 bg-indigo-100 dark:bg-indigo-900/30 rounded-lg flex-shrink-0 -mt-0.5">
                   <svg
                     className="w-5 h-5 sm:w-6 sm:h-6 text-indigo-600 dark:text-indigo-300"
                     fill="none"
@@ -274,8 +274,8 @@ export default function HashesPage() {
           <section className="relative mb-8 sm:mb-12 lg:mb-16">
             <div className="absolute -inset-1 bg-gradient-to-r from-emerald-600 to-teal-600 rounded-2xl blur opacity-20 dark:opacity-10" />
             <div className="relative bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded-2xl p-4 sm:p-6 lg:p-8 shadow-xl">
-              <div className="flex items-center gap-3 mb-4 sm:mb-6">
-                <div className="p-2 bg-emerald-100 dark:bg-emerald-900/30 rounded-lg">
+              <div className="flex items-baseline gap-3 mb-4 sm:mb-6">
+                <div className="p-2 bg-emerald-100 dark:bg-emerald-900/30 rounded-lg flex-shrink-0 -mt-0.5">
                   <svg
                     className="w-5 h-5 sm:w-6 sm:h-6 text-emerald-600 dark:text-emerald-300"
                     fill="none"
@@ -383,8 +383,8 @@ export default function HashesPage() {
           <section className="relative mb-8 sm:mb-12 lg:mb-16">
             <div className="absolute -inset-1 bg-gradient-to-r from-cyan-600 to-blue-600 rounded-2xl blur opacity-20 dark:opacity-10" />
             <div className="relative bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded-2xl p-4 sm:p-6 lg:p-8 shadow-xl">
-              <div className="flex items-center gap-3 mb-4 sm:mb-6">
-                <div className="p-2 bg-cyan-100 dark:bg-cyan-900/30 rounded-lg">
+              <div className="flex items-baseline gap-3 mb-4 sm:mb-6">
+                <div className="p-2 bg-cyan-100 dark:bg-cyan-900/30 rounded-lg flex-shrink-0 -mt-0.5">
                   <svg
                     className="w-5 h-5 sm:w-6 sm:h-6 text-cyan-600 dark:text-cyan-300"
                     fill="none"
@@ -460,8 +460,8 @@ export default function HashesPage() {
           <section className="relative mb-8 sm:mb-12 lg:mb-16">
             <div className="absolute -inset-1 bg-gradient-to-r from-amber-500 to-orange-600 rounded-2xl blur opacity-20 dark:opacity-10" />
             <div className="relative bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded-2xl p-4 sm:p-6 lg:p-8 shadow-xl">
-              <div className="flex items-center gap-3 mb-4 sm:mb-6">
-                <div className="p-2 bg-amber-100 dark:bg-amber-900/30 rounded-lg">
+              <div className="flex items-baseline gap-3 mb-4 sm:mb-6">
+                <div className="p-2 bg-amber-100 dark:bg-amber-900/30 rounded-lg flex-shrink-0 -mt-0.5">
                   <svg
                     className="w-5 h-5 sm:w-6 sm:h-6 text-amber-600 dark:text-amber-300"
                     fill="none"
