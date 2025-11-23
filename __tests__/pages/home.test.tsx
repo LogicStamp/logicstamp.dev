@@ -3,27 +3,27 @@ import { render, screen } from '../utils/test-utils'
 import Home from '@/app/page'
 
 // Mock the components to focus on page structure
-vi.mock('@/components/Hero', () => ({
+vi.mock('@/components/sections/Hero', () => ({
   default: () => <div data-testid="hero">Hero Section</div>,
 }))
 
-vi.mock('@/components/Features', () => ({
+vi.mock('@/components/sections/Features', () => ({
   default: () => <div data-testid="features">Features Section</div>,
 }))
 
-vi.mock('@/components/WhyLogicStamp', () => ({
+vi.mock('@/components/sections/WhyLogicStamp', () => ({
   default: () => <div data-testid="why-logicstamp">Why LogicStamp Section</div>,
 }))
 
-vi.mock('@/components/Integrations', () => ({
+vi.mock('@/components/sections/Integrations', () => ({
   default: () => <div data-testid="integrations">Integrations Section</div>,
 }))
 
-vi.mock('@/components/FAQ', () => ({
+vi.mock('@/components/sections/FAQ', () => ({
   default: () => <div data-testid="faq">FAQ Section</div>,
 }))
 
-vi.mock('@/components/CTA', () => ({
+vi.mock('@/components/sections/CTA', () => ({
   default: () => <div data-testid="cta">CTA Section</div>,
 }))
 

@@ -1,7 +1,7 @@
 'use client'
 
 import { useState, useEffect, useRef } from 'react'
-import AnimatedSection from './AnimatedSection'
+import AnimatedSection from '../AnimatedSection'
 
 // Custom hook for intersection observer
 function useInView(threshold = 0.1) {

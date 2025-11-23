@@ -2,7 +2,7 @@ import { describe, it, expect, vi, beforeEach } from 'vitest'
 import { render, screen } from '../utils/test-utils'
 import { setupIntersectionObserverMock } from '../utils/test-utils'
 import userEvent from '@testing-library/user-event'
-import FAQ from '@/components/FAQ'
+import FAQ from '@/components/sections/FAQ'
 
 // Mock child components
 vi.mock('@/components/ui/GetStartedButton', () => ({

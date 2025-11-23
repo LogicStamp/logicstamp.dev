@@ -1,7 +1,7 @@
 'use client'
 import { useEffect, useRef, useState } from 'react'
-import AnimatedSection from './AnimatedSection'
-import AnimatedCounter from './AnimatedCounter'
+import AnimatedSection from '../AnimatedSection'
+import AnimatedCounter from '../AnimatedCounter'
 
 const stats = [
   {

@@ -1,11 +1,11 @@
 'use client'
 
 import { useEffect, useRef, useState, forwardRef } from 'react'
-import CopyButton from './ui/CopyButton'
+import CopyButton from '../ui/CopyButton'
 // import GitHubStats from './GitHubStats'
-import StarGitHubButton from './ui/StarGitHubButton'
-import ReadTheDocsButton from './ui/ReadTheDocsButton'
-import HeroVisualization from './HeroVisualization'
+import StarGitHubButton from '../ui/StarGitHubButton'
+import ReadTheDocsButton from '../ui/ReadTheDocsButton'
+import HeroVisualization from '../HeroVisualization'
 import CommunityCTA from './CommunityCTA'
 
 // Custom hook for intersection observer

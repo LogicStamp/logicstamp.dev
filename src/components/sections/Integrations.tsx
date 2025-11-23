@@ -1,7 +1,7 @@
 'use client'
 
 import { useEffect, useRef, useState } from 'react'
-import AnimatedSection from './AnimatedSection'
+import AnimatedSection from '../AnimatedSection'
 
 // Framework logos as SVG components
 const ReactIcon = () => (

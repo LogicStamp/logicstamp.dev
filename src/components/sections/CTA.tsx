@@ -1,7 +1,7 @@
 'use client'
 
 import { useRef, useState, useEffect } from 'react'
-import ReadTheDocsButton from './ui/ReadTheDocsButton'
+import ReadTheDocsButton from '../ui/ReadTheDocsButton'
 
 // Custom hook for intersection observer
 function useInView(threshold = 0.1) {

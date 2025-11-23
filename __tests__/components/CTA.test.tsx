@@ -1,7 +1,7 @@
 import { describe, it, expect, vi, beforeEach } from 'vitest'
 import { render, screen } from '../utils/test-utils'
 import { setupIntersectionObserverMock } from '../utils/test-utils'
-import CTA from '@/components/CTA'
+import CTA from '@/components/sections/CTA'
 
 // Mock child components
 vi.mock('@/components/ui/ReadTheDocsButton', () => ({

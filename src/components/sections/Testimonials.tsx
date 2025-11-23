@@ -1,6 +1,6 @@
 'use client'
 import { useState } from 'react'
-import AnimatedSection from './AnimatedSection'
+import AnimatedSection from '../AnimatedSection'
 
 // Image component with error fallback
 function AvatarImage({ src, alt, name }: { src: string; alt: string; name: string }) {

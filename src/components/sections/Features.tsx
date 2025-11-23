@@ -1,7 +1,7 @@
 'use client'
 
 import { useEffect, useState, useRef } from 'react'
-import { useTheme } from '../contexts/ThemeContext'
+import { useTheme } from '../../contexts/ThemeContext'
 import { ChevronRight } from 'lucide-react'
 
 // Custom hook for intersection observer
