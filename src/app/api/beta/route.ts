@@ -7,9 +7,9 @@ export async function POST(request: Request) {
     const supabaseServiceRoleKey = process.env.SUPABASE_SERVICE_ROLE_KEY
 
     if (!supabaseUrl || !supabaseServiceRoleKey) {
-      console.error('Newsletter API env error: SUPABASE_URL or SUPABASE_SERVICE_ROLE_KEY not set')
+      console.error('Beta API env error: SUPABASE_URL or SUPABASE_SERVICE_ROLE_KEY not set')
       return NextResponse.json(
-        { success: false, error: 'Newsletter service not configured' },
+        { success: false, error: 'Beta service not configured' },
         { status: 500 }
       )
     }
@@ -32,7 +32,7 @@ export async function POST(request: Request) {
     // Try inserting with source column first
     let result = await supabase
       .from('newsletter_subscribers')
-      .insert({ email: trimmed, source: 'footer' })
+      .insert({ email: trimmed, source: 'beta' })
 
     // If source column doesn't exist, fall back to without source
     // Check for both PostgreSQL error code (42703) and Supabase schema cache error
@@ -57,16 +57,16 @@ export async function POST(request: Request) {
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
       if ((result.error as any).code === '23505') {
         return NextResponse.json(
-          { success: true, message: 'Already subscribed' },
+          { success: true, message: 'Already signed up' },
           { status: 200 }
         )
       }
 
-      console.error('Newsletter insert error:', result.error)
+      console.error('Beta insert error:', result.error)
       // Include error details in development
       const errorMessage = process.env.NODE_ENV === 'development'
-        ? `Failed to subscribe: ${result.error.message || 'Unknown error'}`
-        : 'Failed to subscribe'
+        ? `Failed to sign up: ${result.error.message || 'Unknown error'}`
+        : 'Failed to sign up'
       
       return NextResponse.json(
         { success: false, error: errorMessage },
@@ -75,16 +75,15 @@ export async function POST(request: Request) {
     }
 
     return NextResponse.json(
-      { success: true, message: 'Subscribed' },
+      { success: true, message: 'Signed up successfully' },
       { status: 201 }
     )
   } catch (err) {
-    console.error('Newsletter API error:', err)
+    console.error('Beta API error:', err)
     return NextResponse.json(
       { success: false, error: 'Something went wrong' },
       { status: 500 }
     )
   }
 }
-
 

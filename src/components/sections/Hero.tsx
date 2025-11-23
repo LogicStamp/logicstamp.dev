@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect, useRef, useState, forwardRef } from 'react'
+import { useEffect, useRef, useState, forwardRef, FormEvent } from 'react'
 import CopyButton from '../ui/CopyButton'
 // import GitHubStats from './GitHubStats'
 import StarGitHubButton from '../ui/StarGitHubButton'
@@ -144,6 +144,63 @@ export default function Hero() {
   const { ref: statsRef, inView: statsInView } = useInView(0.1)
   const { ref: visualizationRef, inView: visualizationInView } = useInView(0.1)
   const { ref: communityRef, inView: communityInView } = useInView(0.1)
+
+  // Beta signup form state
+  const [betaEmail, setBetaEmail] = useState('')
+  const [isSubmittingBeta, setIsSubmittingBeta] = useState(false)
+  const [betaSuccessMessage, setBetaSuccessMessage] = useState<string | null>(null)
+  const [betaErrorMessage, setBetaErrorMessage] = useState<string | null>(null)
+
+  const handleBetaSubmit = async (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault()
+
+    if (!betaEmail.trim()) {
+      setBetaErrorMessage('Please enter an email address.')
+      setBetaSuccessMessage(null)
+      return
+    }
+
+    setIsSubmittingBeta(true)
+    setBetaErrorMessage(null)
+    setBetaSuccessMessage(null)
+
+    try {
+      const response = await fetch('/api/beta', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ email: betaEmail }),
+      })
+
+      const data: { success?: boolean; message?: string; error?: string } = await response.json().catch(
+        () => ({})
+      )
+
+      if (response.ok && data.success) {
+        const baseMessage = data.message === 'Already signed up'
+          ? 'You are already on the beta list.'
+          : 'You are in! We\'ll be in touch soon.'
+
+        setBetaSuccessMessage(`✔ ${baseMessage}`)
+        setBetaErrorMessage(null)
+        setBetaEmail('')
+      } else {
+        const userFriendlyError =
+          data.error === 'Invalid email'
+            ? 'Please enter a valid email address.'
+            : data.error || 'We could not sign you up right now. Please try again in a moment.'
+
+        setBetaErrorMessage(userFriendlyError)
+        setBetaSuccessMessage(null)
+      }
+    } catch (error) {
+      setBetaErrorMessage('We could not sign you up right now. Please check your connection and try again.')
+      setBetaSuccessMessage(null)
+    } finally {
+      setIsSubmittingBeta(false)
+    }
+  }
   return (
     <section className="relative overflow-hidden bg-gradient-to-br from-blue-50 via-purple-50 to-pink-50 dark:from-gray-900 dark:via-purple-950/30 dark:to-pink-950/30 pt-28 pb-20 sm:pt-36 sm:pb-32 min-h-screen">
       {/* Decorative background elements */}
@@ -271,7 +328,7 @@ export default function Hero() {
           </div>
         </div>
 
-        {/* Welcome to Public Beta Section */}
+        {/* Join the Beta Section */}
         <div 
           ref={statsRef}
           className={`transition-all duration-1000 delay-600 ${
@@ -279,17 +336,45 @@ export default function Hero() {
           }`}
         >
           <div className="mt-20 sm:mt-32 lg:mt-48 text-center">
-            <div className="inline-flex items-center gap-3 rounded-2xl bg-gradient-to-r from-blue-500/10 via-purple-500/10 to-pink-500/10 px-8 py-6 border border-gray-200/50 dark:border-gray-700/50 shadow-lg backdrop-blur-sm">
+            <div className="inline-flex flex-col items-center gap-4 rounded-2xl bg-gradient-to-r from-blue-500/10 via-purple-500/10 to-pink-500/10 px-6 sm:px-8 py-6 sm:py-8 border border-gray-200/50 dark:border-gray-700/50 shadow-lg backdrop-blur-sm max-w-md mx-auto">
               <svg className="w-8 h-8 text-blue-600 dark:text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
               </svg>
-              <div>
-                <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white">
-                  Welcome aboard!
+              <div className="w-full">
+                <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white mb-2">
+                  Join the Beta
                 </h2>
-                <p className="mt-2 text-sm sm:text-base text-gray-600 dark:text-gray-400">
-                  GitHub stats will unlock automatically as the project gains traction.
+                <p className="text-sm sm:text-base text-gray-600 dark:text-gray-400 mb-4">
+                  Be among the first to experience LogicStamp. Get early access and help shape the future.
                 </p>
+                <form className="flex flex-col gap-3" onSubmit={handleBetaSubmit}>
+                  <input
+                    type="email"
+                    placeholder="your@email.com"
+                    value={betaEmail}
+                    onChange={(e) => setBetaEmail(e.target.value)}
+                    className="w-full px-4 py-2.5 rounded-lg border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-900 text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 dark:focus:ring-blue-400 focus:border-transparent transition-colors"
+                    required
+                    disabled={isSubmittingBeta}
+                  />
+                  <button
+                    type="submit"
+                    disabled={isSubmittingBeta}
+                    className="w-full px-6 py-2.5 rounded-lg bg-gradient-to-r from-blue-600 to-purple-600 text-white font-semibold hover:from-blue-700 hover:to-purple-700 transition-all duration-200 shadow-lg hover:shadow-xl disabled:opacity-70 disabled:cursor-not-allowed"
+                  >
+                    {isSubmittingBeta ? 'Signing up...' : 'Join Beta'}
+                  </button>
+                  {betaSuccessMessage && (
+                    <p className="text-sm text-green-600 dark:text-green-400 mt-1">
+                      {betaSuccessMessage}
+                    </p>
+                  )}
+                  {betaErrorMessage && (
+                    <p className="text-sm text-red-600 dark:text-red-400 mt-1">
+                      {betaErrorMessage}
+                    </p>
+                  )}
+                </form>
               </div>
             </div>
           </div>
