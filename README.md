@@ -2,6 +2,8 @@
 
 <div align="center">
 
+<img src="public/mascot/logicstamp-fox.svg" alt="LogicStamp Fox Mascot" width="120" height="120">
+
 **The official landing page and documentation site for LogicStamp**
 
 [![Next.js](https://img.shields.io/badge/Next.js-14-black)](https://nextjs.org/)
