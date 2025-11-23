@@ -16,9 +16,8 @@ const navigation = {
     { name: 'logicstamp.dev@gmail.com', href: 'mailto:logicstamp.dev@gmail.com', external: true },
   ],
   legal: [
-    { name: 'MIT License', href: '#', external: false },
-    { name: 'Privacy', href: '#', external: false },
-    { name: 'Terms', href: '#', external: false },
+    { name: 'MIT License', href: '/license', external: false },
+    { name: 'Privacy & Security', href: '/privacy-security', external: false },
   ],
 }
 
