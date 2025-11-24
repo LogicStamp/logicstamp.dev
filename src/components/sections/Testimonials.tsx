@@ -9,9 +9,10 @@ function AvatarImage({ src, alt, name }: { src: string; alt: string; name: strin
 
   const fallbackSrc = `https://ui-avatars.com/api/?name=${encodeURIComponent(name)}&background=random`
 
-  // Use regular img tag for better error handling
+  // Use regular img tag for error fallback handling (Next.js Image doesn't support onError)
   return (
     <div className="relative h-10 w-10 flex-shrink-0">
+      {/* eslint-disable-next-line @next/next/no-img-element */}
       <img
         src={hasError ? fallbackSrc : imgSrc}
         alt={alt}

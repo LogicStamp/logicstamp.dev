@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect, useState, useRef } from 'react'
+import { useEffect, useState, useRef, useMemo } from 'react'
 import { useTheme } from '../../contexts/ThemeContext'
 import { ChevronRight } from 'lucide-react'
 
@@ -39,7 +39,7 @@ function HowItWorksTerminalAnimation() {
   const [showCursor, setShowCursor] = useState(true)
   const [isTyping, setIsTyping] = useState(false)
   
-  const demos = [
+  const demos = useMemo(() => [
     {
       title: 'Generate Context',
       content: `$ npm i -g logicstamp-context
@@ -236,7 +236,7 @@ $ stamp context clean
   }
 ]`
     }
-  ]
+  ], [])
 
   useEffect(() => {
     if (typeof window === 'undefined' || !terminalInView) return
@@ -306,7 +306,7 @@ $ stamp context clean
       if (typingInterval) clearTimeout(typingInterval)
       clearTimeout(startDelay)
     }
-  }, [currentDemo, terminalInView])
+  }, [currentDemo, terminalInView, demos])
 
   // Auto-cycle through demos - only when not typing
   useEffect(() => {
@@ -323,7 +323,7 @@ $ stamp context clean
     } catch (error) {
       console.error('Error setting up auto-cycle:', error)
     }
-  }, [isTyping])
+  }, [isTyping, demos.length])
 
   // Handle manual demo switching
   const handleDemoSwitch = (index: number) => {

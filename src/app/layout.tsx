@@ -1,11 +1,19 @@
 import type { Metadata } from 'next'
 import { cookies } from 'next/headers'
 import { GeistSans, GeistMono } from 'geist/font'
+import { Inter } from 'next/font/google'
 import './globals.css'
 import Header from '@/components/Header'
 import ScrollToTop from '@/components/ScrollToTop'
 import ScrollToTopButton from '@/components/ui/ScrollToTopButton'
 import { ThemeProvider } from '@/contexts/ThemeContext'
+
+const inter = Inter({
+  subsets: ['latin'],
+  weight: ['400', '500', '600', '700'],
+  display: 'swap',
+  variable: '--font-inter',
+})
 
 export const metadata: Metadata = {
   title: 'LogicStamp - AI-Ready Context From Your Codebase',
@@ -38,22 +46,11 @@ export default function RootLayout({
       <head>
         <link rel="icon" href="/icon.svg?v=4" type="image/svg+xml" />
         <link rel="shortcut icon" href="/icon.svg?v=4" type="image/svg+xml" />
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         <script
           dangerouslySetInnerHTML={{
             __html: `
               (function() {
                 try {
-                  // Load Google Fonts asynchronously to prevent render blocking
-                  var link = document.createElement('link');
-                  link.href = 'https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap';
-                  link.rel = 'stylesheet';
-                  link.media = 'print';
-                  link.onload = function() { this.media = 'all'; this.onload = null; };
-                  link.onerror = function() { this.onerror = null; };
-                  document.head.appendChild(link);
-                  
                   // Theme initialization
                   var cookieMatch = document.cookie.match(/(?:^|; )theme=([^;]+)/);
                   var cookieTheme = cookieMatch ? decodeURIComponent(cookieMatch[1]) : null;
@@ -75,9 +72,8 @@ export default function RootLayout({
             `,
           }}
         />
-        <noscript><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" /></noscript>
       </head>
-      <body className={`${GeistSans.variable} ${GeistMono.variable} font-sans bg-gradient-to-b from-sky-100 to-white dark:from-gray-900 dark:to-gray-800 min-h-screen`}>
+      <body className={`${GeistSans.variable} ${GeistMono.variable} ${inter.variable} font-sans bg-gradient-to-b from-sky-100 to-white dark:from-gray-900 dark:to-gray-800 min-h-screen`}>
         <ThemeProvider>
           <ScrollToTop />
           <ScrollToTopButton />
