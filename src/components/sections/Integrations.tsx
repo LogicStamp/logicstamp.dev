@@ -106,13 +106,13 @@ const integrations = [
     comingSoon: true,
   },
   {
-    name: 'Full CLI',
-    description: 'Complete LogicStamp CLI with verification and watch mode',
+    name: 'Upcoming Enhancements',
+    description: 'New features planned for the LogicStamp CLI',
     icon: CLIIcon,
     gradient: 'from-purple-500/20 via-indigo-500/20 to-violet-600/20',
     borderGradient: 'from-purple-500 via-indigo-500 to-violet-600',
     iconBg: 'from-purple-500/10 to-violet-600/10',
-    features: ['Contract verification', 'Watch mode for changes', 'Full contract management'],
+    features: ['Contract verification upgrades (advanced rules + deeper validation)', 'Watch mode for automatic context regeneration on file changes', 'Enhanced contract management (grouped bundles, project-level insights)', 'Optional @logicstamp/cli orchestrator for multi-framework setups'],
     comingSoon: true,
   },
 ]
