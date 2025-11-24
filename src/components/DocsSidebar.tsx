@@ -47,6 +47,7 @@ const sections: DocsNavSection[] = [
       { title: 'LLM Context Format', href: '/docs/logicstamp-context/llm-context' },
       { title: 'Best Practices', href: '/docs/best-practices' },
       { title: 'Hashes', href: '/docs/hashes' },
+      { title: 'bundleHash (uifb)', href: '/docs/uifb' },
       { title: 'UIF Contracts', href: '/docs/logicstamp-context/uif-contracts' },
       { title: 'Schema', href: '/docs/logicstamp-context/schema' },
     ],
@@ -290,6 +291,24 @@ function getIcon(href: string): ReactNode {
     )
   }
 
+  if (href === '/docs/uifb') {
+    // Bundle / folder icon
+    return (
+      <svg
+        className="w-3.5 h-3.5"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth={2}
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      >
+        <path d="M3 7h4l2-3h6l2 3h4v11H3z" />
+        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 7h18" />
+      </svg>
+    )
+  }
+
   // Default subtle dot
   return (
     <span className="w-1.5 h-1.5 rounded-full bg-current opacity-60" />
@@ -298,7 +317,8 @@ function getIcon(href: string): ReactNode {
 
 export default function DocsSidebar() {
   const pathname = usePathname()
-  const [isCliOpen, setIsCliOpen] = useState(true)
+  const [isCliOpen, setIsCliOpen] = useState(false)
+  const [isGuidesOpen, setIsGuidesOpen] = useState(false)
 
   // Auto-open CLI section if any CLI item is active
   useEffect(() => {
@@ -307,6 +327,17 @@ export default function DocsSidebar() {
       const hasActiveCliItem = cliSection.items.some((item) => isActive(pathname, item.href))
       if (hasActiveCliItem) {
         setIsCliOpen(true)
+      }
+    }
+  }, [pathname])
+
+  // Auto-open Guides section if any Guides item is active
+  useEffect(() => {
+    const guidesSection = sections.find((s) => s.title === 'Guides')
+    if (guidesSection) {
+      const hasActiveGuidesItem = guidesSection.items.some((item) => isActive(pathname, item.href))
+      if (hasActiveGuidesItem) {
+        setIsGuidesOpen(true)
       }
     }
   }, [pathname])
@@ -337,6 +368,7 @@ export default function DocsSidebar() {
       <div className="flex-1 overflow-y-auto lg:pr-2 sidebar-scrollable space-y-7">
         {sections.map((section) => {
           const isCliSection = section.title === 'CLI'
+          const isGuidesSection = section.title === 'Guides'
           
           return (
             <div key={section.title}>
@@ -351,13 +383,67 @@ export default function DocsSidebar() {
                     >
                       {isCliOpen ? '−' : '+'}
                     </button>
-                    <span className="text-xs font-semibold uppercase tracking-wide text-gray-500 dark:text-gray-400">
+                    <button
+                      onClick={() => setIsCliOpen(!isCliOpen)}
+                      className="text-xs font-semibold uppercase tracking-wide text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-300 cursor-pointer focus:outline-none"
+                      aria-label={isCliOpen ? 'Collapse CLI section' : 'Expand CLI section'}
+                    >
                       {section.title}
-                    </span>
+                    </button>
                   </div>
                   <div
                     className={`overflow-hidden transition-all duration-300 ease-in-out ${
                       isCliOpen ? 'max-h-[500px] opacity-100' : 'max-h-0 opacity-0'
+                    }`}
+                  >
+                    <ul className="space-y-1">
+                      {section.items.map((item) => {
+                        const active = isActive(pathname, item.href)
+                        return (
+                          <li key={item.href}>
+                            <Link
+                              href={item.href}
+                              className={`block rounded-md border-l-2 px-2 py-1.5 transition-colors ${
+                                active
+                                  ? 'border-blue-500 bg-blue-50 text-blue-700 font-semibold dark:border-blue-400 dark:bg-blue-900/40 dark:text-blue-200'
+                                  : 'border-transparent text-gray-700 hover:border-gray-300 hover:bg-gray-100 hover:text-blue-700 dark:border-transparent dark:text-gray-300 dark:hover:border-gray-700 dark:hover:bg-gray-800 dark:hover:text-blue-200'
+                              }`}
+                            >
+                              <span className="flex items-center gap-2">
+                                <span className="inline-flex items-center justify-center text-gray-400 dark:text-gray-500">
+                                  {getIcon(item.href)}
+                                </span>
+                                <span>{item.title}</span>
+                              </span>
+                            </Link>
+                          </li>
+                        )
+                      })}
+                    </ul>
+                  </div>
+                </>
+              ) : isGuidesSection ? (
+                <>
+                  <div className="mb-2 flex items-center gap-2">
+                    <button
+                      onClick={() => setIsGuidesOpen(!isGuidesOpen)}
+                      className="flex items-center justify-center w-6 h-6 rounded border border-gray-300 dark:border-gray-600 text-gray-600 dark:text-gray-400 text-sm font-normal transition-colors hover:border-gray-400 dark:hover:border-gray-500 focus:outline-none"
+                      aria-expanded={isGuidesOpen}
+                      aria-label={isGuidesOpen ? 'Collapse Guides section' : 'Expand Guides section'}
+                    >
+                      {isGuidesOpen ? '−' : '+'}
+                    </button>
+                    <button
+                      onClick={() => setIsGuidesOpen(!isGuidesOpen)}
+                      className="text-xs font-semibold uppercase tracking-wide text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-300 cursor-pointer focus:outline-none"
+                      aria-label={isGuidesOpen ? 'Collapse Guides section' : 'Expand Guides section'}
+                    >
+                      {section.title}
+                    </button>
+                  </div>
+                  <div
+                    className={`overflow-hidden transition-all duration-300 ease-in-out ${
+                      isGuidesOpen ? 'max-h-[500px] opacity-100' : 'max-h-0 opacity-0'
                     }`}
                   >
                     <ul className="space-y-1">
