@@ -36,43 +36,43 @@ const faqs = [
     id: 1,
     question: 'How does LogicStamp Context work?',
     answer:
-      'LogicStamp Context scans your React/TypeScript codebase and generates structured context bundles optimized for AI consumption. It analyzes component structure, extracts logic signatures (props, state, events), builds dependency graphs, and packages everything into machine-readable JSON with built-in token optimization. No configuration needed—just run `stamp context` and get instant AI-ready documentation.',
+      'LogicStamp Context scans your React/TypeScript codebase and generates structured context bundles optimized for AI consumption.\nIt analyzes component structure, extracts logic signatures (props, state, events), builds dependency graphs, and packages everything into machine-readable JSON with built-in token optimization.\nNo configuration needed—just run `stamp context` and get instant AI-ready documentation.',
   },
   {
     id: 2,
     question: 'Why not just paste code into AI chats?',
     answer:
-      'Pasting raw code wastes tokens on boilerplate, imports, and redundant formatting. LogicStamp Context extracts only what AI needs—component contracts, dependency relationships, and logic signatures—saving up to 66% tokens compared to full source code. Plus, it provides structured context that AI can actually parse and understand, not just raw text.',
+      'Pasting raw code wastes tokens on boilerplate, imports, and redundant formatting.\nLogicStamp Context extracts only what AI needs—component contracts, dependency relationships, and logic signatures—saving up to 66% tokens compared to full source code.\nPlus, it provides structured context that AI can actually parse and understand, not just raw text.',
   },
   {
     id: 3,
     question: 'Is there a free version?',
     answer:
-      'Yes! LogicStamp Context is completely free and open-source. Install it globally with `npm i -g logicstamp-context` and use it unlimited times. The full LogicStamp CLI (with contract verification and watch mode) will be available soon with additional features.',
+      'Yes! LogicStamp Context is completely free and open-source.\nInstall it globally with npm i -g logicstamp-context and use it without limits.\nThe extended LogicStamp CLI (contract validation, drift detection, watch mode, and more) is currently in development and will be released soon.',
   },
   {
     id: 4,
     question: 'What frameworks are supported?',
     answer:
-      'Currently supports React and TypeScript projects (including Next.js). Coming soon: Vue 3, MCP integration, and other modern frameworks. Works with any React/TypeScript codebase regardless of styling solution (Tailwind, styled-components, CSS modules, etc.).',
+      'Currently supports React and TypeScript projects (including Next.js).\nComing soon: Vue 3, MCP integration, and other modern frameworks.\nWorks with any React/TypeScript codebase regardless of styling solution (Tailwind, styled-components, CSS modules, etc.).',
   },
   {
     id: 5,
     question: 'How do I get started?',
     answer:
-      'Install globally with `npm i -g logicstamp-context`, navigate to your project directory, and run `stamp context`. The CLI generates multiple `context.json` files (one per folder) plus a `context_main.json` index with AI-ready bundles. Share these files with Claude, ChatGPT, or any AI assistant for instant codebase understanding. Use `stamp context validate` to verify the output.',
+      'Install globally with `npm i -g logicstamp-context`, navigate to your project directory, and run `stamp context`.\nThe CLI generates multiple `context.json` files (one per folder) plus a `context_main.json` index with AI-ready bundles.\nShare these files with Claude, ChatGPT, or any AI assistant for instant codebase understanding.\nUse `stamp context validate` to verify the output.',
   },
   {
     id: 6,
     question: 'How does token optimization work?',
     answer:
-      'LogicStamp Context offers three modes: `none` (contracts only, ~80% savings), `header` (recommended, ~66% savings with JSDoc headers), and `full` (complete source). The header mode includes just enough context for AI to understand component logic without wasting tokens on implementation details. Use `--compare-modes` to see exact savings for your codebase.',
+      'LogicStamp Context offers three modes: `none` (contracts only, ~80% savings), `header` (recommended, ~66% savings with JSDoc headers), and `full` (complete source).\nThe header mode includes just enough context for AI to understand component logic without wasting tokens on implementation details.\nUse `--compare-modes` to see exact savings for your codebase.',
   },
   {
     id: 7,
     question: 'Why bundles instead of individual component files?',
     answer:
-      'LogicStamp Context generates per-root bundles (one bundle per page/feature component) rather than individual files per component. Each bundle contains the root component plus its complete dependency graph—all related components together. This design matches how developers work: when you need help with a specific page or feature, share that bundle and the AI has complete context in one self-contained unit.',
+      'LogicStamp Context generates per-root bundles (one bundle per page/feature component) rather than individual files per component.\nEach bundle contains the root component plus its complete dependency graph—all related components together.\nThis design matches how developers work: when you need help with a specific page or feature, share that bundle and the AI has complete context in one self-contained unit.',
   },
 ]
 
@@ -254,7 +254,7 @@ export default function FAQ() {
                       `}
                     >
                       <div className="overflow-hidden">
-                        <p className="text-base lg:text-lg leading-7 text-gray-600 dark:text-gray-300 pr-2 sm:pr-8">
+                        <p className="text-base lg:text-lg leading-7 text-gray-600 dark:text-gray-300 pr-2 sm:pr-8 whitespace-pre-line">
                           {faq.answer}
                         </p>
                       </div>

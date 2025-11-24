@@ -224,12 +224,11 @@ export default function Hero() {
             <h1 className="text-4xl font-extrabold tracking-tight text-gray-900 dark:text-white sm:text-6xl lg:text-7xl xl:text-8xl sm:text-balance leading-tight">
               {/* Mobile: 2 lines */}
               <span className="block sm:hidden">
-                <span className="block whitespace-nowrap">Turn Your Codebase</span>
+                <span className="block whitespace-nowrap">Turn React/TS Into</span>
                 <span className="block whitespace-nowrap">
-                  <span>Into </span>
                   <span className="relative inline-block">
                     <span className="bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 bg-clip-text text-transparent">
-                      AI Context
+                      AI-Ready Context
                     </span>
                     <span className="absolute inset-0 bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 blur-xl -z-10 opacity-20 animate-pulse"></span>
                   </span>
@@ -237,10 +236,10 @@ export default function Hero() {
               </span>
               {/* Desktop: single line */}
               <span className="hidden sm:inline">
-                Turn Your Codebase Into{' '}
+                Turn React/TS Into{' '}
                 <span className="relative inline-block">
                   <span className="bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 bg-clip-text text-transparent">
-                    AI Context
+                    AI-Ready Context
                   </span>
                   <span className="absolute inset-0 bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 blur-xl -z-10 opacity-20 animate-pulse"></span>
                 </span>
@@ -265,27 +264,17 @@ export default function Hero() {
             </p>
           </div>
 
-          {/* Buttons */}
-          <div 
-            ref={buttonsRef}
-            className={`transition-all duration-1000 delay-300 ${
-              buttonsInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
-            }`}
-          >
-            <div className="mt-12 flex flex-row items-center justify-center gap-2 sm:gap-4 lg:gap-6">
-              <StarGitHubButton />
-              <ReadTheDocsButton href="docs/" />
-            </div>
-          </div>
-
           {/* Quick install snippet - More prominent */}
           <div 
             ref={installRef}
-            className={`transition-all duration-1000 delay-400 ${
+            className={`transition-all duration-1000 delay-300 ${
               installInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
             }`}
           >
-            <div className="mt-10 sm:mt-12 flex justify-center">
+            <div className="mt-10 sm:mt-12 flex flex-col items-center">
+              <p className="text-xs sm:text-sm font-medium text-gray-500 dark:text-gray-400 mb-2">
+                Install the CLI
+              </p>
               <div className="relative group">
                 <div className="absolute -inset-1 bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 rounded-2xl blur opacity-25 group-hover:opacity-40 transition duration-300"></div>
                 <div className="relative inline-flex items-center gap-3 rounded-xl bg-white dark:bg-gray-900 px-6 sm:px-8 lg:px-10 py-4 sm:py-5 shadow-xl ring-1 ring-gray-300/50 dark:ring-gray-700/50">
@@ -298,6 +287,19 @@ export default function Hero() {
                   <CopyButton text="npm install -g logicstamp-context" className="ml-2" />
                 </div>
               </div>
+            </div>
+          </div>
+
+          {/* Buttons */}
+          <div 
+            ref={buttonsRef}
+            className={`transition-all duration-1000 delay-400 ${
+              buttonsInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+            }`}
+          >
+            <div className="mt-6 sm:mt-8 flex flex-row items-center justify-center gap-2 sm:gap-4 lg:gap-6">
+              <StarGitHubButton />
+              <ReadTheDocsButton href="docs/" />
             </div>
           </div>
 
