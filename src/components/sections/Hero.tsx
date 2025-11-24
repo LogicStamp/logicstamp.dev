@@ -254,7 +254,7 @@ export default function Hero() {
               betaButtonInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
             }`}
           >
-            <div className="mt-6 sm:mt-8 flex flex-col items-center justify-center">
+            <div className="mt-10 sm:mt-12 flex flex-col items-center justify-center">
               <a
                 href="/beta"
                 className="inline-flex items-center gap-2 px-4 py-2 sm:px-5 sm:py-2.5 rounded-lg bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 text-white font-semibold text-sm sm:text-base shadow-md focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-purple-600"
