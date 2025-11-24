@@ -39,8 +39,86 @@ export default function LogicStampCommandsPage() {
           </div>
         </AnimatedSection>
 
-        {/* Available Commands Section */}
+        {/* Global Options Section */}
         <AnimatedSection direction="up" delay={100}>
+          <div className="relative mb-8 sm:mb-12 lg:mb-16">
+            <div className="absolute -inset-1 bg-gradient-to-r from-indigo-600 to-purple-600 rounded-2xl blur opacity-20 dark:opacity-10" />
+            <div className="relative bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded-2xl p-4 sm:p-6 lg:p-8 shadow-xl">
+              <div className="flex items-baseline gap-3 mb-4 sm:mb-6">
+                <div className="p-2 bg-indigo-100 dark:bg-indigo-900/30 rounded-lg flex-shrink-0 -mt-0.5">
+                  <svg className="w-5 h-5 sm:w-6 sm:h-6 text-indigo-600 dark:text-indigo-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" />
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                  </svg>
+                </div>
+                <h2 className="text-xl sm:text-2xl font-bold text-gray-900 dark:text-white m-0">
+                  Global Options
+                </h2>
+              </div>
+
+              <p className="text-sm sm:text-base text-gray-600 dark:text-gray-400 mb-4 sm:mb-6">
+                These options are available at the top level (before any subcommand):
+              </p>
+
+              <div className="overflow-x-auto -mx-4 sm:mx-0 px-4 sm:px-0">
+                <table className="w-full min-w-full divide-y divide-gray-200 dark:divide-gray-700">
+                  <thead className="bg-gray-50 dark:bg-gray-800">
+                    <tr>
+                      <th className="px-2 sm:px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">Option</th>
+                      <th className="px-2 sm:px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">Alias</th>
+                      <th className="px-2 sm:px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">Description</th>
+                    </tr>
+                  </thead>
+                  <tbody className="bg-white dark:bg-gray-900 divide-y divide-gray-200 dark:divide-gray-700">
+                    <tr className="hover:bg-gray-50 dark:hover:bg-gray-800/50 transition-colors">
+                      <td className="px-2 sm:px-6 py-4 whitespace-nowrap">
+                        <code className="px-2 py-1 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 rounded text-xs sm:text-sm font-mono">--version</code>
+                      </td>
+                      <td className="px-2 sm:px-6 py-4 whitespace-nowrap">
+                        <code className="px-2 py-1 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 rounded text-xs sm:text-sm font-mono">-v</code>
+                      </td>
+                      <td className="px-2 sm:px-6 py-4 text-sm text-gray-600 dark:text-gray-400">Show version number and exit</td>
+                    </tr>
+                    <tr className="hover:bg-gray-50 dark:hover:bg-gray-800/50 transition-colors">
+                      <td className="px-2 sm:px-6 py-4 whitespace-nowrap">
+                        <code className="px-2 py-1 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 rounded text-xs sm:text-sm font-mono">--help</code>
+                      </td>
+                      <td className="px-2 sm:px-6 py-4 whitespace-nowrap">
+                        <code className="px-2 py-1 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 rounded text-xs sm:text-sm font-mono">-h</code>
+                      </td>
+                      <td className="px-2 sm:px-6 py-4 text-sm text-gray-600 dark:text-gray-400">Show help message and exit</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+
+              <div className="mt-4 sm:mt-6 p-4 bg-indigo-50 dark:bg-indigo-950/20 rounded-xl border border-indigo-200 dark:border-indigo-800">
+                <h4 className="text-sm sm:text-base font-semibold text-indigo-900 dark:text-indigo-200 mb-2 sm:mb-3">Examples:</h4>
+                <div className="space-y-2 font-mono text-xs sm:text-sm">
+                  <div className="flex items-center gap-2 text-indigo-800 dark:text-indigo-300">
+                    <code className="px-2 py-1 bg-indigo-100 dark:bg-indigo-900/40 rounded">stamp --version</code>
+                    <span className="text-gray-600 dark:text-gray-400"># Shows: fox mascot + "Version: 0.1.0"</span>
+                  </div>
+                  <div className="flex items-center gap-2 text-indigo-800 dark:text-indigo-300">
+                    <code className="px-2 py-1 bg-indigo-100 dark:bg-indigo-900/40 rounded">stamp -v</code>
+                    <span className="text-gray-600 dark:text-gray-400"># Same as --version</span>
+                  </div>
+                  <div className="flex items-center gap-2 text-indigo-800 dark:text-indigo-300">
+                    <code className="px-2 py-1 bg-indigo-100 dark:bg-indigo-900/40 rounded">stamp --help</code>
+                    <span className="text-gray-600 dark:text-gray-400"># Shows main help</span>
+                  </div>
+                  <div className="flex items-center gap-2 text-indigo-800 dark:text-indigo-300">
+                    <code className="px-2 py-1 bg-indigo-100 dark:bg-indigo-900/40 rounded">stamp -h</code>
+                    <span className="text-gray-600 dark:text-gray-400"># Same as --help</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </AnimatedSection>
+
+        {/* Available Commands Section */}
+        <AnimatedSection direction="up" delay={200}>
           <div className="relative mb-8 sm:mb-12 lg:mb-16">
             <div className="absolute -inset-1 bg-gradient-to-r from-blue-600 to-indigo-600 rounded-2xl blur opacity-20 dark:opacity-10" />
             <div className="relative bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded-2xl p-4 sm:p-6 lg:p-8 shadow-xl">
