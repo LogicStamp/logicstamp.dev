@@ -299,18 +299,18 @@ export default function BetaPage() {
               <p className="text-xl sm:text-2xl text-blue-100 mb-8 max-w-3xl mx-auto">
                 Join hundreds of forward-thinking developers already transforming how they work with AI
               </p>
-              <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-12">
+              <div className="flex flex-row gap-2 sm:gap-4 justify-center items-center mb-12 flex-wrap">
                 <a
                   href="#"
                   onClick={(e) => {
                     e.preventDefault()
                     document.querySelector('input[type="email"]')?.scrollIntoView({ behavior: 'smooth', block: 'center' })
                   }}
-                  className="inline-flex items-center gap-2 rounded-lg bg-gray-800 dark:bg-white text-white dark:text-gray-900 shadow-lg hover:shadow-xl ring-1 ring-gray-700 dark:ring-gray-300 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-purple-600 transition-all duration-200 whitespace-nowrap px-6 py-3 sm:px-8 sm:py-4 text-sm sm:text-base lg:text-lg font-semibold"
+                  className="inline-flex items-center gap-2 rounded-lg bg-gray-800 dark:bg-white text-white dark:text-gray-900 shadow-lg hover:shadow-xl ring-1 ring-gray-700 dark:ring-gray-300 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-purple-600 transition-all duration-200 whitespace-nowrap px-5 py-3 sm:px-8 sm:py-4 text-sm sm:text-base lg:text-lg font-semibold"
                 >
-                  Sign Up for Beta Access
+                  Join Beta Now
                 </a>
-                <ReadTheDocsButton href="/docs/getting-started" />
+                <ReadTheDocsButton href="/docs/getting-started" size="sm" className="px-5 py-3 text-sm sm:px-8 sm:py-4 sm:text-base lg:text-lg" />
               </div>
               <p className="text-blue-100 text-sm">
                 100% open source • Free forever • Community-driven development
