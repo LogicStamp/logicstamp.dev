@@ -33,15 +33,9 @@ export default function GetStarted() {
   const { ref: contentRef, inView: contentInView } = useInView(0.1)
 
   return (
-    <section id="get-started" className="relative py-24 sm:py-32 bg-gradient-to-br from-blue-50 via-purple-50 to-pink-50 dark:from-gray-900 dark:via-purple-950/30 dark:to-pink-950/30 overflow-hidden">
-      {/* Decorative background elements */}
-      <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute top-1/4 -left-20 w-96 h-96 bg-blue-500/10 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '0s' }}></div>
-        <div className="absolute bottom-1/4 -right-20 w-96 h-96 bg-purple-500/10 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '2s' }}></div>
-      </div>
-
+    <section id="get-started" className="relative py-24 sm:py-32 bg-gradient-to-br from-blue-600 via-purple-600 to-pink-600 overflow-hidden">
       {/* Background decoration */}
-      <div className="absolute inset-0 bg-gradient-to-br from-blue-500/5 via-purple-500/5 to-pink-500/5"></div>
+      <div className="absolute inset-0 bg-gradient-to-br from-blue-500/20 via-purple-500/20 to-pink-500/20"></div>
 
       <div className="mx-auto max-w-[1320px] px-6 lg:px-8 relative z-10">
         <div 
@@ -50,16 +44,15 @@ export default function GetStarted() {
             contentInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
           }`}
         >
-            <h2 className="text-4xl font-bold tracking-tight text-gray-900 dark:text-white sm:text-5xl lg:text-6xl">
+            <h2 className="text-4xl font-bold tracking-tight text-white sm:text-5xl lg:text-6xl">
               Ready to supercharge{' '}
               <span className="relative inline-block">
-                <span className="bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 bg-clip-text text-transparent">
+                <span className="text-white">
                   your AI workflow?
                 </span>
-                <span className="absolute inset-0 bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 blur-xl -z-10 opacity-20 animate-pulse"></span>
               </span>
             </h2>
-            <p className="mx-auto mt-6 max-w-2xl text-lg lg:text-xl leading-8 text-gray-600 dark:text-gray-300 font-medium">
+            <p className="mx-auto mt-6 max-w-2xl text-lg lg:text-xl leading-8 text-blue-100 font-medium">
               Generate AI-ready context from your codebase in seconds. Fast, deterministic, zero-config.
             </p>
             <div className="mt-10 flex flex-row items-center justify-center gap-2 sm:gap-4">
@@ -67,7 +60,7 @@ export default function GetStarted() {
                 href="https://www.npmjs.com/package/logicstamp-context"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="group inline-flex items-center gap-2 sm:gap-3 rounded-lg bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 px-6 py-3 sm:px-8 sm:py-4 text-sm sm:text-base lg:text-lg font-bold text-white shadow-xl hover:shadow-2xl focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-purple-600 transition-all duration-200"
+                className="inline-flex items-center gap-2 rounded-lg bg-gray-800 dark:bg-white text-white dark:text-gray-900 shadow-lg hover:shadow-xl ring-1 ring-gray-700 dark:ring-gray-300 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-purple-600 transition-all duration-200 whitespace-nowrap px-6 py-3 sm:px-8 sm:py-4 text-sm sm:text-base lg:text-lg font-semibold"
               >
                 <svg className="w-4 h-4 sm:w-5 sm:h-5" fill="currentColor" viewBox="0 0 24 24">
                   <path d="M0 0h24v24H0z" fill="none"/>
@@ -78,12 +71,12 @@ export default function GetStarted() {
               <ReadTheDocsButton href="docs/" />
             </div>
             <div className="mt-12">
-              <blockquote className="text-lg lg:text-xl italic text-gray-700 dark:text-gray-300 max-w-2xl mx-auto">
+              <blockquote className="text-lg lg:text-xl italic text-blue-100 max-w-2xl mx-auto">
                 "Stop pasting code. Start sharing structured context bundles that AI actually understands.
                 LogicStamp Context transforms your codebase into machine-readable documentation
                 with built-in token optimization."
               </blockquote>
-              <cite className="mt-4 block text-base text-gray-600 dark:text-gray-400">
+              <cite className="mt-4 block text-base text-blue-100">
                 — LogicStamp Team
               </cite>
             </div>
