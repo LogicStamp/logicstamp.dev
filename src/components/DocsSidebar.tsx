@@ -1,6 +1,7 @@
 'use client'
 
 import Link from 'next/link'
+import Image from 'next/image'
 import { usePathname } from 'next/navigation'
 import { useState, useEffect, type ReactNode } from 'react'
 
@@ -350,9 +351,11 @@ export default function DocsSidebar() {
           href="/docs"
           className="flex items-center justify-center group focus:outline-none"
         >
-          <img
+          <Image
             src="/mascot/logicstamp-fox.svg"
             alt="LogicStamp Fox Mascot"
+            width={80}
+            height={80}
             className="w-16 h-16 sm:w-20 sm:h-20 opacity-90 group-hover:opacity-100 transition-opacity duration-300"
           />
         </Link>

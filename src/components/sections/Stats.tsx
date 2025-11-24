@@ -39,14 +39,15 @@ export default function Stats() {
   useEffect(() => {
     if (hasTriggered) return
 
+    const currentSectionRef = sectionRef.current
     observerRef.current = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting && !hasTriggered) {
           setIsVisible(true)
           setHasTriggered(true)
           // Stop observing after first trigger
-          if (observerRef.current && sectionRef.current) {
-            observerRef.current.unobserve(sectionRef.current)
+          if (observerRef.current && currentSectionRef) {
+            observerRef.current.unobserve(currentSectionRef)
           }
         }
       },
@@ -56,13 +57,13 @@ export default function Stats() {
       }
     )
 
-    if (sectionRef.current) {
-      observerRef.current.observe(sectionRef.current)
+    if (currentSectionRef) {
+      observerRef.current.observe(currentSectionRef)
     }
 
     return () => {
-      if (observerRef.current && sectionRef.current) {
-        observerRef.current.unobserve(sectionRef.current)
+      if (observerRef.current && currentSectionRef) {
+        observerRef.current.unobserve(currentSectionRef)
       }
     }
   }, [hasTriggered])

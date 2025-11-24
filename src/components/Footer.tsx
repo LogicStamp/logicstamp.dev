@@ -1,6 +1,7 @@
 'use client'
 
 import { FormEvent, useState } from 'react'
+import Image from 'next/image'
 import AnimatedSection from './AnimatedSection'
 import LogicStampLogo from './LogicStampLogo'
 import LogicStampWordmark from './LogicStampWordmark'
@@ -168,9 +169,11 @@ export default function Footer() {
 
             {/* Fox Mascot - Mobile only (centered transition element between sections and controls) */}
             <div className="md:hidden flex items-center justify-center py-6">
-              <img
+              <Image
                 src="/mascot/logicstamp-fox.svg"
                 alt="LogicStamp Fox Mascot"
+                width={96}
+                height={96}
                 className="h-24 w-24 opacity-100 fox-mascot"
               />
             </div>
@@ -219,9 +222,11 @@ export default function Footer() {
               <div className="flex flex-col items-center gap-5 border-t border-gray-200/60 dark:border-gray-800/70 pt-6 mt-2 md:flex-row md:items-center md:justify-end md:gap-4 md:border-t-0 md:pt-0 md:mt-0">
                 {/* Fox Mascot - Desktop only (to the left of theme toggle) */}
                 <div className="hidden md:flex items-center justify-center">
-                  <img
+                  <Image
                     src="/mascot/logicstamp-fox.svg"
                     alt="LogicStamp Fox Mascot"
+                    width={96}
+                    height={96}
                     className="h-24 w-24 opacity-100 fox-mascot"
                   />
                 </div>
