@@ -48,7 +48,7 @@ const faqs = [
     id: 3,
     question: 'Is there a free version?',
     answer:
-      'Yes! LogicStamp Context is completely free and open-source.\nInstall it globally with npm i -g logicstamp-context and use it without limits.\nThe extended LogicStamp CLI (contract validation, drift detection, watch mode, and more) is currently in development and will be released soon.',
+      'Yes! LogicStamp Context is completely free and open-source.\nInstall it globally with npm i -g logicstamp-context and use it without limits.\nThe CLI is production-ready and includes context generation, drift detection, validation, and token optimization.\nUpcoming enhancements include watch mode, advanced contract verification, and enhanced contract management features.',
   },
   {
     id: 4,
