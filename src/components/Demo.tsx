@@ -167,7 +167,6 @@ const terminalLines = [
   { text: '📏 Size: 2.4KB (78% reduction)', type: 'result', delay: 3200 },
   { text: '🎯 Tokens: ~1,200 (saved ~3,800 tokens)', type: 'result', delay: 3400 },
   { text: '', type: 'empty', delay: 3450 },
-  { text: '💡 Tip: Use "stamp context --watch" for live updates', type: 'tip', delay: 3600 },
 ]
 
 // Generate mock context bundle based on input - matching real LogicStamp structure
