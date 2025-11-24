@@ -137,8 +137,8 @@ export default function QuickStartPage() {
                       },
                       {
                         label: 'Verify',
-                        code: 'stamp context --version',
-                        copyText: 'stamp context --version'
+                        code: 'stamp --version',
+                        copyText: 'stamp --version'
                       }
                     ]}
                   />
