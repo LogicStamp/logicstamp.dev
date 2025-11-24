@@ -76,6 +76,7 @@ export default function Header() {
     { name: 'Try Demo', href: '/demo' },
     { name: 'Docs', href: '/docs/' },
     { name: 'GitHub', href: 'https://github.com/LogicStamp/logicstamp-context', external: true },
+    { name: 'Join the beta', href: '/beta' },
   ]
 
   return (

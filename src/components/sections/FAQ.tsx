@@ -36,7 +36,7 @@ const faqs = [
     id: 1,
     question: 'How does LogicStamp Context work?',
     answer:
-      'LogicStamp Context scans your React/TypeScript codebase and generates structured context bundles optimized for AI consumption.\nIt analyzes component structure, extracts logic signatures (props, state, events), builds dependency graphs, and packages everything into machine-readable JSON with built-in token optimization.\nNo configuration needed—just run `stamp context` and get instant AI-ready documentation.',
+      'LogicStamp Context scans your React/TypeScript codebase and generates structured context bundles optimized for AI consumption.\nIt analyzes component structure, extracts logic signatures (props, state, events), builds dependency graphs, and packages everything into machine-readable JSON with built-in token optimization.\nNo configuration needed—just run `stamp context` and get instant AI-ready context bundles.',
   },
   {
     id: 2,

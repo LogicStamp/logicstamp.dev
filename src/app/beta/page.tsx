@@ -1,201 +1,320 @@
-import { Metadata } from 'next'
+'use client'
+
 import Footer from '@/components/Footer'
 import AnimatedSection from '@/components/AnimatedSection'
 import BetaSignup from '@/components/BetaSignup'
-
-export const metadata: Metadata = {
-  title: 'Join the Beta | LogicStamp',
-  description: 'Join the LogicStamp Context beta program. Get early access to new features, help shape the future, and join a community of developers building AI-powered development tools.',
-}
+import ReadTheDocsButton from '@/components/ui/ReadTheDocsButton'
 
 export default function BetaPage() {
-
   return (
     <main className="min-h-screen">
-      {/* Hero Section */}
-      <section className="relative overflow-hidden bg-gradient-to-br from-blue-50 via-purple-50 to-pink-50 dark:from-gray-900 dark:via-purple-950/30 dark:to-pink-950/30 pt-28 pb-20 sm:pt-36 sm:pb-32">
+      {/* Hero + Signup Section - Combined */}
+      <section className="relative overflow-hidden bg-gradient-to-br from-blue-50 via-purple-50 to-pink-50 dark:from-gray-900 dark:via-purple-950/30 dark:to-pink-950/30 pt-24 pb-32 sm:pt-32 sm:pb-40">
         {/* Decorative background elements */}
         <div className="absolute inset-0 overflow-hidden pointer-events-none">
           <div className="absolute top-1/4 -left-20 w-96 h-96 bg-blue-500/10 rounded-full blur-3xl animate-pulse"></div>
           <div className="absolute bottom-1/4 -right-20 w-96 h-96 bg-purple-500/10 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '2s' }}></div>
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-gradient-to-r from-indigo-500/5 to-purple-500/5 rounded-full blur-3xl"></div>
         </div>
 
         {/* Background decoration */}
         <div className="absolute inset-0 bg-gradient-to-br from-blue-500/5 via-purple-500/5 to-pink-500/5"></div>
 
-        <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8 relative z-10">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 relative z-10">
           <AnimatedSection direction="up" delay={0}>
             <div className="text-center">
-              {/* Badge */}
-              <div className="inline-flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-blue-100 to-indigo-100 dark:from-blue-900/40 dark:to-indigo-900/40 text-blue-700 dark:text-blue-300 text-sm font-semibold rounded-full mb-6 backdrop-blur-sm border border-blue-200/50 dark:border-blue-700/50">
-                <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
-                  <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.857-9.809a.75.75 0 00-1.214-.882l-3.483 4.79-1.88-1.88a.75.75 0 10-1.06 1.061l2.5 2.5a.75.75 0 001.137-.089l4-5.5z" clipRule="evenodd" />
-                </svg>
-                Public Beta
+              {/* Fox Mascot */}
+              <div className="flex justify-center mb-8 sm:mb-10">
+                <div className="w-20 h-20 sm:w-24 sm:h-24 animate-bounce">
+                  <img
+                    src="/mascot/logicstamp-fox.svg"
+                    alt="LogicStamp Fox Mascot"
+                    className="w-full h-full drop-shadow-2xl"
+                  />
+                </div>
               </div>
 
-              <h1 className="text-4xl sm:text-5xl lg:text-6xl font-black text-transparent bg-clip-text bg-gradient-to-r from-gray-900 to-gray-700 dark:from-white dark:to-gray-300 mb-6 tracking-tight leading-[1.1]">
-                Join the LogicStamp Beta
+              {/* Badge */}
+              <div className="inline-flex items-center gap-2 px-5 py-2.5 bg-gradient-to-r from-blue-100 to-indigo-100 dark:from-blue-900/40 dark:to-indigo-900/40 text-blue-700 dark:text-blue-300 text-sm font-bold rounded-full mb-8 sm:mb-10 backdrop-blur-sm border border-blue-200/50 dark:border-blue-700/50 shadow-lg">
+                <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                  <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.857-9.809a.75.75 0 00-1.214-.882l-3.483 4.79-1.88-1.88a.75.75 0 10-1.06 1.061l2.5 2.5a.75.75 0 001.137-.089l4-5.5z" clipRule="evenodd" />
+                </svg>
+                Public Beta Now Open
+              </div>
+
+              <h1 className="text-4xl sm:text-5xl lg:text-6xl font-black text-transparent bg-clip-text bg-gradient-to-r from-gray-900 to-gray-700 dark:from-white dark:to-gray-300 mb-8 sm:mb-10 tracking-tight leading-[1.1]">
+                Shape the Future of<br />
+                <span className="relative inline-block mt-2">
+                  <span className="bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 bg-clip-text text-transparent">
+                    AI-Powered Development
+                  </span>
+                  <span className="absolute inset-0 bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 blur-2xl -z-10 opacity-20 animate-pulse"></span>
+                </span>
               </h1>
-              
-              <p className="text-lg sm:text-xl lg:text-2xl text-gray-600 dark:text-gray-400 leading-relaxed max-w-3xl mx-auto mb-8">
-                Be among the first to experience LogicStamp Context. Get early access to new features, help shape the future, and join a community of developers building the next generation of AI-powered development tools.
+            </div>
+          </AnimatedSection>
+
+          {/* Integrated Signup Form */}
+          <AnimatedSection direction="up" delay={100}>
+            <div className="max-w-5xl mx-auto mt-12 sm:mt-16">
+              <BetaSignup />
+
+              <p className="text-lg sm:text-xl lg:text-2xl text-gray-700 dark:text-gray-300 leading-relaxed max-w-4xl mx-auto mt-10 sm:mt-12 font-medium text-center">
+                Join an elite community of developers pioneering the next generation of AI-ready context generation
+              </p>
+
+              <p className="text-base sm:text-lg text-gray-600 dark:text-gray-400 max-w-3xl mx-auto mt-8 sm:mt-10 text-center">
+                Get exclusive early access to cutting-edge features, direct input on product direction, and priority support from our core team
               </p>
             </div>
           </AnimatedSection>
         </div>
       </section>
 
-      {/* Main Content */}
-      <section className="relative py-16 sm:py-24 bg-white dark:bg-gray-900">
-        <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
-          {/* Signup Form */}
-          <AnimatedSection direction="up" delay={100}>
-            <BetaSignup />
-          </AnimatedSection>
-
-          {/* What to Expect */}
-          <AnimatedSection direction="up" delay={200}>
-            <div className="mt-16 sm:mt-24">
-              <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 dark:text-white mb-8 text-center">
-                What to Expect
+      {/* What's Coming in Beta */}
+      <section className="relative py-20 sm:py-28 bg-white dark:bg-gray-900">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <AnimatedSection direction="up" delay={0}>
+            <div className="text-center mb-16">
+              <h2 className="text-4xl sm:text-5xl font-bold text-gray-900 dark:text-white mb-6">
+                What's Coming in Beta
               </h2>
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8">
-                <div className="bg-white dark:bg-gray-800 rounded-xl p-6 shadow-sm border border-gray-200 dark:border-gray-700">
-                  <div className="w-12 h-12 bg-blue-100 dark:bg-blue-900/30 rounded-lg flex items-center justify-center mb-4">
-                    <svg className="w-6 h-6 text-blue-600 dark:text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
-                    </svg>
-                  </div>
-                  <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-2">
-                    Early Access
-                  </h3>
-                  <p className="text-gray-600 dark:text-gray-400">
-                    Be the first to try new features and improvements before they're released publicly.
-                  </p>
-                </div>
-
-                <div className="bg-white dark:bg-gray-800 rounded-xl p-6 shadow-sm border border-gray-200 dark:border-gray-700">
-                  <div className="w-12 h-12 bg-purple-100 dark:bg-purple-900/30 rounded-lg flex items-center justify-center mb-4">
-                    <svg className="w-6 h-6 text-purple-600 dark:text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
-                    </svg>
-                  </div>
-                  <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-2">
-                    Shape the Future
-                  </h3>
-                  <p className="text-gray-600 dark:text-gray-400">
-                    Your feedback directly influences the direction and features of LogicStamp Context.
-                  </p>
-                </div>
-
-                <div className="bg-white dark:bg-gray-800 rounded-xl p-6 shadow-sm border border-gray-200 dark:border-gray-700">
-                  <div className="w-12 h-12 bg-pink-100 dark:bg-pink-900/30 rounded-lg flex items-center justify-center mb-4">
-                    <svg className="w-6 h-6 text-pink-600 dark:text-pink-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
-                    </svg>
-                  </div>
-                  <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-2">
-                    Priority Support
-                  </h3>
-                  <p className="text-gray-600 dark:text-gray-400">
-                    Get dedicated support and help us improve the tool with your real-world use cases.
-                  </p>
-                </div>
-              </div>
+              <p className="text-lg sm:text-xl text-gray-600 dark:text-gray-400 max-w-3xl mx-auto">
+                Preview cutting-edge capabilities that will revolutionize how you work with AI assistants
+              </p>
             </div>
           </AnimatedSection>
 
-          {/* Beta Features */}
-          <AnimatedSection direction="up" delay={300}>
-            <div className="mt-16 sm:mt-24">
-              <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 dark:text-white mb-8 text-center">
-                Beta Features
-              </h2>
-              <div className="bg-white dark:bg-gray-800 rounded-xl p-8 shadow-sm border border-gray-200 dark:border-gray-700">
-                <ul className="space-y-4">
-                  <li className="flex items-start gap-4">
-                    <svg className="w-6 h-6 text-green-600 dark:text-green-400 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                    </svg>
-                    <div>
-                      <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-1">
-                        Advanced Token Optimization
-                      </h3>
-                      <p className="text-gray-600 dark:text-gray-400">
-                        Test cutting-edge algorithms that reduce context size by up to 65% while preserving critical information.
-                      </p>
+          <div className="max-w-5xl mx-auto">
+            <AnimatedSection direction="up" delay={100}>
+              <div className="bg-gradient-to-br from-white to-gray-50 dark:from-gray-800 dark:to-gray-900 rounded-2xl p-8 sm:p-10 shadow-xl border border-gray-200 dark:border-gray-700">
+                <div className="space-y-8">
+                  <div className="flex items-start gap-6 group">
+                    <div className="flex-shrink-0">
+                      <div className="w-12 h-12 bg-gradient-to-br from-blue-500 to-cyan-500 rounded-xl flex items-center justify-center shadow-lg">
+                        <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
+                        </svg>
+                      </div>
                     </div>
-                  </li>
-                  <li className="flex items-start gap-4">
-                    <svg className="w-6 h-6 text-green-600 dark:text-green-400 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                    </svg>
-                    <div>
-                      <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-1">
-                        Enhanced Drift Detection
+                    <div className="flex-1">
+                      <h3 className="text-xl sm:text-2xl font-bold text-gray-900 dark:text-white mb-3">
+                        Advanced AI Optimization Algorithms
                       </h3>
-                      <p className="text-gray-600 dark:text-gray-400">
-                        Early access to improved comparison tools that help you track changes across your codebase.
+                      <p className="text-gray-600 dark:text-gray-400 leading-relaxed mb-3">
+                        Test next-generation context compression that reduces bundle sizes by up to <strong className="text-gray-900 dark:text-white">65%</strong> while maintaining complete semantic accuracy. Our machine learning models identify and preserve only the most critical architectural information.
                       </p>
+                      <div className="flex items-center gap-2 text-sm text-blue-600 dark:text-blue-400 font-semibold">
+                        <span>Expected impact:</span>
+                        <span className="px-3 py-1 bg-blue-100 dark:bg-blue-900/30 rounded-full">Up to 65% token reduction</span>
+                      </div>
                     </div>
-                  </li>
-                  <li className="flex items-start gap-4">
-                    <svg className="w-6 h-6 text-green-600 dark:text-green-400 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                    </svg>
-                    <div>
-                      <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-1">
-                        New Integrations
+                  </div>
+
+                  <div className="border-t border-gray-200 dark:border-gray-700"></div>
+
+                  <div className="flex items-start gap-6 group">
+                    <div className="flex-shrink-0">
+                      <div className="w-12 h-12 bg-gradient-to-br from-purple-500 to-pink-500 rounded-xl flex items-center justify-center shadow-lg">
+                        <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 5a1 1 0 011-1h14a1 1 0 011 1v2a1 1 0 01-1 1H5a1 1 0 01-1-1V5zM4 13a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H5a1 1 0 01-1-1v-6zM16 13a1 1 0 011-1h2a1 1 0 011 1v6a1 1 0 01-1 1h-2a1 1 0 01-1-1v-6z" />
+                        </svg>
+                      </div>
+                    </div>
+                    <div className="flex-1">
+                      <h3 className="text-xl sm:text-2xl font-bold text-gray-900 dark:text-white mb-3">
+                        Real-Time Architecture Drift Detection
                       </h3>
-                      <p className="text-gray-600 dark:text-gray-400">
-                        Try integrations with popular AI tools and development platforms before general release.
+                      <p className="text-gray-600 dark:text-gray-400 leading-relaxed mb-3">
+                        Monitor and visualize architectural changes across your codebase in real-time. Enhanced comparison tools provide granular insights into component relationships, dependency shifts, and structural evolution over time.
                       </p>
+                      <div className="flex items-center gap-2 text-sm text-purple-600 dark:text-purple-400 font-semibold">
+                        <span>Expected impact:</span>
+                        <span className="px-3 py-1 bg-purple-100 dark:bg-purple-900/30 rounded-full">100% architecture visibility</span>
+                      </div>
                     </div>
-                  </li>
-                  <li className="flex items-start gap-4">
-                    <svg className="w-6 h-6 text-green-600 dark:text-green-400 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                    </svg>
-                    <div>
-                      <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-1">
-                        Performance Improvements
+                  </div>
+
+                  <div className="border-t border-gray-200 dark:border-gray-700"></div>
+
+                  <div className="flex items-start gap-6 group">
+                    <div className="flex-shrink-0">
+                      <div className="w-12 h-12 bg-gradient-to-br from-emerald-500 to-teal-500 rounded-xl flex items-center justify-center shadow-lg">
+                        <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1" />
+                        </svg>
+                      </div>
+                    </div>
+                    <div className="flex-1">
+                      <h3 className="text-xl sm:text-2xl font-bold text-gray-900 dark:text-white mb-3">
+                        Seamless AI Platform Integrations
                       </h3>
-                      <p className="text-gray-600 dark:text-gray-400">
-                        Experience faster context generation and improved handling of large codebases.
+                      <p className="text-gray-600 dark:text-gray-400 leading-relaxed mb-3">
+                        Early access to native integrations with popular AI coding assistants, CI/CD platforms, and development environments. One-click context sharing with GitHub Copilot, Cursor, Claude, and more.
                       </p>
+                      <div className="flex items-center gap-2 text-sm text-emerald-600 dark:text-emerald-400 font-semibold">
+                        <span>Expected impact:</span>
+                        <span className="px-3 py-1 bg-emerald-100 dark:bg-emerald-900/30 rounded-full">10+ new integrations</span>
+                      </div>
                     </div>
-                  </li>
-                </ul>
+                  </div>
+
+                  <div className="border-t border-gray-200 dark:border-gray-700"></div>
+
+                  <div className="flex items-start gap-6 group">
+                    <div className="flex-shrink-0">
+                      <div className="w-12 h-12 bg-gradient-to-br from-amber-500 to-orange-500 rounded-xl flex items-center justify-center shadow-lg">
+                        <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
+                        </svg>
+                      </div>
+                    </div>
+                    <div className="flex-1">
+                      <h3 className="text-xl sm:text-2xl font-bold text-gray-900 dark:text-white mb-3">
+                        Lightning-Fast Performance Enhancements
+                      </h3>
+                      <p className="text-gray-600 dark:text-gray-400 leading-relaxed mb-3">
+                        Experience dramatic speed improvements with parallel processing, intelligent caching, and incremental updates. Handle massive codebases with thousands of components without breaking a sweat.
+                      </p>
+                      <div className="flex items-center gap-2 text-sm text-amber-600 dark:text-amber-400 font-semibold">
+                        <span>Expected impact:</span>
+                        <span className="px-3 py-1 bg-amber-100 dark:bg-amber-900/30 rounded-full">5x faster generation</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
               </div>
+            </AnimatedSection>
+          </div>
+        </div>
+      </section>
+
+      {/* Ideal Beta Candidates */}
+      <section className="relative py-20 sm:py-28 bg-gradient-to-b from-gray-50 to-white dark:from-gray-950 dark:to-gray-900">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <AnimatedSection direction="up" delay={0}>
+            <div className="text-center mb-16">
+              <h2 className="text-4xl sm:text-5xl font-bold text-gray-900 dark:text-white mb-6">
+                Who Should Join the Beta?
+              </h2>
+              <p className="text-lg sm:text-xl text-gray-600 dark:text-gray-400 max-w-3xl mx-auto">
+                We're looking for engaged developers and teams ready to push boundaries
+              </p>
             </div>
           </AnimatedSection>
 
-          {/* CTA Section */}
-          <AnimatedSection direction="up" delay={400}>
-            <div className="mt-16 sm:mt-24 text-center">
-              <div className="bg-gradient-to-r from-blue-50 via-purple-50 to-pink-50 dark:from-gray-800 dark:via-purple-950/20 dark:to-pink-950/20 rounded-2xl p-8 sm:p-12 border border-gray-200/50 dark:border-gray-700/50">
-                <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white mb-4">
-                  Ready to Get Started?
-                </h2>
-                <p className="text-lg text-gray-600 dark:text-gray-400 mb-8 max-w-2xl mx-auto">
-                  Join hundreds of developers who are already using LogicStamp Context to supercharge their AI workflows.
-                </p>
-                <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-                  <a
-                    href="/docs/getting-started"
-                    className="px-8 py-3 rounded-lg bg-gradient-to-r from-blue-600 to-purple-600 text-white font-semibold hover:from-blue-700 hover:to-purple-700 transition-all duration-200 shadow-lg hover:shadow-xl"
-                  >
-                    Read the Docs
-                  </a>
-                  <a
-                    href="/demo"
-                    className="px-8 py-3 rounded-lg border-2 border-gray-300 dark:border-gray-700 text-gray-900 dark:text-white font-semibold hover:bg-gray-50 dark:hover:bg-gray-800 transition-all duration-200"
-                  >
-                    Try the Demo
-                  </a>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-5xl mx-auto">
+            <AnimatedSection direction="up" delay={100}>
+              <div className="bg-white dark:bg-gray-800 rounded-xl p-6 shadow-sm border-2 border-blue-200 dark:border-blue-800">
+                <div className="flex items-start gap-4">
+                  <div className="flex-shrink-0">
+                    <svg className="w-6 h-6 text-blue-600 dark:text-blue-400" fill="currentColor" viewBox="0 0 20 20">
+                      <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.857-9.809a.75.75 0 00-1.214-.882l-3.483 4.79-1.88-1.88a.75.75 0 10-1.06 1.061l2.5 2.5a.75.75 0 001.137-.089l4-5.5z" clipRule="evenodd" />
+                    </svg>
+                  </div>
+                  <div>
+                    <h3 className="text-lg font-bold text-gray-900 dark:text-white mb-2">
+                      AI-Forward Development Teams
+                    </h3>
+                    <p className="text-gray-600 dark:text-gray-400">
+                      Teams already using AI assistants in their workflow who want to maximize efficiency and reduce context management overhead
+                    </p>
+                  </div>
                 </div>
               </div>
+            </AnimatedSection>
+
+            <AnimatedSection direction="up" delay={150}>
+              <div className="bg-white dark:bg-gray-800 rounded-xl p-6 shadow-sm border-2 border-purple-200 dark:border-purple-800">
+                <div className="flex items-start gap-4">
+                  <div className="flex-shrink-0">
+                    <svg className="w-6 h-6 text-purple-600 dark:text-purple-400" fill="currentColor" viewBox="0 0 20 20">
+                      <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.857-9.809a.75.75 0 00-1.214-.882l-3.483 4.79-1.88-1.88a.75.75 0 10-1.06 1.061l2.5 2.5a.75.75 0 001.137-.089l4-5.5z" clipRule="evenodd" />
+                    </svg>
+                  </div>
+                  <div>
+                    <h3 className="text-lg font-bold text-gray-900 dark:text-white mb-2">
+                      Enterprise Engineering Leaders
+                    </h3>
+                    <p className="text-gray-600 dark:text-gray-400">
+                      CTOs and engineering managers looking to standardize AI context generation across large-scale React/TypeScript codebases
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </AnimatedSection>
+
+            <AnimatedSection direction="up" delay={200}>
+              <div className="bg-white dark:bg-gray-800 rounded-xl p-6 shadow-sm border-2 border-emerald-200 dark:border-emerald-800">
+                <div className="flex items-start gap-4">
+                  <div className="flex-shrink-0">
+                    <svg className="w-6 h-6 text-emerald-600 dark:text-emerald-400" fill="currentColor" viewBox="0 0 20 20">
+                      <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.857-9.809a.75.75 0 00-1.214-.882l-3.483 4.79-1.88-1.88a.75.75 0 10-1.06 1.061l2.5 2.5a.75.75 0 001.137-.089l4-5.5z" clipRule="evenodd" />
+                    </svg>
+                  </div>
+                  <div>
+                    <h3 className="text-lg font-bold text-gray-900 dark:text-white mb-2">
+                      Open Source Contributors
+                    </h3>
+                    <p className="text-gray-600 dark:text-gray-400">
+                      Developers maintaining open-source projects who want to make their codebases more accessible to AI-assisted contributors
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </AnimatedSection>
+
+            <AnimatedSection direction="up" delay={250}>
+              <div className="bg-white dark:bg-gray-800 rounded-xl p-6 shadow-sm border-2 border-pink-200 dark:border-pink-800">
+                <div className="flex items-start gap-4">
+                  <div className="flex-shrink-0">
+                    <svg className="w-6 h-6 text-pink-600 dark:text-pink-400" fill="currentColor" viewBox="0 0 20 20">
+                      <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.857-9.809a.75.75 0 00-1.214-.882l-3.483 4.79-1.88-1.88a.75.75 0 10-1.06 1.061l2.5 2.5a.75.75 0 001.137-.089l4-5.5z" clipRule="evenodd" />
+                    </svg>
+                  </div>
+                  <div>
+                    <h3 className="text-lg font-bold text-gray-900 dark:text-white mb-2">
+                      DevTools Enthusiasts
+                    </h3>
+                    <p className="text-gray-600 dark:text-gray-400">
+                      Developers passionate about tooling who want to provide detailed feedback and help shape the future of developer experience
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </AnimatedSection>
+          </div>
+        </div>
+      </section>
+
+      {/* Final CTA Section */}
+      <section className="relative py-20 sm:py-28 bg-gradient-to-br from-blue-600 via-purple-600 to-pink-600">
+        <div className="absolute inset-0 bg-gradient-to-br from-blue-500/20 via-purple-500/20 to-pink-500/20"></div>
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 relative z-10">
+          <AnimatedSection direction="up" delay={0}>
+            <div className="text-center">
+              <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-6">
+                Ready to Pioneer the Future?
+              </h2>
+              <p className="text-xl sm:text-2xl text-blue-100 mb-8 max-w-3xl mx-auto">
+                Join hundreds of forward-thinking developers already transforming how they work with AI
+              </p>
+              <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-12">
+                <a
+                  href="#"
+                  onClick={(e) => {
+                    e.preventDefault()
+                    document.querySelector('input[type="email"]')?.scrollIntoView({ behavior: 'smooth', block: 'center' })
+                  }}
+                  className="inline-flex items-center gap-2 rounded-lg bg-gray-800 dark:bg-white text-white dark:text-gray-900 shadow-lg hover:shadow-xl ring-1 ring-gray-700 dark:ring-gray-300 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-purple-600 transition-all duration-200 whitespace-nowrap px-6 py-3 sm:px-8 sm:py-4 text-sm sm:text-base lg:text-lg font-semibold"
+                >
+                  Sign Up for Beta Access
+                </a>
+                <ReadTheDocsButton href="/docs/getting-started" />
+              </div>
+              <p className="text-blue-100 text-sm">
+                100% open source • Free forever • Community-driven development
+              </p>
             </div>
           </AnimatedSection>
         </div>
@@ -205,4 +324,3 @@ export default function BetaPage() {
     </main>
   )
 }
-

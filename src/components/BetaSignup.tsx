@@ -61,42 +61,42 @@ export default function BetaSignup() {
   }
 
   return (
-    <div className="bg-gradient-to-r from-blue-500/10 via-purple-500/10 to-pink-500/10 rounded-2xl p-8 sm:p-12 border border-gray-200/50 dark:border-gray-700/50 shadow-lg backdrop-blur-sm">
-      <div className="text-center mb-8">
+    <div className="text-center">
+      <div className="mb-6">
         <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white mb-3">
-          Get Early Access
+          Get Early{' '}
+          <span className="bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 bg-clip-text text-transparent font-semibold">
+            Access
+          </span>
         </h2>
-        <p className="text-base sm:text-lg text-gray-600 dark:text-gray-400">
-          Sign up to be notified when beta access is available
-        </p>
       </div>
-      
-      <form className="max-w-md mx-auto" onSubmit={handleBetaSubmit}>
+
+      <form className="max-w-2xl mx-auto" onSubmit={handleBetaSubmit}>
         <div className="flex flex-col sm:flex-row gap-3">
           <input
             type="email"
             placeholder="your@email.com"
             value={betaEmail}
             onChange={(e) => setBetaEmail(e.target.value)}
-            className="flex-1 px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 dark:focus:ring-blue-400 focus:border-transparent transition-colors"
+            className="flex-1 px-5 py-4 rounded-xl border-2 border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 dark:focus:ring-blue-400 focus:border-blue-500 dark:focus:border-blue-400 transition-all text-lg"
             required
             disabled={isSubmittingBeta}
           />
           <button
             type="submit"
             disabled={isSubmittingBeta}
-            className="px-8 py-3 rounded-lg bg-gradient-to-r from-blue-600 to-purple-600 text-white font-semibold hover:from-blue-700 hover:to-purple-700 transition-all duration-200 shadow-lg hover:shadow-xl disabled:opacity-70 disabled:cursor-not-allowed whitespace-nowrap"
+            className="px-10 py-4 rounded-xl bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 text-white font-bold shadow-xl disabled:opacity-70 disabled:cursor-not-allowed whitespace-nowrap text-lg"
           >
             {isSubmittingBeta ? 'Signing up...' : 'Join Beta'}
           </button>
         </div>
         {betaSuccessMessage && (
-          <p className="text-sm text-green-600 dark:text-green-400 mt-4 text-center">
+          <p className="text-base text-green-600 dark:text-green-400 mt-4 text-center font-medium">
             {betaSuccessMessage}
           </p>
         )}
         {betaErrorMessage && (
-          <p className="text-sm text-red-600 dark:text-red-400 mt-4 text-center">
+          <p className="text-base text-red-600 dark:text-red-400 mt-4 text-center font-medium">
             {betaErrorMessage}
           </p>
         )}

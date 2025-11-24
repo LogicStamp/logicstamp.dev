@@ -46,7 +46,7 @@ export default function QuickStartPage() {
                 </div>
                 <div className="flex items-center gap-2">
                   <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse" />
-                  <span className="text-xs sm:text-sm font-medium text-gray-600 dark:text-gray-400">65% token reduction</span>
+                  <span className="text-xs sm:text-sm font-medium text-gray-600 dark:text-gray-400">up to 65% token reduction</span>
                 </div>
                 <div className="flex items-center gap-2">
                   <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse" />

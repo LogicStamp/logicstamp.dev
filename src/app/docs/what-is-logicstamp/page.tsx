@@ -49,7 +49,7 @@ export default function WhatIsLogicStampPage() {
                 </div>
                 <div className="flex items-center gap-2">
                   <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse" />
-                  <span className="text-xs sm:text-sm font-medium text-gray-600 dark:text-gray-400">65% token reduction</span>
+                  <span className="text-xs sm:text-sm font-medium text-gray-600 dark:text-gray-400">up to 65% token reduction</span>
                 </div>
                 <div className="flex items-center gap-2">
                   <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse" />
@@ -214,7 +214,7 @@ export default function WhatIsLogicStampPage() {
                 {
                   icon: "💰",
                   title: "Token Optimization",
-                  desc: "Built-in token cost analysis for GPT-4o-mini and Claude. Save ~65% tokens by including headers and contracts instead of full source",
+                  desc: "Built-in token cost analysis for GPT-4o-mini and Claude. Save up to ~65% tokens by including headers and contracts instead of full source",
                   color: "green"
                 },
                 {
