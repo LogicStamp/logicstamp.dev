@@ -20,12 +20,12 @@ export const metadata: Metadata = {
   },
 }
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: {
   children: React.ReactNode
 }) {
-  const cookieStore = cookies()
+  const cookieStore = await cookies()
   const themeCookie = cookieStore.get('theme')?.value as 'light' | 'dark' | 'system' | undefined
   const htmlThemeClass = themeCookie === 'dark' ? 'dark' : ''
 

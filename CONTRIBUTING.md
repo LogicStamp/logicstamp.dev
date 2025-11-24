@@ -239,7 +239,7 @@ npm run lint
 ### React/Next.js
 
 - Use functional components with hooks
-- Follow Next.js 14 App Router conventions
+- Follow Next.js 16 App Router conventions
 - Use TypeScript for component props
 
 ### Styling

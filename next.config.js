@@ -13,8 +13,6 @@ const nextConfig = {
       },
     ],
   },
-  // Optimize production builds - swcMinify is default in Next.js 13+, but explicit is fine
-  swcMinify: true,
   // Enable compression (handled by Next.js automatically in production)
   compress: true,
   // Enable source maps for production builds to help with debugging and Lighthouse audits

@@ -6,7 +6,7 @@
 
 **The official landing page and documentation site for LogicStamp**
 
-[![Next.js](https://img.shields.io/badge/Next.js-14-black)](https://nextjs.org/)
+[![Next.js](https://img.shields.io/badge/Next.js-16-black)](https://nextjs.org/)
 [![TypeScript](https://img.shields.io/badge/TypeScript-5.3-blue)](https://www.typescriptlang.org/)
 [![Tailwind CSS](https://img.shields.io/badge/Tailwind-3.4-38bdf8)](https://tailwindcss.com/)
 [![License](https://img.shields.io/badge/License-MIT-green.svg)](./LICENSE)
@@ -21,11 +21,11 @@
 
 This is the official landing page and documentation website for **LogicStamp**, a powerful tool for generating structured context bundles for LLMs. LogicStamp helps developers create efficient, maintainable context files that improve AI-assisted development workflows.
 
-The site is built with Next.js 14, TypeScript, and Tailwind CSS, featuring a modern, responsive design with dark mode support.
+The site is built with Next.js 16, TypeScript, and Tailwind CSS, featuring a modern, responsive design with dark mode support.
 
 ## Features
 
-- 🚀 **Next.js 14** with App Router for optimal performance
+- 🚀 **Next.js 16** with App Router for optimal performance
 - 💎 **TypeScript** for type-safe development
 - 🎨 **Tailwind CSS** for modern, responsive styling
 - 🌙 **Dark Mode** support with smooth theme transitions
@@ -182,7 +182,7 @@ Visit the [documentation section](./src/app/docs/) on the site for the full docu
 
 ## Technology Stack
 
-- **Framework**: [Next.js 14](https://nextjs.org/) with App Router
+- **Framework**: [Next.js 16](https://nextjs.org/) with App Router
 - **Language**: [TypeScript](https://www.typescriptlang.org/)
 - **Styling**: [Tailwind CSS](https://tailwindcss.com/)
 - **Icons**: [Lucide React](https://lucide.dev/)
