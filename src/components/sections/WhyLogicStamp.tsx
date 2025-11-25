@@ -77,7 +77,7 @@ export default function WhyLogicStamp() {
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
         </svg>
       ),
-      title: '65% smaller context bundles',
+      title: 'Up to 65% smaller context bundles',
       description: 'Strips out imports, boilerplate, and implementation details. Only contracts and type signatures.',
       stat: '~65%',
       statLabel: 'Token Savings',
@@ -275,7 +275,7 @@ export default function WhyLogicStamp() {
                       The LogicStamp Way
                     </h3>
                     <p className="text-gray-600 dark:text-gray-300">
-                      One command. 5 seconds. Perfect context every time.
+                      One command. 5 seconds. Optimized context every time.
                     </p>
                   </div>
                 </div>
@@ -308,7 +308,7 @@ export default function WhyLogicStamp() {
                   solutionInView ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-4'
                 }`}>
                   <p className="text-sm font-medium text-emerald-900 dark:text-emerald-300">
-                    Result: 30 minutes → 5 seconds. One command (<code className="text-xs font-mono bg-emerald-200 dark:bg-emerald-900/50 px-1.5 py-0.5 rounded">$ stamp context</code>) generates optimized context.json files with complete dependency graphs. 65% cost savings. AI instantly understands your entire codebase. Happy developer.
+                    Result: 30 minutes → 5 seconds. One command (<code className="text-xs font-mono bg-emerald-200 dark:bg-emerald-900/50 px-1.5 py-0.5 rounded">$ stamp context</code>) generates optimized context.json files with complete dependency graphs. Up to 65% cost savings. AI has complete context of your entire codebase. Happy developer.
                   </p>
                 </div>
               </div>

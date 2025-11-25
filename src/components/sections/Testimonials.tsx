@@ -39,7 +39,7 @@ const testimonials = [
     },
   },
   {
-    body: 'The token optimization is incredible. We save 66% tokens compared to sharing full code. Our AI costs dropped significantly while getting better results.',
+    body: 'The token optimization is incredible. We save up to 65% tokens compared to sharing full code. Our AI costs dropped significantly while getting better results.',
     author: {
       name: 'Marcus Rodriguez',
       handle: 'marcusr',

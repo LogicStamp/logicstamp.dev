@@ -199,9 +199,8 @@ export default function Hero() {
             }`}
           >
             <p className="mt-8 text-xl lg:text-2xl leading-relaxed text-gray-600 dark:text-gray-300 font-medium max-w-4xl mx-auto">
-              The tiny CLI that transforms React/TypeScript codebases into{' '}
-              <span className="text-secondary-700 dark:text-secondary-300 font-semibold">machine-readable context bundles</span>
-              {' '}for AI assistants and CI pipelines.
+              Generate AI-ready context bundles from your React/TypeScript codebase in seconds.{' '}
+              <span className="text-secondary-700 dark:text-secondary-300 font-semibold">Zero config, up to 65% token savings.</span>
             </p>
             <p className="mt-4 text-base lg:text-lg text-gray-500 dark:text-gray-400">
               Fast • Deterministic • Zero Config • Open Source
