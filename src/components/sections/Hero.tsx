@@ -278,7 +278,7 @@ export default function Hero() {
                 <svg className="h-4 w-4 lg:h-5 lg:w-5 text-green-600 dark:text-green-400" fill="currentColor" viewBox="0 0 20 20">
                   <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.857-9.809a.75.75 0 00-1.214-.882l-3.483 4.79-1.88-1.88a.75.75 0 10-1.06 1.061l2.5 2.5a.75.75 0 001.137-.089l4-5.5z" clipRule="evenodd" />
                 </svg>
-                Launching Soon
+                Just Launched
               </span>
               <span className="inline-flex items-center gap-1.5 lg:gap-2 rounded-full bg-gradient-blue-purple/10 px-3 py-1 lg:px-5 lg:py-2 text-xs sm:text-sm lg:text-base font-medium text-secondary-700 dark:text-secondary-300 ring-1 ring-inset ring-secondary-500/20">
                 <svg className="h-3.5 w-3.5 lg:h-5 lg:w-5" fill="currentColor" viewBox="0 0 20 20">
