@@ -64,11 +64,11 @@ export default function BetaSignup() {
     <div className="text-center">
       <div className="mb-6">
         <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white mb-3">
-          Join the{' '}
-          <span className="bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 bg-clip-text text-transparent font-semibold">
-            Beta
-          </span>
+          Get Early Access
         </h2>
+        <p className="text-base text-gray-600 dark:text-gray-400 mb-6">
+          We'll send you updates as we add features and improve LogicStamp
+        </p>
       </div>
 
       <form className="max-w-2xl mx-auto" onSubmit={handleBetaSubmit}>

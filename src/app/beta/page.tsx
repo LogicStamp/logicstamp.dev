@@ -39,14 +39,14 @@ export default function BetaPage() {
                 <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
                   <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.857-9.809a.75.75 0 00-1.214-.882l-3.483 4.79-1.88-1.88a.75.75 0 10-1.06 1.061l2.5 2.5a.75.75 0 001.137-.089l4-5.5z" clipRule="evenodd" />
                 </svg>
-                Public Beta Now Open
+                Just Launched
               </div>
 
               <h1 className="text-4xl sm:text-5xl lg:text-6xl font-black text-transparent bg-clip-text bg-gradient-to-r from-gray-900 to-gray-700 dark:from-white dark:to-gray-300 mb-8 sm:mb-10 tracking-tight leading-[1.1]">
-                Shape the Future of<br />
+                LogicStamp Just Launched<br />
                 <span className="relative inline-block mt-2">
                   <span className="bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 bg-clip-text text-transparent">
-                    AI-Powered Development
+                    Help Us Build This
                   </span>
                   <span className="absolute inset-0 bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 blur-2xl -z-10 opacity-20 animate-pulse"></span>
                 </span>
@@ -60,11 +60,11 @@ export default function BetaPage() {
               <BetaSignup />
 
               <p className="text-lg sm:text-xl lg:text-2xl text-gray-700 dark:text-gray-300 leading-relaxed max-w-4xl mx-auto mt-10 sm:mt-12 font-medium text-center">
-                Join a growing community of developers pioneering the next generation of AI-ready context generation
+                LogicStamp is live, and we're looking for early users to help us improve
               </p>
 
               <p className="text-base sm:text-lg text-gray-600 dark:text-gray-400 max-w-3xl mx-auto mt-8 sm:mt-10 text-center">
-                Get exclusive early access to cutting-edge features, direct input on product direction, and priority support from our core team
+                As one of our first users, your feedback will directly shape what we build next. We're a small team, so you'll get real responses from the people building this.
               </p>
             </div>
           </AnimatedSection>
@@ -77,10 +77,10 @@ export default function BetaPage() {
           <AnimatedSection direction="up" delay={0}>
             <div className="text-center mb-16">
               <h2 className="text-4xl sm:text-5xl font-bold text-gray-900 dark:text-white mb-6">
-                What's Coming in Beta
+                What We're Working On
               </h2>
               <p className="text-lg sm:text-xl text-gray-600 dark:text-gray-400 max-w-3xl mx-auto">
-                Preview cutting-edge capabilities that will revolutionize how you work with AI assistants
+                Here's what we're building next. Your feedback will help us prioritize what matters most.
               </p>
             </div>
           </AnimatedSection>
@@ -99,14 +99,14 @@ export default function BetaPage() {
                     </div>
                     <div className="flex-1">
                       <h3 className="text-xl sm:text-2xl font-bold text-gray-900 dark:text-white mb-3">
-                        Advanced AI Optimization Algorithms
+                        Better Context Compression
                       </h3>
                       <p className="text-gray-600 dark:text-gray-400 leading-relaxed mb-3">
-                        Test next-generation context compression that reduces bundle sizes by up to <strong className="text-gray-900 dark:text-white">65%</strong> while maintaining complete semantic accuracy. Our machine learning models identify and preserve only the most critical architectural information.
+                        We're experimenting with smarter ways to reduce bundle sizes while keeping the important stuff. Early tests show promising results, but we need real codebases to validate this works well in practice.
                       </p>
                       <div className="flex items-center justify-center sm:justify-start gap-2 text-sm text-blue-600 dark:text-blue-400 font-semibold">
-                        <span>Expected impact:</span>
-                        <span className="px-3 py-1 bg-blue-100 dark:bg-blue-900/30 rounded-full text-center">Up to 65% token reduction</span>
+                        <span>Status:</span>
+                        <span className="px-3 py-1 bg-blue-100 dark:bg-blue-900/30 rounded-full text-center">In development</span>
                       </div>
                     </div>
                   </div>
@@ -123,14 +123,14 @@ export default function BetaPage() {
                     </div>
                     <div className="flex-1">
                       <h3 className="text-xl sm:text-2xl font-bold text-gray-900 dark:text-white mb-3">
-                        Real-Time Architecture Drift Detection
+                        Architecture Change Tracking
                       </h3>
                       <p className="text-gray-600 dark:text-gray-400 leading-relaxed mb-3">
-                        Monitor and visualize architectural changes across your codebase in real-time. Enhanced comparison tools provide granular insights into component relationships, dependency shifts, and structural evolution over time.
+                        We want to help you see how your codebase structure changes over time. This is still early, but we think comparing context bundles across versions could be really useful for understanding architectural drift.
                       </p>
                       <div className="flex items-center justify-center sm:justify-start gap-2 text-sm text-purple-600 dark:text-purple-400 font-semibold">
-                        <span>Expected impact:</span>
-                        <span className="px-3 py-1 bg-purple-100 dark:bg-purple-900/30 rounded-full text-center">100% architecture visibility</span>
+                        <span>Status:</span>
+                        <span className="px-3 py-1 bg-purple-100 dark:bg-purple-900/30 rounded-full text-center">Exploring ideas</span>
                       </div>
                     </div>
                   </div>
@@ -147,14 +147,14 @@ export default function BetaPage() {
                     </div>
                     <div className="flex-1">
                       <h3 className="text-xl sm:text-2xl font-bold text-gray-900 dark:text-white mb-3">
-                        Seamless AI Platform Integrations
+                        More AI Platform Integrations
                       </h3>
                       <p className="text-gray-600 dark:text-gray-400 leading-relaxed mb-3">
-                        Early access to native integrations with popular AI coding assistants, CI/CD platforms, and development environments. One-click context sharing with GitHub Copilot, Cursor, Claude, and more.
+                        Right now you can use LogicStamp with any AI that accepts context. We're looking into making it easier to share context bundles directly with Cursor, GitHub Copilot, and others. Tell us which ones matter most to you.
                       </p>
                       <div className="flex items-center justify-center sm:justify-start gap-2 text-sm text-emerald-600 dark:text-emerald-400 font-semibold">
-                        <span>Expected impact:</span>
-                        <span className="px-3 py-1 bg-emerald-100 dark:bg-emerald-900/30 rounded-full text-center">10+ new integrations</span>
+                        <span>Status:</span>
+                        <span className="px-3 py-1 bg-emerald-100 dark:bg-emerald-900/30 rounded-full text-center">Planning phase</span>
                       </div>
                     </div>
                   </div>
@@ -171,20 +171,20 @@ export default function BetaPage() {
                     </div>
                     <div className="flex-1">
                       <h3 className="text-xl sm:text-2xl font-bold text-gray-900 dark:text-white mb-3">
-                        Lightning-Fast Performance Enhancements
+                        Performance Improvements
                       </h3>
                       <p className="text-gray-600 dark:text-gray-400 leading-relaxed mb-3">
-                        We're working on major speed improvements with parallel processing, intelligent caching, and incremental updates. Larger codebases are a major focus area for optimization.
+                        We know it can be slow on bigger codebases. We're working on optimizations, but honestly, we need to see how it performs on real projects first. If you have a large codebase, we'd especially love your feedback.
                       </p>
                       <div className="flex items-center justify-center sm:justify-start gap-2 text-sm text-amber-600 dark:text-amber-400 font-semibold">
-                        <span>Expected impact:</span>
-                        <span className="px-3 py-1 bg-amber-100 dark:bg-amber-900/30 rounded-full text-center">5x faster generation</span>
+                        <span>Status:</span>
+                        <span className="px-3 py-1 bg-amber-100 dark:bg-amber-900/30 rounded-full text-center">Actively improving</span>
                       </div>
                     </div>
                   </div>
                 </div>
                 <p className="text-sm text-gray-500 dark:text-gray-400 mt-6 text-center italic">
-                  These features represent our planned Beta roadmap. Actual delivery order and timelines may vary.
+                  This is our rough roadmap. We're a small team, so priorities will shift based on what we learn from early users.
                 </p>
               </div>
             </AnimatedSection>
@@ -198,10 +198,10 @@ export default function BetaPage() {
           <AnimatedSection direction="up" delay={0}>
             <div className="text-center mb-16">
               <h2 className="text-4xl sm:text-5xl font-bold text-gray-900 dark:text-white mb-6">
-                Who Should Join the Beta?
+                Who Should Join?
               </h2>
               <p className="text-lg sm:text-xl text-gray-600 dark:text-gray-400 max-w-3xl mx-auto">
-                We're looking for engaged developers and teams ready to push boundaries
+                We're looking for developers who use AI assistants and want to help us make this better
               </p>
             </div>
           </AnimatedSection>
@@ -217,10 +217,10 @@ export default function BetaPage() {
                   </div>
                   <div>
                     <h3 className="text-lg font-bold text-gray-900 dark:text-white mb-2">
-                      AI-Forward Development Teams
+                      Developers Using AI Assistants
                     </h3>
                     <p className="text-gray-600 dark:text-gray-400">
-                      Teams already using AI assistants in their workflow who want to maximize efficiency and reduce context management overhead
+                      If you're already using Cursor, Copilot, or Claude regularly, you probably know the pain of managing context. Help us make it better.
                     </p>
                   </div>
                 </div>
@@ -237,10 +237,10 @@ export default function BetaPage() {
                   </div>
                   <div>
                     <h3 className="text-lg font-bold text-gray-900 dark:text-white mb-2">
-                      Enterprise Engineering Leaders
+                      Teams with React/TypeScript Codebases
                     </h3>
                     <p className="text-gray-600 dark:text-gray-400">
-                      CTOs and engineering managers looking to standardize AI context generation across large-scale React/TypeScript codebases
+                      LogicStamp works best with React and TypeScript right now. If that's your stack, we'd love to see how it works for your team.
                     </p>
                   </div>
                 </div>
@@ -257,10 +257,10 @@ export default function BetaPage() {
                   </div>
                   <div>
                     <h3 className="text-lg font-bold text-gray-900 dark:text-white mb-2">
-                      Open Source Contributors
+                      Open Source Maintainers
                     </h3>
                     <p className="text-gray-600 dark:text-gray-400">
-                      Developers maintaining open-source projects who want to make their codebases more accessible to AI-assisted contributors
+                      If you maintain an open source project, we think LogicStamp could help contributors understand your codebase faster. We'd love to test this theory.
                     </p>
                   </div>
                 </div>
@@ -277,10 +277,10 @@ export default function BetaPage() {
                   </div>
                   <div>
                     <h3 className="text-lg font-bold text-gray-900 dark:text-white mb-2">
-                      DevTools Enthusiasts
+                      People Who Like Trying New Tools
                     </h3>
                     <p className="text-gray-600 dark:text-gray-400">
-                      Developers passionate about tooling who want to provide detailed feedback and help shape the future of developer experience
+                      If you enjoy being an early adopter and don't mind the occasional rough edge, we'd love your feedback. We're responsive and actually listen.
                     </p>
                   </div>
                 </div>
@@ -297,10 +297,10 @@ export default function BetaPage() {
           <AnimatedSection direction="up" delay={0}>
             <div className="text-center">
               <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-6">
-                Ready to Pioneer the Future?
+                Want to Help Us Build This?
               </h2>
               <p className="text-xl sm:text-2xl text-blue-100 mb-8 max-w-3xl mx-auto">
-                Join early adopters already transforming how they work with AI
+                We're just getting started. Your feedback will help us figure out what to build next.
               </p>
               <div className="flex flex-row gap-2 sm:gap-4 justify-center items-center mb-12 flex-wrap">
                 <a
@@ -316,7 +316,7 @@ export default function BetaPage() {
                 <ReadTheDocsButton href="/docs" size="sm" className="px-5 py-3 text-sm sm:px-8 sm:py-4 sm:text-base lg:text-lg" />
               </div>
               <p className="text-blue-100 text-sm">
-                100% open source • Free forever • Shaped by developer feedback
+                100% open source • Free forever • Built with your feedback
               </p>
             </div>
           </AnimatedSection>
