@@ -48,7 +48,7 @@ const faqs = [
     id: 3,
     question: 'Is there a free version?',
     answer:
-      'Yes! LogicStamp Context is completely free and open-source.\nInstall it globally with npm i -g logicstamp-context and use it without limits.\nThe CLI is production-ready and includes context generation, drift detection, validation, and token optimization.\nUpcoming enhancements include watch mode, advanced contract verification, and enhanced contract management features.',
+      'Yes! LogicStamp Context is completely free and open-source.\nInstall it globally with npm i -g logicstamp-context and use it without limits.\nThe CLI is production-ready and includes context generation, drift detection, validation, and token optimization.\nUpcoming enhancements include advanced contract verification and enhanced contract management features.',
   },
   {
     id: 4,
@@ -73,6 +73,12 @@ const faqs = [
     question: 'Why bundles instead of individual component files?',
     answer:
       'LogicStamp Context generates per-root bundles (one bundle per page/feature component) rather than individual files per component.\nEach bundle contains the root component plus its complete dependency graph—all related components together.\nThis design matches how developers work: when you need help with a specific page or feature, share that bundle and the AI has complete context in one self-contained unit.',
+  },
+  {
+    id: 8,
+    question: 'Is watch mode available?',
+    answer:
+      'Watch mode is currently under evaluation.\nThe context and compare workflow may work better with MCP (Model Context Protocol) integration without watch mode, as MCP provides more efficient and controlled context updates.\nWe\'re exploring whether watch mode adds value or if the MCP-based approach offers a superior developer experience.',
   },
 ]
 

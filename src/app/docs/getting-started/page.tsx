@@ -272,11 +272,6 @@ export default function QuickStartPage() {
                         copyText: 'stamp context --dry-run --stats'
                       },
                       {
-                        label: 'Watch Mode',
-                        code: 'stamp context --watch',
-                        copyText: 'stamp context --watch'
-                      },
-                      {
                         label: 'Custom Output',
                         code: 'stamp context --output ./ai-context',
                         copyText: 'stamp context --output ./ai-context'

@@ -112,7 +112,7 @@ const integrations = [
     gradient: 'from-purple-500/20 via-indigo-500/20 to-violet-600/20',
     borderGradient: 'from-purple-500 via-indigo-500 to-violet-600',
     iconBg: 'from-purple-500/10 to-violet-600/10',
-    features: ['Contract verification upgrades (advanced rules + deeper validation)', 'Watch mode for automatic context regeneration on file changes', 'Enhanced contract management (grouped bundles, project-level insights)', 'Optional @logicstamp/cli orchestrator for multi-framework setups'],
+    features: ['Contract verification upgrades (advanced rules + deeper validation)', 'Enhanced contract management (grouped bundles, project-level insights)', 'Optional @logicstamp/cli orchestrator for multi-framework setups'],
     comingSoon: true,
   },
 ]

@@ -240,7 +240,6 @@ export default function BestPracticesPage() {
                     </h3>
                     <ul className="text-xs sm:text-sm text-purple-800 dark:text-purple-200 space-y-1.5">
                       <li>• Run on demand before complex AI-assisted work</li>
-                      <li>• Use <code className="px-1 bg-purple-100 dark:bg-purple-900/40 rounded font-mono text-[0.7rem] sm:text-xs">--watch</code> for large refactors</li>
                       <li>• Keep bundles in sync with your feature branches</li>
                     </ul>
                   </div>

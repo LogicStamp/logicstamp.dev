@@ -41,66 +41,124 @@ export default function ChangelogPage() {
               .
             </p>
 
-            <h2 id="0-1-0">[0.1.0] – 2025-01-15</h2>
+            <h2 id="0-1-0">[0.1.0] – 2025-01-25</h2>
+
+            <h3>🎉 Initial Release</h3>
+            <p>
+              First public release of LogicStamp Context - a fast, zero-config CLI tool that generates AI-friendly context bundles from React/TypeScript codebases.
+            </p>
+
             <h3>Added</h3>
+
+            <h4>Core Functionality</h4>
             <ul>
-              <li>Initial standalone release of LogicStamp Context.</li>
-              <li>Scans React/TypeScript codebases and generates AI-friendly context bundles.</li>
-              <li>
-                New per-folder <code>context.json</code> and root-level <code>context_main.json</code> structure for
-                deterministic project mapping.
-              </li>
-              <li>AST-based component analysis (no pre-compilation required).</li>
-              <li>Three preset profiles: <code>llm-safe</code>, <code>llm-chat</code>, <code>ci-strict</code>.</li>
-              <li>
-                Code inclusion modes: <code>none</code>, <code>header</code>, <code>full</code>.
-              </li>
-              <li>
-                Output formats: <code>json</code>, <code>pretty</code>, <code>ndjson</code>.
-              </li>
-              <li>Depth-based dependency traversal.</li>
-              <li>Deterministic bundle and semantic hashing.</li>
-              <li>Missing dependency tracking with diagnostics.</li>
-              <li>Standalone CLI with a comprehensive help system.</li>
-              <li>Cross-platform path normalization.</li>
-              <li>In-memory contract generation pipeline.</li>
-              <li>Zero configuration required.</li>
-              <li>Works on any React/TypeScript project.</li>
+              <li><strong>AST-based component analysis</strong> - No pre-compilation required, works directly with source files</li>
+              <li><strong>Multi-file context generation</strong> - Per-folder <code>context.json</code> files plus root-level <code>context_main.json</code> index</li>
+              <li><strong>Deterministic output</strong> - Semantic hashing and bundle hashing for reproducible builds</li>
+              <li><strong>Dependency graph traversal</strong> - Configurable depth-based dependency analysis</li>
+              <li><strong>Missing dependency tracking</strong> - Diagnostics for unresolved imports with <code>--strict-missing</code> flag</li>
             </ul>
 
-            <h3>Features</h3>
+            <h4>CLI Commands</h4>
             <ul>
-              <li>Outputs ready for AI tools (Claude, ChatGPT, Cursor, VS Code assistants).</li>
-              <li>Fast analysis: ~3–5 seconds for typical 50–150 file projects.</li>
-              <li>Designed for reproducibility and CI integration.</li>
+              <li><code>stamp context</code> - Generate context bundles from React/TypeScript codebase</li>
+              <li><code>stamp context compare</code> - Multi-file drift detection comparing all context files</li>
+              <li><code>stamp context validate</code> - Schema validation for generated context files</li>
+              <li><code>stamp context clean</code> - Remove all generated context artifacts</li>
+              <li><code>stamp init</code> - Interactive project initialization with <code>.gitignore</code> setup</li>
             </ul>
 
-            <h3>Documentation</h3>
+            <h4>Configuration & Profiles</h4>
             <ul>
-              <li>Complete README with installation, usage, and examples.</li>
-              <li>Detailed USAGE guide covering all CLI flags and profiles.</li>
-              <li>
-                Example <code>context.json</code> output for quick reference.
-              </li>
-              <li>MIT License included.</li>
+              <li><strong>Three preset profiles</strong>: <code>llm-safe</code>, <code>llm-chat</code> (default), <code>ci-strict</code></li>
+              <li><strong>Code inclusion modes</strong>: <code>none</code>, <code>header</code>, <code>full</code> for token optimization</li>
+              <li><strong>Output formats</strong>: <code>json</code>, <code>pretty</code>, <code>ndjson</code></li>
+              <li><strong>Zero configuration</strong> - Works out of the box on any React/TypeScript project</li>
             </ul>
+
+            <h4>Token Optimization</h4>
+            <ul>
+              <li><strong>Automatic token estimates</strong> - GPT-4o-mini and Claude token counts</li>
+              <li><strong>Mode comparison</strong> - <code>--compare-modes</code> flag for detailed token analysis</li>
+              <li><strong>CI-friendly stats</strong> - <code>--stats</code> flag outputs JSON with token estimates</li>
+              <li><strong>Savings calculation</strong> - Shows percentage savings compared to full code mode</li>
+            </ul>
+
+            <h4>Next.js Support</h4>
+            <ul>
+              <li><strong>App Router detection</strong> - Identifies files in <code>/app</code> directory</li>
+              <li><strong>Directive detection</strong> - <code>'use client'</code> and <code>'use server'</code> directive support</li>
+              <li><strong>Framework metadata</strong> - Next.js-specific annotations in contracts</li>
+            </ul>
+
+            <h4>Context Comparison</h4>
+            <ul>
+              <li><strong>Multi-file drift detection</strong> - Compares all context files using <code>context_main.json</code> as index</li>
+              <li><strong>Three-tier output</strong> - Folder summary → component summary → detailed changes</li>
+              <li><strong>Auto-approve mode</strong> - <code>--approve</code> flag for Jest-style snapshot updates</li>
+              <li><strong>Orphaned file cleanup</strong> - <code>--clean-orphaned</code> flag to remove stale context files</li>
+              <li><strong>Token delta stats</strong> - Per-folder token count changes with <code>--stats</code></li>
+            </ul>
+
+            <h4>Programmatic API</h4>
+            <ul>
+              <li><strong>Main entry point</strong> - <code>dist/index.js</code> exports all core functions, types, and CLI commands</li>
+              <li><strong>TypeScript types</strong> - Full type definitions for all exports</li>
+              <li><strong>Core modules</strong> - AST parser, contract builder, manifest generator, pack utilities</li>
+            </ul>
+
+            <h4>Developer Experience</h4>
+            <ul>
+              <li><strong>Interactive initialization</strong> - First-run prompts for <code>.gitignore</code> and <code>LLM_CONTEXT.md</code> setup</li>
+              <li><strong>Comprehensive help system</strong> - Detailed help for all commands and options</li>
+              <li><strong>Cross-platform support</strong> - Works on Windows, macOS, and Linux</li>
+              <li><strong>Fast performance</strong> - ~3–5 seconds for typical 50–150 file projects</li>
+              <li><strong>CI/CD integration</strong> - Exit codes and JSON output for automation</li>
+            </ul>
+
+            <h4>Documentation</h4>
+            <ul>
+              <li>Complete README with installation, usage, and examples</li>
+              <li>Detailed CLI documentation for all commands</li>
+              <li>JSON Schema definition for context files</li>
+              <li>Example context outputs and use cases</li>
+              <li>Troubleshooting guide for common issues</li>
+            </ul>
+
+            <h3>Changed</h3>
+            <ul>
+              <li>N/A (initial release)</li>
+            </ul>
+
+            <h3>Fixed</h3>
+            <ul>
+              <li>N/A (initial release)</li>
+            </ul>
+
+            <h3>Security</h3>
+            <ul>
+              <li>N/A (initial release)</li>
+            </ul>
+
+            <hr />
 
             <h2 id="unreleased">[Unreleased]</h2>
-            <h3>Planned</h3>
+
+            <h3>Planned Features</h3>
             <ul>
-              <li>Watch mode for continuous generation.</li>
-              <li>Custom profile configuration and overrides.</li>
-              <li>Bundle caching.</li>
-              <li>Output size optimization.</li>
-              <li>Additional output formats.</li>
-              <li>Integration examples for popular AI assistants.</li>
+              <li>Custom profile configuration and overrides</li>
+              <li>Incremental bundle caching</li>
+              <li>Output size optimization</li>
+              <li>Additional output formats</li>
+              <li>Integration examples for popular AI assistants</li>
+              <li>Vue.js and Svelte support</li>
+              <li>Advanced Next.js App Router features (route roles, segment paths, metadata exports)</li>
             </ul>
 
-            <h3>Known Limitations (to be addressed)</h3>
+            <h3>Known Limitations</h3>
             <ul>
-              <li>No watch mode yet.</li>
-              <li>No incremental caching.</li>
-              <li>No custom profiles beyond the three presets.</li>
+              <li>No incremental caching (planned for future release)</li>
+              <li>No custom profiles beyond the three presets (planned for future release)</li>
             </ul>
           </AnimatedSection>
         </div>
