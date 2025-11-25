@@ -68,13 +68,13 @@ Generates LogicStamp bundles from a directory.
 | `--predict-behavior` | | `false` | Include experimental behavioral predictions |
 | `--dry-run` | | `false` | Skip writing the output file; prints summary instead |
 | `--stats` | | `false` | Emit one-line JSON stats (helpful for CI pipelines) |
-| `--version` | `-v` | | Show version number |
-| `--help` | `-h` | | Show help message |
+| `--quiet` | `-q` | `false` | Suppress verbose output (show only errors) |
 
 **CI / automation tips**
 
 - Use `--dry-run` to inspect totals without producing files.
 - Use `--stats` to emit machine-readable summary lines (combine with shell redirection).
+- Use `--quiet` to suppress verbose output in CI pipelines (show only errors).
 
 ### `stamp context validate`
 
@@ -92,6 +92,10 @@ stamp context validate review.json # validate a custom bundle
 - For main index: Structure matches `LogicStampIndex` with folder metadata.
 - Each bundle has the correct types, graph metadata, and contract versions.
 - Warns on unexpected schema versions or hash formats.
+
+**Options**
+
+- `--quiet` | `-q` – Suppress verbose output (show only errors)
 
 **Exit codes**
 
@@ -151,6 +155,7 @@ The compare command has **two modes**:
 | `--approve` | Auto-approve updates (non-interactive, CI-safe) |
 | `--clean-orphaned` | Auto-delete orphaned files with `--approve` |
 | `--stats` | Show token count statistics per folder |
+| `--quiet` | `-q` | Suppress verbose output (show only diffs) |
 | `--help` | Show help message |
 
 **Exit codes**
@@ -253,6 +258,7 @@ stamp context clean ./src --all --yes
 |--------|-------------|
 | `--all` | Include all context files in the deletion operation |
 | `--yes` | Confirm deletion (required with `--all`) |
+| `--quiet` | `-q` | Suppress verbose output (show only errors) |
 | `--help` | Show help message |
 
 **Safety features**

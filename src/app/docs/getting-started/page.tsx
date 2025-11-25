@@ -137,7 +137,7 @@ export default function QuickStartPage() {
                       },
                       {
                         label: 'Verify',
-                        code: 'stamp --version',
+                        code: 'stamp --version\n# or use the short alias:\nstamp -v',
                         copyText: 'stamp --version'
                       }
                     ]}
