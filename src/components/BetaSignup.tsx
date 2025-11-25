@@ -64,9 +64,9 @@ export default function BetaSignup() {
     <div className="text-center">
       <div className="mb-6">
         <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white mb-3">
-          Get Early{' '}
+          Join the{' '}
           <span className="bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 bg-clip-text text-transparent font-semibold">
-            Access
+            Beta
           </span>
         </h2>
       </div>
@@ -78,7 +78,7 @@ export default function BetaSignup() {
             placeholder="your@email.com"
             value={betaEmail}
             onChange={(e) => setBetaEmail(e.target.value)}
-            className="flex-1 px-5 py-4 rounded-xl border-2 border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 dark:focus:ring-blue-400 focus:border-blue-500 dark:focus:border-blue-400 transition-all text-lg"
+            className="flex-1 px-5 py-4 rounded-xl border-2 border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400 focus:outline-none focus-visible:outline-none focus:border-gray-300 dark:focus:border-gray-700 text-lg"
             required
             disabled={isSubmittingBeta}
           />
