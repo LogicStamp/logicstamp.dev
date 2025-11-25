@@ -60,7 +60,7 @@ export default function BetaPage() {
               <BetaSignup />
 
               <p className="text-lg sm:text-xl lg:text-2xl text-gray-700 dark:text-gray-300 leading-relaxed max-w-4xl mx-auto mt-10 sm:mt-12 font-medium text-center">
-                Join an elite community of developers pioneering the next generation of AI-ready context generation
+                Join a growing community of developers pioneering the next generation of AI-ready context generation
               </p>
 
               <p className="text-base sm:text-lg text-gray-600 dark:text-gray-400 max-w-3xl mx-auto mt-8 sm:mt-10 text-center">
@@ -174,7 +174,7 @@ export default function BetaPage() {
                         Lightning-Fast Performance Enhancements
                       </h3>
                       <p className="text-gray-600 dark:text-gray-400 leading-relaxed mb-3">
-                        Experience dramatic speed improvements with parallel processing, intelligent caching, and incremental updates. Handle massive codebases with thousands of components without breaking a sweat.
+                        We're working on major speed improvements with parallel processing, intelligent caching, and incremental updates. Larger codebases are a major focus area for optimization.
                       </p>
                       <div className="flex items-center gap-2 text-sm text-amber-600 dark:text-amber-400 font-semibold">
                         <span>Expected impact:</span>
@@ -183,6 +183,9 @@ export default function BetaPage() {
                     </div>
                   </div>
                 </div>
+                <p className="text-sm text-gray-500 dark:text-gray-400 mt-6 text-center italic">
+                  These features represent our planned Beta roadmap. Actual delivery order and timelines may vary.
+                </p>
               </div>
             </AnimatedSection>
           </div>
@@ -297,7 +300,7 @@ export default function BetaPage() {
                 Ready to Pioneer the Future?
               </h2>
               <p className="text-xl sm:text-2xl text-blue-100 mb-8 max-w-3xl mx-auto">
-                Join hundreds of forward-thinking developers already transforming how they work with AI
+                Join early adopters already transforming how they work with AI
               </p>
               <div className="flex flex-row gap-2 sm:gap-4 justify-center items-center mb-12 flex-wrap">
                 <a
@@ -310,10 +313,10 @@ export default function BetaPage() {
                 >
                   Join Beta Now
                 </a>
-                <ReadTheDocsButton href="/docs/getting-started" size="sm" className="px-5 py-3 text-sm sm:px-8 sm:py-4 sm:text-base lg:text-lg" />
+                <ReadTheDocsButton href="/docs" size="sm" className="px-5 py-3 text-sm sm:px-8 sm:py-4 sm:text-base lg:text-lg" />
               </div>
               <p className="text-blue-100 text-sm">
-                100% open source • Free forever • Community-driven development
+                100% open source • Free forever • Shaped by developer feedback
               </p>
             </div>
           </AnimatedSection>
