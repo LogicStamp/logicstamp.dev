@@ -90,7 +90,7 @@ export default function BetaPage() {
               <div className="bg-gradient-to-br from-white to-gray-50 dark:from-gray-800 dark:to-gray-900 rounded-2xl p-8 sm:p-10 shadow-xl border border-gray-200 dark:border-gray-700">
                 <div className="space-y-8">
                   <div className="flex items-start gap-6 group">
-                    <div className="flex-shrink-0">
+                    <div className="flex-shrink-0 pt-1">
                       <div className="w-12 h-12 bg-gradient-to-br from-blue-500 to-cyan-500 rounded-xl flex items-center justify-center shadow-lg">
                         <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
@@ -104,9 +104,9 @@ export default function BetaPage() {
                       <p className="text-gray-600 dark:text-gray-400 leading-relaxed mb-3">
                         Test next-generation context compression that reduces bundle sizes by up to <strong className="text-gray-900 dark:text-white">65%</strong> while maintaining complete semantic accuracy. Our machine learning models identify and preserve only the most critical architectural information.
                       </p>
-                      <div className="flex items-center gap-2 text-sm text-blue-600 dark:text-blue-400 font-semibold">
+                      <div className="flex items-center justify-center sm:justify-start gap-2 text-sm text-blue-600 dark:text-blue-400 font-semibold">
                         <span>Expected impact:</span>
-                        <span className="px-3 py-1 bg-blue-100 dark:bg-blue-900/30 rounded-full">Up to 65% token reduction</span>
+                        <span className="px-3 py-1 bg-blue-100 dark:bg-blue-900/30 rounded-full text-center">Up to 65% token reduction</span>
                       </div>
                     </div>
                   </div>
@@ -114,7 +114,7 @@ export default function BetaPage() {
                   <div className="border-t border-gray-200 dark:border-gray-700"></div>
 
                   <div className="flex items-start gap-6 group">
-                    <div className="flex-shrink-0">
+                    <div className="flex-shrink-0 pt-1">
                       <div className="w-12 h-12 bg-gradient-to-br from-purple-500 to-pink-500 rounded-xl flex items-center justify-center shadow-lg">
                         <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 5a1 1 0 011-1h14a1 1 0 011 1v2a1 1 0 01-1 1H5a1 1 0 01-1-1V5zM4 13a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H5a1 1 0 01-1-1v-6zM16 13a1 1 0 011-1h2a1 1 0 011 1v6a1 1 0 01-1 1h-2a1 1 0 01-1-1v-6z" />
@@ -128,9 +128,9 @@ export default function BetaPage() {
                       <p className="text-gray-600 dark:text-gray-400 leading-relaxed mb-3">
                         Monitor and visualize architectural changes across your codebase in real-time. Enhanced comparison tools provide granular insights into component relationships, dependency shifts, and structural evolution over time.
                       </p>
-                      <div className="flex items-center gap-2 text-sm text-purple-600 dark:text-purple-400 font-semibold">
+                      <div className="flex items-center justify-center sm:justify-start gap-2 text-sm text-purple-600 dark:text-purple-400 font-semibold">
                         <span>Expected impact:</span>
-                        <span className="px-3 py-1 bg-purple-100 dark:bg-purple-900/30 rounded-full">100% architecture visibility</span>
+                        <span className="px-3 py-1 bg-purple-100 dark:bg-purple-900/30 rounded-full text-center">100% architecture visibility</span>
                       </div>
                     </div>
                   </div>
@@ -138,7 +138,7 @@ export default function BetaPage() {
                   <div className="border-t border-gray-200 dark:border-gray-700"></div>
 
                   <div className="flex items-start gap-6 group">
-                    <div className="flex-shrink-0">
+                    <div className="flex-shrink-0 pt-1">
                       <div className="w-12 h-12 bg-gradient-to-br from-emerald-500 to-teal-500 rounded-xl flex items-center justify-center shadow-lg">
                         <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1" />
@@ -152,9 +152,9 @@ export default function BetaPage() {
                       <p className="text-gray-600 dark:text-gray-400 leading-relaxed mb-3">
                         Early access to native integrations with popular AI coding assistants, CI/CD platforms, and development environments. One-click context sharing with GitHub Copilot, Cursor, Claude, and more.
                       </p>
-                      <div className="flex items-center gap-2 text-sm text-emerald-600 dark:text-emerald-400 font-semibold">
+                      <div className="flex items-center justify-center sm:justify-start gap-2 text-sm text-emerald-600 dark:text-emerald-400 font-semibold">
                         <span>Expected impact:</span>
-                        <span className="px-3 py-1 bg-emerald-100 dark:bg-emerald-900/30 rounded-full">10+ new integrations</span>
+                        <span className="px-3 py-1 bg-emerald-100 dark:bg-emerald-900/30 rounded-full text-center">10+ new integrations</span>
                       </div>
                     </div>
                   </div>
@@ -162,7 +162,7 @@ export default function BetaPage() {
                   <div className="border-t border-gray-200 dark:border-gray-700"></div>
 
                   <div className="flex items-start gap-6 group">
-                    <div className="flex-shrink-0">
+                    <div className="flex-shrink-0 pt-1">
                       <div className="w-12 h-12 bg-gradient-to-br from-amber-500 to-orange-500 rounded-xl flex items-center justify-center shadow-lg">
                         <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
@@ -176,9 +176,9 @@ export default function BetaPage() {
                       <p className="text-gray-600 dark:text-gray-400 leading-relaxed mb-3">
                         We're working on major speed improvements with parallel processing, intelligent caching, and incremental updates. Larger codebases are a major focus area for optimization.
                       </p>
-                      <div className="flex items-center gap-2 text-sm text-amber-600 dark:text-amber-400 font-semibold">
+                      <div className="flex items-center justify-center sm:justify-start gap-2 text-sm text-amber-600 dark:text-amber-400 font-semibold">
                         <span>Expected impact:</span>
-                        <span className="px-3 py-1 bg-amber-100 dark:bg-amber-900/30 rounded-full">5x faster generation</span>
+                        <span className="px-3 py-1 bg-amber-100 dark:bg-amber-900/30 rounded-full text-center">5x faster generation</span>
                       </div>
                     </div>
                   </div>
