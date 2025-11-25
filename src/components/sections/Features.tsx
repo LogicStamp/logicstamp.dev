@@ -77,13 +77,13 @@ $ stamp context
    Missing dependencies: 0
 
 📏 Token Estimates (header mode):
-   GPT-4o-mini: 14,484 | Full code: ~42,977 (~66% savings)
-   Claude:      12,875 | Full code: ~38,203 (~66% savings)
+   GPT-4o-mini: 14,484 | Full code: ~41,383 (~65% savings)
+   Claude:      12,875 | Full code: ~36,785 (~65% savings)
 
 📊 Mode Comparison:
    none:       ~8,691 tokens
    header:     ~14,484 tokens
-   full:       ~42,977 tokens
+   full:       ~41,383 tokens
 
 ⏱  Completed in 3225ms`
     },
@@ -103,8 +103,8 @@ $ stamp context
 Mode     | Tokens GPT-4o | Tokens Claude | Savings vs Full
 ---------|---------------|---------------|------------------
 none     |         8,708 |         7,740 | 81%
-header   |        14,512 |        12,900 | 68%
-full     |        45,155 |        40,138 | 0%
+header   |        14,512 |        12,900 | 65%
+full     |        41,383 |        36,785 | 0%
 
 ⏱  Completed in 3256ms`
     },
@@ -142,13 +142,13 @@ full     |        45,155 |        40,138 | 0%
    Missing dependencies: 0
 
 📏 Token Estimates (header mode):
-   GPT-4o-mini: 14,512 | Full code: ~45,155 (~68% savings)
-   Claude:      12,900 | Full code: ~40,138 (~68% savings)
+   GPT-4o-mini: 14,512 | Full code: ~41,383 (~65% savings)
+   Claude:      12,900 | Full code: ~36,785 (~65% savings)
 
 📊 Mode Comparison:
    none:       ~8,708 tokens
    header:     ~14,512 tokens
-   full:       ~45,155 tokens
+   full:       ~41,383 tokens
 
 ⏱  Completed in 3472ms
 

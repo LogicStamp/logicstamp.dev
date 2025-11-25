@@ -42,7 +42,7 @@ const faqs = [
     id: 2,
     question: 'Why not just paste code into AI chats?',
     answer:
-      'Pasting raw code wastes tokens on boilerplate, imports, and redundant formatting.\nLogicStamp Context extracts only what AI needs—component contracts, dependency relationships, and logic signatures—saving up to 66% tokens compared to full source code.\nPlus, it provides structured context that AI can actually parse and understand, not just raw text.',
+      'Pasting raw code wastes tokens on boilerplate, imports, and redundant formatting.\nLogicStamp Context extracts only what AI needs—component contracts, dependency relationships, and logic signatures—saving up to 65% tokens compared to full source code.\nPlus, it provides structured context that AI can actually parse and understand, not just raw text.',
   },
   {
     id: 3,
@@ -66,7 +66,7 @@ const faqs = [
     id: 6,
     question: 'How does token optimization work?',
     answer:
-      'LogicStamp Context offers three modes: `none` (contracts only, ~80% savings), `header` (recommended, ~66% savings with JSDoc headers), and `full` (complete source).\nThe header mode includes just enough context for AI to understand component logic without wasting tokens on implementation details.\nUse `--compare-modes` to see exact savings for your codebase.',
+      'LogicStamp Context offers three modes: `none` (contracts only, up to 80% savings), `header` (recommended, up to 65% savings with JSDoc headers), and `full` (complete source).\nThe header mode includes just enough context for AI to understand component logic without wasting tokens on implementation details.\nUse `--compare-modes` to see exact savings for your codebase.',
   },
   {
     id: 7,
