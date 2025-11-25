@@ -81,6 +81,15 @@ export default function LogicStampCommandsPage() {
                     </tr>
                     <tr className="hover:bg-gray-50 dark:hover:bg-gray-800/50 transition-colors">
                       <td className="px-2 sm:px-6 py-4 whitespace-nowrap">
+                        <code className="px-2 py-1 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 rounded text-xs sm:text-sm font-mono">--quiet</code>
+                      </td>
+                      <td className="px-2 sm:px-6 py-4 whitespace-nowrap">
+                        <code className="px-2 py-1 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 rounded text-xs sm:text-sm font-mono">-q</code>
+                      </td>
+                      <td className="px-2 sm:px-6 py-4 text-sm text-gray-600 dark:text-gray-400">Suppress non-error output</td>
+                    </tr>
+                    <tr className="hover:bg-gray-50 dark:hover:bg-gray-800/50 transition-colors">
+                      <td className="px-2 sm:px-6 py-4 whitespace-nowrap">
                         <code className="px-2 py-1 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 rounded text-xs sm:text-sm font-mono">--help</code>
                       </td>
                       <td className="px-2 sm:px-6 py-4 whitespace-nowrap">
@@ -102,6 +111,14 @@ export default function LogicStampCommandsPage() {
                   <div className="flex items-center gap-2 text-indigo-800 dark:text-indigo-300">
                     <code className="px-2 py-1 bg-indigo-100 dark:bg-indigo-900/40 rounded">stamp -v</code>
                     <span className="text-gray-600 dark:text-gray-400"># Same as --version</span>
+                  </div>
+                  <div className="flex items-center gap-2 text-indigo-800 dark:text-indigo-300">
+                    <code className="px-2 py-1 bg-indigo-100 dark:bg-indigo-900/40 rounded">stamp context --quiet</code>
+                    <span className="text-gray-600 dark:text-gray-400"># Suppress non-error output</span>
+                  </div>
+                  <div className="flex items-center gap-2 text-indigo-800 dark:text-indigo-300">
+                    <code className="px-2 py-1 bg-indigo-100 dark:bg-indigo-900/40 rounded">stamp context -q</code>
+                    <span className="text-gray-600 dark:text-gray-400"># Same as --quiet</span>
                   </div>
                   <div className="flex items-center gap-2 text-indigo-800 dark:text-indigo-300">
                     <code className="px-2 py-1 bg-indigo-100 dark:bg-indigo-900/40 rounded">stamp --help</code>
@@ -143,6 +160,13 @@ export default function LogicStampCommandsPage() {
                     </tr>
                   </thead>
                   <tbody className="bg-white dark:bg-gray-900 divide-y divide-gray-200 dark:divide-gray-700">
+                    <tr className="hover:bg-gray-50 dark:hover:bg-gray-800/50 transition-colors">
+                      <td className="px-2 sm:px-6 py-4 whitespace-nowrap">
+                        <code className="px-2 py-1 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 rounded text-xs sm:text-sm font-mono">stamp --version</code>
+                      </td>
+                      <td className="px-2 sm:px-6 py-4 text-sm text-gray-600 dark:text-gray-400">Show version number and exit.</td>
+                      <td className="px-2 sm:px-6 py-4 text-sm text-gray-600 dark:text-gray-400">Check installed version.</td>
+                    </tr>
                     <tr className="hover:bg-gray-50 dark:hover:bg-gray-800/50 transition-colors">
                       <td className="px-2 sm:px-6 py-4 whitespace-nowrap">
                         <code className="px-2 py-1 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 rounded text-xs sm:text-sm font-mono">stamp init [path]</code>
@@ -246,7 +270,10 @@ export default function LogicStampCommandsPage() {
               tabs={[
                 {
                   label: 'Quick Reference',
-                  code: `# Initialize LogicStamp in your project (optional - context command does this automatically)
+                  code: `# Show version number
+stamp --version
+
+# Initialize LogicStamp in your project (optional - context command does this automatically)
 stamp init
 
 # Generate context for your repository
@@ -278,7 +305,10 @@ stamp context clean
 
 # Actually delete all context files
 stamp context clean --all --yes`,
-                    copyText: `# Initialize LogicStamp in your project (optional - context command does this automatically)
+                    copyText: `# Show version number
+stamp --version
+
+# Initialize LogicStamp in your project (optional - context command does this automatically)
 stamp init
 
 # Generate context for your repository
