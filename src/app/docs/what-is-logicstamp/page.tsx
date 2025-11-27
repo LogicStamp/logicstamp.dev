@@ -49,6 +49,10 @@ export default function WhatIsLogicStampPage() {
                 </div>
                 <div className="flex items-center gap-2">
                   <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse" />
+                  <span className="text-xs sm:text-sm font-medium text-gray-600 dark:text-gray-400">CI-friendly, no prompts</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse" />
                   <span className="text-xs sm:text-sm font-medium text-gray-600 dark:text-gray-400">up to 65% token reduction</span>
                 </div>
                 <div className="flex items-center gap-2">
@@ -238,7 +242,7 @@ export default function WhatIsLogicStampPage() {
                 {
                   icon: "🚀",
                   title: "Project Initialization",
-                  desc: "Set up .gitignore patterns and generate LLM_CONTEXT.md to help AI assistants understand your project structure",
+                  desc: "Set up .gitignore patterns and generate LLM_CONTEXT.md via stamp init. stamp context is CI-friendly and never prompts—respects preferences automatically",
                   color: "indigo"
                 },
                 {
@@ -331,7 +335,7 @@ export default function WhatIsLogicStampPage() {
                   title: "Generate Context Files",
                   description: "Run the context generator to analyze your codebase and create structured bundles",
                   code: "stamp context",
-                  note: "On first run, you'll be prompted to set up .gitignore and LLM_CONTEXT.md",
+                  note: "CI-friendly: never prompts. If you skip stamp init, defaults to skipping both .gitignore and LLM_CONTEXT.md setup (safe for CI). Use stamp init to configure preferences first (optional).",
                   color: "purple"
                 },
                 {

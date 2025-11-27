@@ -124,25 +124,25 @@ export default function ContextCommandPage() {
                   </h2>
                 </div>
                 <p className="text-base sm:text-lg text-gray-600 dark:text-gray-400 mb-4 sm:mb-6 leading-relaxed">
-                  On first run in interactive mode, <code className="px-2 py-1 bg-gray-100 dark:bg-gray-800 text-blue-600 dark:text-blue-400 rounded-md font-mono text-xs sm:text-sm">stamp context</code> will prompt you to:
+                  <code className="px-2 py-1 bg-gray-100 dark:bg-gray-800 text-blue-600 dark:text-blue-400 rounded-md font-mono text-xs sm:text-sm">stamp context</code> is <strong className="text-gray-900 dark:text-white">CI-friendly</strong> and <strong className="text-gray-900 dark:text-white">never prompts</strong>. It respects preferences saved in <code className="px-1.5 py-0.5 bg-blue-100 dark:bg-blue-900/40 rounded text-xs font-mono">.logicstamp/config.json</code> from <code className="px-1.5 py-0.5 bg-blue-100 dark:bg-blue-900/40 rounded text-xs font-mono">stamp init</code>. On first run (no config), it defaults to skipping both <code className="px-1.5 py-0.5 bg-blue-100 dark:bg-blue-900/40 rounded text-xs font-mono">.gitignore</code> and <code className="px-1.5 py-0.5 bg-blue-100 dark:bg-blue-900/40 rounded text-xs font-mono">LLM_CONTEXT.md</code> setup for CI-friendly behavior.
                 </p>
                 <div className="space-y-3 mb-4">
+                  <div className="flex items-start gap-3 p-3 bg-green-50 dark:bg-green-950/20 rounded-lg border border-green-200 dark:border-green-800">
+                    <svg className="w-5 h-5 text-green-600 dark:text-green-400 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    </svg>
+                    <p className="text-sm text-green-800 dark:text-green-300">Use <code className="px-1.5 py-0.5 bg-green-100 dark:bg-green-900/40 rounded text-xs font-mono">stamp init</code> to interactively set up <code className="px-1.5 py-0.5 bg-green-100 dark:bg-green-900/40 rounded text-xs font-mono">.gitignore</code> patterns and <code className="px-1.5 py-0.5 bg-green-100 dark:bg-green-900/40 rounded text-xs font-mono">LLM_CONTEXT.md</code> before generating context files.</p>
+                  </div>
                   <div className="flex items-start gap-3 p-3 bg-blue-50 dark:bg-blue-950/20 rounded-lg border border-blue-200 dark:border-blue-800">
                     <svg className="w-5 h-5 text-blue-600 dark:text-blue-400 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
                     </svg>
-                    <p className="text-sm text-blue-800 dark:text-blue-300">Add LogicStamp patterns to <code className="px-1.5 py-0.5 bg-blue-100 dark:bg-blue-900/40 rounded text-xs font-mono">.gitignore</code> (to exclude context files from version control)</p>
-                  </div>
-                  <div className="flex items-start gap-3 p-3 bg-indigo-50 dark:bg-indigo-950/20 rounded-lg border border-indigo-200 dark:border-indigo-800">
-                    <svg className="w-5 h-5 text-indigo-600 dark:text-indigo-400 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-                    </svg>
-                    <p className="text-sm text-indigo-800 dark:text-indigo-300">Generate <code className="px-1.5 py-0.5 bg-indigo-100 dark:bg-indigo-900/40 rounded text-xs font-mono">LLM_CONTEXT.md</code> in the project root (to help AI assistants understand your project structure)</p>
+                    <p className="text-sm text-blue-800 dark:text-blue-300">Use <code className="px-1.5 py-0.5 bg-blue-100 dark:bg-blue-900/40 rounded text-xs font-mono">--skip-gitignore</code> flag to skip <code className="px-1.5 py-0.5 bg-blue-100 dark:bg-blue-900/40 rounded text-xs font-mono">.gitignore</code> setup on a per-run basis (useful for CI environments).</p>
                   </div>
                 </div>
-                <div className="p-4 bg-amber-50/50 dark:bg-amber-950/20 border-l-4 border-amber-500 rounded-r-lg">
+                <div className="p-4 bg-indigo-50/50 dark:bg-indigo-950/20 border-l-4 border-indigo-500 rounded-r-lg">
                   <p className="text-sm text-gray-700 dark:text-gray-300">
-                    Your preferences are saved in <code className="px-1.5 py-0.5 bg-amber-100 dark:bg-amber-900/40 rounded text-xs font-mono">.logicstamp/config.json</code> and respected on subsequent runs. See <code className="px-1.5 py-0.5 bg-amber-100 dark:bg-amber-900/40 rounded text-xs font-mono">stamp init</code> for explicit setup or to skip these prompts.
+                    <strong className="text-gray-900 dark:text-white">CI-friendly:</strong> <code className="px-1.5 py-0.5 bg-indigo-100 dark:bg-indigo-900/40 rounded text-xs font-mono">stamp context</code> never prompts and respects preferences from <code className="px-1.5 py-0.5 bg-indigo-100 dark:bg-indigo-900/40 rounded text-xs font-mono">stamp init</code>. Your preferences are saved in <code className="px-1.5 py-0.5 bg-indigo-100 dark:bg-indigo-900/40 rounded text-xs font-mono">.logicstamp/config.json</code>.
                   </p>
                 </div>
               </div>
@@ -278,6 +278,24 @@ export default function ContextCommandPage() {
                         </td>
                         <td className="px-2 sm:px-6 py-4 text-sm text-gray-600 dark:text-gray-400">Emit single-line JSON stats (ideal for CI).</td>
                       </tr>
+                      <tr className="hover:bg-gray-50 dark:hover:bg-gray-800/50 transition-colors">
+                        <td className="px-2 sm:px-6 py-4 whitespace-nowrap">
+                          <code className="px-2 py-1 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 rounded text-xs sm:text-sm font-mono">--skip-gitignore</code>
+                        </td>
+                        <td className="px-2 sm:px-6 py-4 whitespace-nowrap">
+                          <code className="px-1.5 py-0.5 bg-red-100 dark:bg-red-900/40 text-red-900 dark:text-red-100 rounded text-xs font-mono">false</code>
+                        </td>
+                        <td className="px-2 sm:px-6 py-4 text-sm text-gray-600 dark:text-gray-400">Skip <code className="px-1 py-0.5 bg-gray-100 dark:bg-gray-800 rounded text-xs font-mono">.gitignore</code> setup (never prompt or modify).</td>
+                      </tr>
+                      <tr className="hover:bg-gray-50 dark:hover:bg-gray-800/50 transition-colors">
+                        <td className="px-2 sm:px-6 py-4 whitespace-nowrap">
+                          <code className="px-2 py-1 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 rounded text-xs sm:text-sm font-mono">--quiet</code>
+                        </td>
+                        <td className="px-2 sm:px-6 py-4 whitespace-nowrap">
+                          <code className="px-1.5 py-0.5 bg-red-100 dark:bg-red-900/40 text-red-900 dark:text-red-100 rounded text-xs font-mono">false</code>
+                        </td>
+                        <td className="px-2 sm:px-6 py-4 text-sm text-gray-600 dark:text-gray-400">Suppress verbose output (show only errors).</td>
+                      </tr>
                     </tbody>
                   </table>
                 </div>
@@ -314,7 +332,13 @@ stamp context --out ./output/context.json
 stamp context --stats >> .ci/context-stats.jsonl
 
 # Dry run to confirm counts before overwriting an existing file
-stamp context ./packages/ui --dry-run`,
+stamp context ./packages/ui --dry-run
+
+# Suppress verbose output (quiet mode)
+stamp context --quiet
+
+# Skip .gitignore setup (useful for CI environments)
+stamp context --skip-gitignore`,
                     copyText: `# Scan entire repo and write context files (defaults)
 stamp context
 # Creates: context_main.json + context.json files in each folder
@@ -334,7 +358,13 @@ stamp context --out ./output/context.json
 stamp context --stats >> .ci/context-stats.jsonl
 
 # Dry run to confirm counts before overwriting an existing file
-stamp context ./packages/ui --dry-run`
+stamp context ./packages/ui --dry-run
+
+# Suppress verbose output (quiet mode)
+stamp context --quiet
+
+# Skip .gitignore setup (useful for CI environments)
+stamp context --skip-gitignore`
                   }
                 ]}
               />

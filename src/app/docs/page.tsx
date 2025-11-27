@@ -28,7 +28,7 @@ const docSections = [
       {
         title: 'Installation & Quick Start',
         href: '/docs/getting-started',
-        description: 'Install the CLI globally and generate your first context.json in seconds—zero config required.',
+        description: 'Install the CLI globally and set up your project with stamp init, then generate your first context.json—CI-friendly and zero prompts.',
       },
     ],
   },
@@ -39,7 +39,7 @@ const docSections = [
       {
         title: 'CLI Docs Hub',
         href: '/docs/logicstamp-context',
-        description: 'Commands, usage examples, token optimization, drift detection, and schema reference.',
+        description: 'Commands, usage examples, token optimization, drift detection, and schema reference. CI-friendly: never prompts, respects preferences from stamp init.',
       },
     ],
   },
@@ -105,7 +105,7 @@ export default function DocumentationPage() {
               </h1>
               
               <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-gray-600 dark:text-gray-400 leading-relaxed max-w-3xl mb-6 sm:mb-8">
-                Open-source CLI for generating AI-ready context from React/TypeScript codebases. Zero config, built-in token optimization.
+                Open-source CLI for generating AI-ready context from React/TypeScript codebases. CI-friendly, zero prompts, built-in token optimization.
               </p>
 
               <p className="text-xs sm:text-sm text-gray-500 dark:text-gray-500 max-w-3xl">
