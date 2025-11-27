@@ -109,7 +109,7 @@ export default function ChangelogPage() {
 
             <h4>Developer Experience</h4>
             <ul>
-              <li><strong>Interactive initialization</strong> - First-run prompts for <code>.gitignore</code> and <code>LLM_CONTEXT.md</code> setup</li>
+              <li><strong>Interactive initialization</strong> - <code>stamp init</code> provides interactive prompts for <code>.gitignore</code> and <code>LLM_CONTEXT.md</code> setup</li>
               <li><strong>Comprehensive help system</strong> - Detailed help for all commands and options</li>
               <li><strong>Cross-platform support</strong> - Works on Windows, macOS, and Linux</li>
               <li><strong>Fast performance</strong> - ~3–5 seconds for typical 50–150 file projects</li>
@@ -138,6 +138,42 @@ export default function ChangelogPage() {
             <h3>Security</h3>
             <ul>
               <li>N/A (initial release)</li>
+            </ul>
+
+            <hr />
+
+            <h2 id="0-1-1">[0.1.1] – 2025-01-27</h2>
+
+            <h3>Changed</h3>
+
+            <h4>CI-Friendly Defaults</h4>
+            <ul>
+              <li><strong><code>stamp context</code> no longer prompts</strong> - Interactive prompts moved to <code>stamp init</code> for better CI/CD compatibility</li>
+              <li><strong>Safe defaults</strong> - <code>stamp context</code> now defaults to skipping both <code>.gitignore</code> and <code>LLM_CONTEXT.md</code> setup unless explicitly opted in via <code>stamp init</code></li>
+              <li><strong>Auto-config creation</strong> - On first run, creates <code>.logicstamp/config.json</code> with safe defaults (<code>'skipped'</code> for both preferences)</li>
+            </ul>
+
+            <h4>Improved Initialization</h4>
+            <ul>
+              <li><strong><code>stamp init</code> now prompts interactively</strong> - Prompts for both <code>.gitignore</code> patterns and <code>LLM_CONTEXT.md</code> generation (only in interactive/TTY mode)</li>
+              <li><strong>Non-interactive defaults</strong> - In CI/non-TTY environments, defaults to "yes" for both prompts</li>
+              <li><strong>Better user control</strong> - Users can explicitly set preferences via <code>stamp init</code> before running <code>stamp context</code></li>
+            </ul>
+
+            <h3>Added</h3>
+            <ul>
+              <li><strong><code>--skip-gitignore</code> flag for <code>stamp context</code></strong> - Allows skipping <code>.gitignore</code> setup on a per-run basis, useful for CI environments</li>
+              <li><strong>Config-based behavior</strong> - <code>stamp context</code> respects preferences saved in <code>.logicstamp/config.json</code> without prompting</li>
+            </ul>
+
+            <h3>Fixed</h3>
+            <ul>
+              <li>N/A</li>
+            </ul>
+
+            <h3>Security</h3>
+            <ul>
+              <li>N/A</li>
             </ul>
 
             <hr />

@@ -171,14 +171,14 @@ export default function LogicStampCommandsPage() {
                       <td className="px-2 sm:px-6 py-4 whitespace-nowrap">
                         <code className="px-2 py-1 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 rounded text-xs sm:text-sm font-mono">stamp init [path]</code>
                       </td>
-                      <td className="px-2 sm:px-6 py-4 text-sm text-gray-600 dark:text-gray-400">Initialize LogicStamp in a project by setting up .gitignore patterns.</td>
+                      <td className="px-2 sm:px-6 py-4 text-sm text-gray-600 dark:text-gray-400">Initialize LogicStamp in a project by setting up .gitignore patterns and LLM_CONTEXT.md.</td>
                       <td className="px-2 sm:px-6 py-4 text-sm text-gray-600 dark:text-gray-400">First-time project setup or explicit .gitignore configuration.</td>
                     </tr>
                     <tr className="hover:bg-gray-50 dark:hover:bg-gray-800/50 transition-colors bg-blue-50/30 dark:bg-blue-950/20">
                       <td className="px-2 sm:px-6 py-4 whitespace-nowrap">
                         <code className="px-2 py-1 bg-blue-100 dark:bg-blue-900/40 text-blue-900 dark:text-blue-100 rounded text-xs sm:text-sm font-mono">stamp context [path] [options]</code>
                       </td>
-                      <td className="px-2 sm:px-6 py-4 text-sm text-gray-600 dark:text-gray-400">Generates AI-ready context files organized by folder (one context.json per folder plus context_main.json index).</td>
+                      <td className="px-2 sm:px-6 py-4 text-sm text-gray-600 dark:text-gray-400">Generates AI-ready context files organized by folder (one context.json per folder plus context_main.json index). CI-friendly: never prompts, respects preferences from stamp init.</td>
                       <td className="px-2 sm:px-6 py-4 text-sm text-gray-600 dark:text-gray-400">Produce fresh context for AI workflows, documentation, or review.</td>
                     </tr>
                     <tr className="hover:bg-gray-50 dark:hover:bg-gray-800/50 transition-colors">
@@ -221,7 +221,7 @@ export default function LogicStampCommandsPage() {
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
                 </svg>
                 <p className="text-sm sm:text-base text-gray-700 dark:text-gray-300">
-                  Run <code className="px-1.5 py-0.5 bg-indigo-100 dark:bg-indigo-900/40 rounded text-xs font-mono">stamp init</code> (optional) to set up .gitignore patterns before generating context files. Alternatively, <code className="px-1.5 py-0.5 bg-indigo-100 dark:bg-indigo-900/40 rounded text-xs font-mono">stamp context</code> will auto-add patterns on first run.
+                  Run <code className="px-1.5 py-0.5 bg-indigo-100 dark:bg-indigo-900/40 rounded text-xs font-mono">stamp init</code> to interactively set up .gitignore patterns and <code className="px-1.5 py-0.5 bg-indigo-100 dark:bg-indigo-900/40 rounded text-xs font-mono">LLM_CONTEXT.md</code> before generating context files. <code className="px-1.5 py-0.5 bg-indigo-100 dark:bg-indigo-900/40 rounded text-xs font-mono">stamp context</code> respects these preferences and never prompts (CI-friendly). If you skip <code className="px-1.5 py-0.5 bg-indigo-100 dark:bg-indigo-900/40 rounded text-xs font-mono">stamp init</code>, <code className="px-1.5 py-0.5 bg-indigo-100 dark:bg-indigo-900/40 rounded text-xs font-mono">stamp context</code> defaults to skipping both preferences (safe for CI).
                 </p>
               </div>
               <div className="flex items-start gap-3 p-4 bg-gradient-to-br from-green-50 to-emerald-50 dark:from-green-950/20 dark:to-emerald-950/10 rounded-xl border border-green-200 dark:border-green-800">
@@ -273,7 +273,7 @@ export default function LogicStampCommandsPage() {
                   code: `# Show version number
 stamp --version
 
-# Initialize LogicStamp in your project (optional - context command does this automatically)
+# Initialize LogicStamp in your project (sets up .gitignore and LLM_CONTEXT.md preferences)
 stamp init
 
 # Generate context for your repository
@@ -308,7 +308,7 @@ stamp context clean --all --yes`,
                     copyText: `# Show version number
 stamp --version
 
-# Initialize LogicStamp in your project (optional - context command does this automatically)
+# Initialize LogicStamp in your project (sets up .gitignore and LLM_CONTEXT.md preferences)
 stamp init
 
 # Generate context for your repository

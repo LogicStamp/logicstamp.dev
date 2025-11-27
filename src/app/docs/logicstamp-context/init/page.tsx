@@ -149,7 +149,7 @@ export default function InitCommandPage() {
                       Creating <code className="px-1.5 py-0.5 bg-purple-100 dark:bg-purple-900/40 rounded text-xs font-mono">.logicstamp/config.json</code>
                     </p>
                     <p className="text-sm text-purple-800 dark:text-purple-300">
-                      Saves your preferences so <code className="px-1 py-0.5 bg-purple-100 dark:bg-purple-900/40 rounded text-xs font-mono">stamp context</code> won't prompt again
+                      Saves your preferences so <code className="px-1 py-0.5 bg-purple-100 dark:bg-purple-900/40 rounded text-xs font-mono">stamp context</code> respects them (CI-friendly, never prompts)
                     </p>
                   </div>
                 </div>
@@ -202,37 +202,16 @@ stamp init --skip-gitignore`
                 </p>
                 
                 <div className="space-y-4 mb-6">
-                  <div className="p-4 bg-amber-50 dark:bg-amber-950/20 rounded-xl border border-amber-200 dark:border-amber-800">
-                    <h3 className="font-semibold text-amber-900 dark:text-amber-200 mb-2 text-base sm:text-lg">First Time (No Config)</h3>
-                    <p className="text-sm text-amber-800 dark:text-amber-300 mb-3">
-                      When you run <code className="px-1.5 py-0.5 bg-amber-100 dark:bg-amber-900/40 rounded text-xs font-mono">stamp context</code> for the first time in a project (in interactive mode), you'll be prompted for two things:
-                    </p>
-                    <ol className="space-y-2 text-sm text-amber-800 dark:text-amber-300 ml-4 list-decimal">
-                      <li><strong><code className="px-1 py-0.5 bg-amber-100 dark:bg-amber-900/40 rounded text-xs font-mono">.gitignore</code> setup:</strong> Add recommended patterns to <code className="px-1 py-0.5 bg-amber-100 dark:bg-amber-900/40 rounded text-xs font-mono">.gitignore</code>? [Y/n]</li>
-                      <li><strong><code className="px-1 py-0.5 bg-amber-100 dark:bg-amber-900/40 rounded text-xs font-mono">LLM_CONTEXT.md</code> generation:</strong> Generate <code className="px-1 py-0.5 bg-amber-100 dark:bg-amber-900/40 rounded text-xs font-mono">LLM_CONTEXT.md</code> in project root? [Y/n]</li>
-                    </ol>
-                    <p className="text-sm text-amber-800 dark:text-amber-300 mt-3">
-                      Your choices are saved in <code className="px-1.5 py-0.5 bg-amber-100 dark:bg-amber-900/40 rounded text-xs font-mono">.logicstamp/config.json</code> and respected on subsequent runs.
-                    </p>
-                  </div>
-
                   <div className="p-4 bg-green-50 dark:bg-green-950/20 rounded-xl border border-green-200 dark:border-green-800">
-                    <h3 className="font-semibold text-green-900 dark:text-green-200 mb-2 text-base sm:text-lg">Subsequent Runs</h3>
-                    <p className="text-sm text-green-800 dark:text-green-300 mb-2">Once you've answered the prompt:</p>
+                    <h3 className="font-semibold text-green-900 dark:text-green-200 mb-2 text-base sm:text-lg">CI-Friendly Behavior</h3>
+                    <p className="text-sm text-green-800 dark:text-green-300 mb-2">
+                      <code className="px-1.5 py-0.5 bg-green-100 dark:bg-green-900/40 rounded text-xs font-mono">stamp context</code> is <strong>CI-friendly</strong> and <strong>never prompts</strong>. It respects preferences saved in <code className="px-1.5 py-0.5 bg-green-100 dark:bg-green-900/40 rounded text-xs font-mono">.logicstamp/config.json</code> from <code className="px-1.5 py-0.5 bg-green-100 dark:bg-green-900/40 rounded text-xs font-mono">stamp init</code>.
+                    </p>
                     <ul className="space-y-1 text-sm text-green-800 dark:text-green-300 ml-4 list-disc">
-                      <li>Your choice is remembered in <code className="px-1 py-0.5 bg-green-100 dark:bg-green-900/40 rounded text-xs font-mono">.logicstamp/config.json</code></li>
-                      <li>No more prompts</li>
-                      <li><code className="px-1 py-0.5 bg-green-100 dark:bg-green-900/40 rounded text-xs font-mono">stamp context</code> respects your preference forever</li>
-                    </ul>
-                  </div>
-
-                  <div className="p-4 bg-gray-50 dark:bg-gray-800/50 rounded-xl border border-gray-200 dark:border-gray-700">
-                    <h3 className="font-semibold text-gray-900 dark:text-gray-200 mb-2 text-base sm:text-lg">Non-Interactive Mode (CI)</h3>
-                    <p className="text-sm text-gray-700 dark:text-gray-300 mb-2">In CI or non-TTY environments:</p>
-                    <ul className="space-y-1 text-sm text-gray-700 dark:text-gray-300 ml-4 list-disc">
-                      <li>Never prompts</li>
-                      <li>Never auto-adds patterns</li>
-                      <li>Use <code className="px-1 py-0.5 bg-gray-100 dark:bg-gray-800 rounded text-xs font-mono">stamp init</code> or <code className="px-1 py-0.5 bg-gray-100 dark:bg-gray-800 rounded text-xs font-mono">--skip-gitignore</code> flag to control behavior explicitly</li>
+                      <li>Never prompts (works in CI/CD environments)</li>
+                      <li>Respects preferences from <code className="px-1 py-0.5 bg-green-100 dark:bg-green-900/40 rounded text-xs font-mono">stamp init</code></li>
+                      <li>On first run (no config), defaults to skipping both <code className="px-1 py-0.5 bg-green-100 dark:bg-green-900/40 rounded text-xs font-mono">.gitignore</code> and <code className="px-1 py-0.5 bg-green-100 dark:bg-green-900/40 rounded text-xs font-mono">LLM_CONTEXT.md</code> setup</li>
+                      <li>Use <code className="px-1 py-0.5 bg-green-100 dark:bg-green-900/40 rounded text-xs font-mono">--skip-gitignore</code> flag to skip <code className="px-1 py-0.5 bg-green-100 dark:bg-green-900/40 rounded text-xs font-mono">.gitignore</code> setup on a per-run basis</li>
                     </ul>
                   </div>
                 </div>
@@ -258,7 +237,7 @@ stamp init --skip-gitignore`
                 <div className="p-5 bg-gradient-to-br from-gray-50 to-slate-50 dark:from-gray-950/20 dark:to-slate-950/10 rounded-xl border border-gray-200 dark:border-gray-800">
                   <h3 className="font-semibold text-gray-900 dark:text-gray-200 mb-3 text-base sm:text-lg">You don't need <code className="px-1.5 py-0.5 bg-gray-100 dark:bg-gray-800 rounded text-xs font-mono">stamp init</code> if:</h3>
                   <ul className="space-y-2 text-sm text-gray-700 dark:text-gray-400 ml-4 list-disc">
-                    <li>You're fine with automatic <code className="px-1 py-0.5 bg-gray-100 dark:bg-gray-800 rounded text-xs font-mono">.gitignore</code> setup when running <code className="px-1 py-0.5 bg-gray-100 dark:bg-gray-800 rounded text-xs font-mono">stamp context</code></li>
+                    <li>You want <code className="px-1 py-0.5 bg-gray-100 dark:bg-gray-800 rounded text-xs font-mono">stamp context</code> to respect your preferences (CI-friendly, never prompts)</li>
                     <li>Your <code className="px-1 py-0.5 bg-gray-100 dark:bg-gray-800 rounded text-xs font-mono">.gitignore</code> already has the necessary patterns</li>
                     <li>You prefer to manually manage <code className="px-1 py-0.5 bg-gray-100 dark:bg-gray-800 rounded text-xs font-mono">.gitignore</code></li>
                   </ul>

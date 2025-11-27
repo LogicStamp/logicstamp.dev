@@ -163,7 +163,7 @@ export default function QuickStartPage() {
                     <span className="ml-2 sm:ml-3 text-xs sm:text-base font-normal px-2 sm:px-3 py-1 bg-gray-100 dark:bg-gray-800 text-gray-500 dark:text-gray-400 rounded-full">Optional</span>
                   </h2>
                   <p className="text-base sm:text-lg text-gray-600 dark:text-gray-400 mb-4 sm:mb-6 leading-relaxed">
-                    Set up <code className="px-2 py-1 bg-gray-100 dark:bg-gray-800 text-purple-600 dark:text-purple-400 rounded-md font-mono text-xs sm:text-sm">.gitignore</code> patterns and generate initial documentation. The CLI will prompt you on first run if you skip this step.
+                    Set up <code className="px-2 py-1 bg-gray-100 dark:bg-gray-800 text-purple-600 dark:text-purple-400 rounded-md font-mono text-xs sm:text-sm">.gitignore</code> patterns and <code className="px-2 py-1 bg-gray-100 dark:bg-gray-800 text-purple-600 dark:text-purple-400 rounded-md font-mono text-xs sm:text-sm">LLM_CONTEXT.md</code>. <code className="px-2 py-1 bg-gray-100 dark:bg-gray-800 text-purple-600 dark:text-purple-400 rounded-md font-mono text-xs sm:text-sm">stamp context</code> is CI-friendly and never prompts—it respects preferences from <code className="px-2 py-1 bg-gray-100 dark:bg-gray-800 text-purple-600 dark:text-purple-400 rounded-md font-mono text-xs sm:text-sm">stamp init</code>. If you skip this step, <code className="px-2 py-1 bg-gray-100 dark:bg-gray-800 text-purple-600 dark:text-purple-400 rounded-md font-mono text-xs sm:text-sm">stamp context</code> defaults to skipping both <code className="px-2 py-1 bg-gray-100 dark:bg-gray-800 text-purple-600 dark:text-purple-400 rounded-md font-mono text-xs sm:text-sm">.gitignore</code> and <code className="px-2 py-1 bg-gray-100 dark:bg-gray-800 text-purple-600 dark:text-purple-400 rounded-md font-mono text-xs sm:text-sm">LLM_CONTEXT.md</code> setup (safe for CI).
                   </p>
 
                   <div className="grid sm:grid-cols-2 gap-3 sm:gap-4 mb-4 sm:mb-6">
@@ -193,8 +193,8 @@ export default function QuickStartPage() {
                         copyText: 'cd your-react-project\nstamp init'
                       },
                       {
-                        label: 'Skip & Auto-prompt',
-                        code: 'cd your-react-project\nstamp context  # Will prompt on first run',
+                        label: 'Skip & Use Defaults',
+                        code: 'cd your-react-project\nstamp context  # CI-friendly: never prompts, uses defaults',
                         copyText: 'cd your-react-project\nstamp context'
                       }
                     ]}
