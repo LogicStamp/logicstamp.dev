@@ -14,6 +14,7 @@ const pages = [
   { title: 'Commands', href: '/docs/logicstamp-context/commands', description: 'List of available CLI commands and global options.' },
   { title: '`init` Command', href: '/docs/logicstamp-context/init', description: 'Initialize LogicStamp in your project by setting up .gitignore patterns and LLM_CONTEXT.md.' },
   { title: '`context` Command', href: '/docs/logicstamp-context/context', description: 'Details for the primary context generation command.' },
+  { title: '`style` Command', href: '/docs/logicstamp-context/style', description: 'Generate context bundles with style metadata included. Extract visual and layout information from React components.' },
   { title: '`compare` Command', href: '/docs/logicstamp-context/compare-command', description: 'Compare all context files to detect drift across your project.' },
   { title: '`validate` Command', href: '/docs/logicstamp-context/validate', description: 'Validate generated context files before sharing or committing.' },
   { title: '`clean` Command', href: '/docs/logicstamp-context/clean', description: 'Remove all generated context artifacts from your project.' },

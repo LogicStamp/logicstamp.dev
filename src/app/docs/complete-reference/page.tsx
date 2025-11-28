@@ -42,11 +42,11 @@ export default function CompleteReferencePage() {
               <div className="flex flex-wrap gap-4 sm:gap-6 mt-6 sm:mt-8">
                 <div className="flex items-center gap-2">
                   <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse" />
-                  <span className="text-xs sm:text-sm font-medium text-gray-600 dark:text-gray-400">5 Commands</span>
+                  <span className="text-xs sm:text-sm font-medium text-gray-600 dark:text-gray-400">6 Commands</span>
                 </div>
                 <div className="flex items-center gap-2">
                   <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse" />
-                  <span className="text-xs sm:text-sm font-medium text-gray-600 dark:text-gray-400">15+ Options</span>
+                  <span className="text-xs sm:text-sm font-medium text-gray-600 dark:text-gray-400">17+ Options</span>
                 </div>
                 <div className="flex items-center gap-2">
                   <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse" />
@@ -69,40 +69,46 @@ export default function CompleteReferencePage() {
                   </svg>
                 </div>
                 <h2 className="text-xl sm:text-2xl font-bold text-gray-900 dark:text-white m-0">
-                  What's New in v0.1.0
+                  What's New in v0.2.2
                 </h2>
               </div>
               
               <div className="grid sm:grid-cols-2 gap-4 sm:gap-6">
                 {[
                   {
+                    icon: "🎨",
+                    title: "Style Metadata Extraction",
+                    desc: "New stamp context style command extracts Tailwind, SCSS, animations, and layout patterns",
+                    color: "purple"
+                  },
+                  {
+                    icon: "📊",
+                    title: "Four-Mode Token Comparison",
+                    desc: "--compare-modes shows none, header, header+style, and full modes with accurate token counts",
+                    color: "blue"
+                  },
+                  {
                     icon: "📁",
                     title: "Multi-File Output Structure",
                     desc: "Generates multiple context.json files (one per folder) plus context_main.json index",
-                    color: "blue"
+                    color: "green"
                   },
                   {
                     icon: "🔍",
                     title: "Multi-File Context Drift Detection",
                     desc: "Compare command supports multi-file mode with --approve and --clean-orphaned flags",
-                    color: "green"
-                  },
-                  {
-                    icon: "🛠️",
-                    title: "New Commands",
-                    desc: "stamp init and stamp context clean for project setup and cleanup",
-                    color: "purple"
+                    color: "yellow"
                   },
                   {
                     icon: "⚛️",
                     title: "Next.js App Router Support",
                     desc: "Detects 'use client' and 'use server' directives, identifies App Router files",
-                    color: "yellow"
+                    color: "orange"
                   },
                   {
                     icon: "🛡️",
-                    title: "CI/CD Improvements",
-                    desc: "--stats output optimized for CI parsing with token estimates",
+                    title: "Optional Tokenizers",
+                    desc: "Automatic installation of @dqbd/tiktoken and @anthropic-ai/tokenizer for accurate token counts",
                     color: "gray"
                   }
                 ].map((item, idx) => {
@@ -192,6 +198,12 @@ export default function CompleteReferencePage() {
                   color: "purple"
                 },
                 {
+                  command: "stamp context style [path]",
+                  description: "Generates context with style metadata (Tailwind, SCSS, animations, layout). Equivalent to --include-style",
+                  optional: false,
+                  color: "pink"
+                },
+                {
                   command: "stamp context validate [file]",
                   description: "Checks context files for schema and structural issues before sharing or committing",
                   optional: false,
@@ -222,6 +234,8 @@ export default function CompleteReferencePage() {
                       return 'from-orange-500 to-red-600';
                     case 'red':
                       return 'from-red-500 to-pink-600';
+                    case 'pink':
+                      return 'from-pink-500 to-rose-600';
                     default:
                       return 'from-blue-500 to-blue-600';
                   }
@@ -234,6 +248,7 @@ export default function CompleteReferencePage() {
                     case 2: return 'animate-[fadeInSlide_0.5s_ease-out_0.3s_forwards]';
                     case 3: return 'animate-[fadeInSlide_0.5s_ease-out_0.35s_forwards]';
                     case 4: return 'animate-[fadeInSlide_0.5s_ease-out_0.4s_forwards]';
+                    case 5: return 'animate-[fadeInSlide_0.5s_ease-out_0.45s_forwards]';
                     default: return 'animate-[fadeInSlide_0.5s_ease-out_0.2s_forwards]';
                   }
                 };
@@ -306,6 +321,10 @@ export default function CompleteReferencePage() {
                       { option: "--predict-behavior", alias: "-", desc: "Include experimental behavior predictions", default: "false" },
                       { option: "--dry-run", alias: "-", desc: "Skip writing output; show summary only", default: "false" },
                       { option: "--stats", alias: "-", desc: "Emit single-line JSON stats with token estimates", default: "false" },
+                      { option: "--compare-modes", alias: "-", desc: "Show detailed token comparison across all modes (none/header/header+style/full)", default: "false" },
+                      { option: "--include-style", alias: "-", desc: "Extract style metadata (Tailwind, SCSS, animations, layout)", default: "false" },
+                      { option: "--skip-gitignore", alias: "-", desc: "Skip .gitignore setup (never prompt or modify)", default: "false" },
+                      { option: "--quiet", alias: "-q", desc: "Suppress verbose output (show only errors)", default: "false" },
                       { option: "--help", alias: "-h", desc: "Show help message", default: "-" }
                     ].map((opt, idx) => (
                       <tr key={idx} className={idx % 2 === 0 ? "bg-white dark:bg-gray-900" : "bg-gray-50 dark:bg-gray-800/50"}>
@@ -439,6 +458,230 @@ export default function CompleteReferencePage() {
                   </div>
                 );
               })}
+            </div>
+          </div>
+        </AnimatedSection>
+
+        {/* Style Metadata Section */}
+        <AnimatedSection direction="up" delay={450}>
+          <div className="relative mb-8 sm:mb-12 lg:mb-16">
+            <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white mb-6 sm:mb-8">
+              Style Metadata Extraction
+            </h2>
+            <p className="text-base sm:text-lg text-gray-600 dark:text-gray-400 mb-6 sm:mb-8 leading-relaxed">
+              The <code className="px-2 py-1 bg-gray-100 dark:bg-gray-800 rounded text-sm">stamp context style</code> command (or <code className="px-2 py-1 bg-gray-100 dark:bg-gray-800 rounded text-sm">--include-style</code> flag) extracts visual and layout information from your components, making context bundles design-aware for AI assistants.
+            </p>
+
+            <div className="relative">
+              <div className="absolute -inset-1 bg-gradient-to-r from-pink-600 to-purple-600 rounded-2xl blur opacity-20 dark:opacity-10" />
+              <div className="relative bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded-2xl p-4 sm:p-6 shadow-xl">
+                <h3 className="text-lg sm:text-xl font-semibold text-gray-900 dark:text-white mb-4 sm:mb-6">
+                  What Gets Extracted
+                </h3>
+                
+                <div className="grid sm:grid-cols-2 gap-4 sm:gap-6">
+                  {[
+                    {
+                      title: "Style Sources",
+                      items: [
+                        "Tailwind CSS classes (layout, spacing, colors, typography)",
+                        "SCSS/CSS modules (selectors, properties, features)",
+                        "Inline styles and styled-components",
+                        "framer-motion animations and gestures"
+                      ]
+                    },
+                    {
+                      title: "Layout Patterns",
+                      items: [
+                        "Flex and grid layouts",
+                        "Hero sections and feature cards",
+                        "Responsive breakpoints (sm, md, lg, xl)",
+                        "Grid column configurations"
+                      ]
+                    },
+                    {
+                      title: "Visual Metadata",
+                      items: [
+                        "Color palettes (bg-*, text-*, border-*)",
+                        "Spacing patterns (padding, margin, gap)",
+                        "Border radius and typography classes",
+                        "Effects (shadows, opacity, filters)"
+                      ]
+                    },
+                    {
+                      title: "Animation Metadata",
+                      items: [
+                        "Animation library (framer-motion or CSS)",
+                        "Animation types (fade-in, slide, etc.)",
+                        "Trigger types (inView, hover, click)",
+                        "Viewport-triggered animations"
+                      ]
+                    }
+                  ].map((category, idx) => (
+                    <div key={idx} className="bg-gray-50 dark:bg-gray-800/50 rounded-lg p-4">
+                      <h4 className="text-base font-semibold text-gray-900 dark:text-white mb-2">
+                        {category.title}
+                      </h4>
+                      <ul className="space-y-1.5 text-sm text-gray-600 dark:text-gray-400">
+                        {category.items.map((item, itemIdx) => (
+                          <li key={itemIdx} className="flex items-start gap-2">
+                            <span className="text-pink-500 dark:text-pink-400 mt-0.5">•</span>
+                            <span>{item}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  ))}
+                </div>
+
+                <div className="mt-6 sm:mt-8">
+                  <h4 className="text-base sm:text-lg font-semibold text-gray-900 dark:text-white mb-3 sm:mb-4">
+                    Usage Examples
+                  </h4>
+                  <TabbedCodeBlock
+                    tabs={[
+                      {
+                        label: 'Style Command',
+                        code: `# Generate context with style metadata
+stamp context style
+
+# Equivalent using flag
+stamp context --include-style
+
+# With specific options
+stamp context style --profile llm-safe
+stamp context style --include-code header`,
+                        copyText: `# Generate context with style metadata
+stamp context style
+
+# Equivalent using flag
+stamp context --include-style
+
+# With specific options
+stamp context style --profile llm-safe
+stamp context style --include-code header`
+                      }
+                    ]}
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+        </AnimatedSection>
+
+        {/* Token Comparison Modes Section */}
+        <AnimatedSection direction="up" delay={475}>
+          <div className="relative mb-8 sm:mb-12 lg:mb-16">
+            <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white mb-6 sm:mb-8">
+              Token Comparison Modes
+            </h2>
+            <p className="text-base sm:text-lg text-gray-600 dark:text-gray-400 mb-6 sm:mb-8 leading-relaxed">
+              Use <code className="px-2 py-1 bg-gray-100 dark:bg-gray-800 rounded text-sm">--compare-modes</code> to see detailed token cost analysis across all available modes:
+            </p>
+
+            <div className="relative">
+              <div className="absolute -inset-1 bg-gradient-to-r from-blue-600 to-indigo-600 rounded-2xl blur opacity-20 dark:opacity-10" />
+              <div className="relative bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded-2xl p-4 sm:p-6 shadow-xl">
+                <div className="grid sm:grid-cols-2 gap-4 sm:gap-6 mb-6 sm:mb-8">
+                  {[
+                    {
+                      mode: "none",
+                      desc: "Contracts only (props, state, hooks, dependencies) with no source code",
+                      bestFor: "CI/CD validation, dependency analysis, maximum compression",
+                      tokenCost: "10-20% of raw source"
+                    },
+                    {
+                      mode: "header",
+                      desc: "Contracts plus JSDoc headers and function signatures",
+                      bestFor: "General AI chat workflows, code review, component interfaces",
+                      tokenCost: "20-30% of raw source"
+                    },
+                    {
+                      mode: "header+style",
+                      desc: "Header mode plus extracted style metadata (Tailwind, SCSS, animations)",
+                      bestFor: "UI/UX discussions, design system maintenance, visual consistency",
+                      tokenCost: "40-60% of raw source"
+                    },
+                    {
+                      mode: "full",
+                      desc: "Everything including complete source code",
+                      bestFor: "Deep implementation reviews, complex refactoring, debugging",
+                      tokenCost: "80-100% of raw source"
+                    }
+                  ].map((mode, idx) => (
+                    <div key={idx} className="bg-gray-50 dark:bg-gray-800/50 rounded-lg p-4">
+                      <div className="flex items-center gap-2 mb-2">
+                        <code className="px-2 py-1 bg-blue-100 dark:bg-blue-900/40 text-blue-800 dark:text-blue-200 rounded text-sm font-semibold">
+                          {mode.mode}
+                        </code>
+                        <span className="text-xs text-gray-500 dark:text-gray-400">
+                          {mode.tokenCost}
+                        </span>
+                      </div>
+                      <p className="text-sm text-gray-600 dark:text-gray-400 mb-2">
+                        {mode.desc}
+                      </p>
+                      <p className="text-xs text-gray-500 dark:text-gray-500">
+                        <strong>Best for:</strong> {mode.bestFor}
+                      </p>
+                    </div>
+                  ))}
+                </div>
+
+                <div className="mt-6 sm:mt-8">
+                  <h4 className="text-base sm:text-lg font-semibold text-gray-900 dark:text-white mb-3 sm:mb-4">
+                    Example Output
+                  </h4>
+                  <TabbedCodeBlock
+                    tabs={[
+                      {
+                        label: 'Compare Modes Output',
+                        code: `📊 Mode Comparison
+
+   Comparison:
+     Mode         | Tokens GPT-4o | Tokens Claude | Savings vs Raw Source
+     -------------|---------------|---------------|------------------------
+     Raw source   |        22,000 |        19,556 | 0%
+     Header       |        12,228 |        10,867 | 44%
+     Header+style  |        13,895 |        12,351 | 37%
+
+   Mode breakdown:
+     Mode         | Tokens GPT-4o | Tokens Claude | Savings vs Full Context
+     -------------|---------------|---------------|--------------------------
+     none         |         8,337 |         7,411 | 79%
+     header       |        12,228 |        10,867 | 69%
+     header+style |        13,895 |        12,351 | 65%
+     full         |        39,141 |        34,792 | 0%`,
+                        copyText: `📊 Mode Comparison
+
+   Comparison:
+     Mode         | Tokens GPT-4o | Tokens Claude | Savings vs Raw Source
+     -------------|---------------|---------------|------------------------
+     Raw source   |        22,000 |        19,556 | 0%
+     Header       |        12,228 |        10,867 | 44%
+     Header+style  |        13,895 |        12,351 | 37%
+
+   Mode breakdown:
+     Mode         | Tokens GPT-4o | Tokens Claude | Savings vs Full Context
+     -------------|---------------|---------------|--------------------------
+     none         |         8,337 |         7,411 | 79%
+     header       |        12,228 |        10,867 | 69%
+     header+style |        13,895 |        12,351 | 65%
+     full         |        39,141 |        34,792 | 0%`
+                      }
+                    ]}
+                  />
+                </div>
+
+                <div className="mt-6 sm:mt-8 p-4 bg-blue-50 dark:bg-blue-900/20 rounded-lg border border-blue-200 dark:border-blue-800">
+                  <h4 className="text-base font-semibold text-blue-900 dark:text-blue-100 mb-2">
+                    Optional Tokenizers for Accurate Counts
+                  </h4>
+                  <p className="text-sm text-blue-800 dark:text-blue-200 leading-relaxed">
+                    LogicStamp Context includes <code className="px-1.5 py-0.5 bg-blue-100 dark:bg-blue-900/40 rounded text-xs">@dqbd/tiktoken</code> (GPT-4) and <code className="px-1.5 py-0.5 bg-blue-100 dark:bg-blue-900/40 rounded text-xs">@anthropic-ai/tokenizer</code> (Claude) as optional dependencies. npm automatically attempts to install them when you install <code className="px-1.5 py-0.5 bg-blue-100 dark:bg-blue-900/40 rounded text-xs">logicstamp-context</code>. If installation succeeds, you get model-accurate token counts. If installation fails or is skipped (normal for optional dependencies), the tool gracefully falls back to character-based estimation (typically within 10-15% accuracy).
+                  </p>
+                </div>
+              </div>
             </div>
           </div>
         </AnimatedSection>
@@ -650,7 +893,7 @@ export default function CompleteReferencePage() {
         </AnimatedSection>
 
         {/* Examples Section */}
-        <AnimatedSection direction="up" delay={600}>
+        <AnimatedSection direction="up" delay={550}>
           <div className="relative mb-8 sm:mb-12 lg:mb-16">
             <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white mb-6 sm:mb-8">
               Examples
@@ -690,10 +933,29 @@ stamp context --include-code full`
                   code: `# Get JSON stats for CI
 stamp context --stats
 
+# Compare all modes (none/header/header+style/full)
+stamp context --compare-modes
+
 # See token costs for specific mode
 stamp context --include-code none
 stamp context --include-code header
-stamp context --include-code full`
+stamp context --include-code full
+
+# Include style metadata
+stamp context --include-style`
+                },
+                {
+                  title: "Style Metadata Extraction",
+                  desc: "Generate design-aware context with visual and layout information",
+                  code: `# Generate context with style metadata
+stamp context style
+
+# Equivalent using flag
+stamp context --include-style
+
+# Style with specific options
+stamp context style --profile llm-safe
+stamp context style --include-code header`
                 },
                 {
                   title: "CI/CD Validation",
@@ -711,7 +973,10 @@ stamp context --stats > stats.json
 stamp context validate context_main.json
 
 # Check for drift across all folders
-stamp context compare --stats`
+stamp context compare --stats
+
+# Compare token costs across modes
+stamp context --compare-modes`
                 }
               ].map((example, idx) => (
                 <div key={idx} className="relative">
@@ -740,7 +1005,7 @@ stamp context compare --stats`
         </AnimatedSection>
 
         {/* Troubleshooting Section */}
-        <AnimatedSection direction="up" delay={700}>
+        <AnimatedSection direction="up" delay={600}>
           <div className="relative mb-8 sm:mb-12 lg:mb-16">
             <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white mb-6 sm:mb-8">
               Troubleshooting
@@ -866,7 +1131,7 @@ stamp context compare --stats`
         </AnimatedSection>
 
         {/* Next Steps */}
-        <AnimatedSection direction="up" delay={800}>
+        <AnimatedSection direction="up" delay={650}>
           <div className="relative mt-12 sm:mt-16 lg:mt-24 mb-8 sm:mb-12 lg:mb-16">
             <div className="absolute inset-0 bg-gradient-to-br from-blue-100 via-indigo-50 to-purple-50 dark:from-blue-950/20 dark:via-indigo-950/10 dark:to-purple-950/5 rounded-3xl blur-2xl opacity-50" />
             

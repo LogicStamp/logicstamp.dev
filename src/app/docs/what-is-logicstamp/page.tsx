@@ -35,177 +35,159 @@ export default function WhatIsLogicStampPage() {
                 What is LogicStamp?
               </h1>
               
-              <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-gray-600 dark:text-gray-400 leading-relaxed max-w-3xl mb-6 sm:mb-8">
+              <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-gray-600 dark:text-gray-400 leading-relaxed max-w-3xl">
                 LogicStamp Context is an open-source CLI that generates{' '}
                 <span className="font-semibold text-gray-900 dark:text-white">AI-ready context bundles</span> from your React/TypeScript codebase.
                 No setup, no configuration—just install and run.
               </p>
-
-              {/* Quick stats */}
-              <div className="flex flex-wrap gap-4 sm:gap-6 mt-6 sm:mt-8">
-                <div className="flex items-center gap-2">
-                  <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse" />
-                  <span className="text-xs sm:text-sm font-medium text-gray-600 dark:text-gray-400">Zero configuration</span>
-                </div>
-                <div className="flex items-center gap-2">
-                  <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse" />
-                  <span className="text-xs sm:text-sm font-medium text-gray-600 dark:text-gray-400">CI-friendly, no prompts</span>
-                </div>
-                <div className="flex items-center gap-2">
-                  <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse" />
-                  <span className="text-xs sm:text-sm font-medium text-gray-600 dark:text-gray-400">up to 65% token reduction</span>
-                </div>
-                <div className="flex items-center gap-2">
-                  <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse" />
-                  <span className="text-xs sm:text-sm font-medium text-gray-600 dark:text-gray-400">AI-optimized output</span>
-                </div>
-              </div>
             </div>
           </div>
         </AnimatedSection>
 
-        {/* The Problem Section */}
-        <AnimatedSection direction="up" delay={100}>
-          <div className="relative mb-8 sm:mb-12 lg:mb-16">
-            <div className="absolute -inset-1 bg-gradient-to-r from-red-600 to-orange-600 rounded-2xl blur opacity-20 dark:opacity-10" />
-            <div className="relative bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded-2xl p-4 sm:p-6 lg:p-8 shadow-xl">
-              <div className="flex items-baseline gap-3 mb-4 sm:mb-6">
-                <div className="p-2 bg-red-100 dark:bg-red-900/30 rounded-lg flex-shrink-0 -mt-0.5">
-                  <svg className="w-5 h-5 sm:w-6 sm:h-6 text-red-600 dark:text-red-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
-                  </svg>
-                </div>
-                <h2 className="text-xl sm:text-2xl font-bold text-gray-900 dark:text-white m-0">
-                  The Problem LogicStamp Solves
-                </h2>
-              </div>
-              
-              <p className="text-base sm:text-lg text-gray-600 dark:text-gray-400 mb-4 sm:mb-6 leading-relaxed">
-                Today, working with AI on a real project usually means copying full source files, README snippets, and
-                screenshots into a chat window. That approach:
-              </p>
-              
-              <div className="grid sm:grid-cols-2 gap-3 sm:gap-4 mb-4 sm:mb-6">
-                {[
-                  {
-                    icon: "🚫",
-                    title: "Wastes Tokens",
-                    desc: "Boilerplate, imports, and low-signal code instead of contracts that actually matter"
-                  },
-                  {
-                    icon: "🔄",
-                    title: "No Global View",
-                    desc: "AI can't see component relationships, dependency graphs, or file structure"
-                  },
-                  {
-                    icon: "📜",
-                    title: "Stale Documentation",
-                    desc: "Documentation drifts away from your real code over time"
-                  },
-                  {
-                    icon: "⚙️",
-                    title: "Not Automatable",
-                    desc: "Impossible to automate in CI/CD - can't diff manual chat pastes"
-                  }
-                ].map((item, idx) => (
-                  <div key={idx} className="flex items-start gap-3 p-4 bg-gray-50 dark:bg-gray-800/50 rounded-xl border border-gray-200 dark:border-gray-700 hover:shadow-md transition-shadow">
-                    <span className="text-2xl">{item.icon}</span>
-                    <div>
-                      <p className="font-semibold text-gray-900 dark:text-white">{item.title}</p>
-                      <p className="text-sm text-gray-600 dark:text-gray-400 mt-0.5">{item.desc}</p>
-                    </div>
+        <div className="space-y-8 sm:space-y-12 lg:space-y-16">
+
+          {/* The Problem Section */}
+          <AnimatedSection direction="up" delay={100}>
+            <div className="relative mb-8 sm:mb-12 lg:mb-16">
+              <div className="absolute -inset-1 bg-gradient-to-r from-red-600 to-orange-600 rounded-2xl blur opacity-20 dark:opacity-10" />
+              <div className="relative bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded-2xl p-4 sm:p-6 lg:p-8 shadow-xl">
+                <div className="flex items-baseline gap-3 mb-4 sm:mb-6">
+                  <div className="p-2 bg-red-100 dark:bg-red-900/30 rounded-lg flex-shrink-0 -mt-0.5">
+                    <svg className="w-5 h-5 sm:w-6 sm:h-6 text-red-600 dark:text-red-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+                    </svg>
                   </div>
-                ))}
-              </div>
-
-              <div className="bg-blue-50/50 dark:bg-blue-950/20 border-l-4 border-blue-500 p-3 sm:p-4 rounded-r-lg">
-                <p className="text-sm text-gray-700 dark:text-gray-300">
-                  <span className="font-semibold text-blue-900 dark:text-blue-200">💡 Solution:</span> LogicStamp replaces this manual process with a repeatable CLI that scans your codebase and emits{' '}
-                  <span className="font-semibold">folder-organized context files</span> (
-                  <code className="px-1.5 py-0.5 bg-blue-100 dark:bg-blue-900/40 rounded text-xs font-mono">context.json</code> per folder
-                  plus a <code className="px-1.5 py-0.5 bg-blue-100 dark:bg-blue-900/40 rounded text-xs font-mono">context_main.json</code> index)
-                  describing the structure and contracts of your system in a way that LLMs can consume directly.
-                </p>
-              </div>
-            </div>
-          </div>
-        </AnimatedSection>
-
-        {/* Core Idea Section */}
-        <AnimatedSection direction="up" delay={150}>
-          <div className="relative mb-8 sm:mb-12 lg:mb-16">
-            <div className="absolute -inset-1 bg-gradient-to-r from-indigo-600 to-purple-600 rounded-2xl blur opacity-20 dark:opacity-10" />
-            <div className="relative bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded-2xl p-4 sm:p-6 lg:p-8 shadow-xl">
-              <div className="flex items-baseline gap-3 mb-4 sm:mb-6">
-                <div className="p-2 bg-indigo-100 dark:bg-indigo-900/30 rounded-lg flex-shrink-0 -mt-0.5">
-                  <svg className="w-5 h-5 sm:w-6 sm:h-6 text-indigo-600 dark:text-indigo-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-                  </svg>
+                  <h2 className="text-xl sm:text-2xl font-bold text-gray-900 dark:text-white m-0">
+                    The Problem LogicStamp Solves
+                  </h2>
                 </div>
-                <h2 className="text-xl sm:text-2xl font-bold text-gray-900 dark:text-white m-0">
-                  Core Idea: The Architectural Blueprint
-                </h2>
-              </div>
-              
-              <p className="text-base sm:text-lg text-gray-600 dark:text-gray-400 mb-4 sm:mb-6 leading-relaxed">
-                Think of LogicStamp as an <span className="font-semibold text-gray-900 dark:text-white">architectural blueprint</span> generator for
-                your codebase. Instead of giving an AI every brick and nail (every line of source), you hand it a compact
-                blueprint that shows:
-              </p>
-
-              <div className="grid sm:grid-cols-2 gap-3 sm:gap-4 mb-4 sm:mb-6">
-                {[
-                  {
-                    icon: "📦",
-                    title: "Component Inventory",
-                    desc: "Which components, modules, and files exist"
-                  },
-                  {
-                    icon: "🔗",
-                    title: "Dependency Graph",
-                    desc: "How they import and depend on one another"
-                  },
-                  {
-                    icon: "📋",
-                    title: "Public Contracts",
-                    desc: "Props, function signatures, types, and interfaces"
-                  },
-                  {
-                    icon: "🎯",
-                    title: "Key Behaviors",
-                    desc: "Where important logic lives without full implementations"
-                  }
-                ].map((item, idx) => (
-                  <div key={idx} className="flex items-start gap-3 p-4 bg-indigo-50 dark:bg-indigo-950/20 rounded-xl border border-indigo-200 dark:border-indigo-800 hover:shadow-md transition-shadow">
-                    <span className="text-2xl">{item.icon}</span>
-                    <div>
-                      <p className="font-semibold text-gray-900 dark:text-white">{item.title}</p>
-                      <p className="text-sm text-gray-600 dark:text-gray-400 mt-0.5">{item.desc}</p>
-                    </div>
-                  </div>
-                ))}
-              </div>
-
-              <div className="bg-indigo-50/50 dark:bg-indigo-950/20 border-l-4 border-indigo-500 p-3 sm:p-4 rounded-r-lg">
-                <p className="text-sm text-gray-700 dark:text-gray-300">
-                  <span className="font-semibold text-indigo-900 dark:text-indigo-200">✨ Result:</span> This blueprint is optimized for AI: high-signal, low-noise, easy to stream into a chat, an agent, or a
-                  RAG pipeline.
+                
+                <p className="text-base sm:text-lg text-gray-600 dark:text-gray-400 mb-4 sm:mb-6 leading-relaxed">
+                  Today, working with AI on a real project usually means copying full source files, README snippets, and
+                  screenshots into a chat window. That approach:
                 </p>
+                
+                <div className="grid sm:grid-cols-2 gap-3 sm:gap-4 mb-4 sm:mb-6">
+                  {[
+                    {
+                      icon: "🚫",
+                      title: "Wastes Tokens",
+                      desc: "Boilerplate, imports, and low-signal code instead of contracts that actually matter"
+                    },
+                    {
+                      icon: "🔄",
+                      title: "No Global View",
+                      desc: "AI can't see component relationships, dependency graphs, or file structure"
+                    },
+                    {
+                      icon: "📜",
+                      title: "Stale Documentation",
+                      desc: "Documentation drifts away from your real code over time"
+                    },
+                    {
+                      icon: "⚙️",
+                      title: "Not Automatable",
+                      desc: "Impossible to automate in CI/CD - can't diff manual chat pastes"
+                    }
+                  ].map((item, idx) => (
+                    <div key={idx} className="flex items-start gap-3 p-4 bg-gray-50 dark:bg-gray-800/50 rounded-xl border border-gray-200 dark:border-gray-700 hover:shadow-md transition-shadow">
+                      <span className="text-2xl">{item.icon}</span>
+                      <div>
+                        <p className="font-semibold text-gray-900 dark:text-white">{item.title}</p>
+                        <p className="text-sm text-gray-600 dark:text-gray-400 mt-0.5">{item.desc}</p>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+
+                <div className="bg-blue-50/50 dark:bg-blue-950/20 border-l-4 border-blue-500 p-3 sm:p-4 rounded-r-lg">
+                  <p className="text-sm text-gray-700 dark:text-gray-300">
+                    <span className="font-semibold text-blue-900 dark:text-blue-200">💡 Solution:</span> LogicStamp replaces this manual process with a repeatable CLI that scans your codebase and emits{' '}
+                    <span className="font-semibold">folder-organized context files</span> (
+                    <code className="px-1.5 py-0.5 bg-blue-100 dark:bg-blue-900/40 rounded text-xs font-mono">context.json</code> per folder
+                    plus a <code className="px-1.5 py-0.5 bg-blue-100 dark:bg-blue-900/40 rounded text-xs font-mono">context_main.json</code> index)
+                    describing the structure and contracts of your system in a way that LLMs can consume directly.
+                  </p>
+                </div>
               </div>
             </div>
-          </div>
-        </AnimatedSection>
+          </AnimatedSection>
 
-        {/* Features Section */}
-        <AnimatedSection direction="up" delay={200}>
-          <div className="relative mb-8 sm:mb-12 lg:mb-16">
-            <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white mb-6 sm:mb-8">
-              What LogicStamp Context Provides
-            </h2>
-            <p className="text-base sm:text-lg text-gray-600 dark:text-gray-400 mb-6 sm:mb-8 leading-relaxed">
-              The <span className="font-semibold text-gray-900 dark:text-white">LogicStamp Context CLI</span> is a lightweight, zero-config tool
-              that provides:
-            </p>
+          {/* Core Idea Section */}
+          <AnimatedSection direction="up" delay={150}>
+            <div className="relative mb-8 sm:mb-12 lg:mb-16">
+              <div className="absolute -inset-1 bg-gradient-to-r from-indigo-600 to-purple-600 rounded-2xl blur opacity-20 dark:opacity-10" />
+              <div className="relative bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded-2xl p-4 sm:p-6 lg:p-8 shadow-xl">
+                <div className="flex items-baseline gap-3 mb-4 sm:mb-6">
+                  <div className="p-2 bg-indigo-100 dark:bg-indigo-900/30 rounded-lg flex-shrink-0 -mt-0.5">
+                    <svg className="w-5 h-5 sm:w-6 sm:h-6 text-indigo-600 dark:text-indigo-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                    </svg>
+                  </div>
+                  <h2 className="text-xl sm:text-2xl font-bold text-gray-900 dark:text-white m-0">
+                    Core Idea: The Architectural Blueprint
+                  </h2>
+                </div>
+                
+                <p className="text-base sm:text-lg text-gray-600 dark:text-gray-400 mb-4 sm:mb-6 leading-relaxed">
+                  Think of LogicStamp as an <span className="font-semibold text-gray-900 dark:text-white">architectural blueprint</span> generator for
+                  your codebase. Instead of giving an AI every brick and nail (every line of source), you hand it a compact
+                  blueprint that shows:
+                </p>
+
+                <div className="grid sm:grid-cols-2 gap-3 sm:gap-4 mb-4 sm:mb-6">
+                  {[
+                    {
+                      icon: "📦",
+                      title: "Component Inventory",
+                      desc: "Which components, modules, and files exist"
+                    },
+                    {
+                      icon: "🔗",
+                      title: "Dependency Graph",
+                      desc: "How they import and depend on one another"
+                    },
+                    {
+                      icon: "📋",
+                      title: "Public Contracts",
+                      desc: "Props, function signatures, types, and interfaces"
+                    },
+                    {
+                      icon: "🎯",
+                      title: "Key Behaviors",
+                      desc: "Where important logic lives without full implementations"
+                    }
+                  ].map((item, idx) => (
+                    <div key={idx} className="flex items-start gap-3 p-4 bg-indigo-50 dark:bg-indigo-950/20 rounded-xl border border-indigo-200 dark:border-indigo-800 hover:shadow-md transition-shadow">
+                      <span className="text-2xl">{item.icon}</span>
+                      <div>
+                        <p className="font-semibold text-gray-900 dark:text-white">{item.title}</p>
+                        <p className="text-sm text-gray-600 dark:text-gray-400 mt-0.5">{item.desc}</p>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+
+                <div className="bg-indigo-50/50 dark:bg-indigo-950/20 border-l-4 border-indigo-500 p-3 sm:p-4 rounded-r-lg">
+                  <p className="text-sm text-gray-700 dark:text-gray-300">
+                    <span className="font-semibold text-indigo-900 dark:text-indigo-200">✨ Result:</span> This blueprint is optimized for AI: high-signal, low-noise, easy to stream into a chat, an agent, or a
+                    RAG pipeline.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </AnimatedSection>
+
+          {/* Features Section */}
+          <AnimatedSection direction="up" delay={200}>
+            <div className="mb-8 sm:mb-12 lg:mb-16">
+              <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white mb-4 sm:mb-6">
+                What LogicStamp Context Provides
+              </h2>
+              <p className="text-base sm:text-lg text-gray-600 dark:text-gray-400 mb-6 sm:mb-8 leading-relaxed">
+                The <span className="font-semibold text-gray-900 dark:text-white">LogicStamp Context CLI</span> is a lightweight, zero-config tool
+                that provides:
+              </p>
 
             <div className="grid sm:grid-cols-2 gap-4 sm:gap-6 mb-6 sm:mb-8">
               {[
@@ -311,15 +293,15 @@ export default function WhatIsLogicStampPage() {
                 ]}
               />
             </div>
-          </div>
-        </AnimatedSection>
+            </div>
+          </AnimatedSection>
 
-        {/* Workflow Section */}
-        <AnimatedSection direction="up" delay={250}>
-          <div className="relative mb-8 sm:mb-12 lg:mb-16">
-            <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white mb-6 sm:mb-8">
-              How It Fits Into Your Workflow
-            </h2>
+          {/* Workflow Section */}
+          <AnimatedSection direction="up" delay={250}>
+            <div className="mb-8 sm:mb-12 lg:mb-16">
+              <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white mb-4 sm:mb-6">
+                How It Fits Into Your Workflow
+              </h2>
             
             <div className="space-y-4 sm:space-y-6">
               {[
@@ -396,18 +378,18 @@ export default function WhatIsLogicStampPage() {
               ))}
             </div>
 
-            <div className="mt-6 sm:mt-8 bg-gradient-to-r from-green-50 to-emerald-50 dark:from-green-950/20 dark:to-emerald-950/10 border border-green-200 dark:border-green-800 rounded-xl p-4 sm:p-6">
-              <p className="text-base sm:text-lg text-gray-700 dark:text-gray-300">
-                <span className="font-semibold text-green-900 dark:text-green-200">✨ Result:</span> A <span className="font-semibold">repeatable, automatable</span> way to give AI an accurate,
-                up-to-date understanding of your codebase that scales with your team.
-              </p>
+              <div className="mt-6 sm:mt-8 bg-gradient-to-r from-green-50 to-emerald-50 dark:from-green-950/20 dark:to-emerald-950/10 border border-green-200 dark:border-green-800 rounded-xl p-4 sm:p-6">
+                <p className="text-base sm:text-lg text-gray-700 dark:text-gray-300">
+                  <span className="font-semibold text-green-900 dark:text-green-200">✨ Result:</span> A <span className="font-semibold">repeatable, automatable</span> way to give AI an accurate,
+                  up-to-date understanding of your codebase that scales with your team.
+                </p>
+              </div>
             </div>
-          </div>
-        </AnimatedSection>
+          </AnimatedSection>
 
-        {/* When to use / not use */}
-        <AnimatedSection direction="up" delay={300}>
-          <div className="grid sm:grid-cols-2 gap-6 sm:gap-8 mb-8 sm:mb-12 lg:mb-16">
+          {/* When to use / not use */}
+          <AnimatedSection direction="up" delay={300}>
+            <div className="grid sm:grid-cols-2 gap-6 sm:gap-8 mb-8 sm:mb-12 lg:mb-16">
             {/* When to use */}
             <div className="relative">
               <div className="absolute -inset-1 bg-gradient-to-r from-green-600 to-emerald-600 rounded-2xl blur opacity-20 dark:opacity-10" />
@@ -472,12 +454,12 @@ export default function WhatIsLogicStampPage() {
                 </div>
               </div>
             </div>
-          </div>
-        </AnimatedSection>
+            </div>
+          </AnimatedSection>
 
-        {/* Call to action for complete reference */}
-        <AnimatedSection direction="up" delay={400}>
-          <div className="relative mt-12 sm:mt-16 lg:mt-24 mb-8 sm:mb-12 lg:mb-16">
+          {/* Call to action for complete reference */}
+          <AnimatedSection direction="up" delay={400}>
+            <div className="relative mb-8 sm:mb-12 lg:mb-16">
             <div className="absolute inset-0 bg-gradient-to-br from-blue-100 via-indigo-50 to-purple-50 dark:from-blue-950/20 dark:via-indigo-950/10 dark:to-purple-950/5 rounded-3xl blur-2xl opacity-50" />
             
             <div className="relative bg-white dark:bg-gray-900 border-2 border-blue-200 dark:border-blue-800 rounded-3xl p-6 sm:p-8 lg:p-10 xl:p-12 shadow-2xl">
@@ -532,8 +514,9 @@ export default function WhatIsLogicStampPage() {
                 </div>
               </div>
             </div>
-          </div>
-        </AnimatedSection>
+            </div>
+          </AnimatedSection>
+        </div>
       </DocsLayout>
       <Footer />
     </>

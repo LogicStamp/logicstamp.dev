@@ -147,7 +147,7 @@ export default function BestPracticesPage() {
                 </h2>
                 <p className="text-sm sm:text-base text-gray-600 dark:text-gray-400 mb-4 sm:mb-5 leading-relaxed">
                   Most teams never need full source code in every bundle. Start with headers, then selectively turn on full code for
-                  deep investigations.
+                  deep investigations. Use <code className="px-1.5 py-0.5 bg-gray-100 dark:bg-gray-800 rounded text-xs font-mono">--compare-modes</code> to see exact token costs before committing to a mode.
                 </p>
                 <div className="overflow-x-auto -mx-3 sm:mx-0 px-3 sm:px-0">
                   <table className="min-w-full text-xs sm:text-sm border-collapse">
@@ -156,6 +156,7 @@ export default function BestPracticesPage() {
                         <th className="px-2 sm:px-4 py-2 text-left font-semibold text-gray-700 dark:text-gray-200">Mode</th>
                         <th className="px-2 sm:px-4 py-2 text-left font-semibold text-gray-700 dark:text-gray-200">What it includes</th>
                         <th className="px-2 sm:px-4 py-2 text-left font-semibold text-gray-700 dark:text-gray-200">Best for</th>
+                        <th className="px-2 sm:px-4 py-2 text-left font-semibold text-gray-700 dark:text-gray-200">Token cost</th>
                       </tr>
                     </thead>
                     <tbody className="divide-y divide-gray-200 dark:divide-gray-700">
@@ -167,6 +168,7 @@ export default function BestPracticesPage() {
                         </td>
                         <td className="px-2 sm:px-4 py-2 text-gray-600 dark:text-gray-400 whitespace-nowrap">Contracts only</td>
                         <td className="px-2 sm:px-4 py-2 text-gray-600 dark:text-gray-400">API docs, CI checks</td>
+                        <td className="px-2 sm:px-4 py-2 text-gray-600 dark:text-gray-400 text-xs">10-20% of raw</td>
                       </tr>
                       <tr className="bg-emerald-50/60 dark:bg-emerald-950/20">
                         <td className="px-2 sm:px-4 py-2 whitespace-nowrap">
@@ -181,6 +183,19 @@ export default function BestPracticesPage() {
                           JSDoc, signatures, and contracts
                         </td>
                         <td className="px-2 sm:px-4 py-2 text-gray-600 dark:text-gray-400">Everyday AI chat and code review</td>
+                        <td className="px-2 sm:px-4 py-2 text-gray-600 dark:text-gray-400 text-xs">20-30% of raw</td>
+                      </tr>
+                      <tr>
+                        <td className="px-2 sm:px-4 py-2 whitespace-nowrap">
+                          <code className="px-1.5 py-0.5 rounded bg-purple-100 dark:bg-purple-900/40 text-purple-900 dark:text-purple-100 font-mono text-[0.7rem] sm:text-xs">
+                            header+style
+                          </code>
+                        </td>
+                        <td className="px-2 sm:px-4 py-2 text-gray-600 dark:text-gray-400 whitespace-nowrap">
+                          Header + style metadata (Tailwind, SCSS, animations)
+                        </td>
+                        <td className="px-2 sm:px-4 py-2 text-gray-600 dark:text-gray-400">UI/UX discussions, design system work</td>
+                        <td className="px-2 sm:px-4 py-2 text-gray-600 dark:text-gray-400 text-xs">40-60% of raw</td>
                       </tr>
                       <tr>
                         <td className="px-2 sm:px-4 py-2 whitespace-nowrap">
@@ -190,17 +205,25 @@ export default function BestPracticesPage() {
                         </td>
                         <td className="px-2 sm:px-4 py-2 text-gray-600 dark:text-gray-400 whitespace-nowrap">Complete source</td>
                         <td className="px-2 sm:px-4 py-2 text-gray-600 dark:text-gray-400">Targeted deep dives on tricky areas</td>
+                        <td className="px-2 sm:px-4 py-2 text-gray-600 dark:text-gray-400 text-xs">80-100% of raw</td>
                       </tr>
                     </tbody>
                   </table>
+                </div>
+
+                <div className="bg-blue-50/50 dark:bg-blue-950/20 border-l-4 border-blue-500 p-3 sm:p-4 mt-4 sm:mt-6 rounded-r-lg">
+                  <p className="text-xs sm:text-sm text-gray-800 dark:text-blue-100">
+                    <span className="font-semibold text-blue-900 dark:text-blue-200">💡 Best Practice:</span>{' '}
+                    Before generating context for a large project, run <code className="px-1.5 py-0.5 bg-blue-100 dark:bg-blue-900/40 rounded text-xs font-mono">stamp context --compare-modes</code> to see exact token costs across all modes. This helps you choose the most cost-effective mode for your use case and budget.
+                  </p>
                 </div>
 
                 <div className="mt-4 sm:mt-6">
                   <TabbedCodeBlock
                     tabs={[
                       {
-                        label: 'Compare modes',
-                        code: 'stamp context --compare-modes',
+                        label: 'Compare all modes',
+                        code: '# See token costs for all modes before generating\nstamp context --compare-modes',
                         copyText: 'stamp context --compare-modes',
                       },
                       {
@@ -209,12 +232,81 @@ export default function BestPracticesPage() {
                         copyText: 'stamp context --include-code header',
                       },
                       {
+                        label: 'With style metadata',
+                        code: 'stamp context style\n# or\nstamp context --include-style',
+                        copyText: 'stamp context style',
+                      },
+                      {
                         label: 'Minimal footprint',
                         code: 'stamp context --include-code none',
                         copyText: 'stamp context --include-code none',
                       },
                     ]}
                   />
+                </div>
+              </div>
+            </div>
+          </AnimatedSection>
+
+          {/* Compare Modes Best Practice */}
+          <AnimatedSection direction="up" delay={325}>
+            <div className="relative mb-8 sm:mb-12 lg:mb-16">
+              <div className="absolute -inset-1 bg-gradient-to-r from-blue-600 to-cyan-600 rounded-2xl blur opacity-20 dark:opacity-10" />
+              <div className="relative bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded-2xl p-4 sm:p-6 lg:p-8 shadow-xl">
+                <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white mb-3 sm:mb-4">
+                  Use Compare Modes Before Generating Context
+                </h2>
+                <p className="text-sm sm:text-base text-gray-600 dark:text-gray-400 mb-4 sm:mb-5 leading-relaxed">
+                  The <code className="px-1.5 py-0.5 bg-gray-100 dark:bg-gray-800 rounded text-xs font-mono">--compare-modes</code> flag shows you token costs across all modes without writing any files. This helps you make informed decisions about which mode fits your budget and use case.
+                </p>
+                <div className="grid sm:grid-cols-2 gap-4 sm:gap-6 mb-4 sm:mb-5">
+                  <div className="bg-blue-50 dark:bg-blue-950/20 rounded-xl border border-blue-200 dark:border-blue-800 p-4 sm:p-5">
+                    <h3 className="text-sm sm:text-base font-semibold text-blue-900 dark:text-blue-100 mb-2">
+                      When to use compare modes
+                    </h3>
+                    <ul className="text-xs sm:text-sm text-blue-800 dark:text-blue-200 space-y-1.5">
+                      <li>• Before generating context for large projects</li>
+                      <li>• When optimizing token budgets</li>
+                      <li>• Evaluating style metadata overhead</li>
+                      <li>• Planning AI workflow costs</li>
+                      <li>• Comparing against raw source dumps</li>
+                    </ul>
+                  </div>
+                  <div className="bg-gray-50 dark:bg-gray-900/70 rounded-xl border border-gray-200 dark:border-gray-800 p-4 sm:p-5">
+                    <h3 className="text-sm sm:text-base font-semibold text-gray-900 dark:text-white mb-2">
+                      What you get
+                    </h3>
+                    <TabbedCodeBlock
+                      tabs={[
+                        {
+                          label: 'Example output',
+                          code: `📊 Mode Comparison
+
+   Comparison:
+     Mode         | Tokens GPT-4o | Tokens Claude | Savings vs Raw Source
+     -------------|---------------|---------------|------------------------
+     Raw source   |        22,000 |        19,556 | 0%
+     Header       |        12,228 |        10,867 | 44%
+     Header+style |        13,895 |        12,351 | 37%
+
+   Mode breakdown:
+     Mode         | Tokens GPT-4o | Tokens Claude | Savings vs Full Context
+     -------------|---------------|---------------|--------------------------
+     none         |         8,337 |         7,411 | 79%
+     header       |        12,228 |        10,867 | 69%
+     header+style |        13,895 |        12,351 | 65%
+     full         |        39,141 |        34,792 | 0%`,
+                          copyText: `stamp context --compare-modes`,
+                        },
+                      ]}
+                    />
+                  </div>
+                </div>
+                <div className="bg-cyan-50/50 dark:bg-cyan-950/20 border-l-4 border-cyan-500 p-3 sm:p-4 rounded-r-lg">
+                  <p className="text-xs sm:text-sm text-gray-800 dark:text-cyan-100">
+                    <span className="font-semibold text-cyan-900 dark:text-cyan-200">💡 Pro Tip:</span>{' '}
+                    Compare modes is analysis-only—it doesn&apos;t write any files. Use it liberally to experiment with different configurations before committing to a mode. The analysis takes 2-3x longer than normal generation but provides invaluable cost insights.
+                  </p>
                 </div>
               </div>
             </div>

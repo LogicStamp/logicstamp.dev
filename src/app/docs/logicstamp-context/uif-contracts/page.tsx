@@ -62,6 +62,7 @@ export default function UIFContractsPage() {
                   {[
                     { title: 'Structural footprint', desc: 'Variables, hooks, components, and functions used' },
                     { title: 'Logic signature', desc: 'Props, events, and state that define the component\'s API' },
+                    { title: 'Style metadata', desc: 'Visual and layout information (when --include-style is used)' },
                     { title: 'Semantic hash', desc: 'Unique identifier based on the component\'s logic (not implementation details)' },
                     { title: 'File hash', desc: 'Content-based hash for change detection' }
                   ].map((item, idx) => (
@@ -130,6 +131,29 @@ export default function UIFContractsPage() {
       }
     }
   },
+  "style": {
+    "styleSources": {
+      "tailwind": {
+        "categories": {
+          "layout": ["flex", "flex-col", "items-center"],
+          "spacing": ["py-4", "px-6", "gap-2"],
+          "colors": ["bg-blue-500", "text-white"],
+          "typography": ["text-lg", "font-semibold"]
+        },
+        "breakpoints": ["md", "lg"],
+        "classCount": 8
+      }
+    },
+    "layout": {
+      "type": "flex",
+      "hasHeroPattern": false
+    },
+    "visual": {
+      "colors": ["bg-blue-500", "text-white"],
+      "spacing": ["py-4", "px-6"],
+      "radius": "md"
+    }
+  },
   "semanticHash": "uif:1a27d0944bbaaf561ee05a01",
   "fileHash": "uif:1f0fa0e2c8958d7fc1696036"
 }`,
@@ -165,6 +189,29 @@ export default function UIFContractsPage() {
       "isLoading": {
         "type": "boolean"
       }
+    }
+  },
+  "style": {
+    "styleSources": {
+      "tailwind": {
+        "categories": {
+          "layout": ["flex", "flex-col", "items-center"],
+          "spacing": ["py-4", "px-6", "gap-2"],
+          "colors": ["bg-blue-500", "text-white"],
+          "typography": ["text-lg", "font-semibold"]
+        },
+        "breakpoints": ["md", "lg"],
+        "classCount": 8
+      }
+    },
+    "layout": {
+      "type": "flex",
+      "hasHeroPattern": false
+    },
+    "visual": {
+      "colors": ["bg-blue-500", "text-white"],
+      "spacing": ["py-4", "px-6"],
+      "radius": "md"
     }
   },
   "semanticHash": "uif:1a27d0944bbaaf561ee05a01",
@@ -277,6 +324,32 @@ export default function UIFContractsPage() {
                       <p className="text-xs text-rose-700 dark:text-rose-400">Object mapping state variable names to their types. Represents the component's internal state structure.</p>
                     </div>
                   </div>
+                </div>
+
+                {/* Style Field */}
+                <div className="p-5 bg-gradient-to-br from-pink-50 to-purple-50 dark:from-pink-950/20 dark:to-purple-950/10 rounded-xl border border-pink-200 dark:border-pink-800">
+                  <h3 className="font-semibold text-pink-900 dark:text-pink-200 mb-3 text-base sm:text-lg">
+                    <code className="px-2 py-1 bg-pink-100 dark:bg-pink-900/40 rounded text-xs font-mono">style</code>
+                    <span className="ml-2 text-xs font-normal text-pink-700 dark:text-pink-400">(Optional)</span>
+                  </h3>
+                  <p className="text-sm text-pink-800 dark:text-pink-300 mb-3">Visual and layout metadata extracted when using <code className="px-1.5 py-0.5 bg-pink-100 dark:bg-pink-900/40 rounded text-xs font-mono">stamp context style</code> or <code className="px-1.5 py-0.5 bg-pink-100 dark:bg-pink-900/40 rounded text-xs font-mono">--include-style</code>.</p>
+                  <div className="space-y-2 text-xs text-pink-700 dark:text-pink-400">
+                    <div>
+                      <strong className="text-pink-900 dark:text-pink-200">styleSources:</strong> Tailwind classes, SCSS/CSS modules, inline styles, styled-components, framer-motion
+                    </div>
+                    <div>
+                      <strong className="text-pink-900 dark:text-pink-200">layout:</strong> Flex/grid patterns, hero sections, feature cards
+                    </div>
+                    <div>
+                      <strong className="text-pink-900 dark:text-pink-200">visual:</strong> Color palettes, spacing patterns, typography classes
+                    </div>
+                    <div>
+                      <strong className="text-pink-900 dark:text-pink-200">animation:</strong> Animation library, types, and triggers
+                    </div>
+                  </div>
+                  <p className="text-xs text-pink-600 dark:text-pink-500 mt-3">
+                    See <a href="/docs/logicstamp-context/style" className="text-pink-700 dark:text-pink-300 hover:underline font-semibold">Style Metadata Guide</a> for comprehensive documentation.
+                  </p>
                 </div>
 
                 {/* Hashes */}

@@ -220,6 +220,44 @@ export default function ContextJsonPreview({ animatedNodes }: ContextJsonPreview
                       {'\n'}
                       {'            '}
                       <span className="text-gray-500">{'}'}</span>
+                      <span className="text-gray-500">,</span>
+                      {'\n'}
+                      {'            '}
+                      <span className="text-cyan-400">"style"</span>
+                      <span className="text-gray-500">: </span>
+                      <span className="text-gray-500">{'{'}</span>
+                      {'\n'}
+                      {'              '}
+                      <span className="text-cyan-400">"styleSources"</span>
+                      <span className="text-gray-500">: </span>
+                      <span className="text-gray-500">{'{'}</span>
+                      {'\n'}
+                      {'                '}
+                      <span className="text-cyan-400">"tailwind"</span>
+                      <span className="text-gray-500">: </span>
+                      <span className="text-gray-500">{'{'}</span>
+                      {'\n'}
+                      {'                  '}
+                      <span className="text-cyan-400">"categories"</span>
+                      <span className="text-gray-500">: </span>
+                      <span className="text-gray-500">{'{'}</span>
+                      <span className="text-gray-500">...</span>
+                      <span className="text-gray-500">{'}'}</span>
+                      <span className="text-gray-500">,</span>
+                      {'\n'}
+                      {'                  '}
+                      <span className="text-cyan-400">"classCount"</span>
+                      <span className="text-gray-500">: </span>
+                      <span className="text-yellow-400">8</span>
+                      {'\n'}
+                      {'                '}
+                      <span className="text-gray-500">{'}'}</span>
+                      {'\n'}
+                      {'              '}
+                      <span className="text-gray-500">{'}'}</span>
+                      {'\n'}
+                      {'            '}
+                      <span className="text-gray-500">{'}'}</span>
                       {'\n'}
                       {'          '}
                       <span className="text-gray-500">{'}'}</span>
@@ -296,7 +334,7 @@ export default function ContextJsonPreview({ animatedNodes }: ContextJsonPreview
                       {'      '}
                       <span className="text-cyan-400">"source"</span>
                       <span className="text-gray-500">: </span>
-                      <span className="text-green-400">"logicstamp-context@0.1.0"</span>
+                      <span className="text-green-400">"logicstamp-context@0.2.2"</span>
                       {'\n'}
                       {'    '}
                       <span className="text-gray-500">{'}'}</span>

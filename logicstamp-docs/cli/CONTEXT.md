@@ -27,6 +27,8 @@ stamp context [path] [options]
 | `--predict-behavior` | | `false` | Experimental behavioral prediction annotations. |
 | `--dry-run` | | `false` | Skip writing the output; display summary only. |
 | `--stats` | | `false` | Emit single-line JSON stats (ideal for CI). |
+| `--compare-modes` | | `false` | Show detailed token comparison table across all modes (none/header/header+style/full) with accurate style metadata impact. See [COMPARE-MODES.md](COMPARE-MODES.md) for comprehensive guide. |
+| `--include-style` | | `false` | Extract style metadata (Tailwind, SCSS, animations, layout). |
 | `--skip-gitignore` | | `false` | Skip `.gitignore` setup (never prompt or modify). |
 | `--quiet` | `-q` | `false` | Suppress verbose output (show only errors). |
 | `--help` | `-h` | | Print usage help. |
@@ -58,6 +60,15 @@ stamp context ./packages/ui --dry-run
 
 # Suppress verbose output (quiet mode)
 stamp context --quiet
+
+# Generate context with style metadata
+stamp context style
+# Or use the flag (equivalent)
+stamp context --include-style
+
+# Compare token costs across all modes (including style)
+stamp context --compare-modes
+# See COMPARE-MODES.md for comprehensive guide
 
 # Custom output directory
 stamp context --out ./output
@@ -122,7 +133,7 @@ The `context_main.json` file provides a complete directory index:
     }
   ],
   "meta": {
-    "source": "logicstamp-context@0.1.1"
+    "source": "logicstamp-context@0.2.2"
   }
 }
 ```
@@ -172,4 +183,24 @@ stamp context --strict-missing || exit 1
 - Use `--max-nodes` to keep bundle size manageable before sharing with LLMs.
 - Run `stamp context validate` after generation to catch schema drift early.
 - Use `stamp context clean` to remove all context artifacts when resetting or switching branches.
+- Use `stamp context style` or `--include-style` to extract visual and layout metadata for design-aware context bundles. See [STYLE.md](STYLE.md) for detailed documentation.
+- Use `--compare-modes` to see accurate token estimates across all modes (none/header/header+style/full) and understand the cost impact of including style metadata.
+
+## Token Estimation
+
+Token counts are estimated using character-based approximations by default (~4 characters per token for GPT-4, ~4.5 for Claude). 
+
+**Optional Tokenizers:** LogicStamp Context includes `@dqbd/tiktoken` (GPT-4) and `@anthropic-ai/tokenizer` (Claude) as optional dependencies. npm will automatically attempt to install them when you install `logicstamp-context`. If installation succeeds, you get model-accurate token counts. If installation fails or is skipped (normal for optional dependencies), the tool gracefully falls back to character-based estimation.
+
+If you need accurate token counts and the automatic installation failed, you can manually install them:
+
+```bash
+# For accurate GPT-4 token counts
+npm install @dqbd/tiktoken
+
+# For accurate Claude token counts
+npm install @anthropic-ai/tokenizer
+```
+
+If these packages are installed, `--compare-modes` and token estimates throughout the tool will automatically use them for precise token counting.
 

@@ -118,11 +118,13 @@ stamp context
                     label: 'Syntax',
                     code: `stamp init [path] [options]
 stamp context [path] [options]
+stamp context style [path] [options]
 stamp context validate [file]
 stamp context compare [options]
 stamp context clean [path] [options]`,
                     copyText: `stamp init [path] [options]
 stamp context [path] [options]
+stamp context style [path] [options]
 stamp context validate [file]
 stamp context compare [options]
 stamp context clean [path] [options]`
@@ -132,6 +134,7 @@ stamp context clean [path] [options]`
               <p className="text-base sm:text-lg text-gray-600 dark:text-gray-400 mt-4 sm:mt-6 leading-relaxed">
                 Use <code className="px-2 py-1 bg-gray-100 dark:bg-gray-800 text-purple-600 dark:text-purple-400 rounded-md font-mono text-xs sm:text-sm">stamp init</code> to set up your project (optional, <code className="px-2 py-1 bg-gray-100 dark:bg-gray-800 text-purple-600 dark:text-purple-400 rounded-md font-mono text-xs sm:text-sm">stamp context</code> is CI-friendly and never prompts),{' '}
                 <code className="px-2 py-1 bg-gray-100 dark:bg-gray-800 text-purple-600 dark:text-purple-400 rounded-md font-mono text-xs sm:text-sm">stamp context</code> to generate folder-organized context files,{' '}
+                <code className="px-2 py-1 bg-gray-100 dark:bg-gray-800 text-purple-600 dark:text-purple-400 rounded-md font-mono text-xs sm:text-sm">stamp context style</code> to generate context with style metadata (Tailwind, SCSS, animations),{' '}
                 <code className="px-2 py-1 bg-gray-100 dark:bg-gray-800 text-purple-600 dark:text-purple-400 rounded-md font-mono text-xs sm:text-sm">stamp context validate</code> to verify them,{' '}
                 <code className="px-2 py-1 bg-gray-100 dark:bg-gray-800 text-purple-600 dark:text-purple-400 rounded-md font-mono text-xs sm:text-sm">stamp context compare</code> to detect drift across all folders, and{' '}
                 <code className="px-2 py-1 bg-gray-100 dark:bg-gray-800 text-purple-600 dark:text-purple-400 rounded-md font-mono text-xs sm:text-sm">stamp context clean</code> to remove context artifacts.
@@ -164,6 +167,14 @@ stamp context clean [path] [options]`
                   {
                     option: '--include-code',
                     desc: 'Choose between none, header, or full code snippets.'
+                  },
+                  {
+                    option: '--include-style',
+                    desc: 'Extract style metadata (Tailwind, SCSS, animations, layout patterns).'
+                  },
+                  {
+                    option: '--compare-modes',
+                    desc: 'Show detailed token comparison across all modes (none/header/header+style/full).'
                   },
                   {
                     option: '--profile',
@@ -205,6 +216,8 @@ stamp context clean [path] [options]`
                 {[
                   'Use --dry-run to inspect bundle size and counts without producing files.',
                   'Use --stats to emit machine-readable summary lines and append them to logs or dashboards.',
+                  'Use --compare-modes to see token costs across all modes (none/header/header+style/full) before generating context.',
+                  'Use stamp context style or --include-style to generate design-aware context with visual and layout metadata.',
                   'Use stamp context compare in CI to detect context drift across all folders. Use --approve for auto-updates (like Jest snapshots).',
                   'Combine stamp context and stamp context validate in pre-commit hooks or CI jobs to keep context files in sync with your codebase.',
                   'Use stamp context clean --all --yes to reset context files before regenerating or switching branches.'
@@ -214,6 +227,208 @@ stamp context clean [path] [options]`
                       <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
                     </svg>
                     <p className="text-sm sm:text-base text-gray-700 dark:text-gray-300 leading-relaxed">{tip}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </AnimatedSection>
+
+        {/* Style Metadata Section */}
+        <AnimatedSection direction="up" delay={500}>
+          <div className="relative mb-8 sm:mb-12 lg:mb-16">
+            <div className="absolute -inset-1 bg-gradient-to-r from-pink-600 to-purple-600 rounded-2xl blur opacity-20 dark:opacity-10" />
+            <div className="relative bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded-2xl p-4 sm:p-6 lg:p-8 shadow-xl">
+              <div className="flex items-baseline gap-3 mb-4 sm:mb-6">
+                <div className="p-2 bg-pink-100 dark:bg-pink-900/30 rounded-lg flex-shrink-0 -mt-0.5">
+                  <svg className="w-5 h-5 sm:w-6 sm:h-6 text-pink-600 dark:text-pink-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2v-4a2 2 0 00-2-2h-2.343M11 7.343l1.657-1.657a2 2 0 012.828 0l2.829 2.829a2 2 0 010 2.828l-8.486 8.485M7 17h.01" />
+                  </svg>
+                </div>
+                <h2 className="text-xl sm:text-2xl font-bold text-gray-900 dark:text-white m-0">
+                  Style Metadata Extraction
+                </h2>
+              </div>
+              <p className="text-base sm:text-lg text-gray-600 dark:text-gray-400 mb-4 sm:mb-6 leading-relaxed">
+                Generate design-aware context bundles with visual and layout information using <code className="px-2 py-1 bg-gray-100 dark:bg-gray-800 text-pink-600 dark:text-pink-400 rounded-md font-mono text-xs sm:text-sm">stamp context style</code> or the <code className="px-2 py-1 bg-gray-100 dark:bg-gray-800 text-pink-600 dark:text-pink-400 rounded-md font-mono text-xs sm:text-sm">--include-style</code> flag.
+              </p>
+              <TabbedCodeBlock
+                tabs={[
+                  {
+                    label: 'Style Command',
+                    code: `# Generate context with style metadata
+stamp context style
+
+# Equivalent using flag
+stamp context --include-style
+
+# With specific options
+stamp context style --profile llm-safe
+stamp context style --include-code header`,
+                    copyText: `# Generate context with style metadata
+stamp context style
+
+# Equivalent using flag
+stamp context --include-style
+
+# With specific options
+stamp context style --profile llm-safe
+stamp context style --include-code header`
+                  }
+                ]}
+              />
+              <div className="mt-6 sm:mt-8 grid sm:grid-cols-2 gap-4 sm:gap-6">
+                <div className="p-4 bg-gray-50 dark:bg-gray-800/50 rounded-lg">
+                  <h3 className="text-base font-semibold text-gray-900 dark:text-white mb-2">What Gets Extracted</h3>
+                  <ul className="space-y-1.5 text-sm text-gray-600 dark:text-gray-400">
+                    <li>• Tailwind CSS classes (layout, spacing, colors)</li>
+                    <li>• SCSS/CSS module imports and details</li>
+                    <li>• Layout patterns (flex, grid, hero sections)</li>
+                    <li>• Animation metadata (framer-motion, CSS)</li>
+                    <li>• Visual patterns (colors, spacing, typography)</li>
+                  </ul>
+                </div>
+                <div className="p-4 bg-gray-50 dark:bg-gray-800/50 rounded-lg">
+                  <h3 className="text-base font-semibold text-gray-900 dark:text-white mb-2">Use Cases</h3>
+                  <ul className="space-y-1.5 text-sm text-gray-600 dark:text-gray-400">
+                    <li>• Design system analysis</li>
+                    <li>• AI-assisted design suggestions</li>
+                    <li>• Layout understanding</li>
+                    <li>• Animation detection</li>
+                    <li>• Style consistency tracking</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </AnimatedSection>
+
+        {/* Token Comparison Section */}
+        <AnimatedSection direction="up" delay={600}>
+          <div className="relative mb-8 sm:mb-12 lg:mb-16">
+            <div className="absolute -inset-1 bg-gradient-to-r from-blue-600 to-indigo-600 rounded-2xl blur opacity-20 dark:opacity-10" />
+            <div className="relative bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded-2xl p-4 sm:p-6 lg:p-8 shadow-xl">
+              <div className="flex items-baseline gap-3 mb-4 sm:mb-6">
+                <div className="p-2 bg-blue-100 dark:bg-blue-900/30 rounded-lg flex-shrink-0 -mt-0.5">
+                  <svg className="w-5 h-5 sm:w-6 sm:h-6 text-blue-600 dark:text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
+                  </svg>
+                </div>
+                <h2 className="text-xl sm:text-2xl font-bold text-gray-900 dark:text-white m-0">
+                  Token Cost Comparison
+                </h2>
+              </div>
+              <p className="text-base sm:text-lg text-gray-600 dark:text-gray-400 mb-4 sm:mb-6 leading-relaxed">
+                Use <code className="px-2 py-1 bg-gray-100 dark:bg-gray-800 text-blue-600 dark:text-blue-400 rounded-md font-mono text-xs sm:text-sm">--compare-modes</code> to see detailed token cost analysis across all available modes before generating context.
+              </p>
+              <TabbedCodeBlock
+                tabs={[
+                  {
+                    label: 'Compare Modes',
+                    code: `# Compare token costs across all modes
+stamp context --compare-modes
+
+# Output shows:
+# - none: Contracts only (10-20% of raw source)
+# - header: Contracts + JSDoc headers (20-30% of raw source)
+# - header+style: Header + style metadata (40-60% of raw source)
+# - full: Complete source code (80-100% of raw source)`,
+                    copyText: `# Compare token costs across all modes
+stamp context --compare-modes
+
+# Output shows:
+# - none: Contracts only (10-20% of raw source)
+# - header: Contracts + JSDoc headers (20-30% of raw source)
+# - header+style: Header + style metadata (40-60% of raw source)
+# - full: Complete source code (80-100% of raw source)`
+                  }
+                ]}
+              />
+              <div className="mt-6 sm:mt-8 p-4 bg-blue-50 dark:bg-blue-900/20 rounded-lg border border-blue-200 dark:border-blue-800">
+                <p className="text-sm text-blue-800 dark:text-blue-200 leading-relaxed">
+                  <strong>Optional Tokenizers:</strong> LogicStamp Context includes <code className="px-1.5 py-0.5 bg-blue-100 dark:bg-blue-900/40 rounded text-xs">@dqbd/tiktoken</code> (GPT-4) and <code className="px-1.5 py-0.5 bg-blue-100 dark:bg-blue-900/40 rounded text-xs">@anthropic-ai/tokenizer</code> (Claude) as optional dependencies. npm automatically attempts to install them when you install <code className="px-1.5 py-0.5 bg-blue-100 dark:bg-blue-900/40 rounded text-xs">logicstamp-context</code>. If installation succeeds, you get model-accurate token counts. If installation fails or is skipped, the tool gracefully falls back to character-based estimation (typically within 10-15% accuracy).
+                </p>
+              </div>
+            </div>
+          </div>
+        </AnimatedSection>
+
+        {/* Example Workflows Section */}
+        <AnimatedSection direction="up" delay={700}>
+          <div className="relative mb-8 sm:mb-12 lg:mb-16">
+            <div className="absolute -inset-1 bg-gradient-to-r from-indigo-600 to-purple-600 rounded-2xl blur opacity-20 dark:opacity-10" />
+            <div className="relative bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded-2xl p-4 sm:p-6 lg:p-8 shadow-xl">
+              <div className="flex items-baseline gap-3 mb-4 sm:mb-6">
+                <div className="p-2 bg-indigo-100 dark:bg-indigo-900/30 rounded-lg flex-shrink-0 -mt-0.5">
+                  <svg className="w-5 h-5 sm:w-6 sm:h-6 text-indigo-600 dark:text-indigo-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" />
+                  </svg>
+                </div>
+                <h2 className="text-xl sm:text-2xl font-bold text-gray-900 dark:text-white m-0">
+                  Example Workflows
+                </h2>
+              </div>
+              <div className="space-y-4 sm:space-y-6">
+                {[
+                  {
+                    title: 'Basic Context Generation',
+                    code: `# Generate context for entire project
+stamp context
+
+# Scan specific directory
+stamp context ./src
+
+# Custom output directory
+stamp context --out ./output`
+                  },
+                  {
+                    title: 'Style-Aware Context',
+                    code: `# Generate context with style metadata
+stamp context style
+
+# Or use the flag
+stamp context --include-style
+
+# With conservative profile
+stamp context style --profile llm-safe`
+                  },
+                  {
+                    title: 'Token Cost Analysis',
+                    code: `# Compare all modes before generating
+stamp context --compare-modes
+
+# Generate with specific mode
+stamp context --include-code header
+stamp context --include-code full --max-nodes 20`
+                  },
+                  {
+                    title: 'CI/CD Integration',
+                    code: `# Generate stats for monitoring
+stamp context --stats > stats.json
+
+# Validate generated context
+stamp context validate
+
+# Check for drift
+stamp context compare --stats
+
+# Auto-approve updates
+stamp context compare --approve`
+                  }
+                ].map((workflow, idx) => (
+                  <div key={idx} className="p-4 bg-gray-50 dark:bg-gray-800/50 rounded-lg border border-gray-200 dark:border-gray-700">
+                    <h3 className="text-base font-semibold text-gray-900 dark:text-white mb-3">
+                      {workflow.title}
+                    </h3>
+                    <TabbedCodeBlock
+                      tabs={[
+                        {
+                          label: workflow.title,
+                          code: workflow.code,
+                          copyText: workflow.code
+                        }
+                      ]}
+                    />
                   </div>
                 ))}
               </div>

@@ -1,5 +1,6 @@
 'use client'
 
+import Image from 'next/image'
 import Footer from '@/components/Footer'
 import AnimatedSection from '@/components/AnimatedSection'
 import BetaSignup from '@/components/BetaSignup'
@@ -24,11 +25,14 @@ export default function BetaPage() {
           <AnimatedSection direction="up" delay={0}>
             <div className="text-center">
               {/* Fox Mascot */}
-              <div className="flex justify-center mb-8 sm:mb-10">
+              <div className="flex justify-center mb-4 sm:mb-6">
                 <div className="w-20 h-20 sm:w-24 sm:h-24 animate-bounce">
-                  <img
+                  <Image
                     src="/mascot/logicstamp-fox.svg"
                     alt="LogicStamp Fox Mascot"
+                    width={96}
+                    height={96}
+                    priority
                     className="w-full h-full drop-shadow-2xl"
                   />
                 </div>
@@ -43,7 +47,7 @@ export default function BetaPage() {
               </div>
 
               <h1 className="text-4xl sm:text-5xl lg:text-6xl font-black text-transparent bg-clip-text bg-gradient-to-r from-gray-900 to-gray-700 dark:from-white dark:to-gray-300 mb-8 sm:mb-10 tracking-tight leading-[1.1]">
-                LogicStamp Just Launched<br />
+                Just Launched<br />
                 <span className="relative inline-block mt-2">
                   <span className="bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 bg-clip-text text-transparent">
                     Help Us Build This

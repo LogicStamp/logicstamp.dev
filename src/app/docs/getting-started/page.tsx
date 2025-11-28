@@ -118,6 +118,12 @@ export default function QuickStartPage() {
                     </p>
                   </div>
 
+                  <div className="bg-amber-50/50 dark:bg-amber-950/20 border-l-4 border-amber-500 p-3 sm:p-4 mb-4 sm:mb-6 rounded-r-lg">
+                    <p className="text-xs sm:text-sm text-gray-700 dark:text-gray-300">
+                      <span className="font-semibold text-amber-900 dark:text-amber-200">📊 Optional Tokenizers:</span> LogicStamp Context includes <code className="px-1 bg-gray-100 dark:bg-gray-800 rounded font-mono text-[0.7rem]">@dqbd/tiktoken</code> and <code className="px-1 bg-gray-100 dark:bg-gray-800 rounded font-mono text-[0.7rem]">@anthropic-ai/tokenizer</code> as optional dependencies. npm automatically attempts to install them when installing <code className="px-1 bg-gray-100 dark:bg-gray-800 rounded font-mono text-[0.7rem]">logicstamp-context</code>. If installation succeeds, you get model-accurate token counts. If installation fails or is skipped (normal for optional dependencies), LogicStamp Context gracefully falls back to character-based estimation (typically within 10-15% accuracy).
+                    </p>
+                  </div>
+
                   <TabbedCodeBlock
                     tabs={[
                       {
@@ -540,6 +546,16 @@ export default function QuickStartPage() {
                           </tr>
                           <tr>
                             <td className="px-2 sm:px-6 py-2 sm:py-4 whitespace-nowrap">
+                              <code className="px-1.5 sm:px-2 py-0.5 sm:py-1 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 rounded text-xs font-mono">header+style</code>
+                            </td>
+                            <td className="px-2 sm:px-6 py-2 sm:py-4 whitespace-nowrap">
+                              <span className="px-1.5 sm:px-2 py-0.5 sm:py-1 text-xs font-semibold rounded-full bg-purple-100 dark:bg-purple-900/40 text-purple-800 dark:text-purple-200">~65%</span>
+                            </td>
+                            <td className="px-2 sm:px-6 py-2 sm:py-4 text-xs text-gray-600 dark:text-gray-400 whitespace-nowrap">Headers + contracts + style</td>
+                            <td className="px-2 sm:px-6 py-2 sm:py-4 text-xs text-gray-600 dark:text-gray-400">Design-aware AI</td>
+                          </tr>
+                          <tr>
+                            <td className="px-2 sm:px-6 py-2 sm:py-4 whitespace-nowrap">
                               <code className="px-1.5 sm:px-2 py-0.5 sm:py-1 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 rounded text-xs font-mono">full</code>
                             </td>
                             <td className="px-2 sm:px-6 py-2 sm:py-4 whitespace-nowrap">
@@ -569,6 +585,11 @@ export default function QuickStartPage() {
                         label: 'Balanced (Default)',
                         code: 'stamp context --include-code header',
                         copyText: 'stamp context --include-code header'
+                      },
+                      {
+                        label: 'With Style Metadata',
+                        code: 'stamp context style\n# or\nstamp context --include-style',
+                        copyText: 'stamp context style'
                       },
                       {
                         label: 'Full Analysis',
