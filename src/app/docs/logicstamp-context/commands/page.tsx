@@ -1,4 +1,5 @@
 import { Metadata } from 'next'
+import Link from 'next/link'
 import Footer from '@/components/Footer'
 import AnimatedSection from '@/components/AnimatedSection'
 import DocsLayout from '@/components/DocsLayout'
@@ -106,7 +107,7 @@ export default function LogicStampCommandsPage() {
                 <div className="space-y-2 font-mono text-xs sm:text-sm">
                   <div className="flex items-center gap-2 text-indigo-800 dark:text-indigo-300">
                     <code className="px-2 py-1 bg-indigo-100 dark:bg-indigo-900/40 rounded">stamp --version</code>
-                    <span className="text-gray-600 dark:text-gray-400"># Shows: fox mascot + "Version: 0.1.0"</span>
+                    <span className="text-gray-600 dark:text-gray-400"># Shows: fox mascot + "Version: 0.2.2"</span>
                   </div>
                   <div className="flex items-center gap-2 text-indigo-800 dark:text-indigo-300">
                     <code className="px-2 py-1 bg-indigo-100 dark:bg-indigo-900/40 rounded">stamp -v</code>
@@ -181,6 +182,13 @@ export default function LogicStampCommandsPage() {
                       <td className="px-2 sm:px-6 py-4 text-sm text-gray-600 dark:text-gray-400">Generates AI-ready context files organized by folder (one context.json per folder plus context_main.json index). CI-friendly: never prompts, respects preferences from stamp init.</td>
                       <td className="px-2 sm:px-6 py-4 text-sm text-gray-600 dark:text-gray-400">Produce fresh context for AI workflows, documentation, or review.</td>
                     </tr>
+                    <tr className="hover:bg-gray-50 dark:hover:bg-gray-800/50 transition-colors bg-pink-50/30 dark:bg-pink-950/20">
+                      <td className="px-2 sm:px-6 py-4 whitespace-nowrap">
+                        <code className="px-2 py-1 bg-pink-100 dark:bg-pink-900/40 text-pink-900 dark:text-pink-100 rounded text-xs sm:text-sm font-mono">stamp context style [path] [options]</code>
+                      </td>
+                      <td className="px-2 sm:px-6 py-4 text-sm text-gray-600 dark:text-gray-400">Generates context with style metadata included. Extracts visual and layout information (Tailwind, SCSS, animations, layout patterns). Equivalent to <code className="px-1 py-0.5 bg-gray-100 dark:bg-gray-800 rounded text-xs font-mono">stamp context --include-style</code>.</td>
+                      <td className="px-2 sm:px-6 py-4 text-sm text-gray-600 dark:text-gray-400">Design system analysis, AI-assisted design suggestions, layout understanding, animation detection.</td>
+                    </tr>
                     <tr className="hover:bg-gray-50 dark:hover:bg-gray-800/50 transition-colors">
                       <td className="px-2 sm:px-6 py-4 whitespace-nowrap">
                         <code className="px-2 py-1 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 rounded text-xs sm:text-sm font-mono">stamp context compare [options]</code>
@@ -232,6 +240,14 @@ export default function LogicStampCommandsPage() {
                   Run <code className="px-1.5 py-0.5 bg-green-100 dark:bg-green-900/40 rounded text-xs font-mono">stamp context</code> to generate multiple <code className="px-1.5 py-0.5 bg-green-100 dark:bg-green-900/40 rounded text-xs font-mono">context.json</code> files (one per folder) plus <code className="px-1.5 py-0.5 bg-green-100 dark:bg-green-900/40 rounded text-xs font-mono">context_main.json</code> index, or use <code className="px-1.5 py-0.5 bg-green-100 dark:bg-green-900/40 rounded text-xs font-mono">--out</code> for a custom output directory.
                 </p>
               </div>
+              <div className="flex items-start gap-3 p-4 bg-gradient-to-br from-pink-50 to-rose-50 dark:from-pink-950/20 dark:to-rose-950/10 rounded-xl border border-pink-200 dark:border-pink-800">
+                <svg className="w-5 h-5 text-pink-600 dark:text-pink-400 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2v-4a2 2 0 00-2-2h-2.343M11 7.343l1.657-1.657a2 2 0 012.828 0l2.829 2.829a2 2 0 010 2.828l-8.486 8.485M7 17h.01" />
+                </svg>
+                <p className="text-sm sm:text-base text-gray-700 dark:text-gray-300">
+                  Run <code className="px-1.5 py-0.5 bg-pink-100 dark:bg-pink-900/40 rounded text-xs font-mono">stamp context style</code> or use <code className="px-1.5 py-0.5 bg-pink-100 dark:bg-pink-900/40 rounded text-xs font-mono">stamp context --include-style</code> to generate context with style metadata (Tailwind, SCSS, animations, layout patterns). This makes context bundles design-aware, enabling AI assistants to understand both the logic and visual presentation of your components.
+                </p>
+              </div>
               <div className="flex items-start gap-3 p-4 bg-gradient-to-br from-purple-50 to-pink-50 dark:from-purple-950/20 dark:to-pink-950/10 rounded-xl border border-purple-200 dark:border-purple-800">
                 <svg className="w-5 h-5 text-purple-600 dark:text-purple-400 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
@@ -279,8 +295,17 @@ stamp init
 # Generate context for your repository
 stamp context
 
+# Generate context with style metadata
+stamp context style
+
+# Or use the flag (equivalent)
+stamp context --include-style
+
 # Scan a subdirectory and use the llm-safe profile
 stamp context ./src --profile llm-safe
+
+# Compare token costs across all modes
+stamp context --compare-modes
 
 # Validate all context files (multi-file mode)
 stamp context validate       # uses context_main.json to validate all folders
@@ -314,8 +339,17 @@ stamp init
 # Generate context for your repository
 stamp context
 
+# Generate context with style metadata
+stamp context style
+
+# Or use the flag (equivalent)
+stamp context --include-style
+
 # Scan a subdirectory and use the llm-safe profile
 stamp context ./src --profile llm-safe
+
+# Compare token costs across all modes
+stamp context --compare-modes
 
 # Validate all context files (multi-file mode)
 stamp context validate       # uses context_main.json to validate all folders
@@ -343,6 +377,133 @@ stamp context clean --all --yes`
                 }
               ]}
             />
+          </div>
+        </AnimatedSection>
+
+        {/* See Also Section */}
+        <AnimatedSection direction="up" delay={400}>
+          <div className="mb-8 sm:mb-12 lg:mb-16">
+            <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white mb-4 sm:mb-6">
+              See Also
+            </h2>
+            <p className="text-sm sm:text-base text-gray-600 dark:text-gray-400 mb-6">
+              For detailed documentation on specific features and commands:
+            </p>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <Link
+                href="/docs/logicstamp-context/context"
+                className="group p-4 bg-gradient-to-br from-blue-50 to-indigo-50 dark:from-blue-950/20 dark:to-indigo-950/10 rounded-xl border border-blue-200 dark:border-blue-800 hover:border-blue-300 dark:hover:border-blue-700 transition-all"
+              >
+                <div className="flex items-start gap-3">
+                  <svg className="w-5 h-5 text-blue-600 dark:text-blue-400 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                  </svg>
+                  <div>
+                    <h3 className="text-sm font-semibold text-blue-900 dark:text-blue-200 group-hover:text-blue-700 dark:group-hover:text-blue-100 transition-colors">
+                      `context` command
+                    </h3>
+                    <p className="text-xs text-gray-600 dark:text-gray-400 mt-1">
+                      Complete <code className="px-1 py-0.5 bg-blue-100 dark:bg-blue-900/40 rounded text-xs font-mono">stamp context</code> command reference
+                    </p>
+                  </div>
+                </div>
+              </Link>
+
+              <Link
+                href="/docs/logicstamp-context/style"
+                className="group p-4 bg-gradient-to-br from-pink-50 to-rose-50 dark:from-pink-950/20 dark:to-rose-950/10 rounded-xl border border-pink-200 dark:border-pink-800 hover:border-pink-300 dark:hover:border-pink-700 transition-all"
+              >
+                <div className="flex items-start gap-3">
+                  <svg className="w-5 h-5 text-pink-600 dark:text-pink-400 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2v-4a2 2 0 00-2-2h-2.343M11 7.343l1.657-1.657a2 2 0 012.828 0l2.829 2.829a2 2 0 010 2.828l-8.486 8.485M7 17h.01" />
+                  </svg>
+                  <div>
+                    <h3 className="text-sm font-semibold text-pink-900 dark:text-pink-200 group-hover:text-pink-700 dark:group-hover:text-pink-100 transition-colors">
+                      `style` command
+                    </h3>
+                    <p className="text-xs text-gray-600 dark:text-gray-400 mt-1">
+                      Style metadata extraction guide
+                    </p>
+                  </div>
+                </div>
+              </Link>
+
+              <Link
+                href="/docs/logicstamp-context/init"
+                className="group p-4 bg-gradient-to-br from-green-50 to-emerald-50 dark:from-green-950/20 dark:to-emerald-950/10 rounded-xl border border-green-200 dark:border-green-800 hover:border-green-300 dark:hover:border-green-700 transition-all"
+              >
+                <div className="flex items-start gap-3">
+                  <svg className="w-5 h-5 text-green-600 dark:text-green-400 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                  </svg>
+                  <div>
+                    <h3 className="text-sm font-semibold text-green-900 dark:text-green-200 group-hover:text-green-700 dark:group-hover:text-green-100 transition-colors">
+                      `init` command
+                    </h3>
+                    <p className="text-xs text-gray-600 dark:text-gray-400 mt-1">
+                      Project initialization guide
+                    </p>
+                  </div>
+                </div>
+              </Link>
+
+              <Link
+                href="/docs/logicstamp-context/validate"
+                className="group p-4 bg-gradient-to-br from-purple-50 to-pink-50 dark:from-purple-950/20 dark:to-pink-950/10 rounded-xl border border-purple-200 dark:border-purple-800 hover:border-purple-300 dark:hover:border-purple-700 transition-all"
+              >
+                <div className="flex items-start gap-3">
+                  <svg className="w-5 h-5 text-purple-600 dark:text-purple-400 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+                  </svg>
+                  <div>
+                    <h3 className="text-sm font-semibold text-purple-900 dark:text-purple-200 group-hover:text-purple-700 dark:group-hover:text-purple-100 transition-colors">
+                      `validate` command
+                    </h3>
+                    <p className="text-xs text-gray-600 dark:text-gray-400 mt-1">
+                      Schema validation reference
+                    </p>
+                  </div>
+                </div>
+              </Link>
+
+              <Link
+                href="/docs/logicstamp-context/compare-command"
+                className="group p-4 bg-gradient-to-br from-amber-50 to-yellow-50 dark:from-amber-950/20 dark:to-yellow-950/10 rounded-xl border border-amber-200 dark:border-amber-800 hover:border-amber-300 dark:hover:border-amber-700 transition-all"
+              >
+                <div className="flex items-start gap-3">
+                  <svg className="w-5 h-5 text-amber-600 dark:text-amber-400 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
+                  </svg>
+                  <div>
+                    <h3 className="text-sm font-semibold text-amber-900 dark:text-amber-200 group-hover:text-amber-700 dark:group-hover:text-amber-100 transition-colors">
+                      `compare` command
+                    </h3>
+                    <p className="text-xs text-gray-600 dark:text-gray-400 mt-1">
+                      Context drift detection and comparison
+                    </p>
+                  </div>
+                </div>
+              </Link>
+
+              <Link
+                href="/docs/logicstamp-context/clean"
+                className="group p-4 bg-gradient-to-br from-rose-50 to-pink-50 dark:from-rose-950/20 dark:to-pink-950/10 rounded-xl border border-rose-200 dark:border-rose-800 hover:border-rose-300 dark:hover:border-rose-700 transition-all"
+              >
+                <div className="flex items-start gap-3">
+                  <svg className="w-5 h-5 text-rose-600 dark:text-rose-400 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+                  </svg>
+                  <div>
+                    <h3 className="text-sm font-semibold text-rose-900 dark:text-rose-200 group-hover:text-rose-700 dark:group-hover:text-rose-100 transition-colors">
+                      `clean` command
+                    </h3>
+                    <p className="text-xs text-gray-600 dark:text-gray-400 mt-1">
+                      Remove context artifacts
+                    </p>
+                  </div>
+                </div>
+              </Link>
+            </div>
           </div>
         </AnimatedSection>
       </DocsLayout>

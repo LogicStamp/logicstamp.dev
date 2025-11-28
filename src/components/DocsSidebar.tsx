@@ -35,6 +35,8 @@ const sections: DocsNavSection[] = [
       { title: 'CLI Commands', href: '/docs/logicstamp-context/commands' },
       { title: '`init` command', href: '/docs/logicstamp-context/init' },
       { title: '`context` command', href: '/docs/logicstamp-context/context' },
+      { title: 'Compare Modes', href: '/docs/logicstamp-context/compare-modes' },
+      { title: '`style` command', href: '/docs/logicstamp-context/style' },
       { title: '`compare` command', href: '/docs/logicstamp-context/compare-command' },
       { title: '`validate` command', href: '/docs/logicstamp-context/validate' },
       { title: '`clean` command', href: '/docs/logicstamp-context/clean' },
@@ -138,7 +140,27 @@ function getIcon(href: string): ReactNode {
     )
   }
 
-  if (href.includes('/commands') || href.includes('/context') || href.includes('/compare') || href.includes('/validate') || href.includes('/init') || href.includes('/clean')) {
+  if (href.includes('/compare-modes')) {
+    // Chart/comparison icon for compare-modes
+    return (
+      <svg
+        className="w-3.5 h-3.5"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth={2}
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      >
+        <path d="M3 3v18h18" />
+        <path d="M18 17V9" />
+        <path d="M13 17V5" />
+        <path d="M8 17v-3" />
+      </svg>
+    )
+  }
+
+  if (href.includes('/commands') || href.includes('/context') || href.includes('/style') || href.includes('/compare') || href.includes('/validate') || href.includes('/init') || href.includes('/clean')) {
     // Command-style icon
     return (
       <svg
@@ -356,6 +378,7 @@ export default function DocsSidebar() {
             alt="LogicStamp Fox Mascot"
             width={80}
             height={80}
+            priority
             className="w-16 h-16 sm:w-20 sm:h-20 opacity-90 group-hover:opacity-100 transition-opacity duration-300"
           />
         </Link>

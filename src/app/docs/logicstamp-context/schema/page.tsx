@@ -134,6 +134,7 @@ export default function SchemaPage() {
     events: Record<string, EventSignature>;
     state: Record<string, StateSignature>;
   };
+  style?: StyleMetadata;  // Optional style metadata (when --include-style is used)
   semanticHash: string; // Format: "uif:..." (24 hex chars)
   fileHash: string;     // Format: "uif:..." (24 hex chars)
 }
@@ -151,6 +152,79 @@ interface EventSignature {
 
 interface StateSignature {
   type: string;
+}
+
+interface StyleMetadata {
+  styleSources?: StyleSources;
+  layout?: LayoutMetadata;
+  visual?: VisualMetadata;
+  animation?: AnimationMetadata;
+  pageLayout?: PageLayoutMetadata;
+}
+
+interface StyleSources {
+  tailwind?: {
+    categories: Record<string, string[]>; // layout, spacing, colors, typography, borders, effects
+    breakpoints?: string[]; // sm, md, lg, xl, 2xl
+    classCount: number;
+  };
+  scssModule?: string; // Path to SCSS module file
+  scssDetails?: {
+    selectors: string[];
+    properties: string[];
+    features: {
+      variables?: boolean;
+      nesting?: boolean;
+      mixins?: boolean;
+    };
+  };
+  cssModule?: string; // Path to CSS module file
+  cssDetails?: {
+    selectors: string[];
+    properties: string[];
+  };
+  inlineStyles?: boolean;
+  styledComponents?: {
+    components?: string[];
+    usesTheme?: boolean;
+    usesCssProp?: boolean;
+  };
+  motion?: {
+    components?: string[];
+    variants?: string[];
+    features: {
+      gestures?: boolean;
+      layoutAnimations?: boolean;
+      viewportAnimations?: boolean;
+    };
+  };
+}
+
+interface LayoutMetadata {
+  type?: "flex" | "grid" | "relative" | "absolute";
+  cols?: string; // Grid column pattern (e.g., "grid-cols-2 md:grid-cols-3")
+  hasHeroPattern?: boolean;
+  hasFeatureCards?: boolean;
+  sections?: string[];
+}
+
+interface VisualMetadata {
+  colors?: string[]; // Color utility classes (limited to top 10)
+  spacing?: string[]; // Spacing utility classes (limited to top 10)
+  radius?: string; // Most common border radius pattern
+  typography?: string[]; // Typography classes (limited to top 10)
+}
+
+interface AnimationMetadata {
+  type?: string; // Animation type (e.g., "fade-in", "slide")
+  library?: string; // "framer-motion" or "css"
+  trigger?: string; // Trigger type (e.g., "inView", "hover")
+}
+
+interface PageLayoutMetadata {
+  pageRole?: string;
+  sections?: string[];
+  ctaCount?: number;
 }`,
                       copyText: `interface UIFContract {
   type: "UIFContract";
@@ -168,6 +242,7 @@ interface StateSignature {
     events: Record<string, EventSignature>;
     state: Record<string, StateSignature>;
   };
+  style?: StyleMetadata;  // Optional style metadata
   semanticHash: string;
   fileHash: string;
 }`
@@ -203,6 +278,29 @@ interface StateSignature {
       }
     }
   },
+  "style": {
+    "styleSources": {
+      "tailwind": {
+        "categories": {
+          "layout": ["flex", "flex-col", "items-center"],
+          "spacing": ["py-4", "px-6", "gap-2"],
+          "colors": ["bg-blue-500", "text-white"],
+          "typography": ["text-lg", "font-semibold"]
+        },
+        "breakpoints": ["md", "lg"],
+        "classCount": 8
+      }
+    },
+    "layout": {
+      "type": "flex",
+      "hasHeroPattern": false
+    },
+    "visual": {
+      "colors": ["bg-blue-500", "text-white"],
+      "spacing": ["py-4", "px-6"],
+      "radius": "md"
+    }
+  },
   "semanticHash": "uif:1a27d0944bbaaf561ee05a01",
   "fileHash": "uif:1f0fa0e2c8958d7fc1696036"
 }`,
@@ -233,6 +331,29 @@ interface StateSignature {
       "isLoading": {
         "type": "boolean"
       }
+    }
+  },
+  "style": {
+    "styleSources": {
+      "tailwind": {
+        "categories": {
+          "layout": ["flex", "flex-col", "items-center"],
+          "spacing": ["py-4", "px-6", "gap-2"],
+          "colors": ["bg-blue-500", "text-white"],
+          "typography": ["text-lg", "font-semibold"]
+        },
+        "breakpoints": ["md", "lg"],
+        "classCount": 8
+      }
+    },
+    "layout": {
+      "type": "flex",
+      "hasHeroPattern": false
+    },
+    "visual": {
+      "colors": ["bg-blue-500", "text-white"],
+      "spacing": ["py-4", "px-6"],
+      "radius": "md"
     }
   },
   "semanticHash": "uif:1a27d0944bbaaf561ee05a01",
@@ -291,6 +412,12 @@ interface StateSignature {
                       <td className="px-2 sm:px-6 py-4 text-sm text-gray-600 dark:text-gray-400">Public API contract</td>
                     </tr>
                     <tr className="hover:bg-gray-50 dark:hover:bg-gray-800/50 transition-colors">
+                      <td className="px-2 sm:px-6 py-4 whitespace-nowrap"><code className="text-xs font-mono">style</code></td>
+                      <td className="px-2 sm:px-6 py-4"><code className="text-xs font-mono">StyleMetadata</code></td>
+                      <td className="px-2 sm:px-6 py-4"><span className="px-2 py-1 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 rounded text-xs">❌</span></td>
+                      <td className="px-2 sm:px-6 py-4 text-sm text-gray-600 dark:text-gray-400">Style metadata (only when <code className="px-1 bg-gray-100 dark:bg-gray-800 rounded text-xs">--include-style</code> is used)</td>
+                    </tr>
+                    <tr className="hover:bg-gray-50 dark:hover:bg-gray-800/50 transition-colors">
                       <td className="px-2 sm:px-6 py-4 whitespace-nowrap"><code className="text-xs font-mono">semanticHash</code></td>
                       <td className="px-2 sm:px-6 py-4"><code className="text-xs font-mono">string</code></td>
                       <td className="px-2 sm:px-6 py-4"><span className="px-2 py-1 bg-green-100 dark:bg-green-900/40 text-green-900 dark:text-green-100 rounded text-xs">✅</span></td>
@@ -304,6 +431,65 @@ interface StateSignature {
                     </tr>
                   </tbody>
                 </table>
+              </div>
+
+              {/* Style Metadata Section */}
+              <div className="mt-8 sm:mt-10">
+                <div className="relative">
+                  <div className="absolute -inset-1 bg-gradient-to-r from-pink-600 to-purple-600 rounded-2xl blur opacity-20 dark:opacity-10" />
+                  <div className="relative bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded-2xl p-4 sm:p-6 lg:p-8 shadow-xl">
+                    <div className="flex items-baseline gap-3 mb-4 sm:mb-6">
+                      <div className="p-2 bg-pink-100 dark:bg-pink-900/30 rounded-lg flex-shrink-0 -mt-0.5">
+                        <svg className="w-5 h-5 sm:w-6 sm:h-6 text-pink-600 dark:text-pink-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2v-4a2 2 0 00-2-2h-2.343M11 7.343l1.657-1.657a2 2 0 012.828 0l2.829 2.829a2 2 0 010 2.828l-8.486 8.485M7 17h.01" />
+                        </svg>
+                      </div>
+                      <h3 className="text-xl sm:text-2xl font-bold text-gray-900 dark:text-white m-0">
+                        Style Metadata (Optional)
+                      </h3>
+                    </div>
+                    <p className="text-base sm:text-lg text-gray-600 dark:text-gray-400 mb-4 leading-relaxed">
+                      The <code className="px-2 py-1 bg-gray-100 dark:bg-gray-800 rounded text-sm font-mono">style</code> field is only included when using <code className="px-2 py-1 bg-gray-100 dark:bg-gray-800 rounded text-sm font-mono">stamp context style</code> or <code className="px-2 py-1 bg-gray-100 dark:bg-gray-800 rounded text-sm font-mono">stamp context --include-style</code>. It provides visual and layout information extracted from components.
+                    </p>
+                    
+                    <div className="grid sm:grid-cols-2 gap-4 sm:gap-6 mb-4">
+                      <div className="bg-pink-50 dark:bg-pink-950/20 rounded-xl border border-pink-200 dark:border-pink-800 p-4">
+                        <h4 className="text-sm sm:text-base font-semibold text-pink-900 dark:text-pink-100 mb-2">
+                          Style Sources
+                        </h4>
+                        <ul className="text-xs sm:text-sm text-pink-800 dark:text-pink-200 space-y-1">
+                          <li>• <strong>tailwind</strong> - Utility classes categorized by type</li>
+                          <li>• <strong>scssModule</strong> / <strong>cssModule</strong> - Imported style files</li>
+                          <li>• <strong>inlineStyles</strong> - <code className="px-1 bg-pink-100 dark:bg-pink-900/40 rounded text-xs">{'style={{...}}'}</code> usage</li>
+                          <li>• <strong>styledComponents</strong> - Styled-components/Emotion</li>
+                          <li>• <strong>motion</strong> - Framer Motion components</li>
+                        </ul>
+                      </div>
+                      <div className="bg-purple-50 dark:bg-purple-950/20 rounded-xl border border-purple-200 dark:border-purple-800 p-4">
+                        <h4 className="text-sm sm:text-base font-semibold text-purple-900 dark:text-purple-100 mb-2">
+                          Layout & Visual
+                        </h4>
+                        <ul className="text-xs sm:text-sm text-purple-800 dark:text-purple-200 space-y-1">
+                          <li>• <strong>layout</strong> - Flex/grid patterns, hero sections</li>
+                          <li>• <strong>visual</strong> - Colors, spacing, typography patterns</li>
+                          <li>• <strong>animation</strong> - Animation library and triggers</li>
+                          <li>• <strong>pageLayout</strong> - Page-level structure</li>
+                        </ul>
+                      </div>
+                    </div>
+
+                    <div className="bg-blue-50/50 dark:bg-blue-950/20 border-l-4 border-blue-500 p-3 sm:p-4 rounded-r-lg">
+                      <p className="text-xs sm:text-sm text-gray-800 dark:text-blue-100">
+                        <span className="font-semibold text-blue-900 dark:text-blue-200">Note:</span>{' '}
+                        Style metadata is only included when style information is detected. Components without style usage will not have a <code className="px-1.5 py-0.5 bg-blue-100 dark:bg-blue-900/40 rounded text-xs font-mono">style</code> field. See{' '}
+                        <a href="/docs/logicstamp-context/style" className="text-blue-600 dark:text-blue-400 hover:underline">
+                          Style Metadata Guide
+                        </a>{' '}
+                        for comprehensive documentation.
+                      </p>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
           </AnimatedSection>

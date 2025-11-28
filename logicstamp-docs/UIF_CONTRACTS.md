@@ -8,6 +8,7 @@ A UIF contract is a structured representation of a component that includes:
 
 - **Structural footprint** – Variables, hooks, components, and functions used
 - **Logic signature** – Props, events, and state that define the component's API
+- **Style metadata** – Visual and layout information (when `--include-style` is used)
 - **Semantic hash** – Unique identifier based on the component's logic (not implementation details)
 - **File hash** – Content-based hash for change detection
 
@@ -50,6 +51,29 @@ Each UIF contract follows the `UIFContract` schema (version `0.3`):
       "isLoading": {
         "type": "boolean"
       }
+    }
+  },
+  "style": {
+    "styleSources": {
+      "tailwind": {
+        "categories": {
+          "layout": ["flex", "flex-col", "items-center"],
+          "spacing": ["py-4", "px-6", "gap-2"],
+          "colors": ["bg-blue-500", "text-white"],
+          "typography": ["text-lg", "font-semibold"]
+        },
+        "breakpoints": ["md", "lg"],
+        "classCount": 8
+      }
+    },
+    "layout": {
+      "type": "flex",
+      "hasHeroPattern": false
+    },
+    "visual": {
+      "colors": ["bg-blue-500", "text-white"],
+      "spacing": ["py-4", "px-6"],
+      "radius": "md"
     }
   },
   "semanticHash": "uif:1a27d0944bbaaf561ee05a01",
@@ -100,6 +124,46 @@ Object mapping event names to their signatures. For React components, these are 
 
 #### `state`
 Object mapping state variable names to their types. Represents the component's internal state structure.
+
+### `style` (Optional)
+Visual and layout metadata extracted when using `stamp context style` or `stamp context --include-style`. This field is only included when style information is detected.
+
+The `style` object contains:
+
+- **`styleSources`** – Identifies styling approaches used:
+  - `tailwind` – Tailwind CSS utility classes categorized by type (layout, spacing, colors, typography, borders, effects) with breakpoint information
+  - `scssModule` / `cssModule` – Path to imported SCSS/CSS module file
+  - `scssDetails` / `cssDetails` – Parsed details from style files (selectors, properties, SCSS features)
+  - `inlineStyles` – Boolean indicating `style={{...}}` usage
+  - `styledComponents` – Styled-components/Emotion usage with component names and theme information
+  - `motion` – Framer Motion usage with components, variants, and feature flags
+
+- **`layout`** – Structural layout information:
+  - `type` – Layout type: "flex", "grid", "relative", or "absolute"
+  - `cols` – Grid column pattern (e.g., "grid-cols-2 md:grid-cols-3")
+  - `hasHeroPattern` – Boolean indicating hero section pattern
+  - `hasFeatureCards` – Boolean indicating feature card grid pattern
+  - `sections` – Array of identified page sections
+
+- **`visual`** – Visual design patterns:
+  - `colors` – Array of color utility classes (sorted, limited to top 10)
+  - `spacing` – Array of spacing utility classes (sorted, limited to top 10)
+  - `radius` – Most common border radius pattern
+  - `typography` – Array of typography classes (sorted, limited to top 10)
+
+- **`animation`** – Animation and motion information:
+  - `library` – Animation library: "framer-motion" or "css"
+  - `type` – Animation type (e.g., "fade-in", "slide")
+  - `trigger` – Trigger type (e.g., "inView", "hover", "click")
+
+- **`pageLayout`** – Page-level layout information:
+  - `pageRole` – Page role (e.g., "landing", "dashboard")
+  - `sections` – Array of page sections
+  - `ctaCount` – Number of call-to-action elements
+
+**Note:** Style metadata is only included when style information is detected. Components without style usage will not have a `style` field.
+
+See [STYLE.md](./cli/STYLE.md) for comprehensive documentation on style metadata extraction.
 
 ### `semanticHash`
 Unique hash based on the component's logic and contract. Changes when:

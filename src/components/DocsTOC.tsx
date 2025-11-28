@@ -21,6 +21,7 @@ export default function DocsTOC() {
 
     const headingElements = mainContent.querySelectorAll('h2, h3, h4')
     const extractedHeadings: Heading[] = []
+    const idCounts = new Map<string, number>()
 
     headingElements.forEach((heading) => {
       const text = heading.textContent || ''
@@ -35,6 +36,14 @@ export default function DocsTOC() {
           .replace(/\s+/g, '-')
           .replace(/-+/g, '-')
           .trim()
+        
+        // Ensure unique IDs by appending index if duplicate
+        const count = idCounts.get(id) || 0
+        idCounts.set(id, count + 1)
+        if (count > 0) {
+          id = `${id}-${count}`
+        }
+        
         heading.id = id
       }
 
@@ -94,7 +103,7 @@ export default function DocsTOC() {
           </h2>
         </div>
         <nav className="flex-1 min-h-0 overflow-y-auto space-y-1 sidebar-scrollable pr-2">
-          {headings.map((heading) => {
+          {headings.map((heading, index) => {
             const isActive = activeId === heading.id
             const indentClass =
               heading.level === 3
@@ -105,7 +114,7 @@ export default function DocsTOC() {
 
             return (
               <a
-                key={heading.id}
+                key={`${heading.id}-${index}`}
                 href={`#${heading.id}`}
                 className={`block text-sm py-1.5 transition-colors ${
                   isActive
