@@ -198,9 +198,15 @@ export default function WhatIsLogicStampPage() {
                   color: "blue"
                 },
                 {
+                  icon: "🎨",
+                  title: "Style Metadata Extraction",
+                  desc: "Extract visual and layout information from Tailwind CSS, SCSS/CSS modules, Material UI, inline styles, styled-components, and framer-motion for design-aware context bundles",
+                  color: "purple"
+                },
+                {
                   icon: "💰",
                   title: "Token Optimization",
-                  desc: "Built-in token cost analysis for GPT-4o-mini and Claude. Save up to ~65% tokens by including headers and contracts instead of full source",
+                  desc: "Built-in token cost analysis for GPT-4o-mini and Claude. Save up to ~70% tokens by including headers and contracts instead of full source",
                   color: "green"
                 },
                 {

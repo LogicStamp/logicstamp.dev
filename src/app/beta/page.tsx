@@ -95,6 +95,30 @@ export default function BetaPage() {
                 <div className="space-y-8">
                   <div className="flex items-start gap-6 group">
                     <div className="flex-shrink-0 pt-1">
+                      <div className="w-12 h-12 bg-gradient-to-br from-indigo-500 to-violet-500 rounded-xl flex items-center justify-center shadow-lg">
+                        <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 12h14M5 12a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v4a2 2 0 01-2 2M5 12a2 2 0 00-2 2v4a2 2 0 002 2h14a2 2 0 002-2v-4a2 2 0 00-2-2m-2-4h.01M17 16h.01" />
+                        </svg>
+                      </div>
+                    </div>
+                    <div className="flex-1">
+                      <h3 className="text-xl sm:text-2xl font-bold text-gray-900 dark:text-white mb-3">
+                        MCP Server Integration
+                      </h3>
+                      <p className="text-gray-600 dark:text-gray-400 leading-relaxed mb-3">
+                        We're building a Model Context Protocol (MCP) server that will enable AI assistants like Claude Desktop to safely analyze and understand React/TypeScript codebases through LogicStamp Context. This will provide native integration with Claude Code and other MCP-compatible tools. <a href="/docs/mcp" className="text-indigo-600 dark:text-indigo-400 hover:underline font-semibold">Learn more about our MCP server</a>.
+                      </p>
+                      <div className="flex items-center justify-center sm:justify-start gap-2 text-sm text-indigo-600 dark:text-indigo-400 font-semibold">
+                        <span>Status:</span>
+                        <span className="px-3 py-1 bg-indigo-100 dark:bg-indigo-900/30 rounded-full text-center">Coming soon</span>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="border-t border-gray-200 dark:border-gray-700"></div>
+
+                  <div className="flex items-start gap-6 group">
+                    <div className="flex-shrink-0 pt-1">
                       <div className="w-12 h-12 bg-gradient-to-br from-blue-500 to-cyan-500 rounded-xl flex items-center justify-center shadow-lg">
                         <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
