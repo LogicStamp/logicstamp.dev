@@ -20,7 +20,7 @@ export default function MCPPage() {
             {/* Background gradient */}
             <div className="absolute inset-0 bg-gradient-to-br from-indigo-50 via-violet-50 to-fuchsia-50 dark:from-indigo-950/20 dark:via-violet-950/10 dark:to-fuchsia-950/5 rounded-3xl -m-4 sm:-m-6 lg:-m-8 blur-3xl opacity-70" />
 
-            <div className="relative">
+            <div className="relative text-center">
               {/* Fox Mascot */}
               <div className="flex justify-center mb-6 sm:mb-8">
                 <div className="w-16 h-16 sm:w-20 sm:h-20 animate-bounce relative">
@@ -43,8 +43,8 @@ export default function MCPPage() {
               </div>
 
               <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black text-transparent bg-clip-text bg-gradient-to-r from-gray-900 to-gray-700 dark:from-white dark:to-gray-300 mb-4 sm:mb-6 tracking-tight leading-[1.1]">
-                LogicStamp<br />
-                <span className="relative inline-block mt-2">
+                LogicStamp{' '}
+                <span className="relative inline-block">
                   <span className="bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 bg-clip-text text-transparent">
                     MCP Server
                   </span>
@@ -60,11 +60,11 @@ export default function MCPPage() {
                 Coming Soon
               </div>
 
-              <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-gray-600 dark:text-gray-400 leading-relaxed max-w-3xl mb-4">
+              <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-gray-600 dark:text-gray-400 leading-relaxed max-w-3xl mx-auto mb-4">
                 Model Context Protocol (MCP) server for LogicStamp Context - enabling AI assistants to safely analyze and understand React/TypeScript codebases.
               </p>
 
-              <p className="text-base sm:text-lg text-gray-600 dark:text-gray-400 max-w-3xl">
+              <p className="text-base sm:text-lg text-gray-600 dark:text-gray-400 max-w-3xl mx-auto">
                 We're working hard to bring you native MCP integration with Claude Desktop and other AI tools. Stay tuned for updates!
               </p>
             </div>
