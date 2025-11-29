@@ -158,6 +158,18 @@ export default function StyleCommandPage() {
                       <li>Viewport-triggered animations</li>
                     </ul>
                   </div>
+                  <div className="p-4 bg-blue-50 dark:bg-blue-950/20 rounded-xl border border-blue-200 dark:border-blue-800 sm:col-span-2">
+                    <h4 className="font-semibold text-blue-900 dark:text-blue-200 mb-2">Material UI</h4>
+                    <ul className="text-sm text-blue-800 dark:text-blue-300 space-y-1 ml-4 list-disc">
+                      <li>Material UI components used (Button, TextField, Card, etc.)</li>
+                      <li>Material UI packages imported (@mui/material, @material-ui/core, etc.)</li>
+                      <li>Theme usage (useTheme, ThemeProvider, createTheme)</li>
+                      <li>sx prop usage for styling</li>
+                      <li>styled from @mui/material/styles</li>
+                      <li>makeStyles (legacy styling)</li>
+                      <li>System props on Box/Stack components</li>
+                    </ul>
+                  </div>
                 </div>
               </div>
 
@@ -485,6 +497,15 @@ stamp context --include-style`
           "gestures": true,
           "viewportAnimations": true
         }
+      },
+      "materialUI": {
+        "components": ["Button", "TextField", "Card"],
+        "packages": ["@mui/material", "@mui/icons-material"],
+        "features": {
+          "usesTheme": true,
+          "usesSxProp": true,
+          "usesSystemProps": true
+        }
       }
     },
     "layout": {
@@ -539,6 +560,15 @@ stamp context --include-style`
           "gestures": true,
           "viewportAnimations": true
         }
+      },
+      "materialUI": {
+        "components": ["Button", "TextField", "Card"],
+        "packages": ["@mui/material", "@mui/icons-material"],
+        "features": {
+          "usesTheme": true,
+          "usesSxProp": true,
+          "usesSystemProps": true
+        }
       }
     },
     "layout": {
@@ -575,6 +605,7 @@ stamp context --include-style`
                       <li><code className="px-1 py-0.5 bg-gray-100 dark:bg-gray-800 rounded text-xs font-mono">inlineStyles</code> – Boolean indicating inline style usage</li>
                       <li><code className="px-1 py-0.5 bg-gray-100 dark:bg-gray-800 rounded text-xs font-mono">styledComponents</code> – Object with component names and theme usage</li>
                       <li><code className="px-1 py-0.5 bg-gray-100 dark:bg-gray-800 rounded text-xs font-mono">motion</code> – Object with framer-motion components and features</li>
+                      <li><code className="px-1 py-0.5 bg-gray-100 dark:bg-gray-800 rounded text-xs font-mono">materialUI</code> – Object with Material UI components, packages, and styling features</li>
                     </ul>
                   </div>
                   <div>
@@ -840,7 +871,7 @@ stamp context compare old/context_main.json new/context_main.json`
                 </div>
                 <ul className="space-y-3 text-sm sm:text-base text-gray-600 dark:text-gray-400 ml-4 list-disc">
                   <li><strong className="text-gray-900 dark:text-white">Dynamic classes</strong> – Classes generated dynamically (e.g., <code className="px-1.5 py-0.5 bg-gray-100 dark:bg-gray-800 rounded text-xs font-mono">className=&#123;clsx(...)&#125;</code>) may not be fully detected</li>
-                  <li><strong className="text-gray-900 dark:text-white">CSS-in-JS</strong> – Only styled-components and emotion are detected; other CSS-in-JS libraries may not be recognized</li>
+                  <li><strong className="text-gray-900 dark:text-white">CSS-in-JS</strong> – Only styled-components, emotion, and Material UI styled are detected; other CSS-in-JS libraries may not be recognized</li>
                   <li><strong className="text-gray-900 dark:text-white">External stylesheets</strong> – Global CSS files are not analyzed; only module imports are parsed</li>
                   <li><strong className="text-gray-900 dark:text-white">Runtime styles</strong> – Styles applied via JavaScript at runtime are not detected</li>
                 </ul>
@@ -876,7 +907,8 @@ stamp context compare old/context_main.json new/context_main.json`
    Style sources detected:
      - Tailwind: 10 components
      - SCSS modules: 3 components
-     - framer-motion: 2 components`,
+     - framer-motion: 2 components
+     - Material UI: 5 components`,
                         copyText: `$ stamp context style
 
 🔍 Scanning /path/to/project...

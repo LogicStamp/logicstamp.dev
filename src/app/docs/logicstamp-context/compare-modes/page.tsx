@@ -348,7 +348,7 @@ npm install @dqbd/tiktoken @anthropic-ai/tokenizer`
                       'No visual/styling information',
                       'Limited context for code generation tasks'
                     ],
-                    cost: 'Typically 10-20% of raw source'
+                    cost: 'Typically 15-20% of raw source'
                   },
                   {
                     mode: 'header - Balanced Compression',
@@ -365,7 +365,7 @@ npm install @dqbd/tiktoken @anthropic-ai/tokenizer`
                       'Function signatures and types',
                       'Dependency relationships'
                     ],
-                    cost: 'Typically 20-30% of raw source'
+                    cost: 'Typically 28-32% of raw source'
                   },
                   {
                     mode: 'header+style - Visual Context',
@@ -384,7 +384,7 @@ npm install @dqbd/tiktoken @anthropic-ai/tokenizer`
                       'Layout patterns (flex/grid)',
                       'Color and spacing patterns'
                     ],
-                    cost: 'Typically 40-60% of raw source'
+                    cost: 'Typically 58-65% of raw source'
                   },
                   {
                     mode: 'full - Complete Context',
@@ -400,7 +400,7 @@ npm install @dqbd/tiktoken @anthropic-ai/tokenizer`
                       'Complete source code for all components',
                       'Full file contents'
                     ],
-                    cost: 'Typically 80-100% of raw source (plus contract overhead)'
+                    cost: 'Typically 125-135% of raw source (plus contract overhead)'
                   }
                 ].map((modeInfo) => (
                   <div key={modeInfo.mode} className={`p-4 bg-${modeInfo.color}-50 dark:bg-${modeInfo.color}-950/20 rounded-xl border border-${modeInfo.color}-200 dark:border-${modeInfo.color}-800`}>

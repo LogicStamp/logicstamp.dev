@@ -149,6 +149,11 @@ stamp context compare --approve --clean-orphaned`
                     </ul>
                   </div>
                 </div>
+                <div className="mt-6 p-4 bg-amber-50/50 dark:bg-amber-950/20 border-l-4 border-amber-500 rounded-r-lg">
+                  <p className="text-sm text-gray-700 dark:text-gray-300">
+                    <strong className="text-gray-900 dark:text-white">Note:</strong> The compare command does <strong>not</strong> compare styles by design. Style changes (CSS, Tailwind classes, inline styles, etc.) are intentionally excluded from comparison as they represent visual/presentation changes rather than structural or logical changes.
+                  </p>
+                </div>
               </div>
             </div>
           </AnimatedSection>
