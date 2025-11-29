@@ -66,7 +66,7 @@ const faqs = [
     id: 6,
     question: 'How does token optimization work?',
     answer:
-      'LogicStamp Context offers three modes: `none` (contracts only, up to 80% savings), `header` (recommended, up to 65% savings with JSDoc headers), and `full` (complete source).\nThe header mode includes just enough context for AI to understand component logic without wasting tokens on implementation details.\nUse `--compare-modes` to see exact savings for your codebase.',
+      'LogicStamp Context offers three modes: `none` (contracts only, up to 80% savings), `header` (recommended, up to 65% savings with JSDoc headers), and `full` (complete source).\nThe header mode includes just enough context for AI to understand component logic without wasting tokens on implementation details.\nUse `--compare-modes` to see exact savings for your codebase.\n\nToken estimation: LogicStamp Context includes @dqbd/tiktoken (GPT-4) and @anthropic-ai/tokenizer (Claude) as optional dependencies. npm will automatically attempt to install them when you install logicstamp-context. If installation succeeds, you get model-accurate token counts. If installation fails or is skipped (normal for optional dependencies), the tool gracefully falls back to character-based estimation. Manual installation is optional—only needed if you need accurate token counts AND automatic installation failed: npm install @dqbd/tiktoken @anthropic-ai/tokenizer',
   },
   {
     id: 7,
@@ -76,6 +76,12 @@ const faqs = [
   },
   {
     id: 8,
+    question: 'What does `stamp context style` do?',
+    answer:
+      'The `stamp context style` command generates context bundles with visual and layout metadata included.\nIt extracts style information from your components including Tailwind CSS classes, SCSS/CSS modules, inline styles, styled-components/Emotion, framer-motion animations, and Material UI components.\nThis enables AI assistants to understand visual design, suggest visually consistent components, analyze layout patterns, track color palettes, and identify animations.\nUse it when you need AI to understand the visual aspects of your UI, not just the logic. Note: Style metadata adds more tokens (~58-65% of raw source vs ~30% for header mode), so use `--compare-modes` to see the exact cost impact for your codebase.',
+  },
+  {
+    id: 9,
     question: 'Is watch mode available?',
     answer:
       'Watch mode is currently under evaluation.\nThe context and compare workflow may work better with MCP (Model Context Protocol) integration without watch mode, as MCP provides more efficient and controlled context updates.\nWe\'re exploring whether watch mode adds value or if the MCP-based approach offers a superior developer experience.',
