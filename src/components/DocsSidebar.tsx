@@ -23,6 +23,7 @@ const sections: DocsNavSection[] = [
       { title: 'What is LogicStamp?', href: '/docs/what-is-logicstamp' },
       { title: 'Complete Reference', href: '/docs/complete-reference' },
       { title: 'CLI Hub', href: '/docs/logicstamp-context' },
+      { title: 'MCP Server (Coming Soon)', href: '/docs/mcp' },
     ],
   },
   {
@@ -136,6 +137,27 @@ function getIcon(href: string): ReactNode {
       >
         <path d="m5 7 5 5-5 5" />
         <path d="M12 19h7" />
+      </svg>
+    )
+  }
+
+  if (href === '/docs/mcp') {
+    // Server / network icon for MCP
+    return (
+      <svg
+        className="w-3.5 h-3.5"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth={2}
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      >
+        <rect x="2" y="3" width="20" height="4" rx="1" />
+        <rect x="2" y="7" width="20" height="4" rx="1" />
+        <rect x="2" y="11" width="20" height="4" rx="1" />
+        <rect x="2" y="15" width="20" height="4" rx="1" />
+        <rect x="2" y="19" width="20" height="4" rx="1" />
       </svg>
     )
   }

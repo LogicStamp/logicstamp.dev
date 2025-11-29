@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useRef, useEffect } from 'react'
+import { useState, useRef, useEffect, useId } from 'react'
 import CopyButton from './ui/CopyButton'
 
 interface Tab {
@@ -19,6 +19,7 @@ export default function TabbedCodeBlock({ tabs }: TabbedCodeBlockProps) {
   const tabButtonRefs = useRef<(HTMLButtonElement | null)[]>([])
   const [touchStart, setTouchStart] = useState<number | null>(null)
   const [touchEnd, setTouchEnd] = useState<number | null>(null)
+  const baseId = useId()
 
   // Initialize refs array
   useEffect(() => {
@@ -95,9 +96,6 @@ export default function TabbedCodeBlock({ tabs }: TabbedCodeBlockProps) {
     }
   }
 
-  const tabId = `tab-${Math.random().toString(36).substr(2, 9)}`
-  const panelId = `panel-${Math.random().toString(36).substr(2, 9)}`
-
   return (
     <div className="mb-6">
       {/* Tab buttons - scrollable on mobile */}
@@ -120,8 +118,8 @@ export default function TabbedCodeBlock({ tabs }: TabbedCodeBlockProps) {
             ref={(el) => { tabButtonRefs.current[index] = el }}
             role="tab"
             aria-selected={activeTab === index}
-            aria-controls={`${panelId}-${index}`}
-            id={`${tabId}-${index}`}
+            aria-controls={`${baseId}-panel-${index}`}
+            id={`${baseId}-tab-${index}`}
             tabIndex={activeTab === index ? 0 : -1}
             onClick={() => {
               setActiveTab(index)
@@ -142,8 +140,8 @@ export default function TabbedCodeBlock({ tabs }: TabbedCodeBlockProps) {
       {/* Code block */}
       <div
         role="tabpanel"
-        id={`${panelId}-${activeTab}`}
-        aria-labelledby={`${tabId}-${activeTab}`}
+        id={`${baseId}-panel-${activeTab}`}
+        aria-labelledby={`${baseId}-tab-${activeTab}`}
         className="relative bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 border border-gray-200 dark:border-gray-700 border-t-0 p-5 rounded-b-lg font-mono text-sm overflow-x-auto"
       >
         <CopyButton text={tabs[activeTab].copyText} className="absolute top-2 right-2" />

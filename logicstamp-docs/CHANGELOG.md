@@ -200,6 +200,59 @@ First public release of LogicStamp Context - a fast, zero-config CLI tool that g
 
 ---
 
+## [0.2.3] - 2025-11-29
+
+### Added
+
+- **UIF Contracts documentation** - Added comprehensive `docs/UIF_CONTRACTS.md` guide explaining contract structure, semantic hashing, and contract-based change detection
+- **Enhanced test documentation** - Improved `tests/README.md` with better structure, test categories, and usage examples
+
+### Changed
+
+- **README.md significantly streamlined** - Reduced from 1,015 to 700 lines while preserving all essential information. Removed verbose "What's New" sections in favor of brief summaries with CHANGELOG links, condensed command documentation to quick reference tables, and streamlined output format section with links to detailed schema docs
+- **Improved token estimation accuracy** - Enhanced raw source token estimation formulas in regular output (not `--compare-modes`). When in header mode, now uses more accurate formulas to estimate raw source tokens: raw source = header / 0.30 (header is 30% of raw source), and style adds 105% overhead (header+style = header × 2.05). When in header+style mode, first estimates header without style (header = header+style / 2.05), then derives raw source from that estimate. Note: "Raw source" refers to the original source files concatenated, which is always estimated using these formulas (never actually generated). The actual context bundles (header, header+style, etc.) use tokenizers when available for accurate token counts. The `--compare-modes` flag regenerates contracts to provide accurate token counts for all modes
+- **Updated COMPARE-MODES.md documentation** - Refined examples and explanations with more accurate token savings percentages and clearer interpretation guidelines
+
+### Fixed
+
+- N/A
+
+### Security
+
+- N/A
+
+---
+
+## [0.2.4] - 2025-11-29
+
+### Added
+
+- **Material UI style extraction** - Added Material UI component library detection and extraction:
+  - Detects Material UI components used (Button, TextField, Card, etc.)
+  - Identifies Material UI packages imported (@mui/material, @material-ui/core, etc.)
+  - Extracts Material UI styling features: theme usage, sx prop, styled components, makeStyles, and system props
+  - Integrated into style metadata extraction when using `--include-style` or `stamp context style`
+
+### Fixed
+
+- **README clarification** - Fixed and clarified the "Global CLI" installation note to better explain the difference between local and global npm installations
+
+### Changed
+
+- **README.md significantly streamlined and optimized** - Reduced from 718 lines to 199 lines (72% reduction) while maintaining all essential information:
+  - Moved detailed documentation sections to `docs/` folder (Token Optimization, Mode Comparison, Behavioral Predictions, CI usage, Troubleshooting, Output Format schema, Next.js examples)
+  - Added "Why LogicStamp?" section highlighting token savings and key benefits
+  - Added concise "Core Features" list with bullet points
+  - Added minimal "Example Output" section with realistic JSON sample
+  - Shortened "Recent Updates" to show only 2 recent versions with link to full CHANGELOG
+  - Added "Getting Help" section with links to GitHub issues and roadmap
+  - Updated Quick Start to show both global and local installation methods
+  - Fixed npm link compatibility - converted all relative links to absolute GitHub URLs for proper rendering on npmjs.com
+  - Improved structure following best practices from top-tier dev tools (Astro, Vite, ESLint) - README focuses on marketing/onboarding, detailed docs in `/docs`
+- Updated all version references in documentation to reflect 0.2.4 release
+
+---
+
 ## [Unreleased]
 
 ### Planned Features
