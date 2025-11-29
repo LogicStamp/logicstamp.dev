@@ -46,7 +46,7 @@ export default function QuickStartPage() {
                 </div>
                 <div className="flex items-center gap-2">
                   <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse" />
-                  <span className="text-xs sm:text-sm font-medium text-gray-600 dark:text-gray-400">up to 65% token reduction</span>
+                  <span className="text-xs sm:text-sm font-medium text-gray-600 dark:text-gray-400">up to 70% token reduction</span>
                 </div>
                 <div className="flex items-center gap-2">
                   <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse" />
@@ -505,7 +505,7 @@ export default function QuickStartPage() {
                     <span className="ml-2 sm:ml-3 text-xs sm:text-base font-normal px-2 sm:px-3 py-1 bg-gray-100 dark:bg-gray-800 text-gray-500 dark:text-gray-400 rounded-full">Advanced</span>
                   </h2>
                   <p className="text-base sm:text-lg text-gray-600 dark:text-gray-400 mb-4 sm:mb-6 leading-relaxed">
-                    Compare different code inclusion modes to find the perfect balance between context richness and token efficiency.
+                    Compare different code inclusion modes to find the perfect balance between context richness and token efficiency. Style metadata extraction supports Tailwind CSS, SCSS/CSS modules, Material UI, inline styles, styled-components, and framer-motion.
                   </p>
 
                   {/* Token comparison table */}
@@ -539,7 +539,7 @@ export default function QuickStartPage() {
                               </div>
                             </td>
                             <td className="px-2 sm:px-6 py-2 sm:py-4 whitespace-nowrap">
-                              <span className="px-1.5 sm:px-2 py-0.5 sm:py-1 text-xs font-semibold rounded-full bg-blue-100 dark:bg-blue-900/40 text-blue-800 dark:text-blue-200">~65%</span>
+                              <span className="px-1.5 sm:px-2 py-0.5 sm:py-1 text-xs font-semibold rounded-full bg-blue-100 dark:bg-blue-900/40 text-blue-800 dark:text-blue-200">~70%</span>
                             </td>
                             <td className="px-2 sm:px-6 py-2 sm:py-4 text-xs text-gray-600 dark:text-gray-400 whitespace-nowrap">JSDoc + contracts</td>
                             <td className="px-2 sm:px-6 py-2 sm:py-4 text-xs text-gray-600 dark:text-gray-400">AI chat</td>
@@ -549,9 +549,9 @@ export default function QuickStartPage() {
                               <code className="px-1.5 sm:px-2 py-0.5 sm:py-1 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 rounded text-xs font-mono">header+style</code>
                             </td>
                             <td className="px-2 sm:px-6 py-2 sm:py-4 whitespace-nowrap">
-                              <span className="px-1.5 sm:px-2 py-0.5 sm:py-1 text-xs font-semibold rounded-full bg-purple-100 dark:bg-purple-900/40 text-purple-800 dark:text-purple-200">~65%</span>
+                              <span className="px-1.5 sm:px-2 py-0.5 sm:py-1 text-xs font-semibold rounded-full bg-purple-100 dark:bg-purple-900/40 text-purple-800 dark:text-purple-200">~30%</span>
                             </td>
-                            <td className="px-2 sm:px-6 py-2 sm:py-4 text-xs text-gray-600 dark:text-gray-400 whitespace-nowrap">Headers + contracts + style</td>
+                            <td className="px-2 sm:px-6 py-2 sm:py-4 text-xs text-gray-600 dark:text-gray-400 whitespace-nowrap">Headers + contracts + style (Tailwind, SCSS, Material UI, etc.)</td>
                             <td className="px-2 sm:px-6 py-2 sm:py-4 text-xs text-gray-600 dark:text-gray-400">Design-aware AI</td>
                           </tr>
                           <tr>
@@ -588,7 +588,7 @@ export default function QuickStartPage() {
                       },
                       {
                         label: 'With Style Metadata',
-                        code: 'stamp context style\n# or\nstamp context --include-style',
+                        code: '# Extract Tailwind, SCSS, Material UI, animations, and layout patterns\nstamp context style\n# or\nstamp context --include-style',
                         copyText: 'stamp context style'
                       },
                       {
@@ -689,7 +689,7 @@ export default function QuickStartPage() {
                   
                   <div className="grid sm:grid-cols-3 gap-3 sm:gap-4 mb-6 sm:mb-8">
                     <div className="text-center p-3 sm:p-4 bg-green-50 dark:bg-green-950/20 rounded-xl">
-                      <p className="text-2xl sm:text-3xl font-bold text-green-600 dark:text-green-400">65%</p>
+                      <p className="text-2xl sm:text-3xl font-bold text-green-600 dark:text-green-400">70%</p>
                       <p className="text-xs sm:text-sm text-gray-600 dark:text-gray-400 mt-1">Average token reduction</p>
                     </div>
                     <div className="text-center p-3 sm:p-4 bg-emerald-50 dark:bg-emerald-950/20 rounded-xl">

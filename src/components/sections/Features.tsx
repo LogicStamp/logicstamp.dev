@@ -88,6 +88,64 @@ $ stamp context
 ⏱  Completed in 3225ms`
     },
     {
+      title: 'Style Metadata',
+      content: `$ stamp context style
+🔍 Scanning /project/src...
+   Found 24 files
+🔨 Analyzing components...
+   Analyzed 24 components
+📊 Building dependency graph...
+📋 Using profile: llm-chat (depth=1, header only, max 100 nodes)
+📦 Generating context for 22 root components (depth=1)...
+🔍 Validating generated context...
+✅ Validation passed
+📝 Writing context files for 5 folders...
+   ✓ context.json (2 bundles)
+   ✓ src/context.json (3 bundles)
+   ✓ src/components/context.json (5 bundles)
+   ✓ src/utils/context.json (2 bundles)
+   ✓ app/context.json (3 bundles)
+📝 Writing main context index...
+   ✓ context_main.json (index of 5 folders)
+✅ 6 context files written successfully
+
+📊 Summary:
+   Total components: 24
+   Root components: 22
+   Leaf components: 20
+   Bundles generated: 22
+   Total nodes in context: 25
+   Total edges: 3
+   Missing dependencies: 0
+
+📏 Token Estimates (header+style mode):
+   Token estimation: GPT-4o (tiktoken) | Claude (tokenizer)
+   ⚠️  Current mode = tokenizer-based.
+      Other modes / raw source = heuristic.
+      For precise per-mode breakdown, use "stamp context --compare-modes".
+   GPT-4o-mini: 16,234 tokens
+   Claude:      14,428 tokens
+
+   Comparison:
+     Mode         | Tokens GPT-4o | Tokens Claude | Savings vs Raw Source
+     -------------|---------------|---------------|------------------------
+     Raw source   |        41,383 |        36,785 | 0%
+     Header       |        12,228 |        10,867 | 70%
+     Header+style |        16,234 |        14,428 | 39%
+
+   Full context (code+style): ~48,234 GPT-4o-mini / ~42,856 Claude
+
+📊 Current Mode Comparison:
+   ⚠️  Current mode = tokenizer-based.
+      Other modes / raw source = heuristic.
+      For precise per-mode breakdown, use "stamp context --compare-modes".
+   none:       ~8,337 tokens
+   header+style  ~16,234 tokens
+   full:       ~48,234 tokens
+
+⏱  Completed in 3845ms`
+    },
+    {
       title: 'Token Optimization',
       content: `$ stamp context --compare-modes
 🔍 Scanning /project/src...
@@ -351,7 +409,7 @@ $ stamp context clean
         // Command prompt ($)
         { regex: /^\$\s+/g, color: 'text-green-400' },
         // Commands (stamp, npm, etc.)
-        { regex: /\b(stamp|npm|i|install|-g|context|compare|validate|init|clean|--stats|--compare-modes|--approve|--clean-orphaned)\b/g, color: 'text-blue-400' },
+        { regex: /\b(stamp|npm|i|install|-g|context|style|compare|validate|init|clean|--stats|--compare-modes|--approve|--clean-orphaned|--include-style)\b/g, color: 'text-blue-400' },
         // Numbers
         { regex: /\b\d+\b/g, color: 'text-yellow-400' },
         // Paths and URLs
@@ -359,9 +417,9 @@ $ stamp context clean
         // Success messages (✅)
         { regex: /✅/g, color: 'text-green-400' },
         // Emojis (🔍, 🔨, 📊, etc.)
-        { regex: /[🔍🔨📊📋📦🔍✅📝⏱🔄]/g, color: 'text-yellow-400' },
+        { regex: /[🔍🔨📊📋📦🔍✅📝⏱🔄🎨]/g, color: 'text-yellow-400' },
         // Status words
-        { regex: /\b(PASS|FAIL|Completed|found|Analyzed|Scanning|Generating|Validating|Writing|Summary|Comparison|Mode|Tokens|Savings|Estimates)\b/gi, color: 'text-purple-400' },
+        { regex: /\b(PASS|FAIL|Completed|found|Analyzed|Scanning|Generating|Validating|Writing|Summary|Comparison|Mode|Tokens|Savings|Estimates|Extracting|detected|Tailwind|Material UI|SCSS|CSS|Animations)\b/gi, color: 'text-purple-400' },
         // Percentages and special numbers
         { regex: /(~|%|\+|-)\d+/g, color: 'text-orange-400' },
       ]

@@ -77,10 +77,11 @@ export default function WhyLogicStamp() {
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
         </svg>
       ),
-      title: 'Up to 65% smaller context bundles',
+      title: 'Up to 70% smaller context bundles',
       description: 'Strips out imports, boilerplate, and implementation details. Only contracts and type signatures.',
-      stat: '~65%',
+      stat: '~70%',
       statLabel: 'Token Savings',
+      statBreakdown: 'Header mode: ~70% • Header+style: ~30%',
       gradient: 'from-blue-500/20 via-blue-600/20 to-indigo-600/20',
       borderGradient: 'from-blue-400 via-blue-500 to-indigo-600',
       iconBg: 'from-blue-500/10 to-indigo-600/10',
@@ -107,7 +108,7 @@ export default function WhyLogicStamp() {
       ),
       title: 'Always up-to-date',
       description: 'Run stamp context before each AI session. Fresh context in seconds, not stale READMEs.',
-      stat: '<5s',
+      stat: '~9s',
       statLabel: 'Generation Time',
       gradient: 'from-emerald-500/20 via-green-600/20 to-teal-600/20',
       borderGradient: 'from-emerald-500 via-green-600 to-teal-600',
@@ -275,7 +276,7 @@ export default function WhyLogicStamp() {
                       The LogicStamp Way
                     </h3>
                     <p className="text-gray-600 dark:text-gray-300">
-                      One command. 5 seconds. Optimized context every time.
+                      One command. 8-10 seconds usually for mid-sized projects. Optimized context every time.
                     </p>
                   </div>
                 </div>
@@ -300,7 +301,7 @@ export default function WhyLogicStamp() {
                     <div className="opacity-80">✓ Scanning 42 components...</div>
                     <div className="opacity-80">✓ Building dependency graphs...</div>
                     <div className="opacity-80">✓ Generating context bundles...</div>
-                    <div className="text-green-400">✓ Complete! Context ready in 4.2s</div>
+                    <div className="text-green-400">✓ Complete! Context ready in ~9s</div>
                   </div>
                 </div>
 
@@ -308,7 +309,7 @@ export default function WhyLogicStamp() {
                   solutionInView ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-4'
                 }`}>
                   <p className="text-sm font-medium text-emerald-900 dark:text-emerald-300">
-                    Result: 30 minutes → 5 seconds. One command (<code className="text-xs font-mono bg-emerald-200 dark:bg-emerald-900/50 px-1.5 py-0.5 rounded">$ stamp context</code>) generates optimized context.json files with complete dependency graphs. Up to 65% cost savings. AI has complete context of your entire codebase. Happy developer.
+                    Result: 30 minutes → 8-10 seconds (usually for mid-sized projects). One command (<code className="text-xs font-mono bg-emerald-200 dark:bg-emerald-900/50 px-1.5 py-0.5 rounded">$ stamp context</code>) generates optimized context.json files with complete dependency graphs. Up to 70% cost savings. AI has complete context of your entire codebase. Happy developer.
                   </p>
                 </div>
               </div>
@@ -353,9 +354,20 @@ export default function WhyLogicStamp() {
                       </div>
                       <div className="flex-1">
                         <div className="flex items-start justify-between gap-2 mb-2">
-                          <h4 className="font-semibold text-gray-900 dark:text-white">
-                            {benefit.title}
-                          </h4>
+                          <div className="flex-1">
+                            <h4 className="font-semibold text-gray-900 dark:text-white">
+                              {benefit.title}
+                            </h4>
+                            {benefit.statBreakdown && (
+                              <div className="text-xs sm:text-sm text-gray-400 dark:text-gray-500 mt-2.5 sm:mt-3 leading-relaxed sm:leading-relaxed">
+                                <div className="hidden sm:block">{benefit.statBreakdown}</div>
+                                <div className="block sm:hidden space-y-1">
+                                  <div>Header mode: ~70%</div>
+                                  <div>Header+style: ~30%</div>
+                                </div>
+                              </div>
+                            )}
+                          </div>
                           <div className="flex flex-col items-end">
                             <span className="text-lg font-bold font-mono bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
                               {benefit.stat}

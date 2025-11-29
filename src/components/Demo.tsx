@@ -54,14 +54,23 @@ export const UserProfile: React.FC<UserProfileProps> = ({ userId, onUpdate }) =>
   }, [userId, isAuthenticated]);
   
   return (
-    <div className="profile">
+    <div className="flex flex-col gap-4 p-6 bg-white dark:bg-gray-900 rounded-lg shadow-md">
       {user && (
-        <>
-          <h2>{user.name}</h2>
-          <Button onClick={() => onUpdate?.(user)}>
+        <div className="flex items-center gap-3">
+          <div className="w-12 h-12 bg-blue-500 rounded-full flex items-center justify-center">
+            <span className="text-white font-bold text-lg">{user.name.charAt(0)}</span>
+          </div>
+          <div className="flex-1">
+            <h2 className="text-xl font-bold text-gray-900 dark:text-white">{user.name}</h2>
+            <p className="text-sm text-gray-600 dark:text-gray-400">{user.email}</p>
+          </div>
+          <Button 
+            onClick={() => onUpdate?.(user)}
+            className="px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-md transition-colors"
+          >
             Update Profile
           </Button>
-        </>
+        </div>
       )}
     </div>
   );
@@ -92,10 +101,20 @@ export default function DashboardPage() {
   }
   
   return (
-    <Card className="p-6">
-      <h1>Dashboard</h1>
-      {loading ? <Spinner /> : <DataTable data={data} />}
-    </Card>
+    <div className="min-h-screen bg-gray-50 dark:bg-gray-900 p-6">
+      <Card className="p-6 bg-white dark:bg-gray-800 rounded-xl shadow-lg">
+        <h1 className="text-3xl font-bold text-gray-900 dark:text-white mb-6">Dashboard</h1>
+        {loading ? (
+          <div className="flex items-center justify-center py-12">
+            <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600"></div>
+          </div>
+        ) : (
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+            <DataTable data={data} />
+          </div>
+        )}
+      </Card>
+    </div>
   )
 }`,
   },
@@ -169,13 +188,157 @@ const terminalLines = [
   { text: '', type: 'empty', delay: 3450 },
 ]
 
+// Extract Tailwind classes from code
+function extractTailwindClasses(code: string) {
+  const classNameMatches = code.match(/className=["']([^"']+)["']/g) || []
+  const allClasses: string[] = []
+  
+  classNameMatches.forEach(match => {
+    const classes = match.replace(/className=["']/, '').replace(/["']$/, '').split(/\s+/)
+    allClasses.push(...classes)
+  })
+  
+  return [...new Set(allClasses)].filter(c => c.length > 0)
+}
+
+// Categorize Tailwind classes
+function categorizeTailwindClasses(classes: string[]) {
+  const categories: Record<string, string[]> = {
+    colors: [],
+    spacing: [],
+    layout: [],
+    typography: [],
+    borders: [],
+    effects: [],
+    sizing: [],
+    transitions: [],
+    other: []
+  }
+  
+  const colorPatterns = /^(bg|text|border|ring|divide|outline|from|via|to|decoration|accent|caret|fill|stroke)-/
+  const spacingPatterns = /^(m|p|gap|space|inset|top|right|bottom|left|mx|my|mt|mr|mb|ml|px|py|pt|pr|pb|pl|gap-x|gap-y)-/
+  const layoutPatterns = /^(flex|grid|block|inline|hidden|container|box-border|box-content|table|table-row|table-cell|flow-root|float|clear|object|overflow|overscroll|static|fixed|absolute|relative|sticky|z-|order|col-|row-|justify|items|content|self|place-|grid-cols|grid-rows|auto-cols|auto-rows|gap|space-|divide-|place-items|place-content|place-self)/
+  const typographyPatterns = /^(text|font|leading|tracking|align|whitespace|break|indent|decoration|underline|overline|line-through|uppercase|lowercase|capitalize|normal-case|truncate|antialiased|subpixel-antialiased)/
+  const borderPatterns = /^(border|rounded|divide|outline|ring|ring-offset)-/
+  const effectsPatterns = /^(shadow|opacity|blur|brightness|contrast|grayscale|hue-rotate|invert|saturate|sepia|backdrop-blur|backdrop-brightness|backdrop-contrast|backdrop-grayscale|backdrop-hue-rotate|backdrop-invert|backdrop-opacity|backdrop-saturate|backdrop-sepia)/
+  const sizingPatterns = /^(w|h|min-w|min-h|max-w|max-h|size|basis|grow|shrink)-/
+  const transitionPatterns = /^(transition|duration|ease|delay|animate|transform|scale|rotate|translate|skew|origin)-/
+  
+  classes.forEach(cls => {
+    if (colorPatterns.test(cls)) {
+      categories.colors.push(cls)
+    } else if (spacingPatterns.test(cls)) {
+      categories.spacing.push(cls)
+    } else if (layoutPatterns.test(cls)) {
+      categories.layout.push(cls)
+    } else if (typographyPatterns.test(cls)) {
+      categories.typography.push(cls)
+    } else if (borderPatterns.test(cls)) {
+      categories.borders.push(cls)
+    } else if (effectsPatterns.test(cls)) {
+      categories.effects.push(cls)
+    } else if (sizingPatterns.test(cls)) {
+      categories.sizing.push(cls)
+    } else if (transitionPatterns.test(cls)) {
+      categories.transitions.push(cls)
+    } else {
+      categories.other.push(cls)
+    }
+  })
+  
+  // Remove empty categories
+  Object.keys(categories).forEach(key => {
+    if (categories[key].length === 0) {
+      delete categories[key]
+    }
+  })
+  
+  return categories
+}
+
+// Extract breakpoints from classes
+function extractBreakpoints(classes: string[]): string[] {
+  const breakpoints = new Set<string>()
+  classes.forEach(cls => {
+    const match = cls.match(/^(sm|md|lg|xl|2xl):/)
+    if (match) {
+      breakpoints.add(match[1])
+    }
+  })
+  return Array.from(breakpoints).sort()
+}
+
+// Generate style metadata
+function generateStyleMetadata(code: string) {
+  const classes = extractTailwindClasses(code)
+  const categories = categorizeTailwindClasses(classes)
+  const breakpoints = extractBreakpoints(classes)
+  const hasFlex = classes.some(c => c.includes('flex'))
+  const hasGrid = classes.some(c => c.includes('grid'))
+  const hasAnimations = classes.some(c => c.includes('animate') || c.includes('transition'))
+  
+  // Extract visual patterns
+  const colors = [...new Set(classes.filter(c => /^(bg|text|border)-/.test(c)).map(c => {
+    const match = c.match(/^(bg|text|border)-(.+)/)
+    return match ? match[2] : c
+  }))].slice(0, 10)
+  
+  const spacing = [...new Set(classes.filter(c => /^(m|p|gap)-/.test(c)))]
+  const radius = classes.find(c => c.startsWith('rounded-'))?.replace('rounded-', '') || 'lg'
+  const typography = [...new Set(classes.filter(c => /^(font|text)-/.test(c)))]
+  
+  return {
+    styleSources: {
+      tailwind: {
+        categories: categories,
+        breakpoints: breakpoints,
+        classCount: classes.length
+      }
+    },
+    layout: {
+      type: hasGrid ? 'grid' : hasFlex ? 'flex' : 'block',
+      ...(hasGrid && { cols: '2' }),
+      ...(hasFlex && { hasFeatureCards: true })
+    },
+    visual: {
+      colors: colors.slice(0, 10),
+      spacing: spacing.slice(0, 10),
+      radius: radius,
+      typography: typography.slice(0, 10)
+    },
+    ...(hasAnimations && {
+      animation: {
+        library: 'css',
+        type: classes.find(c => c.includes('animate-'))?.replace('animate-', '') || 'fade'
+      }
+    })
+  }
+}
+
 // Generate mock context bundle based on input - matching real LogicStamp structure
-function generateContextBundle(code: string) {
+function generateContextBundle(code: string, includeStyle = false) {
   // Simple analysis to create a realistic bundle
   const lines = code.split('\n')
   const imports = lines.filter(l => l.includes('import')).length
-  const componentMatch = code.match(/(?:export\s+(?:default\s+)?(?:function|const)\s+|class\s+)([A-Z]\w+)/g)
-  const componentName = componentMatch ? componentMatch[0].replace(/^.*?\s+/, '') : 'UserProfile'
+  
+  // Extract component name - handle export const/function/class patterns
+  let componentName = 'UserProfile'
+  
+  // Try to match: export const ComponentName: or export const ComponentName =
+  const constMatch = code.match(/export\s+(?:default\s+)?const\s+([A-Z][a-zA-Z0-9_]*)\s*[:=]/)
+  // Try to match: export function ComponentName or export default function ComponentName
+  const functionMatch = code.match(/export\s+(?:default\s+)?function\s+([A-Z][a-zA-Z0-9_]*)\s*\(/)
+  // Try to match: export class ComponentName or export default class ComponentName
+  const classMatch = code.match(/export\s+(?:default\s+)?class\s+([A-Z][a-zA-Z0-9_]*)\s*[<{]/)
+  
+  if (constMatch && constMatch[1]) {
+    componentName = constMatch[1]
+  } else if (functionMatch && functionMatch[1]) {
+    componentName = functionMatch[1]
+  } else if (classMatch && classMatch[1]) {
+    componentName = classMatch[1]
+  }
+  
   const hooks = (code.match(/use[A-Z]\w+/g) || []).filter((v, i, a) => a.indexOf(v) === i)
   const isNextJs = code.includes('next/')
   const hasUseClient = code.includes("'use client'") || code.includes('"use client"')
@@ -232,6 +395,9 @@ function generateContextBundle(code: string) {
                   "directive": "client"
                 }
               } : {}),
+              ...(includeStyle ? {
+                "style": generateStyleMetadata(code)
+              } : {}),
               "semanticHash": `uif:${Math.random().toString(36).substring(2, 15)}`,
               "fileHash": `uif:${Math.random().toString(36).substring(2, 15)}`
             },
@@ -249,7 +415,7 @@ function generateContextBundle(code: string) {
 }
 
 // Generate context bundles for multiple files
-function generateMultiFileContextBundle(files: UploadedFile[]) {
+function generateMultiFileContextBundle(files: UploadedFile[], includeStyle = false) {
   // Extract folder structure from file paths
   const folders = new Map<string, UploadedFile[]>()
 
@@ -269,8 +435,23 @@ function generateMultiFileContextBundle(files: UploadedFile[]) {
     const nodes = folderFiles.map(file => {
       const lines = file.content.split('\n')
       const imports = lines.filter(l => l.includes('import')).length
-      const componentMatch = file.content.match(/(?:export\s+(?:default\s+)?(?:function|const)\s+|class\s+)([A-Z]\w+)/g)
-      const componentName = componentMatch ? componentMatch[0].replace(/^.*?\s+/, '') : file.name.replace(/\.(tsx?|jsx?)$/, '')
+      // Extract component name - handle export const/function/class patterns
+      let componentName = file.name.replace(/\.(tsx?|jsx?)$/, '')
+      
+      // Try to match: export const ComponentName: or export const ComponentName =
+      const constMatch = file.content.match(/export\s+(?:default\s+)?const\s+([A-Z][a-zA-Z0-9_]*)\s*[:=]/)
+      // Try to match: export function ComponentName or export default function ComponentName
+      const functionMatch = file.content.match(/export\s+(?:default\s+)?function\s+([A-Z][a-zA-Z0-9_]*)\s*\(/)
+      // Try to match: export class ComponentName or export default class ComponentName
+      const classMatch = file.content.match(/export\s+(?:default\s+)?class\s+([A-Z][a-zA-Z0-9_]*)\s*[<{]/)
+      
+      if (constMatch && constMatch[1]) {
+        componentName = constMatch[1]
+      } else if (functionMatch && functionMatch[1]) {
+        componentName = functionMatch[1]
+      } else if (classMatch && classMatch[1]) {
+        componentName = classMatch[1]
+      }
       const hooks = (file.content.match(/use[A-Z]\w+/g) || []).filter((v, i, a) => a.indexOf(v) === i)
       const isNextJs = file.content.includes('next/')
       const hasUseClient = file.content.includes("'use client'") || file.content.includes('"use client"')
@@ -305,6 +486,9 @@ function generateMultiFileContextBundle(files: UploadedFile[]) {
             "nextjs": {
               "directive": "client"
             }
+          } : {}),
+          ...(includeStyle ? {
+            "style": generateStyleMetadata(file.content)
           } : {}),
           "semanticHash": `uif:${Math.random().toString(36).substring(2, 15)}`,
           "fileHash": `uif:${Math.random().toString(36).substring(2, 15)}`
@@ -405,7 +589,7 @@ export default function Demo() {
     }
   }, [terminalOutput])
 
-  const handleGenerate = async () => {
+  const handleGenerate = async (includeStyle = false) => {
     setIsProcessing(true)
     setShowOutput(false)
     setTerminalOutput([])
@@ -414,11 +598,16 @@ export default function Demo() {
     setContextMain(null)
 
     // Simulate terminal output progressively
-    for (let i = 0; i < terminalLines.length; i++) {
-      const prevDelay = i > 0 ? terminalLines[i - 1].delay : 0
-      const relativeDelay = terminalLines[i].delay - prevDelay
+    const commandLine = includeStyle ? '$ stamp context style' : '$ stamp context'
+    const modifiedTerminalLines = terminalLines.map((line, index) => 
+      index === 0 ? { ...line, text: commandLine } : line
+    )
+
+    for (let i = 0; i < modifiedTerminalLines.length; i++) {
+      const prevDelay = i > 0 ? modifiedTerminalLines[i - 1].delay : 0
+      const relativeDelay = modifiedTerminalLines[i].delay - prevDelay
       await new Promise(resolve => setTimeout(resolve, relativeDelay))
-      setTerminalOutput(prev => [...prev, terminalLines[i]])
+      setTerminalOutput(prev => [...prev, modifiedTerminalLines[i]])
     }
 
     // Generate and show bundle
@@ -426,13 +615,13 @@ export default function Demo() {
 
     if (uploadedFiles.length > 1) {
       // Generate multi-file context bundles
-      const { contextJsons: folderContexts, contextMain: projectContext } = generateMultiFileContextBundle(uploadedFiles)
+      const { contextJsons: folderContexts, contextMain: projectContext } = generateMultiFileContextBundle(uploadedFiles, includeStyle)
       setContextJsons(folderContexts)
       setContextMain(projectContext)
       setActiveContextView('main')
     } else {
       // Single file - use original generation
-      const bundle = generateContextBundle(userCode)
+      const bundle = generateContextBundle(userCode, includeStyle)
       setContextBundle(bundle)
       setActiveContextView('bundle')
     }
@@ -633,28 +822,58 @@ export default function Demo() {
               </div>
             </div>
 
-            {/* Generate button */}
-            <button
-              onClick={handleGenerate}
-              disabled={isProcessing || !userCode.trim()}
-              className={`mt-6 w-full py-4 rounded-xl font-semibold text-white shadow-xl transition-all flex items-center justify-center gap-3 active:scale-95 ${
-                isProcessing 
-                  ? 'bg-gray-400 cursor-not-allowed' 
-                  : 'bg-gradient-to-r from-blue-600 to-purple-600'
-              }`}
-            >
-              {isProcessing ? (
-                <>
-                  <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
-                  Processing...
-                </>
-              ) : (
-                <>
-                  <Play className="w-5 h-5" />
-                  Generate Context Bundle
-                </>
-              )}
-            </button>
+            {/* Generate buttons */}
+            <div className="mt-6 space-y-3">
+              <button
+                onClick={() => handleGenerate(false)}
+                disabled={isProcessing || !userCode.trim()}
+                className={`w-full py-4 rounded-xl font-semibold text-white shadow-xl transition-all flex items-center justify-center gap-3 active:scale-95 ${
+                  isProcessing 
+                    ? 'bg-gray-400 cursor-not-allowed' 
+                    : 'bg-gradient-to-r from-blue-600 to-purple-600'
+                }`}
+              >
+                {isProcessing ? (
+                  <>
+                    <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
+                    Processing...
+                  </>
+                ) : (
+                  <>
+                    <Play className="w-5 h-5" />
+                    Generate Context Bundle
+                  </>
+                )}
+              </button>
+              <button
+                onClick={() => handleGenerate(true)}
+                disabled={isProcessing || !userCode.trim()}
+                className={`w-full py-4 rounded-xl font-semibold text-white shadow-xl transition-all flex items-center justify-center gap-3 active:scale-95 ${
+                  isProcessing 
+                    ? 'bg-gray-400 cursor-not-allowed' 
+                    : 'bg-gradient-to-r from-purple-600 to-pink-600'
+                }`}
+              >
+                {isProcessing ? (
+                  <>
+                    <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
+                    Processing...
+                  </>
+                ) : (
+                  <>
+                    <Zap className="w-5 h-5" />
+                    Generate Context Style Bundle
+                  </>
+                )}
+              </button>
+            </div>
+            
+            {/* Demo purpose disclaimer */}
+            <div className="mt-4 px-4 py-3 bg-amber-50 dark:bg-amber-900/20 border border-amber-200 dark:border-amber-800 rounded-lg">
+              <p className="text-xs sm:text-sm text-amber-800 dark:text-amber-300 text-center">
+                <strong>Demo Purpose Only:</strong> This is an interactive demonstration. For production use, install and run the CLI tool locally.
+              </p>
+            </div>
           </div>
 
           {/* Output panel */}

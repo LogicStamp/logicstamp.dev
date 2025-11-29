@@ -69,7 +69,7 @@ export default function CompleteReferencePage() {
                   </svg>
                 </div>
                 <h2 className="text-xl sm:text-2xl font-bold text-gray-900 dark:text-white m-0">
-                  What's New in v0.2.2
+                  What's New in v0.2.4
                 </h2>
               </div>
               
@@ -78,8 +78,14 @@ export default function CompleteReferencePage() {
                   {
                     icon: "🎨",
                     title: "Style Metadata Extraction",
-                    desc: "New stamp context style command extracts Tailwind, SCSS, animations, and layout patterns",
+                    desc: "New stamp context style command extracts Tailwind, SCSS, Material UI, animations, and layout patterns",
                     color: "purple"
+                  },
+                  {
+                    icon: "🎭",
+                    title: "Material UI Support",
+                    desc: "Detects Material UI components, packages, and styling features (theme, sx prop, styled components, makeStyles)",
+                    color: "indigo"
                   },
                   {
                     icon: "📊",
@@ -138,13 +144,19 @@ export default function CompleteReferencePage() {
                           title: 'text-yellow-900 dark:text-yellow-100',
                           desc: 'text-yellow-800 dark:text-yellow-200'
                         };
-                      case 'gray':
-                        return {
-                          container: 'bg-gray-50 dark:bg-gray-800/50 border-gray-200 dark:border-gray-700',
-                          title: 'text-gray-900 dark:text-gray-100',
-                          desc: 'text-gray-900 dark:text-white'
-                        };
-                      default:
+                    case 'gray':
+                      return {
+                        container: 'bg-gray-50 dark:bg-gray-800/50 border-gray-200 dark:border-gray-700',
+                        title: 'text-gray-900 dark:text-gray-100',
+                        desc: 'text-gray-900 dark:text-white'
+                      };
+                    case 'indigo':
+                      return {
+                        container: 'bg-indigo-50 dark:bg-indigo-900/20 border-indigo-200 dark:border-indigo-800',
+                        title: 'text-indigo-900 dark:text-indigo-100',
+                        desc: 'text-indigo-800 dark:text-indigo-200'
+                      };
+                    default:
                         return {
                           container: 'bg-blue-50 dark:bg-blue-900/20 border-blue-200 dark:border-blue-800',
                           title: 'text-blue-900 dark:text-blue-100',
@@ -469,7 +481,7 @@ export default function CompleteReferencePage() {
               Style Metadata Extraction
             </h2>
             <p className="text-base sm:text-lg text-gray-600 dark:text-gray-400 mb-6 sm:mb-8 leading-relaxed">
-              The <code className="px-2 py-1 bg-gray-100 dark:bg-gray-800 rounded text-sm">stamp context style</code> command (or <code className="px-2 py-1 bg-gray-100 dark:bg-gray-800 rounded text-sm">--include-style</code> flag) extracts visual and layout information from your components, making context bundles design-aware for AI assistants.
+              The <code className="px-2 py-1 bg-gray-100 dark:bg-gray-800 rounded text-sm">stamp context style</code> command (or <code className="px-2 py-1 bg-gray-100 dark:bg-gray-800 rounded text-sm">--include-style</code> flag) extracts visual and layout information from your components, making context bundles design-aware for AI assistants. Supports Tailwind CSS, SCSS/CSS modules, Material UI, inline styles, styled-components, and framer-motion.
             </p>
 
             <div className="relative">
@@ -486,6 +498,7 @@ export default function CompleteReferencePage() {
                       items: [
                         "Tailwind CSS classes (layout, spacing, colors, typography)",
                         "SCSS/CSS modules (selectors, properties, features)",
+                        "Material UI components and styling (theme, sx prop, styled components, makeStyles)",
                         "Inline styles and styled-components",
                         "framer-motion animations and gestures"
                       ]
@@ -649,8 +662,8 @@ stamp context style --include-code header`
      Mode         | Tokens GPT-4o | Tokens Claude | Savings vs Full Context
      -------------|---------------|---------------|--------------------------
      none         |         8,337 |         7,411 | 79%
-     header       |        12,228 |        10,867 | 69%
-     header+style |        13,895 |        12,351 | 65%
+     header       |        12,228 |        10,867 | 70%
+     header+style |        13,895 |        12,351 | 30%
      full         |        39,141 |        34,792 | 0%`,
                         copyText: `📊 Mode Comparison
 
@@ -665,8 +678,8 @@ stamp context style --include-code header`
      Mode         | Tokens GPT-4o | Tokens Claude | Savings vs Full Context
      -------------|---------------|---------------|--------------------------
      none         |         8,337 |         7,411 | 79%
-     header       |        12,228 |        10,867 | 69%
-     header+style |        13,895 |        12,351 | 65%
+     header       |        12,228 |        10,867 | 70%
+     header+style |        13,895 |        12,351 | 30%
      full         |        39,141 |        34,792 | 0%`
                       }
                     ]}
