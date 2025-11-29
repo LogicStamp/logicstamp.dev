@@ -8,6 +8,7 @@ A UIF contract is a structured representation of a component that includes:
 
 - **Structural footprint** – Variables, hooks, components, and functions used
 - **Logic signature** – Props, events, and state that define the component's API
+- **Style metadata** – Visual and layout information (when `--include-style` is used)
 - **Semantic hash** – Unique identifier based on the component's logic (not implementation details)
 - **File hash** – Content-based hash for change detection
 
@@ -50,6 +51,29 @@ Each UIF contract follows the `UIFContract` schema (version `0.3`):
       "isLoading": {
         "type": "boolean"
       }
+    }
+  },
+  "style": {
+    "styleSources": {
+      "tailwind": {
+        "categories": {
+          "layout": ["flex", "flex-col", "items-center"],
+          "spacing": ["py-4", "px-6", "gap-2"],
+          "colors": ["bg-blue-500", "text-white"],
+          "typography": ["text-lg", "font-semibold"]
+        },
+        "breakpoints": ["md", "lg"],
+        "classCount": 8
+      }
+    },
+    "layout": {
+      "type": "flex",
+      "hasHeroPattern": false
+    },
+    "visual": {
+      "colors": ["bg-blue-500", "text-white"],
+      "spacing": ["py-4", "px-6"],
+      "radius": "md"
     }
   },
   "semanticHash": "uif:1a27d0944bbaaf561ee05a01",
