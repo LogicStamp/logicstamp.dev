@@ -94,6 +94,15 @@ export default function CompareModesPage() {
                 <p className="text-base sm:text-lg text-gray-600 dark:text-gray-400 mt-4 leading-relaxed">
                   The <code className="px-2 py-1 bg-gray-100 dark:bg-gray-800 text-cyan-600 dark:text-cyan-400 rounded-md font-mono text-xs sm:text-sm">--compare-modes</code> flag generates a detailed comparison table showing token costs for all modes, helping you understand the tradeoffs.
                 </p>
+                <div className="mt-4 p-4 bg-cyan-50 dark:bg-cyan-900/20 rounded-lg border border-cyan-200 dark:border-cyan-800">
+                  <p className="text-sm font-semibold text-cyan-900 dark:text-cyan-100 mb-2">Token Estimation:</p>
+                  <p className="text-sm text-cyan-800 dark:text-cyan-200 mb-2">
+                    LogicStamp Context includes <code className="px-1.5 py-0.5 bg-cyan-100 dark:bg-cyan-900/40 rounded text-xs font-mono">@dqbd/tiktoken</code> (GPT-4) and <code className="px-1.5 py-0.5 bg-cyan-100 dark:bg-cyan-900/40 rounded text-xs font-mono">@anthropic-ai/tokenizer</code> (Claude) as optional dependencies. npm will automatically attempt to install them when you install <code className="px-1.5 py-0.5 bg-cyan-100 dark:bg-cyan-900/40 rounded text-xs font-mono">logicstamp-context</code>. If installation succeeds, you get model-accurate token counts. If installation fails or is skipped (normal for optional dependencies), the tool gracefully falls back to character-based estimation.
+                  </p>
+                  <p className="text-sm text-cyan-800 dark:text-cyan-200">
+                    <strong>Manual installation (optional):</strong> The tool works fine without tokenizers (uses approximation). Only install manually if you need accurate token counts AND automatic installation failed: <code className="px-1.5 py-0.5 bg-cyan-100 dark:bg-cyan-900/40 rounded text-xs font-mono">npm install @dqbd/tiktoken @anthropic-ai/tokenizer</code>
+                  </p>
+                </div>
               </div>
             </div>
           </AnimatedSection>
@@ -286,15 +295,25 @@ export default function CompareModesPage() {
                   <div>
                     <h3 className="text-base font-semibold text-gray-900 dark:text-white mb-2">Accurate: Optional Tokenizers</h3>
                     <p className="text-sm text-gray-600 dark:text-gray-400 mb-3">
-                      LogicStamp Context includes <code className="px-1.5 py-0.5 bg-gray-100 dark:bg-gray-800 rounded text-xs font-mono">@dqbd/tiktoken</code> (GPT-4) and <code className="px-1.5 py-0.5 bg-gray-100 dark:bg-gray-800 rounded text-xs font-mono">@anthropic-ai/tokenizer</code> (Claude) as optional dependencies. npm automatically attempts to install them when you install <code className="px-1.5 py-0.5 bg-gray-100 dark:bg-gray-800 rounded text-xs font-mono">logicstamp-context</code>.
+                      LogicStamp Context includes <code className="px-1.5 py-0.5 bg-gray-100 dark:bg-gray-800 rounded text-xs font-mono">@dqbd/tiktoken</code> (GPT-4) and <code className="px-1.5 py-0.5 bg-gray-100 dark:bg-gray-800 rounded text-xs font-mono">@anthropic-ai/tokenizer</code> (Claude) as optional dependencies. npm will automatically attempt to install them when you install <code className="px-1.5 py-0.5 bg-gray-100 dark:bg-gray-800 rounded text-xs font-mono">logicstamp-context</code>. If installation succeeds, you get model-accurate token counts. If installation fails or is skipped (normal for optional dependencies), the tool gracefully falls back to character-based estimation.
                     </p>
                     <div className="p-3 bg-indigo-50 dark:bg-indigo-900/20 rounded-lg border border-indigo-200 dark:border-indigo-800 mb-3">
                       <p className="text-sm font-semibold text-indigo-900 dark:text-indigo-100 mb-2">Behavior:</p>
                       <ul className="space-y-1.5 text-sm text-indigo-800 dark:text-indigo-200 ml-4 list-disc">
-                        <li>npm automatically tries to install tokenizers when installing logicstamp-context</li>
+                        <li>npm automatically tries to install tokenizers when installing <code className="px-1 py-0.5 bg-indigo-100 dark:bg-indigo-900/40 rounded text-xs font-mono">logicstamp-context</code></li>
                         <li>If installed, automatically detected and used for accurate counts</li>
                         <li>If not installed (installation failed/skipped), gracefully falls back to approximation</li>
                         <li>No configuration required - works automatically</li>
+                      </ul>
+                    </div>
+                    <div className="p-3 bg-amber-50 dark:bg-amber-900/20 rounded-lg border border-amber-200 dark:border-amber-800 mb-3">
+                      <p className="text-sm font-semibold text-amber-900 dark:text-amber-100 mb-2">Manual Installation (Optional):</p>
+                      <p className="text-sm text-amber-800 dark:text-amber-200 mb-2">
+                        The tool works fine without tokenizers (uses approximation). Only install manually if:
+                      </p>
+                      <ul className="space-y-1.5 text-sm text-amber-800 dark:text-amber-200 ml-4 list-disc">
+                        <li>You need accurate token counts (not approximations)</li>
+                        <li>AND automatic installation failed or was skipped</li>
                       </ul>
                     </div>
                     <TabbedCodeBlock
@@ -529,11 +548,19 @@ done`
                     },
                     {
                       q: 'Should I always use accurate tokenizers?',
-                      a: 'Use approximation for rough estimates, development/prototyping, or when token costs aren\'t critical. Use tokenizers when precise costs matter for budgeting, production deployments, cost-sensitive workflows, or comparing against other tools.'
+                      a: 'Use approximation when: rough estimates are sufficient, during development/prototyping phase, token costs aren\'t critical, or you want zero-configuration setup. Use tokenizers when: precise costs matter for budgeting, production deployments, cost-sensitive workflows, or comparing against other tools.'
                     },
                     {
                       q: 'How much overhead do contracts add?',
-                      a: 'Contracts typically add 5-15% overhead compared to raw source in full mode, but enable structured dependency graphs, semantic component analysis, missing dependency tracking, and reproducible builds. The overhead is well worth it for AI context generation.'
+                      a: 'In full mode, contracts add ~30% overhead compared to raw source due to the structured contract metadata (JSON structure, type information, dependency relationships). However, contracts enable structured dependency graphs, semantic component analysis, missing dependency tracking, reproducible builds, and better AI comprehension through structured data. The overhead is typically worth it for AI context generation, but consider using header mode (which adds minimal overhead) for most use cases to maximize token efficiency.'
+                    },
+                    {
+                      q: 'Why do the savings percentages seem generous?',
+                      a: 'The "savings vs raw source" compares LogicStamp output against a simple concatenation of all source files. Raw source = just the file contents concatenated (no structure, no metadata). Full mode = contracts + complete source = 130% of raw source (due to contract overhead). Header mode = contracts + signatures only = 30% of raw source. So while header mode saves 70% compared to raw source, if you need complete source code, the "full" mode actually costs MORE than raw source due to the structured contract format. The real value is that header mode provides most of the semantic information at a fraction of the cost. In practice: Use header mode for most AI interactions - it provides contracts, types, and function signatures (what you need 90% of the time) at only 30% of the raw source token cost.'
+                    },
+                    {
+                      q: 'Can I compare specific folders?',
+                      a: 'Yes, use the comparison on a subset: stamp context ./src/components --compare-modes'
                     },
                     {
                       q: 'Does --compare-modes write files?',
