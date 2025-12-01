@@ -22,8 +22,8 @@ const sections: DocsNavSection[] = [
       { title: 'Docs Home', href: '/docs' },
       { title: 'What is LogicStamp?', href: '/docs/what-is-logicstamp' },
       { title: 'Complete Reference', href: '/docs/complete-reference' },
-      { title: 'CLI Hub', href: '/docs/logicstamp-context' },
       { title: 'MCP Server (Coming Soon)', href: '/docs/mcp' },
+      { title: 'CLI Hub', href: '/docs/logicstamp-context' },
     ],
   },
   {
