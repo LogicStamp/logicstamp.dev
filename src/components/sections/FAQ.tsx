@@ -185,14 +185,14 @@ export default function FAQ() {
                     ${
                       isOpen
                         ? 'border border-gray-900 dark:border-gray-100 shadow-[0_0_0_1px_rgba(0,0,0,0.45),0_18px_40px_rgba(15,23,42,0.75)] dark:shadow-[0_0_0_1px_rgba(255,255,255,0.45),0_18px_40px_rgba(15,23,42,0.75)]'
-                        : 'border border-gray-200/60 dark:border-gray-800/80 hover:border-gray-400/80 dark:hover:border-gray-600/80'
+                        : 'border border-gray-200/60 dark:border-gray-800/80'
                     }
                   `}
                   style={{ 
-                    transitionProperty: 'opacity, transform, border-color, box-shadow',
-                    transitionDuration: '700ms, 700ms, 200ms, 200ms',
-                    transitionTimingFunction: 'ease-out, ease-out, ease-out, ease-out',
-                    transitionDelay: `${index * 100 + 200}ms, ${index * 100 + 200}ms, 0ms, 0ms`
+                    transitionProperty: 'opacity, transform, box-shadow',
+                    transitionDuration: '700ms, 700ms, 200ms',
+                    transitionTimingFunction: 'ease-out, ease-out, ease-out',
+                    transitionDelay: `${index * 100 + 200}ms, ${index * 100 + 200}ms, 0ms`
                   }}
                 >
                   <dt>

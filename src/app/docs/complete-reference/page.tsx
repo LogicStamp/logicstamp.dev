@@ -69,16 +69,20 @@ export default function CompleteReferencePage() {
                   </svg>
                 </div>
                 <h2 className="text-xl sm:text-2xl font-bold text-gray-900 dark:text-white m-0">
-                  What's New in v0.2.4
+                  What's New in v0.2.x
                 </h2>
               </div>
+              
+              <p className="text-sm sm:text-base text-gray-600 dark:text-gray-400 mb-4 sm:mb-6 leading-relaxed">
+                The 0.2.x release series introduces major features for style-aware context generation, improved token efficiency, and enhanced project structure analysis. All features listed below are available in 0.2.0 and later releases.
+              </p>
               
               <div className="grid sm:grid-cols-2 gap-4 sm:gap-6">
                 {[
                   {
                     icon: "🎨",
                     title: "Style Metadata Extraction",
-                    desc: "New stamp context style command extracts Tailwind, SCSS, Material UI, animations, and layout patterns",
+                    desc: "New stamp context style command extracts Tailwind, SCSS, Material UI, ShadCN/UI, Radix UI, animations, and layout patterns",
                     color: "purple"
                   },
                   {
@@ -481,7 +485,7 @@ export default function CompleteReferencePage() {
               Style Metadata Extraction
             </h2>
             <p className="text-base sm:text-lg text-gray-600 dark:text-gray-400 mb-6 sm:mb-8 leading-relaxed">
-              The <code className="px-2 py-1 bg-gray-100 dark:bg-gray-800 rounded text-sm">stamp context style</code> command (or <code className="px-2 py-1 bg-gray-100 dark:bg-gray-800 rounded text-sm">--include-style</code> flag) extracts visual and layout information from your components, making context bundles design-aware for AI assistants. Supports Tailwind CSS, SCSS/CSS modules, Material UI, inline styles, styled-components, and framer-motion.
+              The <code className="px-2 py-1 bg-gray-100 dark:bg-gray-800 rounded text-sm">stamp context style</code> command (or <code className="px-2 py-1 bg-gray-100 dark:bg-gray-800 rounded text-sm">--include-style</code> flag) extracts visual and layout information from your components, making context bundles design-aware for AI assistants. Supports Tailwind CSS, SCSS/CSS modules, Material UI, ShadCN/UI, Radix UI, inline styles, styled-components, and framer-motion.
             </p>
 
             <div className="relative">
@@ -499,6 +503,7 @@ export default function CompleteReferencePage() {
                         "Tailwind CSS classes (layout, spacing, colors, typography)",
                         "SCSS/CSS modules (selectors, properties, features)",
                         "Material UI components and styling (theme, sx prop, styled components, makeStyles)",
+                        "ShadCN/UI and Radix UI component patterns",
                         "Inline styles and styled-components",
                         "framer-motion animations and gestures"
                       ]
@@ -850,7 +855,7 @@ stamp context style --include-code header`
     },
     "meta": {
       "missing": [],
-      "source": "logicstamp-context@0.1.0"
+      "source": "logicstamp-context@0.2.x"
     }
   }
 ]`,
@@ -891,7 +896,7 @@ stamp context style --include-code header`
     },
     "meta": {
       "missing": [],
-      "source": "logicstamp-context@0.1.0"
+      "source": "logicstamp-context@0.2.x"
     }
   }
 ]`

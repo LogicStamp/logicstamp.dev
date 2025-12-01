@@ -112,7 +112,7 @@ const integrations = [
     gradient: 'from-purple-500/20 via-indigo-500/20 to-violet-600/20',
     borderGradient: 'from-purple-500 via-indigo-500 to-violet-600',
     iconBg: 'from-purple-500/10 to-violet-600/10',
-    features: ['MCP (Model Context Protocol) integration', 'Contract verification upgrades (advanced rules + deeper validation)', 'Enhanced contract management (grouped bundles, project-level insights)', 'Additional UI framework support for styles (ShadCN/UI, Radix UI, Styled Components, Emotion, Chakra UI, Ant Design, etc.)'],
+    features: ['MCP (Model Context Protocol) integration', 'Contract verification upgrades (advanced rules + deeper validation)', 'Enhanced contract management (grouped bundles, project-level insights)', 'Additional UI framework support for styles (Styled Components, Emotion, Chakra UI, Ant Design, etc.)'],
     comingSoon: true,
   },
 ]
@@ -405,6 +405,11 @@ export default function Integrations() {
                 </div>
               )
             })}
+          </div>
+          <div className="mt-6 pt-6 border-t border-gray-200 dark:border-gray-700">
+            <p className="text-xs text-gray-500 dark:text-gray-400 italic text-center">
+              All trademarks and logos are the property of their respective owners. LogicStamp is an independent open-source project and is not affiliated with or endorsed by the listed frameworks.
+            </p>
           </div>
         </div>
       </div>

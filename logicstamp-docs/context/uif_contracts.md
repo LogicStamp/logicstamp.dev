@@ -8,7 +8,6 @@ A UIF contract is a structured representation of a component that includes:
 
 - **Structural footprint** – Variables, hooks, components, and functions used
 - **Logic signature** – Props, events, and state that define the component's API
-- **Style metadata** – Visual and layout information (when `--include-style` is used)
 - **Semantic hash** – Unique identifier based on the component's logic (not implementation details)
 - **File hash** – Content-based hash for change detection
 
@@ -53,29 +52,7 @@ Each UIF contract follows the `UIFContract` schema (version `0.3`):
       }
     }
   },
-  "style": {
-    "styleSources": {
-      "tailwind": {
-        "categories": {
-          "layout": ["flex", "flex-col", "items-center"],
-          "spacing": ["py-4", "px-6", "gap-2"],
-          "colors": ["bg-blue-500", "text-white"],
-          "typography": ["text-lg", "font-semibold"]
-        },
-        "breakpoints": ["md", "lg"],
-        "classCount": 8
-      }
-    },
-    "layout": {
-      "type": "flex",
-      "hasHeroPattern": false
-    },
-    "visual": {
-      "colors": ["bg-blue-500", "text-white"],
-      "spacing": ["py-4", "px-6"],
-      "radius": "md"
-    }
-  },
+  "exports": { "named": ["Button", "ButtonProps"] },
   "semanticHash": "uif:1a27d0944bbaaf561ee05a01",
   "fileHash": "uif:1f0fa0e2c8958d7fc1696036"
 }
@@ -124,6 +101,22 @@ Object mapping event names to their signatures. For React components, these are 
 
 #### `state`
 Object mapping state variable names to their types. Represents the component's internal state structure.
+
+### `exports` (optional)
+Export metadata indicating how the component/module is exported from the file:
+
+- `"default"` – File has a default export
+- `"named"` – File has a single named export
+- `{ named: string[] }` – File has multiple named exports (array contains all exported names)
+
+This metadata is used to improve dependency tracking accuracy by distinguishing between internal components (defined in the same file) and external dependencies.
+
+**Example:**
+```json
+{
+  "exports": { "named": ["Button", "ButtonProps", "useButton"] }
+}
+```
 
 ### `style` (optional)
 Style metadata extracted from the component. This field is only present when style extraction is enabled (via `stamp context style` or `--include-style` flag). Contains visual, layout, and animation information to enable design-aware AI context generation.
@@ -262,7 +255,7 @@ Page-level layout metadata:
 2. Style information is detected in the component
 3. Components without any style usage will not have a `style` field
 
-See [STYLE.md](./cli/STYLE.md) for detailed documentation on style extraction.
+See [style.md](./cli/style.md) for detailed documentation on style extraction.
 
 ### `semanticHash`
 Unique hash based on the component's logic and contract. Changes when:
@@ -276,12 +269,12 @@ Does **not** change for:
 - Whitespace/formatting
 - Implementation details that don't affect the contract
 
-See [HASHES.md](./HASHES.md) for detailed information about semantic hashes.
+See [hashes.md](./hashes.md) for detailed information about semantic hashes.
 
 ### `fileHash`
 Content-based hash of the raw file. Changes for any file modification. Used to validate that a stored contract still matches the actual file.
 
-See [HASHES.md](./HASHES.md) for detailed information about file hashes.
+See [hashes.md](./hashes.md) for detailed information about file hashes.
 
 ## @uif Header Blocks
 
@@ -440,8 +433,8 @@ Each node in a bundle's dependency graph contains a contract for that component.
 
 ## See Also
 
-- [HASHES.md](./HASHES.md) – Detailed information about semantic and file hashes
-- [SCHEMA.md](./SCHEMA.md) – Complete schema reference for all LogicStamp types
-- [USAGE.md](./USAGE.md) – How to generate and use context files with contracts
-- [VALIDATE.md](./VALIDATE.md) – Contract validation guide
+- [hashes.md](./hashes.md) – Detailed information about semantic and file hashes
+- [schema.md](./schema.md) – Complete schema reference for all LogicStamp types
+- [usage.md](./usage.md) – How to generate and use context files with contracts
+- [validate.md](./cli/validate.md) – Contract validation guide
 

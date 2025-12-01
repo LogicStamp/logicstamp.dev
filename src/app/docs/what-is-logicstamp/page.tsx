@@ -282,6 +282,11 @@ export default function WhatIsLogicStampPage() {
                     copyText: 'stamp context'
                   },
                   {
+                    label: 'Style',
+                    code: 'stamp context style',
+                    copyText: 'stamp context style'
+                  },
+                  {
                     label: 'Compare Changes',
                     code: 'stamp context compare',
                     copyText: 'stamp context compare'
