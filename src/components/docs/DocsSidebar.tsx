@@ -22,6 +22,7 @@ const sections: DocsNavSection[] = [
       { title: 'Docs Home', href: '/docs' },
       { title: 'What is LogicStamp?', href: '/docs/what-is-logicstamp' },
       { title: 'Complete Reference', href: '/docs/complete-reference' },
+      { title: 'Known Limitations', href: '/docs/complete-reference/known-limitations' },
       { title: 'MCP Server (Coming Soon)', href: '/docs/mcp' },
       { title: 'CLI Hub', href: '/docs/logicstamp-context' },
     ],
@@ -64,6 +65,8 @@ const sections: DocsNavSection[] = [
 
 function isActive(pathname: string, href: string) {
   if (href === '/docs') return pathname === '/docs'
+  // Complete Reference should only match exactly, not sub-paths
+  if (href === '/docs/complete-reference') return pathname === '/docs/complete-reference'
   return pathname === href || pathname.startsWith(href + '/')
 }
 
@@ -119,6 +122,25 @@ function getIcon(href: string): ReactNode {
       >
         <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20" />
         <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z" />
+      </svg>
+    )
+  }
+
+  if (href.includes('/known-limitations')) {
+    // Warning / exclamation icon
+    return (
+      <svg
+        className="w-3.5 h-3.5"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth={2}
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      >
+        <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z" />
+        <line x1="12" y1="9" x2="12" y2="13" />
+        <line x1="12" y1="17" x2="12.01" y2="17" />
       </svg>
     )
   }
