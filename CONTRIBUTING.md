@@ -298,7 +298,7 @@ For feature requests:
 
 - Open an issue for questions
 - Check existing issues and discussions
-- Review documentation in the `logicstamp-docs` folder
+- Review documentation in the `docs` folder
 
 ## Recognition
 
