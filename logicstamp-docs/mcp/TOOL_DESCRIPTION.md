@@ -1,8 +1,12 @@
 # LogicStamp Context - Complete Tool Description
 
+> **See also:** [MCP Integration Guide](mcp_integration.md) for MCP server architecture | [Commands Reference](commands.md) for CLI usage | [Quick Start](quickstart.md) for getting started
+
 ## Overview
 
 **LogicStamp Context** is a zero-configuration CLI tool that analyzes React/TypeScript codebases and generates machine-readable context bundles optimized for AI assistants and CI/CD pipelines. It extracts comprehensive component metadata, builds dependency graphs, and produces structured JSON documentation that captures the complete architecture of your application.
+
+> **Note:** This document describes LogicStamp Context CLI capabilities. For MCP server usage, see the [MCP Integration Guide](mcp_integration.md) and [README](../README.md).
 
 ## Core Capabilities
 

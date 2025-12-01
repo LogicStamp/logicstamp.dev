@@ -3,6 +3,7 @@ import Footer from '@/components/Footer'
 import AnimatedSection from '@/components/AnimatedSection'
 import DocsLayout from '@/components/DocsLayout'
 import TabbedCodeBlock from '@/components/TabbedCodeBlock'
+import { Sparkles, FileCode, Code, Component, Zap, Box, Package, Layers } from 'lucide-react'
 
 export const metadata: Metadata = {
   title: '`context style` Command | LogicStamp Context Documentation',
@@ -113,7 +114,12 @@ export default function StyleCommandPage() {
                 </p>
                 <div className="grid sm:grid-cols-2 gap-4">
                   <div className="p-4 bg-violet-50 dark:bg-violet-950/20 rounded-xl border border-violet-200 dark:border-violet-800">
-                    <h4 className="font-semibold text-violet-900 dark:text-violet-200 mb-2">Tailwind CSS</h4>
+                    <h4 className="font-semibold text-violet-900 dark:text-violet-200 mb-2 flex items-center gap-2">
+                      <svg className="w-5 h-5" viewBox="0 0 54 33" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M27 0c-7.343 0-11.647 3.657-13.125 10.973 2.625-3.5 5.67-4.817 9.135-3.952 1.986.466 3.405 1.625 4.977 2.97 2.707 2.375 5.845 5.123 12.178 5.123 7.343 0 11.647-3.657 13.125-10.973-2.625 3.5-5.67 4.817-9.135 3.952-1.986-.466-3.405-1.625-4.977-2.97C32.752 2.375 29.614-.373 27 0zm-13.125 16.5c-7.343 0-11.647 3.657-13.125 10.973 2.625-3.5 5.67-4.817 9.135-3.952 1.986.466 3.405 1.625 4.977 2.97 2.707 2.375 5.845 5.123 12.178 5.123 7.343 0 11.647-3.657 13.125-10.973-2.625 3.5-5.67 4.817-9.135 3.952-1.986-.466-3.405-1.625-4.977-2.97-2.707-2.375-5.845-5.123-12.178-5.123z" fill="#06B6D4"/>
+                      </svg>
+                      Tailwind CSS
+                    </h4>
                     <ul className="text-sm text-violet-800 dark:text-violet-300 space-y-1 ml-4 list-disc">
                       <li>Layout (flex, grid, block, container)</li>
                       <li>Spacing (padding, margin, gap utilities)</li>
@@ -127,7 +133,12 @@ export default function StyleCommandPage() {
                     </ul>
                   </div>
                   <div className="p-4 bg-indigo-50 dark:bg-indigo-950/20 rounded-xl border border-indigo-200 dark:border-indigo-800">
-                    <h4 className="font-semibold text-indigo-900 dark:text-indigo-200 mb-2">SCSS/CSS Modules</h4>
+                    <h4 className="font-semibold text-indigo-900 dark:text-indigo-200 mb-2 flex items-center gap-2">
+                      <svg className="w-5 h-5" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M12.017 0C5.396 0 .029 5.367.029 11.987c0 5.079 3.158 9.417 7.618 11.174-.105-.949-.199-2.403.041-3.439.219-.937 1.406-5.957 1.406-5.957s-.359-.72-.359-1.781c0-1.663.967-2.911 2.168-2.911 1.024 0 1.518.769 1.518 1.688 0 1.029-.653 2.567-.992 3.992-.285 1.193.6 2.165 1.775 2.165 2.128 0 3.768-2.245 3.768-5.487 0-2.861-2.063-4.869-5.008-4.869-3.41 0-5.409 2.562-5.409 5.199 0 1.033.394 2.143.889 2.741.099.12.112.225.085.345-.09.375-.293 1.199-.334 1.363-.053.225-.172.271-.402.165-1.495-.69-2.433-2.878-2.433-4.646 0-3.776 2.748-7.252 7.92-7.252 4.158 0 7.392 2.967 7.392 6.923 0 4.135-2.607 7.462-6.233 7.462-1.214 0-2.357-.629-2.75-1.378l-.748 2.853c-.271 1.043-1.002 2.35-1.492 3.146C9.57 23.812 10.763 24 12.017 24c6.624 0 11.99-5.367 11.99-11.987C24.007 5.367 18.641.001 12.017.001z" fill="#CF649A"/>
+                      </svg>
+                      SCSS/CSS Modules
+                    </h4>
                     <ul className="text-sm text-indigo-800 dark:text-indigo-300 space-y-1 ml-4 list-disc">
                       <li>CSS selectors used</li>
                       <li>CSS properties defined</li>
@@ -135,13 +146,21 @@ export default function StyleCommandPage() {
                     </ul>
                   </div>
                   <div className="p-4 bg-fuchsia-50 dark:bg-fuchsia-950/20 rounded-xl border border-fuchsia-200 dark:border-fuchsia-800">
-                    <h4 className="font-semibold text-fuchsia-900 dark:text-fuchsia-200 mb-2">Inline Styles</h4>
+                    <h4 className="font-semibold text-fuchsia-900 dark:text-fuchsia-200 mb-2 flex items-center gap-2">
+                      <Code className="w-5 h-5 text-fuchsia-600 dark:text-fuchsia-400" />
+                      Inline Styles
+                    </h4>
                     <p className="text-sm text-fuchsia-800 dark:text-fuchsia-300">
                       Detects <code className="px-1 py-0.5 bg-fuchsia-100 dark:bg-fuchsia-900/40 rounded text-xs font-mono">style=&#123;&#123;...&#125;&#125;</code> usage
                     </p>
                   </div>
                   <div className="p-4 bg-violet-50 dark:bg-violet-950/20 rounded-xl border border-violet-200 dark:border-violet-800">
-                    <h4 className="font-semibold text-violet-900 dark:text-violet-200 mb-2">styled-components/Emotion</h4>
+                    <h4 className="font-semibold text-violet-900 dark:text-violet-200 mb-2 flex items-center gap-2">
+                      <svg className="w-5 h-5" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M5.41 21l.35-3.507 1.933.518 2.81-9.035L5.41 21zM16.976 0l-1.942.495L4.76 21l1.942-.495L16.976 0zM13.613 8.496l-1.933-.518-3.582 11.508 1.933.518 3.582-11.508z" fill="#DB7093"/>
+                      </svg>
+                      styled-components/Emotion
+                    </h4>
                     <ul className="text-sm text-violet-800 dark:text-violet-300 space-y-1 ml-4 list-disc">
                       <li>Styled component declarations</li>
                       <li>Theme usage</li>
@@ -149,7 +168,13 @@ export default function StyleCommandPage() {
                     </ul>
                   </div>
                   <div className="p-4 bg-indigo-50 dark:bg-indigo-950/20 rounded-xl border border-indigo-200 dark:border-indigo-800 sm:col-span-2">
-                    <h4 className="font-semibold text-indigo-900 dark:text-indigo-200 mb-2">framer-motion</h4>
+                    <h4 className="font-semibold text-indigo-900 dark:text-indigo-200 mb-2 flex items-center gap-2">
+                      <svg className="w-5 h-5" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm0 22C6.477 22 2 17.523 2 12S6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z" fill="#0055FF"/>
+                        <path d="M12 6c-3.314 0-6 2.686-6 6s2.686 6 6 6 6-2.686 6-6-2.686-6-6-6zm0 10c-2.209 0-4-1.791-4-4s1.791-4 4-4 4 1.791 4 4-1.791 4-4 4z" fill="#0055FF"/>
+                      </svg>
+                      framer-motion
+                    </h4>
                     <ul className="text-sm text-indigo-800 dark:text-indigo-300 space-y-1 ml-4 list-disc">
                       <li>Motion components (motion.div, motion.button, etc.)</li>
                       <li>Animation variants</li>
@@ -159,7 +184,12 @@ export default function StyleCommandPage() {
                     </ul>
                   </div>
                   <div className="p-4 bg-blue-50 dark:bg-blue-950/20 rounded-xl border border-blue-200 dark:border-blue-800 sm:col-span-2">
-                    <h4 className="font-semibold text-blue-900 dark:text-blue-200 mb-2">Material UI</h4>
+                    <h4 className="font-semibold text-blue-900 dark:text-blue-200 mb-2 flex items-center gap-2">
+                      <svg className="w-5 h-5" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M0 2.475v10.39l3 1.733V7.67l6 3.465v6.928l6 3.465v-6.928l-6-3.465V3.402L0 2.475zm21 0v10.39l3 1.733V7.67l-6-3.465v6.928l-6 3.465v-6.928L21 3.402V2.475z" fill="#007FFF"/>
+                      </svg>
+                      Material UI
+                    </h4>
                     <ul className="text-sm text-blue-800 dark:text-blue-300 space-y-1 ml-4 list-disc">
                       <li>Material UI components used (Button, TextField, Card, etc.)</li>
                       <li>Material UI packages imported (@mui/material, @material-ui/core, etc.)</li>
@@ -170,6 +200,46 @@ export default function StyleCommandPage() {
                       <li>System props on Box/Stack components</li>
                     </ul>
                   </div>
+                  <div className="p-4 bg-emerald-50 dark:bg-emerald-950/20 rounded-xl border border-emerald-200 dark:border-emerald-800 sm:col-span-2">
+                    <h4 className="font-semibold text-emerald-900 dark:text-emerald-200 mb-2 flex items-center gap-2">
+                      <svg className="w-5 h-5" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" stroke="#10B981" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" fill="none"/>
+                      </svg>
+                      ShadCN/UI
+                    </h4>
+                    <ul className="text-sm text-emerald-800 dark:text-emerald-300 space-y-1 ml-4 list-disc">
+                      <li>ShadCN component names and patterns</li>
+                      <li>Component structure (compound components)</li>
+                      <li>Variant system usage</li>
+                      <li>Tailwind classes used with ShadCN components</li>
+                      <li>Form components with React Hook Form</li>
+                      <li>Theme support patterns</li>
+                      <li>Custom component modifications</li>
+                    </ul>
+                  </div>
+                  <div className="p-4 bg-teal-50 dark:bg-teal-950/20 rounded-xl border border-teal-200 dark:border-teal-800 sm:col-span-2">
+                    <h4 className="font-semibold text-teal-900 dark:text-teal-200 mb-2 flex items-center gap-2">
+                      <svg className="w-5 h-5" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <circle cx="12" cy="12" r="10" stroke="#14B8A6" strokeWidth="2" fill="none"/>
+                        <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z" fill="#14B8A6"/>
+                      </svg>
+                      Radix UI
+                    </h4>
+                    <ul className="text-sm text-teal-800 dark:text-teal-300 space-y-1 ml-4 list-disc">
+                      <li>Radix UI primitives (@radix-ui/* packages)</li>
+                      <li>Component patterns (Dialog, DropdownMenu, Popover, etc.)</li>
+                      <li>Accessibility features</li>
+                      <li>Compound component patterns</li>
+                      <li>Controlled/uncontrolled state patterns</li>
+                      <li>Custom styling applied to Radix primitives</li>
+                      <li>Tailwind integration with Radix</li>
+                    </ul>
+                  </div>
+                </div>
+                <div className="mt-4 pt-4 border-t border-gray-200 dark:border-gray-700">
+                  <p className="text-xs text-gray-500 dark:text-gray-400 italic text-center">
+                    All trademarks and logos are the property of their respective owners. LogicStamp is an independent open-source project and is not affiliated with or endorsed by the listed frameworks.
+                  </p>
                 </div>
               </div>
 
@@ -506,6 +576,25 @@ stamp context --include-style`
           "usesSxProp": true,
           "usesSystemProps": true
         }
+      },
+      "shadcn": {
+        "components": ["Button", "Card", "Dialog"],
+        "variants": {
+          "Button": ["default", "destructive", "outline"],
+          "Card": ["custom-variant"]
+        },
+        "features": {
+          "usesForms": true,
+          "usesTheme": true
+        }
+      },
+      "radix": {
+        "packages": ["@radix-ui/react-dialog", "@radix-ui/react-dropdown-menu"],
+        "components": ["Dialog", "DialogTrigger", "DialogContent", "DropdownMenu"],
+        "features": {
+          "accessibility": true,
+          "compoundComponents": true
+        }
       }
     },
     "layout": {
@@ -569,6 +658,25 @@ stamp context --include-style`
           "usesSxProp": true,
           "usesSystemProps": true
         }
+      },
+      "shadcn": {
+        "components": ["Button", "Card", "Dialog"],
+        "variants": {
+          "Button": ["default", "destructive", "outline"],
+          "Card": ["custom-variant"]
+        },
+        "features": {
+          "usesForms": true,
+          "usesTheme": true
+        }
+      },
+      "radix": {
+        "packages": ["@radix-ui/react-dialog", "@radix-ui/react-dropdown-menu"],
+        "components": ["Dialog", "DialogTrigger", "DialogContent", "DropdownMenu"],
+        "features": {
+          "accessibility": true,
+          "compoundComponents": true
+        }
       }
     },
     "layout": {
@@ -606,6 +714,8 @@ stamp context --include-style`
                       <li><code className="px-1 py-0.5 bg-gray-100 dark:bg-gray-800 rounded text-xs font-mono">styledComponents</code> – Object with component names and theme usage</li>
                       <li><code className="px-1 py-0.5 bg-gray-100 dark:bg-gray-800 rounded text-xs font-mono">motion</code> – Object with framer-motion components and features</li>
                       <li><code className="px-1 py-0.5 bg-gray-100 dark:bg-gray-800 rounded text-xs font-mono">materialUI</code> – Object with Material UI components, packages, and styling features</li>
+                      <li><code className="px-1 py-0.5 bg-gray-100 dark:bg-gray-800 rounded text-xs font-mono">shadcn</code> – Object with ShadCN/UI components, variants, and features</li>
+                      <li><code className="px-1 py-0.5 bg-gray-100 dark:bg-gray-800 rounded text-xs font-mono">radix</code> – Object with Radix UI packages, components, and accessibility features</li>
                     </ul>
                   </div>
                   <div>
@@ -908,7 +1018,9 @@ stamp context compare old/context_main.json new/context_main.json`
      - Tailwind: 10 components
      - SCSS modules: 3 components
      - framer-motion: 2 components
-     - Material UI: 5 components`,
+     - Material UI: 5 components
+     - ShadCN/UI: 4 components
+     - Radix UI: 3 components`,
                         copyText: `$ stamp context style
 
 🔍 Scanning /path/to/project...
@@ -924,7 +1036,10 @@ stamp context compare old/context_main.json new/context_main.json`
    Style sources detected:
      - Tailwind: 10 components
      - SCSS modules: 3 components
-     - framer-motion: 2 components`
+     - framer-motion: 2 components
+     - Material UI: 5 components
+     - ShadCN/UI: 4 components
+     - Radix UI: 3 components`
                       }
                     ]}
                   />

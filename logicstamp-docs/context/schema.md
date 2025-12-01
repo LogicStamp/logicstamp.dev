@@ -35,6 +35,7 @@ interface UIFContract {
     events: Record<string, EventSignature>;
     state: Record<string, StateSignature>;
   };
+  exports?: "default" | "named" | { named: string[] };  // Optional export metadata
   style?: StyleMetadata;  // Optional style metadata (when --include-style is used)
   semanticHash: string; // Format: "uif:..." (24 hex chars)
   fileHash: string;     // Format: "uif:..." (24 hex chars)
@@ -194,6 +195,7 @@ interface PageLayoutMetadata {
 | `logicSignature.props` | `object` | ✅ | Component props |
 | `logicSignature.events` | `object` | ✅ | Component events |
 | `logicSignature.state` | `object` | ✅ | Component state |
+| `exports` | `string \| object` | ❌ | Export metadata: `"default"`, `"named"`, or `{ named: string[] }` |
 | `style` | `StyleMetadata` | ❌ | Style metadata (only when `--include-style` is used) |
 | `semanticHash` | `string` | ✅ | Logic-based hash (uif:...) |
 | `fileHash` | `string` | ✅ | Content-based hash (uif:...) |
@@ -251,7 +253,7 @@ Page-level layout information:
 
 **Note:** Style metadata is only included when style information is detected. Components without style usage will not have a `style` field.
 
-See [STYLE.md](./cli/STYLE.md) for comprehensive documentation on style metadata extraction.
+See [style.md](./cli/style.md) for comprehensive documentation on style metadata extraction.
 
 ## LogicStampBundle Schema
 
@@ -275,7 +277,7 @@ interface LogicStampBundle {
   };
   meta: {
     missing: MissingDependency[];
-    source: string;  // Tool version (e.g., "logicstamp-context@0.2.4")
+    source: string;  // Tool version (e.g., "logicstamp-context@0.2.6")
   };
 }
 
@@ -334,6 +336,7 @@ interface MissingDependency {
             "events": {},
             "state": {}
           },
+          "exports": "default",
           "semanticHash": "uif:1a27d0944bbaaf561ee05a01",
           "fileHash": "uif:1f0fa0e2c8958d7fc1696036",
           "style": {
@@ -380,7 +383,7 @@ interface MissingDependency {
         "referencedBy": "src/components/Button.tsx"
       }
     ],
-    "source": "logicstamp-context@0.2.4"
+    "source": "logicstamp-context@0.2.6"
   }
 }
 ```
@@ -475,7 +478,7 @@ interface FolderEntry {
     }
   ],
   "meta": {
-    "source": "logicstamp-context@0.2.4"
+    "source": "logicstamp-context@0.2.6"
   }
 }
 ```
@@ -527,7 +530,7 @@ All hashes in LogicStamp follow consistent formats:
 - **Based on:** Bundle structure (nodes, depth, schema version)
 - **Changes when:** Any component's semantic hash changes, or bundle structure changes
 
-See [HASHES.md](./HASHES.md) for detailed information about hash computation.
+See [hashes.md](./hashes.md) for detailed information about hash computation.
 
 ## Validation
 
@@ -580,8 +583,8 @@ This enables:
 
 ## See Also
 
-- [UIF_CONTRACTS.md](./UIF_CONTRACTS.md) – Detailed UIF contract documentation
-- [HASHES.md](./HASHES.md) – Hash computation and formats
-- [VALIDATE.md](./VALIDATE.md) – Schema validation guide
-- [USAGE.md](./USAGE.md) – How to generate context files
+- [uif_contracts.md](./uif_contracts.md) – Detailed UIF contract documentation
+- [hashes.md](./hashes.md) – Hash computation and formats
+- [validate.md](./cli/validate.md) – Schema validation guide
+- [usage.md](./usage.md) – How to generate context files
 
