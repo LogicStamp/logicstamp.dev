@@ -1,10 +1,10 @@
 'use client'
 import { useState, useEffect, Fragment } from 'react'
 import { usePathname } from 'next/navigation'
-import LogicStampLogo from './LogicStampLogo'
-import LogicStampWordmark from './LogicStampWordmark'
-import ThemeToggle from './ui/ThemeToggle'
-import GetStartedButton from './ui/GetStartedButton'
+import LogicStampLogo from '../branding/LogicStampLogo'
+import LogicStampWordmark from '../branding/LogicStampWordmark'
+import ThemeToggle from '../ui/ThemeToggle'
+import GetStartedButton from '../ui/GetStartedButton'
 
 export default function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
@@ -244,3 +244,16 @@ export default function Header() {
     </>
   )
 }
+
+
+
+
+
+
+
+
+
+
+
+
+

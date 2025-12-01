@@ -11,7 +11,7 @@
 [![Tailwind CSS](https://img.shields.io/badge/Tailwind-3.4-38bdf8)](https://tailwindcss.com/)
 [![License](https://img.shields.io/badge/License-MIT-green.svg)](./LICENSE)
 
-[Website](https://logicstamp.dev) • [Documentation](./logicstamp-docs/) • [GitHub](https://github.com/LogicStamp/logicstamp-context) • [Contributing](./CONTRIBUTING.md)
+[Website](https://logicstamp.dev) • [Documentation](./docs/) • [GitHub](https://github.com/LogicStamp/logicstamp-context) • [Contributing](./CONTRIBUTING.md)
 
 </div>
 
@@ -160,7 +160,7 @@ logicstamp.dev/
 │   ├── hooks/                  # Custom React hooks
 │   └── styles/                 # Global styles and themes
 ├── __tests__/                  # Test files
-├── logicstamp-docs/            # Documentation source files
+├── docs/                       # Documentation source files
 ├── public/                     # Static assets
 ├── next.config.js              # Next.js configuration
 ├── tailwind.config.ts          # Tailwind CSS configuration
@@ -173,9 +173,9 @@ logicstamp.dev/
 
 Comprehensive documentation is available both on the site and in the repository:
 
-- **[Getting Started Guide](./logicstamp-docs/USAGE.md)** - Quick start with LogicStamp
-- **[CLI Commands](./logicstamp-docs/cli/)** - Complete command reference
-- **[Schema Documentation](./logicstamp-docs/SCHEMA.md)** - Context file schema
+- **[Getting Started Guide](./docs/context/usage.md)** - Quick start with LogicStamp
+- **[CLI Commands](./docs/context/cli/)** - Complete command reference
+- **[Schema Documentation](./docs/context/schema.md)** - Context file schema
 - **[Best Practices](./src/app/docs/best-practices/page.tsx)** - Development best practices
 
 Visit the [documentation section](./src/app/docs/) on the site for the full documentation experience.
@@ -201,7 +201,6 @@ We welcome contributions! Please see our [Contributing Guide](./CONTRIBUTING.md)
 
 Before contributing, please read:
 - [CONTRIBUTING.md](./CONTRIBUTING.md) - Contribution guidelines
-- [BRANCHING_STRATEGY.md](./BRANCHING_STRATEGY.md) - Git workflow
 - [ENV_SETUP.md](./ENV_SETUP.md) - Environment setup
 
 ## Related Projects
@@ -219,8 +218,7 @@ This project is licensed under the MIT License - see the [LICENSE](./LICENSE) fi
 
 ## Support
 
-- 📖 [Documentation](./logicstamp-docs/)
-- 💬 [GitHub Discussions](https://github.com/LogicStamp/logicstamp-context/discussions)
+- 📖 [Documentation](./docs/)
 - 🐛 [Issue Tracker](https://github.com/LogicStamp/logicstamp-context/issues)
 - 📧 [Contact](https://logicstamp.dev)
 

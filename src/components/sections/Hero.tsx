@@ -2,10 +2,10 @@
 
 import { useEffect, useRef, useState, forwardRef } from 'react'
 import CopyButton from '../ui/CopyButton'
-import GitHubStats from '../GitHubStats'
+import GitHubStats from '../common/GitHubStats'
 import StarGitHubButton from '../ui/StarGitHubButton'
 import ReadTheDocsButton from '../ui/ReadTheDocsButton'
-import HeroVisualization from '../HeroVisualization'
+import HeroVisualization from '../features/HeroVisualization'
 import CommunityCTA from './CommunityCTA'
 
 // Custom hook for intersection observer
@@ -316,3 +316,17 @@ export default function Hero() {
     </section>
   )
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,9 +1,9 @@
 import { Metadata } from 'next'
 import Link from 'next/link'
-import Footer from '@/components/Footer'
-import AnimatedSection from '@/components/AnimatedSection'
-import DocsLayout from '@/components/DocsLayout'
-import TabbedCodeBlock from '@/components/TabbedCodeBlock'
+import Footer from '@/components/layout/Footer'
+import AnimatedSection from '@/components/common/AnimatedSection'
+import DocsLayout from '@/components/docs/DocsLayout'
+import TabbedCodeBlock from '@/components/docs/TabbedCodeBlock'
 
 export const metadata: Metadata = {
   title: 'LogicStamp Context Commands | Documentation',
@@ -511,5 +511,19 @@ stamp context clean --all --yes`
     </>
   )
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 

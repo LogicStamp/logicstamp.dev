@@ -1,7 +1,7 @@
 'use client'
 
 import { useEffect, useRef, useState } from 'react'
-import AnimatedSection from '../AnimatedSection'
+import AnimatedSection from '../common/AnimatedSection'
 
 // Framework logos as SVG components
 const ReactIcon = () => (
@@ -458,3 +458,16 @@ export default function Integrations() {
     </section>
   )
 }
+
+
+
+
+
+
+
+
+
+
+
+
+

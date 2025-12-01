@@ -1,8 +1,8 @@
 'use client'
 
-import { useState, useEffect, useRef } from 'react'
+import React, { useState, useEffect, useRef } from 'react'
 import { ChevronRight, Upload, Play, FileCode2, Zap, Package, Code2 } from 'lucide-react'
-import CopyButton from './ui/CopyButton'
+import CopyButton from '../ui/CopyButton'
 
 // Custom hook for intersection observer
 function useInView(threshold = 0.1) {
@@ -1056,3 +1056,16 @@ export default function Demo() {
     </section>
   )
 }
+
+
+
+
+
+
+
+
+
+
+
+
+

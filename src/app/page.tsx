@@ -6,7 +6,7 @@ import Integrations from '@/components/sections/Integrations'
 // import Testimonials from '@/components/Testimonials'
 import FAQ from '@/components/sections/FAQ'
 import GetStarted from '@/components/sections/GetStarted'
-import Footer from '@/components/Footer'
+import Footer from '@/components/layout/Footer'
 
 export default function Home() {
   return (
@@ -23,3 +23,17 @@ export default function Home() {
     </main>
   )
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+

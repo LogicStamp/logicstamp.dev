@@ -1,6 +1,6 @@
 import { Metadata } from 'next'
-import Footer from '@/components/Footer'
-import AnimatedSection from '@/components/AnimatedSection'
+import Footer from '@/components/layout/Footer'
+import AnimatedSection from '@/components/common/AnimatedSection'
 
 export const metadata: Metadata = {
   title: 'MIT License | LogicStamp',
@@ -52,4 +52,18 @@ export default function LicensePage() {
     </main>
   )
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 

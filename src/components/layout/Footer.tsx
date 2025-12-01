@@ -2,10 +2,10 @@
 
 import { FormEvent, useState } from 'react'
 import Image from 'next/image'
-import AnimatedSection from './AnimatedSection'
-import LogicStampLogo from './LogicStampLogo'
-import LogicStampWordmark from './LogicStampWordmark'
-import ThemeToggle from './ui/ThemeToggle'
+import AnimatedSection from '@/components/common/AnimatedSection'
+import LogicStampLogo from '../branding/LogicStampLogo'
+import LogicStampWordmark from '../branding/LogicStampWordmark'
+import ThemeToggle from '../ui/ThemeToggle'
 
 const navigation = {
   product: [
@@ -80,7 +80,7 @@ export default function Footer() {
   }
 
   return (
-    <footer className="border-t border-gray-200/70 dark:border-gray-800/80 bg-white/80 dark:bg-gray-950/60 backdrop-blur">
+    <footer data-testid="footer" className="border-t border-gray-200/70 dark:border-gray-800/80 bg-white/80 dark:bg-gray-950/60 backdrop-blur">
       {/* Faint gradient accent line */}
       <div className="h-px w-full bg-gradient-to-r from-transparent via-primary-200/60 dark:via-secondary-700/60 to-transparent" />
 
@@ -285,3 +285,17 @@ export default function Footer() {
     </footer>
   )
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+

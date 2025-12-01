@@ -1,7 +1,7 @@
 'use client'
 import { useEffect, useRef, useState } from 'react'
-import AnimatedSection from '../AnimatedSection'
-import AnimatedCounter from '../AnimatedCounter'
+import AnimatedSection from '../common/AnimatedSection'
+import AnimatedCounter from '../common/AnimatedCounter'
 
 const stats = [
   {
@@ -107,3 +107,17 @@ export default function Stats() {
     </section>
   )
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+

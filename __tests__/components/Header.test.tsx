@@ -1,7 +1,7 @@
 import { describe, it, expect, vi, beforeEach } from 'vitest'
 import { render, screen, waitFor } from '../utils/test-utils'
 import userEvent from '@testing-library/user-event'
-import Header from '@/components/Header'
+import Header from '@/components/layout/Header'
 
 // Mock Next.js navigation
 const mockUsePathname = vi.fn()
@@ -14,7 +14,7 @@ vi.mock('next/navigation', async () => {
 })
 
 // Mock child components
-vi.mock('@/components/LogicStampLogo', () => ({
+vi.mock('@/components/branding/LogicStampLogo', () => ({
   default: ({ className, size }: { className?: string; size?: number }) => (
     <div data-testid="logo" className={className} data-size={size}>
       Logo
@@ -22,7 +22,7 @@ vi.mock('@/components/LogicStampLogo', () => ({
   ),
 }))
 
-vi.mock('@/components/LogicStampWordmark', () => ({
+vi.mock('@/components/branding/LogicStampWordmark', () => ({
   default: ({ className, height }: { className?: string; height?: number }) => (
     <div data-testid="wordmark" className={className} data-height={height}>
       Wordmark

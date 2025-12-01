@@ -1,7 +1,7 @@
 import { Metadata } from 'next'
-import Footer from '@/components/Footer'
-import AnimatedSection from '@/components/AnimatedSection'
-import DocsLayout from '@/components/DocsLayout'
+import Footer from '@/components/layout/Footer'
+import AnimatedSection from '@/components/common/AnimatedSection'
+import DocsLayout from '@/components/docs/DocsLayout'
 
 export const metadata: Metadata = {
   title: 'Hashes | LogicStamp Context Documentation',
@@ -551,5 +551,19 @@ export default function HashesPage() {
     </>
   )
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 

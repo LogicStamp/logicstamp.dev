@@ -1,7 +1,7 @@
 import { Metadata } from 'next'
-import Demo from '@/components/Demo'
-import Footer from '@/components/Footer'
-import AnimatedSection from '@/components/AnimatedSection'
+import Demo from '@/components/features/Demo'
+import Footer from '@/components/layout/Footer'
+import AnimatedSection from '@/components/common/AnimatedSection'
 
 export const metadata: Metadata = {
   title: 'Try LogicStamp Context | Interactive Demo',
@@ -18,4 +18,18 @@ export default function DemoPage() {
     </main>
   )
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 

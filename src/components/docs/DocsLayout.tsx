@@ -2,8 +2,8 @@
 
 import { useState, useEffect, useRef } from 'react'
 import { usePathname } from 'next/navigation'
-import DocsSidebar from '@/components/DocsSidebar'
-import DocsTOC from '@/components/DocsTOC'
+import DocsSidebar from './DocsSidebar'
+import DocsTOC from './DocsTOC'
 
 export default function DocsLayout({ children }: { children: React.ReactNode }) {
   const [sidebarOpen, setSidebarOpen] = useState(false)
@@ -184,5 +184,19 @@ export default function DocsLayout({ children }: { children: React.ReactNode }) 
     </div>
   )
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
