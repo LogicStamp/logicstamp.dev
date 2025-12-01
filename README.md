@@ -69,6 +69,28 @@ Create a `.env.local` file in the root directory:
 NEXT_PUBLIC_SITE_URL=http://localhost:3000
 ```
 
+### Using LogicStamp CLI
+
+Generate context bundles for your project:
+
+```bash
+# Generate context bundles
+stamp context
+
+# Generate with style metadata
+stamp context style
+
+# Generate with preview first
+stamp context --preview
+```
+
+**Common commands:**
+- `stamp context` - Generate context bundles
+- `stamp context style` - Generate with style metadata (Tailwind, SCSS, etc.)
+- `stamp context --preview` - Preview before generating
+
+For more information, see the [LogicStamp CLI documentation](./docs/context/cli/).
+
 ### Development
 
 Start the development server:
