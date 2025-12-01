@@ -38,7 +38,7 @@ const docSections = [
     pages: [
       {
         title: 'CLI Docs Hub',
-        href: '/docs/logicstamp-context',
+        href: '/docs/cli',
         description: 'Commands, usage examples, token optimization, drift detection, and schema reference. CI-friendly: never prompts, respects preferences from stamp init.',
       },
     ],

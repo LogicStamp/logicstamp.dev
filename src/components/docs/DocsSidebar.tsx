@@ -21,10 +21,7 @@ const sections: DocsNavSection[] = [
     items: [
       { title: 'Docs Home', href: '/docs' },
       { title: 'What is LogicStamp?', href: '/docs/what-is-logicstamp' },
-      { title: 'Complete Reference', href: '/docs/complete-reference' },
-      { title: 'Known Limitations', href: '/docs/complete-reference/known-limitations' },
       { title: 'MCP Server (Coming Soon)', href: '/docs/mcp' },
-      { title: 'CLI Hub', href: '/docs/logicstamp-context' },
     ],
   },
   {
@@ -32,8 +29,17 @@ const sections: DocsNavSection[] = [
     items: [{ title: 'Installation & Quick Start', href: '/docs/getting-started' }],
   },
   {
+    title: 'Reference',
+    items: [
+      { title: 'Reference', href: '/docs/reference' },
+      { title: 'Complete Reference', href: '/docs/complete-reference' },
+      { title: 'Known Limitations', href: '/docs/complete-reference/known-limitations' },
+    ],
+  },
+  {
     title: 'CLI',
     items: [
+      { title: 'CLI Hub', href: '/docs/cli' },
       { title: 'CLI Commands', href: '/docs/logicstamp-context/commands' },
       { title: '`init` command', href: '/docs/logicstamp-context/init' },
       { title: '`context` command', href: '/docs/logicstamp-context/context' },
@@ -67,6 +73,8 @@ function isActive(pathname: string, href: string) {
   if (href === '/docs') return pathname === '/docs'
   // Complete Reference should only match exactly, not sub-paths
   if (href === '/docs/complete-reference') return pathname === '/docs/complete-reference'
+  // Reference page should match exactly
+  if (href === '/docs/reference') return pathname === '/docs/reference'
   return pathname === href || pathname.startsWith(href + '/')
 }
 
@@ -108,6 +116,24 @@ function getIcon(href: string): ReactNode {
     )
   }
 
+  if (href === '/docs/reference') {
+    // Reference / book icon
+    return (
+      <svg
+        className="w-3.5 h-3.5"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth={2}
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      >
+        <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20" />
+        <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z" />
+      </svg>
+    )
+  }
+
   if (href === '/docs/complete-reference') {
     // Book / reference icon
     return (
@@ -145,7 +171,7 @@ function getIcon(href: string): ReactNode {
     )
   }
 
-  if (href === '/docs/logicstamp-context') {
+  if (href === '/docs/cli') {
     // Terminal / CLI icon
     return (
       <svg
@@ -386,6 +412,7 @@ export default function DocsSidebar() {
   const pathname = usePathname()
   const [isCliOpen, setIsCliOpen] = useState(false)
   const [isGuidesOpen, setIsGuidesOpen] = useState(false)
+  const [isReferenceOpen, setIsReferenceOpen] = useState(false)
 
   // Auto-open CLI section if any CLI item is active
   useEffect(() => {
@@ -405,6 +432,17 @@ export default function DocsSidebar() {
       const hasActiveGuidesItem = guidesSection.items.some((item) => isActive(pathname, item.href))
       if (hasActiveGuidesItem) {
         setIsGuidesOpen(true)
+      }
+    }
+  }, [pathname])
+
+  // Auto-open Reference section if any Reference item is active
+  useEffect(() => {
+    const referenceSection = sections.find((s) => s.title === 'Reference')
+    if (referenceSection) {
+      const hasActiveReferenceItem = referenceSection.items.some((item) => isActive(pathname, item.href))
+      if (hasActiveReferenceItem) {
+        setIsReferenceOpen(true)
       }
     }
   }, [pathname])
@@ -439,6 +477,7 @@ export default function DocsSidebar() {
         {sections.map((section) => {
           const isCliSection = section.title === 'CLI'
           const isGuidesSection = section.title === 'Guides'
+          const isReferenceSection = section.title === 'Reference'
           
           return (
             <div key={section.title}>
@@ -514,6 +553,56 @@ export default function DocsSidebar() {
                   <div
                     className={`overflow-hidden transition-all duration-300 ease-in-out ${
                       isGuidesOpen ? 'max-h-[500px] opacity-100' : 'max-h-0 opacity-0'
+                    }`}
+                  >
+                    <ul className="space-y-1">
+                      {section.items.map((item) => {
+                        const active = isActive(pathname, item.href)
+                        return (
+                          <li key={item.href}>
+                            <Link
+                              href={item.href}
+                              className={`block rounded-md border-l-2 px-2 py-1.5 transition-colors ${
+                                active
+                                  ? 'border-blue-500 bg-blue-50 text-blue-700 font-semibold dark:border-blue-400 dark:bg-blue-900/40 dark:text-blue-200'
+                                  : 'border-transparent text-gray-700 hover:border-gray-300 hover:bg-gray-100 hover:text-blue-700 dark:border-transparent dark:text-gray-300 dark:hover:border-gray-700 dark:hover:bg-gray-800 dark:hover:text-blue-200'
+                              }`}
+                            >
+                              <span className="flex items-center gap-2">
+                                <span className="inline-flex items-center justify-center text-gray-400 dark:text-gray-500">
+                                  {getIcon(item.href)}
+                                </span>
+                                <span>{item.title}</span>
+                              </span>
+                            </Link>
+                          </li>
+                        )
+                      })}
+                    </ul>
+                  </div>
+                </>
+              ) : isReferenceSection ? (
+                <>
+                  <div className="mb-2 flex items-center gap-2">
+                    <button
+                      onClick={() => setIsReferenceOpen(!isReferenceOpen)}
+                      className="flex items-center justify-center w-6 h-6 rounded border border-gray-300 dark:border-gray-600 text-gray-600 dark:text-gray-400 text-sm font-normal transition-colors hover:border-gray-400 dark:hover:border-gray-500 focus:outline-none"
+                      aria-expanded={isReferenceOpen}
+                      aria-label={isReferenceOpen ? 'Collapse Reference section' : 'Expand Reference section'}
+                    >
+                      {isReferenceOpen ? '−' : '+'}
+                    </button>
+                    <button
+                      onClick={() => setIsReferenceOpen(!isReferenceOpen)}
+                      className="text-xs font-semibold uppercase tracking-wide text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-300 cursor-pointer focus:outline-none"
+                      aria-label={isReferenceOpen ? 'Collapse Reference section' : 'Expand Reference section'}
+                    >
+                      {section.title}
+                    </button>
+                  </div>
+                  <div
+                    className={`overflow-hidden transition-all duration-300 ease-in-out ${
+                      isReferenceOpen ? 'max-h-[500px] opacity-100' : 'max-h-0 opacity-0'
                     }`}
                   >
                     <ul className="space-y-1">

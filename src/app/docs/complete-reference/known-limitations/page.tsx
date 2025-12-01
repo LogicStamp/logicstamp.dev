@@ -33,7 +33,7 @@ export default function KnownLimitationsPage() {
               </h1>
               
               <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-gray-600 dark:text-gray-400 leading-relaxed max-w-3xl">
-                Current limitations in LogicStamp Context extraction accuracy. These areas are actively being improved in future releases.
+                Things that don't work perfectly yet. We're working on improving these areas.
               </p>
             </div>
           </div>
@@ -56,18 +56,18 @@ export default function KnownLimitationsPage() {
                   </h2>
                 </div>
                 <p className="text-base sm:text-lg text-gray-600 dark:text-gray-400 mb-4 leading-relaxed">
-                  LogicStamp Context achieves approximately <strong className="text-gray-900 dark:text-white">92% accuracy</strong> in contract extraction. While component structure, props, state, hooks, and imports are detected with high accuracy, there are specific areas where extraction may be incomplete or imprecise.
+                  LogicStamp Context is pretty accurate overall—around <strong className="text-gray-900 dark:text-white">90%</strong> of the time it gets things right. Component structure, props, state, hooks, and imports are usually detected correctly, but there are a few areas where things can be incomplete or a bit off.
                 </p>
                 <div className="grid sm:grid-cols-2 gap-3 sm:gap-4 mt-6">
                   {[
-                    { title: 'Component Contracts', accuracy: '95%', desc: 'Props, state, hooks detection' },
-                    { title: 'Imports Detection', accuracy: '100%', desc: 'All imports tracked accurately' },
-                    { title: 'Style Metadata', accuracy: '90%', desc: 'Static classes extracted well' },
-                    { title: 'Hook Signatures', accuracy: '0%', desc: 'Parameters not captured yet' }
+                    { title: 'Component Contracts', accuracy: '~95%', desc: 'Props, state, hooks detection' },
+                    { title: 'Imports Detection', accuracy: '~100%', desc: 'Imports tracked correctly' },
+                    { title: 'Style Metadata', accuracy: '~90%', desc: 'Static classes work well' },
+                    { title: 'Hook Signatures', accuracy: 'Not yet', desc: 'Parameters not captured' }
                   ].map((item, idx) => (
                     <div key={idx} className="flex items-start gap-3 p-4 bg-gray-50 dark:bg-gray-800/50 rounded-xl border border-gray-200 dark:border-gray-700">
                       <div className="flex-shrink-0">
-                        <div className="w-12 h-12 rounded-lg bg-gradient-to-br from-blue-500 to-indigo-600 flex items-center justify-center text-white font-bold text-sm">
+                        <div className="w-12 h-12 rounded-lg bg-gradient-to-br from-blue-500 to-indigo-600 flex items-center justify-center text-white font-bold text-sm text-center leading-tight">
                           {item.accuracy}
                         </div>
                       </div>
@@ -104,7 +104,7 @@ export default function KnownLimitationsPage() {
                       Issue
                     </h3>
                     <p className="text-sm sm:text-base text-gray-600 dark:text-gray-400 mb-4 leading-relaxed">
-                      Custom React hooks are detected and listed in the <code className="px-2 py-1 bg-gray-100 dark:bg-gray-800 rounded text-sm font-mono">version.hooks</code> array, but their function parameters are not extracted. The contract shows <code className="px-2 py-1 bg-gray-100 dark:bg-gray-800 rounded text-sm font-mono">props: {}</code> even when the hook accepts parameters.
+                      We can detect custom React hooks and list them in the <code className="px-2 py-1 bg-gray-100 dark:bg-gray-800 rounded text-sm font-mono">version.hooks</code> array, but we don't capture what parameters they take. The contract will show <code className="px-2 py-1 bg-gray-100 dark:bg-gray-800 rounded text-sm font-mono">props: {}</code> even if the hook actually accepts parameters.
                     </p>
                   </div>
 
@@ -154,7 +154,7 @@ export default function KnownLimitationsPage() {
 
                   <div className="p-4 bg-amber-50 dark:bg-amber-950/20 rounded-lg border border-amber-200 dark:border-amber-800">
                     <p className="text-sm text-amber-800 dark:text-amber-300">
-                      <strong>Impact:</strong> Hook parameters are not captured, making it difficult to understand the hook's API without reading the source code.
+                      <strong>Impact:</strong> You'll need to check the source code to see what parameters a hook takes—the context file won't tell you.
                     </p>
                   </div>
                 </div>
@@ -184,7 +184,7 @@ export default function KnownLimitationsPage() {
                       Issue
                     </h3>
                     <p className="text-sm sm:text-base text-gray-600 dark:text-gray-400 mb-4 leading-relaxed">
-                      LogicStamp may misclassify internal event handlers as component emits. Internal handlers (like <code className="px-2 py-1 bg-gray-100 dark:bg-gray-800 rounded text-sm font-mono">onClick</code> that only update internal state) are sometimes listed in the <code className="px-2 py-1 bg-gray-100 dark:bg-gray-800 rounded text-sm font-mono">emits</code> object, even though they are not part of the component's public API.
+                      Sometimes we get confused about what's an internal handler vs. a real component emit. If you have an <code className="px-2 py-1 bg-gray-100 dark:bg-gray-800 rounded text-sm font-mono">onClick</code> that just updates internal state, it might still show up in the <code className="px-2 py-1 bg-gray-100 dark:bg-gray-800 rounded text-sm font-mono">emits</code> object even though it's not part of the component's public API.
                     </p>
                   </div>
 
@@ -244,7 +244,7 @@ export default function KnownLimitationsPage() {
 
                   <div className="p-4 bg-red-50 dark:bg-red-950/20 rounded-lg border border-red-200 dark:border-red-800">
                     <p className="text-sm text-red-800 dark:text-red-300">
-                      <strong>Impact:</strong> Internal handlers are misclassified as component emits, creating confusion about what events the component actually exposes to parent components.
+                      <strong>Impact:</strong> You might see internal handlers listed as emits, which can be confusing when trying to figure out what events the component actually exposes.
                     </p>
                   </div>
                 </div>
@@ -274,7 +274,7 @@ export default function KnownLimitationsPage() {
                       Issue
                     </h3>
                     <p className="text-sm sm:text-base text-gray-600 dark:text-gray-400 mb-4 leading-relaxed">
-                      Style metadata extraction works well for static Tailwind classes, but does not parse template literals or variable concatenation. Classes stored in variables or constructed dynamically are not extracted.
+                      Style extraction works great for static Tailwind classes, but we can't parse template literals or classes that are built from variables. If you're storing classes in variables or building them dynamically, those won't show up in the style metadata.
                     </p>
                   </div>
 
@@ -340,7 +340,7 @@ export default function KnownLimitationsPage() {
 
                   <div className="p-4 bg-indigo-50 dark:bg-indigo-950/20 rounded-lg border border-indigo-200 dark:border-indigo-800">
                     <p className="text-sm text-indigo-800 dark:text-indigo-300">
-                      <strong>Impact:</strong> Expected limitation. Dynamic class strings stored in variables are not parsed, so style metadata may be incomplete for components using this pattern.
+                      <strong>Impact:</strong> This is expected—we just can't parse dynamic classes yet. If you build classes from variables, the style metadata will be incomplete.
                     </p>
                   </div>
                 </div>
@@ -370,7 +370,7 @@ export default function KnownLimitationsPage() {
                       Issue
                     </h3>
                     <p className="text-sm sm:text-base text-gray-600 dark:text-gray-400 mb-4 leading-relaxed">
-                      Custom React hooks are sometimes classified as <code className="px-2 py-1 bg-gray-100 dark:bg-gray-800 rounded text-sm font-mono">react:component</code> instead of <code className="px-2 py-1 bg-gray-100 dark:bg-gray-800 rounded text-sm font-mono">react:hook</code>. This makes it harder to distinguish hooks from components in the context output.
+                      Custom hooks sometimes get labeled as <code className="px-2 py-1 bg-gray-100 dark:bg-gray-800 rounded text-sm font-mono">react:component</code> instead of <code className="px-2 py-1 bg-gray-100 dark:bg-gray-800 rounded text-sm font-mono">react:hook</code>. Makes it harder to tell hooks apart from components when you're looking at the context.
                     </p>
                   </div>
 
@@ -421,7 +421,7 @@ export default function KnownLimitationsPage() {
 
                   <div className="p-4 bg-green-50 dark:bg-green-950/20 rounded-lg border border-green-200 dark:border-green-800">
                     <p className="text-sm text-green-800 dark:text-green-300">
-                      <strong>Impact:</strong> Hooks are misclassified as components, making it harder to distinguish between hooks and components when reviewing context files.
+                      <strong>Impact:</strong> Hooks and components can look the same in context files, which makes it trickier to tell them apart.
                     </p>
                   </div>
                 </div>
@@ -447,7 +447,7 @@ export default function KnownLimitationsPage() {
                 
                 <div className="space-y-4">
                   <p className="text-base sm:text-lg text-gray-600 dark:text-gray-400 leading-relaxed">
-                    LogicStamp Context provides <strong className="text-gray-900 dark:text-white">highly accurate</strong> extraction for:
+                    What works really well:
                   </p>
                   
                   <div className="grid sm:grid-cols-2 gap-4">
@@ -481,7 +481,7 @@ export default function KnownLimitationsPage() {
 
                   <div className="mt-6 p-4 bg-blue-50 dark:bg-blue-950/20 rounded-lg border border-blue-200 dark:border-blue-800">
                     <p className="text-sm text-blue-800 dark:text-blue-300">
-                      <strong>Overall accuracy: 92%</strong> — Strong foundation with room for refinement. These limitations are actively being addressed in future releases.
+                      <strong>Bottom line:</strong> We're hitting around 90% accuracy overall. Solid foundation, but there's definitely room to improve. These issues are on our roadmap.
                     </p>
                   </div>
                 </div>
