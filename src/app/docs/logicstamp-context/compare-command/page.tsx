@@ -1,8 +1,8 @@
 import { Metadata } from 'next'
-import Footer from '@/components/Footer'
-import AnimatedSection from '@/components/AnimatedSection'
-import DocsLayout from '@/components/DocsLayout'
-import TabbedCodeBlock from '@/components/TabbedCodeBlock'
+import Footer from '@/components/layout/Footer'
+import AnimatedSection from '@/components/common/AnimatedSection'
+import DocsLayout from '@/components/docs/DocsLayout'
+import TabbedCodeBlock from '@/components/docs/TabbedCodeBlock'
 
 export const metadata: Metadata = {
   title: '`compare` Command | LogicStamp Context Documentation',
@@ -258,5 +258,19 @@ stamp context compare --approve --clean-orphaned`
     </>
   )
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 

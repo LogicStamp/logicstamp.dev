@@ -2,18 +2,18 @@ import { describe, it, expect, vi, beforeEach } from 'vitest'
 import { render, screen, waitFor } from '../utils/test-utils'
 import { setupIntersectionObserverMock } from '../utils/test-utils'
 import userEvent from '@testing-library/user-event'
-import Footer from '@/components/Footer'
+import Footer from '@/components/layout/Footer'
 
 // Mock child components
-vi.mock('@/components/AnimatedSection', () => ({
+vi.mock('@/components/common/AnimatedSection', () => ({
   default: ({ children }: { children: React.ReactNode }) => <div>{children}</div>,
 }))
 
-vi.mock('@/components/LogicStampLogo', () => ({
+vi.mock('@/components/branding/LogicStampLogo', () => ({
   default: () => <div data-testid="logo">Logo</div>,
 }))
 
-vi.mock('@/components/LogicStampWordmark', () => ({
+vi.mock('@/components/branding/LogicStampWordmark', () => ({
   default: () => <div data-testid="wordmark">Wordmark</div>,
 }))
 

@@ -3,8 +3,8 @@ import { cookies } from 'next/headers'
 import { GeistSans, GeistMono } from 'geist/font'
 import { Inter } from 'next/font/google'
 import './globals.css'
-import Header from '@/components/Header'
-import ScrollToTop from '@/components/ScrollToTop'
+import Header from '@/components/layout/Header'
+import ScrollToTop from '@/components/layout/ScrollToTop'
 import ScrollToTopButton from '@/components/ui/ScrollToTopButton'
 import { ThemeProvider } from '@/contexts/ThemeContext'
 
@@ -84,3 +84,17 @@ export default function RootLayout({
     </html>
   )
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+

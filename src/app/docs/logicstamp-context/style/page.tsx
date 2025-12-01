@@ -1,8 +1,8 @@
 import { Metadata } from 'next'
-import Footer from '@/components/Footer'
-import AnimatedSection from '@/components/AnimatedSection'
-import DocsLayout from '@/components/DocsLayout'
-import TabbedCodeBlock from '@/components/TabbedCodeBlock'
+import Footer from '@/components/layout/Footer'
+import AnimatedSection from '@/components/common/AnimatedSection'
+import DocsLayout from '@/components/docs/DocsLayout'
+import TabbedCodeBlock from '@/components/docs/TabbedCodeBlock'
 import { Sparkles, FileCode, Code, Component, Zap, Box, Package, Layers } from 'lucide-react'
 
 export const metadata: Metadata = {
@@ -1112,4 +1112,18 @@ stamp context compare old/context_main.json new/context_main.json`
     </>
   )
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 

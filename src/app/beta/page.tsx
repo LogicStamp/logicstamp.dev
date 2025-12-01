@@ -1,8 +1,8 @@
 'use client'
 
 import Image from 'next/image'
-import Footer from '@/components/Footer'
-import AnimatedSection from '@/components/AnimatedSection'
+import Footer from '@/components/layout/Footer'
+import AnimatedSection from '@/components/common/AnimatedSection'
 import BetaSignup from '@/components/BetaSignup'
 import ReadTheDocsButton from '@/components/ui/ReadTheDocsButton'
 
@@ -355,3 +355,17 @@ export default function BetaPage() {
     </main>
   )
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+

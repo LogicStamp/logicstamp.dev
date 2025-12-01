@@ -1,8 +1,8 @@
 import { Metadata } from 'next'
 import Link from 'next/link'
-import Footer from '@/components/Footer'
-import AnimatedSection from '@/components/AnimatedSection'
-import DocsLayout from '@/components/DocsLayout'
+import Footer from '@/components/layout/Footer'
+import AnimatedSection from '@/components/common/AnimatedSection'
+import DocsLayout from '@/components/docs/DocsLayout'
 
 export const metadata: Metadata = {
   title: 'LogicStamp Context CLI | Documentation',
@@ -109,5 +109,19 @@ export default function LogicStampContextDocsPage() {
     </>
   )
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 

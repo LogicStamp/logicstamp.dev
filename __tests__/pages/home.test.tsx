@@ -27,7 +27,7 @@ vi.mock('@/components/sections/GetStarted', () => ({
   default: () => <div data-testid="get-started">Get Started Section</div>,
 }))
 
-vi.mock('@/components/Footer', () => ({
+vi.mock('@/components/layout/Footer', () => ({
   default: () => <div data-testid="footer">Footer Section</div>,
 }))
 

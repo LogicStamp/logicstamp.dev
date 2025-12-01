@@ -9,6 +9,7 @@ export default function LogicStampWordmark({
 }: LogicStampWordmarkProps) {
   return (
     <svg
+      data-testid="wordmark"
       className={className}
       height={height}
       viewBox="-5 0 305 40"
@@ -49,3 +50,17 @@ export default function LogicStampWordmark({
     </svg>
   )
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+

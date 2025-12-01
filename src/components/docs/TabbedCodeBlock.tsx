@@ -1,7 +1,7 @@
 'use client'
 
-import { useState, useRef, useEffect, useId } from 'react'
-import CopyButton from './ui/CopyButton'
+import React, { useState, useRef, useEffect, useId } from 'react'
+import CopyButton from '../ui/CopyButton'
 
 interface Tab {
   label: string
@@ -152,4 +152,18 @@ export default function TabbedCodeBlock({ tabs }: TabbedCodeBlockProps) {
     </div>
   )
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 

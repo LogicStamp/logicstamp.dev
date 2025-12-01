@@ -1,4 +1,4 @@
-import { useAnimatedCounter } from '../hooks/useAnimatedCounter'
+import { useAnimatedCounter } from '../../hooks/useAnimatedCounter'
 
 interface AnimatedCounterProps {
   end: number
@@ -42,3 +42,17 @@ export default function AnimatedCounter({
     </span>
   )
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+

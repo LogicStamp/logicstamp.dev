@@ -52,6 +52,7 @@ export default function LogicStampLogo({
 
   return (
     <div
+      data-testid="logo"
       className={`logicstamp-logo inline-block ${className} ${isSpinning ? 'logo-spinning' : ''}`}
       style={{ width: size, height: size }}
       onMouseEnter={handleMouseEnter}
@@ -166,3 +167,17 @@ export default function LogicStampLogo({
     </div>
   )
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+

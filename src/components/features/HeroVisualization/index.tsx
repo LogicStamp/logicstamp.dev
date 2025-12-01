@@ -185,3 +185,17 @@ const HeroVisualization = forwardRef<HTMLDivElement, HeroVisualizationProps>(
 
 export default HeroVisualization
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+

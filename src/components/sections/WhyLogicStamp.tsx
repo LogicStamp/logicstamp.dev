@@ -1,7 +1,7 @@
 'use client'
 
 import { useState, useEffect, useRef } from 'react'
-import AnimatedSection from '../AnimatedSection'
+import AnimatedSection from '../common/AnimatedSection'
 
 // Custom hook for intersection observer
 function useInView(threshold = 0.1) {
@@ -443,3 +443,16 @@ export default function WhyLogicStamp() {
     </section>
   )
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
