@@ -228,6 +228,32 @@ export default function QuickStartPage() {
                     Run the context generator to analyze your codebase and create structured bundles optimized for AI assistants.
                   </p>
 
+                  {/* Style command highlight */}
+                  <div className="bg-gradient-to-r from-purple-50 via-pink-50 to-indigo-50 dark:from-purple-950/30 dark:via-pink-950/20 dark:to-indigo-950/20 border-l-4 border-purple-500 dark:border-purple-400 p-4 sm:p-5 mb-4 sm:mb-6 rounded-r-lg shadow-sm">
+                    <div className="flex items-start gap-3">
+                      <div className="flex-shrink-0 p-1.5 bg-purple-100 dark:bg-purple-900/40 rounded-lg">
+                        <svg className="w-5 h-5 sm:w-6 sm:h-6 text-purple-600 dark:text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2v-4a2 2 0 00-2-2h-2.343M11 7.343l1.657-1.657a2 2 0 012.828 0l2.829 2.829a2 2 0 010 2.828l-8.486 8.485M7 17h.01" />
+                        </svg>
+                      </div>
+                      <div className="flex-1 min-w-0">
+                        <h4 className="font-bold text-purple-900 dark:text-purple-200 mb-1.5 sm:mb-2 text-sm sm:text-base">
+                          🎨 Generate with Style Metadata
+                        </h4>
+                        <p className="text-xs sm:text-sm text-purple-800 dark:text-purple-300 mb-2 sm:mb-3 leading-relaxed">
+                          Use <code className="px-1.5 py-0.5 bg-purple-100 dark:bg-purple-900/50 rounded font-mono text-xs font-semibold">stamp context style</code> to extract Tailwind CSS classes, SCSS modules, Material UI themes, styled-components, framer-motion animations, and layout patterns. Perfect for design-aware AI assistants that need to understand your visual system.
+                        </p>
+                        <div className="flex flex-wrap items-center gap-2 text-xs">
+                          <span className="px-2 py-1 bg-purple-100 dark:bg-purple-900/40 text-purple-700 dark:text-purple-300 rounded-full font-medium">Tailwind CSS</span>
+                          <span className="px-2 py-1 bg-purple-100 dark:bg-purple-900/40 text-purple-700 dark:text-purple-300 rounded-full font-medium">SCSS/CSS Modules</span>
+                          <span className="px-2 py-1 bg-purple-100 dark:bg-purple-900/40 text-purple-700 dark:text-purple-300 rounded-full font-medium">Material UI</span>
+                          <span className="px-2 py-1 bg-purple-100 dark:bg-purple-900/40 text-purple-700 dark:text-purple-300 rounded-full font-medium">styled-components</span>
+                          <span className="px-2 py-1 bg-purple-100 dark:bg-purple-900/40 text-purple-700 dark:text-purple-300 rounded-full font-medium">framer-motion</span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
                   {/* Visual representation of output */}
                   <div className="bg-gradient-to-br from-green-50 to-emerald-50/50 dark:from-green-950/20 dark:to-emerald-950/10 rounded-xl p-4 sm:p-6 mb-4 sm:mb-6 border border-green-200 dark:border-green-800">
                     <h4 className="font-semibold text-green-900 dark:text-green-200 mb-2 sm:mb-3 flex items-baseline gap-2 text-sm sm:text-base">
@@ -267,6 +293,11 @@ export default function QuickStartPage() {
 
                   <TabbedCodeBlock
                     tabs={[
+                      {
+                        label: 'Generate with Style',
+                        code: 'stamp context style',
+                        copyText: 'stamp context style'
+                      },
                       {
                         label: 'Generate',
                         code: 'stamp context',
@@ -443,6 +474,12 @@ export default function QuickStartPage() {
                         )
                       })}
                     </div>
+                  </div>
+
+                  <div className="mt-6 pt-6 border-t border-gray-200 dark:border-gray-700">
+                    <p className="text-xs text-gray-500 dark:text-gray-400 italic text-center">
+                      All product names, framework names, and trademarks are the property of their respective owners. LogicStamp is an independent open-source project and is not affiliated with or endorsed by the listed AI assistants, tools, or frameworks.
+                    </p>
                   </div>
 
                   <div className="bg-amber-50/50 dark:bg-amber-950/20 border-l-4 border-amber-500 p-3 sm:p-4 mb-4 sm:mb-6 rounded-r-lg">

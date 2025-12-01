@@ -331,6 +331,13 @@ claude mcp add --scope user --transport stdio logicstamp -- node C:\\Users\\Your
                   The server communicates via stdio and will automatically connect to the client.
                 </p>
               </div>
+
+              {/* Disclaimer */}
+              <div className="mt-6 pt-6 border-t border-gray-200 dark:border-gray-700">
+                <p className="text-xs text-gray-500 dark:text-gray-400 italic text-center">
+                  All product names, framework names, and trademarks are the property of their respective owners. LogicStamp is an independent open-source project and is not affiliated with or endorsed by the listed AI assistants, tools, or frameworks.
+                </p>
+              </div>
             </div>
           </AnimatedSection>
 
