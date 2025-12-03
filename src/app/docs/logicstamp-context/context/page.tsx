@@ -139,6 +139,12 @@ export default function ContextCommandPage() {
                     </svg>
                     <p className="text-sm text-blue-800 dark:text-blue-300">Use <code className="px-1.5 py-0.5 bg-blue-100 dark:bg-blue-900/40 rounded text-xs font-mono">--skip-gitignore</code> flag to skip <code className="px-1.5 py-0.5 bg-blue-100 dark:bg-blue-900/40 rounded text-xs font-mono">.gitignore</code> setup on a per-run basis (useful for CI environments).</p>
                   </div>
+                  <div className="flex items-start gap-3 p-3 bg-red-50 dark:bg-red-950/20 rounded-lg border border-red-200 dark:border-red-800">
+                    <svg className="w-5 h-5 text-red-600 dark:text-red-400 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+                    </svg>
+                    <p className="text-sm text-red-800 dark:text-red-300"><strong className="text-red-900 dark:text-red-200">File Exclusion:</strong> <code className="px-1.5 py-0.5 bg-red-100 dark:bg-red-900/40 rounded text-xs font-mono">stamp context</code> respects <code className="px-1.5 py-0.5 bg-red-100 dark:bg-red-900/40 rounded text-xs font-mono">.stampignore</code> and excludes those files from context generation. This keeps files with secrets or sensitive information out of your bundles. Run <code className="px-1.5 py-0.5 bg-red-100 dark:bg-red-900/40 rounded text-xs font-mono">stamp security scan --apply</code> to automatically add files to <code className="px-1.5 py-0.5 bg-red-100 dark:bg-red-900/40 rounded text-xs font-mono">.stampignore</code> when secrets are found.</p>
+                  </div>
                 </div>
                 <div className="p-4 bg-indigo-50/50 dark:bg-indigo-950/20 border-l-4 border-indigo-500 rounded-r-lg">
                   <p className="text-sm text-gray-700 dark:text-gray-300">

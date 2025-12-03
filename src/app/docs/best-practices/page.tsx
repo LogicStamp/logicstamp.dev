@@ -312,8 +312,100 @@ export default function BestPracticesPage() {
             </div>
           </AnimatedSection>
 
-          {/* Workflow Integration */}
+          {/* Security Best Practices */}
           <AnimatedSection direction="up" delay={400}>
+            <div className="relative mb-8 sm:mb-12 lg:mb-16">
+              <div className="absolute -inset-1 bg-gradient-to-r from-red-600 to-orange-600 rounded-2xl blur opacity-20 dark:opacity-10" />
+              <div className="relative bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded-2xl p-4 sm:p-6 lg:p-8 shadow-xl">
+                <div className="flex items-baseline gap-3 mb-4 sm:mb-6">
+                  <div className="p-2 bg-red-100 dark:bg-red-900/30 rounded-lg flex-shrink-0 -mt-0.5">
+                    <svg className="w-5 h-5 sm:w-6 sm:h-6 text-red-600 dark:text-red-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+                    </svg>
+                  </div>
+                  <h2 className="text-xl sm:text-2xl font-bold text-gray-900 dark:text-white m-0">
+                    Security Best Practices
+                  </h2>
+                </div>
+                <p className="text-sm sm:text-base text-gray-600 dark:text-gray-400 mb-4 sm:mb-5 leading-relaxed">
+                  Prevent secrets from being included in your context files. LogicStamp includes built-in security scanning to detect API keys, passwords, tokens, and other sensitive data in your JS/TS/JSON files before they reach context generation.
+                </p>
+
+                <div className="bg-gradient-to-r from-red-50 via-orange-50 to-amber-50 dark:from-red-950/30 dark:via-orange-950/20 dark:to-amber-950/20 border-l-4 border-red-500 dark:border-red-400 p-4 sm:p-5 mb-4 sm:mb-6 rounded-r-lg">
+                  <h3 className="text-base sm:text-lg font-bold text-red-900 dark:text-red-200 mb-2 sm:mb-3">
+                    🔒 Use Secure Initialization
+                  </h3>
+                  <p className="text-xs sm:text-sm text-red-800 dark:text-red-300 mb-3 leading-relaxed">
+                    Always use <code className="px-1.5 py-0.5 bg-red-100 dark:bg-red-900/50 rounded font-mono text-xs font-semibold">stamp init --secure</code> when setting up LogicStamp in a new project. This automatically scans for secrets in your JS/TS/JSON files and adds detected secret files to <code className="px-1.5 py-0.5 bg-red-100 dark:bg-red-900/50 rounded font-mono text-xs font-semibold">.stampignore</code>, preventing them from being included in context generation.
+                  </p>
+                  <TabbedCodeBlock
+                    tabs={[
+                      {
+                        label: 'Secure initialization',
+                        code: 'cd your-react-project\nstamp init --secure',
+                        copyText: 'cd your-react-project\nstamp init --secure',
+                      },
+                    ]}
+                  />
+                  <div className="mt-3 p-3 bg-red-50/50 dark:bg-red-950/20 rounded-lg border border-red-200 dark:border-red-800">
+                    <p className="text-xs text-red-800 dark:text-red-300 mb-1">
+                      <strong className="text-red-900 dark:text-red-200">⚠️ Important:</strong> If <code className="px-1 py-0.5 bg-red-100 dark:bg-red-900/40 rounded text-xs font-mono">.stampignore</code> is created, it means secrets were detected—this is a bad sign. You should remove secrets from your codebase rather than ignoring them.
+                    </p>
+                    <p className="text-xs text-red-800 dark:text-red-300">
+                      <strong className="text-red-900 dark:text-red-200">Proper solution:</strong> Move secrets to environment variables or a secrets manager (e.g., Vault, Doppler, AWS Secrets Manager). <code className="px-1 py-0.5 bg-red-100 dark:bg-red-900/40 rounded text-xs font-mono">.stampignore</code> is only a temporary safety layer.
+                    </p>
+                  </div>
+                </div>
+
+                <div className="grid sm:grid-cols-2 gap-4 sm:gap-6 mb-4 sm:mb-5">
+                  <div className="bg-orange-50 dark:bg-orange-950/20 rounded-xl border border-orange-200 dark:border-orange-800 p-4 sm:p-5">
+                    <h3 className="text-sm sm:text-base font-semibold text-orange-900 dark:text-orange-100 mb-2">
+                      Regular security scans
+                    </h3>
+                    <p className="text-xs sm:text-sm text-orange-800 dark:text-orange-200 mb-3">
+                      Run security scans regularly, especially before generating context or committing code:
+                    </p>
+                    <TabbedCodeBlock
+                      tabs={[
+                        {
+                          label: 'Scan for secrets',
+                          code: '# Scan current directory\nstamp security scan\n\n# Scan and auto-apply to .stampignore\nstamp security scan --apply',
+                          copyText: 'stamp security scan --apply',
+                        },
+                      ]}
+                    />
+                  </div>
+                  <div className="bg-amber-50 dark:bg-amber-950/20 rounded-xl border border-amber-200 dark:border-amber-800 p-4 sm:p-5">
+                    <h3 className="text-sm sm:text-base font-semibold text-amber-900 dark:text-amber-100 mb-2">
+                      CI/CD integration
+                    </h3>
+                    <p className="text-xs sm:text-sm text-amber-800 dark:text-amber-200 mb-3">
+                      Add security scanning to your CI pipeline to catch secrets before they're committed:
+                    </p>
+                    <TabbedCodeBlock
+                      tabs={[
+                        {
+                          label: 'CI security check',
+                          code: '# Fail build if secrets detected\nstamp security scan --quiet\n\n# Exit code: 0 (no secrets) or 1 (secrets found)',
+                          copyText: 'stamp security scan --quiet',
+                        },
+                      ]}
+                    />
+                  </div>
+                </div>
+
+                <div className="bg-blue-50/50 dark:bg-blue-950/20 border-l-4 border-blue-500 p-3 sm:p-4 rounded-r-lg">
+                  <p className="text-xs sm:text-sm text-gray-800 dark:text-blue-100">
+                    <span className="font-semibold text-blue-900 dark:text-blue-200">💡 Best Practice:</span>{' '}
+                    Security scanning runs 100% locally—nothing is uploaded or sent anywhere. The scanner detects API keys, passwords, tokens, AWS keys, GitHub tokens, private keys, database URLs, JWT secrets, and more in your TypeScript, JavaScript, and JSON files.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </AnimatedSection>
+
+          {/* Workflow Integration */}
+          <AnimatedSection direction="up" delay={500}>
             <div className="relative mb-8 sm:mb-12 lg:mb-16">
               <div className="absolute -inset-1 bg-gradient-to-r from-purple-600 to-pink-600 rounded-2xl blur opacity-20 dark:opacity-10" />
               <div className="relative bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded-2xl p-4 sm:p-6 lg:p-8 shadow-xl">
@@ -343,12 +435,15 @@ export default function BestPracticesPage() {
                       tabs={[
                         {
                           label: 'CI snippet',
-                          code: `# Generate fresh context
+                          code: `# Scan for secrets first
+stamp security scan --quiet
+
+# Generate fresh context
 stamp context
 
 # Validate before using or publishing
 stamp context validate`,
-                          copyText: `stamp context\nstamp context validate`,
+                          copyText: `stamp security scan --quiet\nstamp context\nstamp context validate`,
                         },
                       ]}
                     />

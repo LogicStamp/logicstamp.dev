@@ -1,6 +1,6 @@
 # Privacy & Security
 
-Last updated: November 2025
+Last updated: December 2025
 
 ## Privacy Policy
 
@@ -26,7 +26,7 @@ Email addresses are stored in Supabase with Row-Level Security (RLS) enabled, en
 
 ### Cookies and Local Storage
 
-We use localStorage (and, where needed, similar browser storage mechanisms) to store your theme preference. These are stored locally on your device and are not shared with third parties. You can clear these at any time through your browser settings.
+We do not use cookies on this website. We only use localStorage (and, where needed, similar browser storage mechanisms) to store your theme preference locally on your device. This essential local storage is not shared with third parties and can be cleared at any time through your browser settings.
 
 We do not use analytics tools or third-party tracking scripts (such as Google Analytics, Meta Pixel, etc.) on this site.
 
@@ -35,7 +35,11 @@ We do not use analytics tools or third-party tracking scripts (such as Google An
 We use the following third-party services:
 
 - **Supabase:** Supabase acts as our data processor for subscriber emails. Their security and privacy practices are described in their own privacy policy.
-- **Google Fonts:** We load fonts from Google Fonts to improve website performance. Google Fonts may receive your device's IP address when fonts are requested by your browser. Google may collect usage data as described in their privacy policy.
+- **Google Fonts:** We load fonts statically from Google Fonts to improve website performance. When your browser requests these fonts, Google Fonts may receive your device's IP address. Google may collect usage data as described in their privacy policy. The fonts are served as static assets and do not involve cookies or tracking beyond what Google's infrastructure may log.
+
+### Data Controller
+
+LogicStamp is the data controller for personal information collected through this website. For questions or concerns about data processing, please contact us at [logicstamp.dev@gmail.com](mailto:logicstamp.dev@gmail.com).
 
 ### Your Rights
 
@@ -46,7 +50,7 @@ Depending on your location, you may have the right to:
 - Request deletion of your personal information
 - Unsubscribe from our newsletter at any time
 
-To exercise these rights, please contact us at [logicstamp.dev@gmail.com](mailto:logicstamp.dev@gmail.com).
+Every newsletter email contains an unsubscribe link that allows you to opt out immediately. You can also contact us directly to exercise any of these rights at [logicstamp.dev@gmail.com](mailto:logicstamp.dev@gmail.com).
 
 ### Data Retention
 

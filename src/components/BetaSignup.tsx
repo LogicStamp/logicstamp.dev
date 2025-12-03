@@ -52,7 +52,7 @@ export default function BetaSignup() {
         setBetaErrorMessage(userFriendlyError)
         setBetaSuccessMessage(null)
       }
-    } catch (error) {
+    } catch (_error) {
       setBetaErrorMessage('We could not sign you up right now. Please check your connection and try again.')
       setBetaSuccessMessage(null)
     } finally {

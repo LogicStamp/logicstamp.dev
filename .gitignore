@@ -35,9 +35,10 @@ yarn-error.log*
 *.tsbuildinfo
 next-env.d.ts
 
-# LogicStamp context files
+# LogicStamp context & security files
 context.json
 context_*.json
 *.uif.json
 logicstamp.manifest.json
 .logicstamp/
+stamp_security_report.json

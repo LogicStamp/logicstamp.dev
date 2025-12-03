@@ -50,11 +50,54 @@ export default function CompareModesPage() {
                 tabs={[
                   {
                     label: 'Syntax',
-                    code: 'stamp context --compare-modes',
-                    copyText: 'stamp context --compare-modes'
+                    code: 'stamp context --compare-modes [options]',
+                    copyText: 'stamp context --compare-modes [options]'
                   }
                 ]}
               />
+            </div>
+          </AnimatedSection>
+
+          {/* Options Section */}
+          <AnimatedSection direction="up" delay={150}>
+            <div className="relative mb-8 sm:mb-12 lg:mb-16">
+              <div className="absolute -inset-1 bg-gradient-to-r from-cyan-600 to-blue-600 rounded-2xl blur opacity-20 dark:opacity-10" />
+              <div className="relative bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded-2xl p-4 sm:p-6 lg:p-8 shadow-xl">
+                <div className="flex items-baseline gap-3 mb-4 sm:mb-6">
+                  <div className="p-2 bg-cyan-100 dark:bg-cyan-900/30 rounded-lg flex-shrink-0 -mt-0.5">
+                    <svg className="w-5 h-5 sm:w-6 sm:h-6 text-cyan-600 dark:text-cyan-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4" />
+                    </svg>
+                  </div>
+                  <h2 className="text-xl sm:text-2xl font-bold text-gray-900 dark:text-white m-0">
+                    Options
+                  </h2>
+                </div>
+                <div className="overflow-x-auto -mx-4 sm:mx-0 px-4 sm:px-0">
+                  <table className="w-full min-w-full divide-y divide-gray-200 dark:divide-gray-700">
+                    <thead className="bg-gray-50 dark:bg-gray-800">
+                      <tr>
+                        <th className="px-2 sm:px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">Option</th>
+                        <th className="px-2 sm:px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">Description</th>
+                      </tr>
+                    </thead>
+                    <tbody className="bg-white dark:bg-gray-900 divide-y divide-gray-200 dark:divide-gray-700">
+                      <tr className="hover:bg-gray-50 dark:hover:bg-gray-800/50 transition-colors bg-blue-50/30 dark:bg-blue-950/20">
+                        <td className="px-2 sm:px-6 py-4 whitespace-nowrap">
+                          <code className="px-2 py-1 bg-blue-100 dark:bg-blue-900/40 text-blue-900 dark:text-blue-100 rounded text-xs sm:text-sm font-mono">--stats</code>
+                        </td>
+                        <td className="px-2 sm:px-6 py-4 text-sm text-gray-600 dark:text-gray-400">Emit single-line JSON stats (ideal for CI). When combined with <code className="px-1 py-0.5 bg-blue-100 dark:bg-blue-900/40 rounded text-xs font-mono">--compare-modes</code>, writes <code className="px-1 py-0.5 bg-blue-100 dark:bg-blue-900/40 rounded text-xs font-mono">context_compare_modes.json</code> for MCP (Model Context Protocol) integration.</td>
+                      </tr>
+                      <tr className="hover:bg-gray-50 dark:hover:bg-gray-800/50 transition-colors">
+                        <td className="px-2 sm:px-6 py-4 whitespace-nowrap">
+                          <code className="px-2 py-1 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 rounded text-xs sm:text-sm font-mono">--quiet</code>
+                        </td>
+                        <td className="px-2 sm:px-6 py-4 text-sm text-gray-600 dark:text-gray-400">Suppress non-error output (useful for CI/CD pipelines)</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
             </div>
           </AnimatedSection>
 
@@ -506,6 +549,12 @@ for repo in api web mobile; do
   stamp context --compare-modes --quiet
   cd ..
 done`
+                  },
+                  {
+                    title: 'MCP Integration',
+                    code: `# Generate comparison stats for MCP servers
+stamp context --compare-modes --stats
+# Creates context_compare_modes.json with structured data for MCP integration`
                   }
                 ].map((workflow) => (
                   <div key={workflow.title} className="p-4 bg-gray-50 dark:bg-gray-800/50 rounded-lg border border-gray-200 dark:border-gray-700">
@@ -564,7 +613,7 @@ done`
                     },
                     {
                       q: 'Does --compare-modes write files?',
-                      a: 'No, --compare-modes is analysis-only: generates contracts in memory, computes token estimates, displays comparison tables, and exits without writing files. Use stamp context (without the flag) to actually generate files.'
+                      a: 'By default, --compare-modes is analysis-only: generates contracts in memory, computes token estimates, displays comparison tables, and exits without writing files. However, when combined with --stats, it writes context_compare_modes.json for MCP integration. Use stamp context (without the flag) to actually generate context files.'
                     }
                   ].map((faq, idx) => (
                     <div key={idx} className="p-4 bg-pink-50 dark:bg-pink-950/20 rounded-lg border border-pink-200 dark:border-pink-800">
