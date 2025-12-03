@@ -3,7 +3,7 @@ import Footer from '@/components/layout/Footer'
 import AnimatedSection from '@/components/common/AnimatedSection'
 import DocsLayout from '@/components/docs/DocsLayout'
 import TabbedCodeBlock from '@/components/docs/TabbedCodeBlock'
-import { Sparkles, FileCode, Code, Component, Zap, Box, Package, Layers } from 'lucide-react'
+import { Code } from 'lucide-react'
 
 export const metadata: Metadata = {
   title: '`context style` Command | LogicStamp Context Documentation',

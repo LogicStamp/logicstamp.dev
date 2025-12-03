@@ -288,8 +288,6 @@ export default function CompleteReferencePage() {
                       return 'from-red-500 to-pink-600';
                     case 'pink':
                       return 'from-pink-500 to-rose-600';
-                    case 'red':
-                      return 'from-red-500 to-pink-600';
                     default:
                       return 'from-blue-500 to-blue-600';
                   }
