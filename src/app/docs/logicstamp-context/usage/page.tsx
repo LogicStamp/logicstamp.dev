@@ -73,7 +73,32 @@ export default function UsagePage() {
               <TabbedCodeBlock
                 tabs={[
                   {
-                    label: 'Quick Start',
+                    label: 'Quick Start (Recommended)',
+                    code: `# Install globally
+npm install -g logicstamp-context
+
+# Initialize with security scan (recommended)
+stamp init --secure
+
+# Generate context for your project
+stamp context
+
+# Output: Multiple context.json files (one per folder) 
+# plus context_main.json index`,
+                    copyText: `# Install globally
+npm install -g logicstamp-context
+
+# Initialize with security scan (recommended)
+stamp init --secure
+
+# Generate context for your project
+stamp context
+
+# Output: Multiple context.json files (one per folder) 
+# plus context_main.json index`
+                  },
+                  {
+                    label: 'Quick Start (Basic)',
                     code: `# Install globally
 npm install -g logicstamp-context
 
@@ -93,6 +118,12 @@ stamp context
                   }
                 ]}
               />
+              <div className="mt-4 p-4 bg-red-50/50 dark:bg-red-950/20 border-l-4 border-red-500 rounded-r-lg">
+                <p className="text-xs sm:text-sm text-gray-800 dark:text-red-100">
+                  <span className="font-semibold text-red-900 dark:text-red-200">🔒 Security Best Practice:</span>{' '}
+                  Use <code className="px-1.5 py-0.5 bg-red-100 dark:bg-red-900/40 rounded text-xs font-mono">stamp init --secure</code> to automatically scan for secrets in your JS/TS/JSON files before generating context. This prevents sensitive data from being included in context files.
+                </p>
+              </div>
             </div>
           </div>
         </AnimatedSection>
@@ -117,12 +148,14 @@ stamp context
                   {
                     label: 'Syntax',
                     code: `stamp init [path] [options]
+stamp security scan [path] [options]
 stamp context [path] [options]
 stamp context style [path] [options]
 stamp context validate [file]
 stamp context compare [options]
 stamp context clean [path] [options]`,
                     copyText: `stamp init [path] [options]
+stamp security scan [path] [options]
 stamp context [path] [options]
 stamp context style [path] [options]
 stamp context validate [file]
@@ -132,7 +165,8 @@ stamp context clean [path] [options]`
                 ]}
               />
               <p className="text-base sm:text-lg text-gray-600 dark:text-gray-400 mt-4 sm:mt-6 leading-relaxed">
-                Use <code className="px-2 py-1 bg-gray-100 dark:bg-gray-800 text-purple-600 dark:text-purple-400 rounded-md font-mono text-xs sm:text-sm">stamp init</code> to set up your project (optional, <code className="px-2 py-1 bg-gray-100 dark:bg-gray-800 text-purple-600 dark:text-purple-400 rounded-md font-mono text-xs sm:text-sm">stamp context</code> is CI-friendly and never prompts),{' '}
+                Use <code className="px-2 py-1 bg-gray-100 dark:bg-gray-800 text-purple-600 dark:text-purple-400 rounded-md font-mono text-xs sm:text-sm">stamp init</code> (or <code className="px-2 py-1 bg-gray-100 dark:bg-gray-800 text-red-600 dark:text-red-400 rounded-md font-mono text-xs sm:text-sm">stamp init --secure</code> for security scanning) to set up your project (optional, <code className="px-2 py-1 bg-gray-100 dark:bg-gray-800 text-purple-600 dark:text-purple-400 rounded-md font-mono text-xs sm:text-sm">stamp context</code> is CI-friendly and never prompts),{' '}
+                <code className="px-2 py-1 bg-gray-100 dark:bg-gray-800 text-red-600 dark:text-red-400 rounded-md font-mono text-xs sm:text-sm">stamp security scan</code> to find secrets in your JS/TS/JSON files before generating context,{' '}
                 <code className="px-2 py-1 bg-gray-100 dark:bg-gray-800 text-purple-600 dark:text-purple-400 rounded-md font-mono text-xs sm:text-sm">stamp context</code> to generate folder-organized context files,{' '}
                 <code className="px-2 py-1 bg-gray-100 dark:bg-gray-800 text-purple-600 dark:text-purple-400 rounded-md font-mono text-xs sm:text-sm">stamp context style</code> to generate context with style metadata (Tailwind, SCSS, animations),{' '}
                 <code className="px-2 py-1 bg-gray-100 dark:bg-gray-800 text-purple-600 dark:text-purple-400 rounded-md font-mono text-xs sm:text-sm">stamp context validate</code> to verify them,{' '}
@@ -214,12 +248,14 @@ stamp context clean [path] [options]`
               </div>
               <div className="space-y-3 sm:space-y-4">
                 {[
+                  'Use stamp init --secure when setting up LogicStamp to automatically scan for secrets in your JS/TS/JSON files before generating context.',
+                  'Run stamp security scan --apply before generating context to automatically add files with secrets to .stampignore, preventing them from being included.',
                   'Use --dry-run to inspect bundle size and counts without producing files.',
                   'Use --stats to emit machine-readable summary lines and append them to logs or dashboards.',
                   'Use --compare-modes to see token costs across all modes (none/header/header+style/full) before generating context.',
                   'Use stamp context style or --include-style to generate design-aware context with visual and layout metadata.',
                   'Use stamp context compare in CI to detect context drift across all folders. Use --approve for auto-updates (like Jest snapshots).',
-                  'Combine stamp context and stamp context validate in pre-commit hooks or CI jobs to keep context files in sync with your codebase.',
+                  'Combine stamp security scan, stamp context, and stamp context validate in pre-commit hooks or CI jobs to keep context files secure and in sync.',
                   'Use stamp context clean --all --yes to reset context files before regenerating or switching branches.'
                 ].map((tip, idx) => (
                   <div key={idx} className="flex items-start gap-3 p-4 bg-orange-50 dark:bg-orange-950/20 rounded-xl border border-orange-200 dark:border-orange-800">
@@ -403,7 +439,10 @@ stamp context --include-code full --max-nodes 20`
                   },
                   {
                     title: 'CI/CD Integration',
-                    code: `# Generate stats for monitoring
+                    code: `# Scan for secrets first (fail build if found)
+stamp security scan --quiet
+
+# Generate stats for monitoring
 stamp context --stats > stats.json
 
 # Validate generated context
@@ -414,6 +453,20 @@ stamp context compare --stats
 
 # Auto-approve updates
 stamp context compare --approve`
+                  },
+                  {
+                    title: 'Security Workflow',
+                    code: `# Initialize with security scan (recommended)
+stamp init --secure
+
+# Or scan manually before generating context
+stamp security scan --apply
+
+# Generate context (secrets are excluded via .stampignore)
+stamp context
+
+# Regular security checks
+stamp security scan`
                   }
                 ].map((workflow, idx) => (
                   <div key={idx} className="p-4 bg-gray-50 dark:bg-gray-800/50 rounded-lg border border-gray-200 dark:border-gray-700">

@@ -41,6 +41,7 @@ const sections: DocsNavSection[] = [
     items: [
       { title: 'CLI Hub', href: '/docs/cli' },
       { title: 'CLI Commands', href: '/docs/logicstamp-context/commands' },
+      { title: '`security scan` command', href: '/docs/logicstamp-context/security-scan' },
       { title: '`init` command', href: '/docs/logicstamp-context/init' },
       { title: '`context` command', href: '/docs/logicstamp-context/context' },
       { title: '`style` command', href: '/docs/logicstamp-context/style' },
@@ -226,6 +227,23 @@ function getIcon(href: string): ReactNode {
         <path d="M18 17V9" />
         <path d="M13 17V5" />
         <path d="M8 17v-3" />
+      </svg>
+    )
+  }
+
+  if (href.includes('/security-scan')) {
+    // Security / shield icon
+    return (
+      <svg
+        className="w-3.5 h-3.5"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth={2}
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      >
+        <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
       </svg>
     )
   }

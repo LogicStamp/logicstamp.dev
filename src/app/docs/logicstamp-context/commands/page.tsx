@@ -168,6 +168,13 @@ export default function LogicStampCommandsPage() {
                       <td className="px-2 sm:px-6 py-4 text-sm text-gray-600 dark:text-gray-400">Show version number and exit.</td>
                       <td className="px-2 sm:px-6 py-4 text-sm text-gray-600 dark:text-gray-400">Check installed version.</td>
                     </tr>
+                    <tr className="hover:bg-gray-50 dark:hover:bg-gray-800/50 transition-colors bg-red-50/30 dark:bg-red-950/20">
+                      <td className="px-2 sm:px-6 py-4 whitespace-nowrap">
+                        <code className="px-2 py-1 bg-red-100 dark:bg-red-900/40 text-red-900 dark:text-red-100 rounded text-xs sm:text-sm font-mono">stamp security scan [path] [options]</code>
+                      </td>
+                      <td className="px-2 sm:px-6 py-4 text-sm text-gray-600 dark:text-gray-400">Finds secrets (API keys, passwords, tokens) and other sensitive data in your project before they get committed. If secrets are detected, can add files to <code className="px-1 py-0.5 bg-red-100 dark:bg-red-900/40 rounded text-xs font-mono">.stampignore</code>. <strong className="text-red-900 dark:text-red-200">⚠️ Warning:</strong> Generating <code className="px-1 py-0.5 bg-red-100 dark:bg-red-900/40 rounded text-xs font-mono">.stampignore</code> is a bad sign—it means secrets exist in your codebase. You should remove secrets rather than ignore them. Runs 100% locally—nothing is uploaded or sent anywhere.</td>
+                      <td className="px-2 sm:px-6 py-4 text-sm text-gray-600 dark:text-gray-400">Prevent accidentally exposing sensitive credentials, CI/CD security checks, or before generating context files. If secrets are found, fix them by moving to environment variables or a secrets manager.</td>
+                    </tr>
                     <tr className="hover:bg-gray-50 dark:hover:bg-gray-800/50 transition-colors">
                       <td className="px-2 sm:px-6 py-4 whitespace-nowrap">
                         <code className="px-2 py-1 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 rounded text-xs sm:text-sm font-mono">stamp init [path]</code>
@@ -179,14 +186,14 @@ export default function LogicStampCommandsPage() {
                       <td className="px-2 sm:px-6 py-4 whitespace-nowrap">
                         <code className="px-2 py-1 bg-blue-100 dark:bg-blue-900/40 text-blue-900 dark:text-blue-100 rounded text-xs sm:text-sm font-mono">stamp context [path] [options]</code>
                       </td>
-                      <td className="px-2 sm:px-6 py-4 text-sm text-gray-600 dark:text-gray-400">Generates AI-ready context files organized by folder (one context.json per folder plus context_main.json index). CI-friendly: never prompts, respects preferences from stamp init.</td>
+                      <td className="px-2 sm:px-6 py-4 text-sm text-gray-600 dark:text-gray-400">Generates AI-ready context files organized by folder (one context.json per folder plus context_main.json index). CI-friendly: never prompts, respects preferences from stamp init. Respects <code className="px-1 py-0.5 bg-gray-100 dark:bg-gray-800 rounded text-xs font-mono">.stampignore</code> to exclude files with secrets or sensitive information.</td>
                       <td className="px-2 sm:px-6 py-4 text-sm text-gray-600 dark:text-gray-400">Produce fresh context for AI workflows, documentation, or review.</td>
                     </tr>
                     <tr className="hover:bg-gray-50 dark:hover:bg-gray-800/50 transition-colors bg-pink-50/30 dark:bg-pink-950/20">
                       <td className="px-2 sm:px-6 py-4 whitespace-nowrap">
                         <code className="px-2 py-1 bg-pink-100 dark:bg-pink-900/40 text-pink-900 dark:text-pink-100 rounded text-xs sm:text-sm font-mono">stamp context style [path] [options]</code>
                       </td>
-                      <td className="px-2 sm:px-6 py-4 text-sm text-gray-600 dark:text-gray-400">Generates context with style metadata included. Extracts visual and layout information (Tailwind, SCSS, animations, layout patterns). Equivalent to <code className="px-1 py-0.5 bg-gray-100 dark:bg-gray-800 rounded text-xs font-mono">stamp context --include-style</code>.</td>
+                      <td className="px-2 sm:px-6 py-4 text-sm text-gray-600 dark:text-gray-400">Generates context with style metadata included. Extracts visual and layout information (Tailwind, SCSS, animations, layout patterns). Equivalent to <code className="px-1 py-0.5 bg-gray-100 dark:bg-gray-800 rounded text-xs font-mono">stamp context --include-style</code>. Respects <code className="px-1 py-0.5 bg-gray-100 dark:bg-gray-800 rounded text-xs font-mono">.stampignore</code> to exclude files with secrets or sensitive information.</td>
                       <td className="px-2 sm:px-6 py-4 text-sm text-gray-600 dark:text-gray-400">Design system analysis, AI-assisted design suggestions, layout understanding, animation detection.</td>
                     </tr>
                     <tr className="hover:bg-gray-50 dark:hover:bg-gray-800/50 transition-colors">
@@ -224,6 +231,14 @@ export default function LogicStampCommandsPage() {
               Command Interactions
             </h2>
             <div className="space-y-4">
+              <div className="flex items-start gap-3 p-4 bg-gradient-to-br from-red-50 to-orange-50 dark:from-red-950/20 dark:to-orange-950/10 rounded-xl border border-red-200 dark:border-red-800">
+                <svg className="w-5 h-5 text-red-600 dark:text-red-400 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+                </svg>
+                <p className="text-sm sm:text-base text-gray-700 dark:text-gray-300">
+                  Run <code className="px-1.5 py-0.5 bg-red-100 dark:bg-red-900/40 rounded text-xs font-mono">stamp security scan</code> to find secrets (API keys, passwords, tokens) before they get committed. Use <code className="px-1.5 py-0.5 bg-red-100 dark:bg-red-900/40 rounded text-xs font-mono">--apply</code> to automatically add files with secrets to <code className="px-1.5 py-0.5 bg-red-100 dark:bg-red-900/40 rounded text-xs font-mono">.stampignore</code>, preventing them from being included in context generation. <strong className="text-red-900 dark:text-red-200">⚠️ Warning:</strong> If <code className="px-1.5 py-0.5 bg-red-100 dark:bg-red-900/40 rounded text-xs font-mono">.stampignore</code> is generated, it means secrets were detected—this is a bad sign. Committing secrets to a codebase is unsafe. <code className="px-1.5 py-0.5 bg-red-100 dark:bg-red-900/40 rounded text-xs font-mono">.stampignore</code> is only a temporary safety layer; you should move secrets to environment variables or a secrets manager and remove them from your code. Runs 100% locally—nothing is uploaded.
+                </p>
+              </div>
               <div className="flex items-start gap-3 p-4 bg-gradient-to-br from-indigo-50 to-blue-50 dark:from-indigo-950/20 dark:to-blue-950/10 rounded-xl border border-indigo-200 dark:border-indigo-800">
                 <svg className="w-5 h-5 text-indigo-600 dark:text-indigo-400 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
@@ -289,6 +304,12 @@ export default function LogicStampCommandsPage() {
                   code: `# Show version number
 stamp --version
 
+# Scan for secrets and sensitive data
+stamp security scan
+
+# Scan and automatically add detected secret files to .stampignore
+stamp security scan --apply
+
 # Initialize LogicStamp in your project (sets up .gitignore and LLM_CONTEXT.md preferences)
 stamp init
 
@@ -332,6 +353,12 @@ stamp context clean
 stamp context clean --all --yes`,
                     copyText: `# Show version number
 stamp --version
+
+# Scan for secrets and sensitive data
+stamp security scan
+
+# Scan and automatically add detected secret files to .stampignore
+stamp security scan --apply
 
 # Initialize LogicStamp in your project (sets up .gitignore and LLM_CONTEXT.md preferences)
 stamp init
@@ -499,6 +526,25 @@ stamp context clean --all --yes`
                     </h3>
                     <p className="text-xs text-gray-600 dark:text-gray-400 mt-1">
                       Remove context artifacts
+                    </p>
+                  </div>
+                </div>
+              </Link>
+
+              <Link
+                href="/docs/logicstamp-context/security-scan"
+                className="group p-4 bg-gradient-to-br from-red-50 to-orange-50 dark:from-red-950/20 dark:to-orange-950/10 rounded-xl border border-red-200 dark:border-red-800 hover:border-red-300 dark:hover:border-red-700 transition-all"
+              >
+                <div className="flex items-start gap-3">
+                  <svg className="w-5 h-5 text-red-600 dark:text-red-400 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+                  </svg>
+                  <div>
+                    <h3 className="text-sm font-semibold text-red-900 dark:text-red-200 group-hover:text-red-700 dark:group-hover:text-red-100 transition-colors">
+                      `security scan` command
+                    </h3>
+                    <p className="text-xs text-gray-600 dark:text-gray-400 mt-1">
+                      Find secrets and sensitive data before committing
                     </p>
                   </div>
                 </div>

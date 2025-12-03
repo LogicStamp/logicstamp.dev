@@ -17,7 +17,7 @@ export default function PrivacySecurityPage() {
               Privacy & Security
             </h1>
             <p className="text-sm text-gray-500 dark:text-gray-400 mb-8">
-              Last updated: November 2025
+              Last updated: December 2025
             </p>
 
             <div className="prose prose-gray dark:prose-invert max-w-none">
@@ -68,7 +68,7 @@ export default function PrivacySecurityPage() {
                   Cookies and Local Storage
                 </h3>
                 <p className="text-gray-700 dark:text-gray-300 mb-4">
-                  We use localStorage (and, where needed, similar browser storage mechanisms) to store your theme preference. These are stored locally on your device and are not shared with third parties. You can clear these at any time through your browser settings.
+                  We do not use cookies on this website. We only use localStorage (and, where needed, similar browser storage mechanisms) to store your theme preference locally on your device. This essential local storage is not shared with third parties and can be cleared at any time through your browser settings.
                 </p>
                 <p className="text-gray-700 dark:text-gray-300 mb-4">
                   We do not use analytics tools or third-party tracking scripts (such as Google Analytics, Meta Pixel, etc.) on this site.
@@ -85,9 +85,23 @@ export default function PrivacySecurityPage() {
                     <strong>Supabase:</strong> Supabase acts as our data processor for subscriber emails. Their security and privacy practices are described in their own privacy policy.
                   </li>
                   <li>
-                    <strong>Google Fonts:</strong> We load fonts from Google Fonts to improve website performance. Google Fonts may receive your device's IP address when fonts are requested by your browser. Google may collect usage data as described in their privacy policy.
+                    <strong>Google Fonts:</strong> We load fonts statically from Google Fonts to improve website performance. When your browser requests these fonts, Google Fonts may receive your device's IP address. Google may collect usage data as described in their privacy policy. The fonts are served as static assets and do not involve cookies or tracking beyond what Google's infrastructure may log.
                   </li>
                 </ul>
+
+                <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-3 mt-6">
+                  Data Controller
+                </h3>
+                <p className="text-gray-700 dark:text-gray-300 mb-4">
+                  LogicStamp is the data controller for personal information collected through this website. For questions or concerns about data processing, please contact us at{' '}
+                  <a
+                    href="mailto:logicstamp.dev@gmail.com"
+                    className="text-blue-600 dark:text-blue-400 hover:underline"
+                  >
+                    logicstamp.dev@gmail.com
+                  </a>
+                  .
+                </p>
 
                 <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-3 mt-6">
                   Your Rights
@@ -102,7 +116,7 @@ export default function PrivacySecurityPage() {
                   <li>Unsubscribe from our newsletter at any time</li>
                 </ul>
                 <p className="text-gray-700 dark:text-gray-300 mb-4">
-                  To exercise these rights, please contact us at{' '}
+                  Every newsletter email contains an unsubscribe link that allows you to opt out immediately. You can also contact us directly to exercise any of these rights at{' '}
                   <a
                     href="mailto:logicstamp.dev@gmail.com"
                     className="text-blue-600 dark:text-blue-400 hover:underline"

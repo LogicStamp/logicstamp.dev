@@ -87,6 +87,12 @@ export default function InitCommandPage() {
                       </tr>
                     </thead>
                     <tbody className="bg-white dark:bg-gray-900 divide-y divide-gray-200 dark:divide-gray-700">
+                      <tr className="hover:bg-gray-50 dark:hover:bg-gray-800/50 transition-colors bg-red-50/30 dark:bg-red-950/20">
+                        <td className="px-2 sm:px-6 py-4 whitespace-nowrap">
+                          <code className="px-2 py-1 bg-red-100 dark:bg-red-900/40 text-red-900 dark:text-red-100 rounded text-xs sm:text-sm font-mono">--secure</code>
+                        </td>
+                        <td className="px-2 sm:px-6 py-4 text-sm text-gray-600 dark:text-gray-400">Run <code className="px-1 py-0.5 bg-red-100 dark:bg-red-900/40 rounded text-xs font-mono">stamp init</code> with auto-yes (no prompts), then automatically run <code className="px-1 py-0.5 bg-red-100 dark:bg-red-900/40 rounded text-xs font-mono">stamp security scan --apply</code> to scan for secrets in your JS/TS/JSON files. <strong className="text-red-900 dark:text-red-200">Warning:</strong> If <code className="px-1 py-0.5 bg-red-100 dark:bg-red-900/40 rounded text-xs font-mono">.stampignore</code> is created, it means secrets were detected - this is a bad sign. You should remove secrets from your codebase rather than ignoring them.</td>
+                      </tr>
                       <tr className="hover:bg-gray-50 dark:hover:bg-gray-800/50 transition-colors">
                         <td className="px-2 sm:px-6 py-4 whitespace-nowrap">
                           <code className="px-2 py-1 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 rounded text-xs sm:text-sm font-mono">--skip-gitignore</code>
@@ -170,16 +176,30 @@ export default function InitCommandPage() {
                     code: `# Initialize LogicStamp in the current directory
 stamp init
 
+# Initialize with security scan (recommended)
+# Combines stamp init with stamp security scan --apply
+stamp init --secure
+
 # Initialize a specific directory
 stamp init ./my-project
+
+# Initialize with security scan for a specific directory
+stamp init ./my-project --secure
 
 # Skip .gitignore setup
 stamp init --skip-gitignore`,
                     copyText: `# Initialize LogicStamp in the current directory
 stamp init
 
+# Initialize with security scan (recommended)
+# Combines stamp init with stamp security scan --apply
+stamp init --secure
+
 # Initialize a specific directory
 stamp init ./my-project
+
+# Initialize with security scan for a specific directory
+stamp init ./my-project --secure
 
 # Skip .gitignore setup
 stamp init --skip-gitignore`
@@ -219,6 +239,66 @@ stamp init --skip-gitignore`
             </div>
           </AnimatedSection>
 
+          {/* Secure Initialization Section */}
+          <AnimatedSection direction="up" delay={550}>
+            <div className="relative mb-8 sm:mb-12 lg:mb-16">
+              <div className="absolute -inset-1 bg-gradient-to-r from-red-600 to-orange-600 rounded-2xl blur opacity-20 dark:opacity-10" />
+              <div className="relative bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded-2xl p-4 sm:p-6 lg:p-8 shadow-xl">
+                <div className="flex items-baseline gap-3 mb-4 sm:mb-6">
+                  <div className="p-2 bg-red-100 dark:bg-red-900/30 rounded-lg flex-shrink-0 -mt-0.5">
+                    <svg className="w-5 h-5 sm:w-6 sm:h-6 text-red-600 dark:text-red-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+                    </svg>
+                  </div>
+                  <h2 className="text-xl sm:text-2xl font-bold text-gray-900 dark:text-white m-0">
+                    Secure Initialization with <code className="px-2 py-1 bg-gray-100 dark:bg-gray-800 text-red-600 dark:text-red-400 rounded-md font-mono text-xs sm:text-sm">--secure</code>
+                  </h2>
+                </div>
+                <p className="text-base sm:text-lg text-gray-600 dark:text-gray-400 mb-4 sm:mb-6 leading-relaxed">
+                  Use <code className="px-2 py-1 bg-gray-100 dark:bg-gray-800 text-red-600 dark:text-red-400 rounded-md font-mono text-xs sm:text-sm">stamp init --secure</code> to combine initialization with security scanning. This command:
+                </p>
+                <div className="space-y-3 mb-4">
+                  <div className="flex items-start gap-3 p-3 bg-red-50 dark:bg-red-950/20 rounded-lg border border-red-200 dark:border-red-800">
+                    <svg className="w-5 h-5 text-red-600 dark:text-red-400 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                    </svg>
+                    <p className="text-sm text-red-800 dark:text-red-300">Runs <code className="px-1.5 py-0.5 bg-red-100 dark:bg-red-900/40 rounded text-xs font-mono">stamp init</code> with auto-yes (no prompts, CI-friendly)</p>
+                  </div>
+                  <div className="flex items-start gap-3 p-3 bg-orange-50 dark:bg-orange-950/20 rounded-lg border border-orange-200 dark:border-orange-800">
+                    <svg className="w-5 h-5 text-orange-600 dark:text-orange-400 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                    </svg>
+                    <p className="text-sm text-orange-800 dark:text-orange-300">Automatically runs <code className="px-1.5 py-0.5 bg-orange-100 dark:bg-orange-900/40 rounded text-xs font-mono">stamp security scan --apply</code> to scan for secrets in your JS/TS/JSON files (API keys, passwords, tokens)</p>
+                  </div>
+                  <div className="flex items-start gap-3 p-3 bg-amber-50 dark:bg-amber-950/20 rounded-lg border border-amber-200 dark:border-amber-800">
+                    <svg className="w-5 h-5 text-amber-600 dark:text-amber-400 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                    </svg>
+                    <p className="text-sm text-amber-800 dark:text-amber-300">If secrets are detected, adds affected files to <code className="px-1.5 py-0.5 bg-amber-100 dark:bg-amber-900/40 rounded text-xs font-mono">.stampignore</code> to prevent them from reaching <code className="px-1.5 py-0.5 bg-amber-100 dark:bg-amber-900/40 rounded text-xs font-mono">context.json</code></p>
+                  </div>
+                </div>
+                <div className="p-4 bg-red-50/50 dark:bg-red-950/20 border-l-4 border-red-500 rounded-r-lg mb-4">
+                  <p className="text-sm text-gray-700 dark:text-gray-300">
+                    <strong className="text-gray-900 dark:text-white">⚠️ Important:</strong> If <code className="px-1.5 py-0.5 bg-red-100 dark:bg-red-900/40 rounded text-xs font-mono">.stampignore</code> is generated, it means secrets were detected in your codebase. This is a <strong className="text-red-900 dark:text-red-200">bad sign</strong>—committing secrets to a codebase is unsafe and strongly discouraged.
+                  </p>
+                </div>
+                <div className="p-4 bg-orange-50/50 dark:bg-orange-950/20 border-l-4 border-orange-500 rounded-r-lg">
+                  <p className="text-sm text-gray-700 dark:text-gray-300 mb-2">
+                    <strong className="text-gray-900 dark:text-white">Proper Solution:</strong> <code className="px-1.5 py-0.5 bg-orange-100 dark:bg-orange-900/40 rounded text-xs font-mono">.stampignore</code> is only a temporary safety layer. You should:
+                  </p>
+                  <ul className="text-sm text-gray-700 dark:text-gray-300 ml-4 list-disc space-y-1">
+                    <li>Move all secrets to environment variables</li>
+                    <li>Use a secrets manager (e.g., Vault, Doppler, AWS Secrets Manager)</li>
+                    <li>Remove the secrets from your code before running context generation</li>
+                  </ul>
+                  <p className="text-sm text-gray-700 dark:text-gray-300 mt-2">
+                    The best long-term solution is to ensure that no secrets ever exist in tracked source files.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </AnimatedSection>
+
           {/* When to Use Section */}
           <AnimatedSection direction="up" delay={600}>
             <div className="mb-8 sm:mb-12 lg:mb-16">
@@ -232,6 +312,7 @@ stamp init --skip-gitignore`
                     <li>Setting up LogicStamp in a new project</li>
                     <li>You want explicit control over initialization</li>
                     <li>You want to set up <code className="px-1 py-0.5 bg-blue-100 dark:bg-blue-900/40 rounded text-xs font-mono">.gitignore</code> before generating context files</li>
+                    <li><strong>Use <code className="px-1 py-0.5 bg-blue-100 dark:bg-blue-900/40 rounded text-xs font-mono">stamp init --secure</code></strong> to combine initialization with security scanning</li>
                   </ul>
                 </div>
                 <div className="p-5 bg-gradient-to-br from-gray-50 to-slate-50 dark:from-gray-950/20 dark:to-slate-950/10 rounded-xl border border-gray-200 dark:border-gray-800">

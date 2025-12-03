@@ -65,7 +65,7 @@ export default function ReferencePage() {
                   <div className="flex flex-wrap gap-4 sm:gap-6 mb-6">
                     <div className="flex items-center gap-2">
                       <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse" />
-                      <span className="text-xs sm:text-sm font-medium text-gray-600 dark:text-gray-400">6 Commands</span>
+                      <span className="text-xs sm:text-sm font-medium text-gray-600 dark:text-gray-400">8 Commands</span>
                     </div>
                     <div className="flex items-center gap-2">
                       <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse" />

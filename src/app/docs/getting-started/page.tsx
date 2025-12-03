@@ -172,6 +172,33 @@ export default function QuickStartPage() {
                     Set up <code className="px-2 py-1 bg-gray-100 dark:bg-gray-800 text-purple-600 dark:text-purple-400 rounded-md font-mono text-xs sm:text-sm">.gitignore</code> patterns and <code className="px-2 py-1 bg-gray-100 dark:bg-gray-800 text-purple-600 dark:text-purple-400 rounded-md font-mono text-xs sm:text-sm">LLM_CONTEXT.md</code>. <code className="px-2 py-1 bg-gray-100 dark:bg-gray-800 text-purple-600 dark:text-purple-400 rounded-md font-mono text-xs sm:text-sm">stamp context</code> is CI-friendly and never prompts—it respects preferences from <code className="px-2 py-1 bg-gray-100 dark:bg-gray-800 text-purple-600 dark:text-purple-400 rounded-md font-mono text-xs sm:text-sm">stamp init</code>. If you skip this step, <code className="px-2 py-1 bg-gray-100 dark:bg-gray-800 text-purple-600 dark:text-purple-400 rounded-md font-mono text-xs sm:text-sm">stamp context</code> defaults to skipping both <code className="px-2 py-1 bg-gray-100 dark:bg-gray-800 text-purple-600 dark:text-purple-400 rounded-md font-mono text-xs sm:text-sm">.gitignore</code> and <code className="px-2 py-1 bg-gray-100 dark:bg-gray-800 text-purple-600 dark:text-purple-400 rounded-md font-mono text-xs sm:text-sm">LLM_CONTEXT.md</code> setup (safe for CI).
                   </p>
 
+                  {/* Security Best Practice */}
+                  <div className="bg-gradient-to-r from-red-50 via-orange-50 to-amber-50 dark:from-red-950/30 dark:via-orange-950/20 dark:to-amber-950/20 border-l-4 border-red-500 dark:border-red-400 p-4 sm:p-5 mb-4 sm:mb-6 rounded-r-lg shadow-sm">
+                    <div className="flex items-start gap-3">
+                      <div className="flex-shrink-0 p-1.5 bg-red-100 dark:bg-red-900/40 rounded-lg">
+                        <svg className="w-5 h-5 sm:w-6 sm:h-6 text-red-600 dark:text-red-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+                        </svg>
+                      </div>
+                      <div className="flex-1 min-w-0">
+                        <h4 className="font-bold text-red-900 dark:text-red-200 mb-1.5 sm:mb-2 text-sm sm:text-base">
+                          🔒 Best Practice: Secure Initialization
+                        </h4>
+                        <p className="text-xs sm:text-sm text-red-800 dark:text-red-300 mb-2 sm:mb-3 leading-relaxed">
+                          Use <code className="px-1.5 py-0.5 bg-red-100 dark:bg-red-900/50 rounded font-mono text-xs font-semibold">stamp init --secure</code> to automatically scan for secrets in your JS/TS/JSON files (API keys, passwords, tokens) and add detected secret files to <code className="px-1.5 py-0.5 bg-red-100 dark:bg-red-900/50 rounded font-mono text-xs font-semibold">.stampignore</code>, preventing them from being included in context generation.
+                        </p>
+                        <div className="p-3 bg-red-50/50 dark:bg-red-950/20 rounded-lg border border-red-200 dark:border-red-800">
+                          <p className="text-xs text-red-800 dark:text-red-300 mb-1">
+                            <strong className="text-red-900 dark:text-red-200">⚠️ Important:</strong> If <code className="px-1 py-0.5 bg-red-100 dark:bg-red-900/40 rounded text-xs font-mono">.stampignore</code> is created, it means secrets were detected—this is a bad sign. You should remove secrets from your codebase rather than ignoring them.
+                          </p>
+                          <p className="text-xs text-red-800 dark:text-red-300">
+                            <strong className="text-red-900 dark:text-red-200">Proper solution:</strong> Move secrets to environment variables or a secrets manager. <code className="px-1 py-0.5 bg-red-100 dark:bg-red-900/40 rounded text-xs font-mono">.stampignore</code> is only a temporary safety layer.
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
                   <div className="grid sm:grid-cols-2 gap-3 sm:gap-4 mb-4 sm:mb-6">
                     <div className="p-4 bg-gradient-to-br from-purple-50 to-pink-50 dark:from-purple-950/20 dark:to-pink-950/20 rounded-xl border border-purple-200 dark:border-purple-800">
                       <h4 className="font-semibold text-purple-900 dark:text-purple-200 mb-2">What it does:</h4>
@@ -194,7 +221,12 @@ export default function QuickStartPage() {
                   <TabbedCodeBlock
                     tabs={[
                       {
-                        label: 'Initialize',
+                        label: 'Secure Initialization (Recommended)',
+                        code: 'cd your-react-project\nstamp init --secure',
+                        copyText: 'cd your-react-project\nstamp init --secure'
+                      },
+                      {
+                        label: 'Basic Initialize',
                         code: 'cd your-react-project\nstamp init',
                         copyText: 'cd your-react-project\nstamp init'
                       },

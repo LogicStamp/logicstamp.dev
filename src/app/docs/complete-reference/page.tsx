@@ -42,7 +42,7 @@ export default function CompleteReferencePage() {
               <div className="flex flex-wrap gap-4 sm:gap-6 mt-6 sm:mt-8">
                 <div className="flex items-center gap-2">
                   <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse" />
-                  <span className="text-xs sm:text-sm font-medium text-gray-600 dark:text-gray-400">6 Commands</span>
+                  <span className="text-xs sm:text-sm font-medium text-gray-600 dark:text-gray-400">8 Commands</span>
                 </div>
                 <div className="flex items-center gap-2">
                   <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse" />
@@ -74,11 +74,29 @@ export default function CompleteReferencePage() {
               </div>
               
               <p className="text-sm sm:text-base text-gray-600 dark:text-gray-400 mb-4 sm:mb-6 leading-relaxed">
-                The 0.2.x release series introduces major features for style-aware context generation, improved token efficiency, and enhanced project structure analysis. All features listed below are available in 0.2.0 and later releases.
+                The 0.2.x release series introduces major features for style-aware context generation, improved token efficiency, enhanced project structure analysis, and security scanning. All features listed below are available in 0.2.0 and later releases. <strong className="text-gray-900 dark:text-white">v0.2.7</strong> adds security scanning capabilities.
               </p>
               
               <div className="grid sm:grid-cols-2 gap-4 sm:gap-6">
                 {[
+                  {
+                    icon: "🔒",
+                    title: "Security Scanning (v0.2.7)",
+                    desc: "New stamp security scan command detects secrets (API keys, passwords, tokens) in JS/TS/JSON files. Runs 100% locally with optional .stampignore integration",
+                    color: "red"
+                  },
+                  {
+                    icon: "🚀",
+                    title: "Enhanced Initialization (v0.2.7)",
+                    desc: "stamp init --secure flag automatically scans for secrets during initialization. --yes flag for non-interactive setup",
+                    color: "orange"
+                  },
+                  {
+                    icon: "🚫",
+                    title: "File Exclusion (v0.2.7)",
+                    desc: ".stampignore file support for excluding files with secrets from context generation. Automatically created by security scan",
+                    color: "red"
+                  },
                   {
                     icon: "🎨",
                     title: "Style Metadata Extraction",
@@ -160,6 +178,18 @@ export default function CompleteReferencePage() {
                         title: 'text-indigo-900 dark:text-indigo-100',
                         desc: 'text-indigo-800 dark:text-indigo-200'
                       };
+                    case 'red':
+                      return {
+                        container: 'bg-red-50 dark:bg-red-900/20 border-red-200 dark:border-red-800',
+                        title: 'text-red-900 dark:text-red-100',
+                        desc: 'text-red-800 dark:text-red-200'
+                      };
+                    case 'orange':
+                      return {
+                        container: 'bg-orange-50 dark:bg-orange-900/20 border-orange-200 dark:border-orange-800',
+                        title: 'text-orange-900 dark:text-orange-100',
+                        desc: 'text-orange-800 dark:text-orange-200'
+                      };
                     default:
                         return {
                           container: 'bg-blue-50 dark:bg-blue-900/20 border-blue-200 dark:border-blue-800',
@@ -203,9 +233,15 @@ export default function CompleteReferencePage() {
               {[
                 {
                   command: "stamp init [path]",
-                  description: "Initialize LogicStamp in your project by setting up .gitignore patterns and generating LLM_CONTEXT.md",
+                  description: "Initialize LogicStamp in your project by setting up .gitignore patterns and generating LLM_CONTEXT.md. Use --secure to automatically scan for secrets in JS/TS/JSON files",
                   optional: true,
                   color: "blue"
+                },
+                {
+                  command: "stamp security scan [path]",
+                  description: "Scan JS/TS/JSON files for secrets (API keys, passwords, tokens) and optionally add detected files to .stampignore. Runs 100% locally",
+                  optional: false,
+                  color: "red"
                 },
                 {
                   command: "stamp context [path]",
@@ -252,6 +288,8 @@ export default function CompleteReferencePage() {
                       return 'from-red-500 to-pink-600';
                     case 'pink':
                       return 'from-pink-500 to-rose-600';
+                    case 'red':
+                      return 'from-red-500 to-pink-600';
                     default:
                       return 'from-blue-500 to-blue-600';
                   }
@@ -265,6 +303,7 @@ export default function CompleteReferencePage() {
                     case 3: return 'animate-[fadeInSlide_0.5s_ease-out_0.35s_forwards]';
                     case 4: return 'animate-[fadeInSlide_0.5s_ease-out_0.4s_forwards]';
                     case 5: return 'animate-[fadeInSlide_0.5s_ease-out_0.45s_forwards]';
+                    case 6: return 'animate-[fadeInSlide_0.5s_ease-out_0.5s_forwards]';
                     default: return 'animate-[fadeInSlide_0.5s_ease-out_0.2s_forwards]';
                   }
                 };
@@ -919,6 +958,40 @@ stamp context style --include-code header`
 
             <div className="space-y-6 sm:space-y-8">
               {[
+                {
+                  title: "Project Initialization",
+                  desc: "Set up LogicStamp in your project with optional security scanning",
+                  code: `# Basic initialization
+stamp init
+
+# Initialize with security scan (recommended)
+# Automatically scans for secrets in JS/TS/JSON files
+stamp init --secure
+
+# Initialize a specific directory
+stamp init ./my-project
+
+# Initialize with security scan for a specific directory
+stamp init ./my-project --secure`
+                },
+                {
+                  title: "Security Scanning",
+                  desc: "Scan for secrets and sensitive data before committing",
+                  code: `# Scan current directory for secrets
+stamp security scan
+
+# Scan specific directory
+stamp security scan ./src
+
+# Scan and automatically add detected files to .stampignore
+stamp security scan --apply
+
+# Save report to custom file
+stamp security scan --out security-report.json
+
+# Quiet mode (suppress verbose output)
+stamp security scan --quiet`
+                },
                 {
                   title: "Basic Usage",
                   desc: "Generate context for entire project",
