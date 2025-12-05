@@ -23,7 +23,7 @@ export async function GET() {
     isFetching = true
 
     try {
-      const headers: HeadersInit = {
+      const headers: Record<string, string> = {
         'Accept': 'application/vnd.github.v3+json',
       }
 
