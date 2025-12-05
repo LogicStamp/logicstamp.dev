@@ -29,50 +29,30 @@ export default function GitHubStats() {
   useEffect(() => {
     const fetchGitHubStats = async () => {
       try {
-        const repo = 'LogicStamp/logicstamp-context'
+        // Use secure server-side API route (keeps token secret, caches responses)
+        const response = await fetch('/api/github-stats')
 
-        // Fetch repo stats
-        const repoResponse = await fetch(`https://api.github.com/repos/${repo}`)
-
-        if (!repoResponse.ok) {
-          // If repository doesn't exist (404), use placeholder data silently
-          if (repoResponse.status === 404) {
+        if (!response.ok) {
+          // If rate limited or not found, use placeholder data silently
+          if (response.status === 404 || response.status === 429) {
             setStats(PLACEHOLDER_DATA)
             setLoading(false)
             return
           }
-          throw new Error('Failed to fetch GitHub stats')
+          throw new Error(`Failed to fetch GitHub stats: ${response.status}`)
         }
 
-        const repoData = await repoResponse.json()
-
-        // Fetch contributors count
-        let contributorsCount = 1
-        try {
-          const contributorsResponse = await fetch(
-            `https://api.github.com/repos/${repo}/contributors?per_page=1`
-          )
-          if (contributorsResponse.ok) {
-            const contributorsLink = contributorsResponse.headers.get('Link')
-            contributorsCount = contributorsLink
-              ? parseInt(contributorsLink.match(/page=(\d+)>; rel="last"/)?.[1] || '1')
-              : 1
-          }
-        } catch (err) {
-          // If contributors fetch fails, use default value silently
-        }
-
+        const data = await response.json()
         setStats({
-          stars: repoData.stargazers_count || 0,
-          forks: repoData.forks_count || 0,
-          watchers: repoData.subscribers_count || 0,
-          contributors: contributorsCount,
-          openIssues: repoData.open_issues_count || 0,
-          lastCommit: repoData.updated_at
-            ? new Date(repoData.updated_at).toLocaleDateString()
-            : 'Recently',
+          stars: data.stars || 0,
+          forks: data.forks || 0,
+          watchers: data.watchers || 0,
+          contributors: data.contributors || 1,
+          openIssues: data.openIssues || 0,
+          lastCommit: data.lastCommit || 'Recently',
         })
         setLoading(false)
+        setError(false)
       } catch (err) {
         // Silently handle errors and use placeholder data
         setError(true)
