@@ -10,16 +10,31 @@ export async function GET() {
     const repo = 'LogicStamp/logicstamp-context'
     const githubToken = process.env.GITHUB_TOKEN
 
+    const now = Date.now()
+    const cacheAge = cache ? now - cache.timestamp : Infinity
+
     // Return cached data if still valid
-    if (cache && Date.now() - cache.timestamp < CACHE_DURATION) {
-      return NextResponse.json(cache.data)
+    if (cache && cacheAge < CACHE_DURATION) {
+      console.log(`[GitHub Stats] Returning cached data (age: ${Math.round(cacheAge / 1000)}s)`)
+      return NextResponse.json(cache.data, {
+        headers: {
+          'Cache-Control': 'public, s-maxage=60, stale-while-revalidate=300',
+        },
+      })
     }
 
-    // If already fetching, return cached data (even if stale) to prevent duplicate requests
+    // If cache is expired but we're already fetching, return stale cache
     if (isFetching && cache) {
-      return NextResponse.json(cache.data)
+      console.log(`[GitHub Stats] Fetch in progress, returning stale cache (age: ${Math.round(cacheAge / 1000)}s)`)
+      return NextResponse.json(cache.data, {
+        headers: {
+          'Cache-Control': 'public, s-maxage=60, stale-while-revalidate=300',
+        },
+      })
     }
 
+    // Cache expired or doesn't exist - fetch fresh data
+    console.log(`[GitHub Stats] Cache expired or missing, fetching fresh data...`)
     isFetching = true
 
     try {
@@ -34,31 +49,48 @@ export async function GET() {
       // Fetch repo stats
       const repoResponse = await fetch(`https://api.github.com/repos/${repo}`, {
         headers,
+        next: { revalidate: 300 }, // Revalidate every 5 minutes
       })
 
       if (!repoResponse.ok) {
+        console.error(`[GitHub Stats] GitHub API error: ${repoResponse.status} ${repoResponse.statusText}`)
+        
         // If rate limited but we have cached data, return it
         if ((repoResponse.status === 403 || repoResponse.status === 429) && cache) {
           isFetching = false
-          return NextResponse.json(cache.data)
+          console.log(`[GitHub Stats] Rate limited, returning stale cache`)
+          return NextResponse.json(cache.data, {
+            headers: {
+              'Cache-Control': 'public, s-maxage=60, stale-while-revalidate=300',
+            },
+          })
         }
 
         // Otherwise return error
         isFetching = false
         return NextResponse.json(
           { error: 'Rate limit exceeded' },
-          { status: 429 }
+          { 
+            status: 429,
+            headers: {
+              'Cache-Control': 'no-store',
+            },
+          }
         )
       }
 
       const repoData = await repoResponse.json()
+      console.log(`[GitHub Stats] Fetched repo data: ${repoData.stargazers_count} stars`)
 
       // Fetch contributors count
       let contributorsCount = 1
       try {
         const contributorsResponse = await fetch(
           `https://api.github.com/repos/${repo}/contributors?per_page=1`,
-          { headers }
+          { 
+            headers,
+            next: { revalidate: 300 },
+          }
         )
         if (contributorsResponse.ok) {
           const link = contributorsResponse.headers.get('Link')
@@ -66,8 +98,8 @@ export async function GET() {
             ? parseInt(link.match(/page=(\d+)>; rel="last"/)?.[1] || '1')
             : 1
         }
-      } catch {
-        // Ignore contributors error
+      } catch (err) {
+        console.warn('[GitHub Stats] Failed to fetch contributors:', err)
       }
 
       const statsData = {
@@ -87,29 +119,51 @@ export async function GET() {
         timestamp: Date.now(),
       }
 
+      console.log(`[GitHub Stats] Cache updated with fresh data: ${statsData.stars} stars`)
       isFetching = false
-      return NextResponse.json(statsData)
+      
+      return NextResponse.json(statsData, {
+        headers: {
+          'Cache-Control': 'public, s-maxage=60, stale-while-revalidate=300',
+        },
+      })
     } catch (err) {
       isFetching = false
+      console.error('[GitHub Stats] Fetch error:', err)
       
       // If we have cached data, return it even on error
       if (cache) {
-        return NextResponse.json(cache.data)
+        console.log(`[GitHub Stats] Error occurred, returning stale cache`)
+        return NextResponse.json(cache.data, {
+          headers: {
+            'Cache-Control': 'public, s-maxage=60, stale-while-revalidate=300',
+          },
+        })
       }
 
       throw err
     }
   } catch (err) {
-    console.error('GitHub stats API error:', err)
+    console.error('[GitHub Stats] API error:', err)
     
     // Return cached data if available, even if stale
     if (cache) {
-      return NextResponse.json(cache.data)
+      console.log(`[GitHub Stats] Outer error handler, returning stale cache`)
+      return NextResponse.json(cache.data, {
+        headers: {
+          'Cache-Control': 'public, s-maxage=60, stale-while-revalidate=300',
+        },
+      })
     }
 
     return NextResponse.json(
       { error: 'Failed to fetch GitHub stats' },
-      { status: 500 }
+      { 
+        status: 500,
+        headers: {
+          'Cache-Control': 'no-store',
+        },
+      }
     )
   }
 }

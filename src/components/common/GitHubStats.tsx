@@ -30,7 +30,10 @@ export default function GitHubStats() {
     const fetchGitHubStats = async () => {
       try {
         // Use secure server-side API route (keeps token secret, caches responses)
-        const response = await fetch('/api/github-stats')
+        // Use no-store to prevent browser caching, server-side cache handles freshness
+        const response = await fetch('/api/github-stats', {
+          cache: 'no-store',
+        })
 
         if (!response.ok) {
           // If rate limited or not found, use placeholder data silently
@@ -55,6 +58,7 @@ export default function GitHubStats() {
         setError(false)
       } catch (err) {
         // Silently handle errors and use placeholder data
+        console.error('Failed to fetch GitHub stats:', err)
         setError(true)
         setLoading(false)
         setStats(PLACEHOLDER_DATA)
@@ -62,6 +66,15 @@ export default function GitHubStats() {
     }
 
     fetchGitHubStats()
+    
+    // Optionally refresh every 5 minutes when page is visible
+    const interval = setInterval(() => {
+      if (document.visibilityState === 'visible') {
+        fetchGitHubStats()
+      }
+    }, 5 * 60 * 1000) // 5 minutes
+
+    return () => clearInterval(interval)
   }, [])
 
   const statItems = [
