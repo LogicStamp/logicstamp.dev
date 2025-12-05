@@ -250,7 +250,7 @@ export default function SecurityScanPage() {
                       <li><strong>API Keys</strong>: Patterns like <code className="px-1 py-0.5 bg-gray-100 dark:bg-gray-800 rounded text-xs font-mono">apiKey</code>, <code className="px-1 py-0.5 bg-gray-100 dark:bg-gray-800 rounded text-xs font-mono">api_key</code>, <code className="px-1 py-0.5 bg-gray-100 dark:bg-gray-800 rounded text-xs font-mono">apikey</code> with values ≥20 characters</li>
                       <li><strong>AWS Access Keys</strong>: AWS access key IDs (format: starts with specific prefix followed by 16 alphanumeric characters)</li>
                       <li><strong>GitHub Tokens</strong>: GitHub personal access tokens and fine-grained tokens</li>
-                      <li><strong>Private Keys</strong>: RSA or other private key blocks (<code className="px-1 py-0.5 bg-gray-100 dark:bg-gray-800 rounded text-xs font-mono">-----BEGIN PRIVATE KEY-----</code>)</li>
+                      <li><strong>Private Keys</strong>: RSA or other private key blocks (<code className="px-1 py-0.5 bg-gray-100 dark:bg-gray-800 rounded text-xs font-mono">BEGIN PRIVATE KEY</code>)</li>
                       <li><strong>Passwords</strong>: Patterns like <code className="px-1 py-0.5 bg-gray-100 dark:bg-gray-800 rounded text-xs font-mono">password</code>, <code className="px-1 py-0.5 bg-gray-100 dark:bg-gray-800 rounded text-xs font-mono">passwd</code>, <code className="px-1 py-0.5 bg-gray-100 dark:bg-gray-800 rounded text-xs font-mono">pwd</code> with values ≥8 characters</li>
                       <li><strong>Tokens</strong>: Authentication tokens and bearer tokens ≥20 characters</li>
                       <li><strong>OAuth Secrets</strong>: OAuth client secrets and similar patterns ≥16 characters</li>
@@ -295,7 +295,7 @@ export default function SecurityScanPage() {
       "line": 15,
       "column": 12,
       "type": "API Key",
-      "snippet": "const apiKey = 'FAKE_SECRET_KEY_1234567890abcdefghijklmnop'",
+      "snippet": "const apiKey = 'FAKE_SECRET_KEY'",
       "severity": "high"
     }
   ],
@@ -317,7 +317,7 @@ export default function SecurityScanPage() {
       "line": 15,
       "column": 12,
       "type": "API Key",
-      "snippet": "const apiKey = 'FAKE_SECRET_KEY_1234567890abcdefghijklmnop'",
+      "snippet": "const apiKey = 'FAKE_SECRET_KEY'",
       "severity": "high"
     }
   ],
