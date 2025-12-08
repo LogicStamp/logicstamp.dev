@@ -23,13 +23,13 @@ export default function MCPPage() {
             <div className="relative text-center">
               {/* Fox Mascot */}
               <div className="flex justify-center mb-6 sm:mb-8">
-                <div className="w-16 h-16 sm:w-20 sm:h-20 animate-bounce relative">
+                <div className="w-16 h-16 sm:w-20 sm:h-20 animate-bounce relative bg-transparent">
                   <Image
                     src="/mascot/logicstamp-fox.svg"
                     alt="LogicStamp Fox Mascot"
                     width={80}
                     height={80}
-                    className="w-full h-full drop-shadow-2xl"
+                    className="w-full h-full drop-shadow-2xl bg-transparent"
                   />
                 </div>
               </div>
