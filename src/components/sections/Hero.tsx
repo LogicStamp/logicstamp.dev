@@ -203,7 +203,7 @@ export default function Hero() {
               <span className="text-secondary-700 dark:text-secondary-300 font-semibold">Zero config, up to 70% token savings.</span>
             </p>
             <p className="mt-4 text-base lg:text-lg text-gray-500 dark:text-gray-400">
-              Fast • Deterministic • Zero Config • Open Source
+              Fast • Deterministic • Open Source
             </p>
           </div>
 

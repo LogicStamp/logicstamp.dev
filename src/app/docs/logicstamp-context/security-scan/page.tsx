@@ -86,12 +86,6 @@ export default function SecurityScanPage() {
                   </svg>
                   <p className="text-sm text-orange-800 dark:text-orange-300">Generating detailed reports of detected secrets</p>
                 </div>
-                <div className="flex items-start gap-3 p-3 bg-amber-50 dark:bg-amber-950/20 rounded-lg border border-amber-200 dark:border-amber-800">
-                  <svg className="w-5 h-5 text-amber-600 dark:text-amber-400 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
-                  </svg>
-                  <p className="text-sm text-amber-800 dark:text-amber-300">Optionally adding files with secrets to <code className="px-1.5 py-0.5 bg-amber-100 dark:bg-amber-900/40 rounded text-xs font-mono">.stampignore</code> to exclude them from context generation</p>
-                </div>
                 <div className="flex items-start gap-3 p-3 bg-yellow-50 dark:bg-yellow-950/20 rounded-lg border border-yellow-200 dark:border-yellow-800">
                   <svg className="w-5 h-5 text-yellow-600 dark:text-yellow-400 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
@@ -135,15 +129,6 @@ export default function SecurityScanPage() {
                           <code className="px-2 py-1 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 rounded text-xs sm:text-sm font-mono">-o</code>
                         </td>
                         <td className="px-2 sm:px-6 py-4 text-sm text-gray-600 dark:text-gray-400">Output file path for the security report (default: <code className="px-1 py-0.5 bg-gray-100 dark:bg-gray-800 rounded text-xs font-mono">stamp_security_report.json</code>)</td>
-                      </tr>
-                      <tr className="hover:bg-gray-50 dark:hover:bg-gray-800/50 transition-colors bg-red-50/30 dark:bg-red-950/20">
-                        <td className="px-2 sm:px-6 py-4 whitespace-nowrap">
-                          <code className="px-2 py-1 bg-red-100 dark:bg-red-900/40 text-red-900 dark:text-red-100 rounded text-xs sm:text-sm font-mono">--apply</code>
-                        </td>
-                        <td className="px-2 sm:px-6 py-4 whitespace-nowrap">
-                          <span className="text-gray-400">—</span>
-                        </td>
-                        <td className="px-2 sm:px-6 py-4 text-sm text-gray-600 dark:text-gray-400">Automatically add files with secrets to <code className="px-1 py-0.5 bg-red-100 dark:bg-red-900/40 rounded text-xs font-mono">.stampignore</code></td>
                       </tr>
                       <tr className="hover:bg-gray-50 dark:hover:bg-gray-800/50 transition-colors">
                         <td className="px-2 sm:px-6 py-4 whitespace-nowrap">
@@ -210,17 +195,6 @@ export default function SecurityScanPage() {
                     </p>
                     <p className="text-sm text-amber-800 dark:text-amber-300">
                       Adds the report file to <code className="px-1.5 py-0.5 bg-amber-100 dark:bg-amber-900/40 rounded text-xs font-mono">.gitignore</code> to prevent accidental commits of sensitive findings
-                    </p>
-                  </div>
-                </div>
-                <div className="flex items-start gap-4 p-5 bg-gradient-to-br from-yellow-50 to-red-50 dark:from-yellow-950/20 dark:to-red-950/10 rounded-xl border border-yellow-200 dark:border-yellow-800">
-                  <div className="flex-shrink-0 w-8 h-8 rounded-full bg-yellow-600 text-white font-bold flex items-center justify-center text-sm">4</div>
-                  <div className="flex-1">
-                    <p className="font-semibold text-yellow-900 dark:text-yellow-200 mb-2 text-base sm:text-lg">
-                      Optionally adds files with secrets to <code className="px-1.5 py-0.5 bg-yellow-100 dark:bg-yellow-900/40 rounded text-xs font-mono">.stampignore</code>
-                    </p>
-                    <p className="text-sm text-yellow-800 dark:text-yellow-300">
-                      Prevents these files from being included in context generation (use <code className="px-1.5 py-0.5 bg-yellow-100 dark:bg-yellow-900/40 rounded text-xs font-mono">--apply</code> flag)
                     </p>
                   </div>
                 </div>
@@ -398,66 +372,57 @@ export default function SecurityScanPage() {
                     </svg>
                   </div>
                   <h2 className="text-xl sm:text-2xl font-bold text-gray-900 dark:text-white m-0">
-                    <code className="px-2 py-1 bg-gray-100 dark:bg-gray-800 text-orange-600 dark:text-orange-400 rounded-md font-mono text-xs sm:text-sm">.stampignore</code> Integration
+                    Secret Sanitization in Context Files
                   </h2>
                 </div>
                 <p className="text-base sm:text-lg text-gray-600 dark:text-gray-400 mb-4 leading-relaxed">
-                  When secrets are detected, you can automatically add affected files to <code className="px-2 py-1 bg-gray-100 dark:bg-gray-800 text-orange-600 dark:text-orange-400 rounded-md font-mono text-xs sm:text-sm">.stampignore</code> to prevent them from being included in context generation.
+                  When generating context JSON files, any secrets detected in the security report are automatically replaced with <code className="px-2 py-1 bg-gray-100 dark:bg-gray-800 text-orange-600 dark:text-orange-400 rounded-md font-mono text-xs sm:text-sm">"PRIVATE_DATA"</code> in the generated files.
                 </p>
-                <p className="text-base sm:text-lg text-gray-600 dark:text-gray-400 mb-4 leading-relaxed">
-                  The <code className="px-2 py-1 bg-gray-100 dark:bg-gray-800 text-orange-600 dark:text-orange-400 rounded-md font-mono text-xs sm:text-sm">--apply</code> flag will:
-                </p>
-                <ul className="space-y-2 text-sm text-gray-700 dark:text-gray-300 ml-4 list-disc mb-4">
-                  <li>Add files containing secrets to the ignore list (only new ones)</li>
-                  <li>Create <code className="px-1.5 py-0.5 bg-gray-100 dark:bg-gray-800 rounded text-xs font-mono">.stampignore</code> if it doesn't exist (only if secrets are found and there are new files to add)</li>
-                  <li>Preserve existing entries and avoid duplicates</li>
-                </ul>
+                <div className="space-y-3 mb-4">
+                  <div className="flex items-start gap-3 p-3 bg-green-50 dark:bg-green-950/20 rounded-lg border border-green-200 dark:border-green-800">
+                    <svg className="w-5 h-5 text-green-600 dark:text-green-400 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                    </svg>
+                    <p className="text-sm text-green-800 dark:text-green-300">Source files are never modified - your actual code remains unchanged</p>
+                  </div>
+                  <div className="flex items-start gap-3 p-3 bg-blue-50 dark:bg-blue-950/20 rounded-lg border border-blue-200 dark:border-blue-800">
+                    <svg className="w-5 h-5 text-blue-600 dark:text-blue-400 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                    </svg>
+                    <p className="text-sm text-blue-800 dark:text-blue-300">Sanitization happens automatically when a security report exists</p>
+                  </div>
+                  <div className="flex items-start gap-3 p-3 bg-purple-50 dark:bg-purple-950/20 rounded-lg border border-purple-200 dark:border-purple-800">
+                    <svg className="w-5 h-5 text-purple-600 dark:text-purple-400 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                    </svg>
+                    <p className="text-sm text-purple-800 dark:text-purple-300">Works with all code inclusion modes (<code className="px-1.5 py-0.5 bg-purple-100 dark:bg-purple-900/40 rounded text-xs font-mono">--include-code header</code> and <code className="px-1.5 py-0.5 bg-purple-100 dark:bg-purple-900/40 rounded text-xs font-mono">--include-code full</code>)</p>
+                  </div>
+                </div>
                 <div className="p-4 bg-orange-50/50 dark:bg-orange-950/20 border-l-4 border-orange-500 rounded-r-lg mb-4">
                   <p className="text-sm text-gray-700 dark:text-gray-300 mb-2">
-                    <strong className="text-orange-900 dark:text-orange-200">🔐 Important Security Note</strong>
+                    <strong className="text-orange-900 dark:text-orange-200">Code inclusion modes and credentials:</strong>
                   </p>
-                  <p className="text-sm text-gray-700 dark:text-gray-300 mb-2">
-                    <code className="px-1.5 py-0.5 bg-orange-100 dark:bg-orange-900/40 rounded text-xs font-mono">.stampignore</code> is only created when secrets are actually detected in your project. However, committing secrets to a codebase is unsafe and strongly discouraged.
-                  </p>
-                  <p className="text-sm text-gray-700 dark:text-gray-300 mb-2">
-                    LogicStamp's <code className="px-1.5 py-0.5 bg-orange-100 dark:bg-orange-900/40 rounded text-xs font-mono">.stampignore</code> mechanism is a temporary safety layer to prevent secrets from being included in your context bundles — it is not a substitute for proper secret hygiene.
-                  </p>
-                  <p className="text-sm text-gray-700 dark:text-gray-300 mb-2">
-                    <strong className="text-gray-900 dark:text-white">We strongly recommend:</strong>
-                  </p>
-                  <ul className="text-sm text-gray-700 dark:text-gray-300 ml-4 list-disc space-y-1">
-                    <li>Moving all secrets to environment variables</li>
-                    <li>Using a secrets manager (e.g., Vault, Doppler, AWS Secrets Manager)</li>
-                    <li>Removing the secrets from your code before running context generation</li>
+                  <ul className="text-sm text-gray-700 dark:text-gray-300 ml-4 list-disc space-y-1 mb-2">
+                    <li><strong>none mode</strong>: No code is included, so credentials cannot appear in bundles</li>
+                    <li><strong>header mode</strong>: Only JSDoc <code className="px-1 py-0.5 bg-orange-100 dark:bg-orange-900/40 rounded text-xs font-mono">@uif</code> metadata blocks are included (not implementation code), so credentials will not appear in bundles</li>
+                    <li><strong>header+style mode</strong>: Same as header mode (only metadata), plus style information, so credentials will not appear in bundles</li>
+                    <li><strong>full mode</strong>: Full source code is included, so credentials could appear unless sanitized. Sanitization automatically replaces detected secrets with <code className="px-1 py-0.5 bg-orange-100 dark:bg-orange-900/40 rounded text-xs font-mono">"PRIVATE_DATA"</code> when a security report exists</li>
                   </ul>
-                  <p className="text-sm text-gray-700 dark:text-gray-300 mt-2">
-                    The best long-term solution is to ensure that no secrets ever exist in tracked source files.
+                  <p className="text-sm text-gray-700 dark:text-gray-300">
+                    <strong className="text-gray-900 dark:text-white">Even if credentials exist in your source files (which they shouldn't), they can only be included in generated bundles when using <code className="px-1.5 py-0.5 bg-orange-100 dark:bg-orange-900/40 rounded text-xs font-mono">--include-code full</code> mode.</strong> The other modes only include metadata and contracts, not actual implementation code where credentials would typically be found.
                   </p>
                 </div>
                 <p className="text-sm text-gray-600 dark:text-gray-400 mb-2">
-                  <code className="px-1.5 py-0.5 bg-gray-100 dark:bg-gray-800 rounded text-xs font-mono">.stampignore</code> uses JSON format with paths relative to project root (forward slashes):
+                  <strong className="text-gray-900 dark:text-white">When sanitization happens:</strong>
                 </p>
-                <TabbedCodeBlock
-                  tabs={[
-                    {
-                      label: '.stampignore Format',
-                      code: `{
-  "ignore": [
-    "src/config.ts",
-    "src/secrets.js",
-    "lib/api-keys.ts"
-  ]
-}`,
-                      copyText: `{
-  "ignore": [
-    "src/config.ts",
-    "src/secrets.js",
-    "lib/api-keys.ts"
-  ]
-}`
-                    }
-                  ]}
-                />
+                <ul className="text-sm text-gray-700 dark:text-gray-300 ml-4 list-disc space-y-1">
+                  <li><code className="px-1.5 py-0.5 bg-gray-100 dark:bg-gray-800 rounded text-xs font-mono">stamp context</code> - Secrets are sanitized in generated context files</li>
+                  <li><code className="px-1.5 py-0.5 bg-gray-100 dark:bg-gray-800 rounded text-xs font-mono">stamp context style</code> - Secrets are sanitized in generated context files (same behavior)</li>
+                  <li>If no security report exists, code is included as-is (no sanitization)</li>
+                </ul>
+                <p className="text-sm text-gray-600 dark:text-gray-400 mt-4">
+                  This ensures that sensitive credentials never appear in your context JSON files, even if they exist in your source code.
+                </p>
               </div>
             </div>
           </AnimatedSection>
@@ -476,20 +441,12 @@ export default function SecurityScanPage() {
 stamp security scan
 
 # Scan specific directory
-stamp security scan ./src
-
-# Scan and automatically add detected secret files to .stampignore
-# Prevents these files from ever reaching context.json
-stamp security scan --apply`,
+stamp security scan ./src`,
                     copyText: `# Scan the current directory for secrets
 stamp security scan
 
 # Scan specific directory
-stamp security scan ./src
-
-# Scan and automatically add detected secret files to .stampignore
-# Prevents these files from ever reaching context.json
-stamp security scan --apply`
+stamp security scan ./src`
                   },
                   {
                     label: 'CI/CD Integration',
@@ -571,48 +528,57 @@ stamp security scan --out ./reports/`
                 Integration with <code className="px-2 py-1 bg-gray-100 dark:bg-gray-800 text-blue-600 dark:text-blue-400 rounded-md font-mono text-xs sm:text-sm">stamp init</code>
               </h2>
               <p className="text-base sm:text-lg text-gray-600 dark:text-gray-400 mb-4 sm:mb-6 leading-relaxed">
-                The security scan can be automatically run during project initialization using the <code className="px-2 py-1 bg-gray-100 dark:bg-gray-800 text-red-600 dark:text-red-400 rounded-md font-mono text-xs sm:text-sm">--secure</code> flag:
+                The security scan runs automatically during project initialization by default:
               </p>
               <TabbedCodeBlock
                 tabs={[
                   {
-                    label: 'Secure Initialization',
-                    code: `stamp init --secure`,
-                    copyText: 'stamp init --secure'
+                    label: 'Default Behavior',
+                    code: `# Security scan runs automatically
+stamp init
+
+# Initialize without prompts (CI-friendly, security scan still runs)
+stamp init --yes
+
+# Skip security scan if needed
+stamp init --no-secure`,
+                    copyText: `# Security scan runs automatically
+stamp init
+
+# Initialize without prompts (CI-friendly, security scan still runs)
+stamp init --yes
+
+# Skip security scan if needed
+stamp init --no-secure`
                   }
                 ]}
               />
               <p className="text-base sm:text-lg text-gray-600 dark:text-gray-400 mb-4 sm:mb-6 leading-relaxed mt-4">
-                This command:
+                By default, <code className="px-2 py-1 bg-gray-100 dark:bg-gray-800 text-blue-600 dark:text-blue-400 rounded-md font-mono text-xs sm:text-sm">stamp init</code> automatically runs a security scan after initialization. This:
               </p>
               <div className="space-y-3">
                 <div className="flex items-start gap-3 p-3 bg-blue-50 dark:bg-blue-950/20 rounded-lg border border-blue-200 dark:border-blue-800">
                   <svg className="w-5 h-5 text-blue-600 dark:text-blue-400 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                   </svg>
-                  <p className="text-sm text-blue-800 dark:text-blue-300">Runs <code className="px-1.5 py-0.5 bg-blue-100 dark:bg-blue-900/40 rounded text-xs font-mono">stamp init</code> with auto-yes (no prompts)</p>
+                  <p className="text-sm text-blue-800 dark:text-blue-300">Sets up <code className="px-1.5 py-0.5 bg-blue-100 dark:bg-blue-900/40 rounded text-xs font-mono">.gitignore</code> patterns</p>
                 </div>
                 <div className="flex items-start gap-3 p-3 bg-green-50 dark:bg-green-950/20 rounded-lg border border-green-200 dark:border-green-800">
                   <svg className="w-5 h-5 text-green-600 dark:text-green-400 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                   </svg>
-                  <p className="text-sm text-green-800 dark:text-green-300">Automatically runs <code className="px-1.5 py-0.5 bg-green-100 dark:bg-green-900/40 rounded text-xs font-mono">stamp security scan --apply</code> to scan for secrets</p>
+                  <p className="text-sm text-green-800 dark:text-green-300">Generates <code className="px-1.5 py-0.5 bg-green-100 dark:bg-green-900/40 rounded text-xs font-mono">LLM_CONTEXT.md</code> (if prompted and accepted)</p>
                 </div>
                 <div className="flex items-start gap-3 p-3 bg-purple-50 dark:bg-purple-950/20 rounded-lg border border-purple-200 dark:border-purple-800">
                   <svg className="w-5 h-5 text-purple-600 dark:text-purple-400 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                   </svg>
-                  <p className="text-sm text-purple-800 dark:text-purple-300">Adds any detected secret files to <code className="px-1.5 py-0.5 bg-purple-100 dark:bg-purple-900/40 rounded text-xs font-mono">.stampignore</code>, preventing these files from ever reaching <code className="px-1.5 py-0.5 bg-purple-100 dark:bg-purple-900/40 rounded text-xs font-mono">context.json</code></p>
+                  <p className="text-sm text-purple-800 dark:text-purple-300">Runs <code className="px-1.5 py-0.5 bg-purple-100 dark:bg-purple-900/40 rounded text-xs font-mono">stamp security scan</code> to scan for secrets (API keys, passwords, tokens)</p>
                 </div>
               </div>
               <p className="text-base sm:text-lg text-gray-600 dark:text-gray-400 mb-4 sm:mb-6 leading-relaxed mt-4">
-                Useful for:
+                Review the security report and use <code className="px-2 py-1 bg-gray-100 dark:bg-gray-800 text-blue-600 dark:text-blue-400 rounded-md font-mono text-xs sm:text-sm">stamp ignore &lt;file&gt;</code> to exclude files with secrets from context generation.
               </p>
-              <ul className="space-y-2 text-sm text-gray-700 dark:text-gray-300 ml-4 list-disc">
-                <li>Setting up new projects with security checks from the start</li>
-                <li>CI/CD pipelines that need automated security validation</li>
-                <li>Ensuring security best practices are followed from project initialization</li>
-              </ul>
             </div>
           </AnimatedSection>
 

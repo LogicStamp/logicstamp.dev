@@ -2,19 +2,23 @@ import { NextResponse } from 'next/server'
 
 // In-memory cache to prevent multiple simultaneous requests
 let cache: { data: unknown; timestamp: number } | null = null
-const CACHE_DURATION = 5 * 60 * 1000 // 5 minutes
+const CACHE_DURATION = 2 * 60 * 1000 // 2 minutes (reduced from 5 to prevent stale data)
 let isFetching = false
 
-export async function GET() {
+export async function GET(request: Request) {
   try {
     const repo = 'LogicStamp/logicstamp-context'
     const githubToken = process.env.GITHUB_TOKEN
 
+    // Check for force refresh query parameter
+    const { searchParams } = new URL(request.url)
+    const forceRefresh = searchParams.get('refresh') === 'true'
+
     const now = Date.now()
     const cacheAge = cache ? now - cache.timestamp : Infinity
 
-    // Return cached data if still valid
-    if (cache && cacheAge < CACHE_DURATION) {
+    // Return cached data if still valid (unless force refresh requested)
+    if (cache && cacheAge < CACHE_DURATION && !forceRefresh) {
       console.log(`[GitHub Stats] Returning cached data (age: ${Math.round(cacheAge / 1000)}s)`)
       return NextResponse.json(cache.data, {
         headers: {

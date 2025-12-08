@@ -30,8 +30,8 @@ export default function GitHubStats() {
     const fetchGitHubStats = async () => {
       try {
         // Use secure server-side API route (keeps token secret, caches responses)
-        // Use no-store to prevent browser caching, server-side cache handles freshness
-        const response = await fetch('/api/github-stats', {
+        // Force refresh on initial load to ensure fresh data
+        const response = await fetch('/api/github-stats?refresh=true', {
           cache: 'no-store',
         })
 

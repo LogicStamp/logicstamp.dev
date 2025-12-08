@@ -26,14 +26,14 @@ export default function BetaPage() {
             <div className="text-center">
               {/* Fox Mascot */}
               <div className="flex justify-center mb-4 sm:mb-6">
-                <div className="w-20 h-20 sm:w-24 sm:h-24 animate-bounce">
+                <div className="w-20 h-20 sm:w-24 sm:h-24 animate-bounce bg-transparent">
                   <Image
                     src="/mascot/logicstamp-fox.svg"
                     alt="LogicStamp Fox Mascot"
                     width={96}
                     height={96}
                     priority
-                    className="w-full h-full drop-shadow-2xl"
+                    className="w-full h-full drop-shadow-2xl bg-transparent"
                   />
                 </div>
               </div>

@@ -333,26 +333,26 @@ export default function BestPracticesPage() {
 
                 <div className="bg-gradient-to-r from-red-50 via-orange-50 to-amber-50 dark:from-red-950/30 dark:via-orange-950/20 dark:to-amber-950/20 border-l-4 border-red-500 dark:border-red-400 p-4 sm:p-5 mb-4 sm:mb-6 rounded-r-lg">
                   <h3 className="text-base sm:text-lg font-bold text-red-900 dark:text-red-200 mb-2 sm:mb-3">
-                    🔒 Use Secure Initialization
+                    🔒 Security Scan Runs by Default
                   </h3>
                   <p className="text-xs sm:text-sm text-red-800 dark:text-red-300 mb-3 leading-relaxed">
-                    Always use <code className="px-1.5 py-0.5 bg-red-100 dark:bg-red-900/50 rounded font-mono text-xs font-semibold">stamp init --secure</code> when setting up LogicStamp in a new project. This automatically scans for secrets in your JS/TS/JSON files and adds detected secret files to <code className="px-1.5 py-0.5 bg-red-100 dark:bg-red-900/50 rounded font-mono text-xs font-semibold">.stampignore</code>, preventing them from being included in context generation.
+                    By default, <code className="px-1.5 py-0.5 bg-red-100 dark:bg-red-900/50 rounded font-mono text-xs font-semibold">stamp init</code> automatically runs a security scan to detect secrets in your JS/TS/JSON files. Review the security report and use <code className="px-1.5 py-0.5 bg-red-100 dark:bg-red-100 dark:bg-red-900/50 rounded font-mono text-xs font-semibold">stamp ignore &lt;file&gt;</code> to exclude files with detected secrets from context generation.
                   </p>
                   <TabbedCodeBlock
                     tabs={[
                       {
-                        label: 'Secure initialization',
-                        code: 'cd your-react-project\nstamp init --secure',
-                        copyText: 'cd your-react-project\nstamp init --secure',
+                        label: 'Initialization (Security Scan by Default)',
+                        code: 'cd your-react-project\nstamp init',
+                        copyText: 'cd your-react-project\nstamp init',
                       },
                     ]}
                   />
                   <div className="mt-3 p-3 bg-red-50/50 dark:bg-red-950/20 rounded-lg border border-red-200 dark:border-red-800">
                     <p className="text-xs text-red-800 dark:text-red-300 mb-1">
-                      <strong className="text-red-900 dark:text-red-200">⚠️ Important:</strong> If <code className="px-1 py-0.5 bg-red-100 dark:bg-red-900/40 rounded text-xs font-mono">.stampignore</code> is created, it means secrets were detected—this is a bad sign. You should remove secrets from your codebase rather than ignoring them.
+                      <strong className="text-red-900 dark:text-red-200">⚠️ Important:</strong> If secrets are detected, they are automatically sanitized in generated context files (replaced with "PRIVATE_DATA"). Your source code files are never modified.
                     </p>
                     <p className="text-xs text-red-800 dark:text-red-300">
-                      <strong className="text-red-900 dark:text-red-200">Proper solution:</strong> Move secrets to environment variables or a secrets manager (e.g., Vault, Doppler, AWS Secrets Manager). <code className="px-1 py-0.5 bg-red-100 dark:bg-red-900/40 rounded text-xs font-mono">.stampignore</code> is only a temporary safety layer.
+                      <strong className="text-red-900 dark:text-red-200">Best practice:</strong> Remove secrets from your codebase and use environment variables or a secrets manager (e.g., Vault, Doppler, AWS Secrets Manager) instead.
                     </p>
                   </div>
                 </div>
@@ -369,8 +369,8 @@ export default function BestPracticesPage() {
                       tabs={[
                         {
                           label: 'Scan for secrets',
-                          code: '# Scan current directory\nstamp security scan\n\n# Scan and auto-apply to .stampignore\nstamp security scan --apply',
-                          copyText: 'stamp security scan --apply',
+                          code: '# Scan current directory\nstamp security scan\n\n# Review report and exclude files\nstamp ignore src/secrets.ts',
+                          copyText: 'stamp security scan',
                         },
                       ]}
                     />
