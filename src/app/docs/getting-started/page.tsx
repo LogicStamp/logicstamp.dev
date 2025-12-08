@@ -184,14 +184,14 @@ export default function QuickStartPage() {
                           🔒 Best Practice: Secure Initialization
                         </h4>
                         <p className="text-xs sm:text-sm text-red-800 dark:text-red-300 mb-2 sm:mb-3 leading-relaxed">
-                          Use <code className="px-1.5 py-0.5 bg-red-100 dark:bg-red-900/50 rounded font-mono text-xs font-semibold">stamp init --secure</code> to automatically scan for secrets in your JS/TS/JSON files (API keys, passwords, tokens) and add detected secret files to <code className="px-1.5 py-0.5 bg-red-100 dark:bg-red-900/50 rounded font-mono text-xs font-semibold">.stampignore</code>, preventing them from being included in context generation.
+                          By default, <code className="px-1.5 py-0.5 bg-red-100 dark:bg-red-900/50 rounded font-mono text-xs font-semibold">stamp init</code> automatically runs a security scan to detect secrets in your JS/TS/JSON files (API keys, passwords, tokens). Review the security report and use <code className="px-1.5 py-0.5 bg-red-100 dark:bg-red-900/50 rounded font-mono text-xs font-semibold">stamp ignore &lt;file&gt;</code> to exclude files with detected secrets from context generation.
                         </p>
                         <div className="p-3 bg-red-50/50 dark:bg-red-950/20 rounded-lg border border-red-200 dark:border-red-800">
                           <p className="text-xs text-red-800 dark:text-red-300 mb-1">
-                            <strong className="text-red-900 dark:text-red-200">⚠️ Important:</strong> If <code className="px-1 py-0.5 bg-red-100 dark:bg-red-900/40 rounded text-xs font-mono">.stampignore</code> is created, it means secrets were detected—this is a bad sign. You should remove secrets from your codebase rather than ignoring them.
+                            <strong className="text-red-900 dark:text-red-200">⚠️ Important:</strong> If secrets are detected, they are automatically sanitized in generated context files (replaced with "PRIVATE_DATA"). Your source code files are never modified.
                           </p>
                           <p className="text-xs text-red-800 dark:text-red-300">
-                            <strong className="text-red-900 dark:text-red-200">Proper solution:</strong> Move secrets to environment variables or a secrets manager. <code className="px-1 py-0.5 bg-red-100 dark:bg-red-900/40 rounded text-xs font-mono">.stampignore</code> is only a temporary safety layer.
+                            <strong className="text-red-900 dark:text-red-200">Best practice:</strong> Remove secrets from your codebase and use environment variables or a secrets manager instead.
                           </p>
                         </div>
                       </div>
@@ -204,7 +204,8 @@ export default function QuickStartPage() {
                       <ul className="text-sm text-purple-800 dark:text-purple-300 space-y-1">
                         <li>• Adds context files to .gitignore</li>
                         <li>• Creates LLM_CONTEXT.md guide</li>
-                        <li>• Sets up project structure</li>
+                        <li>• Creates .logicstamp/config.json</li>
+                        <li>• Runs security scan by default (v0.3.0+)</li>
                       </ul>
                     </div>
                     <div className="p-4 bg-gradient-to-br from-gray-50 to-slate-50 dark:from-gray-950/20 dark:to-slate-950/20 rounded-xl border border-gray-200 dark:border-gray-800">
@@ -220,18 +221,23 @@ export default function QuickStartPage() {
                   <TabbedCodeBlock
                     tabs={[
                       {
-                        label: 'Secure Initialization (Recommended)',
-                        code: 'cd your-react-project\nstamp init --secure',
-                        copyText: 'cd your-react-project\nstamp init --secure'
-                      },
-                      {
-                        label: 'Basic Initialize',
-                        code: 'cd your-react-project\nstamp init',
+                        label: 'Initialize (Security Scan by Default)',
+                        code: '# Initialize LogicStamp in the current directory\n# Security scan runs by default\ncd your-react-project\nstamp init',
                         copyText: 'cd your-react-project\nstamp init'
                       },
                       {
+                        label: 'CI-Friendly (No Prompts)',
+                        code: '# Initialize without prompts (CI-friendly, security scan still runs)\ncd your-react-project\nstamp init --yes',
+                        copyText: 'cd your-react-project\nstamp init --yes'
+                      },
+                      {
+                        label: 'Skip Security Scan',
+                        code: '# Initialize without security scan\ncd your-react-project\nstamp init --no-secure',
+                        copyText: 'cd your-react-project\nstamp init --no-secure'
+                      },
+                      {
                         label: 'Skip & Use Defaults',
-                        code: 'cd your-react-project\nstamp context  # CI-friendly: never prompts, uses defaults',
+                        code: '# Skip initialization, use stamp context directly\n# CI-friendly: never prompts, uses defaults\ncd your-react-project\nstamp context',
                         copyText: 'cd your-react-project\nstamp context'
                       }
                     ]}

@@ -230,7 +230,7 @@ export default function WhatIsLogicStampPage() {
                 {
                   icon: "🚀",
                   title: "Project Initialization",
-                  desc: "Set up .gitignore patterns and generate LLM_CONTEXT.md via stamp init. Use stamp init --secure to automatically scan for secrets in JS/TS/JSON files and add them to .stampignore. stamp context is CI-friendly and never prompts—respects preferences automatically",
+                  desc: "Set up .gitignore patterns and generate LLM_CONTEXT.md via stamp init. By default, stamp init automatically runs a security scan to detect secrets in JS/TS/JSON files. stamp context is CI-friendly and never prompts—respects preferences automatically",
                   color: "indigo"
                 },
                 {
@@ -277,9 +277,14 @@ export default function WhatIsLogicStampPage() {
                     copyText: 'stamp init'
                   },
                   {
-                    label: 'Initialize (Secure)',
-                    code: 'stamp init --secure',
-                    copyText: 'stamp init --secure'
+                    label: 'Initialize (CI-Friendly)',
+                    code: 'stamp init --yes',
+                    copyText: 'stamp init --yes'
+                  },
+                  {
+                    label: 'Initialize (Skip Security)',
+                    code: 'stamp init --no-secure',
+                    copyText: 'stamp init --no-secure'
                   },
                   {
                     label: 'Generate Context',

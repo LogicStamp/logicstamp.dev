@@ -69,32 +69,32 @@ export default function CompleteReferencePage() {
                   </svg>
                 </div>
                 <h2 className="text-xl sm:text-2xl font-bold text-gray-900 dark:text-white m-0">
-                  What's New in v0.2.x
+                  What's New in v0.3.0
                 </h2>
               </div>
               
               <p className="text-sm sm:text-base text-gray-600 dark:text-gray-400 mb-4 sm:mb-6 leading-relaxed">
-                The 0.2.x release series introduces major features for style-aware context generation, improved token efficiency, enhanced project structure analysis, and security scanning. All features listed below are available in 0.2.0 and later releases. <strong className="text-gray-900 dark:text-white">v0.2.7</strong> adds security scanning capabilities.
+                The 0.3.0 release introduces major security improvements: security scanning now runs by default during initialization, automatic secret sanitization in context files, and a new <code className="px-1.5 py-0.5 bg-gray-100 dark:bg-gray-800 rounded text-xs font-mono">stamp ignore</code> command for managing file exclusions.
               </p>
               
               <div className="grid sm:grid-cols-2 gap-4 sm:gap-6">
                 {[
                   {
                     icon: "🔒",
-                    title: "Security Scanning (v0.2.7)",
-                    desc: "New stamp security scan command detects secrets (API keys, passwords, tokens) in JS/TS/JSON files. Runs 100% locally with optional .stampignore integration",
+                    title: "Security Scanning (v0.3.0)",
+                    desc: "Security scan now runs by default during stamp init. Automatic secret sanitization in generated context files. New stamp ignore command for managing file exclusions",
                     color: "red"
                   },
                   {
                     icon: "🚀",
-                    title: "Enhanced Initialization (v0.2.7)",
-                    desc: "stamp init --secure flag automatically scans for secrets during initialization. --yes flag for non-interactive setup",
+                    title: "Enhanced Initialization (v0.3.0)",
+                    desc: "Security scan runs by default during stamp init. Use --no-secure to skip. --yes flag for non-interactive setup",
                     color: "orange"
                   },
                   {
                     icon: "🚫",
-                    title: "File Exclusion (v0.2.7)",
-                    desc: ".stampignore file support for excluding files with secrets from context generation. Automatically created by security scan",
+                    title: "File Exclusion (v0.3.0)",
+                    desc: "New stamp ignore command for managing .stampignore file. .stampignore is now independent of security scanning",
                     color: "red"
                   },
                   {
@@ -371,9 +371,8 @@ export default function CompleteReferencePage() {
                       { option: "--max-nodes <n>", alias: "-m", desc: "Maximum nodes per bundle", default: "100" },
                       { option: "--profile <profile>", alias: "-", desc: "Profile preset (see Profiles section)", default: "llm-chat" },
                       { option: "--strict", alias: "-s", desc: "Fail on missing dependencies", default: "false" },
-                      { option: "--predict-behavior", alias: "-", desc: "Include experimental behavior predictions", default: "false" },
                       { option: "--dry-run", alias: "-", desc: "Skip writing output; show summary only", default: "false" },
-                      { option: "--stats", alias: "-", desc: "Emit single-line JSON stats with token estimates", default: "false" },
+                      { option: "--stats", alias: "-", desc: "Emit single-line JSON stats (ideal for CI). When combined with --compare-modes, writes context_compare_modes.json for MCP integration.", default: "false" },
                       { option: "--compare-modes", alias: "-", desc: "Show detailed token comparison across all modes (none/header/header+style/full)", default: "false" },
                       { option: "--include-style", alias: "-", desc: "Extract style metadata (Tailwind, SCSS, animations, layout)", default: "false" },
                       { option: "--skip-gitignore", alias: "-", desc: "Skip .gitignore setup (never prompt or modify)", default: "false" },
@@ -420,8 +419,7 @@ export default function CompleteReferencePage() {
                   settings: [
                     "Depth: 1",
                     "Code: headers only",
-                    "Max nodes: 100",
-                    "Behavioral predictions: disabled"
+                    "Max nodes: 100"
                   ]
                 },
                 {
@@ -431,8 +429,7 @@ export default function CompleteReferencePage() {
                   settings: [
                     "Depth: 1",
                     "Code: headers only",
-                    "Max nodes: 30",
-                    "Behavioral predictions: disabled"
+                    "Max nodes: 30"
                   ]
                 },
                 {
@@ -892,7 +889,7 @@ stamp context style --include-code header`
     },
     "meta": {
       "missing": [],
-      "source": "logicstamp-context@0.2.x"
+      "source": "logicstamp-context@0.3.0"
     }
   }
 ]`,
@@ -933,7 +930,7 @@ stamp context style --include-code header`
     },
     "meta": {
       "missing": [],
-      "source": "logicstamp-context@0.2.x"
+      "source": "logicstamp-context@0.3.0"
     }
   }
 ]`
@@ -959,18 +956,20 @@ stamp context style --include-code header`
                 {
                   title: "Project Initialization",
                   desc: "Set up LogicStamp in your project with optional security scanning",
-                  code: `# Basic initialization
+                  code: `# Basic initialization (security scan runs by default)
 stamp init
 
-# Initialize with security scan (recommended)
-# Automatically scans for secrets in JS/TS/JSON files
-stamp init --secure
+# Initialize without prompts (CI-friendly, security scan still runs)
+stamp init --yes
+
+# Initialize without security scan
+stamp init --no-secure
 
 # Initialize a specific directory
 stamp init ./my-project
 
-# Initialize with security scan for a specific directory
-stamp init ./my-project --secure`
+# Initialize without security scan for a specific directory
+stamp init ./my-project --no-secure`
                 },
                 {
                   title: "Security Scanning",
@@ -981,8 +980,8 @@ stamp security scan
 # Scan specific directory
 stamp security scan ./src
 
-# Scan and automatically add detected files to .stampignore
-stamp security scan --apply
+# Review report and exclude files with secrets
+stamp ignore src/secrets.ts
 
 # Save report to custom file
 stamp security scan --out security-report.json
