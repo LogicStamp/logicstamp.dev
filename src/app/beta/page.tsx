@@ -344,7 +344,7 @@ export default function BetaPage() {
                 <ReadTheDocsButton href="/docs" size="sm" className="px-5 py-3 text-sm sm:px-8 sm:py-4 sm:text-base lg:text-lg" />
               </div>
               <p className="text-blue-100 text-sm">
-                100% open source • Free forever • Built with your feedback
+                Open source CLI • Free to use • Built with your feedback
               </p>
             </div>
           </AnimatedSection>
