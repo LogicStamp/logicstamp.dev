@@ -240,7 +240,7 @@ This project is licensed under the MIT License - see the [LICENSE](./LICENSE) fi
 
 ## Branding & Attribution
 
-The LogicStamp Fox mascot and related brand assets are © 2025 LogicStamp Contributors.
+The LogicStamp Fox mascot and related brand assets are © 2025 Amit Levi.
 
 These assets may not be used for third-party branding, logos, or commercial identity without permission. They are included in this repository for documentation and non-commercial use within the LogicStamp ecosystem only.
 
