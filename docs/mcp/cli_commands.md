@@ -1,7 +1,11 @@
-# Commands
+# CLI Commands Reference
 
-LogicStamp Context ships a single CLI entry point, `stamp`, with
-`context` subcommands and initialization utilities.
+> **📚 For complete CLI documentation:**  
+> - **Primary:** [logicstamp.dev/docs/logicstamp-context/context](https://logicstamp.dev/docs/logicstamp-context/context) (landing page)  
+> - **Fallback:** [GitHub CLI docs](https://github.com/LogicStamp/logicstamp-context/blob/main/docs/cli/context.md) (always available)  
+> **See also:** [Tool Description](tool_description.md) for LogicStamp Context capabilities | [MCP Integration Guide](mcp_integration.md) for MCP server usage | [Quick Start](quickstart.md) for setup
+
+**Quick Reference:** This is a thin summary for MCP users. LogicStamp Context ships a single CLI entry point, `stamp`, with `context` subcommands and initialization utilities.
 
 | Command | Summary | When to use | Key options |
 |---------|---------|-------------|-------------|

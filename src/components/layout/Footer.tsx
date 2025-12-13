@@ -10,7 +10,7 @@ import ThemeToggle from '../ui/ThemeToggle'
 const navigation = {
   product: [
     { name: 'Documentation', href: '/docs' },
-    { name: 'GitHub', href: 'https://github.com/LogicStamp/logicstamp-context', external: true },
+    { name: 'GitHub', href: 'https://github.com/LogicStamp', external: true },
     { name: 'npm', href: 'https://www.npmjs.com/package/logicstamp-context', external: true },
   ],
   contact: [
@@ -233,7 +233,7 @@ export default function Footer() {
                 <ThemeToggle compact />
                 <div className="flex items-center gap-4">
                   <a
-                    href="https://github.com/LogicStamp/logicstamp-context"
+                    href="https://github.com/LogicStamp"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors duration-200"

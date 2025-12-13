@@ -34,6 +34,12 @@ const VueIcon = () => (
   </svg>
 )
 
+const SvelteIcon = () => (
+  <svg viewBox="0 0 24 24" className="w-10 h-10">
+    <path d="M15.07 0L8.24 2.58l6.17 2.17-6.17 2.17L0 7.5l6.17 2.17L0 11.84l6.17 2.17L0 16.5l8.24 2.58 6.17-2.17 6.17 2.17L24 16.5l-6.17-2.17L24 11.84l-6.17-2.17L24 7.5l-6.17-2.17-6.17 2.17L8.24 5.33 2.07 7.5l6.17 2.17-6.17 2.17L8.24 14l6.17-2.17L20.58 14l6.17-2.17-6.17-2.17L24 7.5l-6.17-2.17L15.07 0z" fill="#FF3E00"/>
+  </svg>
+)
+
 const MCPIcon = () => (
   <svg viewBox="0 0 24 24" className="w-10 h-10">
     {/* MCP - Model Context Protocol icon representing connectivity */}
@@ -85,24 +91,24 @@ const integrations = [
     features: ['Type signature extraction', 'Interface documentation', 'Generic parameter tracking'],
   },
   {
-    name: 'MCP',
-    description: 'Model Context Protocol integration for AI assistants',
-    icon: MCPIcon,
+    name: 'Vue',
+    description: 'Vue 3 support with Composition API and SFC analysis',
+    icon: VueIcon,
     gradient: 'from-blue-500/20 via-purple-500/20 to-indigo-600/20',
     borderGradient: 'from-blue-500 via-purple-500 to-indigo-600',
     iconBg: 'from-blue-500/10 to-indigo-600/10',
-    features: ['Context bundle access', 'Real-time codebase queries', 'AI assistant integration'],
+    features: ['SFC structure analysis', 'Composition API tracking', 'Template dependencies'],
     comingSoon: true,
     isFeatured: true,
   },
   {
-    name: 'Vue',
-    description: 'Vue 3 support with Composition API and SFC analysis',
-    icon: VueIcon,
+    name: 'Svelte',
+    description: 'Svelte support with component analysis and reactivity tracking',
+    icon: SvelteIcon,
     gradient: 'from-emerald-500/20 via-green-500/20 to-teal-600/20',
     borderGradient: 'from-emerald-500 via-green-500 to-teal-600',
     iconBg: 'from-emerald-500/10 to-teal-600/10',
-    features: ['SFC structure analysis', 'Composition API tracking', 'Template dependencies'],
+    features: ['Component structure analysis', 'Reactivity tracking', 'Template dependencies'],
     comingSoon: true,
   },
   {
@@ -112,7 +118,7 @@ const integrations = [
     gradient: 'from-purple-500/20 via-indigo-500/20 to-violet-600/20',
     borderGradient: 'from-purple-500 via-indigo-500 to-violet-600',
     iconBg: 'from-purple-500/10 to-violet-600/10',
-    features: ['MCP (Model Context Protocol) integration', 'Contract verification upgrades (advanced rules + deeper validation)', 'Enhanced contract management (grouped bundles, project-level insights)', 'Additional UI framework support for styles (Styled Components, Emotion, Chakra UI, Ant Design, etc.)'],
+    features: ['Contract verification upgrades (advanced rules + deeper validation)', 'Enhanced contract management (grouped bundles, project-level insights)', 'Additional UI framework support for styles (Styled Components, Emotion, Chakra UI, Ant Design, etc.)'],
     comingSoon: true,
   },
 ]
@@ -205,6 +211,7 @@ function useInView(threshold = 0.1) {
 
 export default function Integrations() {
   const { ref: titleRef, inView: titleInView } = useInView(0.1)
+  const { ref: mcpRef, inView: mcpInView } = useInView(0.1)
   const { ref: frameworksRef, inView: frameworksInView } = useInView(0.1)
   const { ref: toolsRef, inView: toolsInView } = useInView(0.1)
 
@@ -234,6 +241,84 @@ export default function Integrations() {
           <p className="mt-6 text-lg sm:text-xl leading-8 text-gray-600 dark:text-gray-300">
             Seamlessly integrate with your existing development workflow and boost productivity
           </p>
+        </div>
+
+        {/* MCP Section */}
+        <div className="mt-20">
+          <div 
+            ref={mcpRef}
+            className={`transition-all duration-1000 delay-200 ${
+              mcpInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+            }`}
+          >
+            <div className="relative max-w-4xl mx-auto">
+              <div className="relative rounded-3xl p-8 sm:p-10 lg:p-12 shadow-2xl border border-gray-200/50 dark:border-gray-700/50 bg-gradient-to-br from-blue-50/20 via-purple-50/10 to-indigo-50/20 dark:from-blue-950/10 dark:via-purple-950/5 dark:to-indigo-950/10 overflow-hidden">
+                {/* Featured Glow Effect */}
+                <div className="absolute inset-0 bg-gradient-to-r from-blue-500/5 via-purple-500/5 to-indigo-500/5 dark:from-blue-500/3 dark:via-purple-500/3 dark:to-indigo-500/3 rounded-3xl blur-xl opacity-30 animate-pulse" />
+                
+                <div className="relative z-10">
+                  <div className="flex flex-col sm:flex-row items-start sm:items-center gap-6 sm:gap-8">
+                    {/* Icon */}
+                    <div className="inline-flex items-center justify-center rounded-xl bg-gradient-to-br from-blue-500/10 to-indigo-600/10 w-20 h-20 sm:w-24 sm:h-24 flex-shrink-0">
+                      <div className="scale-110">
+                        <MCPIcon />
+                      </div>
+                    </div>
+                    
+                    {/* Content */}
+                    <div className="flex-1">
+                      <div className="flex flex-col sm:flex-row sm:items-center gap-3 mb-4">
+                        <h3 className="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white">
+                          Model Context Protocol
+                        </h3>
+                        <span className="inline-flex items-center px-3 py-1 rounded-full text-xs font-bold bg-gradient-to-r from-blue-600 to-purple-600 text-white w-fit">
+                          Featured
+                        </span>
+                      </div>
+                      <p className="text-base sm:text-lg text-gray-600 dark:text-gray-300 leading-relaxed mb-6">
+                        Use LogicStamp Context as an MCP server for AI assistants like Claude Desktop. Get real-time codebase analysis, component contracts, and structured context bundles directly in your AI workflow.
+                      </p>
+                      <ul className="space-y-2.5 mb-6">
+                        {['Context bundle access', 'Real-time codebase queries', 'AI assistant integration'].map((feature, index) => (
+                          <li 
+                            key={feature} 
+                            className="flex items-start gap-x-3 text-sm sm:text-base text-gray-600 dark:text-gray-400"
+                            style={{ 
+                              transitionDelay: `${index * 50}ms`,
+                              opacity: mcpInView ? 1 : 0,
+                              transform: mcpInView ? 'translateX(0)' : 'translateX(-10px)'
+                            }}
+                          >
+                            <svg className="h-5 w-5 flex-shrink-0 text-emerald-500 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 20 20">
+                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                            </svg>
+                            <span>{feature}</span>
+                          </li>
+                        ))}
+                      </ul>
+                      <div className="flex flex-wrap gap-3">
+                        <a
+                          href="/docs/mcp/getting-started"
+                          className="inline-flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-lg font-medium text-sm sm:text-base"
+                        >
+                          Get Started
+                          <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                          </svg>
+                        </a>
+                        <a
+                          href="/docs/mcp"
+                          className="inline-flex items-center gap-2 px-4 py-2 border-2 border-blue-500/60 dark:border-blue-400/40 text-blue-700 dark:text-blue-300 rounded-lg font-medium text-sm sm:text-base"
+                        >
+                          Learn More
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
 
         {/* Frameworks Section */}

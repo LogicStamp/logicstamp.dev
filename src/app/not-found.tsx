@@ -53,7 +53,14 @@ export default function NotFound() {
             href="/docs/getting-started"
             className="hover:text-purple-600 dark:hover:text-purple-400 transition-colors"
           >
-            Getting Started
+            CLI Getting Started
+          </Link>
+          <span className="text-gray-300 dark:text-gray-600">•</span>
+          <Link
+            href="/docs/mcp/getting-started"
+            className="hover:text-purple-600 dark:hover:text-purple-400 transition-colors"
+          >
+            MCP Getting Started
           </Link>
           <span className="text-gray-300 dark:text-gray-600">•</span>
           <Link
@@ -64,7 +71,7 @@ export default function NotFound() {
           </Link>
           <span className="text-gray-300 dark:text-gray-600">•</span>
           <Link
-            href="https://github.com/LogicStamp/logicstamp-context"
+            href="https://github.com/LogicStamp"
             target="_blank"
             rel="noopener noreferrer"
             className="hover:text-purple-600 dark:hover:text-purple-400 transition-colors"

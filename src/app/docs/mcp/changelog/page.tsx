@@ -5,12 +5,12 @@ import DocsLayout from '@/components/docs/DocsLayout'
 import ReactMarkdown from 'react-markdown'
 
 export const metadata: Metadata = {
-  title: 'CLI Changelog | LogicStamp Context Documentation',
-  description: 'Notable changes and release notes for the LogicStamp Context CLI.',
+  title: 'MCP Changelog | LogicStamp MCP Documentation',
+  description: 'Notable changes and release notes for the LogicStamp MCP Server.',
 }
 
 // GitHub raw content URL for the changelog
-const CHANGELOG_URL = 'https://raw.githubusercontent.com/LogicStamp/logicstamp-context/main/CHANGELOG.md'
+const CHANGELOG_URL = 'https://raw.githubusercontent.com/LogicStamp/logicstamp-mcp/main/CHANGELOG.md'
 
 async function fetchChangelog(): Promise<string> {
   try {
@@ -30,11 +30,11 @@ async function fetchChangelog(): Promise<string> {
   } catch (error) {
     console.error('Error fetching changelog from GitHub:', error)
     // Return a fallback message
-    return `# CLI Changelog\n\nUnable to load changelog from GitHub. Please visit the [CLI GitHub repository](https://github.com/LogicStamp/logicstamp-context/blob/main/CHANGELOG.md) to view the latest changes.\n\nError: ${error instanceof Error ? error.message : 'Unknown error'}`
+    return `# MCP Changelog\n\nUnable to load changelog from GitHub. Please visit the [MCP GitHub repository](https://github.com/LogicStamp/logicstamp-mcp/blob/main/CHANGELOG.md) to view the latest changes.\n\nError: ${error instanceof Error ? error.message : 'Unknown error'}`
   }
 }
 
-export default async function ChangelogPage() {
+export default async function MCPChangelogPage() {
   const changelogContent = await fetchChangelog()
 
   return (
@@ -43,21 +43,21 @@ export default async function ChangelogPage() {
         <AnimatedSection direction="up" delay={0}>
           <div className="mb-6">
             <h1 className="text-3xl lg:text-4xl font-semibold text-gray-900 dark:text-white mb-3">
-              CLI Changelog
+              MCP Changelog
             </h1>
             <p className="text-lg text-gray-900 dark:text-white">
-              All notable user-facing changes to LogicStamp Context CLI are tracked here. The project follows Semantic
+              All notable user-facing changes to LogicStamp MCP Server are tracked here. The project follows Semantic
               Versioning and a Keep a Changelog-style format.
             </p>
             <p className="text-sm text-gray-600 dark:text-gray-400 mt-2">
               This changelog is automatically fetched from the{' '}
               <a
-                href="https://github.com/LogicStamp/logicstamp-context/blob/main/CHANGELOG.md"
+                href="https://github.com/LogicStamp/logicstamp-mcp/blob/main/CHANGELOG.md"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-blue-600 dark:text-blue-400 hover:underline"
               >
-                CLI GitHub repository
+                MCP GitHub repository
               </a>
               .
             </p>
@@ -111,17 +111,4 @@ export default async function ChangelogPage() {
     </>
   )
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
 

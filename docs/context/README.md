@@ -63,7 +63,7 @@ LLMs understand your project instantly - without scanning 10,000+ lines of code
 - 🔢 **Accurate token estimates** - (GPT/Claude)
 - 🔒 **Security-first** - automatic secret detection and sanitization
 - 💨 **Fast, zero-config** - works out of the box
-- 🤖 **MCP-ready (coming soon)** - AI agents can consume context bundles via a standardized MCP interface
+- 🤖 **MCP-ready (Beta v0.1.0)** - AI agents can consume context bundles via a standardized MCP interface
 
 ## Example Output
 

@@ -1,6 +1,6 @@
-# MCP Integration Guide for LogicStamp Context
+# LogicStamp MCP Integration Guide
 
-> **See also:** [Implementation Summary](implementation_summary.md) for project status and deployment guide | [Tool Description](tool_description.md) for LogicStamp Context capabilities | [Quick Start](quickstart.md) for setup instructions
+> **See also:** [Tool Description](tool_description.md) for LogicStamp Context capabilities | [Quick Start](quickstart.md) for setup instructions
 
 ## Overview
 
@@ -72,7 +72,9 @@ logicstamp-context/
 **Parameters**:
 - `profile` (optional): `llm-chat` (default) | `llm-safe` | `ci-strict`
 - `mode` (optional): `header` (default) | `full` | `none`
+- `includeStyle` (optional): Include style metadata (default: `false`)
 - `projectPath` (optional): Defaults to current working directory
+- `cleanCache` (optional): Force cache cleanup (default: `false`, auto-detects corruption)
 
 **Behavior**:
 1. Execute: `stamp context --profile llm-chat --include-code header --skip-gitignore --quiet`
@@ -256,9 +258,11 @@ logicstamp-context/
 ```
 
 **Parameters**:
-- `profile` (optional): Accepted but not used in comparison (for future CLI integration)
-- `mode` (optional): Accepted but not used in comparison (for future CLI integration)
-- `projectPath` (optional): Defaults to current working directory. Path where current `context_main.json` exists.
+- `profile` (optional): Analysis profile used when regenerating context (default: `llm-chat`)
+- `mode` (optional): Code inclusion mode used when regenerating context (default: `header`)
+- `includeStyle` (optional): Include style metadata in comparison (Tailwind classes, SCSS, layout patterns, colors, spacing, animations). Only takes effect when `forceRegenerate` is `true`. If `forceRegenerate` is `false`, compares whatever is on disk (may not have style metadata) (default: `false`)
+- `forceRegenerate` (optional): Force regeneration of context before comparing. When `true`, runs `stamp context` (with `--include-style` if `includeStyle` is `true`). When `false`, reads existing `context_main.json` from disk (fast, assumes context is fresh) (default: `false`)
+- `projectPath` (optional): Defaults to current working directory. Path where current `context_main.json` exists (or should be generated).
 - `baseline` (optional): 
   - `disk` (default): Uses the current snapshot's context directory as baseline
   - `snapshot`: Uses the current snapshot's context directory as baseline (same as `disk`)
@@ -270,13 +274,27 @@ logicstamp-context/
    - For `disk` or `snapshot`: Uses stored snapshot from `refresh_snapshot`
    - For custom path: Uses provided path
 2. Read baseline `context_main.json` from baseline path
-3. Read current `context_main.json` from `projectPath`
-4. Compare JSON structures directly in TypeScript (does not call CLI):
+3. **Read or regenerate current state**:
+   - If `forceRegenerate` is `true`: Run `stamp context` with `--include-style` flag if `includeStyle` is `true`, then read the regenerated `context_main.json`
+   - If `forceRegenerate` is `false`: Read existing `context_main.json` from `projectPath` (fast path, assumes context is fresh)
+   - **Error handling**: If `context_main.json` is missing and `forceRegenerate` is `false`, fail with a clear error message directing the user to run `refresh_snapshot` first or set `forceRegenerate: true`
+4. Compare JSON structures directly in TypeScript (comparison logic does not call CLI):
    - Compare folder structures
    - Compare bundle hashes and semantic hashes
    - Load and compare individual bundles when needed
    - Calculate token deltas from index summaries or component changes
 5. Return structured comparison result
+
+**Performance Notes**:
+- **Default behavior** (`forceRegenerate: false`): Fast - reads existing JSON files from disk, no CLI calls
+- **With `forceRegenerate: true`**: Slower - runs `stamp context` to regenerate context before comparing
+- **With `includeStyle: true` + `forceRegenerate: true`**: Slowest - runs `stamp context --include-style` to regenerate context with style metadata
+
+**Usage Examples**:
+- Quick diff (assumes context is fresh): `{ forceRegenerate: false }`
+- Fresh diff with style: `{ forceRegenerate: true, includeStyle: true }`
+- Fresh diff without style: `{ forceRegenerate: true, includeStyle: false }`
+- Style comparison on stale context: `{ forceRegenerate: false, includeStyle: true }` - compares whatever style metadata exists on disk (may be incomplete)
 
 **Output**:
 ```json
@@ -354,7 +372,136 @@ logicstamp-context/
 
 ---
 
-### Tool 5: `logicstamp_get_last_compare_result` (Optional)
+### Tool 5: `logicstamp_compare_modes`
+
+**Purpose**: Generate comparison data file for MCP (Model Context Protocol) integration. Provides detailed token cost analysis across all available context generation modes.
+
+**Input**:
+```json
+{
+  "projectPath": "/absolute/path/to/project"
+}
+```
+
+**Parameters**:
+- `projectPath` (optional): Defaults to current working directory
+- `cleanCache` (optional): Force cache cleanup (default: `false`, auto-detects corruption)
+
+**Behavior**:
+1. Execute: `stamp context --compare-modes --stats`
+2. Read the generated `context_compare_modes.json` file
+3. Return the parsed JSON data with project path
+
+**Output**:
+```json
+{
+  "projectPath": "/absolute/path/to/project",
+  "tokenEstimation": {
+    "method": "GPT-4o (tiktoken) | Claude (tokenizer)"
+  },
+  "comparisonVsRawSource": {
+    "rawSource": {
+      "tokensGPT4o": 273006,
+      "tokensClaude": 289573,
+      "savingsPercent": 0
+    },
+    "header": {
+      "tokensGPT4o": 82917,
+      "tokensClaude": 90131,
+      "savingsPercent": 70
+    },
+    "headerStyle": {
+      "tokensGPT4o": 170466,
+      "tokensClaude": 184864,
+      "savingsPercent": 38
+    }
+  },
+  "modeBreakdown": {
+    "none": {
+      "tokensGPT4o": 49751,
+      "tokensClaude": 54079,
+      "savingsVsFull": 86
+    },
+    "header": {
+      "tokensGPT4o": 82917,
+      "tokensClaude": 90131,
+      "savingsVsFull": 77
+    },
+    "headerStyle": {
+      "tokensGPT4o": 170466,
+      "tokensClaude": 184864,
+      "savingsVsFull": 52
+    },
+    "full": {
+      "tokensGPT4o": 355923,
+      "tokensClaude": 379704,
+      "savingsVsFull": 0
+    }
+  },
+  "stats": {
+    "totalFiles": 150,
+    "totalTS": 100,
+    "totalTSX": 50
+  }
+}
+```
+
+**Use Cases**:
+- Optimize token budgets before committing to a mode
+- Evaluate style overhead (token impact of including style metadata)
+- Compare against raw source (calculate savings from using LogicStamp)
+- Plan AI workflows (choose the most cost-effective mode)
+- Budget for scale (project token costs for larger codebases)
+
+---
+
+### Tool 6: `logicstamp_read_logicstamp_docs`
+
+**Purpose**: Read LogicStamp documentation to understand how the tool works and how to use it effectively.
+
+**Input**:
+```json
+{}
+```
+
+**Parameters**: None
+
+**Behavior**:
+1. Reads comprehensive LogicStamp documentation files from the docs directory
+2. Returns complete documentation bundle including:
+   - Canonical guide for LLMs (`logicstamp-for-llms.md`)
+   - Usage guide
+   - UIF contracts documentation
+   - Schema reference
+   - CLI command documentation
+   - Compare modes guide
+   - Known limitations
+
+**Output**:
+```json
+{
+  "forLLMs": "# LogicStamp for LLMs\n...",
+  "usage": "# Usage Guide\n...",
+  "uifContracts": "# UIF Contracts\n...",
+  "schema": "# Schema Reference\n...",
+  "context": "# CLI Commands\n...",
+  "compareModes": "# Compare Modes\n...",
+  "limitations": "# Known Limitations\n..."
+}
+```
+
+**Use Cases**:
+- When unsure how LogicStamp works or how to use these tools
+- Before starting to work with a new project
+- When you need to understand the bundle structure or contract format
+- When you want to understand the recommended workflow
+- **This is your escape hatch**: if you're confused about LogicStamp, call this tool first
+
+---
+
+### Tool 7: `logicstamp_get_last_compare_result` (Not Yet Implemented)
+
+**Status**: ⚠️ **This tool is documented but not yet implemented.** The underlying state management functions exist (`getLastCompareResult`, `setLastCompareResult`), but no MCP tool currently exposes them.
 
 **Purpose**: Retrieve cached comparison result without re-running.
 
@@ -369,6 +516,8 @@ logicstamp-context/
 - `since` (optional): ISO timestamp filter
 
 **Output**: Same as `logicstamp_compare_snapshot`
+
+**Future Implementation**: This tool is planned for Phase 4 (see [Implementation Checklist](#implementation-checklist)).
 
 ---
 
@@ -460,6 +609,77 @@ logicstamp-context/
 
 ---
 
+## Workflow: Understanding `forceRegenerate` and `includeStyle`
+
+### Default Behavior (Fast Path)
+
+By default, `compare_snapshot` reads existing `context_main.json` from disk:
+
+```typescript
+compareSnapshot({ forceRegenerate: false }) // or omit forceRegenerate
+```
+
+**When to use:**
+- You've already run `refresh_snapshot` or `stamp context`
+- You want fast comparison without CLI overhead
+- Context files are known to be fresh
+
+**What happens:**
+- Reads `context_main.json` from `projectPath`
+- Compares directly against baseline snapshot
+- No CLI calls - pure JSON comparison
+- **Error if `context_main.json` is missing**: Fails with clear error message
+
+### Force Regeneration (Fresh Context)
+
+When `forceRegenerate: true`, the tool runs `stamp context` before comparing:
+
+```typescript
+compareSnapshot({ forceRegenerate: true })
+```
+
+**When to use:**
+- You've made code changes and want to ensure context is up-to-date
+- `context_main.json` is missing or stale
+- You want guaranteed fresh analysis
+
+**What happens:**
+- Runs `stamp context --profile <profile> --include-code <mode> --skip-gitignore --quiet`
+- Reads the regenerated `context_main.json`
+- Then compares against baseline
+
+### Style Metadata
+
+The `includeStyle` parameter controls whether style metadata (Tailwind classes, SCSS, layout patterns, colors, spacing, animations) is included:
+
+```typescript
+compareSnapshot({ 
+  forceRegenerate: true, 
+  includeStyle: true 
+})
+```
+
+**Important:** `includeStyle` only affects the CLI command when `forceRegenerate` is `true`:
+- `includeStyle: true` + `forceRegenerate: true`: Runs `stamp context --include-style`
+- `includeStyle: true` + `forceRegenerate: false`: Reads from disk (may not have style metadata)
+- `includeStyle: false` + `forceRegenerate: true`: Runs `stamp context` without style flag
+
+### Error Handling
+
+**Missing `context_main.json`:**
+- If `forceRegenerate: false` and file is missing → **Fails with clear error**:
+  ```
+  context_main.json not found in <path>. 
+  Run 'stamp context' or 'logicstamp_refresh_snapshot' first to generate context files, 
+  or use forceRegenerate: true to regenerate automatically.
+  ```
+- If `forceRegenerate: true` → Regenerates automatically (no error)
+
+**Best Practice:**
+- Always run `refresh_snapshot` first to create baseline
+- Use `forceRegenerate: false` for fast comparisons after edits
+- Use `forceRegenerate: true` when you know context is stale or missing
+
 ## CLI Usage
 
 ### Current Status
@@ -470,8 +690,13 @@ The MCP server currently uses:
   - Uses `--skip-gitignore` flag to ensure non-interactive operation
   - Uses `--quiet` flag to suppress verbose output (MCP reads JSON files directly)
   - Reads `context_main.json` directly after command completes
+- `stamp context` command (via `compare_snapshot` tool when `forceRegenerate: true`) - ✅ Optional
+  - Only called when `forceRegenerate: true` is set
+  - Uses `--include-style` flag when `includeStyle: true`
+  - Regenerates context before comparison
 - Direct JSON file comparison (via `compare_snapshot` tool) - ✅ Implemented in MCP
-  - Does not call CLI - reads and compares JSON files directly
+  - Default behavior (`forceRegenerate: false`): Reads and compares JSON files directly (no CLI call)
+  - When `forceRegenerate: true`: Calls CLI to regenerate, then compares JSON files
 
 ### Available CLI Flags
 
@@ -492,7 +717,8 @@ The `stamp context compare` command supports:
 
 The MCP server does not require special JSON output flags because:
 - `refresh_snapshot` reads `context_main.json` directly (already JSON)
-- `compare_snapshot` implements comparison logic directly (no CLI call needed)
+- `compare_snapshot` implements comparison logic directly (no CLI call needed for comparison)
+- When `compare_snapshot` calls CLI (`forceRegenerate: true`), it reads the generated `context_main.json` directly
 
 ```json
 {
@@ -603,6 +829,7 @@ interface ComponentChange {
 ### Phase 4: Advanced Features (Future)
 - [ ] Support `baseline: "git:<ref>"` for git-based comparison
 - [ ] Add `logicstamp_search_components` for semantic search
+- [ ] Implement `logicstamp_get_last_compare_result` tool for cached comparison results
 - [ ] Implement incremental snapshot updates
 - [ ] Add streaming support for large bundles
 - [ ] WebSocket support for real-time drift monitoring
@@ -657,7 +884,7 @@ interface ComponentChange {
   "mcpServers": {
     "logicstamp": {
       "command": "npx",
-      "args": ["logicstamp-context-mcp"],
+      "args": ["logicstamp-mcp"],
       "env": {
         "PROJECT_PATH": "/path/to/your/project"
       }

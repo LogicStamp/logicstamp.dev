@@ -5,6 +5,48 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.1.2] - 2025-12-13
+
+### Security
+- Fixed high severity Next.js vulnerability (Denial of Service with Server Components)
+  - Upgraded `next` from `^14.2.33` to `^14.2.35`
+  - Resolved GHSA-mwv6-3258-q52c and GHSA-5j59-xgg2-r9c4
+
+### Added
+- Added comprehensive MCP (Model Context Protocol) server documentation
+  - New MCP overview page with installation and configuration guides
+  - Integration guides for Claude Desktop, Claude CLI, and Cursor
+  - MCP reference documentation with tool descriptions and examples
+  - Usage examples and best practices pages
+  - Profiles guide for MCP analysis modes
+  - Style metadata guide for MCP integration
+  - MCP changelog page
+- Added MCP navigation section to documentation sidebar
+- Added MCP installation option to Hero section (CLI/MCP tabs)
+- Added featured MCP integration section to Integrations page
+- Added MCP getting started link to 404 page
+
+### Changed
+- Updated package name references from `logicstamp-context-mcp` to `logicstamp-mcp` across all documentation
+- Updated GitHub links from repository-specific to organization-level URLs
+- Updated FAQ to reflect MCP beta availability (v0.1.0)
+- Updated "What is LogicStamp" page to include MCP server integration feature
+- Enhanced documentation sidebar with MCP section and improved navigation
+- Updated docs home page to include MCP getting started section
+
+### Documentation
+- Added troubleshooting checklists to all MCP integration guides
+- Added "Finding MCP Settings" sections for each integration (Claude Desktop, Claude CLI, Cursor)
+- Enhanced integration guides with verification steps and common issues
+- Added new MCP documentation pages:
+  - `/docs/mcp/getting-started` - Installation and quick start
+  - `/docs/mcp/reference` - Complete API reference
+  - `/docs/mcp/usage` - Usage examples and workflows
+  - `/docs/mcp/best-practices` - Best practices guide
+  - `/docs/mcp/profiles` - Analysis profiles guide
+  - `/docs/mcp/style-metadata` - Style metadata documentation
+  - `/docs/mcp/changelog` - MCP changelog
+
 ## [0.1.1] - 2025-12-01
 
 ### Security
