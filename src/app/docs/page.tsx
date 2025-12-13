@@ -23,12 +23,17 @@ const docSections = [
   },
   {
     title: 'Getting Started',
-    description: 'Installation & setup for LogicStamp Context CLI.',
+    description: 'Installation & setup for LogicStamp Context CLI and MCP Server.',
     pages: [
       {
-        title: 'Installation & Quick Start',
+        title: 'CLI – Installation & Quick Start',
         href: '/docs/getting-started',
         description: 'Install the CLI globally and set up your project with stamp init, then generate your first context.json—CI-friendly and zero prompts.',
+      },
+      {
+        title: 'MCP – Installation & Quick Start',
+        href: '/docs/mcp/getting-started',
+        description: 'Install and configure the LogicStamp MCP server to use LogicStamp Context with AI assistants like Claude Desktop.',
       },
     ],
   },
@@ -40,6 +45,17 @@ const docSections = [
         title: 'CLI Docs Hub',
         href: '/docs/cli',
         description: 'Commands, usage examples, token optimization, drift detection, and schema reference. CI-friendly: never prompts, respects preferences from stamp init.',
+      },
+    ],
+  },
+  {
+    title: 'MCP Server',
+    description: 'Use LogicStamp Context as an MCP server for AI assistants.',
+    pages: [
+      {
+        title: 'MCP Overview (Beta)',
+        href: '/docs/mcp',
+        description: 'Learn about the LogicStamp MCP server, how to install and configure it, and use it with AI assistants like Claude Desktop.',
       },
     ],
   },
@@ -71,9 +87,15 @@ const docSections = [
     description: 'Contribute, report issues, and join the community.',
     pages: [
       {
-        title: 'GitHub Repository',
+        title: 'CLI GitHub Repository',
         href: 'https://github.com/LogicStamp/logicstamp-context',
         description: 'View source code, contribute, report issues, and access the full README. MIT licensed.',
+        external: true,
+      },
+      {
+        title: 'MCP GitHub Repository',
+        href: 'https://github.com/LogicStamp/logicstamp-mcp',
+        description: 'View MCP server source code, contribute, report issues, and access MCP-specific documentation. MIT licensed.',
         external: true,
       },
     ],

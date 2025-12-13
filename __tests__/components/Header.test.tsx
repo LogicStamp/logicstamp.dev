@@ -98,14 +98,14 @@ describe('Header Component', () => {
     const docsLinks = screen.getAllByRole('link', { name: /docs/i })
     expect(docsLinks[0]).toHaveAttribute('href', '/docs/')
 
-    const githubLink = container.querySelector('a[href="https://github.com/LogicStamp/logicstamp-context"]')
+    const githubLink = container.querySelector('a[href="https://github.com/LogicStamp"]')
     expect(githubLink).toBeInTheDocument()
   })
 
   it('external links have correct attributes', () => {
     const { container } = render(<Header />)
 
-    const githubLink = container.querySelector('a[href="https://github.com/LogicStamp/logicstamp-context"]')
+    const githubLink = container.querySelector('a[href="https://github.com/LogicStamp"]')
     expect(githubLink).toHaveAttribute('target', '_blank')
     expect(githubLink).toHaveAttribute('rel', 'noopener noreferrer')
   })

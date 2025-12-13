@@ -52,12 +52,12 @@ export default function MCPPage() {
                 </span>
               </h1>
 
-              {/* Coming Soon Badge */}
-              <div className="inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-amber-100 to-orange-100 dark:from-amber-900/40 dark:to-orange-900/40 text-amber-700 dark:text-amber-300 text-base font-bold rounded-full mb-6 sm:mb-8 backdrop-blur-sm border-2 border-amber-300/50 dark:border-amber-600/50 shadow-xl">
+              {/* Beta Badge */}
+              <div className="inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-blue-100 to-indigo-100 dark:from-blue-900/40 dark:to-indigo-900/40 text-blue-700 dark:text-blue-300 text-base font-bold rounded-full mb-6 sm:mb-8 backdrop-blur-sm border-2 border-blue-300/50 dark:border-blue-600/50 shadow-xl">
                 <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
-                  <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z" clipRule="evenodd" />
+                  <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.857-9.809a.75.75 0 00-1.214-.882l-3.483 4.79-1.88-1.88a.75.75 0 10-1.06 1.061l2.5 2.5a.75.75 0 001.137-.089l4-5.5z" clipRule="evenodd" />
                 </svg>
-                Coming Soon
+                Beta v0.1.0
               </div>
 
               <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-gray-600 dark:text-gray-400 leading-relaxed max-w-3xl mx-auto mb-4">
@@ -65,7 +65,7 @@ export default function MCPPage() {
               </p>
 
               <p className="text-base sm:text-lg text-gray-600 dark:text-gray-400 max-w-3xl mx-auto">
-                We're working hard to bring you native MCP integration with Claude Desktop and other AI tools. Stay tuned for updates!
+                Native MCP integration with Claude Desktop, Claude Code, and other AI tools. Install and start using LogicStamp Context via MCP today!
               </p>
             </div>
           </div>
@@ -111,14 +111,16 @@ export default function MCPPage() {
               
               <div className="mb-6">
                 <h3 className="text-xl sm:text-2xl font-semibold text-gray-900 dark:text-white mb-4">
-                  4 Core Tools
+                  6 Core Tools
                 </h3>
                 <div className="grid sm:grid-cols-2 gap-4 mb-6">
                   {[
                     { name: 'logicstamp_refresh_snapshot', desc: 'Analyze project and create snapshot' },
                     { name: 'logicstamp_list_bundles', desc: 'List available component bundles' },
                     { name: 'logicstamp_read_bundle', desc: 'Read full component contract + graph' },
-                    { name: 'logicstamp_compare_snapshot', desc: 'Detect changes after edits' }
+                    { name: 'logicstamp_compare_snapshot', desc: 'Detect changes after edits' },
+                    { name: 'logicstamp_compare_modes', desc: 'Generate token cost comparison across all modes' },
+                    { name: 'logicstamp_read_logicstamp_docs', desc: 'Read LogicStamp documentation (use when confused)' }
                   ].map((tool) => (
                     <div key={tool.name} className="p-4 bg-gray-50 dark:bg-gray-800/50 rounded-lg border border-gray-200 dark:border-gray-700">
                       <code className="block px-2 py-1 bg-indigo-100 dark:bg-indigo-900/40 text-indigo-900 dark:text-indigo-100 rounded-md font-mono text-xs font-semibold mb-2">
@@ -195,16 +197,16 @@ export default function MCPPage() {
                         {
                           label: 'Install & Configure',
                           code: `# Install the package (when published)
-npm install -g logicstamp-context-mcp
+npm install -g logicstamp-mcp
 
 # Add to Claude Code - available everywhere
-claude mcp add --scope user --transport stdio logicstamp -- npx logicstamp-context-mcp`,
-                          copyText: 'npm install -g logicstamp-context-mcp\nclaude mcp add --scope user --transport stdio logicstamp -- npx logicstamp-context-mcp'
+claude mcp add --scope user --transport stdio logicstamp -- npx logicstamp-mcp`,
+                          copyText: 'npm install -g logicstamp-mcp\nclaude mcp add --scope user --transport stdio logicstamp -- npx logicstamp-mcp'
                         }
                       ]}
                     />
                     <p className="text-sm text-gray-500 dark:text-gray-500 mt-3">
-                      <strong>What this does:</strong> Adds LogicStamp to your global Claude Code configuration (~/.claude.json), makes the 4 LogicStamp tools available in every project, and server auto-starts when Claude Code needs it (no manual startup required).
+                      <strong>What this does:</strong> Adds LogicStamp to your global Claude Code configuration (~/.claude.json), makes the 6 LogicStamp tools available in every project, and server auto-starts when Claude Code needs it (no manual startup required).
                     </p>
                   </div>
 
@@ -220,12 +222,12 @@ claude mcp add --scope user --transport stdio logicstamp -- npx logicstamp-conte
                         {
                           label: 'Per-Project Setup',
                           code: `# Install the package
-npm install -g logicstamp-context-mcp
+npm install -g logicstamp-mcp
 
 # In your project directory
 cd /path/to/your/project
-claude mcp add --scope project --transport stdio logicstamp -- npx logicstamp-context-mcp`,
-                          copyText: 'npm install -g logicstamp-context-mcp\ncd /path/to/your/project\nclaude mcp add --scope project --transport stdio logicstamp -- npx logicstamp-context-mcp'
+claude mcp add --scope project --transport stdio logicstamp -- npx logicstamp-mcp`,
+                          copyText: 'npm install -g logicstamp-mcp\ncd /path/to/your/project\nclaude mcp add --scope project --transport stdio logicstamp -- npx logicstamp-mcp'
                         }
                       ]}
                     />
@@ -243,11 +245,11 @@ claude mcp add --scope project --transport stdio logicstamp -- npx logicstamp-co
     "logicstamp": {
       "type": "stdio",
       "command": "npx",
-      "args": ["logicstamp-context-mcp"]
+      "args": ["logicstamp-mcp"]
     }
   }
 }`,
-                            copyText: JSON.stringify({ mcpServers: { logicstamp: { type: "stdio", command: "npx", args: ["logicstamp-context-mcp"] } } }, null, 2)
+                            copyText: JSON.stringify({ mcpServers: { logicstamp: { type: "stdio", command: "npx", args: ["logicstamp-mcp"] } } }, null, 2)
                           }
                         ]}
                       />
@@ -266,17 +268,17 @@ claude mcp add --scope project --transport stdio logicstamp -- npx logicstamp-co
                         {
                           label: 'Local Dev',
                           code: `# Clone and build
-git clone https://github.com/your-org/logicstamp-context-mcp.git
-cd logicstamp-context-mcp
+git clone https://github.com/LogicStamp/logicstamp-mcp.git
+cd logicstamp-mcp
 npm install
 npm run build
 
 # Add via CLI (replace with your actual path)
-claude mcp add --scope user --transport stdio logicstamp -- node /absolute/path/to/logicstamp-context-mcp/dist/index.js
+claude mcp add --scope user --transport stdio logicstamp -- node /absolute/path/to/logicstamp-mcp/dist/index.js
 
 # On Windows:
-claude mcp add --scope user --transport stdio logicstamp -- node C:\\Users\\YourName\\path\\to\\logicstamp-context-mcp\\dist\\index.js`,
-                          copyText: 'git clone https://github.com/your-org/logicstamp-context-mcp.git\ncd logicstamp-context-mcp\nnpm install\nnpm run build\nclaude mcp add --scope user --transport stdio logicstamp -- node /absolute/path/to/logicstamp-context-mcp/dist/index.js'
+claude mcp add --scope user --transport stdio logicstamp -- node C:\\Users\\YourName\\path\\to\\logicstamp-mcp\\dist\\index.js`,
+                          copyText: 'git clone https://github.com/LogicStamp/logicstamp-mcp.git\ncd logicstamp-mcp\nnpm install\nnpm run build\nclaude mcp add --scope user --transport stdio logicstamp -- node /absolute/path/to/logicstamp-mcp/dist/index.js'
                         }
                       ]}
                     />
@@ -300,11 +302,11 @@ claude mcp add --scope user --transport stdio logicstamp -- node C:\\Users\\Your
   "mcpServers": {
     "logicstamp": {
       "command": "npx",
-      "args": ["logicstamp-context-mcp"]
+      "args": ["logicstamp-mcp"]
     }
   }
 }`,
-                      copyText: JSON.stringify({ mcpServers: { logicstamp: { command: "npx", args: ["logicstamp-context-mcp"] } } }, null, 2)
+                      copyText: JSON.stringify({ mcpServers: { logicstamp: { command: "npx", args: ["logicstamp-mcp"] } } }, null, 2)
                     }
                   ]}
                 />
@@ -322,8 +324,8 @@ claude mcp add --scope user --transport stdio logicstamp -- node C:\\Users\\Your
                   tabs={[
                     {
                       label: 'Run Server',
-                      code: 'npx logicstamp-context-mcp',
-                      copyText: 'npx logicstamp-context-mcp'
+                      code: 'npx logicstamp-mcp',
+                      copyText: 'npx logicstamp-mcp'
                     }
                   ]}
                 />
@@ -366,7 +368,7 @@ claude mcp add --scope user --transport stdio logicstamp -- node C:\\Users\\Your
                 <code className="text-gray-900 dark:text-gray-100">
                   Checking MCP server health...<br />
                   <br />
-                  logicstamp: npx logicstamp-context-mcp - ✓ Connected
+                  logicstamp: npx logicstamp-mcp - ✓ Connected
                 </code>
               </div>
             </div>
@@ -401,13 +403,15 @@ claude`,
                 <p className="text-sm text-gray-600 dark:text-gray-400 italic">[Automatically uses logicstamp_refresh_snapshot and logicstamp_list_bundles]</p>
               </div>
               <p className="text-base text-gray-600 dark:text-gray-400">
-                The 4 LogicStamp tools will be available:
+                The 6 LogicStamp tools will be available:
               </p>
               <ul className="list-disc list-inside space-y-1 text-sm text-gray-600 dark:text-gray-400 ml-4 mt-2">
                 <li><code className="px-1.5 py-0.5 bg-gray-100 dark:bg-gray-800 text-indigo-600 dark:text-indigo-400 rounded font-mono">logicstamp_refresh_snapshot</code> - Analyze project structure</li>
                 <li><code className="px-1.5 py-0.5 bg-gray-100 dark:bg-gray-800 text-indigo-600 dark:text-indigo-400 rounded font-mono">logicstamp_list_bundles</code> - List available components</li>
                 <li><code className="px-1.5 py-0.5 bg-gray-100 dark:bg-gray-800 text-indigo-600 dark:text-indigo-400 rounded font-mono">logicstamp_read_bundle</code> - Read component contracts</li>
                 <li><code className="px-1.5 py-0.5 bg-gray-100 dark:bg-gray-800 text-indigo-600 dark:text-indigo-400 rounded font-mono">logicstamp_compare_snapshot</code> - Detect changes after edits</li>
+                <li><code className="px-1.5 py-0.5 bg-gray-100 dark:bg-gray-800 text-indigo-600 dark:text-indigo-400 rounded font-mono">logicstamp_compare_modes</code> - Generate token cost comparison</li>
+                <li><code className="px-1.5 py-0.5 bg-gray-100 dark:bg-gray-800 text-indigo-600 dark:text-indigo-400 rounded font-mono">logicstamp_read_logicstamp_docs</code> - Read LogicStamp documentation</li>
               </ul>
             </div>
           </AnimatedSection>
@@ -835,10 +839,10 @@ claude`,
 claude mcp list
 
 # If not listed, add it
-claude mcp add --scope user --transport stdio logicstamp -- npx logicstamp-context-mcp
+claude mcp add --scope user --transport stdio logicstamp -- npx logicstamp-mcp
 
 # Restart Claude Code or start a new conversation`,
-                        copyText: 'claude mcp list\nclaude mcp add --scope user --transport stdio logicstamp -- npx logicstamp-context-mcp'
+                        copyText: 'claude mcp list\nclaude mcp add --scope user --transport stdio logicstamp -- npx logicstamp-mcp'
                       }
                     ]}
                   />
@@ -852,7 +856,7 @@ claude mcp add --scope user --transport stdio logicstamp -- npx logicstamp-conte
                   <p className="text-sm text-gray-600 dark:text-gray-400 mb-3"><code className="px-1.5 py-0.5 bg-gray-100 dark:bg-gray-800 text-indigo-600 dark:text-indigo-400 rounded font-mono text-xs">claude mcp list</code> shows <code className="px-1.5 py-0.5 bg-gray-100 dark:bg-gray-800 text-indigo-600 dark:text-indigo-400 rounded font-mono text-xs">logicstamp: ✗ Failed to connect</code></p>
                   <p className="text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">Solutions:</p>
                   <ol className="list-decimal list-inside space-y-2 text-sm text-gray-600 dark:text-gray-400 ml-4">
-                    <li>Check if the package is installed: <code className="px-1.5 py-0.5 bg-gray-100 dark:bg-gray-800 text-indigo-600 dark:text-indigo-400 rounded font-mono text-xs">npm list -g logicstamp-context-mcp</code></li>
+                    <li>Check if the package is installed: <code className="px-1.5 py-0.5 bg-gray-100 dark:bg-gray-800 text-indigo-600 dark:text-indigo-400 rounded font-mono text-xs">npm list -g logicstamp-mcp</code></li>
                     <li>For local development, verify the path is correct</li>
                     <li>Check build output: <code className="px-1.5 py-0.5 bg-gray-100 dark:bg-gray-800 text-indigo-600 dark:text-indigo-400 rounded font-mono text-xs">npm run build</code></li>
                     <li>Try manual test: <code className="px-1.5 py-0.5 bg-gray-100 dark:bg-gray-800 text-indigo-600 dark:text-indigo-400 rounded font-mono text-xs">node dist/index.js</code></li>
@@ -946,7 +950,7 @@ npm run build`,
                 <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-3">Project Structure</h3>
                 <div className="p-4 bg-gray-50 dark:bg-gray-800/50 rounded-lg border border-gray-200 dark:border-gray-700 font-mono text-sm overflow-x-auto">
                   <code className="text-gray-900 dark:text-gray-100 whitespace-pre">
-{`logicstamp-context-mcp/
+{`logicstamp-mcp/
 ├── src/
 │   ├── index.ts              # Entry point
 │   ├── types/
@@ -1020,7 +1024,8 @@ npm run build`,
                 Links
               </h2>
               <ul className="list-disc list-inside space-y-2 text-base text-gray-600 dark:text-gray-400 ml-4">
-                <li><a href="https://github.com/LogicStamp/logicstamp-context" target="_blank" rel="noopener noreferrer" className="text-indigo-600 dark:text-indigo-400 hover:underline">LogicStamp Context</a></li>
+                <li><a href="https://github.com/LogicStamp/logicstamp-context" target="_blank" rel="noopener noreferrer" className="text-indigo-600 dark:text-indigo-400 hover:underline">LogicStamp Context (CLI)</a></li>
+                <li><a href="https://github.com/LogicStamp/logicstamp-mcp" target="_blank" rel="noopener noreferrer" className="text-indigo-600 dark:text-indigo-400 hover:underline">LogicStamp Context MCP</a></li>
                 <li><a href="https://modelcontextprotocol.io/" target="_blank" rel="noopener noreferrer" className="text-indigo-600 dark:text-indigo-400 hover:underline">Model Context Protocol</a></li>
                 <li><a href="https://github.com/modelcontextprotocol/sdk" target="_blank" rel="noopener noreferrer" className="text-indigo-600 dark:text-indigo-400 hover:underline">MCP SDK</a></li>
               </ul>

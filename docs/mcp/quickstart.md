@@ -19,7 +19,7 @@ stamp --version
 ### Option A: Use Published Package (Recommended)
 
 ```bash
-npm install -g logicstamp-context-mcp
+npm install -g logicstamp-mcp
 ```
 
 ### Option B: Install from Source
@@ -30,7 +30,11 @@ npm install
 npm run build
 ```
 
+**Note:** After building, you can test the server with `npm start` or `npx logicstamp-mcp` (if installed globally). However, when using with an MCP client, the client automatically starts the server - you don't need to run it manually.
+
 ## 3. Configure Your MCP Client
+
+**Setup is done once (globally):** After configuring the MCP server globally, it will be available in all your projects. You don't need to set it up again for each project. However, when you analyze a project, you'll call `logicstamp_refresh_snapshot` for that specific project - the analysis itself is per-project, but the MCP server setup is global.
 
 Choose your MCP client for detailed installation instructions:
 
@@ -47,6 +51,21 @@ Each integration guide includes:
 
 ## 4. Start Using LogicStamp
 
+### Startup Ritual (Recommended)
+
+When starting work with a new project, paste this message into your chat to guide the AI:
+
+**See [Startup Ritual Guide](startup-ritual.md) for the complete message.**
+
+This ritual ensures the AI:
+1. Calls `logicstamp_refresh_snapshot` first to generate context files
+2. Uses `logicstamp_list_bundles` to discover available bundles
+3. Reads bundles instead of raw source files when possible
+4. Understands the recommended LogicStamp workflow
+
+**If the AI is confused about LogicStamp:**
+- Ask it to call `logicstamp_read_logicstamp_docs` - this returns comprehensive documentation explaining how LogicStamp works and how to use it effectively.
+
 ### With Claude Code
 
 ```bash
@@ -59,15 +78,17 @@ Then ask Claude to analyze your project:
 Can you analyze my React project using LogicStamp?
 ```
 
+Or paste the [startup ritual](startup-ritual.md) message first.
+
 ### With Claude Desktop
 
-Completely quit and restart Claude Desktop for the changes to take effect, then start a conversation and ask Claude to analyze your project.
+Completely quit and restart Claude Desktop for the changes to take effect, then start a conversation and ask Claude to analyze your project (or paste the [startup ritual](startup-ritual.md) message).
 
 ### With Cursor
 
 1. Open your project in Cursor
 2. Open Cursor's AI chat (Cmd/Ctrl + L)
-3. Ask the AI to analyze your project:
+3. Paste the [startup ritual](startup-ritual.md) message or ask:
    ```
    Can you analyze my React project using LogicStamp?
    ```
@@ -76,7 +97,16 @@ The AI will automatically use the LogicStamp tools to analyze your codebase.
 
 ## 5. Available Tools
 
-The MCP server provides 4 tools for analyzing codebases. See the [Tool Reference](../README.md#tool-reference) in the main README for complete API documentation.
+The MCP server provides 6 tools for analyzing codebases:
+
+1. **`logicstamp_refresh_snapshot`** - Generate context files and create snapshot (STEP 1)
+2. **`logicstamp_list_bundles`** - List available bundles (STEP 2)
+3. **`logicstamp_read_bundle`** - Read component contracts and dependency graphs (STEP 3)
+4. **`logicstamp_compare_snapshot`** - Detect changes after edits
+5. **`logicstamp_compare_modes`** - Generate token cost comparison across all modes
+6. **`logicstamp_read_logicstamp_docs`** - Read LogicStamp documentation (use when confused)
+
+See the [Tool Reference](../README.md#tool-reference) in the main README for complete API documentation.
 
 ## Example Conversation
 
@@ -106,7 +136,7 @@ Claude:
 - Install LogicStamp Context CLI: `npm install -g logicstamp-context`
 
 **Server doesn't show up**
-- Verify installation: `npm list -g logicstamp-context-mcp`
+- Verify installation: `npm list -g logicstamp-mcp`
 - Check configuration in your MCP client (see integration guides above)
 - Restart your MCP client completely
 

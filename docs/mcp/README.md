@@ -1,6 +1,6 @@
-# LogicStamp Context MCP Documentation
+# LogicStamp MCP Documentation
 
-Welcome to the LogicStamp Context MCP documentation. This directory contains comprehensive guides for using and integrating LogicStamp Context with various MCP clients.
+Welcome to the LogicStamp MCP documentation. This directory contains comprehensive guides for using and integrating LogicStamp Context with various MCP clients.
 
 ## Quick Start
 
@@ -18,15 +18,27 @@ Platform-specific installation and configuration:
 
 - **[MCP Integration Guide](mcp_integration.md)** - Architecture, design principles, and implementation details
 - **[Tool Description](tool_description.md)** - Complete reference for LogicStamp Context capabilities
-- **[Commands Reference](commands.md)** - CLI command reference
+- **[CLI Commands Reference](cli_commands.md)** - CLI command reference
 
-## Related Documentation
+## Canonical Documentation
 
-- **[LogicStamp Context LLM Guide](https://github.com/LogicStamp/logicstamp-context/blob/main/docs/LLM_CONTEXT.md)** - Guide for LLMs on interpreting LogicStamp Context output (from CLI repo)
+**Redundant Sources (Primary + Fallback):** Full LogicStamp Context documentation is maintained in:
+- **Primary:** [logicstamp.dev/docs/logicstamp-context/context](https://logicstamp.dev/docs/logicstamp-context/context) - Landing page with complete docs (best UX)
+- **Fallback:** [CLI Repository](https://github.com/LogicStamp/logicstamp-context) - GitHub docs (always available, versioned)
+
+**This MCP repo contains:**
+- MCP-specific integration guides and setup instructions
+- A frozen LLM-focused doc bundle (`logicstamp-for-llms.md`) for offline use via `logicstamp_read_logicstamp_docs`
+
+**Why this structure?**
+- Prevents doc drift - docs are maintained in CLI repo, synced to landing page
+- Redundancy - if landing page is down, GitHub docs serve as fallback
+- MCP README stays thin with links to canonical docs
+- LLM tool ships with embedded snapshot for offline use
 
 ## Development
 
-- **[Implementation Summary](implementation_summary.md)** - Technical implementation details and project structure
+For technical implementation details, see [MCP Integration Guide](mcp_integration.md) and [Contributing Guide](../CONTRIBUTING.md).
 
 ## Documentation Structure
 
@@ -34,22 +46,25 @@ Platform-specific installation and configuration:
 docs/
 ├── README.md                    # This file - navigation index
 ├── quickstart.md                # Quick start guide
-├── commands.md                  # CLI commands reference
 ├── mcp_integration.md           # MCP architecture & design
 ├── tool_description.md          # LogicStamp Context reference
-├── implementation_summary.md    # Implementation details
+├── cli_commands.md              # Thin CLI commands summary (links to canonical docs)
+├── logicstamp-for-llms.md       # LLM-focused doc bundle (embedded snapshot)
+├── startup-ritual.md            # Recommended startup message for AI
 └── integrations/                # Platform-specific guides
     ├── claude-cli.md
     ├── claude-desktop.md
     └── cursor.md
 ```
 
+**Note:** Full CLI documentation lives at [logicstamp.dev/docs/logicstamp-context/context](https://logicstamp.dev/docs/logicstamp-context/context) and in the [CLI repository](https://github.com/LogicStamp/logicstamp-context). This MCP repo only contains MCP-specific docs and an embedded LLM doc snapshot.
+
 ## Finding What You Need
 
 - **New to LogicStamp?** → Start with [Quick Start](quickstart.md)
 - **Setting up an MCP client?** → Check [Integration Guides](integrations/)
 - **Understanding the architecture?** → Read [MCP Integration Guide](mcp_integration.md)
-- **Using LogicStamp with AI?** → See [LogicStamp Context LLM Guide](https://github.com/LogicStamp/logicstamp-context/blob/main/docs/LLM_CONTEXT.md) (CLI repo)
-- **Looking for CLI commands?** → Reference [Commands](commands.md)
-- **Contributing to the project?** → Review [Implementation Summary](implementation_summary.md)
+- **Using LogicStamp with AI?** → See [LogicStamp for LLMs](logicstamp-for-llms.md) (embedded snapshot) or [Full Docs](https://logicstamp.dev/docs/logicstamp-context/context)
+- **Looking for CLI commands?** → See [Canonical CLI Docs](https://logicstamp.dev/docs/logicstamp-context/context)
+- **Contributing to the project?** → Review [Contributing Guide](../CONTRIBUTING.md) and [MCP Integration Guide](mcp_integration.md)
 

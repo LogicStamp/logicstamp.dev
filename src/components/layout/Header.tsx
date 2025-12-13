@@ -75,7 +75,7 @@ export default function Header() {
   const navigation = [
     { name: 'Try Demo', href: '/demo' },
     { name: 'Docs', href: '/docs/' },
-    { name: 'GitHub', href: 'https://github.com/LogicStamp/logicstamp-context', external: true },
+    { name: 'GitHub', href: 'https://github.com/LogicStamp', external: true },
     { name: 'Join the beta', href: '/beta' },
   ]
 
@@ -198,7 +198,7 @@ export default function Header() {
           <div className="mt-5 pt-5 border-t border-gray-200/50 dark:border-gray-700/50">
             <div className="flex items-center justify-center gap-4">
               <a
-                href="https://github.com/LogicStamp/logicstamp-context"
+                href="https://github.com/LogicStamp"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="p-2.5 rounded-lg text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white hover:bg-gray-100/60 dark:hover:bg-gray-800/60 transition-all duration-200 active:scale-95"

@@ -136,6 +136,7 @@ const HeroVisualizationWrapper = forwardRef<HTMLDivElement, { inView: boolean }>
 )
 
 export default function Hero() {
+  const [activeTab, setActiveTab] = useState<'cli' | 'mcp'>('cli')
   const { ref: titleRef, inView: titleInView } = useInView(0.1)
   const { ref: descriptionRef, inView: descriptionInView } = useInView(0.1)
   const { ref: buttonsRef, inView: buttonsInView } = useInView(0.1)
@@ -215,9 +216,31 @@ export default function Hero() {
             }`}
           >
             <div className="mt-10 sm:mt-12 flex flex-col items-center">
-              <p className="text-xs sm:text-sm font-medium text-gray-500 dark:text-gray-400 mb-2">
-                Install the CLI
-              </p>
+              {/* Tabs */}
+              <div className="mb-4 flex items-center gap-2 bg-white/50 dark:bg-gray-900/50 rounded-lg p-1 ring-1 ring-gray-300/50 dark:ring-gray-700/50">
+                <button
+                  onClick={() => setActiveTab('cli')}
+                  className={`px-4 py-2 rounded-md text-xs sm:text-sm font-medium transition-all duration-200 ${
+                    activeTab === 'cli'
+                      ? 'bg-white dark:bg-gray-800 text-gray-900 dark:text-white shadow-sm'
+                      : 'text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-300'
+                  }`}
+                >
+                  Install the CLI
+                </button>
+                <button
+                  onClick={() => setActiveTab('mcp')}
+                  className={`px-4 py-2 rounded-md text-xs sm:text-sm font-medium transition-all duration-200 ${
+                    activeTab === 'mcp'
+                      ? 'bg-white dark:bg-gray-800 text-gray-900 dark:text-white shadow-sm'
+                      : 'text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-300'
+                  }`}
+                >
+                  Install the MCP
+                </button>
+              </div>
+              
+              {/* Install command */}
               <div className="relative group">
                 <div className="absolute -inset-1 bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 rounded-2xl blur opacity-25 group-hover:opacity-40 transition duration-300"></div>
                 <div className="relative inline-flex items-center gap-3 rounded-xl bg-white dark:bg-gray-900 px-6 sm:px-8 lg:px-10 py-4 sm:py-5 shadow-xl ring-1 ring-gray-300/50 dark:ring-gray-700/50">
@@ -225,9 +248,12 @@ export default function Hero() {
                     $
                   </span>
                   <code className="text-sm sm:text-base lg:text-lg font-mono font-semibold text-gray-900 dark:text-gray-100" aria-label="Installation command">
-                    npm install -g logicstamp-context
+                    {activeTab === 'cli' ? 'npm install -g logicstamp-context' : 'npm install -g logicstamp-mcp'}
                   </code>
-                  <CopyButton text="npm install -g logicstamp-context" className="ml-2" />
+                  <CopyButton 
+                    text={activeTab === 'cli' ? 'npm install -g logicstamp-context' : 'npm install -g logicstamp-mcp'} 
+                    className="ml-2" 
+                  />
                 </div>
               </div>
             </div>

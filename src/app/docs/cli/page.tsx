@@ -20,7 +20,7 @@ const pages = [
   { title: '`clean` Command', href: '/docs/logicstamp-context/clean', description: 'Remove all generated context artifacts from your project.' },
   { title: 'Usage Guides', href: '/docs/logicstamp-context/usage', description: 'Practical examples and workflows using LogicStamp Context.' },
   { title: 'LLM Context Format', href: '/docs/logicstamp-context/llm-context', description: 'Schema and structure of the generated context for LLMs.' },
-  { title: 'Changelog', href: '/docs/logicstamp-context/changelog', description: 'Release notes and version history.' },
+  { title: 'CLI Changelog', href: '/docs/logicstamp-context/changelog', description: 'Release notes and version history for the CLI.' },
   { title: 'GitHub Repository', href: 'https://github.com/LogicStamp/logicstamp-context', description: 'Full source code and canonical documentation.', external: true },
 ]
 

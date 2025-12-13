@@ -2,12 +2,45 @@
 
 LogicStamp MCP server works with [Cursor](https://cursor.sh/) - the AI-powered code editor. Cursor supports both global and project-specific MCP configurations.
 
+## Quick Troubleshooting Checklist
+
+Before diving into setup, check these common issues:
+
+- ✅ **Node.js installed?** Run `node --version` (needs 18.0.0+)
+- ✅ **Package installed?** Run `npm list -g logicstamp-mcp`
+- ✅ **LogicStamp CLI installed?** Run `stamp --version` (needs `npm install -g logicstamp-context`)
+- ✅ **Config file exists?** Check `~/.cursor/mcp.json` (macOS/Linux) or `%USERPROFILE%\.cursor\mcp.json` (Windows)
+- ✅ **JSON valid?** Validate your `mcp.json` syntax
+- ✅ **Cursor restarted?** Fully quit and reopen Cursor (not just close window)
+- ✅ **MCP visible in settings?** Settings → Features → Model Context Protocol
+
+If all checks pass but it's still not working, see the [Troubleshooting](#troubleshooting) section below.
+
+## Finding MCP Settings in Cursor
+
+To verify LogicStamp is connected:
+
+1. **Open Cursor Settings:**
+   - Press `Cmd + ,` (macOS) or `Ctrl + ,` (Windows/Linux)
+   - Or: Menu → **Settings** → **Preferences**
+
+2. **Navigate to MCP Settings:**
+   - In the settings sidebar, click **Features**
+   - Scroll down to **Model Context Protocol** (or search for "MCP")
+
+3. **Verify Connection:**
+   - You should see `logicstamp` in the list of MCP servers
+   - Status should show "Connected" or "Running"
+   - If you see an error, check the [Troubleshooting](#troubleshooting) section
+
+**Visual Path:** `Settings` → `Features` → `Model Context Protocol` → Look for `logicstamp`
+
 ## Installation
 
 ### Step 1: Install the MCP Server Package
 
 ```bash
-npm install -g logicstamp-context-mcp
+npm install -g logicstamp-mcp
 ```
 
 ### Step 2: Choose Your Setup
@@ -17,6 +50,8 @@ Choose one of the following setup options based on your needs:
 ## Option 1: Global Installation (Recommended)
 
 Install globally to use LogicStamp in **all your projects**.
+
+**Important:** This setup is done **once** (globally). After configuring the MCP server globally, it will be available in every project you open in Cursor. You don't need to set it up again for each project. However, when you actually analyze a project, you'll call `logicstamp_refresh_snapshot` for that specific project - the analysis itself is per-project, but the MCP server setup is global.
 
 ### Manual Configuration
 
@@ -39,7 +74,20 @@ Add the following configuration:
   "mcpServers": {
     "logicstamp": {
       "command": "npx",
-      "args": ["logicstamp-context-mcp"]
+      "args": ["logicstamp-mcp"]
+    }
+  }
+}
+```
+
+**Note:** Some MCP clients may require a `"type": "stdio"` field. If the above doesn't work, try:
+```json
+{
+  "mcpServers": {
+    "logicstamp": {
+      "type": "stdio",
+      "command": "npx",
+      "args": ["logicstamp-mcp"]
     }
   }
 }
@@ -47,7 +95,7 @@ Add the following configuration:
 
 **What this does:**
 - Adds LogicStamp to your global Cursor MCP configuration
-- Makes the 4 LogicStamp tools available in every project you open in Cursor
+- Makes the 6 LogicStamp tools available in every project you open in Cursor
 - Server auto-starts when Cursor needs it (no manual startup required)
 
 ### Local Development Setup
@@ -60,7 +108,7 @@ If you're developing the MCP server locally or testing before publishing, use ab
   "mcpServers": {
     "logicstamp": {
       "command": "node",
-      "args": ["/absolute/path/to/logicstamp-context-mcp/dist/index.js"]
+      "args": ["/absolute/path/to/logicstamp-mcp/dist/index.js"]
     }
   }
 }
@@ -72,11 +120,13 @@ If you're developing the MCP server locally or testing before publishing, use ab
   "mcpServers": {
     "logicstamp": {
       "command": "node",
-      "args": ["C:\\Users\\YourName\\path\\to\\logicstamp-context-mcp\\dist\\index.js"]
+      "args": ["C:\\Users\\YourName\\path\\to\\logicstamp-mcp\\dist\\index.js"]
     }
   }
 }
 ```
+
+**Note:** Some MCP clients may require a `"type": "stdio"` field. If the above doesn't work, add `"type": "stdio"` to the configuration.
 
 **Global Install vs Local Development:**
 
@@ -105,7 +155,7 @@ Install per-project to share configuration with your team via git.
 ### Step 1: Install Package Globally
 
 ```bash
-npm install -g logicstamp-context-mcp
+npm install -g logicstamp-mcp
 ```
 
 ### Step 2: Configure Project
@@ -124,11 +174,13 @@ Create `.cursor/mcp.json` with this content:
   "mcpServers": {
     "logicstamp": {
       "command": "npx",
-      "args": ["logicstamp-context-mcp"]
+      "args": ["logicstamp-mcp"]
     }
   }
 }
 ```
+
+**Note:** Some MCP clients may require a `"type": "stdio"` field. If the above doesn't work, add `"type": "stdio"` to the configuration.
 
 **What this does:**
 - Creates project-specific MCP configuration
@@ -142,18 +194,23 @@ Create `.cursor/mcp.json` with this content:
 
 After configuring, verify the server is working:
 
-1. **Restart Cursor** - Close and reopen Cursor for changes to take effect
-2. **Check MCP Status** - Open Cursor settings (Cmd/Ctrl + ,) and navigate to "Features" → "Model Context Protocol"
-3. **Test in Chat** - Open Cursor's AI chat (Cmd/Ctrl + L) and ask:
+1. **Restart Cursor** - Fully quit and reopen Cursor (not just close window) for changes to take effect
+2. **Check MCP Status** - Follow the steps in [Finding MCP Settings in Cursor](#finding-mcp-settings-in-cursor) above
+   - You should see `logicstamp` listed with status "Connected" or "Running"
+3. **Test in Chat** - Open Cursor's AI chat (`Cmd/Ctrl + L`) and ask:
    ```
    Can you analyze my project using LogicStamp?
    ```
 
-The AI should be able to use the 4 LogicStamp tools:
+The AI should be able to use the 6 LogicStamp tools:
 - `logicstamp_refresh_snapshot` - Analyze project structure
 - `logicstamp_list_bundles` - List available components
 - `logicstamp_read_bundle` - Read component contracts
 - `logicstamp_compare_snapshot` - Detect changes after edits
+- `logicstamp_compare_modes` - Generate token cost comparison across modes
+- `logicstamp_read_logicstamp_docs` - Read LogicStamp documentation
+
+**Quick Check:** If you see `logicstamp` in Settings → Features → Model Context Protocol with a "Connected" status, you're all set! If not, see the [Troubleshooting](#troubleshooting) section below.
 
 ## Usage
 
@@ -187,9 +244,9 @@ The AI will automatically use the LogicStamp tools to analyze your codebase.
 
 3. **Verify package installation:**
    ```bash
-   npm list -g logicstamp-context-mcp
+   npm list -g logicstamp-mcp
    # or test npx
-   npx logicstamp-context-mcp --help
+   npx logicstamp-mcp --help
    ```
 
 4. **Check Cursor logs:**
@@ -213,7 +270,7 @@ The AI will automatically use the LogicStamp tools to analyze your codebase.
 2. **Check npx works:**
    ```bash
    npx --version
-   npx logicstamp-context-mcp --help
+   npx logicstamp-mcp --help
    ```
 
 3. **For local builds, use absolute paths:**
@@ -260,7 +317,7 @@ stamp --version
 
 2. **Test MCP server manually:**
    ```bash
-   npx logicstamp-context-mcp
+   npx logicstamp-mcp
    # Should wait for stdin (server is ready)
    # Press Ctrl+C to exit
    ```

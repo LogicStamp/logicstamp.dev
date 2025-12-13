@@ -1,6 +1,6 @@
 # LogicStamp Context - Complete Tool Description
 
-> **See also:** [MCP Integration Guide](mcp_integration.md) for MCP server architecture | [Commands Reference](commands.md) for CLI usage | [Quick Start](quickstart.md) for getting started
+> **See also:** [MCP Integration Guide](mcp_integration.md) for MCP server architecture | [CLI Commands Reference](cli_commands.md) for CLI usage | [Quick Start](quickstart.md) for getting started
 
 ## Overview
 

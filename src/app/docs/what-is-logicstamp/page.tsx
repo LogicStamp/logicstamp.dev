@@ -238,6 +238,12 @@ export default function WhatIsLogicStampPage() {
                   title: "Cleanup Utilities",
                   desc: "Remove all generated context artifacts when resetting or switching branches. Safe by default with dry-run mode",
                   color: "pink"
+                },
+                {
+                  icon: "🔌",
+                  title: "MCP Server Integration (Beta)",
+                  desc: "Native Model Context Protocol (MCP) server enables AI assistants like Claude Desktop and Claude Code to analyze your codebase directly. Install once, use everywhere—no manual file sharing needed",
+                  color: "indigo"
                 }
               ].map((feature, idx) => (
                 <div key={idx} className="relative">
@@ -344,8 +350,8 @@ export default function WhatIsLogicStampPage() {
                 {
                   step: 3,
                   title: "Share with AI Assistants",
-                  description: "Use the generated context files with Claude, ChatGPT, or custom agents instead of pasting full source files",
-                  code: "context.json files + context_main.json index",
+                  description: "Use the generated context files with Claude, ChatGPT, or custom agents instead of pasting full source files. Or install the MCP server for native integration with Claude Desktop and Claude Code",
+                  code: "context.json files + context_main.json index\n# OR\nnpm install -g logicstamp-mcp",
                   color: "green"
                 },
                 {

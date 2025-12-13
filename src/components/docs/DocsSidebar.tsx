@@ -21,12 +21,15 @@ const sections: DocsNavSection[] = [
     items: [
       { title: 'Docs Home', href: '/docs' },
       { title: 'What is LogicStamp?', href: '/docs/what-is-logicstamp' },
-      { title: 'MCP Server (Coming Soon)', href: '/docs/mcp' },
+      { title: 'MCP Overview (Beta)', href: '/docs/mcp' },
     ],
   },
   {
     title: 'Getting Started',
-    items: [{ title: 'Installation & Quick Start', href: '/docs/getting-started' }],
+    items: [
+      { title: 'CLI - Installation & Quick Start', href: '/docs/getting-started' },
+      { title: 'MCP - Installation & Quick Start', href: '/docs/mcp/getting-started' },
+    ],
   },
   {
     title: 'Reference',
@@ -34,6 +37,16 @@ const sections: DocsNavSection[] = [
       { title: 'Reference', href: '/docs/reference' },
       { title: 'Complete Reference', href: '/docs/complete-reference' },
       { title: 'Known Limitations', href: '/docs/complete-reference/known-limitations' },
+    ],
+  },
+  {
+    title: 'MCP',
+    items: [
+      { title: 'MCP Reference', href: '/docs/mcp/reference' },
+      { title: 'Usage Examples', href: '/docs/mcp/usage' },
+      { title: 'Best Practices', href: '/docs/mcp/best-practices' },
+      { title: 'Profiles Guide', href: '/docs/mcp/profiles' },
+      { title: 'Style Metadata', href: '/docs/mcp/style-metadata' },
     ],
   },
   {
@@ -66,7 +79,10 @@ const sections: DocsNavSection[] = [
   },
   {
     title: 'Meta',
-    items: [{ title: 'Changelog', href: '/docs/logicstamp-context/changelog' }],
+    items: [
+      { title: 'CLI Changelog', href: '/docs/logicstamp-context/changelog' },
+      { title: 'MCP Changelog', href: '/docs/mcp/changelog' },
+    ],
   },
 ]
 
@@ -190,7 +206,7 @@ function getIcon(href: string): ReactNode {
     )
   }
 
-  if (href === '/docs/mcp') {
+  if (href.startsWith('/docs/mcp')) {
     // Server / network icon for MCP
     return (
       <svg
@@ -431,6 +447,7 @@ export default function DocsSidebar() {
   const [isCliOpen, setIsCliOpen] = useState(false)
   const [isGuidesOpen, setIsGuidesOpen] = useState(false)
   const [isReferenceOpen, setIsReferenceOpen] = useState(false)
+  const [isMcpOpen, setIsMcpOpen] = useState(false)
 
   // Auto-open CLI section if any CLI item is active
   useEffect(() => {
@@ -461,6 +478,17 @@ export default function DocsSidebar() {
       const hasActiveReferenceItem = referenceSection.items.some((item) => isActive(pathname, item.href))
       if (hasActiveReferenceItem) {
         setIsReferenceOpen(true)
+      }
+    }
+  }, [pathname])
+
+  // Auto-open MCP section if any MCP item is active
+  useEffect(() => {
+    const mcpSection = sections.find((s) => s.title === 'MCP')
+    if (mcpSection) {
+      const hasActiveMcpItem = mcpSection.items.some((item) => isActive(pathname, item.href))
+      if (hasActiveMcpItem) {
+        setIsMcpOpen(true)
       }
     }
   }, [pathname])
@@ -496,6 +524,7 @@ export default function DocsSidebar() {
           const isCliSection = section.title === 'CLI'
           const isGuidesSection = section.title === 'Guides'
           const isReferenceSection = section.title === 'Reference'
+          const isMcpSection = section.title === 'MCP'
           
           return (
             <div key={section.title}>
@@ -621,6 +650,56 @@ export default function DocsSidebar() {
                   <div
                     className={`overflow-hidden transition-all duration-300 ease-in-out ${
                       isReferenceOpen ? 'max-h-[500px] opacity-100' : 'max-h-0 opacity-0'
+                    }`}
+                  >
+                    <ul className="space-y-1">
+                      {section.items.map((item) => {
+                        const active = isActive(pathname, item.href)
+                        return (
+                          <li key={item.href}>
+                            <Link
+                              href={item.href}
+                              className={`block rounded-md border-l-2 px-2 py-1.5 transition-colors ${
+                                active
+                                  ? 'border-blue-500 bg-blue-50 text-blue-700 font-semibold dark:border-blue-400 dark:bg-blue-900/40 dark:text-blue-200'
+                                  : 'border-transparent text-gray-700 hover:border-gray-300 hover:bg-gray-100 hover:text-blue-700 dark:border-transparent dark:text-gray-300 dark:hover:border-gray-700 dark:hover:bg-gray-800 dark:hover:text-blue-200'
+                              }`}
+                            >
+                              <span className="flex items-center gap-2">
+                                <span className="inline-flex items-center justify-center text-gray-400 dark:text-gray-500">
+                                  {getIcon(item.href)}
+                                </span>
+                                <span>{item.title}</span>
+                              </span>
+                            </Link>
+                          </li>
+                        )
+                      })}
+                    </ul>
+                  </div>
+                </>
+              ) : isMcpSection ? (
+                <>
+                  <div className="mb-2 flex items-center gap-2">
+                    <button
+                      onClick={() => setIsMcpOpen(!isMcpOpen)}
+                      className="flex items-center justify-center w-6 h-6 rounded border border-gray-300 dark:border-gray-600 text-gray-600 dark:text-gray-400 text-sm font-normal transition-colors hover:border-gray-400 dark:hover:border-gray-500 focus:outline-none"
+                      aria-expanded={isMcpOpen}
+                      aria-label={isMcpOpen ? 'Collapse MCP section' : 'Expand MCP section'}
+                    >
+                      {isMcpOpen ? '−' : '+'}
+                    </button>
+                    <button
+                      onClick={() => setIsMcpOpen(!isMcpOpen)}
+                      className="text-xs font-semibold uppercase tracking-wide text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-300 cursor-pointer focus:outline-none"
+                      aria-label={isMcpOpen ? 'Collapse MCP section' : 'Expand MCP section'}
+                    >
+                      {section.title}
+                    </button>
+                  </div>
+                  <div
+                    className={`overflow-hidden transition-all duration-300 ease-in-out ${
+                      isMcpOpen ? 'max-h-[500px] opacity-100' : 'max-h-0 opacity-0'
                     }`}
                   >
                     <ul className="space-y-1">

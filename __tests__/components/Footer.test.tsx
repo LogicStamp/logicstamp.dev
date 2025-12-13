@@ -44,7 +44,7 @@ describe('Footer Component', () => {
 
     expect(screen.getByRole('link', { name: /documentation/i })).toBeInTheDocument()
     // GitHub and npm links exist - check by href since they may have sr-only text
-    const githubLink = container.querySelector('a[href="https://github.com/LogicStamp/logicstamp-context"]')
+    const githubLink = container.querySelector('a[href="https://github.com/LogicStamp"]')
     const npmLink = container.querySelector('a[href="https://www.npmjs.com/package/logicstamp-context"]')
     expect(githubLink).toBeInTheDocument()
     expect(npmLink).toBeInTheDocument()
@@ -252,7 +252,7 @@ describe('Footer Component', () => {
     const { container } = render(<Footer />)
 
     // GitHub link has sr-only text, find by href using querySelector
-    const githubLink = container.querySelector('a[href="https://github.com/LogicStamp/logicstamp-context"]')
+    const githubLink = container.querySelector('a[href="https://github.com/LogicStamp"]')
     expect(githubLink).toBeInTheDocument()
     expect(githubLink).toHaveAttribute('target', '_blank')
     expect(githubLink).toHaveAttribute('rel', 'noopener noreferrer')
