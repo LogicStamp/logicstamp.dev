@@ -69,7 +69,7 @@ export default function CompleteReferencePage() {
                   </svg>
                 </div>
                 <h2 className="text-xl sm:text-2xl font-bold text-gray-900 dark:text-white m-0">
-                  MCP Server Integration (Beta v0.1.0)
+                  MCP Server Integration (Beta v0.1.1)
                 </h2>
               </div>
               
