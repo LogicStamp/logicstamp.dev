@@ -52,10 +52,9 @@
   - Visual consistency checks
   - When the user asks about styling, colors, spacing, animations, or visual design
 
-### `projectPath` (optional)
+### `projectPath` (required)
 - **Type:** `string`
-- **Default:** Current working directory (or `PROJECT_PATH` environment variable)
-- **Description:** Absolute path to the project root. If not provided, uses the current directory.
+- **Description:** **CRITICAL: Absolute path to project root. REQUIRED - must always be provided.** When `stamp init` has been run, MCP clients may omit this parameter, causing hangs. This parameter is REQUIRED for the tool to work correctly. The server will resolve relative paths to absolute paths automatically.
 
 ### `cleanCache` (optional)
 - **Type:** `boolean`
@@ -116,11 +115,13 @@ Array of folder metadata objects, each containing:
 ```json
 {
   "name": "logicstamp_refresh_snapshot",
-  "arguments": {}
+  "arguments": {
+    "projectPath": "/absolute/path/to/project"
+  }
 }
 ```
 
-This creates a snapshot with default settings (`profile: 'llm-chat'`, `mode: 'header'`, `includeStyle: false`).
+This creates a snapshot with default settings (`profile: 'llm-chat'`, `mode: 'header'`, `includeStyle: false`). **Note:** `projectPath` is required.
 
 ### With Custom Profile
 
@@ -128,6 +129,7 @@ This creates a snapshot with default settings (`profile: 'llm-chat'`, `mode: 'he
 {
   "name": "logicstamp_refresh_snapshot",
   "arguments": {
+    "projectPath": "/absolute/path/to/project",
     "profile": "llm-safe"
   }
 }
@@ -139,6 +141,7 @@ This creates a snapshot with default settings (`profile: 'llm-chat'`, `mode: 'he
 {
   "name": "logicstamp_refresh_snapshot",
   "arguments": {
+    "projectPath": "/absolute/path/to/project",
     "includeStyle": true
   }
 }
@@ -150,6 +153,7 @@ This creates a snapshot with default settings (`profile: 'llm-chat'`, `mode: 'he
 {
   "name": "logicstamp_refresh_snapshot",
   "arguments": {
+    "projectPath": "/absolute/path/to/project",
     "mode": "full"
   }
 }

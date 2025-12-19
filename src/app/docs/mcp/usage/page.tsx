@@ -67,8 +67,8 @@ export default function MCPUsagePage() {
                         tabs={[
                           {
                             label: 'Call',
-                            code: 'logicstamp_refresh_snapshot()',
-                            copyText: 'logicstamp_refresh_snapshot()'
+                            code: 'logicstamp_refresh_snapshot({ projectPath: "/absolute/path/to/project" })',
+                            copyText: 'logicstamp_refresh_snapshot({ projectPath: "/absolute/path/to/project" })'
                           }
                         ]}
                       />
@@ -164,14 +164,14 @@ export default function MCPUsagePage() {
                   <p className="text-sm text-gray-900 dark:text-gray-100">"Analyze the Button component in my project"</p>
                 </div>
                 
-                <div className="p-4 bg-gray-50 dark:bg-gray-800/50 rounded-lg border border-gray-200 dark:border-gray-700">
+                  <div className="p-4 bg-gray-50 dark:bg-gray-800/50 rounded-lg border border-gray-200 dark:border-gray-700">
                   <p className="text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">AI → MCP:</p>
                   <TabbedCodeBlock
                     tabs={[
                       {
                         label: 'Step 1: Refresh',
-                        code: 'logicstamp_refresh_snapshot()',
-                        copyText: 'logicstamp_refresh_snapshot()'
+                        code: 'logicstamp_refresh_snapshot({ projectPath: "/absolute/path/to/project" })',
+                        copyText: 'logicstamp_refresh_snapshot({ projectPath: "/absolute/path/to/project" })'
                       }
                     ]}
                   />
@@ -229,19 +229,19 @@ export default function MCPUsagePage() {
                   <p className="text-sm text-gray-900 dark:text-gray-100">"Analyze my components with style information"</p>
                 </div>
                 
-                <div className="p-4 bg-gray-50 dark:bg-gray-800/50 rounded-lg border border-gray-200 dark:border-gray-700">
+                  <div className="p-4 bg-gray-50 dark:bg-gray-800/50 rounded-lg border border-gray-200 dark:border-gray-700">
                   <p className="text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">AI → MCP:</p>
                   <TabbedCodeBlock
                     tabs={[
                       {
                         label: 'Call',
-                        code: 'logicstamp_refresh_snapshot({ includeStyle: true })',
-                        copyText: 'logicstamp_refresh_snapshot({ includeStyle: true })'
+                        code: 'logicstamp_refresh_snapshot({ projectPath: "/absolute/path/to/project", includeStyle: true })',
+                        copyText: 'logicstamp_refresh_snapshot({ projectPath: "/absolute/path/to/project", includeStyle: true })'
                       }
                     ]}
                   />
                   <p className="text-sm text-gray-600 dark:text-gray-400 mt-2">
-                    Response includes <code className="px-1.5 py-0.5 bg-gray-100 dark:bg-gray-800 text-indigo-600 dark:text-indigo-400 rounded font-mono text-xs">includeStyle: true</code> flag.
+                    Response includes <code className="px-1.5 py-0.5 bg-gray-100 dark:bg-gray-800 text-indigo-600 dark:text-indigo-400 rounded font-mono text-xs">includeStyle: true</code> flag. <strong>Note:</strong> <code className="px-1.5 py-0.5 bg-gray-100 dark:bg-gray-800 text-indigo-600 dark:text-indigo-400 rounded font-mono text-xs">projectPath</code> is required.
                   </p>
                 </div>
                 
@@ -287,7 +287,7 @@ export default function MCPUsagePage() {
                 <div className="p-4 bg-gray-50 dark:bg-gray-800/50 rounded-lg border border-gray-200 dark:border-gray-700">
                   <p className="text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">2-4. AI → MCP:</p>
                   <p className="text-sm text-gray-600 dark:text-gray-400 mb-2">
-                    AI calls <code className="px-1.5 py-0.5 bg-gray-100 dark:bg-gray-800 text-indigo-600 dark:text-indigo-400 rounded font-mono text-xs">logicstamp_refresh_snapshot()</code>, <code className="px-1.5 py-0.5 bg-gray-100 dark:bg-gray-800 text-indigo-600 dark:text-indigo-400 rounded font-mono text-xs">logicstamp_list_bundles()</code>, and <code className="px-1.5 py-0.5 bg-gray-100 dark:bg-gray-800 text-indigo-600 dark:text-indigo-400 rounded font-mono text-xs">logicstamp_read_bundle()</code> to understand current implementation.
+                    AI calls <code className="px-1.5 py-0.5 bg-gray-100 dark:bg-gray-800 text-indigo-600 dark:text-indigo-400 rounded font-mono text-xs">logicstamp_refresh_snapshot({`{ projectPath: "/absolute/path/to/project" }`})</code>, <code className="px-1.5 py-0.5 bg-gray-100 dark:bg-gray-800 text-indigo-600 dark:text-indigo-400 rounded font-mono text-xs">logicstamp_list_bundles()</code>, and <code className="px-1.5 py-0.5 bg-gray-100 dark:bg-gray-800 text-indigo-600 dark:text-indigo-400 rounded font-mono text-xs">logicstamp_read_bundle()</code> to understand current implementation.
                   </p>
                 </div>
                 
@@ -311,8 +311,8 @@ export default function MCPUsagePage() {
                     tabs={[
                       {
                         label: 'Verify changes',
-                        code: 'logicstamp_compare_snapshot({ forceRegenerate: true })',
-                        copyText: 'logicstamp_compare_snapshot({ forceRegenerate: true })'
+                        code: 'logicstamp_compare_snapshot({ projectPath: "/absolute/path/to/project", forceRegenerate: true })',
+                        copyText: 'logicstamp_compare_snapshot({ projectPath: "/absolute/path/to/project", forceRegenerate: true })'
                       }
                     ]}
                   />

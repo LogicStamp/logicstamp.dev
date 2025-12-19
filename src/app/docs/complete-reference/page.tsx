@@ -110,16 +110,22 @@ export default function CompleteReferencePage() {
                   </svg>
                 </div>
                 <h2 className="text-xl sm:text-2xl font-bold text-gray-900 dark:text-white m-0">
-                  What's New in v0.3.0
+                  What's New in v0.3.1
                 </h2>
               </div>
               
               <p className="text-sm sm:text-base text-gray-600 dark:text-gray-400 mb-4 sm:mb-6 leading-relaxed">
-                The 0.3.0 release introduces major security improvements: security scanning now runs by default during initialization, automatic secret sanitization in context files, and a new <code className="px-1.5 py-0.5 bg-gray-100 dark:bg-gray-800 rounded text-xs font-mono">stamp ignore</code> command for managing file exclusions.
+                The 0.3.1 release includes hook classification improvements: custom React hooks are now correctly classified as <code className="px-1.5 py-0.5 bg-gray-100 dark:bg-gray-800 rounded text-xs font-mono">react:hook</code> instead of <code className="px-1.5 py-0.5 bg-gray-100 dark:bg-gray-800 rounded text-xs font-mono">react:component</code>. The 0.3.0 release introduced major security improvements: security scanning now runs by default during initialization, automatic secret sanitization in context files, and a new <code className="px-1.5 py-0.5 bg-gray-100 dark:bg-gray-800 rounded text-xs font-mono">stamp ignore</code> command for managing file exclusions.
               </p>
               
               <div className="grid sm:grid-cols-2 gap-4 sm:gap-6">
                 {[
+                  {
+                    icon: "🔧",
+                    title: "Hook Classification (v0.3.1)",
+                    desc: "Custom React hooks are now correctly classified as react:hook instead of react:component. Detection logic checks if main export is a function starting with 'use' and has no JSX elements",
+                    color: "blue"
+                  },
                   {
                     icon: "🔒",
                     title: "Security Scanning (v0.3.0)",
@@ -930,7 +936,7 @@ stamp context style --include-code header`
     },
     "meta": {
       "missing": [],
-      "source": "logicstamp-context@0.3.0"
+      "source": "logicstamp-context@0.3.1"
     }
   }
 ]`,
@@ -971,7 +977,7 @@ stamp context style --include-code header`
     },
     "meta": {
       "missing": [],
-      "source": "logicstamp-context@0.3.0"
+      "source": "logicstamp-context@0.3.1"
     }
   }
 ]`
