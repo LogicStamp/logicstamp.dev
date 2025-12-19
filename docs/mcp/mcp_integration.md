@@ -73,7 +73,7 @@ logicstamp-context/
 - `profile` (optional): `llm-chat` (default) | `llm-safe` | `ci-strict`
 - `mode` (optional): `header` (default) | `full` | `none`
 - `includeStyle` (optional): Include style metadata (default: `false`)
-- `projectPath` (optional): Defaults to current working directory
+- `projectPath` (required): **CRITICAL: Absolute path to project root. REQUIRED - must always be provided.** When `stamp init` has been run, MCP clients may omit this parameter, causing hangs. This parameter is REQUIRED for the tool to work correctly. The server will resolve relative paths to absolute paths automatically.
 - `cleanCache` (optional): Force cache cleanup (default: `false`, auto-detects corruption)
 
 **Behavior**:

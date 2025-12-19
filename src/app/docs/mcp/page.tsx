@@ -554,7 +554,7 @@ claude`,
   "profile": "llm-chat",      // optional: llm-chat | llm-safe | ci-strict
   "mode": "header",            // optional: none | header | full
   "includeStyle": false,       // optional: include style metadata
-  "projectPath": "/abs/path"   // optional: defaults to cwd
+  "projectPath": "/abs/path"   // REQUIRED: absolute path to project root
 }`,
                         copyText: JSON.stringify({ profile: "llm-chat", mode: "header", includeStyle: false, projectPath: "/abs/path" }, null, 2)
                       }
@@ -740,7 +740,7 @@ claude`,
   "profile": "llm-chat",      // optional
   "mode": "header",            // optional
   "includeStyle": false,       // optional: include style metadata in comparison
-  "projectPath": "/abs/path",  // optional
+  "projectPath": "/abs/path",  // REQUIRED: absolute path to project root
   "baseline": "disk"           // optional: disk | snapshot | git:<ref>
 }`,
                         copyText: JSON.stringify({ profile: "llm-chat", mode: "header", includeStyle: false, projectPath: "/abs/path", baseline: "disk" }, null, 2)

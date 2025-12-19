@@ -84,7 +84,7 @@ export default function MCPReferencePage() {
   "profile": "llm-chat",      // optional: llm-chat | llm-safe | ci-strict
   "mode": "header",            // optional: none | header | full
   "includeStyle": false,       // optional: include style metadata
-  "projectPath": "/abs/path"   // optional: defaults to cwd
+  "projectPath": "/abs/path"   // REQUIRED: absolute path to project root
 }`,
                       copyText: JSON.stringify({ profile: "llm-chat", mode: "header", includeStyle: false, projectPath: "/abs/path" }, null, 2)
                     }
@@ -286,7 +286,7 @@ export default function MCPReferencePage() {
   "profile": "llm-chat",      // optional
   "mode": "header",            // optional
   "includeStyle": false,       // optional: include style metadata in comparison
-  "projectPath": "/abs/path",  // optional
+  "projectPath": "/abs/path",  // REQUIRED: absolute path to project root
   "baseline": "disk"           // optional: disk | snapshot | git:<ref>
 }`,
                       copyText: JSON.stringify({ profile: "llm-chat", mode: "header", includeStyle: false, projectPath: "/abs/path", baseline: "disk" }, null, 2)
@@ -401,6 +401,13 @@ export default function MCPReferencePage() {
                       <li>Color palettes and spacing patterns</li>
                       <li>Layout patterns (flex/grid, responsive breakpoints)</li>
                     </ul>
+                  </div>
+
+                  <div>
+                    <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-3">projectPath</h3>
+                    <p className="text-sm text-gray-600 dark:text-gray-400 mb-2">
+                      <strong className="text-red-600 dark:text-red-400">REQUIRED</strong> - Absolute path to project root. When <code className="px-1.5 py-0.5 bg-gray-100 dark:bg-gray-800 text-indigo-600 dark:text-indigo-400 rounded font-mono text-xs">stamp init</code> has been run, MCP clients may omit this parameter, causing hangs. This parameter is REQUIRED for the tool to work correctly. The server will resolve relative paths to absolute paths automatically.
+                    </p>
                   </div>
 
                   <div>

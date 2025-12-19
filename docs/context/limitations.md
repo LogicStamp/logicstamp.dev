@@ -120,9 +120,9 @@ function Button({ variant }: { variant: 'primary' | 'secondary' }) {
 
 ## Hook Classification
 
-**Issue**
+**Status:** ✅ **Fixed in v0.3.1**
 
-Custom hooks sometimes get labeled as `react:component` instead of `react:hook`. Makes it harder to tell hooks apart from components when you're looking at the context.
+Custom hooks are now correctly classified as `react:hook` instead of `react:component`. The detection logic checks if the main export (default or named) is a function starting with "use" and has no JSX elements.
 
 **Example**
 
@@ -135,21 +135,12 @@ function useTypewriter(text: string, speed = 30) {
 }
 ```
 
-**Context Output (Incorrect):**
-```json
-{
-  "kind": "react:component"
-}
-```
-
-**Expected Output:**
+**Context Output (Correct):**
 ```json
 {
   "kind": "react:hook"
 }
 ```
-
-**Impact:** Hooks and components can look the same in context files, which makes it trickier to tell them apart.
 
 ## Summary
 
@@ -164,7 +155,6 @@ function useTypewriter(text: string, speed = 30) {
 - Hook function signatures (parameters not captured)
 - Emit detection accuracy (internal handlers vs. actual emits)
 - Dynamic style extraction (variable-based classes within template literals)
-- Hook classification (`react:hook` vs. `react:component`)
 
 **Bottom line:** We're hitting around 90% accuracy overall. Solid foundation, but there's definitely room to improve. These issues are on our roadmap.
 
@@ -218,7 +208,7 @@ This section documents what's currently captured in context files versus what's 
 
 - **Created timestamps**: When context was generated
 - **OS detection**: Platform info (e.g., `win32`)
-- **Source tool version**: `logicstamp-context@0.3.0`
+- **Source tool version**: `logicstamp-context@0.3.1`
 - **Missing dependencies**: Tracked in `missing` array
 
 ## What's Missing or Incomplete

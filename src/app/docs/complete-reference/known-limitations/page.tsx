@@ -363,12 +363,12 @@ export default function KnownLimitationsPage() {
                 </div>
                 
                 <div className="space-y-4">
-                  <div>
-                    <h3 className="font-semibold text-gray-900 dark:text-white mb-2 text-base sm:text-lg">
-                      Issue
-                    </h3>
-                    <p className="text-sm sm:text-base text-gray-600 dark:text-gray-400 mb-4 leading-relaxed">
-                      Custom hooks sometimes get labeled as <code className="px-2 py-1 bg-gray-100 dark:bg-gray-800 rounded text-sm font-mono">react:component</code> instead of <code className="px-2 py-1 bg-gray-100 dark:bg-gray-800 rounded text-sm font-mono">react:hook</code>. Makes it harder to tell hooks apart from components when you're looking at the context.
+                  <div className="p-4 bg-green-50 dark:bg-green-950/20 rounded-lg border-l-4 border-green-500">
+                    <p className="text-sm font-semibold text-green-800 dark:text-green-300 mb-2">
+                      ✅ Fixed in v0.3.1
+                    </p>
+                    <p className="text-sm text-green-700 dark:text-green-400">
+                      Custom hooks are now correctly classified as <code className="px-1.5 py-0.5 bg-green-100 dark:bg-green-900/40 rounded text-xs font-mono">react:hook</code> instead of <code className="px-1.5 py-0.5 bg-green-100 dark:bg-green-900/40 rounded text-xs font-mono">react:component</code>. The detection logic checks if the main export (default or named) is a function starting with "use" and has no JSX elements.
                     </p>
                   </div>
 
@@ -392,16 +392,7 @@ export default function KnownLimitationsPage() {
 }`
                         },
                         {
-                          label: 'Context Output (Incorrect)',
-                          code: `{
-    "kind": "react:component"
-  }`,
-                          copyText: `{
-    "kind": "react:component"
-  }`
-                        },
-                        {
-                          label: 'Expected Output',
+                          label: 'Context Output (Correct)',
                           code: `{
     "kind": "react:hook"
   }`,
@@ -411,12 +402,6 @@ export default function KnownLimitationsPage() {
                         }
                       ]}
                     />
-                  </div>
-
-                  <div className="p-4 bg-green-50 dark:bg-green-950/20 rounded-lg border border-green-200 dark:border-green-800">
-                    <p className="text-sm text-green-800 dark:text-green-300">
-                      <strong>Impact:</strong> Hooks and components can look the same in context files, which makes it trickier to tell them apart.
-                    </p>
                   </div>
                 </div>
               </div>
@@ -469,7 +454,6 @@ export default function KnownLimitationsPage() {
                       <li>Hook function signatures (parameters not captured)</li>
                       <li>Emit detection accuracy (internal handlers vs. actual emits)</li>
                       <li>Dynamic style extraction (variable-based classes within template literals)</li>
-                      <li>Hook classification (react:hook vs. react:component)</li>
                     </ul>
                   </div>
 
@@ -571,7 +555,7 @@ export default function KnownLimitationsPage() {
                         <ul className="space-y-1 text-sm text-gray-600 dark:text-gray-400 ml-4 list-disc">
                           <li><strong>Created timestamps</strong>: When context was generated</li>
                           <li><strong>OS detection</strong>: Platform info (e.g., <code className="px-1.5 py-0.5 bg-gray-100 dark:bg-gray-800 rounded text-xs font-mono">win32</code>)</li>
-                          <li><strong>Source tool version</strong>: <code className="px-1.5 py-0.5 bg-gray-100 dark:bg-gray-800 rounded text-xs font-mono">logicstamp-context@0.3.0</code></li>
+                          <li><strong>Source tool version</strong>: <code className="px-1.5 py-0.5 bg-gray-100 dark:bg-gray-800 rounded text-xs font-mono">logicstamp-context@0.3.1</code></li>
                           <li><strong>Missing dependencies</strong>: Tracked in <code className="px-1.5 py-0.5 bg-gray-100 dark:bg-gray-800 rounded text-xs font-mono">missing</code> array</li>
                         </ul>
                       </div>
