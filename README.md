@@ -11,7 +11,7 @@
 [![Tailwind CSS](https://img.shields.io/badge/Tailwind-3.4-38bdf8)](https://tailwindcss.com/)
 [![License](https://img.shields.io/badge/License-MIT-green.svg)](./LICENSE)
 
-[Website](https://logicstamp.dev) • [Documentation](./docs/) • [GitHub](https://github.com/LogicStamp/logicstamp-context) • [Contributing](./CONTRIBUTING.md)
+[Website](https://logicstamp.dev) • [Documentation](./docs/) • [GitHub](https://github.com/LogicStamp) • [Contributing](./CONTRIBUTING.md)
 
 </div>
 
@@ -246,9 +246,9 @@ These assets may not be used for third-party branding, logos, or commercial iden
 
 ## Support
 
-- 📖 [Documentation](./docs/)
-- 🐛 [Issue Tracker](https://github.com/LogicStamp/logicstamp-context/issues)
-- 📧 [Contact](https://logicstamp.dev)
+- [Documentation](./docs/)
+- [Issue Tracker](https://github.com/LogicStamp/logicstamp-context/issues)
+- [Contact](https://logicstamp.dev) | Email: logicstamp.dev@gmail.com
 
 ---
 
