@@ -2,7 +2,7 @@
 
 <div align="center">
 
-<img src="public/mascot/logicstamp-fox.svg" alt="LogicStamp Fox Mascot" width="120" height="120">
+<img src="public/mascot/logicstamp-fox.svg" alt="LogicStamp Fox Mascot" width="120">
 
 **The official landing page and documentation site for LogicStamp**
 
@@ -25,15 +25,15 @@ The site is built with Next.js 14, TypeScript, and Tailwind CSS, featuring a mod
 
 ## Features
 
-- 🚀 **Next.js 14** with App Router for optimal performance
-- 💎 **TypeScript** for type-safe development
-- 🎨 **Tailwind CSS** for modern, responsive styling
-- 🌙 **Dark Mode** support with smooth theme transitions
-- 📱 **Fully Responsive** design for all devices
-- ⚡ **Fast Performance** with optimized builds
-- 🧪 **Comprehensive Testing** with Vitest and React Testing Library
-- 📚 **Documentation** integrated directly into the site
-- 🎯 **SEO Optimized** for better discoverability
+- **Next.js 14** with App Router for optimal performance
+- **TypeScript** for type-safe development
+- **Tailwind CSS** for modern, responsive styling
+- **Dark Mode** support with smooth theme transitions
+- **Fully Responsive** design for all devices
+- **Fast Performance** with optimized builds
+- **Comprehensive Testing** with Vitest and React Testing Library
+- **Documentation** integrated directly into the site
+- **SEO Optimized** for better discoverability
 
 ## Quick Start
 
@@ -254,8 +254,11 @@ These assets may not be used for third-party branding, logos, or commercial iden
 
 <div align="center">
 
-Made with ❤️ by the LogicStamp team
+Built by the LogicStamp team · Open-source developer tooling
 
-[Website](https://logicstamp.dev) • [GitHub](https://github.com/LogicStamp/logicstamp-context)
+[Website](https://logicstamp.dev) • 
+[GitHub Org](https://github.com/LogicStamp) • 
+[LogicStamp Context (CLI)](https://github.com/LogicStamp/logicstamp-context) • 
+[LogicStamp MCP](https://github.com/LogicStamp/logicstamp-mcp)
 
 </div>
