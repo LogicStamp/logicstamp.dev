@@ -118,6 +118,16 @@ stamp context
                   }
                 ]}
               />
+              <div className="mt-4 p-4 bg-blue-50/50 dark:bg-blue-950/20 border-l-4 border-blue-500 rounded-r-lg mb-4">
+                <p className="text-xs sm:text-sm text-gray-800 dark:text-blue-100">
+                  <span className="font-semibold text-blue-900 dark:text-blue-200">Note:</span>{' '}
+                  "Global CLI" means the tool is installed globally on your system (via <code className="px-1.5 py-0.5 bg-blue-100 dark:bg-blue-900/40 rounded text-xs font-mono">npm install -g</code>), making the <code className="px-1.5 py-0.5 bg-blue-100 dark:bg-blue-900/40 rounded text-xs font-mono">stamp</code> command available from any directory in your terminal, not just within a specific project folder.
+                </p>
+                <ul className="mt-2 space-y-1 text-xs sm:text-sm text-gray-800 dark:text-blue-100 ml-4 list-disc">
+                  <li><strong>Local install:</strong> <code className="px-1.5 py-0.5 bg-blue-100 dark:bg-blue-900/40 rounded text-xs font-mono">npm install logicstamp-context</code> → only available in that project</li>
+                  <li><strong>Global install:</strong> <code className="px-1.5 py-0.5 bg-blue-100 dark:bg-blue-900/40 rounded text-xs font-mono">npm install -g logicstamp-context</code> → available everywhere via <code className="px-1.5 py-0.5 bg-blue-100 dark:bg-blue-900/40 rounded text-xs font-mono">stamp</code> command</li>
+                </ul>
+              </div>
               <div className="mt-4 p-4 bg-red-50/50 dark:bg-red-950/20 border-l-4 border-red-500 rounded-r-lg">
                 <p className="text-xs sm:text-sm text-gray-800 dark:text-red-100">
                   <span className="font-semibold text-red-900 dark:text-red-200">🔒 Security Best Practice:</span>{' '}
@@ -147,20 +157,28 @@ stamp context
                 tabs={[
                   {
                     label: 'Syntax',
-                    code: `stamp init [path] [options]
-stamp security scan [path] [options]
+                    code: `stamp --version                    # Show version number
+stamp --help                       # Show help
+stamp init [path] [options]        # Initialize LogicStamp in project
+stamp ignore <path> [path2] ...     # Add files/folders to .stampignore
 stamp context [path] [options]
-stamp context style [path] [options]
+stamp context style [path] [options]  # Generate context with style metadata
 stamp context validate [file]
-stamp context compare [options]
-stamp context clean [path] [options]`,
-                    copyText: `stamp init [path] [options]
-stamp security scan [path] [options]
+stamp context compare [oldFile] [newFile] [options]  # Auto-mode (default): omit files to compare all context files
+stamp context clean [path] [options]
+stamp security scan [path] [options]  # Scan for secrets and generate report
+stamp security --hard-reset [options]  # Reset security configuration`,
+                    copyText: `stamp --version                    # Show version number
+stamp --help                       # Show help
+stamp init [path] [options]        # Initialize LogicStamp in project
+stamp ignore <path> [path2] ...     # Add files/folders to .stampignore
 stamp context [path] [options]
-stamp context style [path] [options]
+stamp context style [path] [options]  # Generate context with style metadata
 stamp context validate [file]
-stamp context compare [options]
-stamp context clean [path] [options]`
+stamp context compare [oldFile] [newFile] [options]  # Auto-mode (default): omit files to compare all context files
+stamp context clean [path] [options]
+stamp security scan [path] [options]  # Scan for secrets and generate report
+stamp security --hard-reset [options]  # Reset security configuration`
                   }
                 ]}
               />
@@ -173,6 +191,181 @@ stamp context clean [path] [options]`
                 <code className="px-2 py-1 bg-gray-100 dark:bg-gray-800 text-purple-600 dark:text-purple-400 rounded-md font-mono text-xs sm:text-sm">stamp context compare</code> to detect drift across all folders, and{' '}
                 <code className="px-2 py-1 bg-gray-100 dark:bg-gray-800 text-purple-600 dark:text-purple-400 rounded-md font-mono text-xs sm:text-sm">stamp context clean</code> to remove context artifacts.
               </p>
+            </div>
+          </div>
+        </AnimatedSection>
+
+        {/* Global Options Section */}
+        <AnimatedSection direction="up" delay={250}>
+          <div className="relative mb-8 sm:mb-12 lg:mb-16">
+            <div className="absolute -inset-1 bg-gradient-to-r from-indigo-600 to-blue-600 rounded-2xl blur opacity-20 dark:opacity-10" />
+            <div className="relative bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded-2xl p-4 sm:p-6 lg:p-8 shadow-xl">
+              <div className="flex items-baseline gap-3 mb-4 sm:mb-6">
+                <div className="p-2 bg-indigo-100 dark:bg-indigo-900/30 rounded-lg flex-shrink-0 -mt-0.5">
+                  <svg className="w-5 h-5 sm:w-6 sm:h-6 text-indigo-600 dark:text-indigo-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4" />
+                  </svg>
+                </div>
+                <h2 className="text-xl sm:text-2xl font-bold text-gray-900 dark:text-white m-0">
+                  Global Options
+                </h2>
+              </div>
+              <p className="text-base sm:text-lg text-gray-600 dark:text-gray-400 mb-4 sm:mb-6 leading-relaxed">
+                These options are available at the top level (before any subcommand):
+              </p>
+              <div className="overflow-x-auto -mx-4 sm:mx-0 px-4 sm:px-0 mb-4 sm:mb-6">
+                <table className="w-full min-w-full divide-y divide-gray-200 dark:divide-gray-700">
+                  <thead className="bg-gray-50 dark:bg-gray-800">
+                    <tr>
+                      <th className="px-2 sm:px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">Option</th>
+                      <th className="px-2 sm:px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">Alias</th>
+                      <th className="px-2 sm:px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">Description</th>
+                    </tr>
+                  </thead>
+                  <tbody className="bg-white dark:bg-gray-900 divide-y divide-gray-200 dark:divide-gray-700">
+                    <tr className="hover:bg-gray-50 dark:hover:bg-gray-800/50 transition-colors">
+                      <td className="px-2 sm:px-6 py-4 whitespace-nowrap">
+                        <code className="px-2 py-1 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 rounded text-xs sm:text-sm font-mono">--version</code>
+                      </td>
+                      <td className="px-2 sm:px-6 py-4 whitespace-nowrap">
+                        <code className="px-2 py-1 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 rounded text-xs sm:text-sm font-mono">-v</code>
+                      </td>
+                      <td className="px-2 sm:px-6 py-4 text-sm text-gray-600 dark:text-gray-400">Show version number and exit</td>
+                    </tr>
+                    <tr className="hover:bg-gray-50 dark:hover:bg-gray-800/50 transition-colors">
+                      <td className="px-2 sm:px-6 py-4 whitespace-nowrap">
+                        <code className="px-2 py-1 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 rounded text-xs sm:text-sm font-mono">--help</code>
+                      </td>
+                      <td className="px-2 sm:px-6 py-4 whitespace-nowrap">
+                        <code className="px-2 py-1 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 rounded text-xs sm:text-sm font-mono">-h</code>
+                      </td>
+                      <td className="px-2 sm:px-6 py-4 text-sm text-gray-600 dark:text-gray-400">Show help message and exit</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+              <div className="p-4 bg-gray-50 dark:bg-gray-800/50 rounded-lg border border-gray-200 dark:border-gray-700">
+                <p className="text-sm font-semibold text-gray-900 dark:text-white mb-2">Examples:</p>
+                <TabbedCodeBlock
+                  tabs={[
+                    {
+                      label: 'Examples',
+                      code: `stamp --version    # Shows: fox mascot + "Version: 0.3.2"
+stamp -v           # Same as --version
+stamp --help       # Shows main help
+stamp -h           # Same as --help`,
+                      copyText: `stamp --version    # Shows: fox mascot + "Version: 0.3.2"
+stamp -v           # Same as --version
+stamp --help       # Shows main help
+stamp -h           # Same as --help`
+                    }
+                  ]}
+                />
+              </div>
+            </div>
+          </div>
+        </AnimatedSection>
+
+        {/* Stamp Ignore Command Section */}
+        <AnimatedSection direction="up" delay={275}>
+          <div className="relative mb-8 sm:mb-12 lg:mb-16">
+            <div className="absolute -inset-1 bg-gradient-to-r from-teal-600 to-cyan-600 rounded-2xl blur opacity-20 dark:opacity-10" />
+            <div className="relative bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded-2xl p-4 sm:p-6 lg:p-8 shadow-xl">
+              <div className="flex items-baseline gap-3 mb-4 sm:mb-6">
+                <div className="p-2 bg-teal-100 dark:bg-teal-900/30 rounded-lg flex-shrink-0 -mt-0.5">
+                  <svg className="w-5 h-5 sm:w-6 sm:h-6 text-teal-600 dark:text-teal-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M18.364 18.364A9 9 0 005.636 5.636m12.728 12.728A9 9 0 015.636 5.636m12.728 12.728L5.636 5.636" />
+                  </svg>
+                </div>
+                <h2 className="text-xl sm:text-2xl font-bold text-gray-900 dark:text-white m-0">
+                  <code className="text-transparent bg-clip-text bg-gradient-to-r from-teal-600 to-cyan-600 dark:from-teal-400 dark:to-cyan-400 font-mono text-lg sm:text-xl">stamp ignore</code> Command
+                </h2>
+              </div>
+              <p className="text-base sm:text-lg text-gray-600 dark:text-gray-400 mb-4 sm:mb-6 leading-relaxed">
+                Add files or folders to <code className="px-2 py-1 bg-gray-100 dark:bg-gray-800 text-teal-600 dark:text-teal-400 rounded-md font-mono text-xs sm:text-sm">.stampignore</code> to exclude them from context generation. This is useful for excluding files with secrets, large generated files, or other files that shouldn't be included in context bundles.
+              </p>
+              <div className="mb-4 sm:mb-6">
+                <h3 className="text-base sm:text-lg font-semibold text-gray-900 dark:text-white mb-2 sm:mb-3">Arguments</h3>
+                <p className="text-sm sm:text-base text-gray-600 dark:text-gray-400">
+                  <code className="px-2 py-1 bg-gray-100 dark:bg-gray-800 text-teal-600 dark:text-teal-400 rounded-md font-mono text-xs sm:text-sm">&lt;path1&gt; [path2] ...</code> – One or more file or folder paths to ignore (relative to project root). Supports glob patterns.
+                </p>
+              </div>
+              <div className="mb-4 sm:mb-6">
+                <h3 className="text-base sm:text-lg font-semibold text-gray-900 dark:text-white mb-2 sm:mb-3">Key Options</h3>
+                <div className="overflow-x-auto -mx-4 sm:mx-0 px-4 sm:px-0">
+                  <table className="w-full min-w-full divide-y divide-gray-200 dark:divide-gray-700">
+                    <thead className="bg-gray-50 dark:bg-gray-800">
+                      <tr>
+                        <th className="px-2 sm:px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">Option</th>
+                        <th className="px-2 sm:px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">Alias</th>
+                        <th className="px-2 sm:px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">Description</th>
+                      </tr>
+                    </thead>
+                    <tbody className="bg-white dark:bg-gray-900 divide-y divide-gray-200 dark:divide-gray-700">
+                      <tr className="hover:bg-gray-50 dark:hover:bg-gray-800/50 transition-colors">
+                        <td className="px-2 sm:px-6 py-4 whitespace-nowrap">
+                          <code className="px-2 py-1 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 rounded text-xs sm:text-sm font-mono">--quiet</code>
+                        </td>
+                        <td className="px-2 sm:px-6 py-4 whitespace-nowrap">
+                          <code className="px-2 py-1 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 rounded text-xs sm:text-sm font-mono">-q</code>
+                        </td>
+                        <td className="px-2 sm:px-6 py-4 text-sm text-gray-600 dark:text-gray-400">Suppress verbose output (show only errors)</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+              <div className="mb-4 sm:mb-6">
+                <h3 className="text-base sm:text-lg font-semibold text-gray-900 dark:text-white mb-2 sm:mb-3">Examples</h3>
+                <TabbedCodeBlock
+                  tabs={[
+                    {
+                      label: 'Examples',
+                      code: `# Add a single file to .stampignore
+stamp ignore src/secrets.ts
+
+# Add multiple files/folders
+stamp ignore src/config/credentials.ts src/secrets/
+
+# Add glob patterns
+stamp ignore "**/secrets.ts" "**/*.key"
+
+# Quiet mode
+stamp ignore src/secrets.ts --quiet`,
+                      copyText: `# Add a single file to .stampignore
+stamp ignore src/secrets.ts
+
+# Add multiple files/folders
+stamp ignore src/config/credentials.ts src/secrets/
+
+# Add glob patterns
+stamp ignore "**/secrets.ts" "**/*.key"
+
+# Quiet mode
+stamp ignore src/secrets.ts --quiet`
+                    }
+                  ]}
+                />
+              </div>
+              <div className="space-y-3">
+                <div className="p-4 bg-teal-50 dark:bg-teal-950/20 rounded-lg border border-teal-200 dark:border-teal-800">
+                  <h3 className="text-base font-semibold text-teal-900 dark:text-teal-200 mb-2">What It Does</h3>
+                  <ul className="space-y-1.5 text-sm text-teal-800 dark:text-teal-300 ml-4 list-disc">
+                    <li>Creates <code className="px-1 py-0.5 bg-teal-100 dark:bg-teal-900/40 rounded text-xs font-mono">.stampignore</code> if it doesn't exist</li>
+                    <li>Adds specified paths to <code className="px-1 py-0.5 bg-teal-100 dark:bg-teal-900/40 rounded text-xs font-mono">.stampignore</code></li>
+                    <li>Prevents duplicate entries</li>
+                    <li>Normalizes paths automatically</li>
+                    <li>Shows feedback about what was added (unless <code className="px-1 py-0.5 bg-teal-100 dark:bg-teal-900/40 rounded text-xs font-mono">--quiet</code> is used)</li>
+                  </ul>
+                </div>
+                <div className="p-4 bg-blue-50 dark:bg-blue-950/20 rounded-lg border border-blue-200 dark:border-blue-800">
+                  <h3 className="text-base font-semibold text-blue-900 dark:text-blue-200 mb-2">Integration with Other Commands</h3>
+                  <ul className="space-y-1.5 text-sm text-blue-800 dark:text-blue-300 ml-4 list-disc">
+                    <li>Files in <code className="px-1 py-0.5 bg-blue-100 dark:bg-blue-900/40 rounded text-xs font-mono">.stampignore</code> are automatically excluded when running <code className="px-1 py-0.5 bg-blue-100 dark:bg-blue-900/40 rounded text-xs font-mono">stamp context</code></li>
+                    <li>Use <code className="px-1 py-0.5 bg-blue-100 dark:bg-blue-900/40 rounded text-xs font-mono">stamp ignore &lt;file&gt;</code> to add files with detected secrets to <code className="px-1 py-0.5 bg-blue-100 dark:bg-blue-900/40 rounded text-xs font-mono">.stampignore</code> after reviewing the security report</li>
+                  </ul>
+                </div>
+              </div>
             </div>
           </div>
         </AnimatedSection>
@@ -232,7 +425,7 @@ stamp context clean [path] [options]`
         </AnimatedSection>
 
         {/* CI and Automation Tips Section */}
-        <AnimatedSection direction="up" delay={400}>
+        <AnimatedSection direction="up" delay={450}>
           <div className="relative mb-8 sm:mb-12 lg:mb-16">
             <div className="absolute -inset-1 bg-gradient-to-r from-orange-600 to-red-600 rounded-2xl blur opacity-20 dark:opacity-10" />
             <div className="relative bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded-2xl p-4 sm:p-6 lg:p-8 shadow-xl">
@@ -271,7 +464,7 @@ stamp context clean [path] [options]`
         </AnimatedSection>
 
         {/* Style Metadata Section */}
-        <AnimatedSection direction="up" delay={500}>
+        <AnimatedSection direction="up" delay={550}>
           <div className="relative mb-8 sm:mb-12 lg:mb-16">
             <div className="absolute -inset-1 bg-gradient-to-r from-pink-600 to-purple-600 rounded-2xl blur opacity-20 dark:opacity-10" />
             <div className="relative bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded-2xl p-4 sm:p-6 lg:p-8 shadow-xl">
@@ -340,7 +533,7 @@ stamp context style --include-code header`
         </AnimatedSection>
 
         {/* Token Comparison Section */}
-        <AnimatedSection direction="up" delay={600}>
+        <AnimatedSection direction="up" delay={650}>
           <div className="relative mb-8 sm:mb-12 lg:mb-16">
             <div className="absolute -inset-1 bg-gradient-to-r from-blue-600 to-indigo-600 rounded-2xl blur opacity-20 dark:opacity-10" />
             <div className="relative bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded-2xl p-4 sm:p-6 lg:p-8 shadow-xl">
@@ -390,7 +583,7 @@ stamp context --compare-modes
         </AnimatedSection>
 
         {/* Example Workflows Section */}
-        <AnimatedSection direction="up" delay={700}>
+        <AnimatedSection direction="up" delay={750}>
           <div className="relative mb-8 sm:mb-12 lg:mb-16">
             <div className="absolute -inset-1 bg-gradient-to-r from-indigo-600 to-purple-600 rounded-2xl blur opacity-20 dark:opacity-10" />
             <div className="relative bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded-2xl p-4 sm:p-6 lg:p-8 shadow-xl">

@@ -91,7 +91,7 @@ export default function SchemaPage() {
                           <code className="px-2 py-1 bg-green-100 dark:bg-green-900/40 text-green-900 dark:text-green-100 rounded text-xs sm:text-sm font-mono">LogicStampIndex</code>
                         </td>
                         <td className="px-2 sm:px-6 py-4 whitespace-nowrap">
-                          <code className="px-2 py-1 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 rounded text-xs sm:text-sm font-mono">0.1</code>
+                          <code className="px-2 py-1 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 rounded text-xs sm:text-sm font-mono">0.2</code>
                         </td>
                         <td className="px-2 sm:px-6 py-4 text-sm text-gray-600 dark:text-gray-400">Main index for multi-file context</td>
                       </tr>
@@ -614,7 +614,7 @@ interface MissingDependency {
         "referencedBy": "src/components/Button.tsx"
       }
     ],
-    "source": "logicstamp-context@0.3.1"
+    "source": "logicstamp-context@0.3.2"
   }
 }`,
                       copyText: `{
@@ -630,7 +630,7 @@ interface MissingDependency {
   },
   "meta": {
     "missing": [...],
-    "source": "logicstamp-context@0.3.1"
+    "source": "logicstamp-context@0.3.2"
   }
 }`
                     }
@@ -651,16 +651,24 @@ interface MissingDependency {
               </p>
               
               <div className="mb-6">
-                <h3 className="text-lg sm:text-xl font-semibold text-gray-900 dark:text-white mb-3">Schema Version: <code className="px-2 py-1 bg-gray-100 dark:bg-gray-800 text-green-600 dark:text-green-400 rounded-md font-mono text-sm">0.1</code></h3>
+                <h3 className="text-lg sm:text-xl font-semibold text-gray-900 dark:text-white mb-3">Schema Version: <code className="px-2 py-1 bg-gray-100 dark:bg-gray-800 text-green-600 dark:text-green-400 rounded-md font-mono text-sm">0.2</code></h3>
+                <div className="mb-4 p-4 bg-yellow-50 dark:bg-yellow-950/20 border-l-4 border-yellow-500 rounded-r-lg">
+                  <p className="text-sm text-yellow-800 dark:text-yellow-200">
+                    <strong className="text-yellow-900 dark:text-yellow-100">⚠️ Breaking Change:</strong> Schema version 0.2 (v0.3.2+) uses relative paths instead of absolute paths. The <code className="px-1.5 py-0.5 bg-yellow-100 dark:bg-yellow-900/40 rounded text-xs font-mono">projectRootResolved</code> field has been removed. See{' '}
+                    <a href="/docs/logicstamp-context/migration-0-3-2" className="text-yellow-700 dark:text-yellow-300 hover:underline font-semibold">
+                      Migration Guide
+                    </a>{' '}
+                    for details.
+                  </p>
+                </div>
                 <TabbedCodeBlock
                   tabs={[
                     {
                       label: 'TypeScript Interface',
                       code: `interface LogicStampIndex {
   type: "LogicStampIndex";
-  schemaVersion: "0.1";
-  projectRoot: string;              // Relative path (usually ".")
-  projectRootResolved: string;      // Absolute path
+  schemaVersion: "0.2";
+  projectRoot: string;              // Relative path (always "." in v0.3.2+)
   createdAt: string;                // ISO 8601 timestamp
   summary: {
     totalComponents: number;
@@ -685,9 +693,8 @@ interface FolderEntry {
 }`,
                       copyText: `interface LogicStampIndex {
   type: "LogicStampIndex";
-  schemaVersion: "0.1";
+  schemaVersion: "0.2";
   projectRoot: string;
-  projectRootResolved: string;
   createdAt: string;
   summary: {
     totalComponents: number;
@@ -705,9 +712,8 @@ interface FolderEntry {
                       label: 'JSON Example',
                       code: `{
   "type": "LogicStampIndex",
-  "schemaVersion": "0.1",
+  "schemaVersion": "0.2",
   "projectRoot": ".",
-  "projectRootResolved": "/absolute/path/to/project",
   "createdAt": "2025-01-15T10:30:00.000Z",
   "summary": {
     "totalComponents": 42,
@@ -718,7 +724,7 @@ interface FolderEntry {
   "folders": [
     {
       "path": "src/components",
-      "contextFile": "src/components/context.json",
+      "contextFile": "src/components/context.json",  // Relative path (v0.3.2+)
       "bundles": 3,
       "components": ["Button.tsx", "Card.tsx"],
       "isRoot": false,
@@ -735,14 +741,13 @@ interface FolderEntry {
     }
   ],
   "meta": {
-    "source": "logicstamp-context@0.3.1"
+    "source": "logicstamp-context@0.3.2"
   }
 }`,
                       copyText: `{
   "type": "LogicStampIndex",
-  "schemaVersion": "0.1",
+  "schemaVersion": "0.2",
   "projectRoot": ".",
-  "projectRootResolved": "/absolute/path/to/project",
   "createdAt": "2025-01-15T10:30:00.000Z",
   "summary": {
     "totalComponents": 42,
@@ -752,7 +757,7 @@ interface FolderEntry {
   },
   "folders": [...],
   "meta": {
-    "source": "logicstamp-context@0.3.1"
+    "source": "logicstamp-context@0.3.2"
   }
 }`
                     }
