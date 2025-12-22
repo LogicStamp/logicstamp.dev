@@ -431,12 +431,12 @@ stamp context --skip-gitignore`
                   <div className="p-4 bg-purple-50 dark:bg-purple-950/20 rounded-lg border border-purple-200 dark:border-purple-800">
                     <h3 className="text-lg font-semibold text-purple-900 dark:text-purple-200 mb-2">Example</h3>
                     <p className="text-sm text-gray-700 dark:text-gray-300 mb-2">Source code:</p>
-                    <pre className="text-xs bg-gray-100 dark:bg-gray-800 p-2 rounded mb-2"><code>{`const apiKey = 'sk_live_1234567890abcdef';
-const password = 'mySecretPassword123';`}</code></pre>
+                    <pre className="text-xs bg-gray-100 dark:bg-gray-800 p-2 rounded mb-2"><code>{`const apiKey = 'FAKE_EXAMPLE_KEY_DO_NOT_USE';
+const password = 'FAKE_EXAMPLE_PASSWORD_DO_NOT_USE';`}</code></pre>
                     <p className="text-sm text-gray-700 dark:text-gray-300 mb-2">Generated <code className="px-1.5 py-0.5 bg-purple-100 dark:bg-purple-900/40 rounded text-xs font-mono">context.json</code>:</p>
                     <pre className="text-xs bg-gray-100 dark:bg-gray-800 p-2 rounded"><code>{`{
-  "code": "const apiKey = 'PRIVATE_DATA';
-const password = 'PRIVATE_DATA';"
+  "code": "const apiKey = 'EXAMPLE_PRIVATE_DATA';
+const password = 'EXAMPLE_PRIVATE_DATA';"
 }`}</code></pre>
                   </div>
                   <div className="p-4 bg-green-50 dark:bg-green-950/20 rounded-lg border border-green-200 dark:border-green-800">

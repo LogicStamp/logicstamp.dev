@@ -42,3 +42,5 @@ context_*.json
 logicstamp.manifest.json
 .logicstamp/
 stamp_security_report.json
+context.toon
+context_*.toon
