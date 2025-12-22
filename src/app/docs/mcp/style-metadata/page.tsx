@@ -307,10 +307,10 @@ export default function MCPStyleMetadataPage() {
                     
                     <div className="flex flex-col sm:flex-row flex-wrap gap-3 sm:gap-4">
                       <Link
-                        href="/docs/mcp/comparison"
+                        href="/docs/logicstamp-context/compare-modes"
                         className="inline-flex items-center justify-center gap-2 px-4 sm:px-6 py-2.5 sm:py-3 bg-indigo-600 hover:bg-indigo-700 dark:bg-indigo-500 dark:hover:bg-indigo-600 text-white font-semibold rounded-xl hover:shadow-xl transition-all duration-200 hover:-translate-y-0.5 text-sm sm:text-base"
                       >
-                        Comparison Guide
+                        Compare Modes
                         <svg className="w-4 h-4 sm:w-5 sm:h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
                         </svg>

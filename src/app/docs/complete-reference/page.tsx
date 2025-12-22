@@ -841,7 +841,7 @@ stamp context style --include-code header`
                           label: 'Main Index Example',
                           code: `{
   "type": "LogicStampIndex",
-  "schemaVersion": "0.1",
+  "schemaVersion": "0.2",
   "projectRoot": ".",
   "createdAt": "2025-01-15T10:30:00.000Z",
   "summary": {
@@ -863,7 +863,7 @@ stamp context style --include-code header`
 }`,
                           copyText: `{
   "type": "LogicStampIndex",
-  "schemaVersion": "0.1",
+  "schemaVersion": "0.2",
   "projectRoot": ".",
   "createdAt": "2025-01-15T10:30:00.000Z",
   "summary": {

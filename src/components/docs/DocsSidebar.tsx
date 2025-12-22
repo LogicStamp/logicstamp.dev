@@ -82,6 +82,7 @@ const sections: DocsNavSection[] = [
     items: [
       { title: 'CLI Changelog', href: '/docs/logicstamp-context/changelog' },
       { title: 'MCP Changelog', href: '/docs/mcp/changelog' },
+      { title: 'Migration to v0.3.2', href: '/docs/logicstamp-context/migration-0-3-2' },
     ],
   },
 ]
@@ -355,6 +356,23 @@ function getIcon(href: string): ReactNode {
       >
         <path d="M12 8v4l3 3" />
         <circle cx="12" cy="12" r="9" />
+      </svg>
+    )
+  }
+
+  if (href.includes('/migration')) {
+    // Migration / upgrade icon
+    return (
+      <svg
+        className="w-3.5 h-3.5"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth={2}
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      >
+        <path d="M7 13l5 5 5-5M7 6l5 5 5-5" />
       </svg>
     )
   }
