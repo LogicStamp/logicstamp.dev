@@ -214,7 +214,7 @@ export default function HashesPage() {
                 <div className="p-4 bg-indigo-50 dark:bg-indigo-950/20 rounded-xl border border-indigo-200 dark:border-indigo-800">
                   <h3 className="font-semibold text-indigo-900 dark:text-indigo-100 mb-2 text-sm sm:text-base">How it is computed</h3>
                   <ol className="list-decimal list-inside space-y-1 text-xs sm:text-sm text-indigo-900/90 dark:text-indigo-100">
-                    <li>Extract AST structure and logic signature.</li>
+                    <li>Extract AST structure (AstExtract) and logic signature, then feed them into <code className="px-1 py-0.5 bg-gray-100 dark:bg-gray-800 rounded text-[0.7rem] font-mono">semanticHashFromAst</code>, which internally combines <code className="px-1 py-0.5 bg-gray-100 dark:bg-gray-800 rounded text-[0.7rem] font-mono">structureHash</code> and <code className="px-1 py-0.5 bg-gray-100 dark:bg-gray-800 rounded text-[0.7rem] font-mono">signatureHash</code>.</li>
                     <li>Build payload:</li>
                   </ol>
                   <pre className="mt-2 mb-2 overflow-x-auto rounded-md bg-gray-950/90 text-[0.7rem] sm:text-xs text-gray-100 p-3 font-mono whitespace-pre-wrap break-words max-w-full">

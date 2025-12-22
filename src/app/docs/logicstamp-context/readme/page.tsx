@@ -176,8 +176,60 @@ export default function LogicStampReadmePage() {
             </div>
           </AnimatedSection>
 
-          {/* Token Optimization Section */}
+          {/* Recent Updates Section */}
           <AnimatedSection direction="up" delay={400}>
+            <div className="relative mb-8 sm:mb-12 lg:mb-16">
+              <div className="absolute -inset-1 bg-gradient-to-r from-blue-600 to-indigo-600 rounded-2xl blur opacity-20 dark:opacity-10" />
+              <div className="relative bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded-2xl p-4 sm:p-6 lg:p-8 shadow-xl">
+                <div className="flex items-baseline gap-3 mb-4 sm:mb-6">
+                  <div className="p-2 bg-blue-100 dark:bg-blue-900/30 rounded-lg flex-shrink-0">
+                    <svg className="w-5 h-5 sm:w-6 sm:h-6 text-blue-600 dark:text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
+                    </svg>
+                  </div>
+                  <h2 className="text-xl sm:text-2xl font-bold text-gray-900 dark:text-white m-0">
+                    Recent Updates
+                  </h2>
+                </div>
+                <div className="space-y-4">
+                  <div className="p-4 bg-blue-50 dark:bg-blue-950/20 rounded-xl border border-blue-200 dark:border-blue-800">
+                    <h3 className="font-semibold text-blue-900 dark:text-blue-200 mb-2 text-base sm:text-lg">
+                      v0.3.2
+                    </h3>
+                    <ul className="space-y-2 text-sm text-blue-800 dark:text-blue-300 ml-4 list-disc">
+                      <li><strong>Security update</strong> - Updated <code className="px-1 py-0.5 bg-blue-100 dark:bg-blue-900/40 rounded text-xs font-mono">glob</code> dependency to 11.1.0+ to address CVE-2025-64756</li>
+                      <li><strong>Improved portability</strong> - Context files now use relative paths instead of absolute paths, improving portability across different machines and environments</li>
+                      <li><strong>CSS/SCSS parsing now uses AST parser</strong> - Migrated from regex-based extraction to AST-based parsing using <code className="px-1 py-0.5 bg-blue-100 dark:bg-blue-900/40 rounded text-xs font-mono">css-tree</code> for more robust and accurate parsing</li>
+                    </ul>
+                  </div>
+                  <div className="p-4 bg-green-50 dark:bg-green-950/20 rounded-xl border border-green-200 dark:border-green-800">
+                    <h3 className="font-semibold text-green-900 dark:text-green-200 mb-2 text-base sm:text-lg">
+                      v0.3.1
+                    </h3>
+                    <ul className="space-y-2 text-sm text-green-800 dark:text-green-300 ml-4 list-disc">
+                      <li><strong>Hook classification accuracy</strong> - Custom React hooks are now correctly classified as <code className="px-1 py-0.5 bg-green-100 dark:bg-green-900/40 rounded text-xs font-mono">react:hook</code> instead of <code className="px-1 py-0.5 bg-green-100 dark:bg-green-900/40 rounded text-xs font-mono">react:component</code></li>
+                      <li><strong>Added <code className="px-1 py-0.5 bg-green-100 dark:bg-green-900/40 rounded text-xs font-mono">react:hook</code> to ContractKind type</strong> - The <code className="px-1 py-0.5 bg-green-100 dark:bg-green-900/40 rounded text-xs font-mono">ContractKind</code> type now includes <code className="px-1 py-0.5 bg-green-100 dark:bg-green-900/40 rounded text-xs font-mono">'react:hook'</code> as a valid kind</li>
+                    </ul>
+                  </div>
+                  <div className="p-4 bg-purple-50 dark:bg-purple-950/20 rounded-xl border border-purple-200 dark:border-purple-800">
+                    <h3 className="font-semibold text-purple-900 dark:text-purple-200 mb-2 text-base sm:text-lg">
+                      v0.3.0 Security Release
+                    </h3>
+                    <ul className="space-y-2 text-sm text-purple-800 dark:text-purple-300 ml-4 list-disc">
+                      <li><strong>Security scan now runs by default</strong> - <code className="px-1 py-0.5 bg-purple-100 dark:bg-purple-900/40 rounded text-xs font-mono">stamp init</code> automatically scans for secrets to protect sensitive data</li>
+                      <li><strong>Automatic secret sanitization</strong> - Detected secrets are automatically replaced with <code className="px-1 py-0.5 bg-purple-100 dark:bg-purple-900/40 rounded text-xs font-mono">"PRIVATE_DATA"</code> in generated context files</li>
+                      <li><strong>Improved default security posture</strong> - Better protection out of the box for new projects</li>
+                      <li>Removed <code className="px-1 py-0.5 bg-purple-100 dark:bg-purple-900/40 rounded text-xs font-mono">--secure</code> flag (security scanning is now default; use <code className="px-1 py-0.5 bg-purple-100 dark:bg-purple-900/40 rounded text-xs font-mono">--no-secure</code> to skip)</li>
+                      <li><strong>Important:</strong> Credentials can only be included in bundles when using <code className="px-1 py-0.5 bg-purple-100 dark:bg-purple-900/40 rounded text-xs font-mono">--include-code full</code> mode. Other modes (<code className="px-1 py-0.5 bg-purple-100 dark:bg-purple-900/40 rounded text-xs font-mono">none</code>, <code className="px-1 py-0.5 bg-purple-100 dark:bg-purple-900/40 rounded text-xs font-mono">header</code>, <code className="px-1 py-0.5 bg-purple-100 dark:bg-purple-900/40 rounded text-xs font-mono">header+style</code>) only include metadata, not implementation code.</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </AnimatedSection>
+
+          {/* Token Optimization Section */}
+          <AnimatedSection direction="up" delay={450}>
             <div className="relative mb-8 sm:mb-12 lg:mb-16">
               <div className="absolute -inset-1 bg-gradient-to-r from-orange-600 to-red-600 rounded-2xl blur opacity-20 dark:opacity-10" />
               <div className="relative bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded-2xl p-4 sm:p-6 lg:p-8 shadow-xl">

@@ -222,6 +222,130 @@ stamp init --skip-gitignore`
             </div>
           </AnimatedSection>
 
+          {/* Behavior Section */}
+          <AnimatedSection direction="up" delay={450}>
+            <div className="mb-8 sm:mb-12 lg:mb-16">
+              <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white mb-4 sm:mb-6">
+                Behavior
+              </h2>
+              <div className="space-y-6">
+                <div className="p-5 bg-gradient-to-br from-green-50 to-emerald-50 dark:from-green-950/20 dark:to-emerald-950/10 rounded-xl border border-green-200 dark:border-green-800">
+                  <h3 className="font-semibold text-green-900 dark:text-green-200 mb-3 text-base sm:text-lg">
+                    When .gitignore doesn't exist
+                  </h3>
+                  <p className="text-sm text-green-800 dark:text-green-300 mb-2">
+                    Creates a new <code className="px-1.5 py-0.5 bg-green-100 dark:bg-green-900/40 rounded text-xs font-mono">.gitignore</code> file with LogicStamp patterns:
+                  </p>
+                  <TabbedCodeBlock
+                    tabs={[
+                      {
+                        label: 'Output',
+                        code: `✅ Created .gitignore with LogicStamp patterns
+
+   The following patterns were added/verified:
+   - context.json
+   - context_*.json
+   - *.uif.json
+   - logicstamp.manifest.json`,
+                        copyText: `✅ Created .gitignore with LogicStamp patterns
+
+   The following patterns were added/verified:
+   - context.json
+   - context_*.json
+   - *.uif.json
+   - logicstamp.manifest.json`
+                      }
+                    ]}
+                  />
+                </div>
+                <div className="p-5 bg-gradient-to-br from-blue-50 to-indigo-50 dark:from-blue-950/20 dark:to-indigo-950/10 rounded-xl border border-blue-200 dark:border-blue-800">
+                  <h3 className="font-semibold text-blue-900 dark:text-blue-200 mb-3 text-base sm:text-lg">
+                    When .gitignore exists but doesn't have LogicStamp patterns
+                  </h3>
+                  <p className="text-sm text-blue-800 dark:text-blue-300 mb-2">
+                    Adds LogicStamp patterns to the existing <code className="px-1.5 py-0.5 bg-blue-100 dark:bg-blue-900/40 rounded text-xs font-mono">.gitignore</code>:
+                  </p>
+                  <TabbedCodeBlock
+                    tabs={[
+                      {
+                        label: 'Output',
+                        code: `✅ Added LogicStamp patterns to existing .gitignore
+
+   The following patterns were added/verified:
+   - context.json
+   - context_*.json
+   - *.uif.json
+   - logicstamp.manifest.json`,
+                        copyText: `✅ Added LogicStamp patterns to existing .gitignore
+
+   The following patterns were added/verified:
+   - context.json
+   - context_*.json
+   - *.uif.json
+   - logicstamp.manifest.json`
+                      }
+                    ]}
+                  />
+                </div>
+                <div className="p-5 bg-gradient-to-br from-purple-50 to-pink-50 dark:from-purple-950/20 dark:to-pink-950/10 rounded-xl border border-purple-200 dark:border-purple-800">
+                  <h3 className="font-semibold text-purple-900 dark:text-purple-200 mb-3 text-base sm:text-lg">
+                    When .gitignore already has LogicStamp patterns
+                  </h3>
+                  <p className="text-sm text-purple-800 dark:text-purple-300 mb-2">
+                    No changes are made:
+                  </p>
+                  <TabbedCodeBlock
+                    tabs={[
+                      {
+                        label: 'Output',
+                        code: `ℹ️  .gitignore already contains LogicStamp patterns
+
+   The following patterns were added/verified:
+   - context.json
+   - context_*.json
+   - *.uif.json
+   - logicstamp.manifest.json`,
+                        copyText: `ℹ️  .gitignore already contains LogicStamp patterns
+
+   The following patterns were added/verified:
+   - context.json
+   - context_*.json
+   - *.uif.json
+   - logicstamp.manifest.json`
+                      }
+                    ]}
+                  />
+                </div>
+                <div className="p-5 bg-gradient-to-br from-amber-50 to-orange-50 dark:from-amber-950/20 dark:to-orange-950/10 rounded-xl border border-amber-200 dark:border-amber-800">
+                  <h3 className="font-semibold text-amber-900 dark:text-amber-200 mb-3 text-base sm:text-lg">
+                    LLM_context.md Generation
+                  </h3>
+                  <p className="text-sm text-amber-800 dark:text-amber-300 mb-2">
+                    <code className="px-1.5 py-0.5 bg-amber-100 dark:bg-amber-900/40 rounded text-xs font-mono">stamp init</code> also generates <code className="px-1.5 py-0.5 bg-amber-100 dark:bg-amber-900/40 rounded text-xs font-mono">LLM_context.md</code> in your project root:
+                  </p>
+                  <TabbedCodeBlock
+                    tabs={[
+                      {
+                        label: 'Output',
+                        code: `✅ Created LLM_context.md
+
+# If LLM_context.md already exists:
+ℹ️  LLM_context.md already exists`,
+                        copyText: `✅ Created LLM_context.md
+
+# If LLM_context.md already exists:
+ℹ️  LLM_context.md already exists`
+                      }
+                    ]}
+                  />
+                  <p className="text-sm text-amber-800 dark:text-amber-300 mt-3">
+                    This file provides guidance for AI assistants on how to understand and work with your LogicStamp context files. It includes information about project structure, context file organization, bundle structure, and interpreting missing dependencies.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </AnimatedSection>
+
           {/* Smart Detection Section */}
           <AnimatedSection direction="up" delay={500}>
             <div className="relative mb-8 sm:mb-12 lg:mb-16">
