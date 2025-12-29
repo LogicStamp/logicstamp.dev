@@ -194,12 +194,24 @@ export default function LogicStampReadmePage() {
                 <div className="space-y-4">
                   <div className="p-4 bg-blue-50 dark:bg-blue-950/20 rounded-xl border border-blue-200 dark:border-blue-800">
                     <h3 className="font-semibold text-blue-900 dark:text-blue-200 mb-2 text-base sm:text-lg">
-                      v0.3.2
+                      v0.3.3
                     </h3>
                     <ul className="space-y-2 text-sm text-blue-800 dark:text-blue-300 ml-4 list-disc">
-                      <li><strong>Security update</strong> - Updated <code className="px-1 py-0.5 bg-blue-100 dark:bg-blue-900/40 rounded text-xs font-mono">glob</code> dependency to 11.1.0+ to address CVE-2025-64756</li>
+                      <li><strong>TOON output format support</strong> – Added new <code className="px-1 py-0.5 bg-blue-100 dark:bg-blue-900/40 rounded text-xs font-mono">--format toon</code> option to generate context bundles in TOON format, expanding output options beyond JSON, pretty, and NDJSON</li>
+                      <li><strong>Improved Node.js 18 compatibility</strong> – Adjusted <code className="px-1 py-0.5 bg-blue-100 dark:bg-blue-900/40 rounded text-xs font-mono">glob</code> to a Node 18–compatible version while retaining the latest security fixes</li>
+                      <li><strong>Updated Node.js requirement</strong> – Clarified minimum supported Node.js version to <strong>{" "}&gt;= 18.18.0</strong></li>
+                      <li><strong>Dev dependency updates</strong> – Updated development dependencies to the latest patch versions</li>
+                      <li><strong>Documentation improvements</strong> – Improved README clarity and formatting consistency, and clarified what is detected vs extracted across framework documentation</li>
+                    </ul>
+                  </div>
+                  <div className="p-4 bg-green-50 dark:bg-green-950/20 rounded-xl border border-green-200 dark:border-green-800">
+                    <h3 className="font-semibold text-green-900 dark:text-green-200 mb-2 text-base sm:text-lg">
+                      v0.3.2
+                    </h3>
+                    <ul className="space-y-2 text-sm text-green-800 dark:text-green-300 ml-4 list-disc">
+                      <li><strong>Security update</strong> - Updated <code className="px-1 py-0.5 bg-green-100 dark:bg-green-900/40 rounded text-xs font-mono">glob</code> dependency to 11.1.0+ to address CVE-2025-64756</li>
                       <li><strong>Improved portability</strong> - Context files now use relative paths instead of absolute paths, improving portability across different machines and environments</li>
-                      <li><strong>CSS/SCSS parsing now uses AST parser</strong> - Migrated from regex-based extraction to AST-based parsing using <code className="px-1 py-0.5 bg-blue-100 dark:bg-blue-900/40 rounded text-xs font-mono">css-tree</code> for more robust and accurate parsing</li>
+                      <li><strong>CSS/SCSS parsing now uses AST parser</strong> - Migrated from regex-based extraction to AST-based parsing using <code className="px-1 py-0.5 bg-green-100 dark:bg-green-900/40 rounded text-xs font-mono">css-tree</code> for more robust and accurate parsing</li>
                     </ul>
                   </div>
                   <div className="p-4 bg-green-50 dark:bg-green-950/20 rounded-xl border border-green-200 dark:border-green-800">

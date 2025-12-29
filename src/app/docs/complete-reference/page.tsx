@@ -936,7 +936,7 @@ stamp context style --include-code header`
     },
     "meta": {
       "missing": [],
-      "source": "logicstamp-context@0.3.1"
+      "source": "logicstamp-context@0.3.3"
     }
   }
 ]`,
@@ -977,7 +977,7 @@ stamp context style --include-code header`
     },
     "meta": {
       "missing": [],
-      "source": "logicstamp-context@0.3.1"
+      "source": "logicstamp-context@0.3.3"
     }
   }
 ]`

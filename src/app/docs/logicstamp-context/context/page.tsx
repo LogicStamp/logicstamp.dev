@@ -1,4 +1,5 @@
 import { Metadata } from 'next'
+import Link from 'next/link'
 import Footer from '@/components/layout/Footer'
 import AnimatedSection from '@/components/common/AnimatedSection'
 import DocsLayout from '@/components/docs/DocsLayout'
@@ -225,7 +226,7 @@ export default function ContextCommandPage() {
                         <td className="px-2 sm:px-6 py-4 whitespace-nowrap">
                           <code className="px-1.5 py-0.5 bg-blue-100 dark:bg-blue-900/40 text-blue-900 dark:text-blue-100 rounded text-xs font-mono">json</code>
                         </td>
-                        <td className="px-2 sm:px-6 py-4 text-sm text-gray-600 dark:text-gray-400">Output format: <code className="px-1 py-0.5 bg-gray-100 dark:bg-gray-800 rounded text-xs font-mono">json</code>, <code className="px-1 py-0.5 bg-gray-100 dark:bg-gray-800 rounded text-xs font-mono">pretty</code>, or <code className="px-1 py-0.5 bg-gray-100 dark:bg-gray-800 rounded text-xs font-mono">ndjson</code>.</td>
+                        <td className="px-2 sm:px-6 py-4 text-sm text-gray-600 dark:text-gray-400">Output format: <code className="px-1 py-0.5 bg-gray-100 dark:bg-gray-800 rounded text-xs font-mono">json</code>, <code className="px-1 py-0.5 bg-gray-100 dark:bg-gray-800 rounded text-xs font-mono">pretty</code>, <code className="px-1 py-0.5 bg-gray-100 dark:bg-gray-800 rounded text-xs font-mono">ndjson</code>, or <code className="px-1 py-0.5 bg-gray-100 dark:bg-gray-800 rounded text-xs font-mono">toon</code>.</td>
                       </tr>
                       <tr className="hover:bg-gray-50 dark:hover:bg-gray-800/50 transition-colors">
                         <td className="px-2 sm:px-6 py-4 whitespace-nowrap">
@@ -262,6 +263,24 @@ export default function ContextCommandPage() {
                           <code className="px-1.5 py-0.5 bg-red-100 dark:bg-red-900/40 text-red-900 dark:text-red-100 rounded text-xs font-mono">false</code>
                         </td>
                         <td className="px-2 sm:px-6 py-4 text-sm text-gray-600 dark:text-gray-400">Fail when dependencies are missing.</td>
+                      </tr>
+                      <tr className="hover:bg-gray-50 dark:hover:bg-gray-800/50 transition-colors">
+                        <td className="px-2 sm:px-6 py-4 whitespace-nowrap">
+                          <code className="px-2 py-1 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 rounded text-xs sm:text-sm font-mono">--strict-missing</code>
+                        </td>
+                        <td className="px-2 sm:px-6 py-4 whitespace-nowrap">
+                          <code className="px-1.5 py-0.5 bg-red-100 dark:bg-red-900/40 text-red-900 dark:text-red-100 rounded text-xs font-mono">false</code>
+                        </td>
+                        <td className="px-2 sm:px-6 py-4 text-sm text-gray-600 dark:text-gray-400">Exit with error if any missing dependencies found.</td>
+                      </tr>
+                      <tr className="hover:bg-gray-50 dark:hover:bg-gray-800/50 transition-colors">
+                        <td className="px-2 sm:px-6 py-4 whitespace-nowrap">
+                          <code className="px-2 py-1 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 rounded text-xs sm:text-sm font-mono">--predict-behavior</code>
+                        </td>
+                        <td className="px-2 sm:px-6 py-4 whitespace-nowrap">
+                          <code className="px-1.5 py-0.5 bg-red-100 dark:bg-red-900/40 text-red-900 dark:text-red-100 rounded text-xs font-mono">false</code>
+                        </td>
+                        <td className="px-2 sm:px-6 py-4 text-sm text-gray-600 dark:text-gray-400">Experimental behavioral prediction annotations.</td>
                       </tr>
                       <tr className="hover:bg-gray-50 dark:hover:bg-gray-800/50 transition-colors">
                         <td className="px-2 sm:px-6 py-4 whitespace-nowrap">
@@ -353,22 +372,36 @@ stamp context ./src --format pretty
 # Include full source for deep AI reviews (limit nodes for safety)
 stamp context --include-code full --max-nodes 20
 
-# Custom output directory
-stamp context --out ./output
-# Or specify a file to use its directory
-stamp context --out ./output/context.json
-
-# Gather metrics without writing a file (e.g., CI dashboards)
+# Gather metrics without writing files (e.g., CI dashboards)
 stamp context --stats >> .ci/context-stats.jsonl
 
-# Dry run to confirm counts before overwriting an existing file
+# Dry run to confirm counts before generating files
 stamp context ./packages/ui --dry-run
 
 # Suppress verbose output (quiet mode)
 stamp context --quiet
 
-# Skip .gitignore setup (useful for CI environments)
-stamp context --skip-gitignore`,
+# Generate context with style metadata
+stamp context style
+# Or use the flag (equivalent)
+stamp context --include-style
+
+# Compare token costs across all modes (including style)
+stamp context --compare-modes
+# See compare-modes.md for comprehensive guide
+
+# Generate comparison data file for MCP integration
+stamp context --compare-modes --stats
+# Creates: context_compare_modes.json with structured comparison data
+
+# Custom output directory
+stamp context --out ./output
+# Or specify a file to use its directory
+stamp context --out ./output/context.json
+
+# Generate TOON format (compact, AI-optimized)
+stamp context --format toon
+# Creates: context_main.json + context.toon files in each folder`,
                     copyText: `# Scan entire repo and write context files (defaults)
 stamp context
 # Creates: context_main.json + context.json files in each folder
@@ -379,25 +412,102 @@ stamp context ./src --format pretty
 # Include full source for deep AI reviews (limit nodes for safety)
 stamp context --include-code full --max-nodes 20
 
-# Custom output directory
-stamp context --out ./output
-# Or specify a file to use its directory
-stamp context --out ./output/context.json
-
-# Gather metrics without writing a file (e.g., CI dashboards)
+# Gather metrics without writing files (e.g., CI dashboards)
 stamp context --stats >> .ci/context-stats.jsonl
 
-# Dry run to confirm counts before overwriting an existing file
+# Dry run to confirm counts before generating files
 stamp context ./packages/ui --dry-run
 
 # Suppress verbose output (quiet mode)
 stamp context --quiet
 
-# Skip .gitignore setup (useful for CI environments)
-stamp context --skip-gitignore`
+# Generate context with style metadata
+stamp context style
+# Or use the flag (equivalent)
+stamp context --include-style
+
+# Compare token costs across all modes (including style)
+stamp context --compare-modes
+# See compare-modes.md for comprehensive guide
+
+# Generate comparison data file for MCP integration
+stamp context --compare-modes --stats
+# Creates: context_compare_modes.json with structured comparison data
+
+# Custom output directory
+stamp context --out ./output
+# Or specify a file to use its directory
+stamp context --out ./output/context.json
+
+# Generate TOON format (compact, AI-optimized)
+stamp context --format toon
+# Creates: context_main.json + context.toon files in each folder`
                   }
                 ]}
               />
+            </div>
+          </AnimatedSection>
+
+          {/* TOON Format Section */}
+          <AnimatedSection direction="up" delay={425}>
+            <div className="relative mb-8 sm:mb-12 lg:mb-16">
+              <div className="absolute -inset-1 bg-gradient-to-r from-orange-600 to-amber-600 rounded-2xl blur opacity-20 dark:opacity-10" />
+              <div className="relative bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded-2xl p-4 sm:p-6 lg:p-8 shadow-xl">
+                <div className="flex items-baseline gap-3 mb-4 sm:mb-6">
+                  <div className="p-2 bg-orange-100 dark:bg-orange-900/30 rounded-lg flex-shrink-0 -mt-0.5">
+                    <svg className="w-5 h-5 sm:w-6 sm:h-6 text-orange-600 dark:text-orange-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm0 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm0 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm0 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z" />
+                    </svg>
+                  </div>
+                  <h2 className="text-xl sm:text-2xl font-bold text-gray-900 dark:text-white m-0">
+                    TOON Format Support
+                  </h2>
+                </div>
+                <p className="text-base sm:text-lg text-gray-600 dark:text-gray-400 mb-4 sm:mb-6 leading-relaxed">
+                  LogicStamp supports TOON format as an alternative output format for context bundles. TOON provides a compact binary-like encoding optimized for AI consumption and efficient storage. When you use <code className="px-2 py-1 bg-gray-100 dark:bg-gray-800 text-orange-600 dark:text-orange-400 rounded-md font-mono text-xs sm:text-sm">--format toon</code>, LogicStamp generates <code className="px-1.5 py-0.5 bg-gray-100 dark:bg-gray-800 rounded text-xs font-mono">context.toon</code> files instead of <code className="px-1.5 py-0.5 bg-gray-100 dark:bg-gray-800 rounded text-xs font-mono">context.json</code> files.
+                </p>
+                <p className="text-base sm:text-lg text-gray-600 dark:text-gray-400 mb-4 sm:mb-6 leading-relaxed">
+                  TOON format encodes the same LogicStamp bundle structure as JSON, but in a more compact representation. The main index file (<code className="px-1.5 py-0.5 bg-gray-100 dark:bg-gray-800 rounded text-xs font-mono">context_main.json</code>) is always in JSON format, even when using TOON format for bundles.
+                </p>
+                <div className="p-4 bg-orange-50 dark:bg-orange-950/20 rounded-lg border border-orange-200 dark:border-orange-800 mb-4">
+                  <TabbedCodeBlock
+                    tabs={[
+                      {
+                        label: 'Example',
+                        code: `# Generate TOON format bundles
+stamp context --format toon
+
+# Output structure:
+# output/
+# ├── context_main.json  # Always JSON
+# ├── context.toon       # TOON format bundles
+# └── src/
+#     └── context.toon   # TOON format bundles`,
+                        copyText: `# Generate TOON format bundles
+stamp context --format toon
+
+# Output structure:
+# output/
+# ├── context_main.json  # Always JSON
+# ├── context.toon       # TOON format bundles
+# └── src/
+#     └── context.toon   # TOON format bundles`
+                      }
+                    ]}
+                  />
+                </div>
+                <div className="flex items-center gap-2 p-3 bg-blue-50 dark:bg-blue-950/20 rounded-lg border border-blue-200 dark:border-blue-800">
+                  <svg className="w-5 h-5 text-blue-600 dark:text-blue-400 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                  </svg>
+                  <p className="text-sm text-gray-700 dark:text-gray-300">
+                    <strong className="text-gray-900 dark:text-white">Learn more:</strong>{' '}
+                    <Link href="/docs/logicstamp-context/toon" className="text-blue-600 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300 underline font-medium">
+                      Read the complete TOON format documentation →
+                    </Link>
+                  </p>
+                </div>
+              </div>
             </div>
           </AnimatedSection>
 
@@ -474,22 +584,23 @@ const password = 'EXAMPLE_PRIVATE_DATA';"
                   </h2>
                 </div>
                 <p className="text-base sm:text-lg text-gray-600 dark:text-gray-400 mb-4 sm:mb-6 leading-relaxed">
-                  The generated bundles include a <code className="px-2 py-1 bg-gray-100 dark:bg-gray-800 text-blue-600 dark:text-blue-400 rounded-md font-mono text-xs sm:text-sm">meta.missing</code> array that captures unresolved dependencies. An empty array (<code className="px-2 py-1 bg-gray-100 dark:bg-gray-800 text-blue-600 dark:text-blue-400 rounded-md font-mono text-xs sm:text-sm">[]</code>) confirms all dependencies were successfully resolved.
+                  An empty <code className="px-2 py-1 bg-gray-100 dark:bg-gray-800 text-blue-600 dark:text-blue-400 rounded-md font-mono text-xs sm:text-sm">missing</code> array means all dependencies were resolved. Non-empty means some couldn't be found.
                 </p>
                 <div className="grid sm:grid-cols-2 gap-4 mb-4">
                   <div className="p-4 bg-green-50 dark:bg-green-950/20 rounded-xl border border-green-200 dark:border-green-800">
-                    <h3 className="font-semibold text-green-900 dark:text-green-200 mb-2 text-base sm:text-lg">Expected</h3>
-                    <p className="text-sm text-green-800 dark:text-green-300">External packages like React or other npm modules (safe to ignore).</p>
+                    <h3 className="font-semibold text-green-900 dark:text-green-200 mb-2 text-base sm:text-lg">Expected (safe to ignore)</h3>
+                    <p className="text-sm text-green-800 dark:text-green-300">External packages (React, lodash, etc.)</p>
                   </div>
                   <div className="p-4 bg-amber-50 dark:bg-amber-950/20 rounded-xl border border-amber-200 dark:border-amber-800">
                     <h3 className="font-semibold text-amber-900 dark:text-amber-200 mb-2 text-base sm:text-lg">Actionable</h3>
-                    <p className="text-sm text-amber-800 dark:text-amber-300">Paths with reason <code className="px-1 py-0.5 bg-amber-100 dark:bg-amber-900/40 rounded text-xs font-mono">file not found</code> or <code className="px-1 py-0.5 bg-amber-100 dark:bg-amber-900/40 rounded text-xs font-mono">outside scan path</code> typically require code or configuration changes.</p>
+                    <p className="text-sm text-amber-800 dark:text-amber-300">&quot;file not found&quot; (broken imports), &quot;outside scan path&quot; (expand scan directory), &quot;max depth exceeded&quot; (increase <code className="px-1 py-0.5 bg-amber-100 dark:bg-amber-900/40 rounded text-xs font-mono">--depth</code>)</p>
                   </div>
                 </div>
                 <div className="p-4 bg-blue-50/50 dark:bg-blue-950/20 border-l-4 border-blue-500 rounded-r-lg">
                   <p className="text-sm text-gray-700 dark:text-gray-300">
-                    In CI you can enable <code className="px-1.5 py-0.5 bg-blue-100 dark:bg-blue-900/40 rounded text-xs font-mono">--strict-missing</code> to treat unexpected missing dependencies as errors.
+                    Use <code className="px-1.5 py-0.5 bg-blue-100 dark:bg-blue-900/40 rounded text-xs font-mono">--strict-missing</code> in CI to catch unexpected missing dependencies:
                   </p>
+                  <pre className="mt-2 text-xs bg-gray-100 dark:bg-gray-800 p-2 rounded"><code>stamp context --strict-missing || exit 1</code></pre>
                 </div>
               </div>
             </div>
