@@ -199,7 +199,7 @@ export default function LogicStampReadmePage() {
                     <ul className="space-y-2 text-sm text-blue-800 dark:text-blue-300 ml-4 list-disc">
                       <li><strong>TOON output format support</strong> – Added new <code className="px-1 py-0.5 bg-blue-100 dark:bg-blue-900/40 rounded text-xs font-mono">--format toon</code> option to generate context bundles in TOON format, expanding output options beyond JSON, pretty, and NDJSON</li>
                       <li><strong>Improved Node.js 18 compatibility</strong> – Adjusted <code className="px-1 py-0.5 bg-blue-100 dark:bg-blue-900/40 rounded text-xs font-mono">glob</code> to a Node 18–compatible version while retaining the latest security fixes</li>
-                      <li><strong>Updated Node.js requirement</strong> – Clarified minimum supported Node.js version to <strong>{" "}>= 18.18.0</strong></li>
+                      <li><strong>Updated Node.js requirement</strong> – Clarified minimum supported Node.js version to <strong>{" "}&gt;= 18.18.0</strong></li>
                       <li><strong>Dev dependency updates</strong> – Updated development dependencies to the latest patch versions</li>
                       <li><strong>Documentation improvements</strong> – Improved README clarity and formatting consistency, and clarified what is detected vs extracted across framework documentation</li>
                     </ul>
