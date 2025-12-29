@@ -58,6 +58,7 @@ const sections: DocsNavSection[] = [
       { title: '`init` command', href: '/docs/logicstamp-context/init' },
       { title: '`context` command', href: '/docs/logicstamp-context/context' },
       { title: '`style` command', href: '/docs/logicstamp-context/style' },
+      { title: 'TOON Format', href: '/docs/logicstamp-context/toon' },
       { title: 'Compare Modes', href: '/docs/logicstamp-context/compare-modes' },
       { title: '`compare` command', href: '/docs/logicstamp-context/compare-command' },
       { title: '`validate` command', href: '/docs/logicstamp-context/validate' },

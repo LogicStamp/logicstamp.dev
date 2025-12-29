@@ -2,15 +2,20 @@
 
 <div align="center">
   <img src="./assets/logicstamp-fox.svg" alt="LogicStamp Fox Mascot" width="120">
+
+  <br/>
+
+  ![Version](https://img.shields.io/badge/version-0.3.3-blue.svg)
+  ![Beta](https://img.shields.io/badge/status-beta-orange.svg)
+  ![License](https://img.shields.io/badge/license-MIT-green.svg)
+  ![Node](https://img.shields.io/badge/node-%3E%3D18.18.0-brightgreen.svg)
+  [![CI](https://github.com/LogicStamp/logicstamp-context/workflows/CI/badge.svg)](https://github.com/LogicStamp/logicstamp-context/actions)
+
+  <br/>
+
+  **A tiny CLI that compiles your React/TypeScript codebase into machine-readable context bundles for AI and CI.  
+  Fast, deterministic, zero-config.**
 </div>
-
-![Version](https://img.shields.io/badge/version-0.3.2-blue.svg)
-![Beta](https://img.shields.io/badge/status-beta-orange.svg)
-![License](https://img.shields.io/badge/license-MIT-green.svg)
-![Node](https://img.shields.io/badge/node-%3E%3D18.0.0-brightgreen.svg)
-[![CI](https://github.com/LogicStamp/logicstamp-context/workflows/CI/badge.svg)](https://github.com/LogicStamp/logicstamp-context/actions)
-
-**A tiny CLI that compiles your React/TypeScript codebase into machine-readable context bundles for AI and CI. Fast, deterministic, zero-config.**
 
 ![LogicStamp Context in action](./assets/logicstamp-context-demo.gif)
 *Sample stamp context output with generated bundles*
@@ -41,7 +46,7 @@ stamp context
 
 > **ℹ️** If you see `"PRIVATE_DATA"` in output, see the **Security** section below.
 
-> **Note:** This is a beta release (v0.3.2). We're actively improving the tool based on user feedback. If you encounter any issues or have suggestions, please [open an issue on GitHub](https://github.com/LogicStamp/logicstamp-context/issues).
+> **Note:** This is a beta release (v0.3.3). We're actively improving the tool based on user feedback. If you encounter any issues or have suggestions, please [open an issue on GitHub](https://github.com/LogicStamp/logicstamp-context/issues).
 
 ## Why LogicStamp?
 
@@ -106,21 +111,23 @@ After installation, the `stamp` command will be available globally.
 
 ## Recent Updates
 
-**v0.3.2**
-- **Security update** - Updated `glob` dependency to 11.1.0+ to address CVE-2025-64756
-- **Improved portability** - Context files now use relative paths instead of absolute paths, improving portability across different machines and environments. See [Migration Guide](docs/MIGRATION_0.3.2.md) for details.
-- **CSS/SCSS parsing now uses AST parser** - Migrated from regex-based extraction to AST-based parsing using `css-tree` for more robust and accurate parsing. Properly handles CSS selectors, SCSS feature detection (variables, nesting, mixins as boolean flags), nested rules in at-rules, and includes better error handling with graceful fallback.
+**v0.3.3**
 
-**v0.3.1**
-- **Hook classification accuracy** - Custom React hooks are now correctly classified as `react:hook` instead of `react:component`. The detection logic now checks if the main export is a function starting with "use" and has no JSX elements, ensuring hook files are properly distinguished from component files in context bundles.
-- **Added `react:hook` to ContractKind type** - The `ContractKind` type now includes `'react:hook'` as a valid kind, allowing proper classification of hook files in the contract system.
+- **TOON output format support** – Added new `--format toon` option to generate context bundles in TOON format, expanding output options beyond JSON, pretty, and NDJSON.
 
-**v0.3.0** **Security Release**
-- **Security scan now runs by default** - `stamp init` automatically scans for secrets to protect sensitive data
-- **Automatic secret sanitization** - Detected secrets are automatically replaced with `"PRIVATE_DATA"` in generated context files
-- **Improved default security posture** - Better protection out of the box for new projects
-- Removed `--secure` flag (security scanning is now default; use `--no-secure` to skip)
-- **Important**: Credentials can only be included in bundles when using `--include-code full` mode. Other modes (`none`, `header`, `header+style`) only include metadata, not implementation code.
+- **Improved Node.js 18 compatibility** – Adjusted `glob` to a Node 18–compatible version while retaining the latest security fixes.
+
+- **Updated Node.js requirement** – Clarified minimum supported Node.js version to **>= 18.18.0**.
+
+- **Dev dependency updates** – Updated development dependencies to the latest patch versions.
+
+- **Documentation improvements** – Improved README clarity and formatting consistency, and clarified what is detected vs extracted across framework documentation.
+
+**v0.3.X** (0.3.0 - 0.3.2)
+- **Security features** - Security scan runs by default, automatic secret sanitization, improved default security posture
+- **Improved portability** - Context files now use relative paths instead of absolute paths (see [Migration Guide](docs/MIGRATION_0.3.2.md))
+- **Enhanced parsing** - CSS/SCSS parsing migrated to AST-based parser, improved hook classification accuracy
+- **Security updates** - Addressed CVE-2025-64756 and other security patches
 
 📋 **Full history → [CHANGELOG.md](https://github.com/LogicStamp/logicstamp-context/blob/main/CHANGELOG.md)**
 
@@ -135,7 +142,7 @@ LogicStamp Context automatically protects sensitive data in generated context fi
 - **Manual exclusions** - Use `stamp ignore <file>` to manually exclude files with secrets from context generation via `.stampignore`
 - **Safe by default** - Only metadata is included in default modes; credentials only appear in `--include-code full` mode
 
-> **Seeing `"PRIVATE_DATA"` in your context files?** This means secrets were detected in your codebase during scanning. The security scan examines `.ts`, `.tsx`, `.js`, `.jsx`, and `.json` files for secret patterns. **Action required:**
+> **⚠️ Seeing `"PRIVATE_DATA"` in your context files?** This means secrets were detected in your codebase during scanning. The security scan examines `.ts`, `.tsx`, `.js`, `.jsx`, and `.json` files for secret patterns. **Action required:**
 > 1. Review `stamp_security_report.json` to see what was found
 > 2. Remove hard-coded secrets from your source code
 > 3. Use environment variables or secret management tools instead
@@ -143,7 +150,7 @@ LogicStamp Context automatically protects sensitive data in generated context fi
 > 
 > **Best practice:** Never commit secrets to version control. Use `.env` files (in `.gitignore`) or secret management services.
 
-> **Important**: Always review generated context files before sharing. For complete security documentation, see [SECURITY.md](https://github.com/LogicStamp/logicstamp-context/blob/main/SECURITY.md).
+> **ℹ️ Important**: Always review generated context files before sharing. For complete security documentation, see [SECURITY.md](https://github.com/LogicStamp/logicstamp-context/blob/main/SECURITY.md).
 
 ## Usage
 
@@ -181,7 +188,7 @@ stamp context clean [path] [options]  # Remove generated files
 - `--depth <n>` / `-d` - Dependency traversal depth (default: `1`)
 - `--include-code <mode>` / `-c` - Code inclusion: `none|header|full` (default: `header`)
 - `--include-style` - Extract style metadata (Tailwind, SCSS, animations, layout)
-- `--format <fmt>` / `-f` - Output format: `json|pretty|ndjson` (default: `json`)
+- `--format <fmt>` / `-f` - Output format: `json|pretty|ndjson|toon` (default: `json`)
 - `--max-nodes <n>` / `-m` - Maximum nodes per bundle (default: `100`)
 - `--profile <profile>` - Preset: `llm-chat` (default), `llm-safe`, `ci-strict`
 - `--stats` - Emit JSON stats with token estimates (CI-friendly)
@@ -228,7 +235,7 @@ All in one command, no pre-compilation needed!
 
 ## Requirements
 
-- Node.js >= 18.0.0
+- Node.js >= 18.18.0 (**Node 20+ recommended**)
 - TypeScript/React codebase
 
 ## License
