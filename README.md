@@ -26,23 +26,15 @@ The site is built with Next.js 14, TypeScript, and Tailwind CSS, featuring a mod
 ---
 
 <p align="center">
-
   <img
-
     src="https://raw.githubusercontent.com/LogicStamp/logicstamp.dev/main/public/logicstamp-workflow.gif"
-
     alt="LogicStamp MCP analyzing a real React + Tailwind codebase"
-
     width="900"
-
   />
-
 </p>
 
 <p align="center">
-
   <em>LogicStamp MCP building a structured, Tailwind-aware view of a real React codebase.</em>
-
 </p>
 
 ---
