@@ -89,8 +89,8 @@ export default function LlmContextPage() {
                   },
                   {
                     icon: "📦",
-                    title: "Node.js 18+",
-                    desc: "Requires Node.js ≥ 18 with access to your project's source tree"
+                    title: "Node.js >= 18.18.0",
+                    desc: "Requires Node.js >= 18.18.0 with access to your project's source tree"
                   }
                 ].map((item, idx) => (
                   <div key={idx} className="flex items-start gap-3 p-4 bg-gray-50 dark:bg-gray-800/50 rounded-xl border border-gray-200 dark:border-gray-700">

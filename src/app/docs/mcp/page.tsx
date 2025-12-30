@@ -153,7 +153,7 @@ export default function MCPPage() {
                 Prerequisites
               </h2>
               <ul className="list-disc list-inside space-y-2 text-base text-gray-600 dark:text-gray-400 ml-4 mb-4">
-                <li><strong>Node.js</strong> 18.0.0 or higher</li>
+                <li><strong>Node.js</strong> 18.18.0 or higher</li>
                 <li><strong>LogicStamp Context CLI</strong> - The <code className="px-2 py-1 bg-gray-100 dark:bg-gray-800 text-indigo-600 dark:text-indigo-400 rounded-md font-mono text-xs">stamp</code> command must be installed and available in PATH</li>
               </ul>
               <TabbedCodeBlock

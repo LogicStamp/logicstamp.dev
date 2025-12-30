@@ -4,7 +4,7 @@
 - Generates AI-friendly context bundles from React/TypeScript projects without build steps.
 - Ships as a global CLI (install with `npm install -g logicstamp-context`, then use `stamp context` command) that scans `.ts`/`.tsx`, extracts component contracts, and emits structured JSON.
 - Optimizes output for consumption by assistants such as Claude or ChatGPT to improve code understanding and guidance.
-- Works on Node.js ≥ 18 and requires access to the project's source tree.
+- Works on Node.js >= 18.18.0 and requires access to the project's source tree.
 
 **Note**: "Global CLI" means the tool is installed globally on your system (via `npm install -g`), making the `stamp` command available from any directory in your terminal, not just within a specific project folder.
 

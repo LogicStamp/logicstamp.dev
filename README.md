@@ -53,7 +53,7 @@ The site is built with Next.js 14, TypeScript, and Tailwind CSS, featuring a mod
 
 ### Prerequisites
 
-- **Node.js** 18 or higher
+- **Node.js** >= 18.18.0
 - **npm**, **yarn**, or **pnpm** package manager
 
 ### Installation

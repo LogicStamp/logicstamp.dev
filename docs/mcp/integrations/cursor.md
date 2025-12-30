@@ -6,7 +6,7 @@ LogicStamp MCP server works with [Cursor](https://cursor.sh/) - the AI-powered c
 
 Before diving into setup, check these common issues:
 
-- ✅ **Node.js installed?** Run `node --version` (needs 18.0.0+)
+- ✅ **Node.js installed?** Run `node --version` (needs 18.18.0+)
 - ✅ **Package installed?** Run `npm list -g logicstamp-mcp`
 - ✅ **LogicStamp CLI installed?** Run `stamp --version` (needs `npm install -g logicstamp-context`)
 - ✅ **Config file exists?** Check `~/.cursor/mcp.json` (macOS/Linux) or `%USERPROFILE%\.cursor\mcp.json` (Windows)
@@ -312,7 +312,7 @@ stamp --version
 
 1. **Check Node.js version:**
    ```bash
-   node --version  # Should be 18.0.0 or higher
+   node --version  # Should be 18.18.0 or higher
    ```
 
 2. **Test MCP server manually:**
