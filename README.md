@@ -17,14 +17,6 @@
 
 ---
 
-## About
-
-This is the official landing page and documentation website for **LogicStamp**, a powerful tool for generating structured context bundles for LLMs. LogicStamp helps developers create efficient, maintainable context files that improve AI-assisted development workflows.
-
-The site is built with Next.js 14, TypeScript, and Tailwind CSS, featuring a modern, responsive design with dark mode support.
-
----
-
 <p align="center">
   <img
     src="https://raw.githubusercontent.com/LogicStamp/logicstamp.dev/main/public/logicstamp-workflow.gif"
@@ -38,6 +30,12 @@ The site is built with Next.js 14, TypeScript, and Tailwind CSS, featuring a mod
 </p>
 
 ---
+
+## About
+
+This is the official landing page and documentation website for **LogicStamp**, a powerful tool for generating structured context bundles for LLMs. LogicStamp helps developers create efficient, maintainable context files that improve AI-assisted development workflows.
+
+The site is built with Next.js 14, TypeScript, and Tailwind CSS, featuring a modern, responsive design with dark mode support.
 
 ## Features
 

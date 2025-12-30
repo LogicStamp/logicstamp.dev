@@ -207,6 +207,35 @@ claude mcp add --scope user --transport stdio logicstamp -- node C:\\Users\\Your
                 />
               </div>
 
+              {/* For Cursor Users */}
+              <div className="mb-8">
+                <h3 className="text-xl sm:text-2xl font-semibold text-gray-900 dark:text-white mb-4">
+                  For Cursor Users
+                </h3>
+                <p className="text-base text-gray-600 dark:text-gray-400 mb-3">
+                  Add to your Cursor MCP config (<code className="px-2 py-1 bg-gray-100 dark:bg-gray-800 text-indigo-600 dark:text-indigo-400 rounded-md font-mono text-xs">~/.cursor/mcp.json</code> on macOS/Linux or <code className="px-2 py-1 bg-gray-100 dark:bg-gray-800 text-indigo-600 dark:text-indigo-400 rounded-md font-mono text-xs">%USERPROFILE%\.cursor\mcp.json</code> on Windows):
+                </p>
+                <TabbedCodeBlock
+                  tabs={[
+                    {
+                      label: 'Cursor Config',
+                      code: `{
+  "mcpServers": {
+    "logicstamp": {
+      "command": "npx",
+      "args": ["logicstamp-mcp"]
+    }
+  }
+}`,
+                      copyText: JSON.stringify({ mcpServers: { logicstamp: { command: "npx", args: ["logicstamp-mcp"] } } }, null, 2)
+                    }
+                  ]}
+                />
+                <p className="text-sm text-gray-500 dark:text-gray-500 mt-3">
+                  After adding the config, fully quit and restart Cursor (not just close the window) for changes to take effect. Verify in Settings → Features → Model Context Protocol.
+                </p>
+              </div>
+
               {/* For Other MCP Clients */}
               <div>
                 <h3 className="text-xl sm:text-2xl font-semibold text-gray-900 dark:text-white mb-4">
@@ -273,28 +302,42 @@ claude mcp add --scope user --transport stdio logicstamp -- node C:\\Users\\Your
           <AnimatedSection direction="up" delay={400}>
             <div>
               <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white mb-4 sm:mb-6">
-                Quick Start with Claude Code
+                Quick Start
               </h2>
               <p className="text-base text-gray-600 dark:text-gray-400 mb-4">
-                Once installed, start Claude Code in any React/TypeScript project:
+                Once installed, start using LogicStamp in your React/TypeScript project:
               </p>
               <TabbedCodeBlock
                 tabs={[
                   {
-                    label: 'Start Claude Code',
+                    label: 'With Claude Code',
                     code: `cd /path/to/your/react-project
 claude`,
                     copyText: 'cd /path/to/your/react-project\nclaude'
+                  },
+                  {
+                    label: 'With Cursor',
+                    code: `# Open your project in Cursor
+# Press Cmd/Ctrl + L to open AI chat
+# Then ask: "Use LogicStamp to analyze my project"`,
+                    copyText: 'Open Cursor → Cmd/Ctrl + L → Ask to analyze project'
+                  },
+                  {
+                    label: 'With Claude Desktop',
+                    code: `# Open Claude Desktop
+# Start a new conversation
+# Ask: "Use LogicStamp to analyze my project"`,
+                    copyText: 'Open Claude Desktop → New conversation → Ask to analyze project'
                   }
                 ]}
               />
               <p className="text-base text-gray-600 dark:text-gray-400 mt-4 mb-2">
-                Ask Claude to analyze your codebase:
+                Ask your AI assistant to analyze your codebase:
               </p>
               <div className="mb-4 p-4 bg-gray-50 dark:bg-gray-800/50 rounded-lg border border-gray-200 dark:border-gray-700">
                 <p className="text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">You:</p>
                 <p className="text-sm text-gray-900 dark:text-gray-100">"Use LogicStamp to analyze the components in src/components"</p>
-                <p className="text-sm font-semibold text-gray-700 dark:text-gray-300 mt-3 mb-2">Claude:</p>
+                <p className="text-sm font-semibold text-gray-700 dark:text-gray-300 mt-3 mb-2">AI Assistant:</p>
                 <p className="text-sm text-gray-600 dark:text-gray-400 italic">[Automatically uses logicstamp_refresh_snapshot and logicstamp_list_bundles]</p>
               </div>
               <p className="text-base text-gray-600 dark:text-gray-400">
