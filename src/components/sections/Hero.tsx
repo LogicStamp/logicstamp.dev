@@ -146,6 +146,7 @@ export default function Hero() {
   const { ref: statsRef, inView: statsInView } = useInView(0.1)
   const { ref: visualizationRef, inView: visualizationInView } = useInView(0.1)
   const { ref: communityRef, inView: communityInView } = useInView(0.1)
+  const { ref: workflowGifRef, inView: workflowGifInView } = useInView(0.1)
   return (
     <section className="relative overflow-hidden bg-gradient-to-br from-blue-50 via-purple-50 to-pink-50 dark:from-gray-900 dark:via-purple-950/30 dark:to-pink-950/30 pt-28 pb-20 sm:pt-36 sm:pb-32 min-h-screen">
       {/* Decorative background elements */}
@@ -312,6 +313,62 @@ export default function Hero() {
                 </svg>
                 100% Open Source
               </span>
+            </div>
+          </div>
+        </div>
+
+        {/* Mobile CTA */}
+        <div 
+          ref={workflowGifRef}
+          className={`mt-10 sm:mt-12 transition-all duration-1000 delay-700 sm:hidden ${
+            workflowGifInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+          }`}
+        >
+          <div className="mx-auto max-w-md px-4">
+            <a
+              href="https://github.com/LogicStamp/.github/blob/main/profile/README.md"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group relative block w-full rounded-2xl bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 p-8 shadow-2xl transition-all duration-300 hover:shadow-purple-500/50"
+            >
+              <div className="relative z-10 text-center">
+                <div className="mb-4 inline-flex items-center justify-center rounded-full bg-white/20 p-3 backdrop-blur-sm">
+                  <svg className="h-8 w-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
+                  </svg>
+                </div>
+                <h3 className="text-2xl font-bold text-white mb-2">
+                  See LogicStamp in Action
+                </h3>
+                <p className="text-blue-100 text-sm mb-4">
+                  View the complete workflow and documentation
+                </p>
+                <div className="inline-flex items-center gap-2 text-white font-semibold">
+                  <span>View on GitHub</span>
+                  <svg className="h-5 w-5 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                  </svg>
+                </div>
+              </div>
+            </a>
+          </div>
+        </div>
+
+        {/* Workflow GIF - Desktop Only */}
+        <div 
+          ref={workflowGifRef}
+          className={`hidden sm:block mt-10 sm:mt-12 transition-all duration-500 delay-300 ${
+            workflowGifInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+          }`}
+        >
+          <div className="relative mx-auto max-w-[120rem] px-0 sm:px-2 lg:px-4">
+            <div className="relative rounded-2xl overflow-hidden shadow-2xl ring-1 ring-gray-200/50 dark:ring-gray-700/50 bg-gray-900">
+              <img 
+                src="/logicstamp-workflow.gif" 
+                alt="LogicStamp CLI and MCP workflow demonstration"
+                className="w-full h-auto max-h-[1100px] sm:max-h-[1100px] lg:max-h-[1200px] object-contain"
+                loading="lazy"
+              />
             </div>
           </div>
         </div>
