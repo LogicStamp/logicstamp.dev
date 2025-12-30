@@ -339,7 +339,7 @@ export default function Hero() {
                   View the complete workflow and documentation
                 </p>
                 <div className="inline-flex items-center gap-2 text-white font-semibold">
-                  <span>View on GitHub</span>
+                  <span>View Workflow Demo</span>
                   <svg className="h-5 w-5 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
                   </svg>
