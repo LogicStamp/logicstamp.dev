@@ -329,14 +329,14 @@ export default function Hero() {
               <div className="relative z-10 text-center">
                 <div className="mb-4 inline-flex items-center justify-center rounded-full bg-white/20 p-3 backdrop-blur-sm">
                   <svg className="h-8 w-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z" />
                   </svg>
                 </div>
                 <h3 className="text-2xl font-bold text-white mb-2">
                   See LogicStamp in Action
                 </h3>
                 <p className="text-blue-100 text-sm mb-4">
-                  View the complete workflow and documentation
+                  Watch the complete workflow
                 </p>
                 <div className="inline-flex items-center gap-2 text-white font-semibold">
                   <span>View Workflow Demo</span>
