@@ -192,7 +192,7 @@ This lightweight strategy keeps both repos simple while still being safe and rev
 
 ### Prerequisites
 
-- Node.js 18+
+- Node.js >= 18.18.0
 - npm, yarn, or pnpm
 
 ### Installation
