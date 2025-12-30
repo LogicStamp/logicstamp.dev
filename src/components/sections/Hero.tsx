@@ -321,7 +321,7 @@ export default function Hero() {
         <div className="mt-10 sm:mt-12 sm:hidden">
           <div className="mx-auto max-w-md px-4">
             <a
-              href="https://github.com/LogicStamp/.github/blob/main/profile/README.md"
+              href="https://raw.githubusercontent.com/LogicStamp/logicstamp.dev/main/public/logicstamp-workflow.gif"
               target="_blank"
               rel="noopener noreferrer"
               className="group relative block w-full rounded-2xl bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 p-8 shadow-2xl transition-all duration-300 hover:shadow-purple-500/50"
