@@ -318,15 +318,10 @@ export default function Hero() {
         </div>
 
         {/* Mobile CTA */}
-        <div 
-          ref={workflowGifRef}
-          className={`mt-10 sm:mt-12 transition-all duration-1000 delay-700 sm:hidden ${
-            workflowGifInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
-          }`}
-        >
+        <div className="mt-10 sm:mt-12 sm:hidden">
           <div className="mx-auto max-w-md px-4">
             <a
-              href="https://github.com/LogicStamp/.github/blob/main/profile/README.md"
+              href="https://raw.githubusercontent.com/LogicStamp/logicstamp.dev/main/public/logicstamp-workflow.gif"
               target="_blank"
               rel="noopener noreferrer"
               className="group relative block w-full rounded-2xl bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 p-8 shadow-2xl transition-all duration-300 hover:shadow-purple-500/50"
@@ -344,7 +339,7 @@ export default function Hero() {
                   View the complete workflow and documentation
                 </p>
                 <div className="inline-flex items-center gap-2 text-white font-semibold">
-                  <span>View on GitHub</span>
+                  <span>View Workflow Demo</span>
                   <svg className="h-5 w-5 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
                   </svg>
