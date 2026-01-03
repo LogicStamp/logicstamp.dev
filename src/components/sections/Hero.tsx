@@ -336,13 +336,9 @@ export default function Hero() {
                   <h3 className="text-base font-bold text-white truncate">
                     See in Action
                   </h3>
-                  <p className="text-blue-100 text-xs truncate">
-                    Watch workflow
-                  </p>
                 </div>
-                <div className="flex-shrink-0 inline-flex items-center gap-1 text-white font-semibold text-xs sm:text-sm">
-                  <span className="whitespace-nowrap">View Demo</span>
-                  <svg className="h-4 w-4 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <div className="flex-shrink-0 inline-flex items-center text-white">
+                  <svg className="h-5 w-5 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
                   </svg>
                 </div>

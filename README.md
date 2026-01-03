@@ -93,15 +93,11 @@ stamp context
 
 # Generate with style metadata
 stamp context style
-
-# Generate with preview first
-stamp context --preview
 ```
 
 **Common commands:**
 - `stamp context` - Generate context bundles
 - `stamp context style` - Generate with style metadata (Tailwind, SCSS, etc.)
-- `stamp context --preview` - Preview before generating
 
 For more information, see the [LogicStamp CLI documentation](./docs/context/cli/).
 
@@ -242,6 +238,7 @@ Before contributing, please read:
 ## Related Projects
 
 - **[logicstamp-context](https://github.com/LogicStamp/logicstamp-context)** - The LogicStamp CLI tool
+- **[logicstamp-mcp](https://github.com/LogicStamp/logicstamp-mcp)** - The MCP Server
 - **[logicstamp](https://github.com/LogicStamp/logicstamp)** - Main LogicStamp project
 
 ## Security
