@@ -88,7 +88,7 @@ export default function Header() {
           {/* Subtle gradient overlay */}
           <div className="absolute inset-0 bg-gradient-to-br from-white/40 via-transparent to-transparent dark:from-white/5 dark:via-transparent dark:to-transparent pointer-events-none" />
 
-          <nav className="relative flex items-center justify-between pl-0 pr-4 lg:px-6 h-14 lg:h-16" aria-label="Global">
+          <nav className="relative flex items-center justify-between pl-2 pr-4 lg:pl-2 lg:pr-6 h-14 lg:h-16" aria-label="Global">
           <div className="flex lg:flex-1">
             <a
               href={isHomePage ? "#" : "/"}
