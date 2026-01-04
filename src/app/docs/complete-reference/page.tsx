@@ -7,7 +7,7 @@ import DocsLayout from '@/components/docs/DocsLayout'
 
 export const metadata: Metadata = {
   title: 'Complete Reference | LogicStamp Context Documentation',
-  description: 'Complete documentation for LogicStamp Context CLI including all commands, options, features, and examples.',
+  description: 'Complete documentation for LogicStamp Context CLI including all commands, options, features, and examples. Supports React, Vue 3, and TypeScript projects.',
 }
 
 export default function CompleteReferencePage() {
@@ -35,7 +35,7 @@ export default function CompleteReferencePage() {
               </h1>
               
               <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-gray-600 dark:text-gray-400 leading-relaxed max-w-3xl">
-                Comprehensive documentation for LogicStamp Context CLI - all commands, options, features, examples, and troubleshooting guides.
+                Comprehensive documentation for LogicStamp Context CLI - all commands, options, features, examples, and troubleshooting guides. Supports React, Vue 3, and TypeScript projects.
               </p>
 
               {/* Quick stats */}
@@ -69,7 +69,7 @@ export default function CompleteReferencePage() {
                   </svg>
                 </div>
                 <h2 className="text-xl sm:text-2xl font-bold text-gray-900 dark:text-white m-0">
-                  MCP Server Integration (Beta v0.1.1)
+                  MCP Server Integration (Beta v0.1.2)
                 </h2>
               </div>
               
@@ -110,16 +110,28 @@ export default function CompleteReferencePage() {
                   </svg>
                 </div>
                 <h2 className="text-xl sm:text-2xl font-bold text-gray-900 dark:text-white m-0">
-                  What's New in v0.3.1
+                  What's New in v0.3.x
                 </h2>
               </div>
               
               <p className="text-sm sm:text-base text-gray-600 dark:text-gray-400 mb-4 sm:mb-6 leading-relaxed">
-                The 0.3.1 release includes hook classification improvements: custom React hooks are now correctly classified as <code className="px-1.5 py-0.5 bg-gray-100 dark:bg-gray-800 rounded text-xs font-mono">react:hook</code> instead of <code className="px-1.5 py-0.5 bg-gray-100 dark:bg-gray-800 rounded text-xs font-mono">react:component</code>. The 0.3.0 release introduced major security improvements: security scanning now runs by default during initialization, automatic secret sanitization in context files, and a new <code className="px-1.5 py-0.5 bg-gray-100 dark:bg-gray-800 rounded text-xs font-mono">stamp ignore</code> command for managing file exclusions.
+                The 0.3.x releases include major framework support, output format options, and security improvements. <strong className="text-gray-900 dark:text-white">v0.3.4</strong> adds comprehensive Vue.js support for Vue 3 Composition API. <strong className="text-gray-900 dark:text-white">v0.3.3</strong> introduced TOON output format support. <strong className="text-gray-900 dark:text-white">v0.3.2</strong> improved portability with relative paths and AST-based CSS/SCSS parsing. <strong className="text-gray-900 dark:text-white">v0.3.1</strong> fixed hook classification. <strong className="text-gray-900 dark:text-white">v0.3.0</strong> introduced security scanning by default and automatic secret sanitization.
               </p>
               
               <div className="grid sm:grid-cols-2 gap-4 sm:gap-6">
                 {[
+                  {
+                    icon: "⚡",
+                    title: "Vue.js Support (v0.3.4)",
+                    desc: "Comprehensive Vue 3 Composition API support: vue:component and vue:composable detection, reactive state extraction (ref, reactive, computed), props/emits from defineProps/defineEmits, lifecycle hooks, and composables. Works with .ts/.tsx files (JSX/TSX components). Note: .vue SFC files not yet supported.",
+                    color: "green"
+                  },
+                  {
+                    icon: "📦",
+                    title: "TOON Output Format (v0.3.3)",
+                    desc: "New --format toon option generates compact, AI-optimized TOON format bundles. Alternative to JSON/pretty/NDJSON formats. Creates context.toon files alongside context.json files.",
+                    color: "purple"
+                  },
                   {
                     icon: "🔧",
                     title: "Hook Classification (v0.3.1)",
@@ -143,6 +155,18 @@ export default function CompleteReferencePage() {
                     title: "File Exclusion (v0.3.0)",
                     desc: "New stamp ignore command for managing .stampignore file. .stampignore is now independent of security scanning",
                     color: "red"
+                  },
+                  {
+                    icon: "📁",
+                    title: "Relative Paths (v0.3.2)",
+                    desc: "Context files now use relative paths instead of absolute paths, improving portability across different machines and environments",
+                    color: "indigo"
+                  },
+                  {
+                    icon: "🎨",
+                    title: "AST-Based CSS Parsing (v0.3.2)",
+                    desc: "Migrated CSS/SCSS parsing from regex to AST-based parsing using css-tree for more robust and accurate extraction of selectors, properties, and SCSS features",
+                    color: "teal"
                   },
                   {
                     icon: "🎨",
@@ -236,6 +260,12 @@ export default function CompleteReferencePage() {
                         container: 'bg-orange-50 dark:bg-orange-900/20 border-orange-200 dark:border-orange-800',
                         title: 'text-orange-900 dark:text-orange-100',
                         desc: 'text-orange-800 dark:text-orange-200'
+                      };
+                    case 'teal':
+                      return {
+                        container: 'bg-teal-50 dark:bg-teal-900/20 border-teal-200 dark:border-teal-800',
+                        title: 'text-teal-900 dark:text-teal-100',
+                        desc: 'text-teal-800 dark:text-teal-200'
                       };
                     default:
                         return {
@@ -411,9 +441,9 @@ export default function CompleteReferencePage() {
                   </thead>
                   <tbody className="divide-y divide-gray-200 dark:divide-gray-700">
                     {[
-                      { option: "--depth <n>", alias: "-d", desc: "Dependency traversal depth", default: "1" },
+                      { option: "--depth <n>", alias: "-d", desc: "Dependency traversal depth. Recommended: depth=2 for React projects to include nested components (e.g., App → Hero → Button). Default depth=1 only includes direct dependencies.", default: "1" },
                       { option: "--include-code <mode>", alias: "-c", desc: "Code inclusion: none, header, or full", default: "header" },
-                      { option: "--format <format>", alias: "-f", desc: "Output format: json, pretty, or ndjson", default: "json" },
+                      { option: "--format <format>", alias: "-f", desc: "Output format: json, pretty, ndjson, or toon", default: "json" },
                       { option: "--out <file>", alias: "-o", desc: "Output directory or file path", default: "context.json" },
                       { option: "--max-nodes <n>", alias: "-m", desc: "Maximum nodes per bundle", default: "100" },
                       { option: "--profile <profile>", alias: "-", desc: "Profile preset (see Profiles section)", default: "llm-chat" },
@@ -804,7 +834,7 @@ stamp context style --include-code header`
                 <TabbedCodeBlock
                   tabs={[
                     {
-                      label: 'File Structure',
+                      label: 'File Structure (JSON format)',
                       code: `output/
 ├── context_main.json          # Main index with folder metadata
 ├── context.json               # Root folder bundles (if any)
@@ -823,6 +853,27 @@ stamp context style --include-code header`
 │   └── context.json          # Bundles from src/components/
 └── src/utils/
     └── context.json          # Bundles from src/utils/`
+                    },
+                    {
+                      label: 'File Structure (TOON format)',
+                      code: `output/
+├── context_main.json          # Main index with folder metadata
+├── context.toon               # Root folder bundles in TOON format (if any)
+├── src/
+│   └── context.toon          # Bundles from src/ folder
+├── src/components/
+│   └── context.toon          # Bundles from src/components/
+└── src/utils/
+    └── context.toon          # Bundles from src/utils/`,
+                      copyText: `output/
+├── context_main.json          # Main index with folder metadata
+├── context.toon               # Root folder bundles in TOON format (if any)
+├── src/
+│   └── context.toon          # Bundles from src/ folder
+├── src/components/
+│   └── context.toon          # Bundles from src/components/
+└── src/utils/
+    └── context.toon          # Bundles from src/utils/`
                     }
                   ]}
                 />
@@ -936,7 +987,7 @@ stamp context style --include-code header`
     },
     "meta": {
       "missing": [],
-      "source": "logicstamp-context@0.3.3"
+      "source": "logicstamp-context@0.3.4"
     }
   }
 ]`,
@@ -977,7 +1028,7 @@ stamp context style --include-code header`
     },
     "meta": {
       "missing": [],
-      "source": "logicstamp-context@0.3.3"
+      "source": "logicstamp-context@0.3.4"
     }
   }
 ]`
@@ -1055,9 +1106,12 @@ stamp context --out my-context.json`
                 },
                 {
                   title: "Deep Traversal",
-                  desc: "Include more dependency levels",
-                  code: `# Include 2 levels of dependencies
+                  desc: "Include more dependency levels. Recommended: depth=2 for React projects to include nested components in dependency graphs.",
+                  code: `# Recommended: depth=2 for React projects (includes nested components)
 stamp context --depth 2
+
+# Include 3 levels of dependencies
+stamp context --depth 3
 
 # Include full source code
 stamp context --include-code full`
@@ -1191,9 +1245,9 @@ stamp context --compare-modes`
                       solution: "Add folders to .gitignore or pass a direct path (e.g. stamp context ./src) to restrict the scan."
                     },
                     {
-                      type: "Why don’t I see context for some components?",
-                      desc: "LogicStamp only analyzes .ts and .tsx files that export React components or functions.",
-                      solution: "Ensure your file has a named or default export that defines the component or function you care about."
+                      type: "Why don't I see context for some components?",
+                      desc: "LogicStamp analyzes .ts and .tsx files that export React components, Vue components/composables, or functions. For Vue projects, works with JSX/TSX components and extracted composables. Note: .vue SFC files are not currently supported.",
+                      solution: "Ensure your file has a named or default export that defines the component or function you care about. For Vue projects, extract logic to .ts/.tsx files or use JSX/TSX syntax."
                     },
                     {
                       type: "How do I get the best results in AI chat?",

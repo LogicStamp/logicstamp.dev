@@ -41,6 +41,8 @@ LogicStamp bundles are **pre-parsed, structured summaries** optimized for AI con
    - This scans the project and generates all context files
    - Creates `context_main.json` (the main index) and `context/*.context.json` files (per-folder bundles)
    - Returns a `snapshotId` you'll use for subsequent calls
+   - **RECOMMENDED: Start with `depth: 2`** for React/TypeScript projects with component hierarchies. Default depth=1 only includes direct dependencies (e.g., App → Hero), but depth=2 includes nested components (e.g., App → Hero → Button). This ensures you see the full component tree with contracts and styles for all nested components.
+   - **Example:** `{ "projectPath": "...", "depth": 2 }` - Use this for most React projects to capture nested component relationships from the start.
 
 2. **Discover bundles with `logicstamp_list_bundles`**
    - Lists all available bundles with their locations
@@ -151,6 +153,40 @@ LogicStamp offers preset configurations:
 - **`ci-strict`** - Strict validation mode for CI/CD
   - Contracts only (no code), strict dependency checks
 
+## Dependency Depth Parameter
+
+**CRITICAL: For React/TypeScript projects, start with `depth: 2` to capture nested components.**
+
+The `depth` parameter controls how many levels deep the dependency graph goes:
+- **`depth=1`** (default): Only includes direct dependencies (components directly imported/used)
+  - Example: App uses Hero → Only Hero is in the graph, not Hero's dependencies
+- **`depth=2`** (RECOMMENDED for React projects): Includes nested components (components used by components)
+  - Example: App uses Hero, Hero uses Button → Both Hero and Button are in the graph with their contracts
+- **`depth=3+`**: Includes deeper nesting levels (rarely needed)
+
+**RECOMMENDATION: Start with `depth=2` for React projects:**
+- Most React projects have component hierarchies (components that use other components)
+- Depth=2 ensures you see the full component tree, not just direct imports
+- You'll get contracts, styles, and dependencies for nested components from the start
+- You can always regenerate with depth=1 later if you only need direct dependencies
+
+**When depth=1 is insufficient:**
+- You notice components are missing from bundles (e.g., App bundle lists Hero, About, Projects as imports but they're not in graph.nodes)
+- The bundle's dependency graph seems incomplete
+- You're analyzing complex component relationships that span multiple levels
+- Co-located components or components in the same file aren't showing up
+
+**Critical:** The LLM does NOT automatically detect when `depth=2` is needed. You must **explicitly set `depth: 2`** upfront when analyzing React projects with component hierarchies.
+
+**Example:**
+```typescript
+// RECOMMENDED: Start with depth=2 for React projects
+refresh_snapshot({ projectPath: "...", depth: 2 })
+
+// Only use depth=1 if you specifically only need direct dependencies
+refresh_snapshot({ projectPath: "...", profile: "llm-chat" }) // depth=1 by default
+```
+
 ## Common Patterns
 
 ### Understanding a Component
@@ -174,6 +210,10 @@ bundle.graph.edges[] // Dependency relationships [source, target]
 - Look at bundle.graph.nodes for the component's contract
 - Check contract.version.imports[] for imports
 - Follow bundle.graph.edges to see dependency chain
+
+// IMPORTANT: By default (depth=1), bundles only include direct dependencies.
+// If nested components are missing, regenerate with depth=2:
+refresh_snapshot({ projectPath: "...", depth: 2 })
 ```
 
 ### Understanding Missing Dependencies
@@ -192,7 +232,7 @@ bundle.graph.edges[] // Dependency relationships [source, target]
 // Actionable:
 - "file not found" - Broken imports, need fixing
 - "outside scan path" - Consider expanding scan directory
-- "max depth exceeded" - Increase depth if needed
+- "max depth exceeded" - Increase depth if needed (explicitly set `depth: 2` or higher in `refresh_snapshot`)
 ```
 
 ## Token Efficiency
@@ -215,6 +255,7 @@ LogicStamp bundles are **intentionally compressed**. Missing micro-details is no
 5. **Check token estimates** - Be aware of context size, especially for large projects
 6. **Use appropriate mode** - `header` for most cases, `full` only when needed
 7. **Understand missing dependencies** - External packages are normal, "file not found" needs fixing
+8. **Explicitly set `depth: 2` when needed** - If nested components are missing from bundles, regenerate with `depth: 2`. The LLM does NOT automatically detect this need.
 
 ## When You're Confused
 

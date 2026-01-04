@@ -57,7 +57,7 @@ export default function MCPPage() {
                 <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
                   <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.857-9.809a.75.75 0 00-1.214-.882l-3.483 4.79-1.88-1.88a.75.75 0 10-1.06 1.061l2.5 2.5a.75.75 0 001.137-.089l4-5.5z" clipRule="evenodd" />
                 </svg>
-                Beta v0.1.1
+                Beta v0.1.2
               </div>
 
               <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-gray-600 dark:text-gray-400 leading-relaxed max-w-3xl mx-auto mb-4">
@@ -554,12 +554,19 @@ claude`,
   "profile": "llm-chat",      // optional: llm-chat | llm-safe | ci-strict
   "mode": "header",            // optional: none | header | full
   "includeStyle": false,       // optional: include style metadata
-  "projectPath": "/abs/path"   // REQUIRED: absolute path to project root
+  "depth": 1,                  // optional: dependency depth (default: 1, recommended: 2 for React projects)
+  "projectPath": "/abs/path",  // REQUIRED: absolute path to project root
+  "cleanCache": false          // optional: force cache cleanup (default: false)
 }`,
-                        copyText: JSON.stringify({ profile: "llm-chat", mode: "header", includeStyle: false, projectPath: "/abs/path" }, null, 2)
+                        copyText: JSON.stringify({ profile: "llm-chat", mode: "header", includeStyle: false, depth: 1, projectPath: "/abs/path", cleanCache: false }, null, 2)
                       }
                     ]}
                   />
+                </div>
+                <div className="mb-3 bg-yellow-50 dark:bg-yellow-950/20 border-l-4 border-yellow-500 p-3 sm:p-4 rounded-r-lg">
+                  <p className="text-sm text-gray-700 dark:text-gray-300">
+                    <strong>Note on Depth Parameter:</strong> <strong>RECOMMENDED: Start with <code className="px-1.5 py-0.5 bg-yellow-100 dark:bg-yellow-900/40 rounded font-mono text-xs">depth: 2</code> for React projects.</strong> The default depth=1 only includes direct component dependencies (e.g., App → Hero). With depth=2, nested components are included (e.g., App → Hero → Button), ensuring you see the full component tree with contracts and styles. For React projects with component hierarchies, explicitly set <code className="px-1.5 py-0.5 bg-yellow-100 dark:bg-yellow-900/40 rounded font-mono text-xs">depth: 2</code> in your first refresh_snapshot call.
+                  </p>
                 </div>
                 <div>
                   <p className="text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">Output:</p>
@@ -737,16 +744,23 @@ claude`,
                       {
                         label: 'Input',
                         code: `{
-  "profile": "llm-chat",      // optional
-  "mode": "header",            // optional
-  "includeStyle": false,       // optional: include style metadata in comparison
-  "projectPath": "/abs/path",  // REQUIRED: absolute path to project root
-  "baseline": "disk"           // optional: disk | snapshot | git:<ref>
+  "profile": "llm-chat",      // optional: analysis profile (default: llm-chat)
+  "mode": "header",            // optional: code inclusion mode (default: header)
+  "includeStyle": false,       // optional: include style metadata (only when forceRegenerate: true)
+  "depth": 1,                  // optional: dependency depth (only when forceRegenerate: true)
+  "forceRegenerate": false,    // optional: regenerate context before comparing (default: false)
+  "projectPath": "/abs/path",  // optional: defaults to current working directory
+  "baseline": "disk"           // optional: disk | snapshot | git:<ref> (default: disk)
 }`,
-                        copyText: JSON.stringify({ profile: "llm-chat", mode: "header", includeStyle: false, projectPath: "/abs/path", baseline: "disk" }, null, 2)
+                        copyText: JSON.stringify({ profile: "llm-chat", mode: "header", includeStyle: false, depth: 1, forceRegenerate: false, projectPath: "/abs/path", baseline: "disk" }, null, 2)
                       }
                     ]}
                   />
+                </div>
+                <div className="mb-3 bg-blue-50 dark:bg-blue-950/20 border-l-4 border-blue-500 p-3 sm:p-4 rounded-r-lg">
+                  <p className="text-sm text-gray-700 dark:text-gray-300">
+                    <strong>Performance Notes:</strong> By default (<code className="px-1.5 py-0.5 bg-blue-100 dark:bg-blue-900/40 rounded font-mono text-xs">forceRegenerate: false</code>), this tool reads existing JSON files from disk (fast, no CLI calls). When <code className="px-1.5 py-0.5 bg-blue-100 dark:bg-blue-900/40 rounded font-mono text-xs">forceRegenerate: true</code>, it runs <code className="px-1.5 py-0.5 bg-blue-100 dark:bg-blue-900/40 rounded font-mono text-xs">stamp context</code> to regenerate context before comparing. If <code className="px-1.5 py-0.5 bg-blue-100 dark:bg-blue-900/40 rounded font-mono text-xs">context_main.json</code> is missing and <code className="px-1.5 py-0.5 bg-blue-100 dark:bg-blue-900/40 rounded font-mono text-xs">forceRegenerate: false</code>, the tool will fail with a clear error message.
+                  </p>
                 </div>
                 <div>
                   <p className="text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">Output:</p>

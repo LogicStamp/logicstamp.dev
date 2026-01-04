@@ -6,7 +6,7 @@ LogicStamp MCP server works with Claude Desktop - Anthropic's desktop applicatio
 
 Before diving into setup, check these common issues:
 
-- ✅ **Node.js installed?** Run `node --version` (needs 18.18.0+)
+- ✅ **Node.js installed?** Run `node --version` (needs >= 18.18.0, Node 20+ recommended)
 - ✅ **Package installed?** Run `npm list -g logicstamp-mcp`
 - ✅ **LogicStamp CLI installed?** Run `stamp --version` (needs `npm install -g logicstamp-context`)
 - ✅ **Config file exists?** Check `~/Library/Application Support/Claude/claude_desktop_config.json` (macOS) or `%APPDATA%\Claude\claude_desktop_config.json` (Windows)

@@ -83,12 +83,12 @@ export default function Header() {
     <>
     {/* Premium header container */}
     <header className="fixed top-0 left-0 right-0 z-50 transition-all duration-300">
-      <div className="mx-auto max-w-[1400px] px-4 lg:px-6 py-4 transition-all duration-300">
+      <div className="mx-auto max-w-[1400px] pl-2 pr-4 lg:pl-3 lg:pr-6 py-4 transition-all duration-300">
         <div className="relative overflow-hidden rounded-2xl bg-white/60 dark:bg-gray-900/60 border border-gray-200/50 dark:border-white/5 backdrop-blur-xl backdrop-saturate-150 shadow-[0_8px_32px_rgba(0,0,0,0.04)] dark:shadow-[0_8px_32px_rgba(0,0,0,0.3)] transition-all duration-300">
           {/* Subtle gradient overlay */}
           <div className="absolute inset-0 bg-gradient-to-br from-white/40 via-transparent to-transparent dark:from-white/5 dark:via-transparent dark:to-transparent pointer-events-none" />
 
-          <nav className="relative flex items-center justify-between px-4 lg:px-6 h-14 lg:h-16" aria-label="Global">
+          <nav className="relative flex items-center justify-between pl-2 pr-4 lg:pl-3 lg:pr-6 h-14 lg:h-16" aria-label="Global">
           <div className="flex lg:flex-1">
             <a
               href={isHomePage ? "#" : "/"}

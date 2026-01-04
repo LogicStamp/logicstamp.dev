@@ -73,13 +73,16 @@ logicstamp-context/
 - `profile` (optional): `llm-chat` (default) | `llm-safe` | `ci-strict`
 - `mode` (optional): `header` (default) | `full` | `none`
 - `includeStyle` (optional): Include style metadata (default: `false`)
+- `depth` (optional): Dependency traversal depth (default: profile default, typically 1). **RECOMMENDED**: For React/TypeScript projects with component hierarchies, start with `depth: 2` to capture nested components (e.g., App → Hero → Button). Default depth=1 only includes direct dependencies and may miss nested components. **Example:** `{ "projectPath": "...", "depth": 2 }` - Use this for most React projects to ensure nested components are included in dependency graphs from the start.
 - `projectPath` (required): **CRITICAL: Absolute path to project root. REQUIRED - must always be provided.** When `stamp init` has been run, MCP clients may omit this parameter, causing hangs. This parameter is REQUIRED for the tool to work correctly. The server will resolve relative paths to absolute paths automatically.
 - `cleanCache` (optional): Force cache cleanup (default: `false`, auto-detects corruption)
 
 **Behavior**:
-1. Execute: `stamp context --profile llm-chat --include-code header --skip-gitignore --quiet`
-2. Store snapshot metadata in memory
+1. Execute: `stamp context --profile llm-chat --include-code header --skip-gitignore --quiet` (adds `--depth N` if depth parameter is provided)
+2. Store snapshot metadata in memory (including depth if specified)
 3. Read and return summary from `context_main.json` (already JSON format)
+
+**Note on Depth Parameter**: **RECOMMENDED: Start with `depth: 2` for React projects.** The default depth=1 only includes direct component dependencies (e.g., App → Hero). With depth=2, nested components are included (e.g., App → Hero → Button), ensuring you see the full component tree with contracts and styles. For React projects with component hierarchies, explicitly set `depth: 2` in your first refresh_snapshot call. The LLM will not automatically detect this need - it must be explicitly requested upfront.
 
 **Output**:
 ```json
@@ -261,7 +264,8 @@ logicstamp-context/
 - `profile` (optional): Analysis profile used when regenerating context (default: `llm-chat`)
 - `mode` (optional): Code inclusion mode used when regenerating context (default: `header`)
 - `includeStyle` (optional): Include style metadata in comparison (Tailwind classes, SCSS, layout patterns, colors, spacing, animations). Only takes effect when `forceRegenerate` is `true`. If `forceRegenerate` is `false`, compares whatever is on disk (may not have style metadata) (default: `false`)
-- `forceRegenerate` (optional): Force regeneration of context before comparing. When `true`, runs `stamp context` (with `--include-style` if `includeStyle` is `true`). When `false`, reads existing `context_main.json` from disk (fast, assumes context is fresh) (default: `false`)
+- `depth` (optional): Dependency traversal depth. Only used when `forceRegenerate` is `true`. **IMPORTANT**: By default, dependency graphs only include direct dependencies (depth=1). To include nested components, you MUST explicitly set `depth: 2` or higher. The LLM does NOT automatically detect when depth=2 is needed - it must be explicitly requested.
+- `forceRegenerate` (optional): Force regeneration of context before comparing. When `true`, runs `stamp context` (with `--include-style` if `includeStyle` is `true`, and `--depth N` if `depth` is provided). When `false`, reads existing `context_main.json` from disk (fast, assumes context is fresh) (default: `false`)
 - `projectPath` (optional): Defaults to current working directory. Path where current `context_main.json` exists (or should be generated).
 - `baseline` (optional): 
   - `disk` (default): Uses the current snapshot's context directory as baseline
@@ -275,7 +279,7 @@ logicstamp-context/
    - For custom path: Uses provided path
 2. Read baseline `context_main.json` from baseline path
 3. **Read or regenerate current state**:
-   - If `forceRegenerate` is `true`: Run `stamp context` with `--include-style` flag if `includeStyle` is `true`, then read the regenerated `context_main.json`
+   - If `forceRegenerate` is `true`: Run `stamp context` with `--include-style` flag if `includeStyle` is `true`, and `--depth N` if `depth` is provided, then read the regenerated `context_main.json`
    - If `forceRegenerate` is `false`: Read existing `context_main.json` from `projectPath` (fast path, assumes context is fresh)
    - **Error handling**: If `context_main.json` is missing and `forceRegenerate` is `false`, fail with a clear error message directing the user to run `refresh_snapshot` first or set `forceRegenerate: true`
 4. Compare JSON structures directly in TypeScript (comparison logic does not call CLI):
@@ -289,6 +293,7 @@ logicstamp-context/
 - **Default behavior** (`forceRegenerate: false`): Fast - reads existing JSON files from disk, no CLI calls
 - **With `forceRegenerate: true`**: Slower - runs `stamp context` to regenerate context before comparing
 - **With `includeStyle: true` + `forceRegenerate: true`**: Slowest - runs `stamp context --include-style` to regenerate context with style metadata
+- **With `depth: 2` or higher**: Increases analysis time and token count - includes nested components in dependency graphs. Only use when explicitly needed.
 
 **Usage Examples**:
 - Quick diff (assumes context is fresh): `{ forceRegenerate: false }`
@@ -844,7 +849,7 @@ interface ComponentChange {
 {
   "server": {
     "name": "logicstamp-context",
-    "version": "0.1.0",
+    "version": "0.1.2",
     "defaultProfile": "llm-chat",
     "defaultMode": "header"
   },

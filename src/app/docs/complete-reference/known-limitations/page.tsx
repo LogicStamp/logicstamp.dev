@@ -555,7 +555,7 @@ export default function KnownLimitationsPage() {
                         <ul className="space-y-1 text-sm text-gray-600 dark:text-gray-400 ml-4 list-disc">
                           <li><strong>Created timestamps</strong>: When context was generated</li>
                           <li><strong>OS detection</strong>: Platform info (e.g., <code className="px-1.5 py-0.5 bg-gray-100 dark:bg-gray-800 rounded text-xs font-mono">win32</code>)</li>
-                          <li><strong>Source tool version</strong>: <code className="px-1.5 py-0.5 bg-gray-100 dark:bg-gray-800 rounded text-xs font-mono">logicstamp-context@0.3.3</code></li>
+                          <li><strong>Source tool version</strong>: <code className="px-1.5 py-0.5 bg-gray-100 dark:bg-gray-800 rounded text-xs font-mono">logicstamp-context@0.3.4</code></li>
                           <li><strong>Missing dependencies</strong>: Tracked in <code className="px-1.5 py-0.5 bg-gray-100 dark:bg-gray-800 rounded text-xs font-mono">missing</code> array</li>
                         </ul>
                       </div>
@@ -624,10 +624,30 @@ style={{ transformOrigin: 'center' }`
                         </p>
                       </div>
 
+                      <div className="p-4 bg-green-50 dark:bg-green-950/20 rounded-lg border border-green-200 dark:border-green-800">
+                        <div className="flex items-start justify-between gap-3 mb-2">
+                          <h4 className="font-semibold text-gray-900 dark:text-white text-sm sm:text-base">
+                            3. Edge Relationships (Status: Implemented)
+                          </h4>
+                          <span className="px-2 py-1 rounded-full text-xs font-semibold bg-green-100 dark:bg-green-900/40 text-green-800 dark:text-green-200">
+                            Resolved
+                          </span>
+                        </div>
+                        <p className="text-sm text-gray-600 dark:text-gray-400 mb-2">
+                          <strong>Status:</strong> Dependency graph edges ARE built and populated.
+                        </p>
+                        <p className="text-sm text-gray-600 dark:text-gray-400 mb-2">
+                          <strong>Implementation:</strong> The <code className="px-1.5 py-0.5 bg-gray-100 dark:bg-gray-800 rounded text-xs font-mono">buildEdges()</code> function in <code className="px-1.5 py-0.5 bg-gray-100 dark:bg-gray-800 rounded text-xs font-mono">src/core/pack/builder.ts</code> creates edges between components based on their dependencies. Edges are included in bundle output.
+                        </p>
+                        <p className="text-sm text-gray-600 dark:text-gray-400">
+                          <strong>Note:</strong> If edges appear empty in your output, this may be due to: components having no dependencies, dependencies not being resolved (missing from manifest), or dependencies being filtered as internal components.
+                        </p>
+                      </div>
+
                       <div className="p-4 bg-amber-50 dark:bg-amber-950/20 rounded-lg border border-amber-200 dark:border-amber-800">
                         <div className="flex items-start justify-between gap-3 mb-2">
                           <h4 className="font-semibold text-gray-900 dark:text-white text-sm sm:text-base">
-                            3. Third-Party Components Minimal Info
+                            4. Third-Party Components Minimal Info
                           </h4>
                           <span className="px-2 py-1 rounded-full text-xs font-semibold bg-yellow-100 dark:bg-yellow-900/40 text-yellow-800 dark:text-yellow-200">
                             Medium
@@ -667,7 +687,7 @@ style={{ transformOrigin: 'center' }`
                       <div className="p-4 bg-amber-50 dark:bg-amber-950/20 rounded-lg border border-amber-200 dark:border-amber-800">
                         <div className="flex items-start justify-between gap-3 mb-2">
                           <h4 className="font-semibold text-gray-900 dark:text-white text-sm sm:text-base">
-                            4. Code Content Not Captured
+                            5. Code Content Not Captured
                           </h4>
                           <span className="px-2 py-1 rounded-full text-xs font-semibold bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-400">
                             Low
@@ -688,7 +708,7 @@ style={{ transformOrigin: 'center' }`
                       <div className="p-4 bg-amber-50 dark:bg-amber-950/20 rounded-lg border border-amber-200 dark:border-amber-800">
                         <div className="flex items-start justify-between gap-3 mb-2">
                           <h4 className="font-semibold text-gray-900 dark:text-white text-sm sm:text-base">
-                            5. TypeScript Types Incomplete
+                            6. TypeScript Types Incomplete
                           </h4>
                           <span className="px-2 py-1 rounded-full text-xs font-semibold bg-yellow-100 dark:bg-yellow-900/40 text-yellow-800 dark:text-yellow-200">
                             Medium
@@ -706,7 +726,7 @@ style={{ transformOrigin: 'center' }`
                       <div className="p-4 bg-amber-50 dark:bg-amber-950/20 rounded-lg border border-amber-200 dark:border-amber-800">
                         <div className="flex items-start justify-between gap-3 mb-2">
                           <h4 className="font-semibold text-gray-900 dark:text-white text-sm sm:text-base">
-                            6. Comments/JSDoc Only in Header Mode
+                            7. Comments/JSDoc Only in Header Mode
                           </h4>
                           <span className="px-2 py-1 rounded-full text-xs font-semibold bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-400">
                             Low
@@ -724,7 +744,7 @@ style={{ transformOrigin: 'center' }`
                       <div className="p-4 bg-amber-50 dark:bg-amber-950/20 rounded-lg border border-amber-200 dark:border-amber-800">
                         <div className="flex items-start justify-between gap-3 mb-2">
                           <h4 className="font-semibold text-gray-900 dark:text-white text-sm sm:text-base">
-                            7. Test Files Excluded
+                            8. Test Files Excluded
                           </h4>
                           <span className="px-2 py-1 rounded-full text-xs font-semibold bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-400">
                             Low
@@ -748,7 +768,7 @@ style={{ transformOrigin: 'center' }`
                       <div className="p-4 bg-amber-50 dark:bg-amber-950/20 rounded-lg border border-amber-200 dark:border-amber-800">
                         <div className="flex items-start justify-between gap-3 mb-2">
                           <h4 className="font-semibold text-gray-900 dark:text-white text-sm sm:text-base">
-                            8. Runtime Behavior
+                            9. Runtime Behavior
                           </h4>
                           <span className="px-2 py-1 rounded-full text-xs font-semibold bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-400">
                             Low
@@ -767,7 +787,7 @@ style={{ transformOrigin: 'center' }`
                       <div className="p-4 bg-amber-50 dark:bg-amber-950/20 rounded-lg border border-amber-200 dark:border-amber-800">
                         <div className="flex items-start justify-between gap-3 mb-2">
                           <h4 className="font-semibold text-gray-900 dark:text-white text-sm sm:text-base">
-                            9. Styled JSX Not Fully Parsed
+                            10. Styled JSX Not Fully Parsed
                           </h4>
                           <span className="px-2 py-1 rounded-full text-xs font-semibold bg-red-100 dark:bg-red-900/40 text-red-800 dark:text-red-200">
                             High
@@ -806,7 +826,7 @@ style={{ transformOrigin: 'center' }`
                       <div className="p-4 bg-amber-50 dark:bg-amber-950/20 rounded-lg border border-amber-200 dark:border-amber-800">
                         <div className="flex items-start justify-between gap-3 mb-2">
                           <h4 className="font-semibold text-gray-900 dark:text-white text-sm sm:text-base">
-                            10. Context main.json Limitations
+                            11. Context main.json Limitations
                           </h4>
                           <span className="px-2 py-1 rounded-full text-xs font-semibold bg-yellow-100 dark:bg-yellow-900/40 text-yellow-800 dark:text-yellow-200">
                             Medium

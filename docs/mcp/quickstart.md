@@ -2,6 +2,8 @@
 
 ## 1. Prerequisites
 
+**Node.js Requirement:** >= 18.18.0 (Node 20+ recommended for best performance and features)
+
 Install the LogicStamp Context CLI (this MCP server is a wrapper around it):
 
 ```bash
@@ -36,7 +38,43 @@ npm run build
 
 **Setup is done once (globally):** After configuring the MCP server globally, it will be available in all your projects. You don't need to set it up again for each project. However, when you analyze a project, you'll call `logicstamp_refresh_snapshot` for that specific project - the analysis itself is per-project, but the MCP server setup is global.
 
-Choose your MCP client for detailed installation instructions:
+### Quick Configuration
+
+Create a config file for your platform and add this configuration:
+
+**Config file locations:**
+- **Cursor:** `~/.cursor/mcp.json` (macOS/Linux) or `%USERPROFILE%\.cursor\mcp.json` (Windows)
+- **Claude CLI:** `~/.claude.json` (macOS/Linux) or `%USERPROFILE%\.claude.json` (Windows)
+- **Claude Desktop:** `~/Library/Application Support/Claude/claude_desktop_config.json` (macOS) or `%APPDATA%\Claude\claude_desktop_config.json` (Windows)
+
+**Configuration to add:**
+```json
+{
+  "mcpServers": {
+    "logicstamp": {
+      "command": "npx",
+      "args": ["logicstamp-mcp"]
+    }
+  }
+}
+```
+
+**Note:** Some MCP clients may require `"type": "stdio"`. If the above doesn't work, add it:
+```json
+{
+  "mcpServers": {
+    "logicstamp": {
+      "type": "stdio",
+      "command": "npx",
+      "args": ["logicstamp-mcp"]
+    }
+  }
+}
+```
+
+### Detailed Platform Instructions
+
+For complete step-by-step instructions, verification steps, and troubleshooting:
 
 - **[Claude CLI Integration](integrations/claude-cli.md)** - For Claude Code users
 - **[Claude Desktop Integration](integrations/claude-desktop.md)** - For Claude Desktop users  
