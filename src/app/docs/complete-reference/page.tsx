@@ -441,7 +441,7 @@ export default function CompleteReferencePage() {
                   </thead>
                   <tbody className="divide-y divide-gray-200 dark:divide-gray-700">
                     {[
-                      { option: "--depth <n>", alias: "-d", desc: "Dependency traversal depth", default: "1" },
+                      { option: "--depth <n>", alias: "-d", desc: "Dependency traversal depth. Recommended: depth=2 for React projects to include nested components (e.g., App → Hero → Button). Default depth=1 only includes direct dependencies.", default: "1" },
                       { option: "--include-code <mode>", alias: "-c", desc: "Code inclusion: none, header, or full", default: "header" },
                       { option: "--format <format>", alias: "-f", desc: "Output format: json, pretty, ndjson, or toon", default: "json" },
                       { option: "--out <file>", alias: "-o", desc: "Output directory or file path", default: "context.json" },
@@ -1106,9 +1106,12 @@ stamp context --out my-context.json`
                 },
                 {
                   title: "Deep Traversal",
-                  desc: "Include more dependency levels",
-                  code: `# Include 2 levels of dependencies
+                  desc: "Include more dependency levels. Recommended: depth=2 for React projects to include nested components in dependency graphs.",
+                  code: `# Recommended: depth=2 for React projects (includes nested components)
 stamp context --depth 2
+
+# Include 3 levels of dependencies
+stamp context --depth 3
 
 # Include full source code
 stamp context --include-code full`
