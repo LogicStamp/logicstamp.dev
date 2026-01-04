@@ -40,16 +40,6 @@ const sections: DocsNavSection[] = [
     ],
   },
   {
-    title: 'MCP',
-    items: [
-      { title: 'MCP Reference', href: '/docs/mcp/reference' },
-      { title: 'Usage Examples', href: '/docs/mcp/usage' },
-      { title: 'Best Practices', href: '/docs/mcp/best-practices' },
-      { title: 'Profiles Guide', href: '/docs/mcp/profiles' },
-      { title: 'Style Metadata', href: '/docs/mcp/style-metadata' },
-    ],
-  },
-  {
     title: 'CLI',
     items: [
       { title: 'CLI Hub', href: '/docs/cli' },
@@ -63,6 +53,16 @@ const sections: DocsNavSection[] = [
       { title: '`compare` command', href: '/docs/logicstamp-context/compare-command' },
       { title: '`validate` command', href: '/docs/logicstamp-context/validate' },
       { title: '`clean` command', href: '/docs/logicstamp-context/clean' },
+    ],
+  },
+  {
+    title: 'MCP',
+    items: [
+      { title: 'MCP Reference', href: '/docs/mcp/reference' },
+      { title: 'Usage Examples', href: '/docs/mcp/usage' },
+      { title: 'Best Practices', href: '/docs/mcp/best-practices' },
+      { title: 'Profiles Guide', href: '/docs/mcp/profiles' },
+      { title: 'Style Metadata', href: '/docs/mcp/style-metadata' },
     ],
   },
   {

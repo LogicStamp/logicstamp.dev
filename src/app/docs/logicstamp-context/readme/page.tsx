@@ -194,7 +194,7 @@ export default function LogicStampReadmePage() {
                 <div className="space-y-4">
                   <div className="p-4 bg-blue-50 dark:bg-blue-950/20 rounded-xl border border-blue-200 dark:border-blue-800">
                     <h3 className="font-semibold text-blue-900 dark:text-blue-200 mb-2 text-base sm:text-lg">
-                      v0.3.3
+                      v0.3.4
                     </h3>
                     <ul className="space-y-2 text-sm text-blue-800 dark:text-blue-300 ml-4 list-disc">
                       <li><strong>TOON output format support</strong> – Added new <code className="px-1 py-0.5 bg-blue-100 dark:bg-blue-900/40 rounded text-xs font-mono">--format toon</code> option to generate context bundles in TOON format, expanding output options beyond JSON, pretty, and NDJSON</li>
