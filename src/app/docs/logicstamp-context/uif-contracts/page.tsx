@@ -33,7 +33,7 @@ export default function UIFContractsPage() {
               </h1>
               
               <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-gray-600 dark:text-gray-400 leading-relaxed max-w-3xl mb-6 sm:mb-8">
-                UIF (Unified Interface Format) contracts are machine-readable descriptions of your React/TypeScript components that capture their structure, behavior, and API. LogicStamp extracts these contracts from your codebase to enable semantic change detection, AI context generation, and contract verification.
+                UIF (Unified Interface Format) contracts are machine-readable descriptions of your React/Vue/TypeScript components that capture their structure, behavior, and API. LogicStamp extracts these contracts from your codebase to enable semantic change detection, AI context generation, and contract verification.
               </p>
             </div>
           </div>
@@ -78,7 +78,7 @@ export default function UIFContractsPage() {
                   ))}
                 </div>
                 <p className="text-sm sm:text-base text-gray-600 dark:text-gray-400 mt-4 leading-relaxed">
-                  Contracts are extracted automatically from your TypeScript/React files and embedded in LogicStamp bundles.
+                  Contracts are extracted automatically from your TypeScript/React/Vue files and embedded in LogicStamp bundles.
                 </p>
               </div>
             </div>
@@ -131,6 +131,7 @@ export default function UIFContractsPage() {
       }
     }
   },
+  "exports": { "named": ["Button", "ButtonProps"] },
   "style": {
     "styleSources": {
       "tailwind": {
@@ -191,6 +192,7 @@ export default function UIFContractsPage() {
       }
     }
   },
+  "exports": { "named": ["Button", "ButtonProps"] },
   "style": {
     "styleSources": {
       "tailwind": {
@@ -256,7 +258,10 @@ export default function UIFContractsPage() {
                   <ul className="space-y-1 text-sm text-green-800 dark:text-green-300 ml-4 list-disc">
                     <li><code className="px-1 py-0.5 bg-green-100 dark:bg-green-900/40 rounded text-xs font-mono">"react:component"</code> – React functional component</li>
                     <li><code className="px-1 py-0.5 bg-green-100 dark:bg-green-900/40 rounded text-xs font-mono">"react:hook"</code> – Custom React hook</li>
-                    <li><code className="px-1 py-0.5 bg-green-100 dark:bg-green-900/40 rounded text-xs font-mono">"typescript:module"</code> – TypeScript module/utility</li>
+                    <li><code className="px-1 py-0.5 bg-green-100 dark:bg-green-900/40 rounded text-xs font-mono">"vue:component"</code> – Vue component (Composition API)</li>
+                    <li><code className="px-1 py-0.5 bg-green-100 dark:bg-green-900/40 rounded text-xs font-mono">"vue:composable"</code> – Vue composable (reusable composition function)</li>
+                    <li><code className="px-1 py-0.5 bg-green-100 dark:bg-green-900/40 rounded text-xs font-mono">"ts:module"</code> – TypeScript module/utility</li>
+                    <li><code className="px-1 py-0.5 bg-green-100 dark:bg-green-900/40 rounded text-xs font-mono">"node:cli"</code> – Node.js CLI script</li>
                   </ul>
                 </div>
 
@@ -326,6 +331,27 @@ export default function UIFContractsPage() {
                   </div>
                 </div>
 
+                {/* Exports Field */}
+                <div className="p-5 bg-gradient-to-br from-indigo-50 to-blue-50 dark:from-indigo-950/20 dark:to-blue-950/10 rounded-xl border border-indigo-200 dark:border-indigo-800">
+                  <h3 className="font-semibold text-indigo-900 dark:text-indigo-200 mb-3 text-base sm:text-lg">
+                    <code className="px-2 py-1 bg-indigo-100 dark:bg-indigo-900/40 rounded text-xs font-mono">exports</code>
+                    <span className="ml-2 text-xs font-normal text-indigo-700 dark:text-indigo-400">(Optional)</span>
+                  </h3>
+                  <p className="text-sm text-indigo-800 dark:text-indigo-300 mb-3">Export metadata indicating how the component/module is exported from the file:</p>
+                  <ul className="space-y-2 text-sm text-indigo-800 dark:text-indigo-300 ml-4 list-disc mb-3">
+                    <li><code className="px-1 py-0.5 bg-indigo-100 dark:bg-indigo-900/40 rounded text-xs font-mono">"default"</code> – File has a default export</li>
+                    <li><code className="px-1 py-0.5 bg-indigo-100 dark:bg-indigo-900/40 rounded text-xs font-mono">"named"</code> – File has a single named export</li>
+                    <li><code className="px-1 py-0.5 bg-indigo-100 dark:bg-indigo-900/40 rounded text-xs font-mono">{'{'} named: string[] {'}'}</code> – File has multiple named exports (array contains all exported names)</li>
+                  </ul>
+                  <p className="text-xs text-indigo-700 dark:text-indigo-400 mt-3">
+                    This metadata is used to improve dependency tracking accuracy by distinguishing between internal components (defined in the same file) and external dependencies.
+                  </p>
+                  <div className="mt-3 p-3 bg-indigo-100 dark:bg-indigo-900/40 rounded-lg">
+                    <p className="text-xs text-indigo-900 dark:text-indigo-200 font-medium mb-1">Example:</p>
+                    <code className="text-xs font-mono text-indigo-800 dark:text-indigo-300">{'{"exports": { "named": ["Button", "ButtonProps", "useButton"] }}'}</code>
+                  </div>
+                </div>
+
                 {/* Style Field */}
                 <div className="p-5 bg-gradient-to-br from-pink-50 to-purple-50 dark:from-pink-950/20 dark:to-purple-950/10 rounded-xl border border-pink-200 dark:border-pink-800">
                   <h3 className="font-semibold text-pink-900 dark:text-pink-200 mb-3 text-base sm:text-lg">
@@ -335,7 +361,7 @@ export default function UIFContractsPage() {
                   <p className="text-sm text-pink-800 dark:text-pink-300 mb-3">Visual and layout metadata extracted when using <code className="px-1.5 py-0.5 bg-pink-100 dark:bg-pink-900/40 rounded text-xs font-mono">stamp context style</code> or <code className="px-1.5 py-0.5 bg-pink-100 dark:bg-pink-900/40 rounded text-xs font-mono">--include-style</code>.</p>
                   <div className="space-y-2 text-xs text-pink-700 dark:text-pink-400">
                     <div>
-                      <strong className="text-pink-900 dark:text-pink-200">styleSources:</strong> Tailwind classes, SCSS/CSS modules, inline styles, styled-components, framer-motion
+                      <strong className="text-pink-900 dark:text-pink-200">styleSources:</strong> Tailwind classes, SCSS/CSS modules, inline styles (with property/value extraction ✅ v0.3.5), styled-jsx (CSS content extraction ✅ v0.3.5), styled-components, framer-motion, Material UI
                     </div>
                     <div>
                       <strong className="text-pink-900 dark:text-pink-200">layout:</strong> Flex/grid patterns, hero sections, feature cards

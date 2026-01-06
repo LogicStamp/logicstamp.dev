@@ -5,9 +5,14 @@ import { ChevronRight, Upload, Play, FileCode2, Zap, Package, Code2, Terminal, G
 import CopyButton from '../ui/CopyButton'
 
 // Custom hook for intersection observer
-function useInView(threshold = 0.1) {
+function useInView(threshold = 0.1, resetTrigger?: any) {
   const ref = useRef<HTMLDivElement>(null)
   const [inView, setInView] = useState(false)
+
+  useEffect(() => {
+    // Reset inView when resetTrigger changes
+    setInView(false)
+  }, [resetTrigger])
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -25,7 +30,7 @@ function useInView(threshold = 0.1) {
     }
 
     return () => observer.disconnect()
-  }, [threshold])
+  }, [threshold, resetTrigger])
 
   return { ref, inView }
 }
@@ -589,9 +594,10 @@ export default function Demo() {
   const workflowScrollRef = useRef<HTMLDivElement>(null)
 
   // Intersection observer hooks for animations
+  // Reset contentRef animation when switching tabs
   const { ref: headerRef, inView: headerInView } = useInView(0.1)
   const { ref: pillsRef, inView: pillsInView } = useInView(0.1)
-  const { ref: contentRef, inView: contentInView } = useInView(0.1)
+  const { ref: contentRef, inView: contentInView } = useInView(0.1, activeTab)
   const { ref: terminalRef, inView: terminalInView } = useInView(0.1)
   const { ref: ctaRef, inView: ctaInView } = useInView(0.1)
 

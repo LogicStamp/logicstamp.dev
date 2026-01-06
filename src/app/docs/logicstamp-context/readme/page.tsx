@@ -44,6 +44,9 @@ export default function LogicStampReadmePage() {
                   files are not analyzed yet, so mixed or JS-only projects will only see TypeScript components in{' '}
                   <code className="px-1.5 py-0.5 bg-amber-100 dark:bg-amber-900/40 rounded text-xs font-mono">context.json</code>.
                 </p>
+                <p className="text-sm sm:text-base text-amber-800 dark:text-amber-300 mt-2">
+                  <span className="font-semibold text-amber-900 dark:text-amber-200">Vue 3 support:</span> Works with <code className="px-1.5 py-0.5 bg-amber-100 dark:bg-amber-900/40 rounded text-xs font-mono">.ts</code>/<code className="px-1.5 py-0.5 bg-amber-100 dark:bg-amber-900/40 rounded text-xs font-mono">.tsx</code> files only, not <code className="px-1.5 py-0.5 bg-amber-100 dark:bg-amber-900/40 rounded text-xs font-mono">.vue</code> SFC files.
+                </p>
               </div>
             </div>
           </div>
@@ -124,6 +127,15 @@ export default function LogicStampReadmePage() {
                   <p className="text-sm sm:text-base text-green-800 dark:text-green-300">
                     <strong className="text-green-900 dark:text-green-200">Note:</strong> &quot;Global CLI&quot; means installing globally via <code className="px-1.5 py-0.5 bg-green-100 dark:bg-green-900/40 rounded text-xs font-mono">npm install -g</code> makes the <code className="px-1.5 py-0.5 bg-green-100 dark:bg-green-900/40 rounded text-xs font-mono">stamp</code> command available from any directory, not just within a specific project folder.
                   </p>
+                  <ul className="text-sm sm:text-base text-green-800 dark:text-green-300 mt-2 ml-4 list-disc">
+                    <li><strong>Local install:</strong> <code className="px-1.5 py-0.5 bg-green-100 dark:bg-green-900/40 rounded text-xs font-mono">npm install logicstamp-context</code> → only available in that project</li>
+                    <li><strong>Global install:</strong> <code className="px-1.5 py-0.5 bg-green-100 dark:bg-green-900/40 rounded text-xs font-mono">npm install -g logicstamp-context</code> → available everywhere via <code className="px-1.5 py-0.5 bg-green-100 dark:bg-green-900/40 rounded text-xs font-mono">stamp</code> command</li>
+                  </ul>
+                </div>
+                <div className="mt-4 p-4 bg-blue-50 dark:bg-blue-950/20 rounded-xl border border-blue-200 dark:border-blue-800">
+                  <p className="text-sm sm:text-base text-blue-800 dark:text-blue-300">
+                    <strong className="text-blue-900 dark:text-blue-200">Requirements:</strong> Node.js &gt;= 18.18.0 (<strong>Node 20+ recommended</strong>), TypeScript codebase (React, Next.js or Vue)
+                  </p>
                 </div>
               </div>
             </div>
@@ -192,6 +204,16 @@ export default function LogicStampReadmePage() {
                   </h2>
                 </div>
                 <div className="space-y-4">
+                  <div className="p-4 bg-green-50 dark:bg-green-950/20 rounded-xl border border-green-200 dark:border-green-800">
+                    <h3 className="font-semibold text-green-900 dark:text-green-200 mb-2 text-base sm:text-lg">
+                      v0.3.5
+                    </h3>
+                    <ul className="space-y-2 text-sm text-green-800 dark:text-green-300 ml-4 list-disc">
+                      <li><strong>Inline style extraction fixed</strong> – Inline style objects now extract both property names and literal values (strings, numbers, booleans, null, template literals)</li>
+                      <li><strong>Styled JSX CSS extraction fixed</strong> – Full CSS content from <code className="px-1 py-0.5 bg-green-100 dark:bg-green-900/40 rounded text-xs font-mono">&lt;style jsx&gt;</code> blocks is now extracted, parsed using css-tree AST, with selector and property detection</li>
+                      <li><strong>Beta release note</strong> – This is a beta release. We&apos;re actively improving the tool based on user feedback. If you encounter any issues or have suggestions, please open an issue on GitHub</li>
+                    </ul>
+                  </div>
                   <div className="p-4 bg-blue-50 dark:bg-blue-950/20 rounded-xl border border-blue-200 dark:border-blue-800">
                     <h3 className="font-semibold text-blue-900 dark:text-blue-200 mb-2 text-base sm:text-lg">
                       v0.3.4
@@ -199,7 +221,7 @@ export default function LogicStampReadmePage() {
                     <ul className="space-y-2 text-sm text-blue-800 dark:text-blue-300 ml-4 list-disc">
                       <li><strong>TOON output format support</strong> – Added new <code className="px-1 py-0.5 bg-blue-100 dark:bg-blue-900/40 rounded text-xs font-mono">--format toon</code> option to generate context bundles in TOON format, expanding output options beyond JSON, pretty, and NDJSON</li>
                       <li><strong>Improved Node.js 18 compatibility</strong> – Adjusted <code className="px-1 py-0.5 bg-blue-100 dark:bg-blue-900/40 rounded text-xs font-mono">glob</code> to a Node 18–compatible version while retaining the latest security fixes</li>
-                      <li><strong>Updated Node.js requirement</strong> – Clarified minimum supported Node.js version to <strong>{" "}&gt;= 18.18.0</strong></li>
+                      <li><strong>Updated Node.js requirement</strong> – Clarified minimum supported Node.js version to <strong>{" "}&gt;= 18.18.0</strong> (Node 20+ recommended)</li>
                       <li><strong>Dev dependency updates</strong> – Updated development dependencies to the latest patch versions</li>
                       <li><strong>Documentation improvements</strong> – Improved README clarity and formatting consistency, and clarified what is detected vs extracted across framework documentation</li>
                     </ul>

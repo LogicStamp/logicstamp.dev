@@ -499,7 +499,7 @@ export default function KnownLimitationsPage() {
                           1. Component Contracts (UIFContract)
                         </h4>
                         <ul className="space-y-1 text-sm text-gray-600 dark:text-gray-400 ml-4 list-disc">
-                          <li><strong>Component kind</strong>: <code className="px-1.5 py-0.5 bg-gray-100 dark:bg-gray-800 rounded text-xs font-mono">react:component</code>, <code className="px-1.5 py-0.5 bg-gray-100 dark:bg-gray-800 rounded text-xs font-mono">ts:module</code></li>
+                          <li><strong>Component kind</strong>: <code className="px-1.5 py-0.5 bg-gray-100 dark:bg-gray-800 rounded text-xs font-mono">react:component</code>, <code className="px-1.5 py-0.5 bg-gray-100 dark:bg-gray-800 rounded text-xs font-mono">react:hook</code>, <code className="px-1.5 py-0.5 bg-gray-100 dark:bg-gray-800 rounded text-xs font-mono">vue:component</code>, <code className="px-1.5 py-0.5 bg-gray-100 dark:bg-gray-800 rounded text-xs font-mono">vue:composable</code>, <code className="px-1.5 py-0.5 bg-gray-100 dark:bg-gray-800 rounded text-xs font-mono">ts:module</code>, <code className="px-1.5 py-0.5 bg-gray-100 dark:bg-gray-800 rounded text-xs font-mono">node:cli</code></li>
                           <li><strong>Props</strong>: Types and signatures</li>
                           <li><strong>State variables</strong>: With types</li>
                           <li><strong>Hooks used</strong>: Listed in <code className="px-1.5 py-0.5 bg-gray-100 dark:bg-gray-800 rounded text-xs font-mono">version.hooks</code></li>
@@ -517,7 +517,8 @@ export default function KnownLimitationsPage() {
                         <ul className="space-y-1 text-sm text-gray-600 dark:text-gray-400 ml-4 list-disc">
                           <li><strong>Tailwind classes</strong>: Categorized by borders, colors, effects, spacing, sizing, layout (flex/grid), typography, transitions, breakpoints detected (sm, md, lg, xl), class counts per component</li>
                           <li><strong>CSS modules</strong>: File paths and selectors/properties</li>
-                          <li><strong>Inline styles</strong>: Detected (<code className="px-1.5 py-0.5 bg-gray-100 dark:bg-gray-800 rounded text-xs font-mono">inlineStyles: true</code>)</li>
+                          <li><strong>Inline styles</strong>: Property names and literal values extracted ✅ <strong className="text-green-600 dark:text-green-400">v0.3.5</strong></li>
+                          <li><strong>Styled JSX</strong>: CSS content, selectors, properties, global attribute ✅ <strong className="text-green-600 dark:text-green-400">v0.3.5</strong></li>
                           <li><strong>Layout patterns</strong>: Flex vs grid, column configs</li>
                           <li><strong>Visual metadata</strong>: Color palettes, spacing patterns, typography scales</li>
                           <li><strong>Animation metadata</strong>: Library type, animation types</li>
@@ -567,40 +568,62 @@ export default function KnownLimitationsPage() {
                       What's Missing or Incomplete
                     </h3>
                     <div className="space-y-4">
-                      <div className="p-4 bg-amber-50 dark:bg-amber-950/20 rounded-lg border border-amber-200 dark:border-amber-800">
+                      <div className="p-4 bg-green-50 dark:bg-green-950/20 rounded-lg border-l-4 border-green-500">
                         <div className="flex items-start justify-between gap-3 mb-2">
                           <h4 className="font-semibold text-gray-900 dark:text-white text-sm sm:text-base">
-                            1. Inline Style Objects Not Fully Extracted
+                            1. Inline Style Objects Extraction
                           </h4>
-                          <span className="px-2 py-1 rounded-full text-xs font-semibold bg-red-100 dark:bg-red-900/40 text-red-800 dark:text-red-200">
-                            High
+                          <span className="px-2 py-1 rounded-full text-xs font-semibold bg-green-100 dark:bg-green-900/40 text-green-800 dark:text-green-200">
+                            ✅ Fixed in v0.3.5
                           </span>
                         </div>
                         <p className="text-sm text-gray-600 dark:text-gray-400 mb-2">
-                          <strong>Issue:</strong> Inline style objects are detected (<code className="px-1.5 py-0.5 bg-gray-100 dark:bg-gray-800 rounded text-xs font-mono">inlineStyles: true</code>) but actual property values are not captured.
+                          <strong>Status:</strong> ✅ <strong className="text-green-600 dark:text-green-400">Fixed in v0.3.5</strong> (Verified)
                         </p>
+                        <p className="text-sm text-gray-600 dark:text-gray-400 mb-2">
+                          <strong>Location:</strong> <code className="px-1.5 py-0.5 bg-gray-100 dark:bg-gray-800 rounded text-xs font-mono">src/core/styleExtractor/styleExtractor.ts</code> (lines 88-191)
+                        </p>
+                        <p className="text-sm text-gray-600 dark:text-gray-400 mb-2">
+                          <strong>Verified Implementation:</strong> The <code className="px-1.5 py-0.5 bg-gray-100 dark:bg-gray-800 rounded text-xs font-mono">extractInlineStyles()</code> function extracts both properties AND values:
+                        </p>
+                        <ul className="text-sm text-gray-600 dark:text-gray-400 ml-4 list-disc mb-2">
+                          <li>✅ Extracts property names from object literals</li>
+                          <li>✅ Extracts literal values for strings, numbers, booleans, null, and template literals</li>
+                          <li>✅ Returns <code className="px-1 py-0.5 bg-gray-100 dark:bg-gray-800 rounded text-xs font-mono">{'{'} properties: string[], values?: Record&lt;string, string&gt; {'}'}</code></li>
+                        </ul>
                         <div className="mt-3 mb-2">
                           <p className="text-xs text-gray-500 dark:text-gray-500 mb-1">Example:</p>
                           <TabbedCodeBlock
                             tabs={[
                               {
                                 label: 'Source code has',
-                                code: `style={{ animationDelay: '2s' }}
-style={{ transformOrigin: 'center' }`,
-                                copyText: `style={{ animationDelay: '2s' }}
-style={{ transformOrigin: 'center' }`
+                                code: `style={{ animationDelay: '2s', color: 'blue', padding: '1rem' }}`,
+                                copyText: `style={{ animationDelay: '2s', color: 'blue', padding: '1rem' }}`
                               },
                               {
-                                label: 'Context.json only shows',
-                                code: `"inlineStyles": true  // But not the actual values!`,
-                                copyText: `"inlineStyles": true  // But not the actual values!`
+                                label: 'Context.json now shows',
+                                code: `"inlineStyles": {
+  "properties": ["animationDelay", "color", "padding"],
+  "values": {
+    "animationDelay": "2s",
+    "color": "blue",
+    "padding": "1rem"
+  }
+}`,
+                                copyText: `"inlineStyles": {
+  "properties": ["animationDelay", "color", "padding"],
+  "values": {
+    "animationDelay": "2s",
+    "color": "blue",
+    "padding": "1rem"
+  }
+}`
                               }
                             ]}
                           />
                         </div>
                         <p className="text-sm text-gray-600 dark:text-gray-400">
-                          <strong>Missing:</strong> Actual inline style values/properties<br/>
-                          <strong>Impact:</strong> Can't analyze specific inline styles
+                          <strong>Note:</strong> Dynamic values (variables, function calls) are detected as properties but their values are not extracted (static analysis limitation).
                         </p>
                       </div>
 
@@ -614,10 +637,10 @@ style={{ transformOrigin: 'center' }`
                           </span>
                         </div>
                         <p className="text-sm text-gray-600 dark:text-gray-400 mb-2">
-                          <strong>Supported:</strong> styled-components (component names, theme usage, css prop), Emotion (@emotion/styled), Material UI (@mui/material) - components, packages, features, ShadCN/UI - components, variants, sizes, Radix UI - primitives, patterns, accessibility, Framer Motion - components, variants, animation features
+                          <strong>Supported:</strong> styled-components (component names, theme usage, css prop), Emotion (@emotion/styled), Material UI (@mui/material) - components, packages, features, ShadCN/UI - components, variants, sizes, Radix UI - primitives, patterns, accessibility, Framer Motion - components, variants, animation features, Styled JSX - CSS content extraction, selectors, properties, global attribute detection ✅ <strong className="text-green-600 dark:text-green-400">v0.3.5</strong>
                         </p>
                         <p className="text-sm text-gray-600 dark:text-gray-400 mb-2">
-                          <strong>Missing/Incomplete:</strong> Chakra UI - not yet detected, Ant Design - not yet detected, Styled JSX - CSS content from <code className="px-1.5 py-0.5 bg-gray-100 dark:bg-gray-800 rounded text-xs font-mono">&lt;style jsx&gt;</code> blocks not extracted (only detected), Inline style object values - detected but property values not extracted
+                          <strong>Missing/Incomplete:</strong> Chakra UI - not yet detected, Ant Design - not yet detected
                         </p>
                         <p className="text-sm text-gray-600 dark:text-gray-400">
                           <strong>Impact:</strong> Most major CSS-in-JS libraries are supported, but some smaller libraries and inline style values are not fully extracted.
@@ -784,42 +807,77 @@ style={{ transformOrigin: 'center' }`
                         </p>
                       </div>
 
-                      <div className="p-4 bg-amber-50 dark:bg-amber-950/20 rounded-lg border border-amber-200 dark:border-amber-800">
+                      <div className="p-4 bg-green-50 dark:bg-green-950/20 rounded-lg border-l-4 border-green-500">
                         <div className="flex items-start justify-between gap-3 mb-2">
                           <h4 className="font-semibold text-gray-900 dark:text-white text-sm sm:text-base">
-                            10. Styled JSX Not Fully Parsed
+                            10. Styled JSX CSS Extraction
                           </h4>
-                          <span className="px-2 py-1 rounded-full text-xs font-semibold bg-red-100 dark:bg-red-900/40 text-red-800 dark:text-red-200">
-                            High
+                          <span className="px-2 py-1 rounded-full text-xs font-semibold bg-green-100 dark:bg-green-900/40 text-green-800 dark:text-green-200">
+                            ✅ Fixed in v0.3.5
                           </span>
                         </div>
                         <p className="text-sm text-gray-600 dark:text-gray-400 mb-2">
-                          <strong>Issue:</strong> Styled JSX blocks are detected but CSS content is not extracted.
+                          <strong>Status:</strong> ✅ <strong className="text-green-600 dark:text-green-400">Fixed in v0.3.5</strong> (Verified)
                         </p>
+                        <p className="text-sm text-gray-600 dark:text-gray-400 mb-2">
+                          <strong>Location:</strong> <code className="px-1.5 py-0.5 bg-gray-100 dark:bg-gray-800 rounded text-xs font-mono">src/core/styleExtractor/styledJsx.ts</code> (lines 59-230)
+                        </p>
+                        <p className="text-sm text-gray-600 dark:text-gray-400 mb-2">
+                          <strong>Verified Implementation:</strong> The <code className="px-1.5 py-0.5 bg-gray-100 dark:bg-gray-800 rounded text-xs font-mono">extractStyledJsx()</code> function fully extracts CSS content:
+                        </p>
+                        <ul className="text-sm text-gray-600 dark:text-gray-400 ml-4 list-disc mb-2">
+                          <li>✅ Extracts CSS from <code className="px-1 py-0.5 bg-gray-100 dark:bg-gray-800 rounded text-xs font-mono">&lt;style jsx&gt;</code> template literals</li>
+                          <li>✅ Parses CSS using css-tree AST for selectors and properties</li>
+                          <li>✅ Detects <code className="px-1 py-0.5 bg-gray-100 dark:bg-gray-800 rounded text-xs font-mono">global</code> attribute</li>
+                          <li>✅ Returns <code className="px-1 py-0.5 bg-gray-100 dark:bg-gray-800 rounded text-xs font-mono">{'{'} css: string, global?: boolean, selectors?: string[], properties?: string[] {'}'}</code></li>
+                        </ul>
                         <div className="mt-3 mb-2">
                           <p className="text-xs text-gray-500 dark:text-gray-500 mb-1">Example:</p>
                           <TabbedCodeBlock
                             tabs={[
                               {
                                 label: 'Source has',
-                                code: `<style jsx>{\`
-  @keyframes border-spin { ... }
+                                code: `<style jsx global>{\`
+  body {
+    margin: 0;
+    font-family: sans-serif;
+  }
+  .container {
+    padding: 1rem;
+    color: blue;
+  }
 \`}</style>`,
-                                copyText: `<style jsx>{\`
-  @keyframes border-spin { ... }
+                                copyText: `<style jsx global>{\`
+  body {
+    margin: 0;
+    font-family: sans-serif;
+  }
+  .container {
+    padding: 1rem;
+    color: blue;
+  }
 \`}</style>`
                               },
                               {
-                                label: 'Context shows',
-                                code: `"inlineStyles": true  // But not the actual CSS!`,
-                                copyText: `"inlineStyles": true  // But not the actual CSS!`
+                                label: 'Context.json now shows',
+                                code: `"styledJsx": {
+  "css": "body {\\n  margin: 0;\\n  font-family: sans-serif;\\n}\\n.container {\\n  padding: 1rem;\\n  color: blue;\\n}",
+  "global": true,
+  "selectors": ["body", ".container"],
+  "properties": ["color", "font-family", "margin", "padding"]
+}`,
+                                copyText: `"styledJsx": {
+  "css": "body {\\n  margin: 0;\\n  font-family: sans-serif;\\n}\\n.container {\\n  padding: 1rem;\\n  color: blue;\\n}",
+  "global": true,
+  "selectors": ["body", ".container"],
+  "properties": ["color", "font-family", "margin", "padding"]
+}`
                               }
                             ]}
                           />
                         </div>
                         <p className="text-sm text-gray-600 dark:text-gray-400">
-                          <strong>Missing:</strong> Actual CSS content from <code className="px-1.5 py-0.5 bg-gray-100 dark:bg-gray-800 rounded text-xs font-mono">&lt;style jsx&gt;</code> blocks<br/>
-                          <strong>Impact:</strong> Can't analyze styled-jsx styles
+                          <strong>Features:</strong> Extracts full CSS content from template literals, parses CSS using AST (css-tree) for accurate selector/property extraction, detects <code className="px-1 py-0.5 bg-gray-100 dark:bg-gray-800 rounded text-xs font-mono">global</code> attribute, handles complex selectors, per-block parsing for resilience
                         </p>
                       </div>
 
@@ -870,8 +928,12 @@ style={{ transformOrigin: 'center' }`
                       High Priority
                     </h3>
                     <ol className="space-y-2 text-sm text-gray-600 dark:text-gray-400 ml-4 list-decimal">
-                      <li><strong>Extract inline style values</strong>: Parse <code className="px-1.5 py-0.5 bg-gray-100 dark:bg-gray-800 rounded text-xs font-mono">style={'{'} ... {'}'}</code> objects and include properties</li>
-                      <li><strong>Parse styled-jsx</strong>: Extract CSS from <code className="px-1.5 py-0.5 bg-gray-100 dark:bg-gray-800 rounded text-xs font-mono">&lt;style jsx&gt;</code> blocks</li>
+                      <li><strong>Hook parameter detection</strong>: Extract function signatures for custom hooks</li>
+                      <li><strong>Emit detection accuracy</strong>: Distinguish internal handlers from public API emits</li>
+                      <li><strong>Dynamic class parsing</strong>: Resolve variable-based classes within template literals</li>
+                      <li>~~<strong>Extract inline style values</strong>: Parse <code className="px-1.5 py-0.5 bg-gray-100 dark:bg-gray-800 rounded text-xs font-mono">style={'{'} ... {'}'}</code> objects and include properties~~ ✅ <strong className="text-green-600 dark:text-green-400">Fixed in v0.3.5</strong></li>
+                      <li>~~<strong>Parse styled-jsx</strong>: Extract CSS from <code className="px-1.5 py-0.5 bg-gray-100 dark:bg-gray-800 rounded text-xs font-mono">&lt;style jsx&gt;</code> blocks~~ ✅ <strong className="text-green-600 dark:text-green-400">Fixed in v0.3.5</strong></li>
+                      <li>~~<strong>Populate edges</strong>: Build actual dependency graph edges~~ ✅ <strong className="text-green-600 dark:text-green-400">Implemented</strong></li>
                     </ol>
                   </div>
 
@@ -946,9 +1008,13 @@ style={{ transformOrigin: 'center' }`
                     </h3>
                     <div className="space-y-3">
                       {[
-                        'Style metadata extraction completeness (inline style values, styled-jsx CSS content)',
+                        'Hook parameter detection (parameters not captured)',
+                        'Emit detection accuracy (internal handlers vs. actual emits)',
                         'Dynamic class resolution (variable-based classes within template literals)',
-                        'CSS-in-JS support completeness (remaining libraries like Chakra UI, Ant Design)'
+                        'CSS-in-JS support completeness (remaining libraries like Chakra UI, Ant Design)',
+                        'Third-party component info (package names, versions, prop types)',
+                        'TypeScript type extraction (generics, complex unions/intersections)',
+                        'Context main.json enhancements (cross-folder relationships, project-wide statistics)'
                       ].map((item, idx) => (
                         <div key={idx} className="flex items-start gap-2 p-3 bg-amber-50 dark:bg-amber-950/20 rounded-lg border border-amber-200 dark:border-amber-800">
                           <svg className="w-5 h-5 text-amber-600 dark:text-amber-400 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
