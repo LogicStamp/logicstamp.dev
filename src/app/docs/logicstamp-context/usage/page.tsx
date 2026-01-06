@@ -250,11 +250,11 @@ stamp security --hard-reset [options]  # Reset security configuration`
                   tabs={[
                     {
                       label: 'Examples',
-                      code: `stamp --version    # Shows: fox mascot + "Version: 0.3.4"
+                      code: `stamp --version    # Shows: fox mascot + "Version: 0.3.5"
 stamp -v           # Same as --version
 stamp --help       # Shows main help
 stamp -h           # Same as --help`,
-                      copyText: `stamp --version    # Shows: fox mascot + "Version: 0.3.4"
+                      copyText: `stamp --version    # Shows: fox mascot + "Version: 0.3.5"
 stamp -v           # Same as --version
 stamp --help       # Shows main help
 stamp -h           # Same as --help`

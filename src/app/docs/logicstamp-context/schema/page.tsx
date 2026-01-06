@@ -121,7 +121,7 @@ export default function SchemaPage() {
                       code: `interface UIFContract {
   type: "UIFContract";
   schemaVersion: "0.3";
-  kind: "react:component" | "react:hook" | "typescript:module";
+  kind: "react:component" | "react:hook" | "vue:component" | "vue:composable" | "ts:module" | "node:cli";
   description?: string;
   version: {
     variables: string[];
@@ -134,6 +134,7 @@ export default function SchemaPage() {
     events: Record<string, EventSignature>;
     state: Record<string, StateSignature>;
   };
+  exports?: "default" | "named" | { named: string[] };  // Optional export metadata
   style?: StyleMetadata;  // Optional style metadata (when --include-style is used)
   semanticHash: string; // Format: "uif:..." (24 hex chars)
   fileHash: string;     // Format: "uif:..." (24 hex chars)
@@ -183,7 +184,16 @@ interface StyleSources {
     selectors: string[];
     properties: string[];
   };
-  inlineStyles?: boolean;
+  inlineStyles?: boolean | {
+    properties?: string[]; // CSS property names (e.g., ['animationDelay', 'color', 'padding'])
+    values?: Record<string, string>; // Property-value pairs for literal values (e.g., { animationDelay: '2s', color: 'blue' })
+  };
+  styledJsx?: {
+    css?: string; // Extracted CSS content from <style jsx> blocks
+    global?: boolean; // Whether the style block has global attribute
+    selectors?: string[]; // CSS selectors found in the extracted CSS
+    properties?: string[]; // CSS properties found in the extracted CSS
+  };
   styledComponents?: {
     components?: string[];
     usesTheme?: boolean;
@@ -196,6 +206,17 @@ interface StyleSources {
       gestures?: boolean;
       layoutAnimations?: boolean;
       viewportAnimations?: boolean;
+    };
+  };
+  materialUI?: {
+    components?: string[];
+    packages?: string[];
+    features: {
+      usesTheme?: boolean;
+      usesSxProp?: boolean;
+      usesStyled?: boolean;
+      usesMakeStyles?: boolean;
+      usesSystemProps?: boolean;
     };
   };
 }
@@ -229,7 +250,7 @@ interface PageLayoutMetadata {
                       copyText: `interface UIFContract {
   type: "UIFContract";
   schemaVersion: "0.3";
-  kind: "react:component" | "react:hook" | "typescript:module";
+  kind: "react:component" | "react:hook" | "vue:component" | "vue:composable" | "ts:module" | "node:cli";
   description?: string;
   version: {
     variables: string[];
@@ -242,6 +263,7 @@ interface PageLayoutMetadata {
     events: Record<string, EventSignature>;
     state: Record<string, StateSignature>;
   };
+  exports?: "default" | "named" | { named: string[] };
   style?: StyleMetadata;  // Optional style metadata
   semanticHash: string;
   fileHash: string;
@@ -412,6 +434,12 @@ interface PageLayoutMetadata {
                       <td className="px-2 sm:px-6 py-4 text-sm text-gray-600 dark:text-gray-400">Public API contract</td>
                     </tr>
                     <tr className="hover:bg-gray-50 dark:hover:bg-gray-800/50 transition-colors">
+                      <td className="px-2 sm:px-6 py-4 whitespace-nowrap"><code className="text-xs font-mono">exports</code></td>
+                      <td className="px-2 sm:px-6 py-4"><code className="text-xs font-mono">string | object</code></td>
+                      <td className="px-2 sm:px-6 py-4"><span className="px-2 py-1 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 rounded text-xs">❌</span></td>
+                      <td className="px-2 sm:px-6 py-4 text-sm text-gray-600 dark:text-gray-400">Export metadata: <code className="px-1 bg-gray-100 dark:bg-gray-800 rounded text-xs">"default"</code>, <code className="px-1 bg-gray-100 dark:bg-gray-800 rounded text-xs">"named"</code>, or <code className="px-1 bg-gray-100 dark:bg-gray-800 rounded text-xs">{'{'} named: string[] {'}'}</code></td>
+                    </tr>
+                    <tr className="hover:bg-gray-50 dark:hover:bg-gray-800/50 transition-colors">
                       <td className="px-2 sm:px-6 py-4 whitespace-nowrap"><code className="text-xs font-mono">style</code></td>
                       <td className="px-2 sm:px-6 py-4"><code className="text-xs font-mono">StyleMetadata</code></td>
                       <td className="px-2 sm:px-6 py-4"><span className="px-2 py-1 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 rounded text-xs">❌</span></td>
@@ -459,10 +487,12 @@ interface PageLayoutMetadata {
                         </h4>
                         <ul className="text-xs sm:text-sm text-pink-800 dark:text-pink-200 space-y-1">
                           <li>• <strong>tailwind</strong> - Utility classes categorized by type</li>
-                          <li>• <strong>scssModule</strong> / <strong>cssModule</strong> - Imported style files</li>
-                          <li>• <strong>inlineStyles</strong> - <code className="px-1 bg-pink-100 dark:bg-pink-900/40 rounded text-xs">{'style={{...}}'}</code> usage</li>
-                          <li>• <strong>styledComponents</strong> - Styled-components/Emotion</li>
+                          <li>• <strong>scssModule</strong> / <strong>cssModule</strong> - Imported style files with parsed details</li>
+                          <li>• <strong>inlineStyles</strong> - Property names and literal values extracted from <code className="px-1 bg-pink-100 dark:bg-pink-900/40 rounded text-xs">{'style={{...}}'}</code> objects ✅ <strong className="text-green-600 dark:text-green-400">v0.3.5</strong></li>
+                          <li>• <strong>styledJsx</strong> - CSS content, selectors, properties from <code className="px-1 bg-pink-100 dark:bg-pink-900/40 rounded text-xs">{'<style jsx>'}</code> blocks ✅ <strong className="text-green-600 dark:text-green-400">v0.3.5</strong></li>
+                          <li>• <strong>styledComponents</strong> - Styled-components/Emotion usage</li>
                           <li>• <strong>motion</strong> - Framer Motion components</li>
+                          <li>• <strong>materialUI</strong> - Material UI components and features</li>
                         </ul>
                       </div>
                       <div className="bg-purple-50 dark:bg-purple-950/20 rounded-xl border border-purple-200 dark:border-purple-800 p-4">

@@ -151,11 +151,25 @@ export default function StyleCommandPage() {
                   <div className="p-4 bg-fuchsia-50 dark:bg-fuchsia-950/20 rounded-xl border border-fuchsia-200 dark:border-fuchsia-800">
                     <h4 className="font-semibold text-fuchsia-900 dark:text-fuchsia-200 mb-2 flex items-center gap-2">
                       <Code className="w-5 h-5 text-fuchsia-600 dark:text-fuchsia-400" />
-                      Inline Styles
+                      Inline Styles ✅ v0.3.5
                     </h4>
-                    <p className="text-sm text-fuchsia-800 dark:text-fuchsia-300">
-                      Detects <code className="px-1 py-0.5 bg-fuchsia-100 dark:bg-fuchsia-900/40 rounded text-xs font-mono">style=&#123;&#123;...&#125;&#125;</code> usage
-                    </p>
+                    <ul className="text-sm text-fuchsia-800 dark:text-fuchsia-300 space-y-1 ml-4 list-disc">
+                      <li>CSS property names extracted</li>
+                      <li>Literal property values extracted (strings, numbers, booleans, null, template literals)</li>
+                      <li>Dynamic values detected as properties but values not extracted (static analysis limitation)</li>
+                    </ul>
+                  </div>
+                  <div className="p-4 bg-purple-50 dark:bg-purple-950/20 rounded-xl border border-purple-200 dark:border-purple-800">
+                    <h4 className="font-semibold text-purple-900 dark:text-purple-200 mb-2 flex items-center gap-2">
+                      <Code className="w-5 h-5 text-purple-600 dark:text-purple-400" />
+                      Styled JSX ✅ v0.3.5
+                    </h4>
+                    <ul className="text-sm text-purple-800 dark:text-purple-300 space-y-1 ml-4 list-disc">
+                      <li>Full CSS content extraction from <code className="px-1 py-0.5 bg-purple-100 dark:bg-purple-900/40 rounded text-xs font-mono">{'<style jsx>'}</code> blocks</li>
+                      <li>CSS selector extraction (parsed using css-tree AST)</li>
+                      <li>CSS property extraction</li>
+                      <li>Global attribute detection (<code className="px-1 py-0.5 bg-purple-100 dark:bg-purple-900/40 rounded text-xs font-mono">{'<style jsx global>'}</code>)</li>
+                    </ul>
                   </div>
                   <div className="p-4 bg-violet-50 dark:bg-violet-950/20 rounded-xl border border-violet-200 dark:border-violet-800">
                     <h4 className="font-semibold text-violet-900 dark:text-violet-200 mb-2 flex items-center gap-2">
@@ -713,7 +727,8 @@ stamp context --include-style`
                       <li><code className="px-1 py-0.5 bg-gray-100 dark:bg-gray-800 rounded text-xs font-mono">tailwind</code> – Object with categorized classes, breakpoints, and class count</li>
                       <li><code className="px-1 py-0.5 bg-gray-100 dark:bg-gray-800 rounded text-xs font-mono">scssModule</code> / <code className="px-1 py-0.5 bg-gray-100 dark:bg-gray-800 rounded text-xs font-mono">cssModule</code> – Path to module file (if imported)</li>
                       <li><code className="px-1 py-0.5 bg-gray-100 dark:bg-gray-800 rounded text-xs font-mono">scssDetails</code> / <code className="px-1 py-0.5 bg-gray-100 dark:bg-gray-800 rounded text-xs font-mono">cssDetails</code> – Parsed details from style files</li>
-                      <li><code className="px-1 py-0.5 bg-gray-100 dark:bg-gray-800 rounded text-xs font-mono">inlineStyles</code> – Boolean indicating inline style usage</li>
+                      <li><code className="px-1 py-0.5 bg-gray-100 dark:bg-gray-800 rounded text-xs font-mono">inlineStyles</code> – Can be <code className="px-1 py-0.5 bg-gray-100 dark:bg-gray-800 rounded text-xs font-mono">boolean</code> (legacy) or object with <code className="px-1 py-0.5 bg-gray-100 dark:bg-gray-800 rounded text-xs font-mono">properties</code> (array) and <code className="px-1 py-0.5 bg-gray-100 dark:bg-gray-800 rounded text-xs font-mono">values</code> (record of property-value pairs) ✅ v0.3.5</li>
+                      <li><code className="px-1 py-0.5 bg-gray-100 dark:bg-gray-800 rounded text-xs font-mono">styledJsx</code> – Object with <code className="px-1 py-0.5 bg-gray-100 dark:bg-gray-800 rounded text-xs font-mono">css</code> (extracted CSS content), <code className="px-1 py-0.5 bg-gray-100 dark:bg-gray-800 rounded text-xs font-mono">global</code> (boolean), <code className="px-1 py-0.5 bg-gray-100 dark:bg-gray-800 rounded text-xs font-mono">selectors</code> (array), and <code className="px-1 py-0.5 bg-gray-100 dark:bg-gray-800 rounded text-xs font-mono">properties</code> (array) ✅ v0.3.5</li>
                       <li><code className="px-1 py-0.5 bg-gray-100 dark:bg-gray-800 rounded text-xs font-mono">styledComponents</code> – Object with component names and theme usage</li>
                       <li><code className="px-1 py-0.5 bg-gray-100 dark:bg-gray-800 rounded text-xs font-mono">motion</code> – Object with framer-motion components and features</li>
                       <li><code className="px-1 py-0.5 bg-gray-100 dark:bg-gray-800 rounded text-xs font-mono">materialUI</code> – Object with Material UI components, packages, and styling features</li>
