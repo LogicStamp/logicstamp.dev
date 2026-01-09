@@ -31,11 +31,11 @@ export default function PrivacySecurityPage() {
                   Information We Collect
                 </h3>
                 <p className="text-gray-700 dark:text-gray-300 mb-4">
-                  LogicStamp is committed to protecting your privacy. We collect minimal information necessary to provide our services. We only collect this information if you actively choose to subscribe to the newsletter or contact us.
+                  LogicStamp is committed to protecting your privacy. We collect minimal information necessary to provide our services. We only collect this information if you actively choose to subscribe to our newsletter or beta list, or email us.
                 </p>
                 <ul className="list-disc pl-6 mb-4 text-gray-700 dark:text-gray-300 space-y-2">
                   <li>
-                    <strong>Email Address:</strong> If you subscribe to our newsletter, we collect your email address to send you updates about LogicStamp.
+                    <strong>Email Address:</strong> If you subscribe to our newsletter or beta list, we collect your email address to send you updates about LogicStamp.
                   </li>
                   <li>
                     <strong>Subscription Metadata:</strong> We store a timestamp of when you subscribed and an internal ID for managing the list. This is stored securely in our database (Supabase).
@@ -52,7 +52,7 @@ export default function PrivacySecurityPage() {
                   We use the information we collect solely for the following purposes:
                 </p>
                 <ul className="list-disc pl-6 mb-4 text-gray-700 dark:text-gray-300 space-y-2">
-                  <li>To send you newsletter updates (if you've subscribed)</li>
+                  <li>To send you newsletter updates or beta announcements (if you've subscribed)</li>
                   <li>To maintain your theme preference across sessions</li>
                   <li>To improve our website and services</li>
                 </ul>
@@ -61,7 +61,7 @@ export default function PrivacySecurityPage() {
                   Data Storage and Security
                 </h3>
                 <p className="text-gray-700 dark:text-gray-300 mb-4">
-                  Email addresses are stored in Supabase with Row-Level Security (RLS) enabled, ensuring only authorized service operations can access subscriber data. We implement appropriate technical and organizational measures to protect your personal information against unauthorized access, alteration, disclosure, or destruction.
+                  Email addresses are stored securely in Supabase. Subscriber data is not publicly readable, and access is restricted to authorized backend services. We implement appropriate technical and organizational measures to protect your personal information against unauthorized access, alteration, disclosure, or destruction.
                 </p>
 
                 <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-3 mt-6">
@@ -113,10 +113,10 @@ export default function PrivacySecurityPage() {
                   <li>Request access to your personal information</li>
                   <li>Request correction of inaccurate information</li>
                   <li>Request deletion of your personal information</li>
-                  <li>Unsubscribe from our newsletter at any time</li>
+                  <li>Unsubscribe from our newsletter or beta list at any time</li>
                 </ul>
                 <p className="text-gray-700 dark:text-gray-300 mb-4">
-                  Every newsletter email contains an unsubscribe link that allows you to opt out immediately. You can also contact us directly to exercise any of these rights at{' '}
+                  Every email we send contains an unsubscribe link that allows you to opt out immediately. You can also contact us directly to exercise any of these rights at{' '}
                   <a
                     href="mailto:logicstamp.dev@gmail.com"
                     className="text-blue-600 dark:text-blue-400 hover:underline"
@@ -130,7 +130,7 @@ export default function PrivacySecurityPage() {
                   Data Retention
                 </h3>
                 <p className="text-gray-700 dark:text-gray-300 mb-4">
-                  We retain your email address for as long as you remain subscribed to our newsletter. If you unsubscribe using the link in our emails or contact us to remove your data, we will delete your email address from our database. Theme preferences stored in your browser remain until you clear them.
+                  We retain your email address for as long as you remain subscribed to our newsletter or beta list. If you unsubscribe using the link in our emails or contact us to remove your data, we will delete your email address from our database. Theme preferences stored in your browser remain until you clear them.
                 </p>
 
                 <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-3 mt-6">

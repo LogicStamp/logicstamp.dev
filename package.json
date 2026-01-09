@@ -1,14 +1,14 @@
 {
   "name": "logicstamp-landing",
   "version": "0.1.2",
-  "author": "Amit Levi <amit23082@gmail.com> (https://amitlevi.dev)",
+  "author": "Amit Levi <logicstamp.dev@gmail.com> (https://amitlevi.dev)",
   "contributors": [
     "LogicStamp Contributors"
   ],
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/LogicStamp/logicstamp.dev.git"
+    "url": "https://github.com/LogicStamp/logicstamp.dev"
   },
   "scripts": {
     "dev": "next dev",
