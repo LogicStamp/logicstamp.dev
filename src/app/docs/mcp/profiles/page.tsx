@@ -74,7 +74,7 @@ export default function MCPProfilesPage() {
                 <div className="p-4 bg-indigo-50 dark:bg-indigo-950/20 border-l-4 border-indigo-500 rounded-r-lg">
                   <h3 className="font-semibold text-gray-900 dark:text-white mb-2">Configuration</h3>
                   <ul className="list-disc list-inside space-y-1 text-sm text-gray-600 dark:text-gray-400 ml-4">
-                    <li><strong>Depth:</strong> 1 (analyzes direct dependencies)</li>
+                    <li><strong>Depth:</strong> 2 (analyzes nested components)</li>
                     <li><strong>Mode:</strong> header (contracts + JSDoc headers)</li>
                     <li><strong>Max nodes:</strong> 100 per bundle</li>
                   </ul>
@@ -120,7 +120,7 @@ export default function MCPProfilesPage() {
                 <div className="p-4 bg-indigo-50 dark:bg-indigo-950/20 border-l-4 border-indigo-500 rounded-r-lg">
                   <h3 className="font-semibold text-gray-900 dark:text-white mb-2">Configuration</h3>
                   <ul className="list-disc list-inside space-y-1 text-sm text-gray-600 dark:text-gray-400 ml-4">
-                    <li><strong>Depth:</strong> 1 (analyzes direct dependencies)</li>
+                    <li><strong>Depth:</strong> 2 (analyzes nested components)</li>
                     <li><strong>Mode:</strong> header (contracts + JSDoc headers)</li>
                     <li><strong>Max nodes:</strong> 30 per bundle (reduced from 100)</li>
                   </ul>
@@ -166,7 +166,7 @@ export default function MCPProfilesPage() {
                 <div className="p-4 bg-indigo-50 dark:bg-indigo-950/20 border-l-4 border-indigo-500 rounded-r-lg">
                   <h3 className="font-semibold text-gray-900 dark:text-white mb-2">Configuration</h3>
                   <ul className="list-disc list-inside space-y-1 text-sm text-gray-600 dark:text-gray-400 ml-4">
-                    <li><strong>Depth:</strong> 1 (analyzes direct dependencies)</li>
+                    <li><strong>Depth:</strong> 2 (analyzes nested components)</li>
                     <li><strong>Mode:</strong> none (contracts only, no source code)</li>
                     <li><strong>Max nodes:</strong> 100 per bundle</li>
                     <li><strong>Strict validation:</strong> Enabled (fails on missing dependencies)</li>

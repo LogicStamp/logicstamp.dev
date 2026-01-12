@@ -84,18 +84,18 @@ export default function MCPReferencePage() {
   "profile": "llm-chat",      // optional: llm-chat | llm-safe | ci-strict
   "mode": "header",            // optional: none | header | full
   "includeStyle": false,       // optional: include style metadata
-  "depth": 1,                  // optional: dependency depth (default: 1, recommended: 2 for React projects)
+  "depth": 2,                  // optional: dependency depth (default: 2)
   "projectPath": "/abs/path",  // REQUIRED: absolute path to project root
   "cleanCache": false          // optional: force cache cleanup (default: false)
 }`,
-                      copyText: JSON.stringify({ profile: "llm-chat", mode: "header", includeStyle: false, depth: 1, projectPath: "/abs/path", cleanCache: false }, null, 2)
+                      copyText: JSON.stringify({ profile: "llm-chat", mode: "header", includeStyle: false, depth: 2, projectPath: "/abs/path", cleanCache: false }, null, 2)
                     }
                   ]}
                 />
               </div>
               <div className="mb-4 bg-yellow-50 dark:bg-yellow-950/20 border-l-4 border-yellow-500 p-3 sm:p-4 rounded-r-lg">
                 <p className="text-sm text-gray-700 dark:text-gray-300">
-                  <strong>Note on Depth Parameter:</strong> <strong>RECOMMENDED: Start with <code className="px-1.5 py-0.5 bg-yellow-100 dark:bg-yellow-900/40 rounded font-mono text-xs">depth: 2</code> for React projects.</strong> The default depth=1 only includes direct component dependencies (e.g., App → Hero). With depth=2, nested components are included (e.g., App → Hero → Button), ensuring you see the full component tree with contracts and styles. For React projects with component hierarchies, explicitly set <code className="px-1.5 py-0.5 bg-yellow-100 dark:bg-yellow-900/40 rounded font-mono text-xs">depth: 2</code> in your first refresh_snapshot call.
+                  <strong>Note on Depth Parameter:</strong> The default depth=2 includes nested components (e.g., App → Hero → Button), ensuring you see the full component tree with contracts and styles. Depth=1 only includes direct component dependencies (e.g., App → Hero). For React projects with component hierarchies, the default depth=2 is recommended.
                 </p>
               </div>
               <div className="mb-4">
@@ -293,12 +293,12 @@ export default function MCPReferencePage() {
   "profile": "llm-chat",      // optional: analysis profile (default: llm-chat)
   "mode": "header",            // optional: code inclusion mode (default: header)
   "includeStyle": false,       // optional: include style metadata (only when forceRegenerate: true)
-  "depth": 1,                  // optional: dependency depth (only when forceRegenerate: true)
+  "depth": 2,                  // optional: dependency depth (default: 2, only when forceRegenerate: true)
   "forceRegenerate": false,    // optional: regenerate context before comparing (default: false)
   "projectPath": "/abs/path",  // optional: defaults to current working directory
   "baseline": "disk"           // optional: disk | snapshot | git:<ref> (default: disk)
 }`,
-                      copyText: JSON.stringify({ profile: "llm-chat", mode: "header", includeStyle: false, depth: 1, forceRegenerate: false, projectPath: "/abs/path", baseline: "disk" }, null, 2)
+                      copyText: JSON.stringify({ profile: "llm-chat", mode: "header", includeStyle: false, depth: 2, forceRegenerate: false, projectPath: "/abs/path", baseline: "disk" }, null, 2)
                     }
                   ]}
                 />
@@ -423,7 +423,7 @@ export default function MCPReferencePage() {
                   <div>
                     <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-3">depth</h3>
                     <p className="text-sm text-gray-600 dark:text-gray-400 mb-2">
-                      Dependency traversal depth. <strong>RECOMMENDED: Start with <code className="px-1.5 py-0.5 bg-gray-100 dark:bg-gray-800 text-indigo-600 dark:text-indigo-400 rounded font-mono text-xs">depth: 2</code> for React projects.</strong> Default depth=1 only includes direct dependencies (e.g., App → Hero). With depth=2, nested components are included (e.g., App → Hero → Button), ensuring you see the full component tree with contracts and styles. Only used when <code className="px-1.5 py-0.5 bg-gray-100 dark:bg-gray-800 text-indigo-600 dark:text-indigo-400 rounded font-mono text-xs">forceRegenerate: true</code> in <code className="px-1.5 py-0.5 bg-gray-100 dark:bg-gray-800 text-indigo-600 dark:text-indigo-400 rounded font-mono text-xs">compare_snapshot</code>.
+                      Dependency traversal depth. Default depth=2 includes nested components (e.g., App → Hero → Button), ensuring you see the full component tree with contracts and styles. Depth=1 only includes direct dependencies (e.g., App → Hero). Only used when <code className="px-1.5 py-0.5 bg-gray-100 dark:bg-gray-800 text-indigo-600 dark:text-indigo-400 rounded font-mono text-xs">forceRegenerate: true</code> in <code className="px-1.5 py-0.5 bg-gray-100 dark:bg-gray-800 text-indigo-600 dark:text-indigo-400 rounded font-mono text-xs">compare_snapshot</code>.
                     </p>
                   </div>
 

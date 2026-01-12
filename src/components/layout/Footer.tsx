@@ -99,7 +99,7 @@ export default function Footer() {
                   <LogicStampWordmark height={20} className="block sm:hidden" />
                 </a>
                 <p className="mt-2 max-w-xs text-sm leading-relaxed text-gray-500 dark:text-gray-400">
-                  AI-ready context from your codebase. <br /> Open-source, zero-config.
+                  AI-ready context from your codebase. <br /> Open-source, one-time setup.
                 </p>
               </div>
 

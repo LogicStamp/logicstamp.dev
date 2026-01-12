@@ -41,7 +41,7 @@ export default function QuickStartPage() {
               <div className="flex flex-wrap gap-4 sm:gap-6 mt-6 sm:mt-8">
                 <div className="flex items-center gap-2">
                   <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse" />
-                  <span className="text-xs sm:text-sm font-medium text-gray-600 dark:text-gray-400">Zero configuration</span>
+                  <span className="text-xs sm:text-sm font-medium text-gray-600 dark:text-gray-400">One-time setup</span>
                 </div>
                 <div className="flex items-center gap-2">
                   <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse" />
@@ -772,7 +772,7 @@ export default function QuickStartPage() {
                     </div>
                     <div className="text-center p-3 sm:p-4 bg-teal-50 dark:bg-teal-950/20 rounded-xl">
                       <p className="text-2xl sm:text-3xl font-bold text-teal-600 dark:text-teal-400">100%</p>
-                      <p className="text-xs sm:text-sm text-gray-600 dark:text-gray-400 mt-1">Zero configuration</p>
+                      <p className="text-xs sm:text-sm text-gray-600 dark:text-gray-400 mt-1">One-time setup</p>
                     </div>
                   </div>
                   

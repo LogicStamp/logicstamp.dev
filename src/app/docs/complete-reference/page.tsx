@@ -441,7 +441,7 @@ export default function CompleteReferencePage() {
                   </thead>
                   <tbody className="divide-y divide-gray-200 dark:divide-gray-700">
                     {[
-                      { option: "--depth <n>", alias: "-d", desc: "Dependency traversal depth. Recommended: depth=2 for React projects to include nested components (e.g., App → Hero → Button). Default depth=1 only includes direct dependencies.", default: "1" },
+                      { option: "--depth <n>", alias: "-d", desc: "Dependency traversal depth. Default depth=2 includes nested components (e.g., App → Hero → Button). Depth=1 only includes direct dependencies.", default: "2" },
                       { option: "--include-code <mode>", alias: "-c", desc: "Code inclusion: none, header, or full", default: "header" },
                       { option: "--format <format>", alias: "-f", desc: "Output format: json, pretty, ndjson, or toon", default: "json" },
                       { option: "--out <file>", alias: "-o", desc: "Output directory or file path", default: "context.json" },
@@ -494,7 +494,7 @@ export default function CompleteReferencePage() {
                   desc: "Balanced mode for AI chat interfaces",
                   color: "blue",
                   settings: [
-                    "Depth: 1",
+                    "Depth: 2",
                     "Code: headers only",
                     "Max nodes: 100"
                   ]
@@ -504,7 +504,7 @@ export default function CompleteReferencePage() {
                   desc: "Conservative mode for token-limited contexts",
                   color: "green",
                   settings: [
-                    "Depth: 1",
+                    "Depth: 2",
                     "Code: headers only",
                     "Max nodes: 30"
                   ]

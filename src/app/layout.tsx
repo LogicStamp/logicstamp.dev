@@ -17,7 +17,7 @@ const inter = Inter({
 
 export const metadata: Metadata = {
   title: 'LogicStamp - AI-Ready Context From Your Codebase',
-  description: 'A tiny CLI that compiles your React/TypeScript codebase into machine-readable context bundles for AI and CI. Fast, deterministic, zero-config.',
+  description: 'A tiny CLI that compiles your React/TypeScript codebase into machine-readable context bundles for AI and CI. Fast, deterministic, one-time setup.',
   keywords: ['logicstamp', 'AI context', 'codebase analysis', 'React', 'TypeScript', 'Claude', 'ChatGPT', 'context bundles', 'token optimization'],
   icons: {
     icon: [

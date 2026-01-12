@@ -347,9 +347,9 @@ export default function StyleCommandPage() {
                           <code className="px-1.5 py-0.5 bg-blue-100 dark:bg-blue-900/40 text-blue-900 dark:text-blue-100 rounded text-xs font-mono">-d</code>
                         </td>
                         <td className="px-2 sm:px-6 py-4 whitespace-nowrap">
-                          <code className="px-1.5 py-0.5 bg-blue-100 dark:bg-blue-900/40 text-blue-900 dark:text-blue-100 rounded text-xs font-mono">1</code>
+                          <code className="px-1.5 py-0.5 bg-blue-100 dark:bg-blue-900/40 text-blue-900 dark:text-blue-100 rounded text-xs font-mono">2</code>
                         </td>
-                        <td className="px-2 sm:px-6 py-4 text-sm text-gray-600 dark:text-gray-400">Dependency traversal depth (<code className="px-1 py-0.5 bg-gray-100 dark:bg-gray-800 rounded text-xs font-mono">0</code> = entry only, <code className="px-1 py-0.5 bg-gray-100 dark:bg-gray-800 rounded text-xs font-mono">1</code> = direct deps, etc.).</td>
+                        <td className="px-2 sm:px-6 py-4 text-sm text-gray-600 dark:text-gray-400">Dependency traversal depth (<code className="px-1 py-0.5 bg-gray-100 dark:bg-gray-800 rounded text-xs font-mono">0</code> = entry only, <code className="px-1 py-0.5 bg-gray-100 dark:bg-gray-800 rounded text-xs font-mono">1</code> = direct deps, <code className="px-1 py-0.5 bg-gray-100 dark:bg-gray-800 rounded text-xs font-mono">2</code> = nested components, etc.). See <a href="/docs/logicstamp-context/context#depth-parameter" className="text-blue-600 dark:text-blue-400 hover:underline">context.md</a> for details.</td>
                       </tr>
                       <tr className="hover:bg-gray-50 dark:hover:bg-gray-800/50 transition-colors bg-green-50/30 dark:bg-green-950/20">
                         <td className="px-2 sm:px-6 py-4 whitespace-nowrap">

@@ -23,7 +23,7 @@ const stats = [
     description: 'Generated for AI assistants and CI/CD pipelines',
   },
   {
-    name: 'Zero Config',
+    name: 'One-time Setup',
     value: 100,
     suffix: '%',
     description: 'Works instantly with React/TypeScript projects',
