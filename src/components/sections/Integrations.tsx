@@ -112,8 +112,8 @@ const integrations = [
     isFeatured: true,
   },
   {
-    name: 'Vue',
-    description: 'Vue 3 Composition API support for TypeScript/TSX files. Single File Component (.vue) support planned',
+    name: 'Vue Single File Components',
+    description: 'Vue 3 Composition API support for TypeScript/TSX files available now. Single File Component (.vue) support coming soon',
     icon: VueIcon,
     gradient: 'from-blue-500/20 via-purple-500/20 to-indigo-600/20',
     borderGradient: 'from-blue-500 via-purple-500 to-indigo-600',
