@@ -112,13 +112,14 @@ const integrations = [
     isFeatured: true,
   },
   {
-    name: 'Vue',
-    description: 'Vue 3 Composition API support for TypeScript/TSX files is available now. Single File Component (.vue) support planned',
+    name: 'Vue Single File Components',
+    description: 'Vue 3 Composition API support for TypeScript/TSX files available now. Single File Component (.vue) support coming soon',
     icon: VueIcon,
     gradient: 'from-blue-500/20 via-purple-500/20 to-indigo-600/20',
     borderGradient: 'from-blue-500 via-purple-500 to-indigo-600',
     iconBg: 'from-blue-500/10 to-indigo-600/10',
     features: ['Composition API tracking (TS/TSX)', 'Props and emits extraction', '.vue SFC support planned'],
+    comingSoon: true,
   },
   {
     name: 'Watch Mode',
