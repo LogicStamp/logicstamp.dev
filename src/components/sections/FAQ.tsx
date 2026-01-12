@@ -48,25 +48,25 @@ const faqs = [
     id: 3,
     question: 'Is there a free version?',
     answer:
-      'Yes! LogicStamp Context is completely free and open-source.\nInstall it globally with npm i -g logicstamp-context and use it without limits.\nThe CLI is production-ready and includes context generation, drift detection, validation, and token optimization.\nUpcoming enhancements include advanced contract verification and enhanced contract management features.',
+      'Yes! LogicStamp Context is completely free and open-source.\nInstall it globally with npm i -g logicstamp-context and use it without limits.\nThe CLI (v0.3.6) is production-ready and includes context generation, drift detection, validation, token optimization, security scanning, and style metadata extraction.\nAll features are available at no cost.',
   },
   {
     id: 4,
     question: 'What frameworks are supported?',
     answer:
-      'Currently supports React and TypeScript projects (including Next.js).\nMCP integration is available in beta (v0.1.0). Coming soon: Vue 3 and other modern frameworks.\nWorks with any React/TypeScript codebase regardless of styling solution (Tailwind, styled-components, CSS modules, etc.).',
+      'Currently supports React and TypeScript projects (including Next.js), plus Vue 3 TypeScript/TSX files.\nMCP integration is available (v0.1.2) for Cursor, Claude Desktop, and Claude CLI.\nWorks with any React/TypeScript codebase regardless of styling solution (Tailwind, styled-components, CSS modules, Material UI, ShadCN/UI, Radix UI, Framer Motion, etc.).\nNote: Vue Single File Components (.vue files) support is planned for a future release.',
   },
   {
     id: 5,
     question: 'How do I get started?',
     answer:
-      'Install globally with `npm i -g logicstamp-context`, navigate to your project directory, and run `stamp context`.\nThe CLI generates multiple `context.json` files (one per folder) plus a `context_main.json` index with AI-ready bundles.\nShare these files with Claude, ChatGPT, or any AI assistant for instant codebase understanding.\nUse `stamp context validate` to verify the output.',
+      'Install globally with `npm i -g logicstamp-context`, then run `stamp init` in your project directory (recommended for first-time setup—sets up .gitignore patterns and scans for secrets).\nNext, run `stamp context` to generate multiple `context.json` files (one per folder) plus a `context_main.json` index with AI-ready bundles.\nShare these files with Claude, ChatGPT, or any AI assistant for instant codebase understanding.\nUse `stamp context validate` to verify the output, or try the MCP integration for real-time analysis in Cursor, Claude Desktop, or Claude CLI.',
   },
   {
     id: 6,
     question: 'How does token optimization work?',
     answer:
-      'LogicStamp Context offers three modes: `none` (contracts only, up to 80% savings), `header` (recommended, up to 65% savings with JSDoc headers), and `full` (complete source).\nThe header mode includes just enough context for AI to understand component logic without wasting tokens on implementation details.\nUse `--compare-modes` to see exact savings for your codebase.\n\nToken estimation: LogicStamp Context includes @dqbd/tiktoken (GPT-4) and @anthropic-ai/tokenizer (Claude) as optional dependencies. npm will automatically attempt to install them when you install logicstamp-context. If installation succeeds, you get model-accurate token counts. If installation fails or is skipped (normal for optional dependencies), the tool gracefully falls back to character-based estimation. Manual installation is optional—only needed if you need accurate token counts AND automatic installation failed: npm install @dqbd/tiktoken @anthropic-ai/tokenizer',
+      'LogicStamp Context offers three modes: `none` (contracts only, ~79% savings vs full context), `header` (recommended, ~65% savings vs full context, ~70% vs raw source), and `full` (complete source).\nThe header mode includes just enough context for AI to understand component logic without wasting tokens on implementation details.\nUse `stamp context --compare-modes` to see exact savings for your codebase.\n\nToken estimation: LogicStamp Context includes @dqbd/tiktoken (GPT-4) and @anthropic-ai/tokenizer (Claude) as optional dependencies. npm will automatically attempt to install them when you install logicstamp-context. If installation succeeds, you get model-accurate token counts. If installation fails or is skipped (normal for optional dependencies), the tool gracefully falls back to character-based estimation. Manual installation is optional—only needed if you need accurate token counts AND automatic installation failed: npm install @dqbd/tiktoken @anthropic-ai/tokenizer',
   },
   {
     id: 7,
@@ -78,13 +78,13 @@ const faqs = [
     id: 8,
     question: 'What does `stamp context style` do?',
     answer:
-      'The `stamp context style` command generates context bundles with visual and layout metadata included.\nIt extracts style information from your components including Tailwind CSS classes, SCSS/CSS modules, inline styles, styled-components/Emotion, framer-motion animations, and Material UI components.\nThis enables AI assistants to understand visual design, suggest visually consistent components, analyze layout patterns, track color palettes, and identify animations.\nUse it when you need AI to understand the visual aspects of your UI, not just the logic. Note: Style metadata adds more tokens (~58-65% of raw source vs ~30% for header mode), so use `--compare-modes` to see the exact cost impact for your codebase.',
+      'The `stamp context style` command generates context bundles with visual and layout metadata included.\nIt extracts style information from your components including Tailwind CSS classes, SCSS/CSS modules, inline styles, styled-components/Emotion, framer-motion animations, Material UI, ShadCN/UI, Radix UI, and Styled JSX.\nThis enables AI assistants to understand visual design, suggest visually consistent components, analyze layout patterns, track color palettes, and identify animations.\nUse it when you need AI to understand the visual aspects of your UI, not just the logic. Note: Style metadata adds more tokens (~52-65% of raw source vs ~30% for header mode), so use `--compare-modes` to see the exact cost impact for your codebase.',
   },
   {
     id: 9,
     question: 'Is watch mode available?',
     answer:
-      'Watch mode is currently under evaluation.\nThe context and compare workflow may work better with MCP (Model Context Protocol) integration without watch mode, as MCP provides more efficient and controlled context updates.\nWe\'re exploring whether watch mode adds value or if the MCP-based approach offers a superior developer experience.',
+      'Watch mode is planned for v0.4.x (not yet implemented).\nThe MCP (Model Context Protocol) integration provides efficient context updates on-demand, which may be preferable to automatic watch mode.\nFor now, regenerate context with `stamp context` when needed, or use MCP tools for real-time analysis.\nWhen implemented, watch mode will automatically regenerate context files when source files change, with incremental updates and debouncing.',
   },
 ]
 
@@ -208,7 +208,7 @@ export default function FAQ() {
                         aria-expanded={isOpen}
                         aria-controls={`faq-answer-${faq.id}`}
                       >
-                        <span className="text-lg lg:text-xl font-semibold leading-7 text-gray-900 dark:text-white">
+                        <span className="text-xl lg:text-2xl font-semibold leading-7 text-gray-900 dark:text-white">
                           {faq.question}
                         </span>
                         <div
@@ -266,7 +266,7 @@ export default function FAQ() {
                       `}
                     >
                       <div className="overflow-hidden">
-                        <p className="text-base lg:text-lg leading-7 text-gray-600 dark:text-gray-300 pr-2 sm:pr-8 whitespace-pre-line">
+                        <p className="text-lg lg:text-xl leading-7 text-gray-600 dark:text-gray-300 pr-2 sm:pr-8 whitespace-pre-line">
                           {faq.answer}
                         </p>
                       </div>

@@ -10,11 +10,47 @@ function useInView(threshold = 0.1, resetTrigger?: any) {
   const [inView, setInView] = useState(false)
 
   useEffect(() => {
-    // Reset inView when resetTrigger changes
-    setInView(false)
-  }, [resetTrigger])
+    const element = ref.current
+    if (!element) return
 
-  useEffect(() => {
+    // Check if element is already visible synchronously before resetting
+    // This prevents flash when switching tabs
+    const rect = element.getBoundingClientRect()
+    const windowHeight = window.innerHeight
+    const windowWidth = window.innerWidth
+    
+    // Check if element is visible in viewport
+    const isVisible = (
+      rect.top < windowHeight &&
+      rect.bottom > 0 &&
+      rect.left < windowWidth &&
+      rect.right > 0
+    )
+    
+    // Calculate intersection ratio manually for threshold check
+    let shouldShowImmediately = false
+    if (isVisible) {
+      const visibleHeight = Math.min(rect.bottom, windowHeight) - Math.max(rect.top, 0)
+      const visibleWidth = Math.min(rect.right, windowWidth) - Math.max(rect.left, 0)
+      const visibleArea = Math.max(0, visibleHeight) * Math.max(0, visibleWidth)
+      const elementArea = rect.height * rect.width
+      const intersectionRatio = elementArea > 0 ? visibleArea / elementArea : 0
+      
+      if (intersectionRatio >= threshold) {
+        shouldShowImmediately = true
+      }
+    }
+
+    // If element is already visible, show it immediately to prevent flash
+    if (shouldShowImmediately) {
+      setInView(true)
+      // Still set up observer in case element scrolls out and back in
+      // but disconnect immediately since we already know it's visible
+    } else {
+      // Reset and wait for intersection observer
+      setInView(false)
+    }
+
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
@@ -25,8 +61,10 @@ function useInView(threshold = 0.1, resetTrigger?: any) {
       { threshold }
     )
 
-    if (ref.current) {
-      observer.observe(ref.current)
+    // Only observe if we haven't already determined it's visible
+    // This prevents unnecessary observation when element is already visible
+    if (!shouldShowImmediately) {
+      observer.observe(element)
     }
 
     return () => observer.disconnect()
@@ -594,12 +632,12 @@ export default function Demo() {
   const workflowScrollRef = useRef<HTMLDivElement>(null)
 
   // Intersection observer hooks for animations
-  // Reset contentRef animation when switching tabs
+  // Reset contentRef and ctaRef animation when switching tabs
   const { ref: headerRef, inView: headerInView } = useInView(0.1)
   const { ref: pillsRef, inView: pillsInView } = useInView(0.1)
   const { ref: contentRef, inView: contentInView } = useInView(0.1, activeTab)
   const { ref: terminalRef, inView: terminalInView } = useInView(0.1)
-  const { ref: ctaRef, inView: ctaInView } = useInView(0.1)
+  const { ref: ctaRef, inView: ctaInView } = useInView(0.1, activeTab)
 
   // Auto-scroll terminal
   useEffect(() => {
