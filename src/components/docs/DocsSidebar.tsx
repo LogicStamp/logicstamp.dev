@@ -513,7 +513,7 @@ export default function DocsSidebar() {
   }, [pathname])
 
   return (
-    <nav className="text-sm flex flex-col lg:max-h-[calc(100vh-8rem)]">
+    <nav className="text-sm flex flex-col lg:h-full lg:max-h-[calc(100vh-8rem)]">
       {/* Mascot at the top - fixed, not scrollable */}
       <div className="mb-6 pb-6 border-b border-gray-200 dark:border-gray-700 shrink-0">
         <Link
@@ -538,7 +538,7 @@ export default function DocsSidebar() {
       </div>
       
       {/* Scrollable content starting from Overview */}
-      <div className="flex-1 overflow-y-auto lg:pr-2 sidebar-scrollable space-y-7">
+      <div className="flex-1 min-h-0 overflow-y-auto lg:pr-2 sidebar-scrollable space-y-7">
         {sections.map((section) => {
           const isCliSection = section.title === 'CLI'
           const isGuidesSection = section.title === 'Guides'

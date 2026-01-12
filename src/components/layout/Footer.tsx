@@ -231,7 +231,7 @@ export default function Footer() {
                   />
                 </div>
                 <ThemeToggle compact />
-                <div className="flex items-center gap-5">
+                <div className="flex items-center gap-5 mt-4 md:mt-0">
                   <a
                     href="https://github.com/LogicStamp"
                     target="_blank"

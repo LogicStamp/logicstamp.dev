@@ -229,11 +229,11 @@ export default function Header() {
           </div>
 
           {/* Theme toggle + Get Started button */}
-          <div className="mt-5 pt-5 border-t border-gray-200/50 dark:border-gray-700/50 space-y-4">
+          <div className="mt-5 pt-5 border-t border-gray-200/50 dark:border-gray-700/50">
             <div className="flex justify-center">
               <ThemeToggle compact />
             </div>
-            <div onClick={() => setMobileMenuOpen(false)}>
+            <div onClick={() => setMobileMenuOpen(false)} className="mt-6">
               <GetStartedButton size="sm" className="w-full justify-center" />
             </div>
           </div>
