@@ -57,21 +57,11 @@ export default function DocsLayout({ children }: { children: React.ReactNode }) 
     // Close sidebar on mobile when navigating
     setSidebarOpen(false)
     
-    // Ensure scroll to top happens immediately on route change
-    // This is critical on mobile where browsers may restore scroll position
-    window.scrollTo(0, 0)
-    
-    // Use multiple strategies to ensure scroll happens after any browser restoration
-    const rafId = requestAnimationFrame(() => {
-      window.scrollTo(0, 0)
-      setTimeout(() => {
-        window.scrollTo(0, 0)
-      }, 0)
+    // Scroll to top on route change - use a single, reliable method
+    // Use requestAnimationFrame to ensure DOM is ready
+    requestAnimationFrame(() => {
+      window.scrollTo({ top: 0, behavior: 'instant' })
     })
-    
-    return () => {
-      cancelAnimationFrame(rafId)
-    }
   }, [pathname])
 
   // Focus trap for mobile sidebar
@@ -160,7 +150,7 @@ export default function DocsLayout({ children }: { children: React.ReactNode }) 
           </aside>
 
           {/* Desktop sidebar - always visible, scrollable with styled scrollbar */}
-          <aside className="hidden lg:block w-64 shrink-0 sticky top-24 self-start">
+          <aside className="hidden lg:block w-64 shrink-0 sticky top-24 self-start max-h-[calc(100vh-8rem)]">
             <DocsSidebar />
           </aside>
 
@@ -174,7 +164,7 @@ export default function DocsLayout({ children }: { children: React.ReactNode }) 
           )}
 
           <main className="flex-1 min-w-0">
-            <div className="max-w-3xl space-y-12 lg:ml-4 docs-content overflow-x-hidden">{children}</div>
+            <div className="max-w-3xl space-y-12 lg:ml-4 docs-content">{children}</div>
           </main>
 
           {/* Right TOC - only visible on XL+ screens */}
