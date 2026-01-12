@@ -53,7 +53,7 @@ export default function GetStarted() {
               </span>
             </h2>
             <p className="mx-auto mt-6 max-w-2xl text-lg lg:text-xl leading-8 text-blue-100 font-medium">
-              Generate AI-ready context from your codebase in seconds. Fast, deterministic, zero-config.
+              Generate AI-ready context from your codebase in seconds. Fast, deterministic, one-time setup.
             </p>
             <div className="mt-10 flex flex-row items-center justify-center gap-2 sm:gap-4">
               <a

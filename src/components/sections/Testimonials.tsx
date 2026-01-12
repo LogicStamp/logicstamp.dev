@@ -47,7 +47,7 @@ const testimonials = [
     },
   },
   {
-    body: 'Zero config setup is amazing. Just run stamp context and get AI-ready documentation. No more explaining our codebase structure to ChatGPT manually.',
+    body: 'One-time setup is amazing. Just run stamp context and get AI-ready documentation. No more explaining our codebase structure to ChatGPT manually.',
     author: {
       name: 'Emily Watson',
       handle: 'emilyw',

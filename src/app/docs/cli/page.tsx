@@ -63,7 +63,7 @@ export default function LogicStampContextDocsPage() {
                 </div>
                 <div className="flex items-center gap-2">
                   <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse" />
-                  <span className="text-xs sm:text-sm font-medium text-gray-600 dark:text-gray-400">Zero config</span>
+                  <span className="text-xs sm:text-sm font-medium text-gray-600 dark:text-gray-400">One-time setup</span>
                 </div>
               </div>
             </div>

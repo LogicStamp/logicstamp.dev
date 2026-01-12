@@ -185,7 +185,7 @@ export default function WhatIsLogicStampPage() {
                 What LogicStamp Context Provides
               </h2>
               <p className="text-base sm:text-lg text-gray-600 dark:text-gray-400 mb-6 sm:mb-8 leading-relaxed">
-                The <span className="font-semibold text-gray-900 dark:text-white">LogicStamp Context CLI</span> is a lightweight, zero-config tool
+                The <span className="font-semibold text-gray-900 dark:text-white">LogicStamp Context CLI</span> is a lightweight, one-time setup tool
                 that provides:
               </p>
 

@@ -40,22 +40,24 @@ export default function ContextCommandPage() {
           </div>
         </AnimatedSection>
 
-        <div className="space-y-8 sm:space-y-12 lg:space-y-16">
+        <div className="space-y-8 sm:space-y-12 lg:space-y-16 w-full max-w-full overflow-x-hidden">
           {/* Syntax Section */}
           <AnimatedSection direction="up" delay={100}>
             <div className="relative">
               <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white mb-4 sm:mb-6">
                 Syntax
               </h2>
-              <TabbedCodeBlock
-                tabs={[
-                  {
-                    label: 'Syntax',
-                    code: 'stamp context [path] [options]',
-                    copyText: 'stamp context [path] [options]'
-                  }
-                ]}
-              />
+              <div className="w-full max-w-full overflow-x-auto">
+                <TabbedCodeBlock
+                  tabs={[
+                    {
+                      label: 'Syntax',
+                      code: 'stamp context [path] [options]',
+                      copyText: 'stamp context [path] [options]'
+                    }
+                  ]}
+                />
+              </div>
               <div className="mt-4 p-4 bg-gray-50 dark:bg-gray-800/50 rounded-lg border border-gray-200 dark:border-gray-700">
                 <p className="text-sm text-gray-700 dark:text-gray-300">
                   <strong className="text-gray-900 dark:text-white">[path]</strong> (optional) – Directory to scan. Defaults to the current working directory. Paths can be relative (for example, <code className="px-1.5 py-0.5 bg-gray-100 dark:bg-gray-800 rounded text-xs font-mono">./src</code>) or absolute.
@@ -191,8 +193,8 @@ export default function ContextCommandPage() {
                     Options
                   </h2>
                 </div>
-                <div className="overflow-x-auto -mx-4 sm:mx-0 px-4 sm:px-0">
-                  <table className="w-full min-w-full divide-y divide-gray-200 dark:divide-gray-700">
+                <div className="overflow-x-auto -mx-4 sm:mx-0 px-4 sm:px-0 max-w-full">
+                  <table className="w-full min-w-[600px] divide-y divide-gray-200 dark:divide-gray-700">
                     <thead className="bg-gray-50 dark:bg-gray-800">
                       <tr>
                         <th className="px-2 sm:px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">Option</th>
@@ -206,9 +208,9 @@ export default function ContextCommandPage() {
                           <code className="px-2 py-1 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 rounded text-xs sm:text-sm font-mono">--depth &lt;n&gt;</code>
                         </td>
                         <td className="px-2 sm:px-6 py-4 whitespace-nowrap">
-                          <code className="px-1.5 py-0.5 bg-blue-100 dark:bg-blue-900/40 text-blue-900 dark:text-blue-100 rounded text-xs font-mono">1</code>
+                          <code className="px-1.5 py-0.5 bg-blue-100 dark:bg-blue-900/40 text-blue-900 dark:text-blue-100 rounded text-xs font-mono">2</code>
                         </td>
-                        <td className="px-2 sm:px-6 py-4 text-sm text-gray-600 dark:text-gray-400">Dependency traversal depth (<code className="px-1 py-0.5 bg-gray-100 dark:bg-gray-800 rounded text-xs font-mono">0</code> = entry only, <code className="px-1 py-0.5 bg-gray-100 dark:bg-gray-800 rounded text-xs font-mono">1</code> = direct deps, etc.).</td>
+                        <td className="px-2 sm:px-6 py-4 text-sm text-gray-600 dark:text-gray-400">Dependency traversal depth (<code className="px-1 py-0.5 bg-gray-100 dark:bg-gray-800 rounded text-xs font-mono">0</code> = entry only, <code className="px-1 py-0.5 bg-gray-100 dark:bg-gray-800 rounded text-xs font-mono">1</code> = direct deps, <code className="px-1 py-0.5 bg-gray-100 dark:bg-gray-800 rounded text-xs font-mono">2</code> = nested components, etc.).</td>
                       </tr>
                       <tr className="hover:bg-gray-50 dark:hover:bg-gray-800/50 transition-colors bg-green-50/30 dark:bg-green-950/20">
                         <td className="px-2 sm:px-6 py-4 whitespace-nowrap">
@@ -358,11 +360,12 @@ export default function ContextCommandPage() {
               <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white mb-4 sm:mb-6">
                 Example Workflows
               </h2>
-              <TabbedCodeBlock
-                tabs={[
-                  {
-                    label: 'Examples',
-                    code: `# Scan entire repo and write context files (defaults)
+              <div className="w-full max-w-full overflow-x-auto">
+                <TabbedCodeBlock
+                  tabs={[
+                    {
+                      label: 'Examples',
+                      code: `# Scan entire repo and write context files (defaults)
 stamp context
 # Creates: context_main.json + context.json files in each folder
 
@@ -445,6 +448,7 @@ stamp context --format toon
                   }
                 ]}
               />
+              </div>
             </div>
           </AnimatedSection>
 
@@ -469,7 +473,7 @@ stamp context --format toon
                 <p className="text-base sm:text-lg text-gray-600 dark:text-gray-400 mb-4 sm:mb-6 leading-relaxed">
                   TOON format encodes the same LogicStamp bundle structure as JSON, but in a more compact representation. The main index file (<code className="px-1.5 py-0.5 bg-gray-100 dark:bg-gray-800 rounded text-xs font-mono">context_main.json</code>) is always in JSON format, even when using TOON format for bundles.
                 </p>
-                <div className="p-4 bg-orange-50 dark:bg-orange-950/20 rounded-lg border border-orange-200 dark:border-orange-800 mb-4">
+                <div className="p-4 bg-orange-50 dark:bg-orange-950/20 rounded-lg border border-orange-200 dark:border-orange-800 mb-4 w-full max-w-full overflow-x-auto">
                   <TabbedCodeBlock
                     tabs={[
                       {
@@ -541,10 +545,10 @@ stamp context --format toon
                   <div className="p-4 bg-purple-50 dark:bg-purple-950/20 rounded-lg border border-purple-200 dark:border-purple-800">
                     <h3 className="text-lg font-semibold text-purple-900 dark:text-purple-200 mb-2">Example</h3>
                     <p className="text-sm text-gray-700 dark:text-gray-300 mb-2">Source code:</p>
-                    <pre className="text-xs bg-gray-100 dark:bg-gray-800 p-2 rounded mb-2"><code>{`const apiKey = 'FAKE_EXAMPLE_KEY_DO_NOT_USE';
+                    <pre className="text-xs bg-gray-100 dark:bg-gray-800 p-2 rounded mb-2 overflow-x-auto"><code className="block whitespace-pre-wrap break-words">{`const apiKey = 'FAKE_EXAMPLE_KEY_DO_NOT_USE';
 const password = 'FAKE_EXAMPLE_PASSWORD_DO_NOT_USE';`}</code></pre>
                     <p className="text-sm text-gray-700 dark:text-gray-300 mb-2">Generated <code className="px-1.5 py-0.5 bg-purple-100 dark:bg-purple-900/40 rounded text-xs font-mono">context.json</code>:</p>
-                    <pre className="text-xs bg-gray-100 dark:bg-gray-800 p-2 rounded"><code>{`{
+                    <pre className="text-xs bg-gray-100 dark:bg-gray-800 p-2 rounded overflow-x-auto"><code className="block whitespace-pre-wrap break-words">{`{
   "code": "const apiKey = 'EXAMPLE_PRIVATE_DATA';
 const password = 'EXAMPLE_PRIVATE_DATA';"
 }`}</code></pre>
@@ -600,7 +604,7 @@ const password = 'EXAMPLE_PRIVATE_DATA';"
                   <p className="text-sm text-gray-700 dark:text-gray-300">
                     Use <code className="px-1.5 py-0.5 bg-blue-100 dark:bg-blue-900/40 rounded text-xs font-mono">--strict-missing</code> in CI to catch unexpected missing dependencies:
                   </p>
-                  <pre className="mt-2 text-xs bg-gray-100 dark:bg-gray-800 p-2 rounded"><code>stamp context --strict-missing || exit 1</code></pre>
+                  <pre className="mt-2 text-xs bg-gray-100 dark:bg-gray-800 p-2 rounded overflow-x-auto"><code className="block whitespace-pre-wrap break-words">stamp context --strict-missing || exit 1</code></pre>
                 </div>
               </div>
             </div>

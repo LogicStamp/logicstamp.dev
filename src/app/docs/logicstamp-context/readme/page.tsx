@@ -206,12 +206,23 @@ export default function LogicStampReadmePage() {
                 <div className="space-y-4">
                   <div className="p-4 bg-green-50 dark:bg-green-950/20 rounded-xl border border-green-200 dark:border-green-800">
                     <h3 className="font-semibold text-green-900 dark:text-green-200 mb-2 text-base sm:text-lg">
-                      v0.3.5
+                      v0.3.6
                     </h3>
                     <ul className="space-y-2 text-sm text-green-800 dark:text-green-300 ml-4 list-disc">
-                      <li><strong>Inline style extraction fixed</strong> – Inline style objects now extract both property names and literal values (strings, numbers, booleans, null, template literals)</li>
-                      <li><strong>Styled JSX CSS extraction fixed</strong> – Full CSS content from <code className="px-1 py-0.5 bg-green-100 dark:bg-green-900/40 rounded text-xs font-mono">&lt;style jsx&gt;</code> blocks is now extracted, parsed using css-tree AST, with selector and property detection</li>
-                      <li><strong>Beta release note</strong> – This is a beta release. We&apos;re actively improving the tool based on user feedback. If you encounter any issues or have suggestions, please open an issue on GitHub</li>
+                      <li><strong>Hook parameter detection</strong> – Hook parameter detection is now fully implemented, extracting function signatures for custom React hooks</li>
+                      <li><strong>Default depth changed to 2</strong> – The default dependency traversal depth is now 2 (was 1) to ensure complete signature extraction for React projects with component hierarchies</li>
+                      <li><strong>Updated messaging</strong> – Changed from &quot;zero-config&quot; to &quot;one-time setup&quot; to better reflect the setup process</li>
+                      <li><strong>Beta release note</strong> – This is a beta release (v0.3.6). We&apos;re actively improving the tool based on user feedback. If you encounter any issues or have suggestions, please open an issue on GitHub</li>
+                    </ul>
+                  </div>
+                  <div className="p-4 bg-purple-50 dark:bg-purple-950/20 rounded-xl border border-purple-200 dark:border-purple-800">
+                    <h3 className="font-semibold text-purple-900 dark:text-purple-200 mb-2 text-base sm:text-lg">
+                      v0.3.5
+                    </h3>
+                    <ul className="space-y-2 text-sm text-purple-800 dark:text-purple-300 ml-4 list-disc">
+                      <li><strong>Inline styles extraction</strong> – Property names and literal values are now extracted from <code className="px-1 py-0.5 bg-purple-100 dark:bg-purple-900/40 rounded text-xs font-mono">style={'{'} ... {'}'}</code> objects, providing detailed style metadata</li>
+                      <li><strong>Styled JSX support</strong> – CSS content, selectors, properties, and global attribute detection from <code className="px-1 py-0.5 bg-purple-100 dark:bg-purple-900/40 rounded text-xs font-mono">&lt;style jsx&gt;</code> blocks</li>
+                      <li><strong>Enhanced style metadata</strong> – Improved style extraction capabilities for comprehensive visual and layout information</li>
                     </ul>
                   </div>
                   <div className="p-4 bg-blue-50 dark:bg-blue-950/20 rounded-xl border border-blue-200 dark:border-blue-800">
@@ -219,11 +230,20 @@ export default function LogicStampReadmePage() {
                       v0.3.4
                     </h3>
                     <ul className="space-y-2 text-sm text-blue-800 dark:text-blue-300 ml-4 list-disc">
-                      <li><strong>TOON output format support</strong> – Added new <code className="px-1 py-0.5 bg-blue-100 dark:bg-blue-900/40 rounded text-xs font-mono">--format toon</code> option to generate context bundles in TOON format, expanding output options beyond JSON, pretty, and NDJSON</li>
+                      <li><strong>Vue.js support</strong> – Comprehensive Vue 3 Composition API support: <code className="px-1 py-0.5 bg-blue-100 dark:bg-blue-900/40 rounded text-xs font-mono">vue:component</code> and <code className="px-1 py-0.5 bg-blue-100 dark:bg-blue-900/40 rounded text-xs font-mono">vue:composable</code> detection, reactive state extraction (ref, reactive, computed), props/emits from defineProps/defineEmits, lifecycle hooks, and composables</li>
                       <li><strong>Improved Node.js 18 compatibility</strong> – Adjusted <code className="px-1 py-0.5 bg-blue-100 dark:bg-blue-900/40 rounded text-xs font-mono">glob</code> to a Node 18–compatible version while retaining the latest security fixes</li>
                       <li><strong>Updated Node.js requirement</strong> – Clarified minimum supported Node.js version to <strong>{" "}&gt;= 18.18.0</strong> (Node 20+ recommended)</li>
                       <li><strong>Dev dependency updates</strong> – Updated development dependencies to the latest patch versions</li>
                       <li><strong>Documentation improvements</strong> – Improved README clarity and formatting consistency, and clarified what is detected vs extracted across framework documentation</li>
+                    </ul>
+                  </div>
+                  <div className="p-4 bg-indigo-50 dark:bg-indigo-950/20 rounded-xl border border-indigo-200 dark:border-indigo-800">
+                    <h3 className="font-semibold text-indigo-900 dark:text-indigo-200 mb-2 text-base sm:text-lg">
+                      v0.3.3
+                    </h3>
+                    <ul className="space-y-2 text-sm text-indigo-800 dark:text-indigo-300 ml-4 list-disc">
+                      <li><strong>TOON output format support</strong> – Added new <code className="px-1 py-0.5 bg-indigo-100 dark:bg-indigo-900/40 rounded text-xs font-mono">--format toon</code> option to generate context bundles in TOON format, expanding output options beyond JSON, pretty, and NDJSON</li>
+                      <li><strong>Compact AI-optimized format</strong> – TOON format provides a more compact binary-like encoding optimized for AI consumption and efficient storage</li>
                     </ul>
                   </div>
                   <div className="p-4 bg-green-50 dark:bg-green-950/20 rounded-xl border border-green-200 dark:border-green-800">

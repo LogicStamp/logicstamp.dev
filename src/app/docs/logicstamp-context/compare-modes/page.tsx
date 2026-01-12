@@ -597,7 +597,7 @@ stamp context --compare-modes --stats
                     },
                     {
                       q: 'Should I always use accurate tokenizers?',
-                      a: 'Use approximation when: rough estimates are sufficient, during development/prototyping phase, token costs aren\'t critical, or you want zero-configuration setup. Use tokenizers when: precise costs matter for budgeting, production deployments, cost-sensitive workflows, or comparing against other tools.'
+                      a: 'Use approximation when: rough estimates are sufficient, during development/prototyping phase, token costs aren\'t critical, or you want one-time setup. Use tokenizers when: precise costs matter for budgeting, production deployments, cost-sensitive workflows, or comparing against other tools.'
                     },
                     {
                       q: 'How much overhead do contracts add?',
