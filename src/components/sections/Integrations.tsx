@@ -34,9 +34,19 @@ const VueIcon = () => (
   </svg>
 )
 
-const SvelteIcon = () => (
+const JavaScriptIcon = () => (
   <svg viewBox="0 0 24 24" className="w-10 h-10">
-    <path d="M15.07 0L8.24 2.58l6.17 2.17-6.17 2.17L0 7.5l6.17 2.17L0 11.84l6.17 2.17L0 16.5l8.24 2.58 6.17-2.17 6.17 2.17L24 16.5l-6.17-2.17L24 11.84l-6.17-2.17L24 7.5l-6.17-2.17-6.17 2.17L8.24 5.33 2.07 7.5l6.17 2.17-6.17 2.17L8.24 14l6.17-2.17L20.58 14l6.17-2.17-6.17-2.17L24 7.5l-6.17-2.17L15.07 0z" fill="#FF3E00"/>
+    <rect width="24" height="24" rx="4" fill="#F7DF1E" />
+    <text x="12" y="16" fontFamily="Arial, sans-serif" fontSize="12" fontWeight="bold" textAnchor="middle" fill="#000">JS</text>
+  </svg>
+)
+
+const WatchModeIcon = () => (
+  <svg viewBox="0 0 24 24" className="w-10 h-10">
+    <circle cx="12" cy="12" r="10" fill="none" stroke="currentColor" strokeWidth="1.5" className="text-purple-600 dark:text-purple-400" />
+    <circle cx="12" cy="12" r="1.5" fill="currentColor" className="text-purple-600 dark:text-purple-400" />
+    <path d="M12 6v6l4 2" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" className="text-purple-600 dark:text-purple-400" />
+    <circle cx="12" cy="12" r="2" fill="none" stroke="currentColor" strokeWidth="0.5" className="text-purple-600/30 dark:text-purple-400/30" />
   </svg>
 )
 
@@ -91,34 +101,34 @@ const integrations = [
     features: ['Type signature extraction', 'Interface documentation', 'Generic parameter tracking'],
   },
   {
-    name: 'Vue',
-    description: 'Vue 3 support with Composition API and SFC analysis',
-    icon: VueIcon,
-    gradient: 'from-blue-500/20 via-purple-500/20 to-indigo-600/20',
-    borderGradient: 'from-blue-500 via-purple-500 to-indigo-600',
-    iconBg: 'from-blue-500/10 to-indigo-600/10',
-    features: ['SFC structure analysis', 'Composition API tracking', 'Template dependencies'],
+    name: 'JavaScript & JSX',
+    description: 'Support for JavaScript and JSX files in addition to TypeScript',
+    icon: JavaScriptIcon,
+    gradient: 'from-yellow-500/20 via-amber-500/20 to-orange-600/20',
+    borderGradient: 'from-yellow-500 via-amber-500 to-orange-600',
+    iconBg: 'from-yellow-500/10 to-orange-600/10',
+    features: ['JavaScript file analysis', 'JSX component detection', 'JSDoc type inference'],
     comingSoon: true,
     isFeatured: true,
   },
   {
-    name: 'Svelte',
-    description: 'Svelte support with component analysis and reactivity tracking',
-    icon: SvelteIcon,
-    gradient: 'from-emerald-500/20 via-green-500/20 to-teal-600/20',
-    borderGradient: 'from-emerald-500 via-green-500 to-teal-600',
-    iconBg: 'from-emerald-500/10 to-teal-600/10',
-    features: ['Component structure analysis', 'Reactivity tracking', 'Template dependencies'],
+    name: 'Vue',
+    description: 'Vue 3 Composition API support for TypeScript/TSX files. Single File Component (.vue) support planned',
+    icon: VueIcon,
+    gradient: 'from-blue-500/20 via-purple-500/20 to-indigo-600/20',
+    borderGradient: 'from-blue-500 via-purple-500 to-indigo-600',
+    iconBg: 'from-blue-500/10 to-indigo-600/10',
+    features: ['Composition API tracking (TS/TSX)', 'Props and emits extraction', '.vue SFC support planned'],
     comingSoon: true,
   },
   {
-    name: 'Upcoming Enhancements',
-    description: 'New features planned for the LogicStamp CLI',
-    icon: CLIIcon,
+    name: 'Watch Mode',
+    description: 'Automatically regenerate context files when source files change',
+    icon: WatchModeIcon,
     gradient: 'from-purple-500/20 via-indigo-500/20 to-violet-600/20',
     borderGradient: 'from-purple-500 via-indigo-500 to-violet-600',
     iconBg: 'from-purple-500/10 to-violet-600/10',
-    features: ['Contract verification upgrades (advanced rules + deeper validation)', 'Enhanced contract management (grouped bundles, project-level insights)', 'Additional UI framework support for styles (Styled Components, Emotion, Chakra UI, Ant Design, etc.)'],
+    features: ['Automatic file watching', 'Incremental bundle updates', 'Debounced regeneration'],
     comingSoon: true,
   },
 ]
