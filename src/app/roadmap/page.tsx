@@ -67,7 +67,16 @@ export default function BetaPage() {
               </p>
 
               <p className="text-base sm:text-lg text-gray-600 dark:text-gray-400 max-w-3xl mx-auto mt-8 sm:mt-10 text-center">
-                As one of our first users, your feedback will directly shape what we build next. This is a solo project, so you'll get real responses directly from me.
+                LogicStamp is currently built and maintained primarily by{' '}
+                <a
+                  href="https://github.com/AmiteK23"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-blue-600 dark:text-blue-400 hover:underline font-medium"
+                >
+                  Amit Levi
+                </a>
+                , with early contributions from the community. I'd love more collaborators - your feedback and ideas directly shape what we build next.
               </p>
             </div>
           </AnimatedSection>

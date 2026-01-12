@@ -275,9 +275,22 @@ export default function Footer() {
 
             {/* Bottom bar */}
             <div className="flex flex-col items-start gap-3 border-t border-gray-200/60 dark:border-gray-800/70 pt-5 md:flex-row md:items-center md:justify-between">
-              <p className="text-xs md:text-sm leading-5 text-gray-500 dark:text-gray-400">
-                &copy; 2025 LogicStamp — MIT Licensed
-              </p>
+              <div className="flex flex-col gap-1">
+                <p className="text-xs md:text-sm leading-5 text-gray-500 dark:text-gray-400">
+                  &copy; 2025 LogicStamp — MIT Licensed
+                </p>
+                <p className="text-xs text-gray-400 dark:text-gray-500">
+                  Built and maintained by{' '}
+                  <a
+                    href="https://github.com/AmiteK23"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="hover:text-gray-600 dark:hover:text-gray-400 transition-colors"
+                  >
+                    Amit Levi
+                  </a>
+                </p>
+              </div>
             </div>
           </div>
         </AnimatedSection>
