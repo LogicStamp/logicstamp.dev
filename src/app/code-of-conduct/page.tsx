@@ -12,17 +12,39 @@ export const metadata: Metadata = {
 export const dynamic = 'force-dynamic'
 export const revalidate = 0
 
+// GitHub raw content URL for the Code of Conduct
+const CODE_OF_CONDUCT_URL = 'https://raw.githubusercontent.com/LogicStamp/logicstamp.dev/main/CODE_OF_CONDUCT.md'
+
 // Read the Code of Conduct markdown file
 async function getCodeOfConductContent(): Promise<string> {
+  // Try fetching from GitHub first (works in serverless/production)
   try {
-    const fs = await import('fs/promises')
-    const path = await import('path')
-    const filePath = path.join(process.cwd(), 'CODE_OF_CONDUCT.md')
-    const content = await fs.readFile(filePath, 'utf-8')
-    return content
-  } catch (error) {
-    console.error('Error reading Code of Conduct file:', error)
-    return `# Code of Conduct\n\nUnable to load Code of Conduct. Please check the [Code of Conduct](https://github.com/LogicStamp/logicstamp.dev/blob/main/CODE_OF_CONDUCT.md) on GitHub.\n\nError: ${error instanceof Error ? error.message : 'Unknown error'}`
+    const response = await fetch(CODE_OF_CONDUCT_URL, {
+      next: { revalidate: 3600 }, // Cache for 1 hour
+      headers: {
+        'Accept': 'text/markdown',
+      },
+    })
+
+    if (!response.ok) {
+      throw new Error(`Failed to fetch Code of Conduct: ${response.statusText}`)
+    }
+
+    return await response.text()
+  } catch (fetchError) {
+    // If GitHub fetch fails, fallback to local file (works in development)
+    try {
+      const fs = await import('fs/promises')
+      const path = await import('path')
+      const filePath = path.join(process.cwd(), 'CODE_OF_CONDUCT.md')
+      const content = await fs.readFile(filePath, 'utf-8')
+      return content
+    } catch (localError) {
+      // If both fail, show error message
+      console.error('Error fetching Code of Conduct from GitHub:', fetchError)
+      console.error('Error reading Code of Conduct file:', localError)
+      return `# Code of Conduct\n\nUnable to load Code of Conduct. Please check the [Code of Conduct](https://github.com/LogicStamp/logicstamp.dev/blob/main/CODE_OF_CONDUCT.md) on GitHub.\n\nError: ${fetchError instanceof Error ? fetchError.message : 'Unknown error'}`
+    }
   }
 }
 
