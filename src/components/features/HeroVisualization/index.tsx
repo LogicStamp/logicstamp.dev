@@ -1,6 +1,7 @@
 'use client'
 
 import { useEffect, useState, forwardRef } from 'react'
+import { Play } from 'lucide-react'
 import DependencyGraph from './DependencyGraph'
 import ContextJsonPreview from './ContextJsonPreview'
 
@@ -92,7 +93,8 @@ const HeroVisualization = forwardRef<HTMLDivElement, HeroVisualizationProps>(
             </div>
             {/* Command text positioned more toward center */}
             <div className="relative sm:absolute -mt-28 sm:mt-0 bottom-0 sm:bottom-20 left-0 right-0 pt-4 pb-2 sm:pb-0 border-t border-secondary-200/20 dark:border-secondary-400/20">
-              <p className="text-sm sm:text-base lg:text-lg text-gray-600 dark:text-gray-400 text-center mb-3 font-medium">
+              <p className="text-sm sm:text-base lg:text-lg text-gray-600 dark:text-gray-400 text-center mb-3 font-medium flex items-center justify-center gap-2">
+                <Play className="w-4 h-4 sm:w-5 sm:h-5" />
                 Run to get context bundles
               </p>
               <div className="flex flex-row items-center justify-center gap-2 sm:gap-4 text-xs sm:text-lg lg:text-xl">
@@ -104,6 +106,9 @@ const HeroVisualization = forwardRef<HTMLDivElement, HeroVisualizationProps>(
                   stamp context style
                 </code>
               </div>
+              <p className="text-sm sm:text-base lg:text-lg text-gray-600 dark:text-gray-400 text-center mt-2 font-medium">
+                or use the MCP: analyze with or without style
+              </p>
             </div>
           </div>
           
