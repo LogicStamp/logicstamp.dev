@@ -8,6 +8,10 @@ export const metadata: Metadata = {
   description: 'Code of Conduct for LogicStamp - Our commitment to fostering an open, welcoming, diverse, inclusive, and healthy community.',
 }
 
+// Force dynamic rendering to ensure Code of Conduct updates are reflected immediately
+export const dynamic = 'force-dynamic'
+export const revalidate = 0
+
 // Read the Code of Conduct markdown file
 async function getCodeOfConductContent(): Promise<string> {
   try {
