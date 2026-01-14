@@ -9,9 +9,9 @@ You have access to LogicStamp MCP tools for analyzing React/TypeScript codebases
 **Before reading raw source files, follow this workflow:**
 
 1. **Call `logicstamp_refresh_snapshot`** on this repo to generate context files and get a snapshotId.
-   - **RECOMMENDED:** For React/TypeScript projects with component hierarchies, start with `depth: 2` to capture nested components (e.g., App uses Hero, Hero uses Button). Default depth=1 only includes direct dependencies and may miss nested components.
-   - **Example:** `{ "projectPath": "...", "depth": 2 }` - This ensures components used by your root components are included in dependency graphs.
-   - **When to use depth=2:** If your project has components that import/use other components (common in React), use depth=2 from the start. You can always regenerate with depth=1 later if you only need direct dependencies.
+   - **Default:** The default depth=2 includes nested components (e.g., App uses Hero, Hero uses Button), ensuring components used by your root components are included in dependency graphs.
+   - **Example:** `{ "projectPath": "..." }` - Uses default depth=2. You can explicitly set `depth: 1` if you only need direct dependencies.
+   - **When to use depth=1:** If you only need direct dependencies (e.g., App → Hero but not Hero → Button), explicitly set `depth: 1`. For most React projects, the default depth=2 is recommended.
 
 2. **Call `logicstamp_list_bundles`** with the snapshotId to see available bundles.
 
@@ -49,8 +49,7 @@ refresh_snapshot → list_bundles → read_bundle("context_main") → read speci
 **Default mode:** Use `header` mode (default) - provides contracts + signatures at ~70% token savings vs raw source.
 
 **Depth parameter:** 
-- **Default (depth=1):** Only includes direct dependencies. If App uses Hero, Hero will be listed but Hero's dependencies (like Button) won't be in the graph.
-- **Recommended for React projects (depth=2):** Includes nested components. If App uses Hero, and Hero uses Button, both Hero and Button will be in the dependency graph with their contracts and styles.
-- **When to use depth=2:** Start with depth=2 for React projects with component hierarchies. This ensures you see the full component tree, not just direct imports.
-- **Example:** `{ "projectPath": "...", "depth": 2 }` - Use this for most React projects to capture nested component relationships.
+- **Default (depth=2):** Includes nested components. If App uses Hero, and Hero uses Button, both Hero and Button will be in the dependency graph with their contracts and styles. This ensures you see the full component tree, not just direct imports.
+- **When to use depth=1:** If you only need direct dependencies (e.g., App → Hero but not Hero → Button), explicitly set `depth: 1`. Hero will be listed but Hero's dependencies (like Button) won't be in the graph.
+- **Example:** `{ "projectPath": "..." }` - Uses default depth=2. For most React projects, this captures nested component relationships automatically.
 

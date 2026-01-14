@@ -393,7 +393,7 @@ function generateContextBundle(code: string, includeStyle = false) {
       "type": "LogicStampBundle",
       "schemaVersion": "0.1",
       "entryId": `c:/demo-project/src/components/${componentName}.tsx`,
-      "depth": 1,
+      "depth": 2,
       "createdAt": new Date().toISOString(),
       "bundleHash": `uifb:${Math.random().toString(36).substring(2, 15)}`,
       "graph": {
@@ -545,7 +545,7 @@ function generateMultiFileContextBundle(files: UploadedFile[], includeStyle = fa
       "type": "LogicStampBundle",
       "schemaVersion": "0.1",
       "folderPath": folderPath,
-      "depth": 1,
+      "depth": 2,
       "createdAt": new Date().toISOString(),
       "bundleHash": `uifb:${Math.random().toString(36).substring(2, 15)}`,
       "graph": {

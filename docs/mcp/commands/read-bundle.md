@@ -33,12 +33,13 @@ The command returns a complete `UIFContract` with:
 
 ### `bundlePath` (required)
 - **Type:** `string`
-- **Description:** Relative path to `context.json` file. **Get this value from the `bundlePath` field in `logicstamp_list_bundles` output.**
+- **Description:** Relative path to `context.json` file or `context_main.json`. **Get this value from the `bundlePath` field in `logicstamp_list_bundles` output.**
   
   **Examples:**
-  - `"src/components/context.json"`
-  - `"src/pages/context.json"`
-  - `"src/utils/context.json"`
+  - `"context_main.json"` - Read the main index file (returns LogicStampIndex)
+  - `"src/components/context.json"` - Read a bundle file (returns LogicStampBundle)
+  - `"src/pages/context.json"` - Read a bundle file
+  - `"src/utils/context.json"` - Read a bundle file
 
 ### `rootComponent` (optional)
 - **Type:** `string`
@@ -65,11 +66,23 @@ Returns a `ReadBundleOutput` object with:
 
 ### `rootComponent`
 - **Type:** `string` (optional)
-- **Description:** The root component name if specified
+- **Description:** The root component name if specified (only used for bundle files, not index files)
 
-### `bundle`
+### `bundle` (optional)
 - **Type:** `LogicStampBundle`
-- **Description:** The complete bundle object containing:
+- **Description:** The complete bundle object (present when reading bundle files, not when reading `context_main.json`). Contains:
+
+### `index` (optional)
+- **Type:** `LogicStampIndex`
+- **Description:** The complete index object (present when reading `context_main.json`, not when reading bundle files). Contains:
+  - `type`: `"LogicStampIndex"`
+  - `schemaVersion`: Schema version string
+  - `summary`: Summary statistics (totalComponents, totalBundles, totalFolders, totalTokenEstimate, tokenEstimates, missingDependencies)
+  - `folders`: Array of folder metadata with paths, bundle counts, component lists, and token estimates
+  - `projectRoot`: Relative project root path
+  - `projectRootAbs`: Absolute project root path
+
+**Note:** The output will contain either `bundle` (for bundle files) or `index` (for `context_main.json`), but not both.
 
 #### Bundle Structure
 
@@ -195,6 +208,20 @@ Each node contains a `contract` field with the `UIFContract`:
 
 ## Example Usage
 
+### Read context_main.json (Project Index)
+
+```json
+{
+  "name": "logicstamp_read_bundle",
+  "arguments": {
+    "snapshotId": "snap_1764033034172_0",
+    "bundlePath": "context_main.json"
+  }
+}
+```
+
+This returns the complete `LogicStampIndex` with project overview, summary statistics, and folder structure.
+
 ### Read First Bundle in File
 
 ```json
@@ -225,6 +252,37 @@ This returns the first bundle in `src/components/context.json`.
 This returns the Button component bundle specifically.
 
 ## Example Output
+
+### Reading context_main.json
+
+```json
+{
+  "snapshotId": "snap_1764033034172_0",
+  "bundlePath": "context_main.json",
+  "index": {
+    "type": "LogicStampIndex",
+    "schemaVersion": "0.2",
+    "projectRoot": ".",
+    "summary": {
+      "totalComponents": 14,
+      "totalBundles": 14,
+      "totalFolders": 8,
+      "totalTokenEstimate": 5869
+    },
+    "folders": [
+      {
+        "path": "src/components",
+        "contextFile": "src/components/context.json",
+        "bundles": 1,
+        "components": ["Button"],
+        "tokenEstimate": 353
+      }
+    ]
+  }
+}
+```
+
+### Reading a Bundle File
 
 ```json
 {

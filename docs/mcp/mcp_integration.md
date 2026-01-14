@@ -73,7 +73,7 @@ logicstamp-context/
 - `profile` (optional): `llm-chat` (default) | `llm-safe` | `ci-strict`
 - `mode` (optional): `header` (default) | `full` | `none`
 - `includeStyle` (optional): Include style metadata (default: `false`)
-- `depth` (optional): Dependency traversal depth (default: profile default, typically 1). **RECOMMENDED**: For React/TypeScript projects with component hierarchies, start with `depth: 2` to capture nested components (e.g., App → Hero → Button). Default depth=1 only includes direct dependencies and may miss nested components. **Example:** `{ "projectPath": "...", "depth": 2 }` - Use this for most React projects to ensure nested components are included in dependency graphs from the start.
+- `depth` (optional): Dependency traversal depth (default: profile default, typically 2). The default depth=2 includes nested components (e.g., App → Hero → Button), ensuring nested components are included in dependency graphs. **Example:** `{ "projectPath": "..." }` - Uses default depth=2. Set `depth: 1` if you only need direct dependencies.
 - `projectPath` (required): **CRITICAL: Absolute path to project root. REQUIRED - must always be provided.** When `stamp init` has been run, MCP clients may omit this parameter, causing hangs. This parameter is REQUIRED for the tool to work correctly. The server will resolve relative paths to absolute paths automatically.
 - `cleanCache` (optional): Force cache cleanup (default: `false`, auto-detects corruption)
 
@@ -82,7 +82,7 @@ logicstamp-context/
 2. Store snapshot metadata in memory (including depth if specified)
 3. Read and return summary from `context_main.json` (already JSON format)
 
-**Note on Depth Parameter**: **RECOMMENDED: Start with `depth: 2` for React projects.** The default depth=1 only includes direct component dependencies (e.g., App → Hero). With depth=2, nested components are included (e.g., App → Hero → Button), ensuring you see the full component tree with contracts and styles. For React projects with component hierarchies, explicitly set `depth: 2` in your first refresh_snapshot call. The LLM will not automatically detect this need - it must be explicitly requested upfront.
+**Note on Depth Parameter**: The default depth=2 includes nested components (e.g., App → Hero → Button), ensuring you see the full component tree with contracts and styles. For most React projects, the default depth=2 is recommended. If you only need direct dependencies (e.g., App → Hero), explicitly set `depth: 1`.
 
 **Output**:
 ```json
@@ -264,7 +264,7 @@ logicstamp-context/
 - `profile` (optional): Analysis profile used when regenerating context (default: `llm-chat`)
 - `mode` (optional): Code inclusion mode used when regenerating context (default: `header`)
 - `includeStyle` (optional): Include style metadata in comparison (Tailwind classes, SCSS, layout patterns, colors, spacing, animations). Only takes effect when `forceRegenerate` is `true`. If `forceRegenerate` is `false`, compares whatever is on disk (may not have style metadata) (default: `false`)
-- `depth` (optional): Dependency traversal depth. Only used when `forceRegenerate` is `true`. **IMPORTANT**: By default, dependency graphs only include direct dependencies (depth=1). To include nested components, you MUST explicitly set `depth: 2` or higher. The LLM does NOT automatically detect when depth=2 is needed - it must be explicitly requested.
+- `depth` (optional): Dependency traversal depth. Only used when `forceRegenerate` is `true`. **IMPORTANT**: By default, dependency graphs include nested components (depth=2). Set `depth: 1` if you only need direct dependencies. The default depth=2 ensures nested components are included in dependency graphs.
 - `forceRegenerate` (optional): Force regeneration of context before comparing. When `true`, runs `stamp context` (with `--include-style` if `includeStyle` is `true`, and `--depth N` if `depth` is provided). When `false`, reads existing `context_main.json` from disk (fast, assumes context is fresh) (default: `false`)
 - `projectPath` (optional): Defaults to current working directory. Path where current `context_main.json` exists (or should be generated).
 - `baseline` (optional): 
@@ -849,7 +849,7 @@ interface ComponentChange {
 {
   "server": {
     "name": "logicstamp-context",
-    "version": "0.1.2",
+    "version": "0.1.3",
     "defaultProfile": "llm-chat",
     "defaultMode": "header"
   },
