@@ -95,6 +95,48 @@ export default async function CodeOfConductPage() {
                 {cocContent}
               </ReactMarkdown>
             </div>
+
+            {/* Related Repositories Section */}
+            <div className="mt-12 pt-8 border-t border-gray-200 dark:border-gray-700">
+              <h2 className="text-lg font-semibold text-gray-900 dark:text-white mb-3">
+                Related Repositories
+              </h2>
+              <p className="text-sm text-gray-600 dark:text-gray-400 mb-4">
+                Each LogicStamp repository maintains its own Code of Conduct file.
+              </p>
+              <ul className="space-y-2 text-sm">
+                <li>
+                  <a
+                    href="https://github.com/LogicStamp/logicstamp-context/blob/main/CODE_OF_CONDUCT.md"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-blue-600 dark:text-blue-400 hover:underline"
+                  >
+                    logicstamp-context
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="https://github.com/LogicStamp/logicstamp-mcp/blob/main/CODE_OF_CONDUCT.md"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-blue-600 dark:text-blue-400 hover:underline"
+                  >
+                    logicstamp-mcp
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="https://github.com/LogicStamp/logicstamp.dev/blob/main/CODE_OF_CONDUCT.md"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-blue-600 dark:text-blue-400 hover:underline"
+                  >
+                    logicstamp.dev
+                  </a>
+                </li>
+              </ul>
+            </div>
           </div>
         </AnimatedSection>
       </div>
