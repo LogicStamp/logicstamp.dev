@@ -1,4 +1,4 @@
-# LogicStamp Landing Page
+# LogicStamp Website
 
 <div align="center">
 
@@ -11,7 +11,7 @@
 [![Tailwind CSS](https://img.shields.io/badge/Tailwind-3.4-38bdf8)](https://tailwindcss.com/)
 [![License](https://img.shields.io/badge/License-MIT-green.svg)](./LICENSE)
 
-[Website](https://logicstamp.dev) • [Documentation](./docs/) • [GitHub](https://github.com/LogicStamp) • [Contributing](./CONTRIBUTING.md)
+[Website](https://logicstamp.dev) • [Documentation](./docs/) • [MCP Integration](./docs/mcp/) • [GitHub](https://github.com/LogicStamp) • [Contributing](./CONTRIBUTING.md)
 
 </div>
 
@@ -34,6 +34,8 @@
 ## About
 
 This is the official landing page and documentation website for **LogicStamp**, a powerful tool for generating structured context bundles for LLMs. LogicStamp helps developers create efficient, maintainable context files that improve AI-assisted development workflows.
+
+**LogicStamp MCP** enables AI assistants (Claude, Cursor, etc.) to analyze React/TypeScript codebases through the Model Context Protocol, providing structured component contracts, dependency graphs, and style metadata.
 
 The site is built with Next.js 14, TypeScript, and Tailwind CSS, featuring a modern, responsive design with dark mode support.
 
@@ -100,6 +102,21 @@ stamp context style
 - `stamp context style` - Generate with style metadata (Tailwind, SCSS, etc.)
 
 For more information, see the [LogicStamp CLI documentation](./docs/context/cli/).
+
+### Using LogicStamp MCP
+
+LogicStamp MCP enables AI assistants to analyze your codebase through the Model Context Protocol:
+
+- **Claude Desktop** - Integrate LogicStamp with Claude Desktop
+- **Cursor IDE** - Use LogicStamp directly in Cursor
+- **Claude CLI** - Command-line integration for Claude Code
+
+The MCP server provides structured context bundles optimized for AI consumption, including component contracts, dependency graphs, and optional style metadata.
+
+**Quick Start:**
+- See the [MCP Quick Start Guide](./docs/mcp/quickstart.md)
+- Check [MCP Integration Guides](./docs/mcp/integrations/) for platform-specific setup
+- Read [LogicStamp for LLMs](./docs/mcp/logicstamp-for-llms.md) for AI-focused documentation
 
 ### Development
 
@@ -197,7 +214,7 @@ logicstamp.dev/
 ├── next.config.js              # Next.js configuration
 ├── tailwind.config.ts          # Tailwind CSS configuration
 ├── tsconfig.json               # TypeScript configuration
-├── vitest.config.ts            # Vitest test configuration
+├── vitest.config.mjs           # Vitest test configuration
 └── package.json                # Dependencies and scripts
 ```
 
@@ -205,7 +222,8 @@ logicstamp.dev/
 
 Comprehensive documentation is available both on the site and in the repository:
 
-- **[Getting Started Guide](./docs/context/usage.md)** - Quick start with LogicStamp
+- **[Getting Started Guide](./docs/context/usage.md)** - Quick start with LogicStamp CLI
+- **[MCP Integration](./docs/mcp/)** - Model Context Protocol integration guides
 - **[CLI Commands](./docs/context/cli/)** - Complete command reference
 - **[Schema Documentation](./docs/context/schema.md)** - Context file schema
 - **[Best Practices](./src/app/docs/best-practices/page.tsx)** - Development best practices
@@ -243,7 +261,7 @@ Before contributing, please read:
 
 ## Security
 
-For security concerns, please review our [Security Audit](./SECURITY_AUDIT.md) and [Privacy & Security](./PRIVACY_SECURITY.md) documentation.
+For security concerns, please review our [Privacy & Security](./PRIVACY_SECURITY.md) documentation.
 
 ## License
 
@@ -259,7 +277,7 @@ These assets may not be used for third-party branding, logos, or commercial iden
 
 - [Documentation](./docs/)
 - [Issue Tracker](https://github.com/LogicStamp/logicstamp-context/issues)
-- [Contact](https://logicstamp.dev) | Email: logicstamp.dev@gmail.com
+- [Contact](mailto:logicstamp.dev@gmail.com)
 
 ## Community
 
