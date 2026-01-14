@@ -6,7 +6,7 @@ import TabbedCodeBlock from '@/components/docs/TabbedCodeBlock'
 
 export const metadata: Metadata = {
   title: 'Known Limitations | LogicStamp Context Documentation',
-  description: 'Learn about current limitations in LogicStamp Context extraction, including hook parameter detection, emit detection, dynamic class parsing, and hook classification.',
+  description: 'Learn about current limitations in LogicStamp Context extraction, including dynamic class parsing, CSS-in-JS support, and TypeScript type extraction.',
 }
 
 export default function KnownLimitationsPage() {
@@ -163,12 +163,12 @@ export default function KnownLimitationsPage() {
           {/* Emit Detection */}
           <AnimatedSection direction="up" delay={300}>
             <div className="relative mb-8 sm:mb-12 lg:mb-16">
-              <div className="absolute -inset-1 bg-gradient-to-r from-red-600 to-orange-600 rounded-2xl blur opacity-20 dark:opacity-10" />
+              <div className="absolute -inset-1 bg-gradient-to-r from-green-600 to-emerald-600 rounded-2xl blur opacity-20 dark:opacity-10" />
               <div className="relative bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded-2xl p-4 sm:p-6 lg:p-8 shadow-xl">
                 <div className="flex items-baseline gap-3 mb-4 sm:mb-6">
-                  <div className="p-2 bg-red-100 dark:bg-red-900/30 rounded-lg flex-shrink-0 -mt-0.5">
-                    <svg className="w-5 h-5 sm:w-6 sm:h-6 text-red-600 dark:text-red-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+                  <div className="p-2 bg-green-100 dark:bg-green-900/30 rounded-lg flex-shrink-0 -mt-0.5">
+                    <svg className="w-5 h-5 sm:w-6 sm:h-6 text-green-600 dark:text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
                     </svg>
                   </div>
                   <h2 className="text-xl sm:text-2xl font-bold text-gray-900 dark:text-white m-0">
@@ -177,13 +177,26 @@ export default function KnownLimitationsPage() {
                 </div>
                 
                 <div className="space-y-4">
+                  <div className="p-4 bg-green-50 dark:bg-green-950/20 rounded-lg border-l-4 border-green-500">
+                    <p className="text-sm font-semibold text-green-800 dark:text-green-300 mb-2">
+                      ✅ Fixed in v0.3.7
+                    </p>
+                    <p className="text-sm text-green-700 dark:text-green-400">
+                      Emit detection now correctly distinguishes between internal handlers and component public API emits. Only handlers that are part of the component's Props interface/type are included in the <code className="px-1.5 py-0.5 bg-green-100 dark:bg-green-900/40 rounded text-xs font-mono">emits</code> object.
+                    </p>
+                  </div>
+
                   <div>
                     <h3 className="font-semibold text-gray-900 dark:text-white mb-2 text-base sm:text-lg">
-                      Issue
+                      What Works
                     </h3>
-                    <p className="text-sm sm:text-base text-gray-600 dark:text-gray-400 mb-4 leading-relaxed">
-                      Sometimes we get confused about what's an internal handler vs. a real component emit. If you have an <code className="px-2 py-1 bg-gray-100 dark:bg-gray-800 rounded text-sm font-mono">onClick</code> that just updates internal state, it might still show up in the <code className="px-2 py-1 bg-gray-100 dark:bg-gray-800 rounded text-sm font-mono">emits</code> object even though it's not part of the component's public API.
-                    </p>
+                    <ul className="space-y-2 text-sm text-gray-600 dark:text-gray-400 ml-4 list-disc">
+                      <li>Only extracts event handlers that exist in Props interfaces/types</li>
+                      <li>Filters out internal handlers (e.g., <code className="px-1.5 py-0.5 bg-gray-100 dark:bg-gray-800 rounded text-xs font-mono">onClick={() => setMenuOpen(!menuOpen)}</code>)</li>
+                      <li>Filters out inline handlers that are not props</li>
+                      <li>Uses prop type signatures when available for accurate event signatures</li>
+                      <li>Falls back to AST-based arrow function parsing only when prop signature is unavailable</li>
+                    </ul>
                   </div>
 
                   <div>
@@ -193,7 +206,7 @@ export default function KnownLimitationsPage() {
                     <TabbedCodeBlock
                       tabs={[
                         {
-                          label: 'Source Code',
+                          label: 'Source Code (No Props)',
                           code: `function Header() {
   const [menuOpen, setMenuOpen] = useState(false)
   
@@ -214,7 +227,37 @@ export default function KnownLimitationsPage() {
 }`
                         },
                         {
-                          label: 'Context Output (Incorrect)',
+                          label: 'Context Output (Correct)',
+                          code: `{
+    "logic": {
+      "emits": {}
+    }
+  }`,
+                          copyText: `{
+    "logic": {
+      "emits": {}
+    }
+  }`
+                        },
+                        {
+                          label: 'Source Code (With Props)',
+                          code: `interface ButtonProps {
+  onClick?: () => void;
+}
+
+function Button({ onClick }: ButtonProps) {
+  return <button onClick={onClick}>Click</button>;
+}`,
+                          copyText: `interface ButtonProps {
+  onClick?: () => void;
+}
+
+function Button({ onClick }: ButtonProps) {
+  return <button onClick={onClick}>Click</button>;
+}`
+                        },
+                        {
+                          label: 'Context Output (Correct)',
                           code: `{
     "logic": {
       "emits": {
@@ -238,12 +281,6 @@ export default function KnownLimitationsPage() {
                         }
                       ]}
                     />
-                  </div>
-
-                  <div className="p-4 bg-red-50 dark:bg-red-950/20 rounded-lg border border-red-200 dark:border-red-800">
-                    <p className="text-sm text-red-800 dark:text-red-300">
-                      <strong>Impact:</strong> You might see internal handlers listed as emits, which can be confusing when trying to figure out what events the component actually exposes.
-                    </p>
                   </div>
                 </div>
               </div>
@@ -451,8 +488,8 @@ export default function KnownLimitationsPage() {
                       <strong>Areas for improvement:</strong>
                     </p>
                     <ul className="space-y-1 text-sm text-amber-700 dark:text-amber-400 ml-4 list-disc">
-                      <li>Hook function signatures (parameters not captured)</li>
-                      <li>Emit detection accuracy (internal handlers vs. actual emits)</li>
+                      <li>~~Hook function signatures (parameters not captured)~~ ✅ Fixed in v0.3.6</li>
+                      <li>~~Emit detection accuracy (internal handlers vs. actual emits)~~ ✅ Fixed in v0.3.7</li>
                       <li>Dynamic style extraction (variable-based classes within template literals)</li>
                     </ul>
                   </div>
@@ -556,7 +593,7 @@ export default function KnownLimitationsPage() {
                         <ul className="space-y-1 text-sm text-gray-600 dark:text-gray-400 ml-4 list-disc">
                           <li><strong>Created timestamps</strong>: When context was generated</li>
                           <li><strong>OS detection</strong>: Platform info (e.g., <code className="px-1.5 py-0.5 bg-gray-100 dark:bg-gray-800 rounded text-xs font-mono">win32</code>)</li>
-                          <li><strong>Source tool version</strong>: <code className="px-1.5 py-0.5 bg-gray-100 dark:bg-gray-800 rounded text-xs font-mono">logicstamp-context@0.3.4</code></li>
+                          <li><strong>Source tool version</strong>: <code className="px-1.5 py-0.5 bg-gray-100 dark:bg-gray-800 rounded text-xs font-mono">logicstamp-context@0.3.7</code></li>
                           <li><strong>Missing dependencies</strong>: Tracked in <code className="px-1.5 py-0.5 bg-gray-100 dark:bg-gray-800 rounded text-xs font-mono">missing</code> array</li>
                         </ul>
                       </div>
@@ -928,8 +965,8 @@ export default function KnownLimitationsPage() {
                       High Priority
                     </h3>
                     <ol className="space-y-2 text-sm text-gray-600 dark:text-gray-400 ml-4 list-decimal">
-                      <li><strong>Hook parameter detection</strong>: Extract function signatures for custom hooks</li>
-                      <li><strong>Emit detection accuracy</strong>: Distinguish internal handlers from public API emits</li>
+                      <li>~~<strong>Hook parameter detection</strong>: Extract function signatures for custom hooks~~ ✅ <strong className="text-green-600 dark:text-green-400">Fixed in v0.3.6</strong></li>
+                      <li>~~<strong>Emit detection accuracy</strong>: Distinguish internal handlers from public API emits~~ ✅ <strong className="text-green-600 dark:text-green-400">Fixed in v0.3.7</strong></li>
                       <li><strong>Dynamic class parsing</strong>: Resolve variable-based classes within template literals</li>
                       <li>~~<strong>Extract inline style values</strong>: Parse <code className="px-1.5 py-0.5 bg-gray-100 dark:bg-gray-800 rounded text-xs font-mono">style={'{'} ... {'}'}</code> objects and include properties~~ ✅ <strong className="text-green-600 dark:text-green-400">Fixed in v0.3.5</strong></li>
                       <li>~~<strong>Parse styled-jsx</strong>: Extract CSS from <code className="px-1.5 py-0.5 bg-gray-100 dark:bg-gray-800 rounded text-xs font-mono">&lt;style jsx&gt;</code> blocks~~ ✅ <strong className="text-green-600 dark:text-green-400">Fixed in v0.3.5</strong></li>
@@ -1008,8 +1045,6 @@ export default function KnownLimitationsPage() {
                     </h3>
                     <div className="space-y-3">
                       {[
-                        'Hook parameter detection (parameters not captured)',
-                        'Emit detection accuracy (internal handlers vs. actual emits)',
                         'Dynamic class resolution (variable-based classes within template literals)',
                         'CSS-in-JS support completeness (remaining libraries like Chakra UI, Ant Design)',
                         'Third-party component info (package names, versions, prop types)',

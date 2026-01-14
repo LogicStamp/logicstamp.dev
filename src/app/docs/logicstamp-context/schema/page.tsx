@@ -555,7 +555,7 @@ interface PageLayoutMetadata {
   };
   meta: {
     missing: MissingDependency[];
-    source: string;  // Tool version (e.g., "logicstamp-context@0.3.4")
+    source: string;  // Tool version (e.g., "logicstamp-context@0.3.7")
   };
 }
 
@@ -644,7 +644,7 @@ interface MissingDependency {
         "referencedBy": "src/components/Button.tsx"
       }
     ],
-    "source": "logicstamp-context@0.3.4"
+    "source": "logicstamp-context@0.3.7"
   }
 }`,
                       copyText: `{
@@ -660,7 +660,7 @@ interface MissingDependency {
   },
   "meta": {
     "missing": [...],
-    "source": "logicstamp-context@0.3.4"
+    "source": "logicstamp-context@0.3.7"
   }
 }`
                     }
@@ -771,7 +771,7 @@ interface FolderEntry {
     }
   ],
   "meta": {
-    "source": "logicstamp-context@0.3.4"
+    "source": "logicstamp-context@0.3.7"
   }
 }`,
                       copyText: `{
@@ -787,7 +787,7 @@ interface FolderEntry {
   },
   "folders": [...],
   "meta": {
-    "source": "logicstamp-context@0.3.4"
+    "source": "logicstamp-context@0.3.7"
   }
 }`
                     }
