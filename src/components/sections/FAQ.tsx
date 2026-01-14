@@ -36,13 +36,13 @@ const faqs = [
     id: 1,
     question: 'How does LogicStamp Context work?',
     answer:
-      'LogicStamp Context scans your React/TypeScript codebase and generates structured context bundles optimized for AI consumption.\nIt analyzes component structure, extracts logic signatures (props, state, events), builds dependency graphs, and packages everything into machine-readable JSON with built-in token optimization.\nNo configuration needed—just run `stamp context` and get instant AI-ready context bundles.',
+      'LogicStamp Context scans your React/TypeScript codebase and generates structured context bundles optimized for AI consumption.\nIt analyzes component structure, extracts logic signatures (props, state, events), builds dependency graphs, and packages everything into machine-readable JSON with built-in token optimization.\nNo configuration needed - just run `stamp context` and get instant AI-ready context bundles.',
   },
   {
     id: 2,
     question: 'Why not just paste code into AI chats?',
     answer:
-      'Pasting raw code wastes tokens on boilerplate, imports, and redundant formatting.\nLogicStamp Context extracts only what AI needs—component contracts, dependency relationships, and logic signatures—saving up to 65% tokens compared to full source code.\nPlus, it provides structured context that AI can actually parse and understand, not just raw text.',
+      'Pasting raw code wastes tokens on boilerplate, imports, and redundant formatting.\nLogicStamp Context extracts only what AI needs - component contracts, dependency relationships, and logic signatures - saving up to 65% tokens compared to full source code.\nPlus, it provides structured context that AI can actually parse and understand, not just raw text.',
   },
   {
     id: 3,
@@ -78,7 +78,7 @@ const faqs = [
     id: 8,
     question: 'Why bundles instead of individual component files?',
     answer:
-      'LogicStamp Context generates per-root bundles (one bundle per page/feature component) rather than individual files per component.\nEach bundle contains the root component plus its complete dependency graph—all related components together.\nThis design matches how developers work: when you need help with a specific page or feature, share that bundle and the AI has complete context in one self-contained unit.',
+      'LogicStamp Context generates per-root bundles (one bundle per page/feature component) rather than individual files per component.\nEach bundle contains the root component plus its complete dependency graph - all related components together.\nThis design matches how developers work: when you need help with a specific page or feature, share that bundle and the AI has complete context in one self-contained unit.',
   },
   {
     id: 9,
@@ -272,7 +272,7 @@ export default function FAQ() {
                       `}
                     >
                       <div className="overflow-hidden">
-                        <div className="text-lg lg:text-xl leading-7 text-gray-600 dark:text-gray-300 pr-2 sm:pr-8">
+                        <div className="text-xl lg:text-xl leading-7 text-gray-600 dark:text-gray-300 pr-2 sm:pr-8">
                           {faq.answer.split(/(Add this configuration:\n)/).map((part, idx) => {
                             // Check if this part is JSON (starts with { and contains mcpServers)
                             if (part.trim().startsWith('{') && part.includes('mcpServers')) {
