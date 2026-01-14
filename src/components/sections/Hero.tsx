@@ -324,20 +324,22 @@ export default function Hero() {
               href="https://raw.githubusercontent.com/LogicStamp/logicstamp.dev/main/public/logicstamp-workflow.gif"
               target="_blank"
               rel="noopener noreferrer"
-              className="group relative block w-full rounded-2xl bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 p-4 shadow-2xl transition-all duration-300 hover:shadow-purple-500/50"
+              className="group relative block w-full rounded-2xl bg-white/60 dark:bg-gray-900/60 border border-gray-200/50 dark:border-white/5 backdrop-blur-xl backdrop-saturate-150 shadow-[0_8px_32px_rgba(0,0,0,0.04)] dark:shadow-[0_8px_32px_rgba(0,0,0,0.3)] p-4 transition-all duration-300 overflow-hidden"
             >
+              {/* Subtle gradient overlay */}
+              <div className="absolute inset-0 bg-gradient-to-br from-white/40 via-transparent to-transparent dark:from-white/5 dark:via-transparent dark:to-transparent pointer-events-none" />
               <div className="relative z-10 flex items-center gap-3">
-                <div className="flex-shrink-0 inline-flex items-center justify-center rounded-full bg-white/20 p-2 backdrop-blur-sm">
+                <div className="flex-shrink-0 inline-flex items-center justify-center rounded-full bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 p-2">
                   <svg className="h-5 w-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z" />
                   </svg>
                 </div>
                 <div className="flex-1 min-w-0">
-                  <h3 className="text-base font-bold text-white truncate">
+                  <h3 className="text-base font-bold text-gray-900 dark:text-white truncate">
                     See in Action
                   </h3>
                 </div>
-                <div className="flex-shrink-0 inline-flex items-center text-white">
+                <div className="flex-shrink-0 inline-flex items-center text-gray-900 dark:text-white">
                   <svg className="h-5 w-5 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
                   </svg>
