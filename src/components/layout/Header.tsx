@@ -98,6 +98,7 @@ export default function Header() {
                   smoothScrollToTop();
                 }
               }}
+              aria-label="LogicStamp"
               className="flex items-center gap-0.5 lg:gap-1 cursor-pointer group focus:outline-none focus:ring-0 active:bg-transparent logo-link"
             >
               <div className="logicstamp-logo-container">
