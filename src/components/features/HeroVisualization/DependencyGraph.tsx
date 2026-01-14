@@ -67,7 +67,7 @@ export default function DependencyGraph({ animatedNodes }: DependencyGraphProps)
   }
 
   return (
-    <div className="relative w-full h-full flex items-center justify-center p-8 overflow-x-auto sm:overflow-hidden">
+    <div className="relative w-full h-full flex items-center justify-center p-3 sm:p-5 lg:p-8 overflow-x-auto sm:overflow-hidden">
       <svg
         viewBox="5 5 90 90"
         className="w-full h-full min-w-full"

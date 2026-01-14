@@ -84,10 +84,27 @@ const HeroVisualization = forwardRef<HTMLDivElement, HeroVisualizationProps>(
         <div className="relative flex flex-col lg:grid lg:grid-cols-2 gap-6 lg:gap-10 max-w-[1340px] mx-auto">
           {/* Left: Dependency Graph */}
           <div 
-            className="relative rounded-xl bg-gradient-bg-card p-2 ring-1 ring-inset ring-secondary-200/20 dark:ring-secondary-400/20 lg:rounded-2xl lg:p-4 hover-lift shadow-lg h-96 sm:h-[48rem] overflow-x-auto sm:overflow-hidden"
+            className="relative rounded-xl bg-gradient-bg-card pt-0.5 pb-2 px-2 ring-1 ring-inset ring-secondary-200/20 dark:ring-secondary-400/20 lg:rounded-2xl lg:pt-1 lg:pb-4 lg:px-4 hover-lift shadow-lg h-96 sm:h-[48rem] overflow-x-auto sm:overflow-hidden flex flex-col"
             style={graphStyle}
           >
-            <DependencyGraph animatedNodes={animatedNodes} />
+            <div className="flex-1 flex items-center justify-center pb-0 sm:pb-40">
+              <DependencyGraph animatedNodes={animatedNodes} />
+            </div>
+            {/* Command text positioned more toward center */}
+            <div className="relative sm:absolute -mt-28 sm:mt-0 bottom-0 sm:bottom-20 left-0 right-0 pt-4 pb-2 sm:pb-0 border-t border-secondary-200/20 dark:border-secondary-400/20">
+              <p className="text-sm sm:text-base lg:text-lg text-gray-600 dark:text-gray-400 text-center mb-3 font-medium">
+                Run to get context bundles
+              </p>
+              <div className="flex flex-row items-center justify-center gap-2 sm:gap-4 text-xs sm:text-lg lg:text-xl">
+                <code className="font-mono font-semibold text-gray-700 dark:text-gray-300 px-2 py-1.5 sm:px-4 sm:py-2 rounded-md bg-gray-100/50 dark:bg-gray-800/50 whitespace-nowrap">
+                  stamp context
+                </code>
+                <span className="text-gray-500 dark:text-gray-400 font-medium text-xs sm:text-lg lg:text-xl whitespace-nowrap">or</span>
+                <code className="font-mono font-semibold text-gray-700 dark:text-gray-300 px-2 py-1.5 sm:px-4 sm:py-2 rounded-md bg-gray-100/50 dark:bg-gray-800/50 whitespace-nowrap">
+                  stamp context style
+                </code>
+              </div>
+            </div>
           </div>
           
           {/* Arrow indicator - Desktop: right arrow */}
