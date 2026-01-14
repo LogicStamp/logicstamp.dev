@@ -4,7 +4,7 @@ Thank you for your interest in contributing to LogicStamp! This document provide
 
 ## Code of Conduct
 
-By participating in this project, you agree to maintain a respectful and inclusive environment for all contributors.
+This project follows a [Code of Conduct](https://logicstamp.dev/code-of-conduct). By participating, you agree to uphold it.
 
 ## Getting Started
 

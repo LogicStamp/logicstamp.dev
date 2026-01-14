@@ -206,13 +206,13 @@ export default function LogicStampReadmePage() {
                 <div className="space-y-4">
                   <div className="p-4 bg-green-50 dark:bg-green-950/20 rounded-xl border border-green-200 dark:border-green-800">
                     <h3 className="font-semibold text-green-900 dark:text-green-200 mb-2 text-base sm:text-lg">
-                      v0.3.6
+                      v0.3.7
                     </h3>
                     <ul className="space-y-2 text-sm text-green-800 dark:text-green-300 ml-4 list-disc">
                       <li><strong>Hook parameter detection</strong> – Hook parameter detection is now fully implemented, extracting function signatures for custom React hooks</li>
                       <li><strong>Default depth changed to 2</strong> – The default dependency traversal depth is now 2 (was 1) to ensure complete signature extraction for React projects with component hierarchies</li>
                       <li><strong>Updated messaging</strong> – Changed from &quot;zero-config&quot; to &quot;one-time setup&quot; to better reflect the setup process</li>
-                      <li><strong>Beta release note</strong> – This is a beta release (v0.3.6). We&apos;re actively improving the tool based on user feedback. If you encounter any issues or have suggestions, please open an issue on GitHub</li>
+                      <li><strong>Beta release note</strong> – This is a beta release (v0.3.7). We&apos;re actively improving the tool based on user feedback. If you encounter any issues or have suggestions, please open an issue on GitHub</li>
                     </ul>
                   </div>
                   <div className="p-4 bg-purple-50 dark:bg-purple-950/20 rounded-xl border border-purple-200 dark:border-purple-800">

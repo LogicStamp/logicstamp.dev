@@ -261,6 +261,10 @@ These assets may not be used for third-party branding, logos, or commercial iden
 - [Issue Tracker](https://github.com/LogicStamp/logicstamp-context/issues)
 - [Contact](https://logicstamp.dev) | Email: logicstamp.dev@gmail.com
 
+## Community
+
+This project follows a [Code of Conduct](https://logicstamp.dev/code-of-conduct). By participating, you agree to uphold it.
+
 ---
 
 <div align="center">

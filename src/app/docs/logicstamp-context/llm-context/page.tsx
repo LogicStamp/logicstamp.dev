@@ -283,7 +283,7 @@ export default function LlmContextPage() {
                 <div className="p-4 bg-orange-50 dark:bg-orange-950/20 rounded-xl border border-orange-200 dark:border-orange-800">
                   <h4 className="font-semibold text-orange-900 dark:text-orange-200 mb-2">source</h4>
                   <p className="text-sm text-orange-800 dark:text-orange-300">
-                    Generator version string, for example &quot;logicstamp-context@0.3.4&quot;
+                    Generator version string, for example &quot;logicstamp-context@0.3.7&quot;
                   </p>
                 </div>
               </div>

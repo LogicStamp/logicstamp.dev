@@ -107,7 +107,7 @@ export default function LogicStampCommandsPage() {
                 <div className="space-y-2 font-mono text-xs sm:text-sm">
                   <div className="flex items-center gap-2 text-indigo-800 dark:text-indigo-300">
                     <code className="px-2 py-1 bg-indigo-100 dark:bg-indigo-900/40 rounded">stamp --version</code>
-                    <span className="text-gray-600 dark:text-gray-400"># Shows: fox mascot + "Version: 0.3.4"</span>
+                    <span className="text-gray-600 dark:text-gray-400"># Shows: fox mascot + "Version: 0.3.7"</span>
                   </div>
                   <div className="flex items-center gap-2 text-indigo-800 dark:text-indigo-300">
                     <code className="px-2 py-1 bg-indigo-100 dark:bg-indigo-900/40 rounded">stamp -v</code>

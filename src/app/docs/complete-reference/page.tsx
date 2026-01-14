@@ -69,7 +69,7 @@ export default function CompleteReferencePage() {
                   </svg>
                 </div>
                 <h2 className="text-xl sm:text-2xl font-bold text-gray-900 dark:text-white m-0">
-                  MCP Server Integration (Beta v0.1.3)
+                  MCP Server Integration (Beta v0.1.4)
                 </h2>
               </div>
               
@@ -987,7 +987,7 @@ stamp context style --include-code header`
     },
     "meta": {
       "missing": [],
-      "source": "logicstamp-context@0.3.4"
+      "source": "logicstamp-context@0.3.7"
     }
   }
 ]`,
@@ -1028,7 +1028,7 @@ stamp context style --include-code header`
     },
     "meta": {
       "missing": [],
-      "source": "logicstamp-context@0.3.4"
+      "source": "logicstamp-context@0.3.7"
     }
   }
 ]`

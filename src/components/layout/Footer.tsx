@@ -19,6 +19,7 @@ const navigation = {
   legal: [
     { name: 'MIT License', href: '/license', external: false },
     { name: 'Privacy & Security', href: '/privacy-security', external: false },
+    { name: 'Code of Conduct', href: '/code-of-conduct', external: false },
   ],
 }
 

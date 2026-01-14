@@ -89,7 +89,7 @@ export default function BetaPage() {
           <AnimatedSection direction="up" delay={0}>
             <div className="text-center mb-16">
               <h2 className="text-4xl sm:text-5xl font-bold text-gray-900 dark:text-white mb-6">
-                Roadmap
+                🗺️ Roadmap
               </h2>
               <p className="text-lg sm:text-xl text-gray-600 dark:text-gray-400 max-w-3xl mx-auto">
                 Here's what we're building next. Your feedback will help us prioritize what matters most.
@@ -102,7 +102,7 @@ export default function BetaPage() {
             <AnimatedSection direction="up" delay={100}>
               <div className="bg-gradient-to-br from-green-50 to-emerald-50 dark:from-green-900/20 dark:to-emerald-900/20 rounded-2xl p-8 sm:p-10 shadow-xl border border-green-200 dark:border-green-800">
                 <div className="flex items-center gap-3 mb-6">
-                  <div className="w-10 h-10 bg-gradient-to-br from-green-500 to-emerald-500 rounded-xl flex items-center justify-center shadow-lg">
+                  <div className="flex-shrink-0 w-10 h-10 sm:w-12 sm:h-12 bg-gradient-to-br from-green-500 to-emerald-500 rounded-xl flex items-center justify-center shadow-lg">
                     <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
                     </svg>
@@ -113,27 +113,33 @@ export default function BetaPage() {
                 </div>
                 <div className="space-y-4 text-gray-700 dark:text-gray-300">
                   <div>
-                    <p className="font-semibold mb-2">v0.3.6 (January 2026)</p>
+                    <p className="font-bold mb-2">v0.3.7 (January 2026)</p>
+                    <ul className="list-disc list-inside space-y-1 ml-2">
+                      <li>Emit detection accuracy - Fixed issue where internal event handlers were incorrectly listed as component emits. Now only includes handlers that are part of the component&apos;s public API (props)</li>
+                    </ul>
+                  </div>
+                  <div>
+                    <p className="font-bold mb-2">v0.3.6 (January 2026)</p>
                     <ul className="list-disc list-inside space-y-1 ml-2">
                       <li>Hook parameter detection - Comprehensive support for extracting function signatures from custom React hooks</li>
                       <li>Default depth changed from 1 to 2 for better nested component signature extraction</li>
                     </ul>
                   </div>
                   <div>
-                    <p className="font-semibold mb-2">v0.3.5 (January 2026)</p>
+                    <p className="font-bold mb-2">v0.3.5 (January 2026)</p>
                     <ul className="list-disc list-inside space-y-1 ml-2">
                       <li>Styled JSX support with full CSS extraction</li>
                       <li>Enhanced inline style extraction</li>
                     </ul>
                   </div>
                   <div>
-                    <p className="font-semibold mb-2">v0.3.4 (January 2026)</p>
+                    <p className="font-bold mb-2">v0.3.4 (January 2026)</p>
                     <ul className="list-disc list-inside space-y-1 ml-2">
                       <li>Vue.js TypeScript/TSX support - Comprehensive Vue 3 Composition API support</li>
                     </ul>
                   </div>
                   <div>
-                    <p className="font-semibold mb-2">Earlier Releases</p>
+                    <p className="font-bold mb-2">Earlier Releases</p>
                     <ul className="list-disc list-inside space-y-1 ml-2">
                       <li>MCP Server Integration - Available now! <a href="/docs/mcp" className="text-green-600 dark:text-green-400 hover:underline font-semibold">Get started</a></li>
                       <li>Style metadata extraction (Tailwind, SCSS, Material UI, ShadCN, Radix UI, Framer Motion)</li>
@@ -149,7 +155,7 @@ export default function BetaPage() {
             <AnimatedSection direction="up" delay={150}>
               <div className="bg-gradient-to-br from-white to-gray-50 dark:from-gray-800 dark:to-gray-900 rounded-2xl p-8 sm:p-10 shadow-xl border border-gray-200 dark:border-gray-700">
                 <div className="flex items-center gap-3 mb-6">
-                  <div className="w-10 h-10 bg-gradient-to-br from-red-500 to-rose-500 rounded-xl flex items-center justify-center shadow-lg">
+                  <div className="flex-shrink-0 w-10 h-10 sm:w-12 sm:h-12 bg-gradient-to-br from-red-500 to-rose-500 rounded-xl flex items-center justify-center shadow-lg">
                     <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
                     </svg>
@@ -206,7 +212,7 @@ export default function BetaPage() {
             <AnimatedSection direction="up" delay={200}>
               <div className="bg-gradient-to-br from-white to-gray-50 dark:from-gray-800 dark:to-gray-900 rounded-2xl p-8 sm:p-10 shadow-xl border border-gray-200 dark:border-gray-700">
                 <div className="flex items-center gap-3 mb-6">
-                  <div className="w-10 h-10 bg-gradient-to-br from-blue-500 to-cyan-500 rounded-xl flex items-center justify-center shadow-lg">
+                  <div className="flex-shrink-0 w-10 h-10 sm:w-12 sm:h-12 bg-gradient-to-br from-blue-500 to-cyan-500 rounded-xl flex items-center justify-center shadow-lg">
                     <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
                     </svg>
@@ -283,11 +289,114 @@ export default function BetaPage() {
               </div>
             </AnimatedSection>
 
-            {/* Medium Priority Improvements */}
+            {/* MCP Server Enhancements */}
             <AnimatedSection direction="up" delay={250}>
               <div className="bg-gradient-to-br from-white to-gray-50 dark:from-gray-800 dark:to-gray-900 rounded-2xl p-8 sm:p-10 shadow-xl border border-gray-200 dark:border-gray-700">
                 <div className="flex items-center gap-3 mb-6">
-                  <div className="w-10 h-10 bg-gradient-to-br from-purple-500 to-pink-500 rounded-xl flex items-center justify-center shadow-lg">
+                  <div className="flex-shrink-0 w-10 h-10 sm:w-12 sm:h-12 bg-gradient-to-br from-indigo-500 to-violet-500 rounded-xl flex items-center justify-center shadow-lg">
+                    <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 9l3 3-3 3m5 0h3M5 20h14a2 2 0 002-2V6a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                    </svg>
+                  </div>
+                  <h3 className="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white">
+                    MCP Server Enhancements
+                  </h3>
+                </div>
+                <div className="space-y-6">
+                  <div className="flex items-start gap-4">
+                    <div className="flex-shrink-0 pt-1">
+                      <div className="w-8 h-8 bg-indigo-100 dark:bg-indigo-900/30 rounded-lg flex items-center justify-center">
+                        <span className="text-indigo-600 dark:text-indigo-400 font-bold">1</span>
+                      </div>
+                    </div>
+                    <div className="flex-1">
+                      <h4 className="text-lg font-bold text-gray-900 dark:text-white mb-2">
+                        Semantic Component Search
+                      </h4>
+                      <p className="text-gray-600 dark:text-gray-400 leading-relaxed">
+                        Add semantic search across component bundles. Search by component descriptions, prop names, functionality, or metadata rather than requiring exact file/component names.
+                      </p>
+                      <div className="mt-2">
+                        <span className="px-3 py-1 bg-red-100 dark:bg-red-900/30 text-red-600 dark:text-red-400 rounded-full text-sm font-semibold">🔴 Not Started</span>
+                        <span className="ml-2 px-3 py-1 bg-purple-100 dark:bg-purple-900/30 text-purple-600 dark:text-purple-400 rounded-full text-sm font-semibold">High Priority</span>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="border-t border-gray-200 dark:border-gray-700"></div>
+
+                  <div className="flex items-start gap-4">
+                    <div className="flex-shrink-0 pt-1">
+                      <div className="w-8 h-8 bg-indigo-100 dark:bg-indigo-900/30 rounded-lg flex items-center justify-center">
+                        <span className="text-indigo-600 dark:text-indigo-400 font-bold">2</span>
+                      </div>
+                    </div>
+                    <div className="flex-1">
+                      <h4 className="text-lg font-bold text-gray-900 dark:text-white mb-2">
+                        Git Baseline Support
+                      </h4>
+                      <p className="text-gray-600 dark:text-gray-400 leading-relaxed">
+                        Enable comparison against git commits/branches using <code className="text-sm bg-gray-100 dark:bg-gray-800 px-1 py-0.5 rounded">baseline: "git:&lt;ref&gt;"</code> syntax. This enables CI/CD integration and better change tracking.
+                      </p>
+                      <div className="mt-2">
+                        <span className="px-3 py-1 bg-red-100 dark:bg-red-900/30 text-red-600 dark:text-red-400 rounded-full text-sm font-semibold">🔴 Not Started</span>
+                        <span className="ml-2 px-3 py-1 bg-blue-100 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 rounded-full text-sm font-semibold">Medium Priority</span>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="border-t border-gray-200 dark:border-gray-700"></div>
+
+                  <div className="flex items-start gap-4">
+                    <div className="flex-shrink-0 pt-1">
+                      <div className="w-8 h-8 bg-indigo-100 dark:bg-indigo-900/30 rounded-lg flex items-center justify-center">
+                        <span className="text-indigo-600 dark:text-indigo-400 font-bold">3</span>
+                      </div>
+                    </div>
+                    <div className="flex-1">
+                      <h4 className="text-lg font-bold text-gray-900 dark:text-white mb-2">
+                        Configuration File Support
+                      </h4>
+                      <p className="text-gray-600 dark:text-gray-400 leading-relaxed">
+                        Support <code className="text-sm bg-gray-100 dark:bg-gray-800 px-1 py-0.5 rounded">mcp-config.json</code> to set default values for profile, mode, paths, and other settings. Reduces parameter repetition and enables project-specific defaults.
+                      </p>
+                      <div className="mt-2">
+                        <span className="px-3 py-1 bg-red-100 dark:bg-red-900/30 text-red-600 dark:text-red-400 rounded-full text-sm font-semibold">🔴 Not Started</span>
+                        <span className="ml-2 px-3 py-1 bg-blue-100 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 rounded-full text-sm font-semibold">Medium Priority</span>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="border-t border-gray-200 dark:border-gray-700"></div>
+
+                  <div className="flex items-start gap-4">
+                    <div className="flex-shrink-0 pt-1">
+                      <div className="w-8 h-8 bg-indigo-100 dark:bg-indigo-900/30 rounded-lg flex items-center justify-center">
+                        <span className="text-indigo-600 dark:text-indigo-400 font-bold">4</span>
+                      </div>
+                    </div>
+                    <div className="flex-1">
+                      <h4 className="text-lg font-bold text-gray-900 dark:text-white mb-2">
+                        Progress/Status Reporting
+                      </h4>
+                      <p className="text-gray-600 dark:text-gray-400 leading-relaxed">
+                        Add progress reporting for long-running operations like <code className="text-sm bg-gray-100 dark:bg-gray-800 px-1 py-0.5 rounded">refresh_snapshot</code> and <code className="text-sm bg-gray-100 dark:bg-gray-800 px-1 py-0.5 rounded">compare_modes</code>. Use MCP progress notifications to provide real-time updates.
+                      </p>
+                      <div className="mt-2">
+                        <span className="px-3 py-1 bg-red-100 dark:bg-red-900/30 text-red-600 dark:text-red-400 rounded-full text-sm font-semibold">🔴 Not Started</span>
+                        <span className="ml-2 px-3 py-1 bg-blue-100 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 rounded-full text-sm font-semibold">Medium Priority</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </AnimatedSection>
+
+            {/* Medium Priority Improvements */}
+            <AnimatedSection direction="up" delay={300}>
+              <div className="bg-gradient-to-br from-white to-gray-50 dark:from-gray-800 dark:to-gray-900 rounded-2xl p-8 sm:p-10 shadow-xl border border-gray-200 dark:border-gray-700">
+                <div className="flex items-center gap-3 mb-6">
+                  <div className="flex-shrink-0 w-10 h-10 sm:w-12 sm:h-12 bg-gradient-to-br from-purple-500 to-pink-500 rounded-xl flex items-center justify-center shadow-lg">
                     <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 5a1 1 0 011-1h14a1 1 0 011 1v2a1 1 0 01-1 1H5a1 1 0 01-1-1V5zM4 13a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H5a1 1 0 01-1-1v-6zM16 13a1 1 0 011-1h2a1 1 0 011 1v6a1 1 0 01-1 1h-2a1 1 0 01-1-1v-6z" />
                     </svg>
@@ -326,10 +435,10 @@ export default function BetaPage() {
             </AnimatedSection>
 
             {/* Future Enhancements */}
-            <AnimatedSection direction="up" delay={300}>
+            <AnimatedSection direction="up" delay={350}>
               <div className="bg-gradient-to-br from-white to-gray-50 dark:from-gray-800 dark:to-gray-900 rounded-2xl p-8 sm:p-10 shadow-xl border border-gray-200 dark:border-gray-700">
                 <div className="flex items-center gap-3 mb-6">
-                  <div className="w-10 h-10 bg-gradient-to-br from-amber-500 to-orange-500 rounded-xl flex items-center justify-center shadow-lg">
+                  <div className="flex-shrink-0 w-10 h-10 sm:w-12 sm:h-12 bg-gradient-to-br from-amber-500 to-orange-500 rounded-xl flex items-center justify-center shadow-lg">
                     <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
                     </svg>
@@ -374,7 +483,11 @@ export default function BetaPage() {
             <p className="text-sm text-gray-500 dark:text-gray-400 mt-2">
               For the complete roadmap with detailed implementation plans, see{' '}
               <a href="https://github.com/LogicStamp/logicstamp-context/blob/main/ROADMAP.md" className="text-blue-600 dark:text-blue-400 hover:underline font-semibold" target="_blank" rel="noopener noreferrer">
-                ROADMAP.md
+                CLI ROADMAP.md
+              </a>
+              {' '}and{' '}
+              <a href="https://github.com/LogicStamp/logicstamp-mcp/blob/main/docs/mcp/ROADMAP.md" className="text-blue-600 dark:text-blue-400 hover:underline font-semibold" target="_blank" rel="noopener noreferrer">
+                MCP ROADMAP.md
               </a>
             </p>
             <p className="text-sm text-gray-600 dark:text-gray-300 mt-4 font-medium">
@@ -383,6 +496,16 @@ export default function BetaPage() {
                 contributing guide
               </a>
               {' '}or reach out directly.
+            </p>
+            <p className="text-base text-gray-600 dark:text-gray-300 mt-4 font-medium">
+              Repositories:{' '}
+              <a href="https://github.com/LogicStamp/logicstamp-context" className="text-blue-600 dark:text-blue-400 hover:underline font-semibold" target="_blank" rel="noopener noreferrer">
+                CLI
+              </a>
+              {' • '}
+              <a href="https://github.com/LogicStamp/logicstamp-mcp" className="text-blue-600 dark:text-blue-400 hover:underline font-semibold" target="_blank" rel="noopener noreferrer">
+                MCP Server
+              </a>
             </p>
           </div>
         </div>
