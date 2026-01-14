@@ -92,7 +92,7 @@ export default function Footer() {
             <div className="flex flex-col gap-8 md:gap-6 md:flex-row md:items-start md:justify-between">
               {/* Logo + Tagline + Newsletter */}
               <div className="min-w-0 pr-4 md:pr-8 pb-6 md:pb-0 border-b md:border-b-0 border-gray-200/60 dark:border-gray-800/70">
-                <a href="/" className="flex items-center gap-0 group">
+                <a href="/" aria-label="LogicStamp" className="flex items-center gap-0 group">
                   <div className="logicstamp-logo-container">
                     <LogicStampLogo className="logicstamp-logo" size={48} />
                   </div>
