@@ -26,14 +26,6 @@
       <stop offset="100%" stop-color="#9333EA" />
     </linearGradient>
 
-    <!-- Glow filter for center node -->
-    <filter id="ls_glow">
-      <feGaussianBlur stdDeviation="1.5" result="coloredBlur"/>
-      <feMerge>
-        <feMergeNode in="coloredBlur"/>
-        <feMergeNode in="SourceGraphic"/>
-      </feMerge>
-    </filter>
   </defs>
 
   <!-- Subtle glow halo around the cube -->
@@ -84,15 +76,5 @@
       <line x1="6" y1="36" x2="58" y2="36" />
       <line x1="6" y1="42" x2="58" y2="42" />
     </g>
-
-    <!-- Enhanced core node with glow -->
-    <circle
-      cx="32"
-      cy="32"
-      r="3.5"
-      fill="white"
-      fill-opacity="0.98"
-      filter="url(#ls_glow)"
-    />
   </g>
 </svg>

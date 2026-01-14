@@ -104,7 +104,7 @@ export default function Header() {
                 <LogicStampLogo className="logicstamp-logo" size={52} />
               </div>
               <LogicStampWordmark height={22} className="hidden sm:block" />
-              <LogicStampWordmark height={18} className="block sm:hidden" />
+              <LogicStampWordmark height={20} className="block sm:hidden" />
             </a>
           </div>
           
@@ -162,9 +162,12 @@ export default function Header() {
     </header>
 
     {/* Mobile menu dropdown */}
-    <div className={`lg:hidden fixed left-0 right-0 z-[110] px-4 lg:px-6 transition-all duration-300 ease-in-out mobile-menu-dropdown top-[4.75rem] ${
-      mobileMenuOpen ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-2 pointer-events-none'
-    }`}>
+    <div className={`lg:hidden fixed left-0 right-0 z-[110] px-4 lg:px-6 mobile-menu-dropdown top-[4.75rem] ${
+      mounted && mobileMenuOpen ? 'opacity-100 translate-y-0 scale-100' : 'opacity-0 -translate-y-2 scale-[0.98] pointer-events-none'
+    }`}
+    style={{
+      transition: mounted ? 'opacity 200ms cubic-bezier(0.4, 0, 0.2, 1), transform 200ms cubic-bezier(0.4, 0, 0.2, 1)' : 'none'
+    }}>
       <div className="mx-auto max-w-[1400px]">
         <div className="relative overflow-hidden bg-white/80 dark:bg-gray-900/80 rounded-2xl shadow-[0_8px_32px_rgba(0,0,0,0.08)] dark:shadow-[0_8px_32px_rgba(0,0,0,0.4)] border border-gray-200/50 dark:border-white/5 backdrop-blur-xl backdrop-saturate-150">
           {/* Subtle gradient overlay */}

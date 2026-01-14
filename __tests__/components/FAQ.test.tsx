@@ -38,11 +38,14 @@ describe('FAQ Component', () => {
     const questions = [
       'How does LogicStamp Context work?',
       'Why not just paste code into AI chats?',
-      'Is there a free version?',
+      'Is LogicStamp free to use?',
       'What frameworks are supported?',
       'How do I get started?',
+      'How do I set up MCP integration?',
       'How does token optimization work?',
       'Why bundles instead of individual component files?',
+      'What does `stamp context style` do?',
+      'Is watch mode available?',
     ]
 
     questions.forEach(question => {

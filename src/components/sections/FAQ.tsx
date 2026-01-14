@@ -46,42 +46,48 @@ const faqs = [
   },
   {
     id: 3,
-    question: 'Is there a free version?',
+    question: 'Is LogicStamp free to use?',
     answer:
-      'Yes! LogicStamp Context is completely free and open-source.\nInstall it globally with npm i -g logicstamp-context and use it without limits.\nThe CLI (v0.3.7) is production-ready and includes context generation, drift detection, validation, token optimization, security scanning, and style metadata extraction.\nAll features are available at no cost.',
+      'Yes! LogicStamp Context is completely free and open-source.\nInstall it globally with npm i -g logicstamp-context and use it.\nThe CLI (v0.3.7) is production-ready and includes context generation, drift detection, validation, token optimization, security scanning, and style metadata extraction.\nMCP (Model Context Protocol) integration is also available for free, providing real-time context analysis in Cursor, Claude Desktop, and Claude CLI. Install with `npm install -g logicstamp-mcp` and configure your MCP client (see "How do I set up MCP integration?" below for details).\nAll features are available at no cost.',
   },
   {
     id: 4,
     question: 'What frameworks are supported?',
     answer:
-      'Currently supports React and TypeScript projects (including Next.js), plus Vue 3 TypeScript/TSX files.\nMCP integration is available (v0.1.4) for Cursor, Claude Desktop, and Claude CLI.\nWorks with any React/TypeScript codebase regardless of styling solution (Tailwind, styled-components, CSS modules, Material UI, ShadCN/UI, Radix UI, Framer Motion, etc.).\nNote: Vue Single File Components (.vue files) support is planned for a future release.',
+      'Currently supports React and TypeScript projects (including Next.js), plus Vue 3 TypeScript/TSX files.\nRequires Node.js >= 18.18.0 (Node 20+ recommended).\nMCP integration is available (v0.1.4) for Cursor, Claude Desktop, and Claude CLI.\nWorks with any React/TypeScript codebase regardless of styling solution (Tailwind, styled-components, CSS modules, Material UI, ShadCN/UI, Radix UI, Framer Motion, etc.).\nNote: Vue Single File Components (.vue files) support is planned for a future release.',
   },
   {
     id: 5,
     question: 'How do I get started?',
     answer:
-      'Install globally with `npm i -g logicstamp-context`, then run `stamp init` in your project directory (recommended for first-time setup—sets up .gitignore patterns and scans for secrets).\nNext, run `stamp context` to generate multiple `context.json` files (one per folder) plus a `context_main.json` index with AI-ready bundles.\nShare these files with Claude, ChatGPT, or any AI assistant for instant codebase understanding.\nUse `stamp context validate` to verify the output, or try the MCP integration for real-time analysis in Cursor, Claude Desktop, or Claude CLI.',
+      'Quick start: Run `npx logicstamp-context context` (no install needed) or install globally with `npm i -g logicstamp-context`.\nFor first-time setup, run `stamp init` in your project directory (sets up .gitignore patterns and scans for secrets).\nNext, run `stamp context` to generate multiple `context.json` files (one per folder) plus a `context_main.json` index with AI-ready bundles.\nShare these files with Claude, ChatGPT, or any AI assistant for instant codebase understanding.\nUse `stamp context validate` to verify the output, or try the MCP integration for real-time analysis in Cursor, Claude Desktop, or Claude CLI.',
   },
   {
     id: 6,
-    question: 'How does token optimization work?',
+    question: 'How do I set up MCP integration?',
     answer:
-      'LogicStamp Context offers three modes: `none` (contracts only, ~79% savings vs full context), `header` (recommended, ~65% savings vs full context, ~70% vs raw source), and `full` (complete source).\nThe header mode includes just enough context for AI to understand component logic without wasting tokens on implementation details.\nUse `stamp context --compare-modes` to see exact savings for your codebase.\n\nToken estimation: LogicStamp Context includes @dqbd/tiktoken (GPT-4) and @anthropic-ai/tokenizer (Claude) as optional dependencies. npm will automatically attempt to install them when you install logicstamp-context. If installation succeeds, you get model-accurate token counts. If installation fails or is skipped (normal for optional dependencies), the tool gracefully falls back to character-based estimation. Manual installation is optional—only needed if you need accurate token counts AND automatic installation failed: npm install @dqbd/tiktoken @anthropic-ai/tokenizer',
+      'MCP (Model Context Protocol) provides real-time context analysis directly in Cursor, Claude Desktop, or Claude CLI.\n\nSetup (one-time, global):\n1. Install LogicStamp CLI: `npm install -g logicstamp-context`\n2. Install MCP server: `npm install -g logicstamp-mcp`\n3. Configure your MCP client by adding LogicStamp to your config file:\n   - Cursor: `~/.cursor/mcp.json` (macOS/Linux) or `%USERPROFILE%\\.cursor\\mcp.json` (Windows)\n   - Claude CLI: `~/.claude.json` (macOS/Linux) or `%USERPROFILE%\\.claude.json` (Windows)\n   - Claude Desktop: `~/Library/Application Support/Claude/claude_desktop_config.json` (macOS) or `%APPDATA%\\Claude\\claude_desktop_config.json` (Windows)\n\nAdd this configuration:\n{\n  "mcpServers": {\n    "logicstamp": {\n      "command": "npx",\n      "args": ["logicstamp-mcp"]\n    }\n  }\n}\n\nAfter setup, restart your MCP client. The AI can then use LogicStamp tools to analyze your codebase in real-time. See the MCP documentation at logicstamp.dev/docs/mcp for detailed platform-specific instructions.',
   },
   {
     id: 7,
+    question: 'How does token optimization work?',
+    answer:
+      'LogicStamp Context offers three code inclusion modes: `none` (contracts only, ~79% savings vs full context), `header` (recommended, ~65% savings vs full context, ~70% vs raw source), and `full` (complete source).\nThe header mode includes just enough context for AI to understand component logic without wasting tokens on implementation details.\nAdditionally, you can use `--format toon` for an alternative output format that uses ~40% fewer tokens than JSON while maintaining the same data structure.\nUse `stamp context --compare-modes` to see exact savings for your codebase.\n\nToken counts are automatically calculated using model-accurate tokenizers (GPT-4 and Claude) when available, or character-based estimation as a fallback.',
+  },
+  {
+    id: 8,
     question: 'Why bundles instead of individual component files?',
     answer:
       'LogicStamp Context generates per-root bundles (one bundle per page/feature component) rather than individual files per component.\nEach bundle contains the root component plus its complete dependency graph—all related components together.\nThis design matches how developers work: when you need help with a specific page or feature, share that bundle and the AI has complete context in one self-contained unit.',
   },
   {
-    id: 8,
+    id: 9,
     question: 'What does `stamp context style` do?',
     answer:
       'The `stamp context style` command generates context bundles with visual and layout metadata included.\nIt extracts style information from your components including Tailwind CSS classes, SCSS/CSS modules, inline styles, styled-components/Emotion, framer-motion animations, Material UI, ShadCN/UI, Radix UI, and Styled JSX.\nThis enables AI assistants to understand visual design, suggest visually consistent components, analyze layout patterns, track color palettes, and identify animations.\nUse it when you need AI to understand the visual aspects of your UI, not just the logic. Note: Style metadata adds more tokens (~52-65% of raw source vs ~30% for header mode), so use `--compare-modes` to see the exact cost impact for your codebase.',
   },
   {
-    id: 9,
+    id: 10,
     question: 'Is watch mode available?',
     answer:
       'Watch mode is planned for v0.4.x (not yet implemented).\nThe MCP (Model Context Protocol) integration provides efficient context updates on-demand, which may be preferable to automatic watch mode.\nFor now, regenerate context with `stamp context` when needed, or use MCP tools for real-time analysis.\nWhen implemented, watch mode will automatically regenerate context files when source files change, with incremental updates and debouncing.',
@@ -202,22 +208,22 @@ export default function FAQ() {
                         }}
                         type="button"
                         id={`faq-question-${faq.id}`}
-                        className="flex w-full items-center justify-between text-left pr-8 rounded-md focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-purple-500"
+                        className="flex w-full items-center justify-between text-left pr-2 sm:pr-8 rounded-md focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-purple-500"
                         onClick={() => toggleItem(faq.id)}
                         onKeyDown={e => handleKeyDown(e, index)}
                         aria-expanded={isOpen}
                         aria-controls={`faq-answer-${faq.id}`}
                       >
-                        <span className="text-xl lg:text-2xl font-semibold leading-7 text-gray-900 dark:text-white">
+                        <span className="text-xl lg:text-2xl font-semibold leading-7 text-gray-900 dark:text-white flex-1 min-w-0">
                           {faq.question}
                         </span>
                         <div
-                          className="relative h-5 w-5 flex-shrink-0 ml-4"
+                          className="relative h-6 w-6 flex-shrink-0 ml-4 sm:ml-4"
                           aria-hidden="true"
                         >
                           {/* Plus icon */}
                           <svg
-                            className={`absolute inset-0 h-5 w-5 transition-all duration-200 ease-in-out text-gray-500 dark:text-gray-400 ${
+                            className={`absolute inset-0 h-6 w-6 transition-all duration-200 ease-in-out text-gray-500 dark:text-gray-400 ${
                               isOpen
                                 ? 'opacity-0 rotate-90 scale-75'
                                 : 'opacity-100 rotate-0 scale-100'
@@ -236,7 +242,7 @@ export default function FAQ() {
 
                           {/* Close icon */}
                           <svg
-                            className={`absolute inset-0 h-5 w-5 transition-all duration-200 ease-in-out text-gray-900 dark:text-white ${
+                            className={`absolute inset-0 h-6 w-6 transition-all duration-200 ease-in-out text-gray-900 dark:text-white ${
                               isOpen
                                 ? 'opacity-100 rotate-0 scale-100'
                                 : 'opacity-0 -rotate-90 scale-75'
@@ -266,9 +272,26 @@ export default function FAQ() {
                       `}
                     >
                       <div className="overflow-hidden">
-                        <p className="text-lg lg:text-xl leading-7 text-gray-600 dark:text-gray-300 pr-2 sm:pr-8 whitespace-pre-line">
-                          {faq.answer}
-                        </p>
+                        <div className="text-lg lg:text-xl leading-7 text-gray-600 dark:text-gray-300 pr-2 sm:pr-8">
+                          {faq.answer.split(/(Add this configuration:\n)/).map((part, idx) => {
+                            // Check if this part is JSON (starts with { and contains mcpServers)
+                            if (part.trim().startsWith('{') && part.includes('mcpServers')) {
+                              // Split on double newline to separate JSON from following text
+                              const [jsonContent, ...restParts] = part.split('\n\n');
+                              const restOfText = restParts.join('\n\n');
+                              return (
+                                <div key={idx}>
+                                  <pre className="bg-gray-100 dark:bg-gray-800 p-4 rounded-lg text-sm font-mono overflow-x-auto my-3 whitespace-pre">
+                                    {jsonContent}
+                                  </pre>
+                                  {restOfText && <p className="whitespace-pre-line">{restOfText}</p>}
+                                </div>
+                              );
+                            }
+                            // Regular text parts
+                            return <p key={idx} className="whitespace-pre-line">{part}</p>;
+                          })}
+                        </div>
                       </div>
                     </dd>
                 </div>

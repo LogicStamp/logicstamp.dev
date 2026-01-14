@@ -151,17 +151,6 @@ export default function LogicStampLogo({
             <line x1="14" y1="34" x2="50" y2="34" />
             <line x1="14" y1="38" x2="50" y2="38" />
           </g>
-
-          {/* Enhanced core node with glow */}
-          <circle
-            className="center-node"
-            cx="32"
-            cy="32"
-            r="3.5"
-            fill="white"
-            fillOpacity={0.98}
-            filter="url(#ls_glow)"
-          />
         </g>
       </svg>
     </div>
