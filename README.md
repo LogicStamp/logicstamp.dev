@@ -263,7 +263,7 @@ These assets may not be used for third-party branding, logos, or commercial iden
 
 ## Community
 
-This project follows a [Code of Conduct](CODE_OF_CONDUCT.md). By participating, you agree to uphold it.
+This project follows a [Code of Conduct](https://logicstamp.dev/code-of-conduct). By participating, you agree to uphold it.
 
 ---
 

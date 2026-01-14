@@ -192,7 +192,13 @@ export default function KnownLimitationsPage() {
                     </h3>
                     <ul className="space-y-2 text-sm text-gray-600 dark:text-gray-400 ml-4 list-disc">
                       <li>Only extracts event handlers that exist in Props interfaces/types</li>
-                      <li>Filters out internal handlers (e.g., <code className="px-1.5 py-0.5 bg-gray-100 dark:bg-gray-800 rounded text-xs font-mono">onClick={() => setMenuOpen(!menuOpen)}</code>)</li>
+                      <li>
+                        Filters out internal handlers (e.g.,{' '}
+                        <code className="px-1.5 py-0.5 bg-gray-100 dark:bg-gray-800 rounded text-xs font-mono">
+                          {`onClick={() => setMenuOpen(!menuOpen)}`}
+                        </code>
+                        )
+                      </li>
                       <li>Filters out inline handlers that are not props</li>
                       <li>Uses prop type signatures when available for accurate event signatures</li>
                       <li>Falls back to AST-based arrow function parsing only when prop signature is unavailable</li>

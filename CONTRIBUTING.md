@@ -4,7 +4,7 @@ Thank you for your interest in contributing to LogicStamp! This document provide
 
 ## Code of Conduct
 
-This project follows a [Code of Conduct](CODE_OF_CONDUCT.md). By participating, you agree to uphold it.
+This project follows a [Code of Conduct](https://logicstamp.dev/code-of-conduct). By participating, you agree to uphold it.
 
 ## Getting Started
 
