@@ -104,7 +104,7 @@ export default function Header() {
                 <LogicStampLogo className="logicstamp-logo" size={52} />
               </div>
               <LogicStampWordmark height={22} className="hidden sm:block" />
-              <LogicStampWordmark height={20} className="block sm:hidden" />
+              <LogicStampWordmark height={18} className="block sm:hidden" />
             </a>
           </div>
           
