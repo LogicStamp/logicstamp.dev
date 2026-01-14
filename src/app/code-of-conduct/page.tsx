@@ -103,13 +103,13 @@ export default function CodeOfConductPage() {
                 <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4 mt-8">
                   Attribution
                 </h2>
-                <p className="text-gray-700 dark:text-gray-300 mb-4">
+                <p className="text-gray-700 dark:text-gray-300 mb-4 break-words">
                   This Code of Conduct is adapted from the{' '}
                   <a
                     href="https://www.contributor-covenant.org"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="text-blue-600 dark:text-blue-400 hover:underline"
+                    className="text-blue-600 dark:text-blue-400 hover:underline break-words"
                   >
                     Contributor Covenant
                   </a>
@@ -118,31 +118,31 @@ export default function CodeOfConductPage() {
                     href="https://www.contributor-covenant.org/version/2/1/code_of_conduct.html"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="text-blue-600 dark:text-blue-400 hover:underline"
+                    className="text-blue-600 dark:text-blue-400 hover:underline break-all"
                   >
                     https://www.contributor-covenant.org/version/2/1/code_of_conduct.html
                   </a>
                   .
                 </p>
-                <p className="text-gray-700 dark:text-gray-300 mb-4">
+                <p className="text-gray-700 dark:text-gray-300 mb-4 break-words">
                   Enforcement guidelines were inspired by{' '}
                   <a
                     href="https://github.com/mozilla/diversity"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="text-blue-600 dark:text-blue-400 hover:underline"
+                    className="text-blue-600 dark:text-blue-400 hover:underline break-words"
                   >
                     Mozilla's code of conduct enforcement ladder
                   </a>
                   .
                 </p>
-                <p className="text-gray-700 dark:text-gray-300 mb-4">
+                <p className="text-gray-700 dark:text-gray-300 mb-4 break-words">
                   For answers to common questions, see{' '}
                   <a
                     href="https://www.contributor-covenant.org/faq"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="text-blue-600 dark:text-blue-400 hover:underline"
+                    className="text-blue-600 dark:text-blue-400 hover:underline break-all"
                   >
                     https://www.contributor-covenant.org/faq
                   </a>
