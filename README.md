@@ -1,8 +1,8 @@
 <div align="center">
 
 <p align="center">
-  <a href="https://logicstamp.dev">
-    <img src="public/logicstamp-woodmark-no-bg.png" alt="LogicStamp" width="320">
+ <a href="https://logicstamp.dev">
+    <img src="public/logicstamp-woodmark.png" alt="LogicStamp" width="420" height="auto">
   </a>
 </p>
 
