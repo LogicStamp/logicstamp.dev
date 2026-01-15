@@ -115,11 +115,35 @@ export default function CompleteReferencePage() {
               </div>
               
               <p className="text-sm sm:text-base text-gray-600 dark:text-gray-400 mb-4 sm:mb-6 leading-relaxed">
-                The 0.3.x releases include major framework support, output format options, and security improvements. <strong className="text-gray-900 dark:text-white">v0.3.4</strong> adds comprehensive Vue.js support for Vue 3 Composition API. <strong className="text-gray-900 dark:text-white">v0.3.3</strong> introduced TOON output format support. <strong className="text-gray-900 dark:text-white">v0.3.2</strong> improved portability with relative paths and AST-based CSS/SCSS parsing. <strong className="text-gray-900 dark:text-white">v0.3.1</strong> fixed hook classification. <strong className="text-gray-900 dark:text-white">v0.3.0</strong> introduced security scanning by default and automatic secret sanitization.
+                The 0.3.x releases include major framework support, output format options, and security improvements. <strong className="text-gray-900 dark:text-white">v0.3.8</strong> enhanced third-party component info with package names and versions. <strong className="text-gray-900 dark:text-white">v0.3.7</strong> fixed emit detection accuracy. <strong className="text-gray-900 dark:text-white">v0.3.6</strong> added hook parameter detection. <strong className="text-gray-900 dark:text-white">v0.3.5</strong> added Styled JSX support and enhanced inline style extraction. <strong className="text-gray-900 dark:text-white">v0.3.4</strong> adds comprehensive Vue.js support for Vue 3 Composition API. <strong className="text-gray-900 dark:text-white">v0.3.3</strong> introduced TOON output format support. <strong className="text-gray-900 dark:text-white">v0.3.2</strong> improved portability with relative paths and AST-based CSS/SCSS parsing. <strong className="text-gray-900 dark:text-white">v0.3.1</strong> fixed hook classification. <strong className="text-gray-900 dark:text-white">v0.3.0</strong> introduced security scanning by default and automatic secret sanitization.
               </p>
               
               <div className="grid sm:grid-cols-2 gap-4 sm:gap-6">
                 {[
+                  {
+                    icon: "📦",
+                    title: "Enhanced Third-Party Info (v0.3.8)",
+                    desc: "Missing dependencies now include package names and versions for third-party packages. Package name extraction handles scoped packages and subpath imports. Version lookup reads from package.json with caching for efficiency.",
+                    color: "indigo"
+                  },
+                  {
+                    icon: "✅",
+                    title: "Emit Detection Accuracy (v0.3.7)",
+                    desc: "Fixed issue where internal event handlers were incorrectly listed as component emits. Now only includes handlers that are part of the component's public API (props). Uses prop type signatures when available for accurate event signatures.",
+                    color: "green"
+                  },
+                  {
+                    icon: "🔗",
+                    title: "Hook Parameter Detection (v0.3.6)",
+                    desc: "Comprehensive support for extracting function signatures from custom React hooks, including parameter types, default values, and optional parameters. Works even when Props interfaces exist in the same file. Default depth changed from 1 to 2 for better nested component signature extraction.",
+                    color: "blue"
+                  },
+                  {
+                    icon: "💅",
+                    title: "Styled JSX Support (v0.3.5)",
+                    desc: "Full CSS extraction from <style jsx> blocks with selector and property parsing using css-tree AST. Detects global attribute and handles complex selectors. Enhanced inline style extraction now extracts both property names and literal values from style={{ ... }} objects.",
+                    color: "pink"
+                  },
                   {
                     icon: "⚡",
                     title: "Vue.js Support (v0.3.4)",

@@ -179,27 +179,6 @@ export default function BetaPage() {
                     </div>
                     <div className="flex-1">
                       <h4 className="text-lg font-bold text-gray-900 dark:text-white mb-2">
-                        Emit Detection Accuracy
-                      </h4>
-                      <p className="text-gray-600 dark:text-gray-400 leading-relaxed">
-                        Distinguish internal handlers from public API emits. Currently, all <code className="text-sm bg-gray-100 dark:bg-gray-800 px-1 py-0.5 rounded">onXxx</code> handlers are treated as emits, even internal ones.
-                      </p>
-                      <div className="mt-2">
-                        <span className="px-3 py-1 bg-red-100 dark:bg-red-900/30 text-red-600 dark:text-red-400 rounded-full text-sm font-semibold">🔴 Not Started</span>
-                      </div>
-                    </div>
-                  </div>
-
-                  <div className="border-t border-gray-200 dark:border-gray-700"></div>
-
-                  <div className="flex items-start gap-4">
-                    <div className="flex-shrink-0 pt-1">
-                      <div className="w-8 h-8 bg-red-100 dark:bg-red-900/30 rounded-lg flex items-center justify-center">
-                        <span className="text-red-600 dark:text-red-400 font-bold">2</span>
-                      </div>
-                    </div>
-                    <div className="flex-1">
-                      <h4 className="text-lg font-bold text-gray-900 dark:text-white mb-2">
                         Dynamic Class Parsing
                       </h4>
                       <p className="text-gray-600 dark:text-gray-400 leading-relaxed">
@@ -421,7 +400,7 @@ export default function BetaPage() {
                   <div className="flex items-start gap-3">
                     <span className="text-purple-600 dark:text-purple-400 font-bold">•</span>
                     <div>
-                      <span className="font-semibold text-gray-900 dark:text-white">Enhanced Third-Party Component Info</span> - Include package names, versions, and prop types
+                      <span className="font-semibold text-gray-900 dark:text-white">Enhanced Third-Party Component Info (Phase 2)</span> - Extract prop types from TypeScript declaration files. <span className="text-green-600 dark:text-green-400">Phase 1 complete (v0.3.8)</span> - Package names and versions now included
                     </div>
                   </div>
                   <div className="flex items-start gap-3">
