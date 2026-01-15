@@ -1,8 +1,6 @@
-# LogicStamp Website
-
 <div align="center">
 
-<img src="public/mascot/logicstamp-fox.svg" alt="LogicStamp Fox Mascot" width="120">
+[<img src="public/logicstamp-woodmark-no-bg.png" alt="LogicStamp" width="320">](https://logicstamp.dev)
 
 **The official landing page and documentation site for LogicStamp**
 
@@ -287,7 +285,9 @@ This project follows a [Code of Conduct](https://logicstamp.dev/code-of-conduct)
 
 <div align="center">
 
-Built by the LogicStamp team · Open-source developer tooling
+[<img src="public/mascot/logicstamp-fox.svg" alt="LogicStamp" width="120">](https://logicstamp.dev)
+
+Open-source developer tooling
 
 [Website](https://logicstamp.dev) • 
 [GitHub Org](https://github.com/LogicStamp) • 
