@@ -287,7 +287,7 @@ This project follows a [Code of Conduct](https://logicstamp.dev/code-of-conduct)
 
 [<img src="public/mascot/logicstamp-fox.svg" alt="LogicStamp" width="120">](https://logicstamp.dev)
 
-Built by the LogicStamp team · Open-source developer tooling
+Open-source developer tooling
 
 [Website](https://logicstamp.dev) • 
 [GitHub Org](https://github.com/LogicStamp) • 
