@@ -26,15 +26,22 @@ export default function TabbedCodeBlock({ tabs }: TabbedCodeBlockProps) {
     tabButtonRefs.current = tabButtonRefs.current.slice(0, tabs.length)
   }, [tabs.length])
 
-  // Scroll active tab into view on mobile
+  // Scroll active tab into view on mobile - scroll within container only
   useEffect(() => {
     if (scrollContainerRef.current) {
       const activeButton = scrollContainerRef.current.children[activeTab] as HTMLElement
-      if (activeButton) {
-        activeButton.scrollIntoView({
+      if (activeButton && scrollContainerRef.current) {
+        const container = scrollContainerRef.current
+        const buttonRect = activeButton.getBoundingClientRect()
+        const containerRect = container.getBoundingClientRect()
+        
+        // Calculate scroll position to center the button within the container
+        const scrollLeft = container.scrollLeft + (buttonRect.left - containerRect.left) - (containerRect.width / 2) + (buttonRect.width / 2)
+        
+        // Scroll within the container only, not the page
+        container.scrollTo({
+          left: Math.max(0, scrollLeft),
           behavior: 'smooth',
-          block: 'nearest',
-          inline: 'center',
         })
       }
     }
@@ -97,13 +104,13 @@ export default function TabbedCodeBlock({ tabs }: TabbedCodeBlockProps) {
   }
 
   return (
-    <div className="mb-6 w-full max-w-full">
+    <div className="mb-6 w-full max-w-full min-w-0 tabbed-code-block-wrapper">
       {/* Tab buttons - scrollable on mobile */}
       <div
         ref={scrollContainerRef}
         role="tablist"
         aria-label="Code examples"
-        className="flex gap-0 mb-0 overflow-x-auto scrollbar-hide snap-x snap-mandatory lg:overflow-visible"
+        className="flex gap-0 mb-0 overflow-x-auto scrollbar-hide snap-x snap-mandatory lg:snap-none min-w-0 w-full max-w-full"
         onTouchStart={onTouchStart}
         onTouchMove={onTouchMove}
         onTouchEnd={onTouchEnd}
@@ -142,9 +149,9 @@ export default function TabbedCodeBlock({ tabs }: TabbedCodeBlockProps) {
         role="tabpanel"
         id={`${baseId}-panel-${activeTab}`}
         aria-labelledby={`${baseId}-tab-${activeTab}`}
-        className="relative bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 border border-gray-200 dark:border-gray-700 border-t-0 p-5 rounded-b-lg font-mono text-sm overflow-x-auto"
+        className="relative bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 border border-gray-200 dark:border-gray-700 border-t-0 p-5 rounded-b-lg font-mono text-sm overflow-x-auto max-w-full"
       >
-        <CopyButton text={tabs[activeTab].copyText} className="absolute top-2 right-2" />
+        <CopyButton text={tabs[activeTab].copyText} className="absolute top-2 right-2 lg:right-6" />
         <code className="text-gray-900 dark:text-gray-100 whitespace-pre-wrap break-words max-w-full block overflow-x-auto">
           {tabs[activeTab].code}
         </code>

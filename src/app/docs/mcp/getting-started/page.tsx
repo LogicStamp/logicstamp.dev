@@ -87,19 +87,50 @@ export default function MCPInstallationPage() {
                     <p className="text-base text-gray-600 dark:text-gray-400 mb-3">
                       Install globally to use LogicStamp in <strong>all your projects</strong>:
                     </p>
-                    <TabbedCodeBlock
-                      tabs={[
-                        {
-                          label: 'Install & Configure',
-                          code: `# Install the package
+                    
+                    <div className="space-y-4">
+                      <div>
+                        <p className="text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">Method A: Using CLI Command (Easiest)</p>
+                        <TabbedCodeBlock
+                          tabs={[
+                            {
+                              label: 'Install & Configure',
+                              code: `# Install the package
 npm install -g logicstamp-mcp
 
 # Add to Claude Code - available everywhere
 claude mcp add --scope user --transport stdio logicstamp -- npx logicstamp-mcp`,
-                          copyText: 'npm install -g logicstamp-mcp\nclaude mcp add --scope user --transport stdio logicstamp -- npx logicstamp-mcp'
-                        }
-                      ]}
-                    />
+                              copyText: 'npm install -g logicstamp-mcp\nclaude mcp add --scope user --transport stdio logicstamp -- npx logicstamp-mcp'
+                            }
+                          ]}
+                        />
+                      </div>
+                      
+                      <div>
+                        <p className="text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">Method B: Manual Configuration</p>
+                        <p className="text-sm text-gray-600 dark:text-gray-400 mb-2">
+                          Edit <code className="px-1.5 py-0.5 bg-gray-100 dark:bg-gray-800 text-indigo-600 dark:text-indigo-400 rounded font-mono text-xs">~/.claude.json</code> (macOS/Linux) or <code className="px-1.5 py-0.5 bg-gray-100 dark:bg-gray-800 text-indigo-600 dark:text-indigo-400 rounded font-mono text-xs">%USERPROFILE%\.claude.json</code> (Windows):
+                        </p>
+                        <TabbedCodeBlock
+                          tabs={[
+                            {
+                              label: '~/.claude.json',
+                              code: `{
+  "mcpServers": {
+    "logicstamp": {
+      "type": "stdio",
+      "command": "npx",
+      "args": ["logicstamp-mcp"]
+    }
+  }
+}`,
+                              copyText: JSON.stringify({ mcpServers: { logicstamp: { type: "stdio", command: "npx", args: ["logicstamp-mcp"] } } }, null, 2)
+                            }
+                          ]}
+                        />
+                      </div>
+                    </div>
+                    
                     <p className="text-sm text-gray-500 dark:text-gray-500 mt-3">
                       <strong>What this does:</strong> Adds LogicStamp to your global Claude Code configuration (~/.claude.json), makes the 6 LogicStamp tools available in every project, and server auto-starts when Claude Code needs it (no manual startup required).
                     </p>
@@ -112,30 +143,36 @@ claude mcp add --scope user --transport stdio logicstamp -- npx logicstamp-mcp`,
                     <p className="text-base text-gray-600 dark:text-gray-400 mb-3">
                       Install per-project to share configuration with your team via git:
                     </p>
-                    <TabbedCodeBlock
-                      tabs={[
-                        {
-                          label: 'Per-Project Setup',
-                          code: `# Install the package
+                    
+                    <div className="space-y-4">
+                      <div>
+                        <p className="text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">Method A: Using CLI Command</p>
+                        <TabbedCodeBlock
+                          tabs={[
+                            {
+                              label: 'Per-Project Setup',
+                              code: `# Install the package
 npm install -g logicstamp-mcp
 
 # In your project directory
 cd /path/to/your/project
 claude mcp add --scope project --transport stdio logicstamp -- npx logicstamp-mcp`,
-                          copyText: 'npm install -g logicstamp-mcp\ncd /path/to/your/project\nclaude mcp add --scope project --transport stdio logicstamp -- npx logicstamp-mcp'
-                        }
-                      ]}
-                    />
-                    <p className="text-sm text-gray-500 dark:text-gray-500 mt-3">
-                      <strong>What this does:</strong> Creates <code className="px-1.5 py-0.5 bg-gray-100 dark:bg-gray-800 text-indigo-600 dark:text-indigo-400 rounded font-mono text-xs">.mcp.json</code> in your project root, can be committed to git for team collaboration, and team members get the same MCP configuration.
-                    </p>
-                    <div className="mt-4">
-                      <p className="text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">Example <code className="px-1.5 py-0.5 bg-gray-100 dark:bg-gray-800 text-indigo-600 dark:text-indigo-400 rounded font-mono text-xs">.mcp.json</code>:</p>
-                      <TabbedCodeBlock
-                        tabs={[
-                          {
-                            label: '.mcp.json',
-                            code: `{
+                              copyText: 'npm install -g logicstamp-mcp\ncd /path/to/your/project\nclaude mcp add --scope project --transport stdio logicstamp -- npx logicstamp-mcp'
+                            }
+                          ]}
+                        />
+                      </div>
+                      
+                      <div>
+                        <p className="text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">Method B: Manual Configuration</p>
+                        <p className="text-sm text-gray-600 dark:text-gray-400 mb-2">
+                          Create <code className="px-1.5 py-0.5 bg-gray-100 dark:bg-gray-800 text-indigo-600 dark:text-indigo-400 rounded font-mono text-xs">.mcp.json</code> in your project root:
+                        </p>
+                        <TabbedCodeBlock
+                          tabs={[
+                            {
+                              label: '.mcp.json',
+                              code: `{
   "mcpServers": {
     "logicstamp": {
       "type": "stdio",
@@ -144,11 +181,16 @@ claude mcp add --scope project --transport stdio logicstamp -- npx logicstamp-mc
     }
   }
 }`,
-                            copyText: JSON.stringify({ mcpServers: { logicstamp: { type: "stdio", command: "npx", args: ["logicstamp-mcp"] } } }, null, 2)
-                          }
-                        ]}
-                      />
+                              copyText: JSON.stringify({ mcpServers: { logicstamp: { type: "stdio", command: "npx", args: ["logicstamp-mcp"] } } }, null, 2)
+                            }
+                          ]}
+                        />
+                      </div>
                     </div>
+                    
+                    <p className="text-sm text-gray-500 dark:text-gray-500 mt-3">
+                      <strong>What this does:</strong> Creates <code className="px-1.5 py-0.5 bg-gray-100 dark:bg-gray-800 text-indigo-600 dark:text-indigo-400 rounded font-mono text-xs">.mcp.json</code> in your project root, can be committed to git for team collaboration, and team members get the same MCP configuration.
+                    </p>
                   </div>
 
                   <div>
@@ -174,6 +216,22 @@ claude mcp add --scope user --transport stdio logicstamp -- node /absolute/path/
 # On Windows:
 claude mcp add --scope user --transport stdio logicstamp -- node C:\\Users\\YourName\\path\\to\\logicstamp-mcp\\dist\\index.js`,
                           copyText: 'git clone https://github.com/LogicStamp/logicstamp-mcp.git\ncd logicstamp-mcp\nnpm install\nnpm run build\nclaude mcp add --scope user --transport stdio logicstamp -- node /absolute/path/to/logicstamp-mcp/dist/index.js'
+                        },
+                        {
+                          label: 'Manual Config',
+                          code: `# Edit ~/.claude.json manually:
+{
+  "mcpServers": {
+    "logicstamp": {
+      "type": "stdio",
+      "command": "node",
+      "args": ["/absolute/path/to/logicstamp-mcp/dist/index.js"]
+    }
+  }
+}
+
+# On Windows, use C:\\Users\\YourName\\path\\to\\logicstamp-mcp\\dist\\index.js`,
+                          copyText: JSON.stringify({ mcpServers: { logicstamp: { type: "stdio", command: "node", args: ["/absolute/path/to/logicstamp-mcp/dist/index.js"] } } }, null, 2)
                         }
                       ]}
                     />
