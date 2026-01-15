@@ -2,8 +2,6 @@
 
 [<img src="public/logicstamp-woodmark-no-bg.png" alt="LogicStamp" width="320">](https://logicstamp.dev)
 
-<img src="public/mascot/logicstamp-fox.svg" alt="LogicStamp Fox Mascot" width="120">
-
 **The official landing page and documentation site for LogicStamp**
 
 [![Next.js](https://img.shields.io/badge/Next.js-14-black)](https://nextjs.org/)
@@ -287,6 +285,8 @@ This project follows a [Code of Conduct](https://logicstamp.dev/code-of-conduct)
 
 <div align="center">
 
+<img src="public/mascot/logicstamp-fox.svg" alt="LogicStamp Fox Mascot" width="120">
+
 Built by the LogicStamp team · Open-source developer tooling
 
 [Website](https://logicstamp.dev) • 
@@ -295,3 +295,5 @@ Built by the LogicStamp team · Open-source developer tooling
 [LogicStamp MCP](https://github.com/LogicStamp/logicstamp-mcp)
 
 </div>
+
+<img src="public/mascot/logicstamp-fox.svg" alt="LogicStamp Fox Mascot" width="120">
