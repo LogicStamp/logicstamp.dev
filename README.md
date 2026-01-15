@@ -295,5 +295,3 @@ Built by the LogicStamp team · Open-source developer tooling
 [LogicStamp MCP](https://github.com/LogicStamp/logicstamp-mcp)
 
 </div>
-
-<img src="public/mascot/logicstamp-fox.svg" alt="LogicStamp Fox Mascot" width="120">
