@@ -1,6 +1,6 @@
 <div align="center">
 
-[<img src="public/logicstamp-woodmark-dark.png" alt="LogicStamp" width="300">](https://logicstamp.dev)
+[<img src="public/logicstamp-woodmark-no-bg.png" alt="LogicStamp" width="320">](https://logicstamp.dev)
 
 <img src="public/mascot/logicstamp-fox.svg" alt="LogicStamp Fox Mascot" width="120">
 
