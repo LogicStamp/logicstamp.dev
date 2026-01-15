@@ -1,6 +1,10 @@
+<br/>
+
 <div align="center">
 
 [<img src="public/logicstamp-woodmark-no-bg.png" alt="LogicStamp" width="320">](https://logicstamp.dev)
+
+<br/>
 
 **The official landing page and documentation site for LogicStamp**
 
