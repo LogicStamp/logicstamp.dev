@@ -599,7 +599,7 @@ function Button({ onClick }: ButtonProps) {
                         <ul className="space-y-1 text-sm text-gray-600 dark:text-gray-400 ml-4 list-disc">
                           <li><strong>Created timestamps</strong>: When context was generated</li>
                           <li><strong>OS detection</strong>: Platform info (e.g., <code className="px-1.5 py-0.5 bg-gray-100 dark:bg-gray-800 rounded text-xs font-mono">win32</code>)</li>
-                          <li><strong>Source tool version</strong>: <code className="px-1.5 py-0.5 bg-gray-100 dark:bg-gray-800 rounded text-xs font-mono">logicstamp-context@0.3.7</code></li>
+                          <li><strong>Source tool version</strong>: <code className="px-1.5 py-0.5 bg-gray-100 dark:bg-gray-800 rounded text-xs font-mono">logicstamp-context@0.3.8</code></li>
                           <li><strong>Missing dependencies</strong>: Tracked in <code className="px-1.5 py-0.5 bg-gray-100 dark:bg-gray-800 rounded text-xs font-mono">missing</code> array</li>
                         </ul>
                       </div>
