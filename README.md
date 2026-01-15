@@ -1,10 +1,10 @@
-<br/>
-
 <div align="center">
 
-[<img src="public/logicstamp-woodmark-no-bg.png" alt="LogicStamp" width="320">](https://logicstamp.dev)
-
-<br/>
+<p align="center">
+  <a href="https://logicstamp.dev">
+    <img src="public/logicstamp-woodmark-no-bg.png" alt="LogicStamp" width="360">
+  </a>
+</p>
 
 **The official landing page and documentation site for LogicStamp**
 
