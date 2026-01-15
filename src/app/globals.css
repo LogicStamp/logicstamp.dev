@@ -34,6 +34,7 @@
 html {
   background: var(--gradient-bg-hero) !important;
   min-height: 100vh !important;
+  overflow-x: hidden;
 }
 
 body {
@@ -41,6 +42,9 @@ body {
   background: var(--gradient-bg-hero) !important;
   min-height: 100vh;
   margin: 0 !important;
+  overflow-x: hidden;
+  width: 100%;
+  max-width: 100vw;
 }
 
 /* Dark mode backgrounds - only apply when explicitly set via class or data attribute */
@@ -224,6 +228,20 @@ html, body {
 .docs-content .rounded-lg[class*="dark:bg-"] h4 {
   margin-top: 0;
   margin-bottom: 0.75rem;
+}
+
+/* Ensure tab containers respect parent width and don't expand page */
+.docs-content [role="tablist"] {
+  max-width: 100% !important;
+  width: 100% !important;
+  box-sizing: border-box !important;
+  contain: layout;
+}
+
+/* Ensure TabbedCodeBlock wrapper contains overflow */
+.tabbed-code-block-wrapper {
+  overflow-x: hidden !important;
+  max-width: 100% !important;
 }
 
 /* Prevent layout shifts */
