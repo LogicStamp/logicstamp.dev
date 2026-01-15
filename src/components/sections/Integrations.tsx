@@ -320,7 +320,7 @@ export default function Integrations() {
                           href="/docs/mcp"
                           className="inline-flex items-center gap-2 px-4 py-2 border-2 border-blue-500/60 dark:border-blue-400/40 text-blue-700 dark:text-blue-300 rounded-lg font-medium text-sm sm:text-base"
                         >
-                          Learn More
+                          Learn More About MCP
                         </a>
                       </div>
                     </div>
