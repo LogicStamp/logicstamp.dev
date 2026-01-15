@@ -103,7 +103,7 @@ export default function DocsLayout({ children }: { children: React.ReactNode }) 
 
   return (
     <div className="min-h-screen bg-gradient-bg-section pt-[5.5rem] lg:pt-24">
-      <div className="max-w-[1400px] mx-auto px-4 lg:px-6 py-8 lg:py-10 w-full">
+      <div className="max-w-[1360px] mx-auto px-4 lg:px-6 py-8 lg:py-10 w-full">
         {/* Mobile sidebar toggle button */}
         <button
           ref={toggleButtonRef}
@@ -164,7 +164,7 @@ export default function DocsLayout({ children }: { children: React.ReactNode }) 
           )}
 
           <main className="flex-1 min-w-0 max-w-full overflow-x-hidden">
-            <div className="max-w-3xl space-y-12 lg:ml-4 docs-content min-w-0 w-full">{children}</div>
+            <div className="max-w-3xl xl:max-w-[720px] space-y-12 lg:ml-4 docs-content min-w-0 w-full">{children}</div>
           </main>
 
           {/* Right TOC - only visible on XL+ screens */}
