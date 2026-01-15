@@ -113,6 +113,12 @@ export default function BetaPage() {
                 </div>
                 <div className="space-y-4 text-gray-700 dark:text-gray-300">
                   <div>
+                    <p className="font-bold mb-2">v0.3.8 (January 2026)</p>
+                    <ul className="list-disc list-inside space-y-1 ml-2">
+                      <li>Enhanced third-party component info (Phase 1) - Missing dependencies now include package names and versions for third-party packages. Package name extraction handles scoped packages and subpath imports. Version lookup reads from package.json with caching for efficiency</li>
+                    </ul>
+                  </div>
+                  <div>
                     <p className="font-bold mb-2">v0.3.7 (January 2026)</p>
                     <ul className="list-disc list-inside space-y-1 ml-2">
                       <li>Emit detection accuracy - Fixed issue where internal event handlers were incorrectly listed as component emits. Now only includes handlers that are part of the component&apos;s public API (props)</li>
