@@ -1,7 +1,6 @@
 <div align="center">
 
 [<img src="public/logicstamp-woodmark-no-bg.png" alt="LogicStamp" width="360">](https://logicstamp.dev)
-
 **The official landing page and documentation site for LogicStamp**
 
 [![Next.js](https://img.shields.io/badge/Next.js-14-black)](https://nextjs.org/)
