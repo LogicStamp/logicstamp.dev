@@ -306,19 +306,19 @@ export default function Integrations() {
                           </li>
                         ))}
                       </ul>
-                      <div className="flex flex-wrap gap-3">
+                      <div className="flex flex-nowrap gap-2 sm:gap-3">
                         <a
                           href="/docs/mcp/getting-started"
-                          className="inline-flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-lg font-medium text-sm sm:text-base"
+                          className="inline-flex items-center gap-1 sm:gap-2 px-3 py-2 sm:px-4 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-lg font-medium text-xs sm:text-sm md:text-base whitespace-nowrap"
                         >
                           Get Started
-                          <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <svg className="w-3 h-3 sm:w-4 sm:h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
                           </svg>
                         </a>
                         <a
                           href="/docs/mcp"
-                          className="inline-flex items-center gap-2 px-4 py-2 border-2 border-blue-500/60 dark:border-blue-400/40 text-blue-700 dark:text-blue-300 rounded-lg font-medium text-sm sm:text-base"
+                          className="inline-flex items-center gap-1 sm:gap-2 px-3 py-2 sm:px-4 border-2 border-blue-500/60 dark:border-blue-400/40 text-blue-700 dark:text-blue-300 rounded-lg font-medium text-xs sm:text-sm md:text-base whitespace-nowrap"
                         >
                           Learn More About MCP
                         </a>
