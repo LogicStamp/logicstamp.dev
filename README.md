@@ -1,10 +1,11 @@
 <div align="center">
-
-<p align="center">
- <a href="https://logicstamp.dev">
-    <img src="public/logicstamp-woodmark.png" alt="LogicStamp" width="420" height="auto">
+  <a href="https://logicstamp.dev">
+    <picture>
+      <source media="(prefers-color-scheme: dark)" srcset="public/logicstamp-woodmark-dark.png">
+      <source media="(prefers-color-scheme: light)" srcset="public/logicstamp-woodmark-light.png">
+      <img src="public/logicstamp-woodmark-light.png" alt="LogicStamp" width="400" height="auto">
+    </picture>
   </a>
-</p>
 
 **The official landing page and documentation site for LogicStamp**
 
