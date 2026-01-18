@@ -43,7 +43,7 @@ These options are available at the top level (before any subcommand):
 
 **Examples:**
 ```bash
-stamp --version    # Shows: fox mascot + "Version: 0.3.8"
+stamp --version    # Shows: fox mascot + "Version: 0.4.0"
 stamp -v           # Same as --version
 stamp --help       # Shows main help
 stamp -h           # Same as --help
@@ -220,7 +220,7 @@ Like `stamp context`, the style command also automatically sanitizes secrets in 
 
 **Key options**
 
-All options from `stamp context` are supported. The style command is equivalent to `stamp context --include-style`.
+All options from `stamp context` are supported except `--compare-modes`. The style command is equivalent to `stamp context --include-style`. **Note:** `--compare-modes` is not available for `stamp context style`; use `stamp context --compare-modes` instead to analyze token costs.
 
 **What it extracts**
 
@@ -949,7 +949,7 @@ Per-component files would be useful for advanced use cases (granular Git diffs, 
     },
     "meta": {
       "missing": [],
-      "source": "logicstamp-context@0.3.x"
+      "source": "logicstamp-context@0.4.0"
     }
   }
 ]
@@ -980,7 +980,7 @@ Per-component files would be useful for advanced use cases (granular Git diffs, 
     }
   ],
   "meta": {
-            "source": "logicstamp-context@0.3.x"
+            "source": "logicstamp-context@0.4.0"
   }
 }
 ```

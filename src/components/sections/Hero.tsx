@@ -170,7 +170,7 @@ export default function Hero() {
             <h1 className="text-4xl font-extrabold tracking-tight text-gray-900 dark:text-white sm:text-6xl lg:text-7xl xl:text-8xl sm:text-balance leading-tight">
               {/* Mobile: 2 lines */}
               <span className="block sm:hidden">
-                <span className="block whitespace-nowrap">Turn React/TS Into</span>
+                <span className="block whitespace-nowrap">Turn React/TS/Backend Into</span>
                 <span className="block whitespace-nowrap">
                   <span className="relative inline-block">
                     <span className="bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 bg-clip-text text-transparent">
@@ -182,7 +182,7 @@ export default function Hero() {
               </span>
               {/* Desktop: single line */}
               <span className="hidden sm:inline">
-                Turn React/TS Into{' '}
+                Turn React/TS/Backend Into{' '}
                 <span className="relative inline-block">
                   <span className="bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 bg-clip-text text-transparent">
                     AI-Ready Context

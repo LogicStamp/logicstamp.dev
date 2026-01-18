@@ -155,7 +155,13 @@ export default function WhyLogicStamp() {
             </span>
           </h2>
           <p className="mt-6 text-lg sm:text-xl leading-8 text-gray-600 dark:text-gray-300">
-            One command. Instant AI-ready context bundles. Zero manual work.
+            One command. Instant AI-ready context bundles. Zero manual work.{' '}
+            <span className="font-semibold text-gray-700 dark:text-gray-200">Works with React, TypeScript, Express.js, and NestJS.</span>
+          </p>
+          <p className="mt-4 flex items-center justify-center">
+            <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-gradient-to-r from-amber-500/10 to-orange-500/10 text-amber-700 dark:text-amber-400 border border-amber-500/20 whitespace-nowrap">
+              Backend: New & Experimental
+            </span>
           </p>
         </div>
 

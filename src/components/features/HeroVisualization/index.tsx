@@ -95,7 +95,7 @@ const HeroVisualization = forwardRef<HTMLDivElement, HeroVisualizationProps>(
             <div className="relative sm:absolute -mt-28 sm:mt-0 bottom-0 sm:bottom-20 left-0 right-0 pt-4 pb-2 sm:pb-0 border-t border-secondary-200/20 dark:border-secondary-400/20">
               <p className="text-sm sm:text-base lg:text-lg text-gray-600 dark:text-gray-400 text-center mb-3 font-medium flex items-center justify-center gap-2">
                 <Play className="w-4 h-4 sm:w-5 sm:h-5" />
-                Run to get context bundles:
+                Run to generate context bundles:
               </p>
               <div className="flex flex-row items-center justify-center gap-2 sm:gap-4 text-xs sm:text-lg lg:text-xl">
                 <code className="font-mono font-semibold text-gray-700 dark:text-gray-300 px-2 py-1.5 sm:px-4 sm:py-2 rounded-md bg-gray-100/50 dark:bg-gray-800/50 whitespace-nowrap">

@@ -56,6 +56,18 @@ const sections: DocsNavSection[] = [
     ],
   },
   {
+    title: 'Frameworks',
+    items: [
+      { title: 'TypeScript Support', href: '/docs/logicstamp-context/typescript' },
+      { title: 'React Support', href: '/docs/logicstamp-context/react' },
+      { title: 'Next.js Support', href: '/docs/logicstamp-context/nextjs' },
+      { title: 'Express.js Support', href: '/docs/logicstamp-context/express' },
+      { title: 'NestJS Support', href: '/docs/logicstamp-context/nestjs' },
+      { title: 'UI Frameworks', href: '/docs/logicstamp-context/ui-frameworks' },
+      { title: 'Monorepo Support', href: '/docs/logicstamp-context/monorepo' },
+    ],
+  },
+  {
     title: 'MCP',
     items: [
       { title: 'MCP Reference', href: '/docs/mcp/reference' },
@@ -455,6 +467,23 @@ function getIcon(href: string): ReactNode {
     )
   }
 
+  if (href.includes('/nextjs') || href.includes('/nestjs') || href.includes('/react') || href.includes('/express') || href.includes('/typescript') || href.includes('/ui-frameworks') || href.includes('/monorepo')) {
+    // Framework / code icon
+    return (
+      <svg
+        className="w-3.5 h-3.5"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth={2}
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      >
+        <path d="M12.316 3.051a1 1 0 01.633 1.265l-4 12a1 1 0 11-1.898-.632l4-12a1 1 0 011.265-.633zM5.707 6.293a1 1 0 010 1.414L3.414 10l2.293 2.293a1 1 0 11-1.414 1.414l-3-3a1 1 0 010-1.414l3-3a1 1 0 011.414 0zm8.586 0a1 1 0 011.414 0l3 3a1 1 0 010 1.414l-3 3a1 1 0 11-1.414-1.414L16.586 10l-2.293-2.293a1 1 0 010-1.414z" />
+      </svg>
+    )
+  }
+
   // Default subtle dot
   return (
     <span className="w-1.5 h-1.5 rounded-full bg-current opacity-60" />
@@ -466,6 +495,7 @@ export default function DocsSidebar() {
   const [isCliOpen, setIsCliOpen] = useState(false)
   const [isGuidesOpen, setIsGuidesOpen] = useState(false)
   const [isReferenceOpen, setIsReferenceOpen] = useState(false)
+  const [isFrameworksOpen, setIsFrameworksOpen] = useState(false)
   const [isMcpOpen, setIsMcpOpen] = useState(false)
 
   // Auto-open CLI section if any CLI item is active
@@ -497,6 +527,17 @@ export default function DocsSidebar() {
       const hasActiveReferenceItem = referenceSection.items.some((item) => isActive(pathname, item.href))
       if (hasActiveReferenceItem) {
         setIsReferenceOpen(true)
+      }
+    }
+  }, [pathname])
+
+  // Auto-open Frameworks section if any Frameworks item is active
+  useEffect(() => {
+    const frameworksSection = sections.find((s) => s.title === 'Frameworks')
+    if (frameworksSection) {
+      const hasActiveFrameworksItem = frameworksSection.items.some((item) => isActive(pathname, item.href))
+      if (hasActiveFrameworksItem) {
+        setIsFrameworksOpen(true)
       }
     }
   }, [pathname])
@@ -543,6 +584,7 @@ export default function DocsSidebar() {
           const isCliSection = section.title === 'CLI'
           const isGuidesSection = section.title === 'Guides'
           const isReferenceSection = section.title === 'Reference'
+          const isFrameworksSection = section.title === 'Frameworks'
           const isMcpSection = section.title === 'MCP'
           
           return (
@@ -669,6 +711,56 @@ export default function DocsSidebar() {
                   <div
                     className={`overflow-hidden transition-all duration-300 ease-in-out ${
                       isReferenceOpen ? 'max-h-[500px] opacity-100' : 'max-h-0 opacity-0'
+                    }`}
+                  >
+                    <ul className="space-y-1">
+                      {section.items.map((item) => {
+                        const active = isActive(pathname, item.href)
+                        return (
+                          <li key={item.href}>
+                            <Link
+                              href={item.href}
+                              className={`block rounded-md border-l-2 px-2 py-1.5 transition-colors ${
+                                active
+                                  ? 'border-blue-500 bg-blue-50 text-blue-700 font-semibold dark:border-blue-400 dark:bg-blue-900/40 dark:text-blue-200'
+                                  : 'border-transparent text-gray-700 hover:border-gray-300 hover:bg-gray-100 hover:text-blue-700 dark:border-transparent dark:text-gray-300 dark:hover:border-gray-700 dark:hover:bg-gray-800 dark:hover:text-blue-200'
+                              }`}
+                            >
+                              <span className="flex items-center gap-2">
+                                <span className="inline-flex items-center justify-center text-gray-400 dark:text-gray-500">
+                                  {getIcon(item.href)}
+                                </span>
+                                <span>{item.title}</span>
+                              </span>
+                            </Link>
+                          </li>
+                        )
+                      })}
+                    </ul>
+                  </div>
+                </>
+              ) : isFrameworksSection ? (
+                <>
+                  <div className="mb-2 flex items-center gap-2">
+                    <button
+                      onClick={() => setIsFrameworksOpen(!isFrameworksOpen)}
+                      className="flex items-center justify-center w-6 h-6 rounded border border-gray-300 dark:border-gray-600 text-gray-600 dark:text-gray-400 text-sm font-normal transition-colors hover:border-gray-400 dark:hover:border-gray-500 focus:outline-none"
+                      aria-expanded={isFrameworksOpen}
+                      aria-label={isFrameworksOpen ? 'Collapse Frameworks section' : 'Expand Frameworks section'}
+                    >
+                      {isFrameworksOpen ? '−' : '+'}
+                    </button>
+                    <button
+                      onClick={() => setIsFrameworksOpen(!isFrameworksOpen)}
+                      className="text-xs font-semibold uppercase tracking-wide text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-300 cursor-pointer focus:outline-none"
+                      aria-label={isFrameworksOpen ? 'Collapse Frameworks section' : 'Expand Frameworks section'}
+                    >
+                      {section.title}
+                    </button>
+                  </div>
+                  <div
+                    className={`overflow-hidden transition-all duration-300 ease-in-out ${
+                      isFrameworksOpen ? 'max-h-[500px] opacity-100' : 'max-h-0 opacity-0'
                     }`}
                   >
                     <ul className="space-y-1">

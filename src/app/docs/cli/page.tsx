@@ -20,6 +20,11 @@ const pages = [
   { title: '`clean` Command', href: '/docs/logicstamp-context/clean', description: 'Remove all generated context artifacts from your project.' },
   { title: 'Usage Guides', href: '/docs/logicstamp-context/usage', description: 'Practical examples and workflows using LogicStamp Context.' },
   { title: 'LLM Context Format', href: '/docs/logicstamp-context/llm-context', description: 'Schema and structure of the generated context for LLMs.' },
+  { title: 'React Framework Support', href: '/docs/logicstamp-context/react', description: 'Learn how LogicStamp detects and extracts React components, hooks, props, and state.' },
+  { title: 'Next.js Framework Support', href: '/docs/logicstamp-context/nextjs', description: 'Next.js App Router support with route roles, segment paths, and metadata extraction.' },
+  { title: 'Express.js Framework Support', href: '/docs/logicstamp-context/express', description: 'Express.js route detection, API signature extraction, and handler analysis.' },
+  { title: 'NestJS Framework Support', href: '/docs/logicstamp-context/nestjs', description: 'NestJS controller detection, decorator extraction, and API signature analysis.' },
+  { title: 'UI Frameworks Support', href: '/docs/logicstamp-context/ui-frameworks', description: 'Style metadata extraction for Tailwind CSS, Material UI, ShadCN/UI, Radix UI, Styled Components, CSS/SCSS, and Framer Motion.' },
   { title: 'CLI Changelog', href: '/docs/logicstamp-context/changelog', description: 'Release notes and version history for the CLI.' },
   { title: 'GitHub Repository', href: 'https://github.com/LogicStamp/logicstamp-context', description: 'Full source code and canonical documentation.', external: true },
 ]

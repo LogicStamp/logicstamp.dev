@@ -113,6 +113,27 @@ export default function BetaPage() {
                 </div>
                 <div className="space-y-4 text-gray-700 dark:text-gray-300">
                   <div>
+                    <p className="font-bold mb-2">v0.4.0 (Current)</p>
+                    <ul className="list-disc list-inside space-y-1 ml-2">
+                      <li>Backend framework support - Express.js and NestJS route detection and API signature extraction</li>
+                      <li>Enhanced framework detection - Improved detection for backend frameworks with route pattern recognition</li>
+                    </ul>
+                  </div>
+                  <div>
+                    <p className="font-bold mb-2">v0.3.10 (January 2026)</p>
+                    <ul className="list-disc list-inside space-y-1 ml-2">
+                      <li>Bug fixes and stability improvements</li>
+                      <li>Performance optimizations for large codebases</li>
+                    </ul>
+                  </div>
+                  <div>
+                    <p className="font-bold mb-2">v0.3.9 (January 2026)</p>
+                    <ul className="list-disc list-inside space-y-1 ml-2">
+                      <li>Additional bug fixes and improvements</li>
+                      <li>Enhanced error handling and validation</li>
+                    </ul>
+                  </div>
+                  <div>
                     <p className="font-bold mb-2">v0.3.8 (January 2026)</p>
                     <ul className="list-disc list-inside space-y-1 ml-2">
                       <li>Enhanced third-party component info (Phase 1) - Missing dependencies now include package names and versions for third-party packages. Package name extraction handles scoped packages and subpath imports. Version lookup reads from package.json with caching for efficiency</li>

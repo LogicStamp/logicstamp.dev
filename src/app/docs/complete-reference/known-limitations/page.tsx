@@ -380,8 +380,11 @@ function Button({ onClick }: ButtonProps) {
                   </div>
 
                   <div className="p-4 bg-indigo-50 dark:bg-indigo-950/20 rounded-lg border border-indigo-200 dark:border-indigo-800">
+                    <p className="text-sm text-indigo-800 dark:text-indigo-300 mb-2">
+                      <strong>Status:</strong> 🟡 <strong className="text-indigo-600 dark:text-indigo-400">Phase 1 complete in v0.3.9</strong> - Static segments within template literals are now extracted. Phase 2 (advanced patterns like object lookups with variables) is planned.
+                    </p>
                     <p className="text-sm text-indigo-800 dark:text-indigo-300">
-                      <strong>Impact:</strong> Static parts of template literals are extracted, but dynamic expressions (variables, function calls, etc.) within template literal placeholders are not resolved. If you build classes from variables, the style metadata will be incomplete.
+                      <strong>Impact:</strong> Static parts of template literals are extracted, but dynamic expressions (variables, function calls, etc.) within template literal placeholders are not resolved. If you build classes from variables using object lookups, the style metadata will be incomplete until Phase 2.
                     </p>
                   </div>
                 </div>
@@ -599,7 +602,7 @@ function Button({ onClick }: ButtonProps) {
                         <ul className="space-y-1 text-sm text-gray-600 dark:text-gray-400 ml-4 list-disc">
                           <li><strong>Created timestamps</strong>: When context was generated</li>
                           <li><strong>OS detection</strong>: Platform info (e.g., <code className="px-1.5 py-0.5 bg-gray-100 dark:bg-gray-800 rounded text-xs font-mono">win32</code>)</li>
-                          <li><strong>Source tool version</strong>: <code className="px-1.5 py-0.5 bg-gray-100 dark:bg-gray-800 rounded text-xs font-mono">logicstamp-context@0.3.8</code></li>
+                          <li><strong>Source tool version</strong>: <code className="px-1.5 py-0.5 bg-gray-100 dark:bg-gray-800 rounded text-xs font-mono">logicstamp-context@0.4.0</code> (current), <code className="px-1.5 py-0.5 bg-gray-100 dark:bg-gray-800 rounded text-xs font-mono">0.3.10</code>, <code className="px-1.5 py-0.5 bg-gray-100 dark:bg-gray-800 rounded text-xs font-mono">0.3.9</code></li>
                           <li><strong>Missing dependencies</strong>: Tracked in <code className="px-1.5 py-0.5 bg-gray-100 dark:bg-gray-800 rounded text-xs font-mono">missing</code> array</li>
                         </ul>
                       </div>
@@ -927,7 +930,36 @@ function Button({ onClick }: ButtonProps) {
                       <div className="p-4 bg-amber-50 dark:bg-amber-950/20 rounded-lg border border-amber-200 dark:border-amber-800">
                         <div className="flex items-start justify-between gap-3 mb-2">
                           <h4 className="font-semibold text-gray-900 dark:text-white text-sm sm:text-base">
-                            11. Context main.json Limitations
+                            11. Backend Framework Limitations (v0.4.0)
+                          </h4>
+                          <span className="px-2 py-1 rounded-full text-xs font-semibold bg-yellow-100 dark:bg-yellow-900/40 text-yellow-800 dark:text-yellow-200">
+                            Medium
+                          </span>
+                        </div>
+                        <p className="text-sm text-gray-600 dark:text-gray-400 mb-2">
+                          <strong>Status:</strong> ✅ <strong className="text-green-600 dark:text-green-400">Backend framework support added in v0.4.0</strong> - Express.js and NestJS route detection and API signature extraction are now supported.
+                        </p>
+                        <p className="text-sm text-gray-600 dark:text-gray-400 mb-2">
+                          <strong>What Works:</strong> Route detection, HTTP method extraction, API signatures for named handlers, route parameters
+                        </p>
+                        <p className="text-sm text-gray-600 dark:text-gray-400 mb-2">
+                          <strong>Limitations:</strong>
+                        </p>
+                        <ul className="text-sm text-gray-600 dark:text-gray-400 ml-4 list-disc mb-2">
+                          <li>Middleware extraction not supported (only HTTP method calls are extracted)</li>
+                          <li>Route composition not fully tracked (nested routes with <code className="px-1 py-0.5 bg-amber-100 dark:bg-amber-900/40 rounded text-xs font-mono">app.use()</code> not resolved)</li>
+                          <li>Dynamic route paths not extracted (only string literal paths)</li>
+                          <li>Anonymous handlers don't have API signatures extracted</li>
+                        </ul>
+                        <p className="text-sm text-gray-600 dark:text-gray-400">
+                          <strong>Impact:</strong> Core backend route detection works well, but advanced Express.js/NestJS patterns like middleware chains and dynamic route composition are not fully extracted.
+                        </p>
+                      </div>
+
+                      <div className="p-4 bg-amber-50 dark:bg-amber-950/20 rounded-lg border border-amber-200 dark:border-amber-800">
+                        <div className="flex items-start justify-between gap-3 mb-2">
+                          <h4 className="font-semibold text-gray-900 dark:text-white text-sm sm:text-base">
+                            12. Context main.json Limitations
                           </h4>
                           <span className="px-2 py-1 rounded-full text-xs font-semibold bg-yellow-100 dark:bg-yellow-900/40 text-yellow-800 dark:text-yellow-200">
                             Medium
@@ -1051,10 +1083,12 @@ function Button({ onClick }: ButtonProps) {
                     </h3>
                     <div className="space-y-3">
                       {[
-                        'Dynamic class resolution (variable-based classes within template literals)',
+                        'Dynamic class resolution (variable-based classes within template literals) - Phase 1 complete in v0.3.9, Phase 2 planned',
                         'CSS-in-JS support completeness (remaining libraries like Chakra UI, Ant Design)',
-                        'Third-party component info (package names, versions, prop types)',
+                        'Third-party component info (package names, versions now in v0.3.8; prop types still missing)',
                         'TypeScript type extraction (generics, complex unions/intersections)',
+                        'Backend framework limitations (Express.js/NestJS support added in v0.4.0; middleware extraction, route composition still limited)',
+                        'Next.js framework features (route roles, segment paths, metadata exports added in v0.3.10; data fetching patterns still missing)',
                         'Context main.json enhancements (cross-folder relationships, project-wide statistics)'
                       ].map((item, idx) => (
                         <div key={idx} className="flex items-start gap-2 p-3 bg-amber-50 dark:bg-amber-950/20 rounded-lg border border-amber-200 dark:border-amber-800">
