@@ -72,6 +72,33 @@ const CLIIcon = () => (
   </svg>
 )
 
+const ExpressIcon = () => (
+  <svg viewBox="0 0 24 24" className="w-10 h-10">
+    <rect width="24" height="24" rx="2" fill="#000" className="dark:fill-white" />
+    <path d="M8 7h8v2h-3v6h-2V9H8V7zm-1 4h2v2H7v-2z" fill="#fff" className="dark:fill-gray-900" />
+  </svg>
+)
+
+const NestJSIcon = () => (
+  <svg viewBox="0 0 24 24" className="w-10 h-10">
+    <path d="M12.5 0C5.596 0 0 5.596 0 12.5S5.596 25 12.5 25 25 19.404 25 12.5 19.404 0 12.5 0zm0 22.5C6.71 22.5 2 17.79 2 12.5S6.71 2.5 12.5 2.5 23 7.21 23 12.5 18.29 22.5 12.5 22.5z" fill="#E0234E" />
+    <path d="M12.5 5C8.364 5 5 8.364 5 12.5S8.364 20 12.5 20 20 16.636 20 12.5 16.636 5 12.5 5zm0 13.5c-2.485 0-4.5-2.015-4.5-4.5S10.015 9.5 12.5 9.5 17 11.515 17 14s-2.015 4.5-4.5 4.5z" fill="#E0234E" />
+  </svg>
+)
+
+const UIFrameworksIcon = () => (
+  <svg viewBox="0 0 24 24" className="w-10 h-10">
+    <rect x="2" y="2" width="8" height="8" rx="1" fill="none" stroke="currentColor" strokeWidth="1.5" className="text-purple-600 dark:text-purple-400" />
+    <rect x="14" y="2" width="8" height="8" rx="1" fill="none" stroke="currentColor" strokeWidth="1.5" className="text-blue-600 dark:text-blue-400" />
+    <rect x="2" y="14" width="8" height="8" rx="1" fill="none" stroke="currentColor" strokeWidth="1.5" className="text-green-600 dark:text-green-400" />
+    <rect x="14" y="14" width="8" height="8" rx="1" fill="none" stroke="currentColor" strokeWidth="1.5" className="text-orange-600 dark:text-orange-400" />
+    <circle cx="6" cy="6" r="1.5" fill="currentColor" className="text-purple-600 dark:text-purple-400" />
+    <circle cx="18" cy="6" r="1.5" fill="currentColor" className="text-blue-600 dark:text-blue-400" />
+    <circle cx="6" cy="18" r="1.5" fill="currentColor" className="text-green-600 dark:text-green-400" />
+    <circle cx="18" cy="18" r="1.5" fill="currentColor" className="text-orange-600 dark:text-orange-400" />
+  </svg>
+)
+
 const integrations = [
   {
     name: 'React',
@@ -101,25 +128,34 @@ const integrations = [
     features: ['Type signature extraction', 'Interface documentation', 'Generic parameter tracking'],
   },
   {
-    name: 'JavaScript & JSX',
-    description: 'Support for JavaScript and JSX files in addition to TypeScript',
-    icon: JavaScriptIcon,
-    gradient: 'from-yellow-500/20 via-amber-500/20 to-orange-600/20',
-    borderGradient: 'from-yellow-500 via-amber-500 to-orange-600',
-    iconBg: 'from-yellow-500/10 to-orange-600/10',
-    features: ['JavaScript file analysis', 'JSX component detection', 'JSDoc type inference'],
-    comingSoon: true,
-    isFeatured: true,
+    name: 'Express.js',
+    description: 'Analyze Express.js routes, API handlers, and extract API signatures from backend code',
+    icon: ExpressIcon,
+    gradient: 'from-gray-700/20 via-gray-800/20 to-gray-900/20 dark:from-gray-500/20 dark:via-gray-600/20 dark:to-gray-700/20',
+    borderGradient: 'from-gray-700 via-gray-800 to-gray-900 dark:from-gray-500 dark:via-gray-600 dark:to-gray-700',
+    iconBg: 'from-gray-700/10 to-gray-900/10 dark:from-gray-500/10 dark:to-gray-700/10',
+    features: ['Route extraction', 'API signature extraction', 'Route parameter detection'],
+    isNew: true,
   },
   {
-    name: 'Vue Single File Components',
-    description: 'Vue 3 Composition API support for TypeScript/TSX files available now. Single File Component (.vue) support coming soon',
-    icon: VueIcon,
-    gradient: 'from-blue-500/20 via-purple-500/20 to-indigo-600/20',
-    borderGradient: 'from-blue-500 via-purple-500 to-indigo-600',
-    iconBg: 'from-blue-500/10 to-indigo-600/10',
-    features: ['Composition API tracking (TS/TSX)', 'Props and emits extraction', '.vue SFC support planned'],
-    comingSoon: true,
+    name: 'NestJS',
+    description: 'Detect NestJS controllers, routes, decorators, and extract API signatures from backend code',
+    icon: NestJSIcon,
+    gradient: 'from-red-500/20 via-pink-500/20 to-rose-600/20',
+    borderGradient: 'from-red-500 via-pink-500 to-rose-600',
+    iconBg: 'from-red-500/10 to-rose-600/10',
+    features: ['Controller detection', 'Decorator extraction', 'Route method analysis'],
+    isNew: true,
+  },
+  {
+    name: 'UI Frameworks',
+    description: 'Support for Tailwind CSS, Material UI, ShadCN/UI, Radix UI, Styled Components, and Framer Motion',
+    icon: UIFrameworksIcon,
+    gradient: 'from-purple-500/20 via-indigo-500/20 to-pink-600/20',
+    borderGradient: 'from-purple-500 via-indigo-500 to-pink-600',
+    iconBg: 'from-purple-500/10 to-pink-600/10',
+    features: ['Style metadata extraction', 'Component library detection', 'Design system analysis'],
+    isNew: true,
   },
   {
     name: 'Watch Mode',
@@ -129,6 +165,27 @@ const integrations = [
     borderGradient: 'from-purple-500 via-indigo-500 to-violet-600',
     iconBg: 'from-purple-500/10 to-violet-600/10',
     features: ['Automatic file watching', 'Incremental bundle updates', 'Debounced regeneration'],
+    comingSoon: true,
+    isFeatured: true,
+  },
+  {
+    name: 'JavaScript & JSX',
+    description: 'Support for JavaScript and JSX files in addition to TypeScript',
+    icon: JavaScriptIcon,
+    gradient: 'from-yellow-500/20 via-amber-500/20 to-orange-600/20',
+    borderGradient: 'from-yellow-500 via-amber-500 to-orange-600',
+    iconBg: 'from-yellow-500/10 to-orange-600/10',
+    features: ['JavaScript file analysis', 'JSX component detection', 'JSDoc type inference'],
+    comingSoon: true,
+  },
+  {
+    name: 'Vue Single File Components',
+    description: 'Vue 3 Composition API support for TypeScript/TSX files available now. Single File Component (.vue) support coming soon',
+    icon: VueIcon,
+    gradient: 'from-blue-500/20 via-purple-500/20 to-indigo-600/20',
+    borderGradient: 'from-blue-500 via-purple-500 to-indigo-600',
+    iconBg: 'from-blue-500/10 to-indigo-600/10',
+    features: ['Composition API tracking (TS/TSX)', 'Props and emits extraction', '.vue SFC support planned'],
     comingSoon: true,
   },
 ]
@@ -370,8 +427,9 @@ export default function Integrations() {
             </div>
           </div>
           
+          {/* First 6 integrations */}
           <div className="grid grid-cols-1 gap-6 lg:grid-cols-2 xl:grid-cols-3">
-            {integrations.map((integration, index) => {
+            {integrations.slice(0, 6).map((integration, index) => {
               const IconComponent = integration.icon
               return (
                 <div
@@ -403,6 +461,15 @@ export default function Integrations() {
                             : 'bg-gradient-to-r from-amber-500/10 to-orange-500/10 text-amber-700 dark:text-amber-400 border border-amber-500/20'
                         }`}>
                           Coming Soon
+                        </span>
+                      </div>
+                    )}
+                    
+                    {/* New Badge */}
+                    {integration.isNew && (
+                      <div className="absolute top-6 right-6 z-10">
+                        <span className="inline-flex items-center px-3 py-1 rounded-full text-xs font-bold bg-gradient-to-r from-emerald-500 to-teal-600 text-white border border-emerald-400/30 backdrop-blur-sm">
+                          New
                         </span>
                       </div>
                     )}
@@ -458,6 +525,130 @@ export default function Integrations() {
               )
             })}
           </div>
+
+          {/* Upcoming Section */}
+          <div className="mt-20">
+            <div 
+              className={`text-center mb-12 transition-all duration-1000 delay-300 ${
+                frameworksInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+              }`}
+            >
+              <h3 className="text-2xl font-semibold text-gray-900 dark:text-white sm:text-3xl mb-3">
+                Upcoming
+              </h3>
+              <p className="text-base sm:text-lg text-gray-600 dark:text-gray-400 max-w-2xl mx-auto mb-4">
+                Features and frameworks coming soon
+              </p>
+              <a
+                href="/roadmap"
+                className="inline-flex items-center gap-2 text-sm font-medium text-blue-600 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300 transition-colors"
+              >
+                See roadmap
+                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                </svg>
+              </a>
+            </div>
+            
+            {/* Last 3 integrations */}
+            <div className="grid grid-cols-1 gap-6 lg:grid-cols-2 xl:grid-cols-3">
+              {integrations.slice(6).map((integration, index) => {
+                const IconComponent = integration.icon
+                return (
+                  <div
+                    key={integration.name}
+                    className={`group relative transition-all duration-700 ${
+                      frameworksInView 
+                        ? 'opacity-100 translate-y-0' 
+                        : 'opacity-0 translate-y-8'
+                    } ${integration.isFeatured ? 'xl:scale-[1.02]' : ''}`}
+                    style={{ transitionDelay: `${index * 100 + 500}ms` }}
+                  >
+                    <div className={`relative h-full rounded-2xl transition-all duration-500 overflow-hidden ${
+                      integration.isFeatured 
+                        ? 'p-10 shadow-2xl border-2 border-blue-500/60 dark:border-blue-400/40 bg-gradient-to-br from-blue-50/50 via-purple-50/30 to-indigo-50/50 dark:from-blue-950/30 dark:via-purple-950/20 dark:to-indigo-950/30 ring-2 ring-blue-500/20 dark:ring-blue-400/10' 
+                        : 'p-8 shadow-sm border border-gray-200/50 dark:border-gray-700/50'
+                    }`}>
+                      
+                      {/* Featured Glow Effect */}
+                      {integration.isFeatured && (
+                        <div className="absolute inset-0 bg-gradient-to-r from-blue-500/10 via-purple-500/10 to-indigo-500/10 dark:from-blue-500/5 dark:via-purple-500/5 dark:to-indigo-500/5 rounded-2xl blur-xl opacity-50 animate-pulse" />
+                      )}
+                      
+                      {/* Coming Soon Badge */}
+                      {integration.comingSoon && (
+                        <div className="absolute top-6 right-6 z-10">
+                          <span className={`inline-flex items-center px-3 py-1 rounded-full text-xs font-medium backdrop-blur-sm ${
+                            integration.isFeatured 
+                              ? 'bg-gradient-to-r from-blue-500/20 to-purple-500/20 text-blue-700 dark:text-blue-300 border border-blue-500/30 dark:border-blue-400/20' 
+                              : 'bg-gradient-to-r from-amber-500/10 to-orange-500/10 text-amber-700 dark:text-amber-400 border border-amber-500/20'
+                          }`}>
+                            Coming Soon
+                          </span>
+                        </div>
+                      )}
+                      
+                      {/* New Badge */}
+                      {integration.isNew && (
+                        <div className="absolute top-6 right-6 z-10">
+                          <span className="inline-flex items-center px-3 py-1 rounded-full text-xs font-bold bg-gradient-to-r from-emerald-500 to-teal-600 text-white border border-emerald-400/30 backdrop-blur-sm">
+                            New
+                          </span>
+                        </div>
+                      )}
+                      
+                      <div className="relative z-10">
+                        {/* Icon */}
+                        <div className={`inline-flex items-center justify-center rounded-xl bg-gradient-to-br ${integration.iconBg} ${
+                          integration.isFeatured ? 'w-20 h-20' : 'w-16 h-16'
+                        }`}>
+                          <div className={integration.isFeatured ? 'scale-110' : ''}>
+                            <IconComponent />
+                          </div>
+                        </div>
+                        
+                        <h4 className={`mt-6 font-semibold text-gray-900 dark:text-white ${
+                          integration.isFeatured ? 'text-2xl' : 'text-xl'
+                        }`}>
+                          {integration.name}
+                          {integration.isFeatured && (
+                            <span className="ml-2 inline-flex items-center px-2 py-0.5 rounded text-xs font-bold bg-gradient-to-r from-blue-600 to-purple-600 text-white">
+                              Featured
+                            </span>
+                          )}
+                        </h4>
+                        
+                        <p className={`mt-3 text-gray-600 dark:text-gray-300 leading-relaxed ${
+                          integration.isFeatured ? 'text-base sm:text-lg' : 'text-sm sm:text-base'
+                        }`}>
+                          {integration.description}
+                        </p>
+                        
+                        <ul className="mt-6 space-y-2.5">
+                          {integration.features.map((feature, featureIndex) => (
+                            <li 
+                              key={feature} 
+                              className="flex items-start gap-x-3 text-sm text-gray-600 dark:text-gray-400"
+                              style={{ 
+                                transitionDelay: `${featureIndex * 50}ms`,
+                                opacity: frameworksInView ? 1 : 0,
+                                transform: frameworksInView ? 'translateX(0)' : 'translateX(-10px)'
+                              }}
+                            >
+                              <svg className="h-5 w-5 flex-shrink-0 text-emerald-500 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 20 20">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                              </svg>
+                              <span>{feature}</span>
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+                )
+              })}
+            </div>
+          </div>
         </div>
 
         {/* Tools Section */}
@@ -501,11 +692,13 @@ export default function Integrations() {
               )
             })}
           </div>
-          <div className="mt-6 pt-6 border-t border-gray-200 dark:border-gray-700">
-            <p className="text-xs text-gray-500 dark:text-gray-400 italic text-center">
-              All trademarks and logos are the property of their respective owners. LogicStamp is an independent open-source project and is not affiliated with or endorsed by the listed frameworks.
-            </p>
-          </div>
+        </div>
+
+        {/* Disclaimer - applies to all frameworks and tools */}
+        <div className="mt-12 pt-6 border-t border-gray-200 dark:border-gray-700">
+          <p className="text-xs text-gray-500 dark:text-gray-400 italic text-center">
+            All trademarks and logos are the property of their respective owners. LogicStamp is an independent open-source project and is not affiliated with or endorsed by the listed frameworks or tools.
+          </p>
         </div>
       </div>
 

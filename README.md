@@ -260,7 +260,7 @@ Before contributing, please read:
 
 - **[logicstamp-context](https://github.com/LogicStamp/logicstamp-context)** - The LogicStamp CLI tool
 - **[logicstamp-mcp](https://github.com/LogicStamp/logicstamp-mcp)** - The MCP Server
-- **[logicstamp](https://github.com/LogicStamp/logicstamp)** - Main LogicStamp project
+- **[LogicStamp](https://github.com/LogicStamp)** - GitHub Org
 
 ## Security
 
@@ -290,7 +290,7 @@ This project follows a [Code of Conduct](https://logicstamp.dev/code-of-conduct)
 
 <div align="center">
 
-[<img src="public/mascot/logicstamp-fox.svg" alt="LogicStamp" width="120">](https://logicstamp.dev)
+[<img src="public/mascot/logicstamp-fox.svg" alt="LogicStamp Fox Mascot" width="120">](https://logicstamp.dev)
 
 Open-source developer tooling
 

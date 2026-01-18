@@ -4,6 +4,15 @@ This roadmap outlines the planned features, improvements, and known limitations 
 
 ## Recent Achievements
 
+### v0.4.0 (January 2026)
+- ✅ **Backend framework support** - Comprehensive support for Node.js backend frameworks (Express.js, NestJS). Extracts API routes, HTTP methods, route parameters, request/response types, and framework-specific metadata. Automatically detects backend frameworks and skips frontend extraction for backend files. Introduces new `node:api` contract kind and extensible `language:type` pattern for future language support.
+
+### v0.3.10 (January 2026)
+- ✅ **Advanced Next.js App Router features** - Enhanced Next.js metadata extraction with route roles, segment paths, and metadata exports. Automatically detects route roles (`page`, `layout`, `loading`, `error`, `not-found`, `template`, `default`, `route`), extracts segment paths from file structure, and parses both static and dynamic metadata exports.
+
+### v0.3.9 (January 2026)
+- ✅ **Dynamic Tailwind class parsing (Phase 1)** - Enhanced Tailwind CSS extractor to resolve dynamic class expressions within template literals. Resolves const/let variables, object properties, and conditional expressions. Handles ~70-80% of common dynamic class patterns.
+
 ### v0.3.8 (January 2026)
 - ✅ **Enhanced third-party component info (Phase 1)** - Missing dependencies now include package names and versions for third-party packages. Package name extraction handles scoped packages and subpath imports. Version lookup reads from `package.json` with caching for efficiency.
 
@@ -70,23 +79,32 @@ Emit detection now correctly distinguishes between internal handlers and compone
 ---
 
 #### 2. Dynamic Class Parsing
-**Status:** 🔴 Not Started
+**Status:** ✅ Phase 1 Complete (v0.3.9), 🟡 Phase 2 Planned
 
-Resolve variable-based classes within template literals. Currently, only static segments are extracted.
+Resolve variable-based classes within template literals. Phase 1 is complete, handling same-file variable resolution.
 
 **Current Behavior:**
 - ✅ Extracts static Tailwind classes
 - ✅ Extracts static segments from template literals
-- ❌ Does not resolve dynamic expressions within `${}`
+- ✅ Phase 1: Resolves const/let variables, object properties, and conditional expressions
+- ❌ Phase 2: Does not resolve object lookups with variables, cross-file references, or function calls
 
-**Planned Implementation:**
-- Resolve variable references to class strings
-- Extract classes from object lookups (e.g., `variants[variant]`)
-- Support function calls that return class strings
+**Phase 1 Implementation (v0.3.9 - ✅ Complete):**
+- ✅ Resolve const/let declarations with string literals: `const base = 'px-4 py-2'` → extracts classes from variable
+- ✅ Resolve object property access: `variants.primary` → extracts classes from object property value
+- ✅ Handle conditional expressions in template literals: `${isActive ? 'bg-blue-500' : 'bg-gray-500'}` → extracts both branches
+- **Coverage**: ~70-80% of common dynamic class patterns
 
-**Impact:** Dynamic class construction from variables results in incomplete style metadata.
+**Phase 2 Implementation (Future Release):**
+- Resolve object lookups with variables: `variants[variant]` → requires resolving index variable first
+- Cross-file references: `import { baseClasses } from './styles'` → requires import resolution and cross-file analysis
+- Function calls returning class strings: `getClasses('primary')` → requires function body analysis
+- **Coverage**: Additional ~15-20% of edge cases
+- **Estimated Effort**: 8+ hours
 
-**Related:** See [docs/limitations.md](docs/limitations.md#dynamic-class-parsing) for detailed code evidence.
+**Impact:** Dynamic class construction from variables results in incomplete style metadata. Phase 1 addresses the most common patterns, Phase 2 will handle advanced edge cases.
+
+**Related:** See [docs/limitations.md](docs/limitations.md#dynamic-class-parsing) for detailed code evidence and implementation phases.
 
 ---
 
@@ -244,7 +262,34 @@ These items expand LogicStamp Context to support additional languages, framework
 
 ### Near-Term (v0.4.x)
 
-#### 1. JavaScript & JSX Support
+#### 1. Backend Framework Support
+**Status:** ✅ **Complete in v0.4.0**
+
+Backend framework support has been fully implemented! LogicStamp Context now extracts API routes, HTTP methods, request/response types, and framework-specific metadata for Node.js backend frameworks.
+
+**What Works (v0.4.0):**
+- ✅ Framework detection (Express.js, NestJS)
+- ✅ Route path extraction (`/api/users`, `/users/:id`)
+- ✅ HTTP method detection (GET, POST, PUT, DELETE, PATCH, ALL)
+- ✅ Framework-specific metadata (Express routes, NestJS controllers)
+- ✅ API signature extraction (request/response types, parameters)
+- ✅ Route parameter detection (e.g., `/users/:id` → `params: ['id']`)
+- ✅ Controller class detection and base path extraction (NestJS)
+- ✅ Language-specific metadata (decorators, annotations, class names)
+- ✅ New contract kind: `node:api` for backend API routes/handlers
+
+**Supported Frameworks:**
+- **Express.js** - Route extraction from `app.get()`, `router.post()`, etc.
+- **NestJS** - Controller extraction with decorators (`@Controller`, `@Get`, `@Post`, etc.)
+
+**Future Frameworks:**
+- Fastify, Koa, Hapi (Phase 2+)
+
+**Impact:** AI assistants can now understand backend API structure, endpoints, and request/response contracts. Backend files are automatically detected and skip frontend extraction, optimizing performance and accuracy.
+
+---
+
+#### 2. JavaScript & JSX Support
 **Status:** 🔴 Not Started
 
 Add support for JavaScript (`.js`) and JSX (`.jsx`) files in addition to TypeScript.
@@ -260,30 +305,6 @@ Add support for JavaScript (`.js`) and JSX (`.jsx`) files in addition to TypeScr
 - Maintain same contract structure for JS/JSX files
 
 **Impact:** Enables LogicStamp Context to work with JavaScript codebases that haven't migrated to TypeScript yet.
-
-**Priority:** High
-
----
-
-#### 2. Complete Vue.js Support
-**Status:** 🟡 Partially Complete
-
-Add full support for Vue Single File Components (`.vue` files).
-
-**Current Behavior:**
-- ✅ Vue 3 Composition API support for `.ts`/`.tsx` files
-- ✅ Vue components and composables detection
-- ✅ Props and emits extraction from JSX/TSX
-- ❌ Vue Single File Components (`.vue` files) not supported
-
-**Planned Implementation:**
-- Parse `.vue` SFC files (template, script, style blocks)
-- Extract template syntax (directives, bindings, slots)
-- Extract script setup and composition API usage
-- Extract scoped styles and CSS modules from style blocks
-- Support both Options API and Composition API
-
-**Impact:** Enables full Vue.js codebase analysis, including projects using `.vue` SFC files.
 
 **Priority:** High
 
@@ -309,7 +330,31 @@ Add a watch mode that automatically regenerates context files when source files 
 
 ### Future (v0.5.x+)
 
-#### 4. Svelte Support
+#### 4. Complete Vue.js Support
+**Status:** 🟡 Partially Complete
+
+Add full support for Vue Single File Components (`.vue` files).
+
+**Current Behavior:**
+- ✅ Vue 3 Composition API support for `.ts`/`.tsx` files
+- ✅ Vue components and composables detection
+- ✅ Props and emits extraction from JSX/TSX
+- ❌ Vue Single File Components (`.vue` files) not supported
+
+**Planned Implementation:**
+- Parse `.vue` SFC files (template, script, style blocks)
+- Extract template syntax (directives, bindings, slots)
+- Extract script setup and composition API usage
+- Extract scoped styles and CSS modules from style blocks
+- Support both Options API and Composition API
+
+**Impact:** Enables full Vue.js codebase analysis, including projects using `.vue` SFC files.
+
+**Priority:** High
+
+---
+
+#### 5. Svelte Support
 **Status:** 🔴 Not Started
 
 Add support for Svelte components (`.svelte` files).
@@ -327,7 +372,7 @@ Add support for Svelte components (`.svelte` files).
 
 ---
 
-#### 5. Python Support
+#### 6. Python Support
 **Status:** 🔴 Not Started
 
 Add support for Python codebases (experimental).
@@ -345,7 +390,7 @@ Add support for Python codebases (experimental).
 
 ---
 
-#### 6. Java Support
+#### 7. Java Support
 **Status:** 🔴 Not Started
 
 Add support for Java codebases (experimental).
@@ -374,7 +419,6 @@ These are longer-term features and improvements planned for future releases.
 ### Configuration & Extensibility
 - **Custom profile configuration and overrides** - User-defined profiles beyond preset options
 - **Additional output formats** - More format options for different AI consumption patterns
-- **Advanced Next.js App Router features** - Route roles, segment paths, metadata exports
 
 ### Developer Experience
 - **Integration examples** - Examples for popular AI assistants (Cursor, Claude Desktop, GitHub Copilot Chat)
@@ -389,12 +433,12 @@ For a complete list of current limitations with code evidence and detailed expla
 ### Summary of Current Limitations
 
 **Active Accuracy Issues:**
-- ❌ Dynamic class expressions not resolved (variables in template literals)
+- 🟡 Dynamic class expressions partially resolved (Phase 1 complete in v0.3.9, Phase 2 planned for advanced patterns)
 
 **Active Coverage Gaps:**
 - ❌ TypeScript types incomplete (generics, complex unions/intersections)
 - ❌ CSS-in-JS support incomplete (Chakra UI, Ant Design missing)
-- ❌ Third-party component info minimal (no package names, versions, prop types)
+- ⚠️ Third-party component prop types missing (package names and versions included in v0.3.8)
 - ❌ Project-level insights missing (cross-folder relationships, project-wide statistics)
 - ⚠️ Comments only in header mode (JSDoc only)
 - ⚠️ Test files excluded (by design)
@@ -402,7 +446,7 @@ For a complete list of current limitations with code evidence and detailed expla
 **Overall Assessment:**
 - **~95%** - Component Contracts (Props, state, hooks detection) ✅ Hook parameters now included
 - **~100%** - Imports Detection (Imports tracked correctly)
-- **~90%** - Style Metadata (Static classes work well, dynamic classes not resolved)
+- **~85-90%** - Style Metadata (Static classes ~100%, dynamic classes Phase 1 complete ~70-80% of patterns, CSS-in-JS 7/9 major libraries supported)
 
 ---
 
@@ -417,11 +461,12 @@ We welcome contributions! If you'd like to work on any of these roadmap items:
 **Priority Areas for Contributors:**
 
 **Bug Fixes:**
-- Dynamic class parsing - Resolve variable-based classes in template literals
+- Dynamic class parsing - Phase 1 complete (v0.3.9), Phase 2 planned for advanced patterns
 - CSS-in-JS library support - Add Chakra UI and Ant Design support
-- Enhanced third-party component info - Include package names, versions, prop types
+- Enhanced third-party component info (Phase 2) - Include prop types (package names and versions completed in v0.3.8)
 
 **Framework Expansion:**
+- ✅ Backend framework support - Extract API routes, HTTP methods, and framework metadata (Express, NestJS) (v0.4.0)
 - JavaScript & JSX support - Add `.js`/`.jsx` file analysis
 - Complete Vue.js support - Add `.vue` SFC file parsing
 - Watch mode - Automatic context regeneration on file changes
@@ -432,7 +477,7 @@ We welcome contributions! If you'd like to work on any of these roadmap items:
 
 For detailed release notes and changes, see [CHANGELOG.md](CHANGELOG.md).
 
-**Current Version:** v0.3.8 (Beta)
+**Current Version:** v0.4.0 (Beta)
 
 **Status:** Actively developed - we're working on improving accuracy and expanding feature coverage based on user feedback.
 

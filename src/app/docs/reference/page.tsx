@@ -117,7 +117,7 @@ export default function ReferencePage() {
                       { title: 'Component Contracts', accuracy: '~95%', desc: 'Props, state, hooks detection' },
                       { title: 'Imports Detection', accuracy: '~100%', desc: 'Imports tracked correctly' },
                       { title: 'Style Metadata', accuracy: '~90%', desc: 'Static classes work well' },
-                      { title: 'Hook Signatures', accuracy: 'Not yet', desc: 'Parameters not captured' }
+                      { title: 'Hook Signatures', accuracy: '✅ v0.3.6', desc: 'Parameters now captured' }
                     ].map((item, idx) => (
                       <div key={idx} className="flex items-start gap-3 p-4 bg-gray-50 dark:bg-gray-800/50 rounded-xl border border-gray-200 dark:border-gray-700">
                         <div className="flex-shrink-0">

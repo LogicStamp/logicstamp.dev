@@ -88,6 +88,48 @@ $ stamp context
 ⏱  Completed in 3225ms`
     },
     {
+      title: 'Backend Support',
+      content: `$ stamp context
+🔍 Scanning /project/src...
+   Found 32 files
+🔨 Analyzing components...
+   Analyzed 32 files
+   ✓ Detected Express.js routes: 8 files
+   ✓ Detected NestJS controllers: 3 files
+📊 Building dependency graph...
+📋 Using profile: llm-chat (depth=2, header only, max 100 nodes)
+📦 Generating context for 28 root components (depth=2)...
+🔍 Validating generated context...
+✅ Validation passed
+📝 Writing context files for 7 folders...
+   ✓ context.json (3 bundles)
+   ✓ src/context.json (4 bundles)
+   ✓ src/routes/context.json (8 bundles)
+   ✓ src/controllers/context.json (3 bundles)
+   ✓ src/components/context.json (5 bundles)
+   ✓ src/utils/context.json (2 bundles)
+   ✓ app/context.json (3 bundles)
+📝 Writing main context index...
+   ✓ context_main.json (index of 7 folders)
+✅ 8 context files written successfully
+
+📊 Summary:
+   Total components: 32
+   Frontend components: 24
+   Backend routes/controllers: 8
+   Root components: 28
+   Bundles generated: 28
+   Total nodes in context: 35
+   Total edges: 12
+   Missing dependencies: 0
+
+📏 Token Estimates (header mode):
+   GPT-4o-mini: 18,234 | Full code: ~52,891 (~65% savings)
+   Claude:      16,201 | Full code: ~47,012 (~65% savings)
+
+⏱  Completed in 4123ms`
+    },
+    {
       title: 'Style Metadata',
       content: `$ stamp context style
 🔍 Scanning /project/src...
