@@ -115,22 +115,19 @@ export default function BetaPage() {
                   <div>
                     <p className="font-bold mb-2">v0.4.0 (Current)</p>
                     <ul className="list-disc list-inside space-y-1 ml-2">
-                      <li>Backend framework support - Express.js and NestJS route detection and API signature extraction</li>
-                      <li>Enhanced framework detection - Improved detection for backend frameworks with route pattern recognition</li>
+                      <li>Backend framework support - Comprehensive support for Node.js backend frameworks (Express.js, NestJS). Extracts API routes, HTTP methods, route parameters, request/response types, and framework-specific metadata. Automatically detects backend frameworks and skips frontend extraction for backend files. Introduces new <code className="text-sm bg-gray-100 dark:bg-gray-800 px-1 py-0.5 rounded">node:api</code> contract kind and extensible <code className="text-sm bg-gray-100 dark:bg-gray-800 px-1 py-0.5 rounded">language:type</code> pattern for future language support</li>
                     </ul>
                   </div>
                   <div>
                     <p className="font-bold mb-2">v0.3.10 (January 2026)</p>
                     <ul className="list-disc list-inside space-y-1 ml-2">
-                      <li>Bug fixes and stability improvements</li>
-                      <li>Performance optimizations for large codebases</li>
+                      <li>Advanced Next.js App Router features - Enhanced Next.js metadata extraction with route roles, segment paths, and metadata exports. Automatically detects route roles (<code className="text-sm bg-gray-100 dark:bg-gray-800 px-1 py-0.5 rounded">page</code>, <code className="text-sm bg-gray-100 dark:bg-gray-800 px-1 py-0.5 rounded">layout</code>, <code className="text-sm bg-gray-100 dark:bg-gray-800 px-1 py-0.5 rounded">loading</code>, <code className="text-sm bg-gray-100 dark:bg-gray-800 px-1 py-0.5 rounded">error</code>, etc.), extracts segment paths from file structure, and parses both static and dynamic metadata exports</li>
                     </ul>
                   </div>
                   <div>
                     <p className="font-bold mb-2">v0.3.9 (January 2026)</p>
                     <ul className="list-disc list-inside space-y-1 ml-2">
-                      <li>Additional bug fixes and improvements</li>
-                      <li>Enhanced error handling and validation</li>
+                      <li>Dynamic Tailwind class parsing (Phase 1) - Enhanced Tailwind CSS extractor to resolve dynamic class expressions within template literals. Resolves const/let variables, object properties, and conditional expressions. Handles ~70-80% of common dynamic class patterns</li>
                     </ul>
                   </div>
                   <div>
@@ -200,13 +197,13 @@ export default function BetaPage() {
                     </div>
                     <div className="flex-1">
                       <h4 className="text-lg font-bold text-gray-900 dark:text-white mb-2">
-                        Dynamic Class Parsing
+                        Dynamic Class Parsing (Phase 2)
                       </h4>
                       <p className="text-gray-600 dark:text-gray-400 leading-relaxed">
-                        Resolve variable-based classes within template literals. Currently, only static segments are extracted. Dynamic expressions within <code className="text-sm bg-gray-100 dark:bg-gray-800 px-1 py-0.5 rounded">{'${}'}</code> are not resolved.
+                        Resolve advanced variable-based classes within template literals. <span className="text-green-600 dark:text-green-400 font-semibold">Phase 1 complete (v0.3.9)</span> - handles const/let variables, object properties, and conditional expressions (~70-80% of patterns). Phase 2 will handle object lookups with variables, cross-file references, and function calls returning class strings (~15-20% of edge cases).
                       </p>
                       <div className="mt-2">
-                        <span className="px-3 py-1 bg-red-100 dark:bg-red-900/30 text-red-600 dark:text-red-400 rounded-full text-sm font-semibold">🔴 Not Started</span>
+                        <span className="px-3 py-1 bg-yellow-100 dark:bg-yellow-900/30 text-yellow-600 dark:text-yellow-400 rounded-full text-sm font-semibold">🟡 Phase 1 Complete, Phase 2 Planned</span>
                       </div>
                     </div>
                   </div>
