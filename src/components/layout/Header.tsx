@@ -113,7 +113,7 @@ export default function Header() {
           <div className="flex lg:hidden items-center gap-3">
             <button
               type="button"
-              className="inline-flex items-center justify-center rounded-lg p-2.5 text-gray-700 dark:text-gray-300 hover:bg-gray-100/60 dark:hover:bg-gray-800/60 transition-all duration-200 active:scale-95"
+              className="inline-flex items-center justify-center rounded-lg p-3 text-gray-700 dark:text-gray-300 hover:bg-gray-100/60 dark:hover:bg-gray-800/60 transition-all duration-200 active:scale-95"
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
             >
               <span className="sr-only">{mobileMenuOpen ? 'Close main menu' : 'Open main menu'}</span>
