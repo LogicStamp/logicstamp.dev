@@ -468,8 +468,8 @@ header .animate-pulse {
 
 /* Animated Hamburger Menu */
 .hamburger-menu {
-  width: 22px;
-  height: 16px;
+  width: 20px;
+  height: 14px;
   position: relative;
   cursor: pointer;
   color: inherit;
