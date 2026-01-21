@@ -152,7 +152,7 @@ stamp context --watch --log-file ./watch.log`,
                     <div className="flex-shrink-0 w-8 h-8 bg-sky-100 dark:bg-sky-900/40 rounded-full flex items-center justify-center text-sky-700 dark:text-sky-300 font-bold text-sm">2</div>
                     <div>
                       <p className="font-semibold text-gray-900 dark:text-white mb-1">File Monitoring</p>
-                      <p className="text-sm text-gray-600 dark:text-gray-400">Watches for changes to <code className="px-1.5 py-0.5 bg-gray-100 dark:bg-gray-800 rounded text-xs font-mono">.ts</code>, <code className="px-1.5 py-0.5 bg-gray-100 dark:bg-gray-800 rounded text-xs font-mono">.tsx</code>, <code className="px-1.5 py-0.5 bg-gray-100 dark:bg-gray-800 rounded text-xs font-mono">.js</code>, <code className="px-1.5 py-0.5 bg-gray-100 dark:bg-gray-800 rounded text-xs font-mono">.jsx</code> files in your project</p>
+                      <p className="text-sm text-gray-600 dark:text-gray-400">Watches for changes to <code className="px-1.5 py-0.5 bg-gray-100 dark:bg-gray-800 rounded text-xs font-mono">.ts</code>,<code className="px-1.5 py-0.5 bg-gray-100 dark:bg-gray-800 rounded text-xs font-mono">.tsx</code> files in your project</p>
                     </div>
                   </div>
                   <div className="flex items-start gap-4 p-4 bg-gray-50 dark:bg-gray-800/50 rounded-lg">
