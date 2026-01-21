@@ -10,7 +10,9 @@
 | Command | Summary | When to use | Key options |
 |---------|---------|-------------|-------------|
 | `stamp --version` | Show version number and exit. | Check installed version. | `-v` (alias) |
-| `stamp init [path]` | Initialize LogicStamp in a project by setting up `.gitignore` patterns. | First-time project setup or explicit `.gitignore` configuration. | `--skip-gitignore` |
+| `stamp init [path]` | Initialize LogicStamp in a project by setting up `.gitignore` patterns, `LLM_CONTEXT.md`, and running a security scan by default. | First-time project setup or explicit `.gitignore` configuration. | `--skip-gitignore`, `--yes` / `-y`, `--no-secure` |
+| `stamp security scan` | Scan project for security issues. | Security auditing, CI/CD security checks. | |
+| `stamp ignore <file>` | Add files or patterns to ignore list. | Exclude files from context generation. | |
 | `stamp context [path] [options]` | Generates AI-ready context files organized by folder (one `context.json` per folder plus `context_main.json` index). Includes smart detection to auto-add `.gitignore` patterns. | Produce fresh context for AI workflows, documentation, or review. | `--depth`, `--include-code`, `--format`, `--profile`, `--max-nodes`, `--dry-run`, `--stats`, `--predict-behavior`, `--compare-modes`, `--strict-missing`, `--skip-gitignore`, `--out`, `--quiet` |
 | `stamp context validate [file]` | Validates context files. With no arguments, auto-detects and validates all context files using `context_main.json` (multi-file mode). With a file argument, validates that specific file (single-file mode). Falls back to `context.json` if `context_main.json` doesn't exist. | Gate CI pipelines, pre-commit checks, or manual QA before sharing context files. Ensures all folder context files are valid. | `[file]` (positional), `--quiet` |
 | `stamp context compare [options]` | Compares all context files (multi-file mode) or two specific files to detect drift, ADDED/ORPHANED folders, and token cost changes. Auto-detects `context_main.json` for comprehensive project-wide comparison. | CI drift detection, Jest-style approval workflows, manual inspections, or detecting folder reorganizations. | `--approve`, `--clean-orphaned`, `--stats`, `--quiet` |
@@ -18,7 +20,9 @@
 
 ## Command interactions
 
-- Run `stamp init` (optional) to set up `.gitignore` patterns before generating context files. Alternatively, `stamp context` will auto-add patterns on first run.
+- Run `stamp init` (optional) to set up `.gitignore` patterns, `LLM_CONTEXT.md`, and run a security scan before generating context files. Security scanning runs by default (use `--no-secure` to skip). Alternatively, `stamp context` will auto-add patterns on first run.
+- Run `stamp security scan` to audit your project for security issues independently of initialization.
+- Use `stamp ignore <file>` to exclude specific files or patterns from context generation.
 - Run `stamp context` to generate multiple `context.json` files (one per folder) plus `context_main.json` index, or use `--out` for a custom output directory.
 - Use `stamp context validate` to validate **all context files** (multi-file mode using `context_main.json`) or a specific file. With no arguments, automatically validates all folder context files. The exit code is CI-friendly.
 - Use `stamp context compare` to detect drift across **all context files** (multi-file mode using `context_main.json`) or between two specific files. Automatically detects ADDED folders, ORPHANED folders, per-folder DRIFT, and unchanged files (PASS). Use `--clean-orphaned` to automatically remove stale context files.
@@ -31,7 +35,16 @@
 stamp --version
 
 # Initialize LogicStamp in your project (optional - context command does this automatically)
-stamp init
+stamp init                    # Runs security scan by default
+stamp init --no-secure        # Skip security scan during init
+stamp init --yes              # Non-interactive mode
+
+# Security scanning
+stamp security scan           # Run security scan independently
+
+# Ignore files
+stamp ignore node_modules/     # Exclude node_modules from context
+stamp ignore *.test.ts         # Exclude test files
 
 # Generate context for your repository
 stamp context

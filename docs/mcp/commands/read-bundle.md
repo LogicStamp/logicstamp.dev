@@ -115,7 +115,7 @@ Each node contains a `contract` field with the `UIFContract`:
 {
   type: 'UIFContract';
   schemaVersion: string;
-  kind: 'react:component' | 'ts:module' | 'node:cli';
+  kind: 'react:component' | 'ts:module' | 'node:cli' | 'node:api';
   entryId: string;
   entryPathAbs: string;         // Absolute file path
   entryPathRel: string;        // Relative POSIX path

@@ -113,7 +113,13 @@ export default function BetaPage() {
                 </div>
                 <div className="space-y-4 text-gray-700 dark:text-gray-300">
                   <div>
-                    <p className="font-bold mb-2">v0.4.0 (Current)</p>
+                    <p className="font-bold mb-2">v0.4.1 (Current)</p>
+                    <ul className="list-disc list-inside space-y-1 ml-2">
+                      <li>Watch mode - Automatic context regeneration when source files change. Incremental rebuilds only regenerate affected bundles. Detects and displays contract changes (props, hooks, state, events). Debounces rapid changes. Watches style files when using <code className="text-sm bg-gray-100 dark:bg-gray-800 px-1 py-0.5 rounded">--include-style</code>. Debug mode shows hash changes. Status files for tooling integration</li>
+                    </ul>
+                  </div>
+                  <div>
+                    <p className="font-bold mb-2">v0.4.0 (January 2026)</p>
                     <ul className="list-disc list-inside space-y-1 ml-2">
                       <li>Backend framework support - Comprehensive support for Node.js backend frameworks (Express.js, NestJS). Extracts API routes, HTTP methods, route parameters, request/response types, and framework-specific metadata. Automatically detects backend frameworks and skips frontend extraction for backend files. Introduces new <code className="text-sm bg-gray-100 dark:bg-gray-800 px-1 py-0.5 rounded">node:api</code> contract kind and extensible <code className="text-sm bg-gray-100 dark:bg-gray-800 px-1 py-0.5 rounded">language:type</code> pattern for future language support</li>
                     </ul>
@@ -271,8 +277,8 @@ export default function BetaPage() {
 
                   <div className="flex items-start gap-4">
                     <div className="flex-shrink-0 pt-1">
-                      <div className="w-8 h-8 bg-blue-100 dark:bg-blue-900/30 rounded-lg flex items-center justify-center">
-                        <span className="text-blue-600 dark:text-blue-400 font-bold">3</span>
+                      <div className="w-8 h-8 bg-green-100 dark:bg-green-900/30 rounded-lg flex items-center justify-center">
+                        <span className="text-green-600 dark:text-green-400 font-bold">3</span>
                       </div>
                     </div>
                     <div className="flex-1">
@@ -280,11 +286,10 @@ export default function BetaPage() {
                         Watch Mode
                       </h4>
                       <p className="text-gray-600 dark:text-gray-400 leading-relaxed">
-                        Add a watch mode that automatically regenerates context files when source files change. Includes incremental updates, debouncing, and configurable watch patterns.
+                        Automatic context regeneration when source files change. Incremental rebuilds only regenerate affected bundles. Change detection shows what changed (props, hooks, state). Debouncing batches rapid changes. Status files for tooling integration.
                       </p>
                       <div className="mt-2">
-                        <span className="px-3 py-1 bg-red-100 dark:bg-red-900/30 text-red-600 dark:text-red-400 rounded-full text-sm font-semibold">🔴 Not Started</span>
-                        <span className="ml-2 px-3 py-1 bg-blue-100 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 rounded-full text-sm font-semibold">Medium Priority</span>
+                        <span className="px-3 py-1 bg-green-100 dark:bg-green-900/30 text-green-600 dark:text-green-400 rounded-full text-sm font-semibold">✅ Complete (v0.4.1)</span>
                       </div>
                     </div>
                   </div>
