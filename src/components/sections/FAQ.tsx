@@ -90,7 +90,7 @@ const faqs = [
     id: 10,
     question: 'Is watch mode available?',
     answer:
-      'Watch mode is planned for v0.4.x (not yet implemented).\nThe MCP (Model Context Protocol) integration provides efficient context updates on-demand, which may be preferable to automatic watch mode.\nFor now, regenerate context with `stamp context` when needed, or use MCP tools for real-time analysis.\nWhen implemented, watch mode will automatically regenerate context files when source files change, with incremental updates and debouncing.',
+      'Yes! Watch mode is available in v0.4.1.\nRun `stamp context --watch` to automatically regenerate context files when source files change.\nFeatures include incremental rebuilds (only affected bundles are regenerated), change detection (shows what changed: props, hooks, state), debouncing (batches rapid changes), and style file watching with `--include-style`.\nUse `--debug` to see detailed hash information, or `--log-file` for structured change logs.',
   },
 ]
 

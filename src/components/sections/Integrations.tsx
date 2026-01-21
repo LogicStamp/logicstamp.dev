@@ -86,6 +86,19 @@ const NestJSIcon = () => (
   </svg>
 )
 
+const BackendFrameworksIcon = () => (
+  <div className="flex items-center gap-1">
+    <svg viewBox="0 0 24 24" className="w-8 h-8">
+      <rect width="24" height="24" rx="2" fill="#000" className="dark:fill-white" />
+      <path d="M8 7h8v2h-3v6h-2V9H8V7zm-1 4h2v2H7v-2z" fill="#fff" className="dark:fill-gray-900" />
+    </svg>
+    <svg viewBox="0 0 24 24" className="w-8 h-8">
+      <path d="M12.5 0C5.596 0 0 5.596 0 12.5S5.596 25 12.5 25 25 19.404 25 12.5 19.404 0 12.5 0zm0 22.5C6.71 22.5 2 17.79 2 12.5S6.71 2.5 12.5 2.5 23 7.21 23 12.5 18.29 22.5 12.5 22.5z" fill="#E0234E" />
+      <path d="M12.5 5C8.364 5 5 8.364 5 12.5S8.364 20 12.5 20 20 16.636 20 12.5 16.636 5 12.5 5zm0 13.5c-2.485 0-4.5-2.015-4.5-4.5S10.015 9.5 12.5 9.5 17 11.515 17 14s-2.015 4.5-4.5 4.5z" fill="#E0234E" />
+    </svg>
+  </div>
+)
+
 const UIFrameworksIcon = () => (
   <svg viewBox="0 0 24 24" className="w-10 h-10">
     <rect x="2" y="2" width="8" height="8" rx="1" fill="none" stroke="currentColor" strokeWidth="1.5" className="text-purple-600 dark:text-purple-400" />
@@ -100,6 +113,7 @@ const UIFrameworksIcon = () => (
 )
 
 const integrations = [
+  // Row 1: Core frameworks
   {
     name: 'React',
     description: 'Analyze React components with hooks, props, and JSX structure',
@@ -127,24 +141,25 @@ const integrations = [
     iconBg: 'from-blue-500/10 to-blue-700/10',
     features: ['Type signature extraction', 'Interface documentation', 'Generic parameter tracking'],
   },
+  // Row 2: Watch Mode (left), Backend Frameworks (middle), UI Frameworks (right)
   {
-    name: 'Express.js',
-    description: 'Analyze Express.js routes, API handlers, and extract API signatures from backend code',
-    icon: ExpressIcon,
-    gradient: 'from-gray-700/20 via-gray-800/20 to-gray-900/20 dark:from-gray-500/20 dark:via-gray-600/20 dark:to-gray-700/20',
-    borderGradient: 'from-gray-700 via-gray-800 to-gray-900 dark:from-gray-500 dark:via-gray-600 dark:to-gray-700',
-    iconBg: 'from-gray-700/10 to-gray-900/10 dark:from-gray-500/10 dark:to-gray-700/10',
-    features: ['Route extraction', 'API signature extraction', 'Route parameter detection'],
+    name: 'Watch Mode',
+    description: 'Auto-regenerate context on file changes with incremental rebuilds and change detection',
+    icon: WatchModeIcon,
+    gradient: 'from-purple-500/20 via-indigo-500/20 to-violet-600/20',
+    borderGradient: 'from-purple-500 via-indigo-500 to-violet-600',
+    iconBg: 'from-purple-500/10 to-violet-600/10',
+    features: ['Incremental rebuilds', 'Change detection (props, hooks, state)', 'Debounced regeneration'],
     isNew: true,
   },
   {
-    name: 'NestJS',
-    description: 'Detect NestJS controllers, routes, decorators, and extract API signatures from backend code',
-    icon: NestJSIcon,
-    gradient: 'from-red-500/20 via-pink-500/20 to-rose-600/20',
-    borderGradient: 'from-red-500 via-pink-500 to-rose-600',
-    iconBg: 'from-red-500/10 to-rose-600/10',
-    features: ['Controller detection', 'Decorator extraction', 'Route method analysis'],
+    name: 'Express.js & NestJS',
+    description: 'Analyze backend routes, API handlers, controllers, and extract API signatures from Node.js code',
+    icon: BackendFrameworksIcon,
+    gradient: 'from-gray-700/20 via-gray-800/20 to-gray-900/20 dark:from-gray-500/20 dark:via-gray-600/20 dark:to-gray-700/20',
+    borderGradient: 'from-gray-700 via-gray-800 to-gray-900 dark:from-gray-500 dark:via-gray-600 dark:to-gray-700',
+    iconBg: 'from-gray-700/10 to-gray-900/10 dark:from-gray-500/10 dark:to-gray-700/10',
+    features: ['Route & controller extraction', 'API signature detection', 'Decorator & middleware analysis'],
     isNew: true,
   },
   {
@@ -155,19 +170,8 @@ const integrations = [
     borderGradient: 'from-purple-500 via-indigo-500 to-pink-600',
     iconBg: 'from-purple-500/10 to-pink-600/10',
     features: ['Style metadata extraction', 'Component library detection', 'Design system analysis'],
-    isNew: true,
   },
-  {
-    name: 'Watch Mode',
-    description: 'Automatically regenerate context files when source files change',
-    icon: WatchModeIcon,
-    gradient: 'from-purple-500/20 via-indigo-500/20 to-violet-600/20',
-    borderGradient: 'from-purple-500 via-indigo-500 to-violet-600',
-    iconBg: 'from-purple-500/10 to-violet-600/10',
-    features: ['Automatic file watching', 'Incremental bundle updates', 'Debounced regeneration'],
-    comingSoon: true,
-    isFeatured: true,
-  },
+  // Upcoming
   {
     name: 'JavaScript & JSX',
     description: 'Support for JavaScript and JSX files in addition to TypeScript',
@@ -186,6 +190,16 @@ const integrations = [
     borderGradient: 'from-blue-500 via-purple-500 to-indigo-600',
     iconBg: 'from-blue-500/10 to-indigo-600/10',
     features: ['Composition API tracking (TS/TSX)', 'Props and emits extraction', '.vue SFC support planned'],
+    comingSoon: true,
+  },
+  {
+    name: 'MCP Enhancements',
+    description: 'Advanced MCP server features for better AI assistant integration and workflow automation',
+    icon: MCPIcon,
+    gradient: 'from-indigo-500/20 via-violet-500/20 to-purple-600/20',
+    borderGradient: 'from-indigo-500 via-violet-500 to-purple-600',
+    iconBg: 'from-indigo-500/10 to-purple-600/10',
+    features: ['Semantic component search', 'Git baseline comparisons', 'Streaming for large bundles'],
     comingSoon: true,
   },
 ]
@@ -346,7 +360,7 @@ export default function Integrations() {
                         Use LogicStamp Context as an MCP server for AI assistants like Claude Desktop. Get real-time codebase analysis, component contracts, and structured context bundles directly in your AI workflow.
                       </p>
                       <ul className="space-y-2.5 mb-6">
-                        {['Context bundle access', 'Real-time codebase queries', 'AI assistant integration'].map((feature, index) => (
+                        {['Watch mode integration', 'Context bundle access', 'Real-time codebase queries'].map((feature, index) => (
                           <li 
                             key={feature} 
                             className="flex items-start gap-x-3 text-sm sm:text-base text-gray-600 dark:text-gray-400"
@@ -435,31 +449,18 @@ export default function Integrations() {
                 <div
                   key={integration.name}
                   className={`group relative transition-all duration-700 ${
-                    frameworksInView 
-                      ? 'opacity-100 translate-y-0' 
+                    frameworksInView
+                      ? 'opacity-100 translate-y-0'
                       : 'opacity-0 translate-y-8'
-                  } ${integration.isFeatured ? 'xl:scale-[1.02]' : ''}`}
+                  }`}
                   style={{ transitionDelay: `${index * 100 + 500}ms` }}
                 >
-                  <div className={`relative h-full rounded-2xl transition-all duration-500 overflow-hidden ${
-                    integration.isFeatured 
-                      ? 'p-10 shadow-2xl border-2 border-blue-500/60 dark:border-blue-400/40 bg-gradient-to-br from-blue-50/50 via-purple-50/30 to-indigo-50/50 dark:from-blue-950/30 dark:via-purple-950/20 dark:to-indigo-950/30 ring-2 ring-blue-500/20 dark:ring-blue-400/10' 
-                      : 'p-8 shadow-sm border border-gray-200/50 dark:border-gray-700/50'
-                  }`}>
-                    
-                    {/* Featured Glow Effect */}
-                    {integration.isFeatured && (
-                      <div className="absolute inset-0 bg-gradient-to-r from-blue-500/10 via-purple-500/10 to-indigo-500/10 dark:from-blue-500/5 dark:via-purple-500/5 dark:to-indigo-500/5 rounded-2xl blur-xl opacity-50 animate-pulse" />
-                    )}
-                    
+                  <div className="relative h-full rounded-2xl transition-all duration-500 overflow-hidden p-8 shadow-sm border border-gray-200/50 dark:border-gray-700/50">
+
                     {/* Coming Soon Badge */}
                     {integration.comingSoon && (
                       <div className="absolute top-6 right-6 z-10">
-                        <span className={`inline-flex items-center px-3 py-1 rounded-full text-xs font-medium backdrop-blur-sm ${
-                          integration.isFeatured 
-                            ? 'bg-gradient-to-r from-blue-500/20 to-purple-500/20 text-blue-700 dark:text-blue-300 border border-blue-500/30 dark:border-blue-400/20' 
-                            : 'bg-gradient-to-r from-amber-500/10 to-orange-500/10 text-amber-700 dark:text-amber-400 border border-amber-500/20'
-                        }`}>
+                        <span className="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium backdrop-blur-sm bg-gradient-to-r from-amber-500/10 to-orange-500/10 text-amber-700 dark:text-amber-400 border border-amber-500/20">
                           Coming Soon
                         </span>
                       </div>
@@ -476,28 +477,15 @@ export default function Integrations() {
                     
                     <div className="relative z-10">
                       {/* Icon */}
-                      <div className={`inline-flex items-center justify-center rounded-xl bg-gradient-to-br ${integration.iconBg} ${
-                        integration.isFeatured ? 'w-20 h-20' : 'w-16 h-16'
-                      }`}>
-                        <div className={integration.isFeatured ? 'scale-110' : ''}>
-                          <IconComponent />
-                        </div>
+                      <div className={`inline-flex items-center justify-center rounded-xl bg-gradient-to-br ${integration.iconBg} w-16 h-16`}>
+                        <IconComponent />
                       </div>
-                      
-                      <h4 className={`mt-6 font-semibold text-gray-900 dark:text-white ${
-                        integration.isFeatured ? 'text-2xl' : 'text-xl'
-                      }`}>
+
+                      <h4 className="mt-6 font-semibold text-gray-900 dark:text-white text-xl">
                         {integration.name}
-                        {integration.isFeatured && (
-                          <span className="ml-2 inline-flex items-center px-2 py-0.5 rounded text-xs font-bold bg-gradient-to-r from-blue-600 to-purple-600 text-white">
-                            Featured
-                          </span>
-                        )}
                       </h4>
-                      
-                      <p className={`mt-3 text-gray-600 dark:text-gray-300 leading-relaxed ${
-                        integration.isFeatured ? 'text-base sm:text-lg' : 'text-sm sm:text-base'
-                      }`}>
+
+                      <p className="mt-3 text-gray-600 dark:text-gray-300 leading-relaxed text-sm sm:text-base">
                         {integration.description}
                       </p>
                       
@@ -558,31 +546,18 @@ export default function Integrations() {
                   <div
                     key={integration.name}
                     className={`group relative transition-all duration-700 ${
-                      frameworksInView 
-                        ? 'opacity-100 translate-y-0' 
+                      frameworksInView
+                        ? 'opacity-100 translate-y-0'
                         : 'opacity-0 translate-y-8'
-                    } ${integration.isFeatured ? 'xl:scale-[1.02]' : ''}`}
+                    }`}
                     style={{ transitionDelay: `${index * 100 + 500}ms` }}
                   >
-                    <div className={`relative h-full rounded-2xl transition-all duration-500 overflow-hidden ${
-                      integration.isFeatured 
-                        ? 'p-10 shadow-2xl border-2 border-blue-500/60 dark:border-blue-400/40 bg-gradient-to-br from-blue-50/50 via-purple-50/30 to-indigo-50/50 dark:from-blue-950/30 dark:via-purple-950/20 dark:to-indigo-950/30 ring-2 ring-blue-500/20 dark:ring-blue-400/10' 
-                        : 'p-8 shadow-sm border border-gray-200/50 dark:border-gray-700/50'
-                    }`}>
-                      
-                      {/* Featured Glow Effect */}
-                      {integration.isFeatured && (
-                        <div className="absolute inset-0 bg-gradient-to-r from-blue-500/10 via-purple-500/10 to-indigo-500/10 dark:from-blue-500/5 dark:via-purple-500/5 dark:to-indigo-500/5 rounded-2xl blur-xl opacity-50 animate-pulse" />
-                      )}
-                      
+                    <div className="relative h-full rounded-2xl transition-all duration-500 overflow-hidden p-8 shadow-sm border border-gray-200/50 dark:border-gray-700/50">
+
                       {/* Coming Soon Badge */}
                       {integration.comingSoon && (
                         <div className="absolute top-6 right-6 z-10">
-                          <span className={`inline-flex items-center px-3 py-1 rounded-full text-xs font-medium backdrop-blur-sm ${
-                            integration.isFeatured 
-                              ? 'bg-gradient-to-r from-blue-500/20 to-purple-500/20 text-blue-700 dark:text-blue-300 border border-blue-500/30 dark:border-blue-400/20' 
-                              : 'bg-gradient-to-r from-amber-500/10 to-orange-500/10 text-amber-700 dark:text-amber-400 border border-amber-500/20'
-                          }`}>
+                          <span className="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium backdrop-blur-sm bg-gradient-to-r from-amber-500/10 to-orange-500/10 text-amber-700 dark:text-amber-400 border border-amber-500/20">
                             Coming Soon
                           </span>
                         </div>
@@ -599,28 +574,15 @@ export default function Integrations() {
                       
                       <div className="relative z-10">
                         {/* Icon */}
-                        <div className={`inline-flex items-center justify-center rounded-xl bg-gradient-to-br ${integration.iconBg} ${
-                          integration.isFeatured ? 'w-20 h-20' : 'w-16 h-16'
-                        }`}>
-                          <div className={integration.isFeatured ? 'scale-110' : ''}>
-                            <IconComponent />
-                          </div>
+                        <div className={`inline-flex items-center justify-center rounded-xl bg-gradient-to-br ${integration.iconBg} w-16 h-16`}>
+                          <IconComponent />
                         </div>
-                        
-                        <h4 className={`mt-6 font-semibold text-gray-900 dark:text-white ${
-                          integration.isFeatured ? 'text-2xl' : 'text-xl'
-                        }`}>
+
+                        <h4 className="mt-6 font-semibold text-gray-900 dark:text-white text-xl">
                           {integration.name}
-                          {integration.isFeatured && (
-                            <span className="ml-2 inline-flex items-center px-2 py-0.5 rounded text-xs font-bold bg-gradient-to-r from-blue-600 to-purple-600 text-white">
-                              Featured
-                            </span>
-                          )}
                         </h4>
-                        
-                        <p className={`mt-3 text-gray-600 dark:text-gray-300 leading-relaxed ${
-                          integration.isFeatured ? 'text-base sm:text-lg' : 'text-sm sm:text-base'
-                        }`}>
+
+                        <p className="mt-3 text-gray-600 dark:text-gray-300 leading-relaxed text-sm sm:text-base">
                           {integration.description}
                         </p>
                         

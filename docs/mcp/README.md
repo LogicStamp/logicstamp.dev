@@ -36,6 +36,10 @@ Platform-specific installation and configuration:
 - MCP README stays thin with links to canonical docs
 - LLM tool ships with embedded snapshot for offline use
 
+> **⚠️ Important: Authoritative Source for MCP Users**
+> 
+> When using LogicStamp MCP tools, **always trust `logicstamp_read_logicstamp_docs` output** over repo documentation files. The MCP tool reads from the installed package and reflects actual capabilities. Repo files may be outdated or out of sync with published versions.
+
 ## Development
 
 For technical implementation details, see [MCP Integration Guide](mcp_integration.md) and [Contributing Guide](../CONTRIBUTING.md).

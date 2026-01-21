@@ -113,7 +113,7 @@ claude
 
 Then ask Claude to analyze your project:
 ```
-Can you analyze my React project using LogicStamp?
+Can you analyze my React/TypeScript project using LogicStamp?
 ```
 
 Or paste the [startup ritual](startup-ritual.md) message first.

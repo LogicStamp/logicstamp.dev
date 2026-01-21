@@ -10,7 +10,14 @@
 - **Canonical documentation links** - Links to the full documentation with primary (landing page) and fallback (GitHub) sources
 - **Quick reference summary** - Purpose, usage steps, and key concepts
 
-**Important:** This tool reads `docs/logicstamp-for-llms.md` from the MCP package. This is a frozen snapshot for offline use. The full, always-updated documentation lives at [logicstamp.dev/docs/logicstamp-context/context](https://logicstamp.dev/docs/logicstamp-context/context).
+**Important:** This tool reads `docs/logicstamp-for-llms.md` from the **installed MCP package**. This is a frozen snapshot for offline use and is the **authoritative source** for LogicStamp capabilities.
+
+> **⚠️ Documentation Source Priority:**
+> 1. **`logicstamp_read_logicstamp_docs` output** (authoritative - reads from installed package)
+> 2. **Full docs at logicstamp.dev** (always-updated canonical source)
+> 3. **Repo files** (may be outdated - do not rely solely on these)
+
+If you notice discrepancies between repo documentation files and this tool's output, **trust this tool** - it reads from the published package and reflects actual capabilities. The full, always-updated documentation lives at [logicstamp.dev/docs/logicstamp-context/context](https://logicstamp.dev/docs/logicstamp-context/context).
 
 ## When to Use
 

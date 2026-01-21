@@ -201,10 +201,10 @@ logicstamp-context/
   "bundlePath": "src/cli/commands/context.json",
   "rootComponent": "clean",
   "bundle": {
-    "$schema": "https://logicstamp.dev/schemas/context/v0.1.json",
+    "$schema": "https://logicstamp.dev/schemas/context/v0.3.json",
     "position": "1/5",
     "type": "LogicStampBundle",
-    "schemaVersion": "0.1",
+    "schemaVersion": "0.3",
     "entryId": "c:/Users/River/Desktop/logicstamp-context/src/cli/commands/clean.ts",
     "depth": 1,
     "createdAt": "2025-11-25T01:13:14.387Z",
@@ -238,7 +238,7 @@ logicstamp-context/
     },
     "meta": {
       "missing": [],
-      "source": "logicstamp-context@0.3.7"
+      "source": "logicstamp-context@0.3.6"
     }
   }
 }
@@ -503,6 +503,79 @@ logicstamp-context/
 - When you need to understand the bundle structure or contract format
 - When you want to understand the recommended workflow
 - **This is your escape hatch**: if you're confused about LogicStamp, call this tool first
+
+---
+
+### Tool 7: `logicstamp_watch_status`
+
+**Purpose**: Check if watch mode (`stamp context --watch`) is active for a project.
+
+**Input**:
+```json
+{
+  "projectPath": "/absolute/path/to/project",
+  "includeRecentLogs": true,
+  "logLimit": 5
+}
+```
+
+**Parameters**:
+| Parameter | Type | Required | Default | Description |
+|-----------|------|----------|---------|-------------|
+| `projectPath` | string | Yes | - | Absolute path to project root |
+| `includeRecentLogs` | boolean | No | `false` | Include recent watch log entries |
+| `logLimit` | number | No | `5` | Max number of recent log entries to return |
+
+**Behavior**:
+1. Reads the watch status file (`.logicstamp/context_watch-status.json`)
+2. Verifies the watch mode process is still running (PID check)
+3. Optionally reads recent regeneration logs from `.logicstamp/context_watch-mode-logs.json`
+
+**Output**:
+```json
+{
+  "projectPath": "/path/to/project",
+  "watchModeActive": true,
+  "status": {
+    "active": true,
+    "projectRoot": "/path/to/project",
+    "pid": 12345,
+    "startedAt": "2025-01-20T10:30:00.000Z",
+    "outputDir": "/path/to/project"
+  },
+  "recentLogs": [
+    {
+      "timestamp": "2025-01-20T10:35:00.000Z",
+      "changedFiles": ["src/Button.tsx"],
+      "fileCount": 1,
+      "durationMs": 150,
+      "summary": {
+        "modifiedContractsCount": 1,
+        "modifiedBundlesCount": 1,
+        "addedContractsCount": 0,
+        "removedContractsCount": 0
+      }
+    }
+  ],
+  "message": "Watch mode is ACTIVE. Context bundles are being kept fresh automatically..."
+}
+```
+
+**Use Cases**:
+- **Before calling `refresh_snapshot`**: Check if context is already being kept fresh
+- **Skip regeneration**: If watch mode is active, use `skipIfWatchActive: true` in `refresh_snapshot`
+- **Monitor changes**: Use `includeRecentLogs: true` to see what files changed recently
+- **Debugging**: Verify watch mode is running correctly
+
+**Watch Mode Integration**:
+When watch mode is active, you can skip expensive regeneration:
+```json
+// Check watch status first
+{ "projectPath": "/path/to/project" }
+
+// If watchModeActive is true, skip regeneration
+{ "projectPath": "/path/to/project", "skipIfWatchActive": true }
+```
 
 ---
 
