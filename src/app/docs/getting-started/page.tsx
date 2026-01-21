@@ -738,6 +738,43 @@ export default function QuickStartPage() {
           </AnimatedSection>
         </div>
 
+   {/* Quick Tips Section */}
+   <AnimatedSection direction="up" delay={800}>
+          <div className="grid sm:grid-cols-2 gap-4 sm:gap-6 mb-8 sm:mb-12 lg:mb-16">
+            <div className="bg-gradient-to-br from-indigo-50 to-blue-50 dark:from-indigo-950/20 dark:to-blue-950/10 rounded-2xl p-4 sm:p-6 border border-indigo-200 dark:border-indigo-800">
+              <div className="flex items-start gap-2 sm:gap-3">
+                <div className="p-1.5 sm:p-2 bg-indigo-100 dark:bg-indigo-900/30 rounded-lg flex-shrink-0">
+                  <svg className="w-4 h-4 sm:w-5 sm:h-5 text-indigo-600 dark:text-indigo-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
+                  </svg>
+                </div>
+                <div className="min-w-0">
+                  <h4 className="font-semibold text-sm sm:text-base text-indigo-900 dark:text-indigo-200 mb-1 sm:mb-2">Pro Tip: Keep Context Fresh</h4>
+                  <p className="text-xs sm:text-sm text-indigo-800 dark:text-indigo-300 leading-relaxed">
+                    Regenerate context after major refactors. Use <code className="px-1 sm:px-1.5 py-0.5 bg-indigo-100 dark:bg-indigo-900/40 rounded text-xs font-mono">stamp context compare</code> to detect changes since last generation.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div className="bg-gradient-to-br from-purple-50 to-pink-50 dark:from-purple-950/20 dark:to-pink-950/10 rounded-2xl p-4 sm:p-6 border border-purple-200 dark:border-purple-800">
+              <div className="flex items-start gap-2 sm:gap-3">
+                <div className="p-1.5 sm:p-2 bg-purple-100 dark:bg-purple-900/30 rounded-lg flex-shrink-0">
+                  <svg className="w-4 h-4 sm:w-5 sm:h-5 text-purple-600 dark:text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4" />
+                  </svg>
+                </div>
+                <div className="min-w-0">
+                  <h4 className="font-semibold text-sm sm:text-base text-purple-900 dark:text-purple-200 mb-1 sm:mb-2">Workflow Integration</h4>
+                  <p className="text-xs sm:text-sm text-purple-800 dark:text-purple-300 leading-relaxed">
+                    Add context generation to your build process or git hooks to ensure AI assistants always have the latest project structure.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </AnimatedSection>
+
         {/* Success Section */}
         <AnimatedSection direction="up" delay={700}>
           <div className="relative mt-12 sm:mt-16 lg:mt-24 mb-8 sm:mb-12 lg:mb-16">
@@ -807,43 +844,6 @@ export default function QuickStartPage() {
                       </svg>
                     </Link>
                   </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </AnimatedSection>
-
-        {/* Quick Tips Section */}
-        <AnimatedSection direction="up" delay={800}>
-          <div className="grid sm:grid-cols-2 gap-4 sm:gap-6 mb-8 sm:mb-12 lg:mb-16">
-            <div className="bg-gradient-to-br from-indigo-50 to-blue-50 dark:from-indigo-950/20 dark:to-blue-950/10 rounded-2xl p-4 sm:p-6 border border-indigo-200 dark:border-indigo-800">
-              <div className="flex items-start gap-2 sm:gap-3">
-                <div className="p-1.5 sm:p-2 bg-indigo-100 dark:bg-indigo-900/30 rounded-lg flex-shrink-0">
-                  <svg className="w-4 h-4 sm:w-5 sm:h-5 text-indigo-600 dark:text-indigo-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
-                  </svg>
-                </div>
-                <div className="min-w-0">
-                  <h4 className="font-semibold text-sm sm:text-base text-indigo-900 dark:text-indigo-200 mb-1 sm:mb-2">Pro Tip: Keep Context Fresh</h4>
-                  <p className="text-xs sm:text-sm text-indigo-800 dark:text-indigo-300 leading-relaxed">
-                    Regenerate context after major refactors. Use <code className="px-1 sm:px-1.5 py-0.5 bg-indigo-100 dark:bg-indigo-900/40 rounded text-xs font-mono">stamp context compare</code> to detect changes since last generation.
-                  </p>
-                </div>
-              </div>
-            </div>
-
-            <div className="bg-gradient-to-br from-purple-50 to-pink-50 dark:from-purple-950/20 dark:to-pink-950/10 rounded-2xl p-4 sm:p-6 border border-purple-200 dark:border-purple-800">
-              <div className="flex items-start gap-2 sm:gap-3">
-                <div className="p-1.5 sm:p-2 bg-purple-100 dark:bg-purple-900/30 rounded-lg flex-shrink-0">
-                  <svg className="w-4 h-4 sm:w-5 sm:h-5 text-purple-600 dark:text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4" />
-                  </svg>
-                </div>
-                <div className="min-w-0">
-                  <h4 className="font-semibold text-sm sm:text-base text-purple-900 dark:text-purple-200 mb-1 sm:mb-2">Workflow Integration</h4>
-                  <p className="text-xs sm:text-sm text-purple-800 dark:text-purple-300 leading-relaxed">
-                    Add context generation to your build process or git hooks to ensure AI assistants always have the latest project structure.
-                  </p>
                 </div>
               </div>
             </div>
