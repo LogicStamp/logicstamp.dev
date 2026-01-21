@@ -48,6 +48,7 @@ const sections: DocsNavSection[] = [
       { title: '`init` command', href: '/docs/logicstamp-context/init' },
       { title: '`context` command', href: '/docs/logicstamp-context/context' },
       { title: '`style` command', href: '/docs/logicstamp-context/style' },
+      { title: 'Watch Mode', href: '/docs/logicstamp-context/watch-mode' },
       { title: 'TOON Format', href: '/docs/logicstamp-context/toon' },
       { title: 'Compare Modes', href: '/docs/logicstamp-context/compare-modes' },
       { title: '`compare` command', href: '/docs/logicstamp-context/compare-command' },
@@ -274,6 +275,24 @@ function getIcon(href: string): ReactNode {
         strokeLinejoin="round"
       >
         <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+      </svg>
+    )
+  }
+
+  if (href.includes('/watch-mode')) {
+    // Watch / eye icon for watch mode
+    return (
+      <svg
+        className="w-3.5 h-3.5"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth={2}
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      >
+        <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" />
+        <circle cx="12" cy="12" r="3" />
       </svg>
     )
   }
