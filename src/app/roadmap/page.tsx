@@ -113,7 +113,7 @@ export default function BetaPage() {
                 </div>
                 <div className="space-y-4 text-gray-700 dark:text-gray-300">
                   <div>
-                    <p className="font-bold mb-2">v0.4.1 (Current)</p>
+                    <p className="font-bold mb-2">v0.5.0 (Current)</p>
                     <ul className="list-disc list-inside space-y-1 ml-2">
                       <li>Watch mode - Automatic context regeneration when source files change. Incremental rebuilds only regenerate affected bundles. Detects and displays contract changes (props, hooks, state, events). Debounces rapid changes. Watches style files when using <code className="text-sm bg-gray-100 dark:bg-gray-800 px-1 py-0.5 rounded">--include-style</code>. Debug mode shows hash changes. Status files for tooling integration</li>
                     </ul>

@@ -5,104 +5,11 @@ import AnimatedSection from '@/components/common/AnimatedSection'
 import DocsLayout from '@/components/docs/DocsLayout'
 
 export const metadata: Metadata = {
-  title: 'Documentation | LogicStamp',
-  description: 'Learn what LogicStamp is and get started with LogicStamp Context from your codebase.',
+  title: 'Documentation | LogicStamp Context',
+  description: 'Open-source CLI for generating AI-ready context from React/TypeScript codebases. CI-friendly, zero prompts, built-in token optimization.',
 }
 
-const docSections = [
-  {
-    title: 'Concepts Overview',
-    description: 'Understand LogicStamp Context at a high level before you dive into the CLI.',
-    pages: [
-      {
-        title: 'What is LogicStamp?',
-        href: '/docs/what-is-logicstamp',
-        description: 'Learn about this open-source CLI, the problems it solves, and how to use it with AI tools.',
-      },
-    ],
-  },
-  {
-    title: 'Getting Started',
-    description: 'Installation & setup for LogicStamp Context CLI and MCP Server.',
-    pages: [
-      {
-        title: 'CLI – Installation & Quick Start',
-        href: '/docs/getting-started',
-        description: 'Install the CLI globally and set up your project with stamp init, then generate your first context.json—CI-friendly and zero prompts.',
-      },
-      {
-        title: 'MCP – Installation & Quick Start',
-        href: '/docs/mcp/getting-started',
-        description: 'Install and configure the LogicStamp MCP server to use LogicStamp Context with AI assistants like Claude Desktop.',
-      },
-    ],
-  },
-  {
-    title: 'LogicStamp Context CLI',
-    description: 'Complete documentation for all CLI commands and features.',
-    pages: [
-      {
-        title: 'CLI Docs Hub',
-        href: '/docs/cli',
-        description: 'Commands, usage examples, token optimization, drift detection, and schema reference. CI-friendly: never prompts, respects preferences from stamp init.',
-      },
-    ],
-  },
-  {
-    title: 'MCP Server',
-    description: 'Use LogicStamp Context as an MCP server for AI assistants.',
-    pages: [
-      {
-        title: 'MCP Overview (Beta)',
-        href: '/docs/mcp',
-        description: 'Learn about the LogicStamp MCP server, how to install and configure it, and use it with AI assistants like Claude Desktop.',
-      },
-    ],
-  },
-  {
-    title: 'Guides',
-    description: 'Scenario-based walkthroughs and opinionated playbooks.',
-    pages: [
-      {
-        title: 'Guides',
-        href: '/docs/guides',
-        description: 'Browse all LogicStamp guides, including usage walkthroughs, context format, and best practices.',
-      },
-    ],
-  },
-  {
-    title: 'Reference',
-    description: 'Complete reference documentation and advanced topics.',
-    pages: [
-      {
-        title: 'Complete Reference',
-        href: '/docs/complete-reference',
-        description:
-          'Comprehensive documentation including all commands, options, features, examples, and troubleshooting guides.',
-      },
-    ],
-  },
-  {
-    title: 'Open Source & Community',
-    description: 'Contribute, report issues, and join the community.',
-    pages: [
-      {
-        title: 'CLI GitHub Repository',
-        href: 'https://github.com/LogicStamp/logicstamp-context',
-        description: 'View source code, contribute, report issues, and access the full README. MIT licensed.',
-        external: true,
-      },
-      {
-        title: 'MCP GitHub Repository',
-        href: 'https://github.com/LogicStamp/logicstamp-mcp',
-        description: 'View MCP server source code, contribute, report issues, and access MCP-specific documentation. MIT licensed.',
-        external: true,
-      },
-    ],
-  },
-]
-
-export default function DocumentationPage() {
+export default function DocsHomePage() {
   return (
     <>
       <DocsLayout>
@@ -116,8 +23,7 @@ export default function DocumentationPage() {
               {/* Badge */}
               <div className="inline-flex items-center gap-2 px-3 py-1.5 bg-gradient-to-r from-blue-100 to-indigo-100 dark:from-blue-900/40 dark:to-indigo-900/40 text-blue-700 dark:text-blue-300 text-sm font-semibold rounded-full mb-4 sm:mb-6 backdrop-blur-sm border border-blue-200/50 dark:border-blue-700/50">
                 <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
-                  <path d="M9 2a1 1 0 000 2h2a1 1 0 100-2H9z" />
-                  <path fillRule="evenodd" d="M4 5a2 2 0 012-2 3 3 0 003 3h2a3 3 0 003-3 2 2 0 012 2v11a2 2 0 01-2 2H6a2 2 0 01-2-2V5zm3 4a1 1 0 000 2h.01a1 1 0 100-2H7zm3 0a1 1 0 000 2h3a1 1 0 100-2h-3zm-3 4a1 1 0 100 2h.01a1 1 0 100-2H7zm3 0a1 1 0 100 2h3a1 1 0 100-2h-3z" clipRule="evenodd" />
+                  <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-8.293l-3-3a1 1 0 00-1.414 0l-3 3a1 1 0 001.414 1.414L9 9.414V13a1 1 0 102 0V9.414l1.293 1.293a1 1 0 001.414-1.414z" clipRule="evenodd" />
                 </svg>
                 Documentation & Beta
               </div>
@@ -126,15 +32,16 @@ export default function DocumentationPage() {
                 Documentation
               </h1>
               
-              <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-gray-600 dark:text-gray-400 leading-relaxed max-w-3xl mb-6 sm:mb-8">
+              <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-gray-600 dark:text-gray-400 leading-relaxed max-w-3xl">
                 Open-source CLI for generating AI-ready context from React/TypeScript codebases. CI-friendly, zero prompts, built-in token optimization.
               </p>
 
-              <p className="text-xs sm:text-sm text-gray-500 dark:text-gray-500 max-w-3xl">
-                <span className="font-semibold">TypeScript-only analysis:</span> LogicStamp Context currently analyzes{' '}
-                <code>.ts</code> and <code>.tsx</code> files. JavaScript <code>.js</code> and <code>.jsx</code> files
-                are not analyzed yet, so JS components will not appear in generated context bundles.
-              </p>
+              {/* Technical Note */}
+              <div className="mt-4 sm:mt-6 p-3 sm:p-4 bg-amber-50/50 dark:bg-amber-950/20 border-l-4 border-amber-500 dark:border-amber-400 rounded-r-lg">
+                <p className="text-xs sm:text-sm text-gray-700 dark:text-gray-300">
+                  <span className="font-semibold text-amber-900 dark:text-amber-200">TypeScript-only analysis:</span> LogicStamp Context currently analyzes <code className="px-1 bg-gray-100 dark:bg-gray-800 rounded font-mono text-[0.7rem]">.ts</code> and <code className="px-1 bg-gray-100 dark:bg-gray-800 rounded font-mono text-[0.7rem]">.tsx</code> files. JavaScript <code className="px-1 bg-gray-100 dark:bg-gray-800 rounded font-mono text-[0.7rem]">.js</code> and <code className="px-1 bg-gray-100 dark:bg-gray-800 rounded font-mono text-[0.7rem]">.jsx</code> files are not analyzed yet, so JS components will not appear in generated context bundles.
+                </p>
+              </div>
 
               {/* Quick stats */}
               <div className="flex flex-wrap gap-4 sm:gap-6 mt-6 sm:mt-8">
@@ -155,49 +62,218 @@ export default function DocumentationPage() {
           </div>
         </AnimatedSection>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8">
-          {docSections.map((section, sectionIndex) => (
-            <AnimatedSection
-              key={sectionIndex}
-              direction="up"
-              delay={100 + sectionIndex * 100}
-            >
-              <div className="bg-white dark:bg-gray-800 rounded-xl p-4 sm:p-6 shadow-sm border border-gray-200 dark:border-gray-700 hover:shadow-md transition-shadow">
-                <h2 className="text-xl sm:text-2xl font-semibold tracking-tight text-gray-900 dark:text-white mb-2 sm:mb-3">
-                  {section.title}
-                </h2>
-                <p className="text-sm sm:text-base text-gray-600 dark:text-gray-400 mb-4 sm:mb-6">
-                  {section.description}
-                </p>
-                <div className="space-y-3">
-                  {section.pages.map((page, pageIndex) => (
-                    <Link
-                      key={pageIndex}
-                      href={page.href}
-                      target={(page as any).external ? '_blank' : undefined}
-                      rel={(page as any).external ? 'noopener noreferrer' : undefined}
-                      className="block p-3 sm:p-4 rounded-lg border border-gray-200 dark:border-gray-600 hover:border-blue-300 dark:hover:border-blue-500 hover:bg-blue-50 dark:hover:bg-blue-900/20 transition-colors group"
-                    >
-                      <div className="flex items-start justify-between">
-                        <div className="flex-1">
-                          <h3 className="font-semibold text-gray-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400 mb-1">
-                            {page.title}
-                          </h3>
-                          <p className="text-sm text-gray-600 dark:text-gray-400">
-                            {page.description}
-                          </p>
-                        </div>
-                        <svg className="w-5 h-5 text-gray-400 group-hover:text-blue-500 ml-2 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                        </svg>
-                      </div>
-                    </Link>
-                  ))}
+        {/* Concepts Overview Card */}
+        <AnimatedSection direction="up" delay={100}>
+          <div className="relative mb-8 sm:mb-12">
+            <div className="absolute -inset-1 bg-gradient-to-r from-blue-600 to-indigo-600 rounded-2xl blur opacity-20 dark:opacity-10" />
+            <div className="relative bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded-2xl p-4 sm:p-6 lg:p-8 shadow-xl">
+              <div className="flex items-baseline gap-3 mb-4 sm:mb-6">
+                <div className="p-2 bg-blue-100 dark:bg-blue-900/30 rounded-lg flex-shrink-0 -mt-0.5">
+                  <svg className="w-5 h-5 sm:w-6 sm:h-6 text-blue-600 dark:text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                  </svg>
                 </div>
+                <h2 className="text-xl sm:text-2xl font-bold text-gray-900 dark:text-white m-0">
+                  Concepts Overview
+                </h2>
               </div>
-            </AnimatedSection>
-          ))}
-        </div>
+              
+              <p className="text-base sm:text-lg text-gray-600 dark:text-gray-400 mb-4 sm:mb-6 leading-relaxed">
+                Understand LogicStamp Context at a high level before you dive into the CLI.
+              </p>
+
+              <Link
+                href="/docs/what-is-logicstamp"
+                className="group relative flex items-start gap-4 p-4 sm:p-6 bg-gradient-to-br from-blue-50 to-indigo-50 dark:from-blue-950/20 dark:to-indigo-950/10 rounded-xl border border-blue-200 dark:border-blue-800 hover:shadow-lg transition-all duration-200"
+              >
+                <div className="flex-1 min-w-0">
+                  <div className="flex items-baseline gap-2 mb-2">
+                    <h3 className="text-lg sm:text-xl font-semibold text-gray-900 dark:text-white">
+                      What is LogicStamp?
+                    </h3>
+                    <svg className="w-5 h-5 text-blue-600 dark:text-blue-400 transition-transform group-hover:translate-x-1 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
+                    </svg>
+                  </div>
+                  <p className="text-sm sm:text-base text-gray-600 dark:text-gray-400 leading-relaxed">
+                    Learn about this open-source CLI, the problems it solves, and how to use it with AI tools.
+                  </p>
+                </div>
+              </Link>
+            </div>
+          </div>
+        </AnimatedSection>
+
+        {/* Getting Started Card */}
+        <AnimatedSection direction="up" delay={150}>
+          <div className="relative mb-8 sm:mb-12">
+            <div className="absolute -inset-1 bg-gradient-to-r from-purple-600 to-pink-600 rounded-2xl blur opacity-20 dark:opacity-10" />
+            <div className="relative bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded-2xl p-4 sm:p-6 lg:p-8 shadow-xl">
+              <div className="flex items-baseline gap-3 mb-4 sm:mb-6">
+                <div className="p-2 bg-purple-100 dark:bg-purple-900/30 rounded-lg flex-shrink-0 -mt-0.5">
+                  <svg className="w-5 h-5 sm:w-6 sm:h-6 text-purple-600 dark:text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
+                  </svg>
+                </div>
+                <h2 className="text-xl sm:text-2xl font-bold text-gray-900 dark:text-white m-0">
+                  Getting Started
+                </h2>
+              </div>
+              
+              <p className="text-base sm:text-lg text-gray-600 dark:text-gray-400 mb-4 sm:mb-6 leading-relaxed">
+                Installation & setup for LogicStamp Context CLI and MCP Server.
+              </p>
+
+              <Link
+                href="/docs/getting-started"
+                className="group relative flex items-start gap-4 p-4 sm:p-6 bg-gradient-to-br from-purple-50 to-pink-50 dark:from-purple-950/20 dark:to-pink-950/10 rounded-xl border border-purple-200 dark:border-purple-800 hover:shadow-lg transition-all duration-200"
+              >
+                <div className="flex-1 min-w-0">
+                  <div className="flex items-baseline gap-2 mb-2">
+                    <h3 className="text-lg sm:text-xl font-semibold text-gray-900 dark:text-white">
+                      CLI - Installation & Quick Start
+                    </h3>
+                    <svg className="w-5 h-5 text-purple-600 dark:text-purple-400 transition-transform group-hover:translate-x-1 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
+                    </svg>
+                  </div>
+                  <p className="text-sm sm:text-base text-gray-600 dark:text-gray-400 leading-relaxed">
+                    Install the CLI globally and set up your project with <code className="px-1.5 py-0.5 bg-purple-100 dark:bg-purple-900/40 rounded font-mono text-xs">stamp init</code>, then generate your first <code className="px-1.5 py-0.5 bg-purple-100 dark:bg-purple-900/40 rounded font-mono text-xs">context.json</code>—CI-friendly and zero prompts.
+                  </p>
+                </div>
+              </Link>
+            </div>
+          </div>
+        </AnimatedSection>
+
+        {/* LogicStamp Context CLI Section */}
+        <AnimatedSection direction="up" delay={200}>
+          <div className="mb-8 sm:mb-12">
+            <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white mb-4 sm:mb-6">
+              LogicStamp Context CLI
+            </h2>
+            <p className="text-base sm:text-lg text-gray-600 dark:text-gray-400 mb-4 sm:mb-6 leading-relaxed">
+              The CLI provides commands for generating, validating, and managing AI-ready context files from your codebase.
+            </p>
+            <Link
+              href="/docs/cli"
+              className="inline-flex items-center gap-2 px-4 sm:px-6 py-2.5 sm:py-3 bg-gray-900 dark:bg-white text-white dark:text-gray-900 font-semibold rounded-xl hover:shadow-xl transition-all duration-200 hover:-translate-y-0.5 text-sm sm:text-base"
+            >
+              CLI Docs Hub
+              <svg className="w-4 h-4 sm:w-5 sm:h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
+              </svg>
+            </Link>
+          </div>
+        </AnimatedSection>
+
+        {/* MCP Server Section */}
+        <AnimatedSection direction="up" delay={250}>
+          <div className="mb-8 sm:mb-12">
+            <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white mb-4 sm:mb-6">
+              MCP Server
+            </h2>
+            <p className="text-base sm:text-lg text-gray-600 dark:text-gray-400 mb-4 sm:mb-6 leading-relaxed">
+              Native Model Context Protocol (MCP) server enables AI assistants like Claude Desktop and Claude Code to analyze your codebase directly.
+            </p>
+            <Link
+              href="/docs/mcp"
+              className="inline-flex items-center gap-2 px-4 sm:px-6 py-2.5 sm:py-3 bg-white dark:bg-gray-800 text-gray-900 dark:text-white font-semibold rounded-xl border-2 border-gray-200 dark:border-gray-700 hover:shadow-xl transition-all duration-200 hover:-translate-y-0.5 text-sm sm:text-base"
+            >
+              MCP Overview (Beta)
+              <svg className="w-4 h-4 sm:w-5 sm:h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
+              </svg>
+            </Link>
+          </div>
+        </AnimatedSection>
+
+        {/* Guides Section */}
+        <AnimatedSection direction="up" delay={300}>
+          <div className="mb-8 sm:mb-12">
+            <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white mb-4 sm:mb-6">
+              Guides
+            </h2>
+            <p className="text-base sm:text-lg text-gray-600 dark:text-gray-400 mb-4 sm:mb-6 leading-relaxed">
+              Step-by-step guides for common workflows and best practices.
+            </p>
+            <div className="grid sm:grid-cols-2 gap-4 sm:gap-6">
+              <Link
+                href="/docs/best-practices"
+                className="p-4 sm:p-6 bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded-xl hover:shadow-lg transition-all duration-200"
+              >
+                <h3 className="text-lg sm:text-xl font-semibold text-gray-900 dark:text-white mb-2">
+                  Best Practices
+                </h3>
+                <p className="text-sm sm:text-base text-gray-600 dark:text-gray-400">
+                  Learn how to get the most out of LogicStamp Context in your workflow.
+                </p>
+              </Link>
+            </div>
+          </div>
+        </AnimatedSection>
+
+        {/* Reference Section */}
+        <AnimatedSection direction="up" delay={350}>
+          <div className="mb-8 sm:mb-12">
+            <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white mb-4 sm:mb-6">
+              Reference
+            </h2>
+            <p className="text-base sm:text-lg text-gray-600 dark:text-gray-400 mb-4 sm:mb-6 leading-relaxed">
+              Complete documentation for all commands, options, and features.
+            </p>
+            <Link
+              href="/docs/complete-reference"
+              className="inline-flex items-center gap-2 px-4 sm:px-6 py-2.5 sm:py-3 text-gray-600 dark:text-gray-400 font-semibold hover:text-gray-900 dark:hover:text-white transition-colors text-sm sm:text-base"
+            >
+              Complete Reference
+              <svg className="w-4 h-4 sm:w-5 sm:h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+              </svg>
+            </Link>
+          </div>
+        </AnimatedSection>
+
+        {/* Open Source & Community Section */}
+        <AnimatedSection direction="up" delay={400}>
+          <div className="relative mb-8 sm:mb-12">
+            <div className="absolute inset-0 bg-gradient-to-br from-green-100 via-emerald-50 to-teal-50 dark:from-green-950/20 dark:via-emerald-950/10 dark:to-teal-950/5 rounded-3xl blur-2xl opacity-50" />
+            
+            <div className="relative bg-white dark:bg-gray-900 border-2 border-green-200 dark:border-green-800 rounded-3xl p-6 sm:p-8 lg:p-10 shadow-2xl">
+              <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white mb-4 sm:mb-6">
+                Open Source & Community
+              </h2>
+              <p className="text-base sm:text-lg text-gray-600 dark:text-gray-400 mb-6 sm:mb-8 leading-relaxed">
+                LogicStamp Context is open source and community-driven. Contribute, report issues, or get help.
+              </p>
+              
+              <div className="flex flex-col sm:flex-row flex-wrap gap-3 sm:gap-4">
+                <a
+                  href="https://github.com/LogicStamp/logicstamp-context"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center justify-center gap-2 px-4 sm:px-6 py-2.5 sm:py-3 bg-gray-900 dark:bg-white text-white dark:text-gray-900 font-semibold rounded-xl hover:shadow-xl transition-all duration-200 hover:-translate-y-0.5 text-sm sm:text-base"
+                >
+                  <svg className="w-4 h-4 sm:w-5 sm:h-5" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+                  </svg>
+                  CLI GitHub Repository
+                </a>
+                <a
+                  href="https://github.com/LogicStamp/logicstamp-mcp"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center justify-center gap-2 px-4 sm:px-6 py-2.5 sm:py-3 bg-white dark:bg-gray-800 text-gray-900 dark:text-white font-semibold rounded-xl border-2 border-gray-200 dark:border-gray-700 hover:shadow-xl transition-all duration-200 hover:-translate-y-0.5 text-sm sm:text-base"
+                >
+                  <svg className="w-4 h-4 sm:w-5 sm:h-5" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+                  </svg>
+                  MCP GitHub Repository
+                </a>
+              </div>
+            </div>
+          </div>
+        </AnimatedSection>
       </DocsLayout>
       <Footer />
     </>
