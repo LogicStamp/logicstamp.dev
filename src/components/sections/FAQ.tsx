@@ -139,7 +139,7 @@ export default function FAQ() {
   }
 
   return (
-    <section id="faq" className="relative pt-24 sm:pt-32 overflow-hidden pb-0">
+    <section id="faq" className="relative pt-24 sm:pt-32 overflow-hidden pb-0 bg-gray-50/40 dark:bg-gray-950/40">
       <div className="relative mx-auto max-w-5xl px-6 lg:px-8">
         {/* Header */}
         <div 
@@ -347,7 +347,7 @@ export default function FAQ() {
                 </code>.
               </p>
               
-              <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+              <div className="flex flex-row items-center justify-center gap-3 sm:gap-4 flex-wrap">
                 <GetStartedButton href="docs/getting-started">
                   <svg
                     className="w-5 h-5"
