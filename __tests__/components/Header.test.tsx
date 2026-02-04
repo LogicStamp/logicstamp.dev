@@ -170,7 +170,7 @@ describe('Header Component', () => {
 
     // Mobile menu should be hidden
     const mobileMenu = document.querySelector('.mobile-menu-dropdown')
-    expect(mobileMenu).toHaveClass('opacity-0', '-translate-y-2', 'pointer-events-none')
+    expect(mobileMenu).toHaveClass('opacity-0', '-translate-y-3', 'pointer-events-none')
   })
 
   it('closes mobile menu when clicking a navigation link', async () => {
@@ -276,6 +276,119 @@ describe('Header Component', () => {
     const mobileMenuButton = screen.getByRole('button', { name: /open main menu/i })
     expect(mobileMenuButton).toBeInTheDocument()
     expect(mobileMenuButton.closest('.flex.lg\\:hidden')).toBeInTheDocument()
+  })
+
+  it('closes mobile menu when clicking outside', async () => {
+    const user = userEvent.setup()
+    render(<Header />)
+
+    // Open mobile menu
+    const menuButton = screen.getByRole('button', { name: /open main menu/i })
+    await user.click(menuButton)
+    
+    await waitFor(() => {
+      expect(menuButton).toHaveAccessibleName(/close main menu/i)
+    })
+
+    // Click outside (on document body)
+    await user.click(document.body)
+    
+    await waitFor(() => {
+      expect(menuButton).toHaveAccessibleName(/open main menu/i)
+    })
+
+    // Mobile menu should be hidden
+    const mobileMenu = document.querySelector('.mobile-menu-dropdown')
+    expect(mobileMenu).toHaveClass('opacity-0', '-translate-y-3', 'pointer-events-none')
+  })
+
+  it('does not close mobile menu when clicking inside header', async () => {
+    const user = userEvent.setup()
+    render(<Header />)
+
+    // Open mobile menu
+    const menuButton = screen.getByRole('button', { name: /open main menu/i })
+    await user.click(menuButton)
+    
+    await waitFor(() => {
+      expect(menuButton).toHaveAccessibleName(/close main menu/i)
+    })
+
+    // Click inside header (on logo)
+    const logoLink = screen.getByTestId('logo').closest('a')
+    if (logoLink) {
+      await user.click(logoLink)
+    }
+
+    // Menu should still be open
+    await waitFor(() => {
+      expect(menuButton).toHaveAccessibleName(/close main menu/i)
+    })
+  })
+
+  it('closes mobile menu when clicking Get Started button', async () => {
+    const user = userEvent.setup()
+    render(<Header />)
+
+    // Open mobile menu
+    const menuButton = screen.getByRole('button', { name: /open main menu/i })
+    await user.click(menuButton)
+    
+    await waitFor(() => {
+      expect(menuButton).toHaveAccessibleName(/close main menu/i)
+    })
+
+    // Find Get Started button in mobile menu
+    const getStartedButtons = screen.getAllByTestId('get-started-button')
+    const mobileGetStarted = getStartedButtons.find(button => {
+      const menu = button.closest('.mobile-menu-dropdown')
+      return menu !== null
+    })
+
+    if (mobileGetStarted) {
+      await user.click(mobileGetStarted)
+      
+      await waitFor(() => {
+        expect(menuButton).toHaveAccessibleName(/open main menu/i)
+      })
+    }
+  })
+
+  it('hamburger menu has open class when menu is open', async () => {
+    const user = userEvent.setup()
+    render(<Header />)
+
+    const menuButton = screen.getByRole('button', { name: /open main menu/i })
+    const hamburgerMenu = menuButton.querySelector('.hamburger-menu')
+    
+    // Initially should not have open class
+    expect(hamburgerMenu).not.toHaveClass('open')
+
+    // Open menu
+    await user.click(menuButton)
+    
+    await waitFor(() => {
+      expect(hamburgerMenu).toHaveClass('open')
+    })
+
+    // Close menu
+    await user.click(menuButton)
+    
+    await waitFor(() => {
+      expect(hamburgerMenu).not.toHaveClass('open')
+    })
+  })
+
+  it('sets transition style on mobile menu', () => {
+    const { container } = render(<Header />)
+    
+    const mobileMenu = container.querySelector('.mobile-menu-dropdown')
+    expect(mobileMenu).toBeInTheDocument()
+    
+    // After mount, transition should be set for smooth animations
+    const style = mobileMenu?.getAttribute('style')
+    expect(style).toContain('transition: opacity')
+    expect(style).toContain('transform')
   })
 })
 
