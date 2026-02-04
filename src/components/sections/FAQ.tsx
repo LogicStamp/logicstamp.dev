@@ -140,7 +140,7 @@ export default function FAQ() {
 
   return (
     <section id="faq" className="relative pt-24 sm:pt-32 overflow-hidden pb-0 bg-gray-50/40 dark:bg-gray-950/40">
-      <div className="relative mx-auto max-w-5xl px-6 lg:px-8">
+      <div className="relative mx-auto max-w-[1400px] px-6 lg:px-8">
         {/* Header */}
         <div 
           ref={titleRef}
@@ -192,7 +192,7 @@ export default function FAQ() {
                   <div className={`
                     relative rounded-xl overflow-hidden
                     bg-white dark:bg-gray-900/50
-                    border transition-all duration-300 ease-out
+                    border transition-all duration-200 ease-out
                     ${isOpen 
                       ? 'border-gray-900 dark:border-gray-100 shadow-[0_0_0_1px_rgba(0,0,0,0.45),0_18px_40px_rgba(15,23,42,0.75)] dark:shadow-[0_0_0_1px_rgba(255,255,255,0.45),0_18px_40px_rgba(15,23,42,0.75)]' 
                       : 'border-gray-200/60 dark:border-gray-800/80 shadow-sm'
@@ -233,7 +233,7 @@ export default function FAQ() {
                           >
                             {/* Chevron down icon */}
                             <svg
-                              className={`absolute inset-0 h-7 w-7 transition-all duration-300 ease-out ${
+                              className={`absolute inset-0 h-7 w-7 transition-all duration-200 ease-out ${
                                 isOpen
                                   ? 'opacity-0 rotate-180 scale-75 text-indigo-600 dark:text-indigo-400'
                                   : 'opacity-100 rotate-0 scale-100 text-slate-500 dark:text-slate-400'
@@ -248,7 +248,7 @@ export default function FAQ() {
 
                             {/* Chevron up icon */}
                             <svg
-                              className={`absolute inset-0 h-7 w-7 transition-all duration-300 ease-out ${
+                              className={`absolute inset-0 h-7 w-7 transition-all duration-200 ease-out ${
                                 isOpen
                                   ? 'opacity-100 rotate-0 scale-100 text-indigo-600 dark:text-indigo-400'
                                   : 'opacity-0 -rotate-180 scale-75 text-slate-500 dark:text-slate-400'
@@ -269,7 +269,7 @@ export default function FAQ() {
                         id={`faq-answer-${faq.id}`}
                         aria-labelledby={`faq-question-${faq.id}`}
                         className={`
-                          grid transition-[grid-template-rows,opacity,margin] duration-300 ease-out
+                          grid transition-[grid-template-rows,opacity,margin] duration-200 ease-out
                           ${isOpen ? 'grid-rows-[1fr] opacity-100 mt-6' : 'grid-rows-[0fr] opacity-0 mt-0'}
                         `}
                       >
@@ -321,7 +321,7 @@ export default function FAQ() {
           docsInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
         }`}
       >
-        <div className="relative mx-auto max-w-5xl px-6 lg:px-8 pb-24 sm:pb-32">
+        <div className="relative mx-auto max-w-[1400px] px-6 lg:px-8 pb-24 sm:pb-32">
           {/* Elegant card container */}
           <div className="relative rounded-2xl bg-gradient-to-br from-slate-50 to-white dark:from-slate-900/50 dark:to-slate-900 border border-slate-200 dark:border-slate-800 shadow-xl overflow-hidden">
             {/* Decorative gradient overlay */}
@@ -347,10 +347,10 @@ export default function FAQ() {
                 </code>.
               </p>
               
-              <div className="flex flex-row items-center justify-center gap-3 sm:gap-4 flex-wrap">
-                <GetStartedButton href="docs/getting-started">
+              <div className="flex flex-row flex-nowrap items-center justify-center gap-2 sm:gap-4">
+                <GetStartedButton href="docs/getting-started" className="text-xs sm:text-sm lg:text-base px-4 py-2 sm:px-6 sm:py-3 flex-shrink-0">
                   <svg
-                    className="w-5 h-5"
+                    className="w-4 h-4 sm:w-5 sm:h-5"
                     fill="none"
                     stroke="currentColor"
                     viewBox="0 0 24 24"
@@ -364,7 +364,7 @@ export default function FAQ() {
                   </svg>
                   Quick Start
                 </GetStartedButton>
-                <ReadTheDocsButton href="docs/" />
+                <ReadTheDocsButton href="docs/" className="text-xs sm:text-sm lg:text-base px-4 py-2 sm:px-6 sm:py-3 flex-shrink-0" />
               </div>
             </div>
           </div>
