@@ -28,8 +28,8 @@ describe('FAQ Component', () => {
   it('renders the FAQ section', () => {
     render(<FAQ />)
 
-    expect(screen.getByRole('heading', { name: /faqs/i })).toBeInTheDocument()
-    expect(screen.getByText(/quick answers to common/i)).toBeInTheDocument()
+    expect(screen.getByRole('heading', { name: /common questions/i })).toBeInTheDocument()
+    expect(screen.getByText(/find answers to the most frequently asked questions/i)).toBeInTheDocument()
   })
 
   it('renders all FAQ items', () => {
