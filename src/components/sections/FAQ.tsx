@@ -192,7 +192,7 @@ export default function FAQ() {
                   <div className={`
                     relative rounded-xl overflow-hidden
                     bg-white dark:bg-gray-900/50
-                    border transition-all duration-200 ease-out
+                    border transition-all duration-300 ease-out
                     ${isOpen 
                       ? 'border-gray-900 dark:border-gray-100 shadow-[0_0_0_1px_rgba(0,0,0,0.45),0_18px_40px_rgba(15,23,42,0.75)] dark:shadow-[0_0_0_1px_rgba(255,255,255,0.45),0_18px_40px_rgba(15,23,42,0.75)]' 
                       : 'border-gray-200/60 dark:border-gray-800/80 shadow-sm'
@@ -233,7 +233,7 @@ export default function FAQ() {
                           >
                             {/* Chevron down icon */}
                             <svg
-                              className={`absolute inset-0 h-7 w-7 transition-all duration-200 ease-out ${
+                              className={`absolute inset-0 h-7 w-7 transition-all duration-300 ease-out ${
                                 isOpen
                                   ? 'opacity-0 rotate-180 scale-75 text-indigo-600 dark:text-indigo-400'
                                   : 'opacity-100 rotate-0 scale-100 text-slate-500 dark:text-slate-400'
@@ -248,7 +248,7 @@ export default function FAQ() {
 
                             {/* Chevron up icon */}
                             <svg
-                              className={`absolute inset-0 h-7 w-7 transition-all duration-200 ease-out ${
+                              className={`absolute inset-0 h-7 w-7 transition-all duration-300 ease-out ${
                                 isOpen
                                   ? 'opacity-100 rotate-0 scale-100 text-indigo-600 dark:text-indigo-400'
                                   : 'opacity-0 -rotate-180 scale-75 text-slate-500 dark:text-slate-400'
@@ -269,7 +269,7 @@ export default function FAQ() {
                         id={`faq-answer-${faq.id}`}
                         aria-labelledby={`faq-question-${faq.id}`}
                         className={`
-                          grid transition-[grid-template-rows,opacity,margin] duration-200 ease-out
+                          grid transition-[grid-template-rows,opacity,margin] duration-300 ease-out
                           ${isOpen ? 'grid-rows-[1fr] opacity-100 mt-6' : 'grid-rows-[0fr] opacity-0 mt-0'}
                         `}
                       >

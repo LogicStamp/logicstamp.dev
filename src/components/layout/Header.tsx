@@ -186,7 +186,7 @@ export default function Header() {
 
     {/* Mobile menu dropdown */}
     <div className={`lg:hidden fixed left-0 right-0 z-[110] px-4 lg:px-6 mobile-menu-dropdown top-[4.75rem] ${
-      mounted && mobileMenuOpen ? 'opacity-100 translate-y-0 scale-100' : 'opacity-0 -translate-y-2 scale-[0.98] pointer-events-none'
+      mounted && mobileMenuOpen ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-3 pointer-events-none'
     }`}
     style={{
       transition: mounted ? 'opacity 200ms cubic-bezier(0.4, 0, 0.2, 1), transform 200ms cubic-bezier(0.4, 0, 0.2, 1)' : 'none'
