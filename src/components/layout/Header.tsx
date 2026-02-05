@@ -186,10 +186,11 @@ export default function Header() {
 
     {/* Mobile menu dropdown */}
     <div className={`lg:hidden fixed left-0 right-0 z-[110] px-4 lg:px-6 mobile-menu-dropdown top-[4.75rem] ${
-      mounted && mobileMenuOpen ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-3 pointer-events-none'
+      mounted && mobileMenuOpen ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-4 pointer-events-none'
     }`}
     style={{
-      transition: mounted ? 'opacity 200ms cubic-bezier(0.4, 0, 0.2, 1), transform 200ms cubic-bezier(0.4, 0, 0.2, 1)' : 'none'
+      transition: mounted ? 'opacity 50ms ease-out, transform 300ms ease-out' : 'none',
+      willChange: mounted ? 'transform' : 'auto'
     }}>
       <div className="mx-auto max-w-[1400px]">
         <div className="relative overflow-hidden bg-white/80 dark:bg-gray-900/80 rounded-2xl shadow-[0_8px_32px_rgba(0,0,0,0.08)] dark:shadow-[0_8px_32px_rgba(0,0,0,0.4)] border border-gray-200/50 dark:border-white/5 backdrop-blur-xl backdrop-saturate-150">

@@ -228,15 +228,19 @@ export default function FAQ() {
                           
                           {/* Icon container */}
                           <div
-                            className="relative h-7 w-7 flex-shrink-0 mt-1"
+                            className={`relative h-9 w-9 flex-shrink-0 mt-1 rounded-full flex items-center justify-center transition-all duration-300 ease-out ${
+                              isOpen
+                                ? 'bg-indigo-100 dark:bg-indigo-900/30'
+                                : 'bg-gray-100 dark:bg-gray-800/50'
+                            }`}
                             aria-hidden="true"
                           >
                             {/* Chevron down icon */}
                             <svg
-                              className={`absolute inset-0 h-7 w-7 transition-all duration-300 ease-out ${
+                              className={`absolute inset-0 h-6 w-6 m-auto transition-all duration-300 ease-out ${
                                 isOpen
                                   ? 'opacity-0 rotate-180 scale-75 text-indigo-600 dark:text-indigo-400'
-                                  : 'opacity-100 rotate-0 scale-100 text-slate-500 dark:text-slate-400'
+                                  : 'opacity-100 rotate-0 scale-100 text-slate-600 dark:text-slate-400'
                               }`}
                               fill="none"
                               viewBox="0 0 24 24"
@@ -248,10 +252,10 @@ export default function FAQ() {
 
                             {/* Chevron up icon */}
                             <svg
-                              className={`absolute inset-0 h-7 w-7 transition-all duration-300 ease-out ${
+                              className={`absolute inset-0 h-6 w-6 m-auto transition-all duration-300 ease-out ${
                                 isOpen
                                   ? 'opacity-100 rotate-0 scale-100 text-indigo-600 dark:text-indigo-400'
-                                  : 'opacity-0 -rotate-180 scale-75 text-slate-500 dark:text-slate-400'
+                                  : 'opacity-0 -rotate-180 scale-75 text-slate-600 dark:text-slate-400'
                               }`}
                               fill="none"
                               viewBox="0 0 24 24"
