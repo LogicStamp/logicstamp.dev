@@ -170,7 +170,7 @@ describe('Header Component', () => {
 
     // Mobile menu should be hidden
     const mobileMenu = document.querySelector('.mobile-menu-dropdown')
-    expect(mobileMenu).toHaveClass('opacity-0', '-translate-y-3', 'pointer-events-none')
+    expect(mobileMenu).toHaveClass('opacity-0', '-translate-y-4', 'pointer-events-none')
   })
 
   it('closes mobile menu when clicking a navigation link', async () => {
@@ -299,7 +299,7 @@ describe('Header Component', () => {
 
     // Mobile menu should be hidden
     const mobileMenu = document.querySelector('.mobile-menu-dropdown')
-    expect(mobileMenu).toHaveClass('opacity-0', '-translate-y-3', 'pointer-events-none')
+    expect(mobileMenu).toHaveClass('opacity-0', '-translate-y-4', 'pointer-events-none')
   })
 
   it('does not close mobile menu when clicking inside header', async () => {
