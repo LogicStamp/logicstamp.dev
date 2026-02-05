@@ -170,7 +170,7 @@ export default function Hero() {
             <h1 className="text-4xl font-extrabold tracking-tight text-gray-900 dark:text-white sm:text-6xl lg:text-7xl xl:text-8xl sm:text-balance leading-tight">
               {/* Mobile: 2 lines */}
               <span className="block sm:hidden">
-                <span className="block whitespace-nowrap">Turn React/TS Into</span>
+                <span className="block whitespace-nowrap">Turn TypeScript Into</span>
                 <span className="block whitespace-nowrap">
                   <span className="relative inline-block">
                     <span className="bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 bg-clip-text text-transparent">
@@ -182,7 +182,7 @@ export default function Hero() {
               </span>
               {/* Desktop: single line */}
               <span className="hidden sm:inline">
-                Turn React/TS Into{' '}
+                Turn TypeScript Into{' '}
                 <span className="relative inline-block">
                   <span className="bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 bg-clip-text text-transparent">
                     AI-Ready Context
@@ -201,7 +201,7 @@ export default function Hero() {
             }`}
           >
             <p className="mt-8 text-xl lg:text-2xl leading-relaxed text-gray-600 dark:text-gray-300 font-medium max-w-4xl mx-auto">
-              Generate AI-ready context bundles from your React/TypeScript codebase in seconds.{' '}
+              Generate deterministic architecture context from your TypeScript codebase in seconds.{' '}
               <span className="text-secondary-700 dark:text-secondary-300 font-semibold">One-time setup, up to 70% token savings.</span>
             </p>
             <p className="mt-4 text-base lg:text-lg text-gray-500 dark:text-gray-400">
