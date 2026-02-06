@@ -10,16 +10,13 @@ export default function BetaPage() {
   return (
     <main className="min-h-screen">
       {/* Hero + Signup Section - Combined */}
-      <section className="relative overflow-hidden bg-gradient-to-br from-blue-50 via-purple-50 to-pink-50 dark:from-gray-900 dark:via-purple-950/30 dark:to-pink-950/30 pt-24 pb-32 sm:pt-32 sm:pb-40">
+      <section className="relative overflow-hidden bg-gradient-to-br from-white via-gray-50 to-white dark:from-gray-950 dark:via-gray-900 dark:to-gray-950 pt-24 pb-32 sm:pt-32 sm:pb-40">
         {/* Decorative background elements */}
         <div className="absolute inset-0 overflow-hidden pointer-events-none">
-          <div className="absolute top-1/4 -left-20 w-96 h-96 bg-blue-500/10 rounded-full blur-3xl animate-pulse"></div>
-          <div className="absolute bottom-1/4 -right-20 w-96 h-96 bg-purple-500/10 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '2s' }}></div>
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-gradient-to-r from-indigo-500/5 to-purple-500/5 rounded-full blur-3xl"></div>
+          <div className="absolute top-1/4 -left-20 w-96 h-96 bg-blue-500/5 dark:bg-blue-500/3 rounded-full blur-3xl animate-pulse"></div>
+          <div className="absolute bottom-1/4 -right-20 w-96 h-96 bg-purple-500/5 dark:bg-purple-500/3 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '2s' }}></div>
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-gradient-to-r from-indigo-500/3 to-purple-500/3 dark:from-indigo-500/2 dark:to-purple-500/2 rounded-full blur-3xl"></div>
         </div>
-
-        {/* Background decoration */}
-        <div className="absolute inset-0 bg-gradient-to-br from-blue-500/5 via-purple-500/5 to-pink-500/5"></div>
 
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 relative z-10">
           <AnimatedSection direction="up" delay={0}>
@@ -117,6 +114,21 @@ export default function BetaPage() {
                     <ul className="list-disc list-inside space-y-1 ml-2">
                       <li>CSS-in-JS completeness - Added support for Chakra UI and Ant Design, completing coverage for all major CSS-in-JS libraries. Extracts components, packages, theme usage, and framework-specific features (Chakra UI color mode, responsive props, system props; Ant Design ConfigProvider, Form, locale, icons)</li>
                       <li>Enhanced documentation - New comprehensive guides for Ant Design and Chakra UI support, plus updates to schema, UIF contracts, usage, CLI commands, and UI framework documentation (Material UI, ShadCN, Tailwind)</li>
+                    </ul>
+                  </div>
+                  <div>
+                    <p className="font-bold mb-2">v0.5.0 (January 2026)</p>
+                    <ul className="list-disc list-inside space-y-1 ml-2">
+                      <li>Strict watch mode (<code className="text-sm bg-gray-100 dark:bg-gray-800 px-1 py-0.5 rounded">--strict-watch</code>) - Track breaking changes and violations during watch mode. Automatically detects breaking changes when files are modified (removed props, events, state, functions, variables; changed prop types; removed contracts; missing dependencies). Real-time violation reporting with cumulative tracking across watch sessions. Writes structured JSON violation reports and provides CI-friendly exit codes</li>
+                      <li>Schema improvements - Renamed fields for clarity: <code className="text-sm bg-gray-100 dark:bg-gray-800 px-1 py-0.5 rounded">MissingDependency.version</code> → <code className="text-sm bg-gray-100 dark:bg-gray-800 px-1 py-0.5 rounded">packageVersion</code>, <code className="text-sm bg-gray-100 dark:bg-gray-800 px-1 py-0.5 rounded">UIFContract.version</code> → <code className="text-sm bg-gray-100 dark:bg-gray-800 px-1 py-0.5 rounded">composition</code>, <code className="text-sm bg-gray-100 dark:bg-gray-800 px-1 py-0.5 rounded">UIFContract.logicSignature</code> → <code className="text-sm bg-gray-100 dark:bg-gray-800 px-1 py-0.5 rounded">interface</code>. These changes improve clarity and avoid confusion between component composition and version numbers</li>
+                      <li>Performance optimizations - O(1) dependency collection lookups and missing dependency tracking. Replaced O(n) linear searches with Map-based and Set-based lookups for significantly improved performance on large projects</li>
+                      <li>Watch mode improvements - Fixed race condition in watch mode using Promise-based locking. Fixed silent error swallowing in compare handler</li>
+                    </ul>
+                  </div>
+                  <div>
+                    <p className="font-bold mb-2">v0.4.1 (January 2026)</p>
+                    <ul className="list-disc list-inside space-y-1 ml-2">
+                      <li>Watch mode - Automatic context regeneration when source files change. Incremental rebuilds only regenerate affected bundles. Detects and displays contract changes (props, hooks, state, events). Debounces rapid changes. Watches style files when using <code className="text-sm bg-gray-100 dark:bg-gray-800 px-1 py-0.5 rounded">--include-style</code>. Debug mode shows hash changes. Status files for tooling integration</li>
                     </ul>
                   </div>
                   <div>
