@@ -241,7 +241,7 @@ export default function WhyLogicStamp() {
           <div className={`flex justify-center transition-all duration-700 ${
             solutionInView ? 'opacity-100 scale-100' : 'opacity-0 scale-0'
           }`}>
-            <div className="p-3 rounded-full bg-gradient-to-br from-emerald-100 to-green-100 dark:from-emerald-900/30 dark:to-green-900/30 pulse-glow-container">
+            <div className="p-3 rounded-full bg-gradient-to-br from-emerald-100 to-green-100 dark:from-emerald-900/30 dark:to-green-900/30">
               <svg className="w-8 h-8 text-emerald-600 dark:text-emerald-400 flow-arrow-vertical" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 14l-7 7m0 0l-7-7m7 7V3" />
               </svg>
@@ -453,25 +453,12 @@ export default function WhyLogicStamp() {
           }
         }
         
-        @keyframes pulse-glow {
-          0%, 100% {
-            box-shadow: 0 0 20px rgba(16, 185, 129, 0.3), 0 0 40px rgba(5, 150, 105, 0.2);
-          }
-          50% {
-            box-shadow: 0 0 30px rgba(16, 185, 129, 0.5), 0 0 60px rgba(5, 150, 105, 0.3);
-          }
-        }
-        
         .animate-blink {
           animation: blink 1s infinite;
         }
         
         .flow-arrow-vertical {
           animation: flowDown 2s ease-in-out infinite;
-        }
-        
-        .pulse-glow-container {
-          animation: pulse-glow 2s ease-in-out infinite;
         }
       `}</style>
     </section>

@@ -1,6 +1,7 @@
 'use client'
 
 import { useState, useRef, useEffect } from 'react'
+import { Plus, X } from 'lucide-react'
 import GetStartedButton from '../ui/GetStartedButton'
 import ReadTheDocsButton from '../ui/ReadTheDocsButton'
 
@@ -48,13 +49,13 @@ const faqs = [
     id: 3,
     question: 'Is LogicStamp free to use?',
     answer:
-      'Yes! LogicStamp Context is completely free and open-source.\nInstall it globally with npm i -g logicstamp-context and use it.\nThe CLI (v0.5.0) includes context generation, drift detection (tracks changes in component contracts over time), validation, token optimization, security scanning (detects potential secrets in your code), style metadata extraction, and watch mode.\nMCP (Model Context Protocol) integration is also available for free, providing real-time context analysis in Cursor, Claude Desktop, and Claude CLI. Install with `npm install -g logicstamp-mcp` and configure your MCP client (see "How do I set up MCP integration?" below for details).\nAll features are available at no cost.',
+      'Yes! LogicStamp Context is completely free and open-source.\nInstall it globally with npm i -g logicstamp-context and use it.\nThe CLI (v0.5.1) includes context generation, drift detection (tracks changes in component contracts over time), validation, token optimization, security scanning (detects potential secrets in your code), style metadata extraction, and watch mode.\nMCP (Model Context Protocol) integration is also available for free, providing real-time context analysis in Cursor, Claude Desktop, and Claude CLI. Install with `npm install -g logicstamp-mcp` and configure your MCP client (see "How do I set up MCP integration?" below for details).\nAll features are available at no cost.',
   },
   {
     id: 4,
     question: 'What frameworks are supported?',
     answer:
-      'Currently supports React and TypeScript projects (including Next.js), plus Vue 3 TypeScript/TSX files.\nBackend support for Express.js and NestJS is available in v0.5.0.\nRequires Node.js >= 18.18.0 (Node 20+ recommended).\nMCP integration is available for Cursor, Claude Desktop, and Claude CLI.\nWorks with any React/TypeScript codebase regardless of styling solution (Tailwind, styled-components, CSS modules, Material UI, ShadCN/UI, Radix UI, Framer Motion, etc.).\nNote: Vue Single File Components (.vue files) support is planned for a future release.',
+      'Currently supports React and TypeScript projects (including Next.js), plus Vue 3 TypeScript/TSX files.\nBackend support for Express.js and NestJS is available in v0.5.1.\nRequires Node.js >= 18.18.0 (Node 20+ recommended).\nMCP integration is available for Cursor, Claude Desktop, and Claude CLI.\nWorks with any React/TypeScript codebase regardless of styling solution (Tailwind, styled-components, CSS modules, Material UI, ShadCN/UI, Radix UI, Framer Motion, etc.).\nNote: Vue Single File Components (.vue files) support is planned for a future release.',
   },
   {
     id: 5,
@@ -90,7 +91,7 @@ const faqs = [
     id: 10,
     question: 'Is watch mode available?',
     answer:
-      'Yes! Watch mode is available in v0.5.0.\nRun `stamp context --watch` to automatically regenerate context files when source files change.\nFeatures include incremental rebuilds (only affected bundles are regenerated), change detection (shows what changed: props, hooks, state), debouncing (batches rapid changes), and style file watching with `--include-style`.\nUse `--debug` to see detailed hash information, or `--log-file` for structured change logs.',
+      'Yes! Watch mode is available in v0.5.1.\nRun `stamp context --watch` to automatically regenerate context files when source files change.\nFeatures include incremental rebuilds (only affected bundles are regenerated), change detection (shows what changed: props, hooks, state), debouncing (batches rapid changes), and style file watching with `--include-style`.\nUse `--debug` to see detailed hash information, or `--log-file` for structured change logs.',
   },
 ]
 
@@ -235,35 +236,25 @@ export default function FAQ() {
                             }`}
                             aria-hidden="true"
                           >
-                            {/* Chevron down icon */}
-                            <svg
-                              className={`absolute inset-0 h-6 w-6 m-auto transition-all duration-300 ease-out ${
+                            {/* Plus icon (closed state) */}
+                            <Plus
+                              className={`absolute inset-0 h-5 w-5 m-auto transition-all duration-300 ease-out ${
                                 isOpen
-                                  ? 'opacity-0 rotate-180 scale-75 text-indigo-600 dark:text-indigo-400'
+                                  ? 'opacity-0 rotate-90 scale-75 text-indigo-600 dark:text-indigo-400'
                                   : 'opacity-100 rotate-0 scale-100 text-slate-600 dark:text-slate-400'
                               }`}
-                              fill="none"
-                              viewBox="0 0 24 24"
-                              strokeWidth="2.5"
-                              stroke="currentColor"
-                            >
-                              <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
-                            </svg>
+                              strokeWidth={2.5}
+                            />
 
-                            {/* Chevron up icon */}
-                            <svg
-                              className={`absolute inset-0 h-6 w-6 m-auto transition-all duration-300 ease-out ${
+                            {/* X icon (open state) */}
+                            <X
+                              className={`absolute inset-0 h-5 w-5 m-auto transition-all duration-300 ease-out ${
                                 isOpen
                                   ? 'opacity-100 rotate-0 scale-100 text-indigo-600 dark:text-indigo-400'
-                                  : 'opacity-0 -rotate-180 scale-75 text-slate-600 dark:text-slate-400'
+                                  : 'opacity-0 -rotate-90 scale-75 text-slate-600 dark:text-slate-400'
                               }`}
-                              fill="none"
-                              viewBox="0 0 24 24"
-                              strokeWidth="2.5"
-                              stroke="currentColor"
-                            >
-                              <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 15.75l7.5-7.5 7.5 7.5" />
-                            </svg>
+                              strokeWidth={2.5}
+                            />
                           </div>
                         </button>
                       </dt>
