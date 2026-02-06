@@ -113,9 +113,10 @@ export default function BetaPage() {
                 </div>
                 <div className="space-y-4 text-gray-700 dark:text-gray-300">
                   <div>
-                    <p className="font-bold mb-2">v0.5.0 (Current)</p>
+                    <p className="font-bold mb-2">v0.5.1 (Current)</p>
                     <ul className="list-disc list-inside space-y-1 ml-2">
-                      <li>Watch mode - Automatic context regeneration when source files change. Incremental rebuilds only regenerate affected bundles. Detects and displays contract changes (props, hooks, state, events). Debounces rapid changes. Watches style files when using <code className="text-sm bg-gray-100 dark:bg-gray-800 px-1 py-0.5 rounded">--include-style</code>. Debug mode shows hash changes. Status files for tooling integration</li>
+                      <li>CSS-in-JS completeness - Added support for Chakra UI and Ant Design, completing coverage for all major CSS-in-JS libraries. Extracts components, packages, theme usage, and framework-specific features (Chakra UI color mode, responsive props, system props; Ant Design ConfigProvider, Form, locale, icons)</li>
+                      <li>Enhanced documentation - New comprehensive guides for Ant Design and Chakra UI support, plus updates to schema, UIF contracts, usage, CLI commands, and UI framework documentation (Material UI, ShadCN, Tailwind)</li>
                     </ul>
                   </div>
                   <div>
