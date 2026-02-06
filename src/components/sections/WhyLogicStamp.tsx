@@ -106,10 +106,10 @@ export default function WhyLogicStamp() {
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
         </svg>
       ),
-      title: 'Always up-to-date',
-      description: 'Run stamp context before each AI session. Fresh context in seconds, not stale READMEs.',
-      stat: '~9s',
-      statLabel: 'Generation Time',
+      title: 'Watch mode: Always up-to-date',
+      description: 'Automatic context regeneration when files change. Incremental rebuilds keep your context fresh without manual runs.',
+      stat: 'Auto',
+      statLabel: 'Real-time',
       gradient: 'from-emerald-500/20 via-green-600/20 to-teal-600/20',
       borderGradient: 'from-emerald-500 via-green-600 to-teal-600',
       iconBg: 'from-emerald-500/10 to-teal-600/10',
@@ -414,7 +414,7 @@ export default function WhyLogicStamp() {
                 <div className="flex-1 text-center sm:text-left">
                   <p className="text-base lg:text-lg text-gray-700 dark:text-gray-300">
                     <strong className="text-gray-900 dark:text-white">LogicStamp is your codebase's stamp of approval.</strong>{' '}
-                    One command generates a verified, AI-optimized snapshot of your entire project structure—like an official document stamped and certified for AI consumption.
+                    One command generates a verified, AI-optimized snapshot of your entire project structure - like an official document stamped and certified for AI consumption.
                   </p>
                 </div>
               </div>
