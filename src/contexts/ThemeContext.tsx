@@ -103,8 +103,9 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
   }
 
   const toggleDarkMode = () => {
-    // Simple toggle between explicit light and dark
-    setThemeState((prev) => (prev === 'dark' ? 'light' : 'dark'))
+    // Toggle based on effective dark mode, not just preference
+    const effectiveDark = theme === 'dark' || (theme === 'system' && systemPrefersDark)
+    setThemeState(effectiveDark ? 'light' : 'dark')
   }
 
   const effectiveDark = theme === 'dark' || (theme === 'system' && systemPrefersDark)

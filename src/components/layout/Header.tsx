@@ -82,7 +82,7 @@ export default function Header() {
     <>
     {/* Premium header container */}
     <header className="fixed top-0 left-0 right-0 z-50 transition-all duration-300">
-      <div className="mx-auto max-w-[1400px] px-4 lg:px-6 py-4 transition-all duration-300">
+      <div className="mx-auto max-w-[1440px] px-4 lg:px-6 py-4 transition-all duration-300">
         <div className="relative overflow-hidden rounded-2xl bg-white/60 dark:bg-gray-900/60 border border-gray-200/50 dark:border-white/5 backdrop-blur-xl backdrop-saturate-150 shadow-[0_8px_32px_rgba(0,0,0,0.04)] dark:shadow-[0_8px_32px_rgba(0,0,0,0.3)] transition-all duration-300">
           {/* Subtle gradient overlay */}
           <div className="absolute inset-0 bg-gradient-to-br from-white/40 via-transparent to-transparent dark:from-white/5 dark:via-transparent dark:to-transparent pointer-events-none" />
@@ -98,10 +98,10 @@ export default function Header() {
                 }
               }}
               aria-label="LogicStamp"
-              className="flex items-center gap-0.5 lg:gap-1 cursor-pointer group focus:outline-none focus:ring-0 active:bg-transparent logo-link"
+              className="flex items-center gap-0 cursor-pointer group focus:outline-none focus:ring-0 active:bg-transparent logo-link"
             >
               <div className="logicstamp-logo-container">
-                <LogicStampLogo className="logicstamp-logo" size={52} />
+                <LogicStampLogo className="logicstamp-logo" size={48} />
               </div>
               <LogicStampWordmark height={22} className="hidden sm:block" />
               <LogicStampWordmark height={18} className="block sm:hidden" />
@@ -125,6 +125,7 @@ export default function Header() {
                 />
               </svg>
             </a>
+            <ThemeToggle compact />
             <button
               type="button"
               className="inline-flex items-center justify-center rounded-lg p-3 text-gray-700 dark:text-gray-300 hover:bg-gray-100/60 dark:hover:bg-gray-800/60 transition-all duration-200 active:scale-95"
@@ -192,7 +193,7 @@ export default function Header() {
       transition: mounted ? 'opacity 50ms ease-out, transform 300ms ease-out' : 'none',
       willChange: mounted ? 'transform' : 'auto'
     }}>
-      <div className="mx-auto max-w-[1400px]">
+      <div className="mx-auto max-w-[1440px]">
         <div className="relative overflow-hidden bg-white/80 dark:bg-gray-900/80 rounded-2xl shadow-[0_8px_32px_rgba(0,0,0,0.08)] dark:shadow-[0_8px_32px_rgba(0,0,0,0.4)] border border-gray-200/50 dark:border-white/5 backdrop-blur-xl backdrop-saturate-150">
           {/* Subtle gradient overlay */}
           <div className="absolute inset-0 bg-gradient-to-br from-white/40 via-transparent to-transparent dark:from-white/5 dark:via-transparent dark:to-transparent pointer-events-none" />
@@ -214,12 +215,9 @@ export default function Header() {
             ))}
           </div>
 
-          {/* Theme toggle + Get Started button */}
+          {/* Get Started button */}
           <div className="mt-5 pt-5 border-t border-gray-200/50 dark:border-gray-700/50">
-            <div className="flex justify-center">
-              <ThemeToggle compact />
-            </div>
-            <div onClick={() => setMobileMenuOpen(false)} className="mt-6">
+            <div onClick={() => setMobileMenuOpen(false)}>
               <GetStartedButton size="sm" className="w-full justify-center" />
             </div>
           </div>

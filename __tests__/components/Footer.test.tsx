@@ -245,7 +245,7 @@ describe('Footer Component', () => {
   it('renders copyright notice', () => {
     render(<Footer />)
 
-    expect(screen.getByText(/© 2025 LogicStamp/i)).toBeInTheDocument()
+    expect(screen.getByText(/© 2025-2026 LogicStamp/i)).toBeInTheDocument()
   })
 
   it('renders social links with correct attributes', () => {

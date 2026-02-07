@@ -139,7 +139,7 @@ export default function WhyLogicStamp() {
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-gradient-to-r from-indigo-500/5 to-purple-500/5 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '4s' }} />
       </div>
 
-      <div className="relative mx-auto max-w-[1400px] px-6 lg:px-8">
+      <div className="relative mx-auto max-w-[1440px] px-6 lg:px-8">
         {/* Header */}
         <div 
           ref={titleRef}

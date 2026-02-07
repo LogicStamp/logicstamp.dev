@@ -141,7 +141,7 @@ export default function FAQ() {
 
   return (
     <section id="faq" className="relative pt-24 sm:pt-32 overflow-hidden pb-0 bg-gray-50/40 dark:bg-gray-950/40">
-      <div className="relative mx-auto max-w-[1400px] px-6 lg:px-8">
+      <div className="relative mx-auto max-w-[1440px] px-6 lg:px-8">
         {/* Header */}
         <div 
           ref={titleRef}
@@ -316,7 +316,7 @@ export default function FAQ() {
           docsInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
         }`}
       >
-        <div className="relative mx-auto max-w-[1400px] px-6 lg:px-8 pb-24 sm:pb-32">
+        <div className="relative mx-auto max-w-[1440px] px-6 lg:px-8 pb-24 sm:pb-32">
           {/* Elegant card container */}
           <div className="relative rounded-2xl bg-gradient-to-br from-slate-50 to-white dark:from-slate-900/50 dark:to-slate-900 border border-slate-200 dark:border-slate-800 shadow-xl overflow-hidden">
             {/* Decorative gradient overlay */}
