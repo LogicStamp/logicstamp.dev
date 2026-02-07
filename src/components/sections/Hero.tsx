@@ -155,7 +155,7 @@ export default function Hero() {
         <div className="absolute bottom-1/4 -right-20 w-96 h-96 bg-purple-500/5 dark:bg-purple-500/3 rounded-full blur-3xl"></div>
       </div>
 
-      <div className="mx-auto max-w-[90rem] px-6 lg:px-8 relative z-10">
+      <div className="mx-auto max-w-[1440px] px-4 lg:px-6 relative z-10">
         <div className="mx-auto max-w-2xl lg:max-w-6xl text-center">
           {/* Title */}
           <div 
@@ -353,7 +353,7 @@ export default function Hero() {
             workflowGifInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
           }`}
         >
-          <div className="relative mx-auto max-w-[120rem] px-0 sm:px-2 lg:px-4">
+          <div className="relative mx-auto max-w-[1440px] -mx-4 lg:-mx-6 px-4 lg:px-6">
             <div className="relative rounded-2xl overflow-hidden shadow-2xl ring-1 ring-gray-200/50 dark:ring-gray-700/50 bg-gray-900">
               <img 
                 src="/logicstamp-workflow.gif" 

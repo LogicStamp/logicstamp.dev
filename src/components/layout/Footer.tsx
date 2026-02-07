@@ -5,13 +5,22 @@ import Image from 'next/image'
 import AnimatedSection from '@/components/common/AnimatedSection'
 import LogicStampLogo from '../branding/LogicStampLogo'
 import LogicStampWordmark from '../branding/LogicStampWordmark'
-import ThemeToggle from '../ui/ThemeToggle'
 
 const navigation = {
   product: [
     { name: 'Documentation', href: '/docs' },
-    { name: 'GitHub', href: 'https://github.com/LogicStamp', external: true },
-    { name: 'npm', href: 'https://www.npmjs.com/package/logicstamp-context', external: true },
+    { name: 'CLI (npm)', href: 'https://www.npmjs.com/package/logicstamp-context', external: true },
+    { name: 'MCP (npm)', href: 'https://www.npmjs.com/package/logicstamp-mcp', external: true },
+  ],
+  resources: [
+    { name: 'Roadmap', href: '/roadmap', external: false },
+    { name: 'Playground', href: '/demo', external: false },
+    { name: 'Tutorials', href: '/docs/guides', external: false },
+  ],
+  organization: [
+    { name: 'GitHub Org', href: 'https://github.com/LogicStamp', external: true },
+    { name: 'CLI Repository', href: 'https://github.com/LogicStamp/logicstamp-context', external: true },
+    { name: 'MCP Server', href: 'https://github.com/LogicStamp/logicstamp-mcp', external: true },
   ],
   contact: [
     { name: 'logicstamp.dev@gmail.com', href: 'mailto:logicstamp.dev@gmail.com', external: true },
@@ -85,7 +94,7 @@ export default function Footer() {
       {/* Faint gradient accent line */}
       <div className="h-px w-full bg-gradient-to-r from-transparent via-primary-200/60 dark:via-secondary-700/60 to-transparent" />
 
-      <div className="mx-auto max-w-[1320px] px-4 sm:px-6 lg:px-8 py-12 md:py-16">
+      <div className="mx-auto max-w-[1440px] px-4 sm:px-6 lg:px-6 py-12 md:py-16">
         <AnimatedSection direction="up" delay={0}>
           <div className="flex flex-col gap-8 md:gap-6">
             {/* Top row: logo + nav + controls */}
@@ -99,15 +108,15 @@ export default function Footer() {
                   <LogicStampWordmark className="hidden sm:block" />
                   <LogicStampWordmark height={20} className="block sm:hidden" />
                 </a>
-                <p className="mt-2 max-w-xs text-sm leading-relaxed text-gray-500 dark:text-gray-400">
+                <p className="mt-2 max-w-xs text-sm leading-relaxed text-gray-600 dark:text-gray-300">
                   AI-ready context from your codebase. <br /> Open-source, one-time setup.
                 </p>
               </div>
 
-              {/* Product / Contact / Legal columns */}
-              <div className="flex flex-wrap gap-y-6 gap-x-12 lg:gap-x-20 text-sm md:justify-center pb-6 md:pb-0 border-b md:border-b-0 border-gray-200/60 dark:border-gray-800/70">
-                <div>
-                  <h3 className="text-sm font-semibold uppercase tracking-wide text-gray-500 dark:text-gray-400">
+              {/* Product / Resources / Organization / Legal columns */}
+              <div className="flex flex-row flex-wrap gap-x-6 gap-y-6 sm:gap-x-12 lg:gap-x-20 text-sm md:justify-center pb-6 md:pb-0 border-b md:border-b-0 border-gray-200/60 dark:border-gray-800/70">
+                <div className="flex-1 min-w-[120px] sm:w-auto sm:max-w-[200px]">
+                  <h3 className="text-sm font-semibold uppercase tracking-wide text-gray-600 dark:text-gray-300">
                     Product
                   </h3>
                   <ul role="list" className="mt-3 space-y-1.5">
@@ -117,7 +126,7 @@ export default function Footer() {
                           href={item.href}
                           target={item.external ? '_blank' : undefined}
                           rel={item.external ? 'noopener noreferrer' : undefined}
-                          className="text-sm leading-6 text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors"
+                          className="text-sm leading-6 text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition-colors"
                         >
                           {item.name}
                         </a>
@@ -126,18 +135,18 @@ export default function Footer() {
                   </ul>
                 </div>
 
-                <div>
-                  <h3 className="text-sm font-semibold uppercase tracking-wide text-gray-500 dark:text-gray-400">
-                    Contact
+                <div className="flex-1 min-w-[120px] sm:w-auto sm:max-w-[200px]">
+                  <h3 className="text-sm font-semibold uppercase tracking-wide text-gray-600 dark:text-gray-300">
+                    Resources
                   </h3>
                   <ul role="list" className="mt-3 space-y-1.5">
-                    {navigation.contact.map((item) => (
+                    {navigation.resources.map((item) => (
                       <li key={item.name}>
                         <a
                           href={item.href}
                           target={item.external ? '_blank' : undefined}
                           rel={item.external ? 'noopener noreferrer' : undefined}
-                          className="text-sm leading-6 text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors"
+                          className="text-sm leading-6 text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition-colors"
                         >
                           {item.name}
                         </a>
@@ -146,8 +155,28 @@ export default function Footer() {
                   </ul>
                 </div>
 
-                <div>
-                  <h3 className="text-sm font-semibold uppercase tracking-wide text-gray-500 dark:text-gray-400">
+                <div className="flex-1 min-w-[120px] sm:w-auto sm:max-w-[200px]">
+                  <h3 className="text-sm font-semibold uppercase tracking-wide text-gray-600 dark:text-gray-300">
+                    Organization
+                  </h3>
+                  <ul role="list" className="mt-3 space-y-1.5">
+                    {navigation.organization.map((item) => (
+                      <li key={item.name}>
+                        <a
+                          href={item.href}
+                          target={item.external ? '_blank' : undefined}
+                          rel={item.external ? 'noopener noreferrer' : undefined}
+                          className="text-sm leading-6 text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition-colors"
+                        >
+                          {item.name}
+                        </a>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+
+                <div className="flex-1 min-w-[120px] sm:w-auto sm:max-w-[200px]">
+                  <h3 className="text-sm font-semibold uppercase tracking-wide text-gray-600 dark:text-gray-300">
                     Legal
                   </h3>
                   <ul role="list" className="mt-3 space-y-1.5">
@@ -157,7 +186,7 @@ export default function Footer() {
                           href={item.href}
                           target={item.external ? '_blank' : undefined}
                           rel={item.external ? 'noopener noreferrer' : undefined}
-                          className="text-sm leading-6 text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors"
+                          className="text-sm leading-6 text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition-colors"
                         >
                           {item.name}
                         </a>
@@ -168,25 +197,30 @@ export default function Footer() {
               </div>
             </div>
 
-            {/* Fox Mascot - Mobile only (centered transition element between sections and controls) */}
-            <div className="md:hidden flex items-center justify-center py-6">
-              <Image
-                src="/mascot/logicstamp-fox.svg"
-                alt="LogicStamp Fox Mascot"
-                width={96}
-                height={96}
-                className="h-24 w-24 opacity-100 fox-mascot"
-              />
+            {/* Fox Mascot with Text - Mobile only (centered transition element between sections and controls) */}
+            <div className="md:hidden flex flex-row items-center justify-center py-6">
+              <div className="flex items-center">
+                <Image
+                  src="/mascot/logicstamp-fox.svg"
+                  alt="LogicStamp Fox Mascot"
+                  width={96}
+                  height={96}
+                  className="h-24 w-24 opacity-100 fox-mascot flex-shrink-0"
+                />
+                <p className="text-xl font-medium italic text-gray-700 dark:text-gray-300 text-center max-w-[280px] leading-relaxed -ml-1">
+                  Deterministic context.<br />No guesswork.
+                </p>
+              </div>
             </div>
 
-            {/* Newsletter + Theme toggle + social links + Fox - above MIT license */}
-            <div className="flex flex-col gap-8 md:flex-row md:items-end md:justify-between pb-5 border-t border-gray-200/60 dark:border-gray-800/70 md:border-t-0 pt-6 md:pt-0">
+            {/* Newsletter + social links + Fox - above MIT license */}
+            <div className="flex flex-col gap-8 md:grid md:grid-cols-3 md:items-end md:gap-8 pb-5 border-t border-gray-200/60 dark:border-gray-800/70 md:border-t-0 pt-6 md:pt-0">
               {/* Newsletter Subscription - Desktop: left side, Mobile: full width */}
-              <div className="w-full md:w-auto md:flex-1 md:max-w-md md:border-t md:border-gray-200/60 md:dark:border-gray-800/70 md:pt-6">
+              <div className="w-full md:col-span-1 md:border-t md:border-gray-200/60 md:dark:border-gray-800/70 md:pt-6">
                 <h3 className="text-lg font-bold text-gray-900 dark:text-white mb-2">
                   Let's keep in touch
                 </h3>
-                <p className="text-sm text-gray-600 dark:text-gray-400 mb-4">
+                <p className="text-sm text-gray-700 dark:text-gray-300 mb-4">
                   Enter your email to stay up to date with the latest updates from LogicStamp.
                 </p>
                 <form className="flex flex-col gap-3" onSubmit={handleSubmit}>
@@ -217,12 +251,20 @@ export default function Footer() {
                     </p>
                   )}
                 </form>
+                <p className="mt-4 text-sm text-gray-600 dark:text-gray-400">
+                  Questions?{' '}
+                  <a
+                    href="mailto:logicstamp.dev@gmail.com"
+                    className="text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition-colors underline"
+                  >
+                    logicstamp.dev@gmail.com
+                  </a>
+                </p>
               </div>
 
-              {/* Fox Mascot + Theme toggle + social links - Desktop: right side */}
-              <div className="flex flex-col items-center gap-6 border-t border-gray-200/60 dark:border-gray-800/70 pt-8 mt-2 md:flex-row md:items-center md:justify-end md:gap-6 md:border-t-0 md:pt-0 md:mt-0">
-                {/* Fox Mascot - Desktop only (to the left of theme toggle) */}
-                <div className="hidden md:flex items-center justify-center">
+              {/* Fox Mascot with Text - Desktop: center */}
+              <div className="hidden md:flex md:col-span-1 md:items-center md:justify-center md:-mt-3 md:w-full md:ml-6">
+                <div className="flex items-center">
                   <Image
                     src="/mascot/logicstamp-fox.svg"
                     alt="LogicStamp Fox Mascot"
@@ -230,14 +272,20 @@ export default function Footer() {
                     height={96}
                     className="h-24 w-24 opacity-100 fox-mascot"
                   />
+                  <p className="text-xl font-medium italic text-gray-700 dark:text-gray-300 max-w-[260px] leading-relaxed -ml-1">
+                    Deterministic context.<br />No guesswork.
+                  </p>
                 </div>
-                <ThemeToggle compact />
+              </div>
+
+              {/* Social links - Desktop: right side */}
+              <div className="flex flex-col items-center gap-6 border-t border-gray-200/60 dark:border-gray-800/70 pt-8 mt-2 md:col-span-1 md:items-end md:justify-end md:border-t-0 md:pt-0 md:mt-0">
                 <div className="flex items-center gap-5 mt-4 md:mt-0">
                   <a
                     href="https://github.com/LogicStamp"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors duration-200"
+                    className="text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition-colors duration-200"
                   >
                     <span className="sr-only">GitHub</span>
                     <svg className="h-9 w-9" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
@@ -252,7 +300,7 @@ export default function Footer() {
                     href="https://www.npmjs.com/package/logicstamp-context"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors duration-200"
+                    className="text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition-colors duration-200"
                   >
                     <span className="sr-only">npm</span>
                     <svg className="h-9 w-9" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
@@ -263,7 +311,7 @@ export default function Footer() {
                     href="mailto:logicstamp.dev@gmail.com"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors duration-200"
+                    className="text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition-colors duration-200"
                   >
                     <span className="sr-only">Email</span>
                     <svg className="h-9 w-9" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
@@ -277,16 +325,16 @@ export default function Footer() {
             {/* Bottom bar */}
             <div className="flex flex-col items-start gap-3 border-t border-gray-200/60 dark:border-gray-800/70 pt-5 md:flex-row md:items-center md:justify-between">
               <div className="flex flex-col gap-1">
-                <p className="text-xs md:text-sm leading-5 text-gray-500 dark:text-gray-400">
-                  &copy; 2025 LogicStamp — MIT Licensed
+                <p className="text-xs md:text-sm leading-5 text-gray-600 dark:text-gray-300">
+                  &copy; 2025-2026 LogicStamp — MIT Licensed
                 </p>
-                <p className="text-xs text-gray-400 dark:text-gray-500">
+                <p className="text-xs text-gray-500 dark:text-gray-400">
                   Built and maintained by{' '}
                   <a
                     href="https://github.com/AmiteK23"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="hover:text-gray-600 dark:hover:text-gray-400 transition-colors"
+                    className="hover:text-gray-700 dark:hover:text-gray-300 transition-colors"
                   >
                     Amit Levi
                   </a>
@@ -299,17 +347,3 @@ export default function Footer() {
     </footer>
   )
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
