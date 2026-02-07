@@ -58,20 +58,38 @@ describe('ThemeToggle', () => {
   it('renders component successfully', async () => {
     render(<ThemeToggle />)
 
-    // Component should eventually render with theme options
-    // ThemeProvider loads quickly in test environment
+    // Component should eventually render with toggle button
     await waitFor(() => {
-      const buttons = screen.getAllByRole('radio')
-      expect(buttons.length).toBe(3)
+      const button = screen.getByRole('button', { name: /switch to/i })
+      expect(button).toBeInTheDocument()
     }, { timeout: 2000 })
   })
 
-  it('renders three theme options after loading', async () => {
+  it('handles initial render state', async () => {
+    render(<ThemeToggle />)
+
+    // In test environment, theme may load synchronously
+    // Check if loading state exists, otherwise verify loaded state
+    const loadingButton = screen.queryByRole('button', { name: /toggle theme/i })
+    if (loadingButton) {
+      expect(loadingButton).toBeDisabled()
+    } else {
+      // Component loaded quickly, verify it's in a valid loaded state
+      await waitFor(() => {
+        const button = screen.getByRole('button', { name: /switch to/i })
+        expect(button).toBeInTheDocument()
+        expect(button).not.toBeDisabled()
+      }, { timeout: 1000 })
+    }
+  })
+
+  it('renders toggle button after loading', async () => {
     render(<ThemeToggle />)
 
     await waitFor(() => {
-      const buttons = screen.getAllByRole('radio')
-      expect(buttons).toHaveLength(3)
+      const button = screen.getByRole('button', { name: /switch to/i })
+      expect(button).toBeInTheDocument()
+      expect(button).not.toBeDisabled()
     }, { timeout: 3000 })
   })
 
@@ -79,88 +97,108 @@ describe('ThemeToggle', () => {
     render(<ThemeToggle />)
 
     await waitFor(() => {
-      const radiogroup = screen.getByRole('radiogroup', { name: /color theme/i })
-      expect(radiogroup).toBeInTheDocument()
-
-      const buttons = screen.getAllByRole('radio')
-      expect(buttons).toHaveLength(3)
-
-      // Check that buttons have aria-checked
-      buttons.forEach((button) => {
-        expect(button).toHaveAttribute('aria-checked')
-      })
-
-      // Check for screen reader text
-      expect(screen.getByText(/light theme/i)).toBeInTheDocument()
-      expect(screen.getByText(/system theme/i)).toBeInTheDocument()
-      expect(screen.getByText(/dark theme/i)).toBeInTheDocument()
+      const button = screen.getByRole('button', { name: /switch to/i })
+      expect(button).toBeInTheDocument()
+      expect(button).toHaveAttribute('type', 'button')
     }, { timeout: 3000 })
   })
 
-  it('allows selecting light theme', async () => {
+  it('toggles from light to dark theme', async () => {
     const user = userEvent.setup()
+    
+    // Set initial light theme
+    localStorageMock['theme'] = 'light'
+    
     render(<ThemeToggle />)
 
     await waitFor(() => {
-      expect(screen.getAllByRole('radio')).toHaveLength(3)
+      const button = screen.getByRole('button', { name: /switch to dark mode/i })
+      expect(button).toBeInTheDocument()
     }, { timeout: 3000 })
 
-    const lightButton = screen.getByRole('radio', { name: /light theme/i })
-    await user.click(lightButton)
+    const toggleButton = screen.getByRole('button', { name: /switch to dark mode/i })
+    await user.click(toggleButton)
 
     await waitFor(() => {
-      expect(lightButton).toHaveAttribute('aria-checked', 'true')
-      // Theme should be persisted
-      expect(localStorageMock['theme']).toBe('light')
-    })
-  })
-
-  it('allows selecting dark theme', async () => {
-    const user = userEvent.setup()
-    render(<ThemeToggle />)
-
-    await waitFor(() => {
-      expect(screen.getAllByRole('radio')).toHaveLength(3)
-    }, { timeout: 3000 })
-
-    const darkButton = screen.getByRole('radio', { name: /dark theme/i })
-    await user.click(darkButton)
-
-    await waitFor(() => {
-      expect(darkButton).toHaveAttribute('aria-checked', 'true')
+      // Should switch to dark mode
       expect(localStorageMock['theme']).toBe('dark')
-      // DOM should have dark class
       expect(document.documentElement.classList.contains('dark')).toBe(true)
     })
   })
 
-  it('allows selecting system theme', async () => {
+  it('toggles from dark to light theme', async () => {
     const user = userEvent.setup()
+    
+    // Set initial dark theme
+    localStorageMock['theme'] = 'dark'
+    document.documentElement.classList.add('dark')
+    
     render(<ThemeToggle />)
 
     await waitFor(() => {
-      expect(screen.getAllByRole('radio')).toHaveLength(3)
+      const button = screen.getByRole('button', { name: /switch to light mode/i })
+      expect(button).toBeInTheDocument()
     }, { timeout: 3000 })
 
-    const systemButton = screen.getByRole('radio', { name: /system theme/i })
-    await user.click(systemButton)
+    const toggleButton = screen.getByRole('button', { name: /switch to light mode/i })
+    await user.click(toggleButton)
 
     await waitFor(() => {
-      expect(systemButton).toHaveAttribute('aria-checked', 'true')
-      expect(localStorageMock['theme']).toBe('system')
+      // Should switch to light mode
+      expect(localStorageMock['theme']).toBe('light')
+      expect(document.documentElement.classList.contains('dark')).toBe(false)
     })
+  })
+
+  it('shows sun icon in light mode', async () => {
+    localStorageMock['theme'] = 'light'
+    
+    render(<ThemeToggle />)
+
+    await waitFor(() => {
+      const button = screen.getByRole('button', { name: /switch to dark mode/i })
+      expect(button).toBeInTheDocument()
+      
+      // Should have sun icon (circle element)
+      const svg = button.querySelector('svg')
+      expect(svg).toBeInTheDocument()
+      const circle = svg?.querySelector('circle')
+      expect(circle).toBeInTheDocument()
+    }, { timeout: 3000 })
+  })
+
+  it('shows moon icon in dark mode', async () => {
+    localStorageMock['theme'] = 'dark'
+    document.documentElement.classList.add('dark')
+    
+    render(<ThemeToggle />)
+
+    await waitFor(() => {
+      const button = screen.getByRole('button', { name: /switch to light mode/i })
+      expect(button).toBeInTheDocument()
+      
+      // Should have moon icon (path element, no circle)
+      const svg = button.querySelector('svg')
+      expect(svg).toBeInTheDocument()
+      const path = svg?.querySelector('path')
+      expect(path).toBeInTheDocument()
+      const circle = svg?.querySelector('circle')
+      expect(circle).not.toBeInTheDocument()
+    }, { timeout: 3000 })
   })
 
   it('updates DOM class when dark theme is selected', async () => {
     const user = userEvent.setup()
+    localStorageMock['theme'] = 'light'
+    
     render(<ThemeToggle />)
 
     await waitFor(() => {
-      expect(screen.getAllByRole('radio')).toHaveLength(3)
+      expect(screen.getByRole('button', { name: /switch to dark mode/i })).toBeInTheDocument()
     }, { timeout: 3000 })
 
-    const darkButton = screen.getByRole('radio', { name: /dark theme/i })
-    await user.click(darkButton)
+    const toggleButton = screen.getByRole('button', { name: /switch to dark mode/i })
+    await user.click(toggleButton)
 
     await waitFor(() => {
       expect(document.documentElement.classList.contains('dark')).toBe(true)
@@ -174,15 +212,16 @@ describe('ThemeToggle', () => {
     // Set initial dark theme
     localStorageMock['theme'] = 'dark'
     document.documentElement.classList.add('dark')
+    document.documentElement.setAttribute('data-theme', 'dark')
     
     render(<ThemeToggle />)
 
     await waitFor(() => {
-      expect(screen.getAllByRole('radio')).toHaveLength(3)
+      expect(screen.getByRole('button', { name: /switch to light mode/i })).toBeInTheDocument()
     }, { timeout: 3000 })
 
-    const lightButton = screen.getByRole('radio', { name: /light theme/i })
-    await user.click(lightButton)
+    const toggleButton = screen.getByRole('button', { name: /switch to light mode/i })
+    await user.click(toggleButton)
 
     await waitFor(() => {
       expect(document.documentElement.classList.contains('dark')).toBe(false)
@@ -190,52 +229,41 @@ describe('ThemeToggle', () => {
     })
   })
 
-  it('renders compact variant correctly', async () => {
-    render(<ThemeToggle compact />)
-
-    await waitFor(() => {
-      const container = screen.getByRole('radiogroup', { name: /color theme/i })
-      expect(container).toHaveClass('px-1.5', 'py-0.5')
-      
-      const buttons = screen.getAllByRole('radio')
-      buttons.forEach((button) => {
-        expect(button).toHaveClass('w-8', 'h-8', 'text-xs')
-      })
-    }, { timeout: 3000 })
-  })
-
   it('persists theme preference to localStorage', async () => {
     const user = userEvent.setup()
+    localStorageMock['theme'] = 'light'
+    
     render(<ThemeToggle />)
 
     await waitFor(() => {
-      expect(screen.getAllByRole('radio')).toHaveLength(3)
+      expect(screen.getByRole('button', { name: /switch to dark mode/i })).toBeInTheDocument()
     }, { timeout: 3000 })
 
-    const darkButton = screen.getByRole('radio', { name: /dark theme/i })
-    await user.click(darkButton)
+    const toggleButton = screen.getByRole('button', { name: /switch to dark mode/i })
+    await user.click(toggleButton)
 
     await waitFor(() => {
       expect(localStorageMock['theme']).toBe('dark')
     })
   })
 
-  it('shows correct selected state visually', async () => {
+  it('updates aria-label when theme changes', async () => {
     const user = userEvent.setup()
+    localStorageMock['theme'] = 'light'
+    
     render(<ThemeToggle />)
 
     await waitFor(() => {
-      expect(screen.getAllByRole('radio')).toHaveLength(3)
+      const button = screen.getByRole('button', { name: /switch to dark mode/i })
+      expect(button).toBeInTheDocument()
     }, { timeout: 3000 })
 
-    const darkButton = screen.getByRole('radio', { name: /dark theme/i })
-    await user.click(darkButton)
+    const toggleButton = screen.getByRole('button', { name: /switch to dark mode/i })
+    await user.click(toggleButton)
 
     await waitFor(() => {
-      // Selected button should have different styling
-      expect(darkButton).toHaveClass('bg-white', 'dark:bg-gray-900', 'shadow-sm')
-      expect(darkButton).toHaveAttribute('aria-checked', 'true')
+      const updatedButton = screen.getByRole('button', { name: /switch to light mode/i })
+      expect(updatedButton).toBeInTheDocument()
     })
   })
 })
-
