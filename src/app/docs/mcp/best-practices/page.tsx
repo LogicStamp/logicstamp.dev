@@ -76,6 +76,19 @@ export default function MCPBestPracticesPage() {
                     Discover what's available first. Use <code className="px-1.5 py-0.5 bg-green-100 dark:bg-green-900/40 rounded font-mono text-xs">folderPrefix</code> to filter bundles by directory path.
                   </p>
                 </div>
+
+                <div className="p-4 bg-green-50 dark:bg-green-950/20 border-l-4 border-green-500 rounded-r-lg">
+                  <h3 className="font-semibold text-gray-900 dark:text-white mb-2">✓ Use watch mode during active development</h3>
+                  <p className="text-sm text-gray-600 dark:text-gray-400 mb-2">
+                    <strong>Best practice:</strong> Start watch mode (<code className="px-1.5 py-0.5 bg-green-100 dark:bg-green-900/40 rounded font-mono text-xs">stamp context --watch</code>) when beginning a coding session. This keeps context files fresh automatically and dramatically speeds up MCP responses.
+                  </p>
+                  <p className="text-sm text-gray-600 dark:text-gray-400 mb-2">
+                    When watch mode is active, use <code className="px-1.5 py-0.5 bg-green-100 dark:bg-green-900/40 rounded font-mono text-xs">skipIfWatchActive: true</code> in <code className="px-1.5 py-0.5 bg-green-100 dark:bg-green-900/40 rounded font-mono text-xs">refresh_snapshot</code> to skip redundant regeneration. Check watch status with <code className="px-1.5 py-0.5 bg-green-100 dark:bg-green-900/40 rounded font-mono text-xs">logicstamp_watch_status</code> first.
+                  </p>
+                  <p className="text-sm text-gray-600 dark:text-gray-400">
+                    <strong>Benefits:</strong> Faster MCP responses, automatic context updates, incremental rebuilds (only affected bundles), and no manual regeneration needed.
+                  </p>
+                </div>
               </div>
             </div>
           </AnimatedSection>

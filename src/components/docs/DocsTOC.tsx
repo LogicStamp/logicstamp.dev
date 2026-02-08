@@ -19,7 +19,7 @@ export default function DocsTOC() {
     const mainContent = document.querySelector('main')
     if (!mainContent) return
 
-    const headingElements = mainContent.querySelectorAll('h2, h3, h4')
+    const headingElements = mainContent.querySelectorAll('h2')
     const extractedHeadings: Heading[] = []
     const idCounts = new Map<string, number>()
 
@@ -105,12 +105,6 @@ export default function DocsTOC() {
         <nav className="flex-1 min-h-0 overflow-y-auto space-y-1 sidebar-scrollable pr-2">
           {headings.map((heading, index) => {
             const isActive = activeId === heading.id
-            const indentClass =
-              heading.level === 3
-                ? 'pl-4'
-                : heading.level === 4
-                  ? 'pl-6'
-                  : 'pl-0'
 
             return (
               <a
@@ -120,7 +114,7 @@ export default function DocsTOC() {
                   isActive
                     ? 'text-blue-600 dark:text-blue-400 font-medium'
                     : 'text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-200'
-                } ${indentClass}`}
+                }`}
                 onClick={(e) => {
                   e.preventDefault()
                   const element = document.getElementById(heading.id)

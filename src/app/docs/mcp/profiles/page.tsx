@@ -159,7 +159,7 @@ export default function MCPProfilesPage() {
                 ci-strict
               </h2>
               <p className="text-base text-gray-600 dark:text-gray-400 mb-4">
-                Strict validation mode optimized for CI/CD pipelines. Focuses on contract validation and dependency checking.
+                Strict validation mode optimized for validation workflows. Focuses on contract validation and dependency checking. Useful for CI/CD pipelines (note: git baseline comparison is not yet implemented).
               </p>
               
               <div className="space-y-4">
@@ -262,7 +262,7 @@ export default function MCPProfilesPage() {
                 <ul className="list-disc list-inside space-y-2 text-base text-gray-600 dark:text-gray-400 ml-4">
                   <li><strong>Start with llm-chat</strong> - This is the default and works well for most use cases</li>
                   <li><strong>Use llm-safe</strong> - When you're hitting token limits or need maximum efficiency</li>
-                  <li><strong>Use ci-strict</strong> - For CI/CD pipelines where you need strict validation</li>
+                  <li><strong>Use ci-strict</strong> - For validation workflows where you need strict dependency checking (note: git baseline comparison for CI/CD is not yet implemented)</li>
                   <li><strong>You can override</strong> - Profile settings can be overridden with explicit parameters</li>
                 </ul>
               </div>

@@ -1,9 +1,13 @@
 'use client'
 
-import { useState, useEffect, useRef } from 'react'
+import { useState, useEffect, useRef, createContext, useContext } from 'react'
 import { usePathname } from 'next/navigation'
 import DocsSidebar from './DocsSidebar'
 import DocsTOC from './DocsTOC'
+
+// Context to disable animations in docs pages
+export const DisableAnimationsContext = createContext(false)
+export const useDisableAnimations = () => useContext(DisableAnimationsContext)
 
 export default function DocsLayout({ children }: { children: React.ReactNode }) {
   const [sidebarOpen, setSidebarOpen] = useState(false)
@@ -102,8 +106,9 @@ export default function DocsLayout({ children }: { children: React.ReactNode }) 
   }, [sidebarOpen])
 
   return (
-    <div className="min-h-screen bg-gradient-bg-section pt-[5.5rem] lg:pt-24">
-      <div className="max-w-[1440px] mx-auto px-4 lg:px-6 py-8 lg:py-10 w-full">
+    <DisableAnimationsContext.Provider value={true}>
+      <div className="min-h-screen bg-gradient-bg-section pt-[5.5rem] lg:pt-24">
+        <div className="max-w-[1440px] mx-auto px-4 lg:px-6 py-8 lg:py-10 w-full">
         {/* Mobile sidebar toggle button */}
         <button
           ref={toggleButtonRef}
@@ -170,8 +175,9 @@ export default function DocsLayout({ children }: { children: React.ReactNode }) 
           {/* Right TOC - only visible on XL+ screens */}
           <DocsTOC />
         </div>
+        </div>
       </div>
-    </div>
+    </DisableAnimationsContext.Provider>
   )
 }
 

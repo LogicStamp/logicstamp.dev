@@ -14,7 +14,7 @@ const navigation = {
   ],
   resources: [
     { name: 'Roadmap', href: '/roadmap', external: false },
-    { name: 'Playground', href: '/demo', external: false },
+    { name: 'Try Demo', href: '/demo', external: false },
     { name: 'Tutorials', href: '/docs/guides', external: false },
   ],
   organization: [
@@ -90,7 +90,7 @@ export default function Footer() {
   }
 
   return (
-    <footer data-testid="footer" className="border-t border-gray-200/70 dark:border-gray-800/80 bg-white/80 dark:bg-gray-950/60 backdrop-blur">
+    <footer data-testid="footer" className="border-t border-gray-200/70 dark:border-gray-800/80 bg-gradient-bg-section">
       {/* Faint gradient accent line */}
       <div className="h-px w-full bg-gradient-to-r from-transparent via-primary-200/60 dark:via-secondary-700/60 to-transparent" />
 
@@ -108,15 +108,15 @@ export default function Footer() {
                   <LogicStampWordmark className="hidden sm:block" />
                   <LogicStampWordmark height={20} className="block sm:hidden" />
                 </a>
-                <p className="mt-2 max-w-xs text-sm leading-relaxed text-gray-600 dark:text-gray-300">
+                <p className="mt-2 max-w-xs text-sm leading-relaxed text-gray-700 dark:text-gray-200">
                   AI-ready context from your codebase. <br /> Open-source, one-time setup.
                 </p>
               </div>
 
               {/* Product / Resources / Organization / Legal columns */}
-              <div className="flex flex-row flex-wrap gap-x-6 gap-y-6 sm:gap-x-12 lg:gap-x-20 text-sm md:justify-center pb-6 md:pb-0 border-b md:border-b-0 border-gray-200/60 dark:border-gray-800/70">
+              <div className="flex flex-row flex-wrap gap-x-6 gap-y-12 sm:gap-x-12 sm:gap-y-6 lg:gap-x-20 text-sm md:justify-center pb-6 md:pb-0 border-b md:border-b-0 border-gray-200/60 dark:border-gray-800/70">
                 <div className="flex-1 min-w-[120px] sm:w-auto sm:max-w-[200px]">
-                  <h3 className="text-sm font-semibold uppercase tracking-wide text-gray-600 dark:text-gray-300">
+                  <h3 className="text-sm font-semibold uppercase tracking-wide text-gray-700 dark:text-gray-200">
                     Product
                   </h3>
                   <ul role="list" className="mt-3 space-y-1.5">
@@ -126,7 +126,7 @@ export default function Footer() {
                           href={item.href}
                           target={item.external ? '_blank' : undefined}
                           rel={item.external ? 'noopener noreferrer' : undefined}
-                          className="text-sm leading-6 text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition-colors"
+                          className="text-sm leading-6 text-gray-700 dark:text-gray-200 hover:text-gray-900 dark:hover:text-white transition-colors"
                         >
                           {item.name}
                         </a>
@@ -136,7 +136,7 @@ export default function Footer() {
                 </div>
 
                 <div className="flex-1 min-w-[120px] sm:w-auto sm:max-w-[200px]">
-                  <h3 className="text-sm font-semibold uppercase tracking-wide text-gray-600 dark:text-gray-300">
+                  <h3 className="text-sm font-semibold uppercase tracking-wide text-gray-700 dark:text-gray-200">
                     Resources
                   </h3>
                   <ul role="list" className="mt-3 space-y-1.5">
@@ -146,7 +146,7 @@ export default function Footer() {
                           href={item.href}
                           target={item.external ? '_blank' : undefined}
                           rel={item.external ? 'noopener noreferrer' : undefined}
-                          className="text-sm leading-6 text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition-colors"
+                          className="text-sm leading-6 text-gray-700 dark:text-gray-200 hover:text-gray-900 dark:hover:text-white transition-colors"
                         >
                           {item.name}
                         </a>
@@ -156,7 +156,7 @@ export default function Footer() {
                 </div>
 
                 <div className="flex-1 min-w-[120px] sm:w-auto sm:max-w-[200px]">
-                  <h3 className="text-sm font-semibold uppercase tracking-wide text-gray-600 dark:text-gray-300">
+                  <h3 className="text-sm font-semibold uppercase tracking-wide text-gray-700 dark:text-gray-200">
                     Organization
                   </h3>
                   <ul role="list" className="mt-3 space-y-1.5">
@@ -166,7 +166,7 @@ export default function Footer() {
                           href={item.href}
                           target={item.external ? '_blank' : undefined}
                           rel={item.external ? 'noopener noreferrer' : undefined}
-                          className="text-sm leading-6 text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition-colors"
+                          className="text-sm leading-6 text-gray-700 dark:text-gray-200 hover:text-gray-900 dark:hover:text-white transition-colors"
                         >
                           {item.name}
                         </a>
@@ -176,7 +176,7 @@ export default function Footer() {
                 </div>
 
                 <div className="flex-1 min-w-[120px] sm:w-auto sm:max-w-[200px]">
-                  <h3 className="text-sm font-semibold uppercase tracking-wide text-gray-600 dark:text-gray-300">
+                  <h3 className="text-sm font-semibold uppercase tracking-wide text-gray-700 dark:text-gray-200">
                     Legal
                   </h3>
                   <ul role="list" className="mt-3 space-y-1.5">
@@ -186,7 +186,7 @@ export default function Footer() {
                           href={item.href}
                           target={item.external ? '_blank' : undefined}
                           rel={item.external ? 'noopener noreferrer' : undefined}
-                          className="text-sm leading-6 text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition-colors"
+                          className="text-sm leading-6 text-gray-700 dark:text-gray-200 hover:text-gray-900 dark:hover:text-white transition-colors"
                         >
                           {item.name}
                         </a>
@@ -207,7 +207,7 @@ export default function Footer() {
                   height={96}
                   className="h-24 w-24 opacity-100 fox-mascot flex-shrink-0"
                 />
-                <p className="text-xl font-medium italic text-gray-700 dark:text-gray-300 text-center max-w-[280px] leading-relaxed -ml-1">
+                <p className="text-xl font-medium italic text-gray-700 dark:text-gray-200 text-center max-w-[280px] leading-relaxed -ml-1">
                   Deterministic context.<br />No guesswork.
                 </p>
               </div>
@@ -220,7 +220,7 @@ export default function Footer() {
                 <h3 className="text-lg font-bold text-gray-900 dark:text-white mb-2">
                   Let's keep in touch
                 </h3>
-                <p className="text-sm text-gray-700 dark:text-gray-300 mb-4">
+                <p className="text-sm text-gray-700 dark:text-gray-200 mb-4">
                   Enter your email to stay up to date with the latest updates from LogicStamp.
                 </p>
                 <form className="flex flex-col gap-3" onSubmit={handleSubmit}>
@@ -251,11 +251,11 @@ export default function Footer() {
                     </p>
                   )}
                 </form>
-                <p className="mt-4 text-sm text-gray-600 dark:text-gray-400">
+                <p className="mt-4 text-sm text-gray-700 dark:text-gray-200">
                   Questions?{' '}
                   <a
                     href="mailto:logicstamp.dev@gmail.com"
-                    className="text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition-colors underline"
+                    className="text-gray-700 dark:text-gray-200 hover:text-gray-900 dark:hover:text-white transition-colors underline"
                   >
                     logicstamp.dev@gmail.com
                   </a>
@@ -272,7 +272,7 @@ export default function Footer() {
                     height={96}
                     className="h-24 w-24 opacity-100 fox-mascot"
                   />
-                  <p className="text-xl font-medium italic text-gray-700 dark:text-gray-300 max-w-[260px] leading-relaxed -ml-1">
+                  <p className="text-xl font-medium italic text-gray-700 dark:text-gray-200 max-w-[260px] leading-relaxed -ml-1">
                     Deterministic context.<br />No guesswork.
                   </p>
                 </div>
@@ -285,7 +285,7 @@ export default function Footer() {
                     href="https://github.com/LogicStamp"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition-colors duration-200"
+                    className="text-gray-700 dark:text-gray-200 hover:text-gray-900 dark:hover:text-white transition-colors duration-200"
                   >
                     <span className="sr-only">GitHub</span>
                     <svg className="h-9 w-9" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
@@ -300,7 +300,7 @@ export default function Footer() {
                     href="https://www.npmjs.com/package/logicstamp-context"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition-colors duration-200"
+                    className="text-gray-700 dark:text-gray-200 hover:text-gray-900 dark:hover:text-white transition-colors duration-200"
                   >
                     <span className="sr-only">npm</span>
                     <svg className="h-9 w-9" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
@@ -311,7 +311,7 @@ export default function Footer() {
                     href="mailto:logicstamp.dev@gmail.com"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition-colors duration-200"
+                    className="text-gray-700 dark:text-gray-200 hover:text-gray-900 dark:hover:text-white transition-colors duration-200"
                   >
                     <span className="sr-only">Email</span>
                     <svg className="h-9 w-9" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
@@ -325,16 +325,16 @@ export default function Footer() {
             {/* Bottom bar */}
             <div className="flex flex-col items-start gap-3 border-t border-gray-200/60 dark:border-gray-800/70 pt-5 md:flex-row md:items-center md:justify-between">
               <div className="flex flex-col gap-1">
-                <p className="text-xs md:text-sm leading-5 text-gray-600 dark:text-gray-300">
+                <p className="text-xs md:text-sm leading-5 text-gray-700 dark:text-gray-200">
                   &copy; 2025-2026 LogicStamp — MIT Licensed
                 </p>
-                <p className="text-xs text-gray-500 dark:text-gray-400">
+                <p className="text-xs text-gray-600 dark:text-gray-200">
                   Built and maintained by{' '}
                   <a
                     href="https://github.com/AmiteK23"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="hover:text-gray-700 dark:hover:text-gray-300 transition-colors"
+                    className="hover:text-gray-700 dark:hover:text-gray-200 transition-colors"
                   >
                     Amit Levi
                   </a>

@@ -535,7 +535,7 @@ export default function CompleteReferencePage() {
                 },
                 {
                   name: "ci-strict",
-                  desc: "Strict validation mode for CI/CD",
+                  desc: "Strict validation mode (contracts only, strict deps)",
                   color: "yellow",
                   settings: [
                     "Code: none",

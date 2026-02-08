@@ -75,6 +75,7 @@ export default function Header() {
   const navigation = [
     { name: 'Try Demo', href: '/demo' },
     { name: 'Docs', href: '/docs/' },
+    { name: 'MCP', href: '/docs/mcp' },
     { name: 'Roadmap', href: '/roadmap' },
   ]
 
@@ -213,6 +214,36 @@ export default function Header() {
                 </a>
               </Fragment>
             ))}
+          </div>
+
+          {/* npm links */}
+          <div className="mt-5 pt-5 border-t border-gray-200/50 dark:border-gray-700/50">
+            <div className="flex items-center justify-center gap-6">
+              <a
+                href="https://www.npmjs.com/package/logicstamp-context"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex flex-col items-center gap-1.5 rounded-lg p-2 text-gray-700 dark:text-gray-300 hover:bg-gray-100/60 dark:hover:bg-gray-800/60 transition-all duration-200 active:scale-95"
+                onClick={() => setMobileMenuOpen(false)}
+              >
+                <svg className="h-6 w-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                  <path d="M1.763 0C.786 0 0 .786 0 1.763v20.474C0 23.214.786 24 1.763 24h20.474c.977 0 1.763-.786 1.763-1.763V1.763C24 .786 23.214 0 22.237 0zM5.13 5.323l13.837.019-.009 13.836h-3.464l.01-10.382h-3.456L12.04 19.17H5.113z"/>
+                </svg>
+                <span className="text-xs font-medium">Install CLI</span>
+              </a>
+              <a
+                href="https://www.npmjs.com/package/logicstamp-mcp"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex flex-col items-center gap-1.5 rounded-lg p-2 text-gray-700 dark:text-gray-300 hover:bg-gray-100/60 dark:hover:bg-gray-800/60 transition-all duration-200 active:scale-95"
+                onClick={() => setMobileMenuOpen(false)}
+              >
+                <svg className="h-6 w-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                  <path d="M1.763 0C.786 0 0 .786 0 1.763v20.474C0 23.214.786 24 1.763 24h20.474c.977 0 1.763-.786 1.763-1.763V1.763C24 .786 23.214 0 22.237 0zM5.13 5.323l13.837.019-.009 13.836h-3.464l.01-10.382h-3.456L12.04 19.17H5.113z"/>
+                </svg>
+                <span className="text-xs font-medium">Install MCP</span>
+              </a>
+            </div>
           </div>
 
           {/* Get Started button */}

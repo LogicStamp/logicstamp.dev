@@ -111,7 +111,7 @@ export default function MCPPage() {
               
               <div className="mb-6">
                 <h3 className="text-xl sm:text-2xl font-semibold text-gray-900 dark:text-white mb-4">
-                  6 Core Tools
+                  7 Core Tools
                 </h3>
                 <div className="grid sm:grid-cols-2 gap-4 mb-6">
                   {[
@@ -120,6 +120,7 @@ export default function MCPPage() {
                     { name: 'logicstamp_read_bundle', desc: 'Read full component contract + graph' },
                     { name: 'logicstamp_compare_snapshot', desc: 'Detect changes after edits' },
                     { name: 'logicstamp_compare_modes', desc: 'Generate token cost comparison across all modes' },
+                    { name: 'logicstamp_watch_status', desc: 'Check if watch mode is active (optimize refresh calls)' },
                     { name: 'logicstamp_read_logicstamp_docs', desc: 'Read LogicStamp documentation (use when confused)' }
                   ].map((tool) => (
                     <div key={tool.name} className="p-4 bg-gray-50 dark:bg-gray-800/50 rounded-lg border border-gray-200 dark:border-gray-700">

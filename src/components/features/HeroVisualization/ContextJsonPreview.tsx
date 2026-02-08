@@ -48,19 +48,55 @@ export default function ContextJsonPreview({ animatedNodes }: ContextJsonPreview
     .sort()
 
   return (
-    <div className="h-full flex flex-col rounded-2xl shadow-2xl ring-1 bg-gray-900 ring-gray-800/50 overflow-hidden">
+    <div className="h-full flex flex-col rounded-2xl shadow-2xl ring-1 bg-gray-900 ring-gray-800/50 overflow-hidden relative">
+      <style jsx>{`
+        @keyframes blink {
+          0%, 50% { opacity: 1; }
+          51%, 100% { opacity: 0; }
+        }
+        @keyframes pulse-glow {
+          0%, 100% {
+            box-shadow: 0 0 20px rgba(34, 197, 94, 0.1), 0 0 40px rgba(34, 197, 94, 0.05);
+          }
+          50% {
+            box-shadow: 0 0 30px rgba(34, 197, 94, 0.15), 0 0 60px rgba(34, 197, 94, 0.08);
+          }
+        }
+        @keyframes window-dot-pulse {
+          0%, 100% { opacity: 1; transform: scale(1); }
+          50% { opacity: 0.7; transform: scale(0.95); }
+        }
+        .terminal-cursor {
+          animation: blink 1s step-end infinite;
+        }
+        .terminal-glow {
+          animation: pulse-glow 3s ease-in-out infinite;
+        }
+        .window-dot {
+          animation: window-dot-pulse 2s ease-in-out infinite;
+        }
+        .window-dot:nth-child(1) {
+          animation-delay: 0s;
+        }
+        .window-dot:nth-child(2) {
+          animation-delay: 0.3s;
+        }
+        .window-dot:nth-child(3) {
+          animation-delay: 0.6s;
+        }
+      `}</style>
       <div className="bg-gray-800 px-6 py-3 flex items-center justify-between border-b border-gray-700">
         <div className="flex items-center gap-3">
           <ChevronRight className="w-5 h-5 text-green-400" />
           <span className="text-xs lg:text-sm font-mono text-gray-400">src/components/context.json</span>
         </div>
         <div className="flex gap-2">
-          <div className="w-3 h-3 rounded-full bg-red-500" />
-          <div className="w-3 h-3 rounded-full bg-yellow-500" />
-          <div className="w-3 h-3 rounded-full bg-green-500" />
+          <div className="w-3 h-3 rounded-full bg-red-500 window-dot" />
+          <div className="w-3 h-3 rounded-full bg-yellow-500 window-dot" />
+          <div className="w-3 h-3 rounded-full bg-green-500 window-dot" />
         </div>
       </div>
-      <div className="flex-1 p-6 overflow-y-auto overflow-x-auto bg-gray-900 sidebar-scrollable">
+      <div className="flex-1 p-6 overflow-y-auto overflow-x-auto bg-gray-900 sidebar-scrollable terminal-glow">
         <pre className="text-sm sm:text-sm lg:text-sm font-mono leading-5 sm:leading-6 whitespace-pre text-gray-100">
           <code>
             <span className="text-gray-400">[</span>
@@ -354,6 +390,9 @@ export default function ContextJsonPreview({ animatedNodes }: ContextJsonPreview
             )}
             {'\n'}
             <span className="text-gray-500">]</span>
+            {visibleBundles.length > 0 && (
+              <span className="terminal-cursor text-green-400 ml-1">▋</span>
+            )}
         </code>
       </pre>
       </div>

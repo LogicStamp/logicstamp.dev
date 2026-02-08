@@ -87,13 +87,16 @@ LogicStamp bundles are **pre-parsed, structured summaries** optimized for AI con
 
 ## Watch Mode Awareness
 
-**LogicStamp supports incremental watch mode** (`stamp context --watch`) which automatically regenerates context bundles when files change. The MCP server detects when watch mode is active and can skip expensive regeneration.
+**Best Practice:** LogicStamp supports incremental watch mode (`stamp context --watch`) which automatically regenerates context bundles when files change. **We recommend starting watch mode when beginning a coding session** - it dramatically improves MCP response times and keeps context fresh automatically.
+
+The MCP server detects when watch mode is active and can skip expensive regeneration.
 
 ### How Watch Mode Works
 
 1. **Watch mode runs in background** - User starts `stamp context --watch` in their terminal
 2. **Incremental rebuilds** - Only affected bundles are regenerated when files change (not entire project)
 3. **Context stays fresh** - Context files are always up-to-date
+4. **Faster MCP responses** - AI can skip regeneration and read fresh context instantly
 
 ### Using Watch Mode with MCP
 
@@ -111,6 +114,10 @@ refresh_snapshot({ projectPath: "...", skipIfWatchActive: true })
 // If watch mode is active: Skips regeneration, reads existing context (fast)
 // If watch mode is NOT active: Normal regeneration (slow)
 ```
+
+**See Also:**
+- [Watch Status Command Documentation](./commands/watch-status.md) - Complete command reference
+- [Refresh Snapshot Command Documentation](./commands/refresh-snapshot.md) - Includes `skipIfWatchActive` parameter
 
 **Benefits:**
 - **Faster** - Skip expensive regeneration when context is already fresh
@@ -235,8 +242,9 @@ LogicStamp offers preset configurations:
 - **`llm-safe`** - Conservative mode for token-limited contexts
   - Depth: 2, header mode, max 30 nodes
 
-- **`ci-strict`** - Strict validation mode for CI/CD
-  - Contracts only (no code), strict dependency checks
+- **`ci-strict`** - Strict validation mode
+  - Contracts only (no code), strict dependency checks, fails on missing dependencies
+  - Useful for validation workflows (note: git baseline comparison for CI/CD is not yet implemented)
 
 ## Dependency Depth Parameter
 
