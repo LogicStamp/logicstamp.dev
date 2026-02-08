@@ -8,9 +8,17 @@ You have access to LogicStamp MCP tools for analyzing React/TypeScript codebases
 
 **Before reading raw source files, follow this workflow:**
 
-1. **Call `logicstamp_refresh_snapshot`** on this repo to generate context files and get a snapshotId.
+**Best Practice:** Start watch mode (`stamp context --watch`) in a terminal before beginning your coding session. This keeps context files fresh automatically and dramatically speeds up MCP responses.
+
+1. **Check watch mode status** (recommended):
+   - Call `logicstamp_watch_status` to see if watch mode is active
+   - If watch mode is active, use `skipIfWatchActive: true` in `refresh_snapshot` to avoid redundant regeneration
+   - **If watch mode is NOT active:** Consider starting it with `stamp context --watch` for better performance
+
+2. **Call `logicstamp_refresh_snapshot`** on this repo to generate context files and get a snapshotId.
+   - **Watch mode optimization:** Use `skipIfWatchActive: true` to skip regeneration when watch mode is keeping context fresh
    - **Default:** The default depth=2 includes nested components (e.g., App uses Hero, Hero uses Button), ensuring components used by your root components are included in dependency graphs.
-   - **Example:** `{ "projectPath": "..." }` - Uses default depth=2. You can explicitly set `depth: 1` if you only need direct dependencies.
+   - **Example:** `{ "projectPath": "...", "skipIfWatchActive": true }` - Uses default depth=2 and skips regeneration if watch mode is active. You can explicitly set `depth: 1` if you only need direct dependencies.
    - **When to use depth=1:** If you only need direct dependencies (e.g., App → Hero but not Hero → Button), explicitly set `depth: 1`. For most React projects, the default depth=2 is recommended.
 
 2. **Call `logicstamp_list_bundles`** with the snapshotId to see available bundles.
@@ -31,7 +39,7 @@ You have access to LogicStamp MCP tools for analyzing React/TypeScript codebases
 
 **Workflow:**
 ```
-refresh_snapshot → list_bundles → read_bundle("context_main") → read specific bundles as needed → (raw code only if needed)
+watch_status (optional) → refresh_snapshot (with skipIfWatchActive: true if watch mode active) → list_bundles → read_bundle("context_main") → read specific bundles as needed → (raw code only if needed)
 ```
 
 **When to use bundles:**

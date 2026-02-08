@@ -706,10 +706,12 @@ stamp context --profile llm-safe
 ```
 
 ### `ci-strict`
-Strict validation mode for CI/CD:
+Strict validation mode:
 - Code: none (contracts only)
 - Strict dependencies enabled
 - Fails on missing deps
+
+Useful for validation workflows. Note: Git baseline comparison for CI/CD workflows is not yet implemented.
 
 ```bash
 stamp context --profile ci-strict

@@ -577,6 +577,10 @@ When watch mode is active, you can skip expensive regeneration:
 { "projectPath": "/path/to/project", "skipIfWatchActive": true }
 ```
 
+**See Also:**
+- [Watch Status Command Documentation](./commands/watch-status.md) - Complete command reference
+- [Refresh Snapshot Command Documentation](./commands/refresh-snapshot.md) - Includes `skipIfWatchActive` parameter
+
 ---
 
 ## LLM Workflow

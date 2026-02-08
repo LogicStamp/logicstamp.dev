@@ -51,7 +51,7 @@ export default function MCPReferencePage() {
                   Overview
                 </h2>
                 <p className="text-base sm:text-lg text-gray-600 dark:text-gray-400 mb-4 leading-relaxed">
-                  The LogicStamp Context MCP server provides 6 core tools for analyzing React/TypeScript codebases:
+                  The LogicStamp Context MCP server provides 7 core tools for analyzing React/TypeScript codebases:
                 </p>
                 <ul className="list-disc list-inside space-y-2 text-base text-gray-600 dark:text-gray-400 ml-4">
                   <li><code className="px-1.5 py-0.5 bg-gray-100 dark:bg-gray-800 text-indigo-600 dark:text-indigo-400 rounded font-mono text-xs">logicstamp_refresh_snapshot</code> - Analyze project and create snapshot</li>
@@ -59,6 +59,7 @@ export default function MCPReferencePage() {
                   <li><code className="px-1.5 py-0.5 bg-gray-100 dark:bg-gray-800 text-indigo-600 dark:text-indigo-400 rounded font-mono text-xs">logicstamp_read_bundle</code> - Read full component contract + graph</li>
                   <li><code className="px-1.5 py-0.5 bg-gray-100 dark:bg-gray-800 text-indigo-600 dark:text-indigo-400 rounded font-mono text-xs">logicstamp_compare_snapshot</code> - Detect changes after edits</li>
                   <li><code className="px-1.5 py-0.5 bg-gray-100 dark:bg-gray-800 text-indigo-600 dark:text-indigo-400 rounded font-mono text-xs">logicstamp_compare_modes</code> - Generate token cost comparison across all modes</li>
+                  <li><code className="px-1.5 py-0.5 bg-gray-100 dark:bg-gray-800 text-indigo-600 dark:text-indigo-400 rounded font-mono text-xs">logicstamp_watch_status</code> - Check if watch mode is active (optimize refresh calls)</li>
                   <li><code className="px-1.5 py-0.5 bg-gray-100 dark:bg-gray-800 text-indigo-600 dark:text-indigo-400 rounded font-mono text-xs">logicstamp_read_logicstamp_docs</code> - Read LogicStamp documentation (use when confused)</li>
                 </ul>
               </div>
@@ -86,7 +87,8 @@ export default function MCPReferencePage() {
   "includeStyle": false,       // optional: include style metadata
   "depth": 2,                  // optional: dependency depth (default: 2)
   "projectPath": "/abs/path",  // REQUIRED: absolute path to project root
-  "cleanCache": false          // optional: force cache cleanup (default: false)
+  "cleanCache": false,         // optional: force cache cleanup (default: false)
+  "skipIfWatchActive": false   // optional: skip regeneration if watch mode is active (default: false)
 }`,
                       copyText: JSON.stringify({ profile: "llm-chat", mode: "header", includeStyle: false, depth: 2, projectPath: "/abs/path", cleanCache: false }, null, 2)
                     }
@@ -391,7 +393,7 @@ export default function MCPReferencePage() {
                     <ul className="list-disc list-inside space-y-1 text-sm text-gray-600 dark:text-gray-400 ml-4">
                       <li><code className="px-1.5 py-0.5 bg-gray-100 dark:bg-gray-800 text-indigo-600 dark:text-indigo-400 rounded font-mono text-xs">llm-chat</code> (default) - Balanced mode for AI chat interfaces</li>
                       <li><code className="px-1.5 py-0.5 bg-gray-100 dark:bg-gray-800 text-indigo-600 dark:text-indigo-400 rounded font-mono text-xs">llm-safe</code> - Conservative mode for token-limited contexts</li>
-                      <li><code className="px-1.5 py-0.5 bg-gray-100 dark:bg-gray-800 text-indigo-600 dark:text-indigo-400 rounded font-mono text-xs">ci-strict</code> - Strict validation mode for CI/CD</li>
+                      <li><code className="px-1.5 py-0.5 bg-gray-100 dark:bg-gray-800 text-indigo-600 dark:text-indigo-400 rounded font-mono text-xs">ci-strict</code> - Strict validation mode (contracts only, strict deps, fails on missing deps)</li>
                     </ul>
                   </div>
 
@@ -442,6 +444,13 @@ export default function MCPReferencePage() {
                   </div>
 
                   <div>
+                    <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-3">skipIfWatchActive</h3>
+                    <p className="text-sm text-gray-600 dark:text-gray-400 mb-2">
+                      For <code className="px-1.5 py-0.5 bg-gray-100 dark:bg-gray-800 text-indigo-600 dark:text-indigo-400 rounded font-mono text-xs">refresh_snapshot</code> only. When <code className="px-1.5 py-0.5 bg-gray-100 dark:bg-gray-800 text-indigo-600 dark:text-indigo-400 rounded font-mono text-xs">true</code>, skips expensive regeneration if watch mode (<code className="px-1.5 py-0.5 bg-gray-100 dark:bg-gray-800 text-indigo-600 dark:text-indigo-400 rounded font-mono text-xs">stamp context --watch</code>) is active. If watch mode is active, reads existing context files (fast path). If watch mode is NOT active, performs normal regeneration (slow path). Use this to avoid redundant regeneration when watch mode is already keeping context fresh.
+                    </p>
+                  </div>
+
+                  <div>
                     <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-3">baseline</h3>
                     <p className="text-sm text-gray-600 dark:text-gray-400 mb-2">Comparison baseline for <code className="px-1.5 py-0.5 bg-gray-100 dark:bg-gray-800 text-indigo-600 dark:text-indigo-400 rounded font-mono text-xs">logicstamp_compare_snapshot</code>:</p>
                     <ul className="list-disc list-inside space-y-1 text-sm text-gray-600 dark:text-gray-400 ml-4">
@@ -451,6 +460,63 @@ export default function MCPReferencePage() {
                     </ul>
                   </div>
                 </div>
+              </div>
+            </div>
+          </AnimatedSection>
+
+          {/* Tool 7 */}
+          <AnimatedSection direction="up" delay={700}>
+            <div className="mb-8">
+              <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white mb-4 sm:mb-6">
+                7. logicstamp_watch_status
+              </h2>
+              <p className="text-base text-gray-600 dark:text-gray-400 mb-3">
+                Check if watch mode (<code className="px-1.5 py-0.5 bg-gray-100 dark:bg-gray-800 text-indigo-600 dark:text-indigo-400 rounded font-mono text-xs">stamp context --watch</code>) is currently active for a project. Use this before calling <code className="px-1.5 py-0.5 bg-gray-100 dark:bg-gray-800 text-indigo-600 dark:text-indigo-400 rounded font-mono text-xs">refresh_snapshot</code> to determine whether to use <code className="px-1.5 py-0.5 bg-gray-100 dark:bg-gray-800 text-indigo-600 dark:text-indigo-400 rounded font-mono text-xs">skipIfWatchActive: true</code>.
+              </p>
+              <div className="mb-3">
+                <p className="text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">Input Parameters:</p>
+                <TabbedCodeBlock
+                  tabs={[
+                    {
+                      label: 'Input',
+                      code: `{
+  "projectPath": "/abs/path",      // REQUIRED: absolute path to project root
+  "includeRecentLogs": false,      // optional: include recent watch log entries (default: false)
+  "logLimit": 5                    // optional: max number of log entries (default: 5)
+}`,
+                      copyText: JSON.stringify({ projectPath: "/abs/path", includeRecentLogs: false, logLimit: 5 }, null, 2)
+                    }
+                  ]}
+                />
+              </div>
+              <div className="mb-4">
+                <p className="text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">Response:</p>
+                <TabbedCodeBlock
+                  tabs={[
+                    {
+                      label: 'Output',
+                      code: `{
+  "projectPath": "/path/to/project",
+  "watchModeActive": true,
+  "status": {
+    "active": true,
+    "projectRoot": "/path/to/project",
+    "pid": 12345,
+    "startedAt": "2025-01-20T10:30:00.000Z",
+    "outputDir": "/path/to/project"
+  },
+  "recentLogs": null,
+  "message": "Watch mode is ACTIVE. Context bundles are being kept fresh automatically..."
+}`,
+                      copyText: JSON.stringify({ projectPath: "/path/to/project", watchModeActive: true, status: { active: true, projectRoot: "/path/to/project", pid: 12345, startedAt: "2025-01-20T10:30:00.000Z", outputDir: "/path/to/project" }, recentLogs: null, message: "Watch mode is ACTIVE. Context bundles are being kept fresh automatically..." }, null, 2)
+                    }
+                  ]}
+                />
+              </div>
+              <div className="bg-blue-50 dark:bg-blue-950/20 border-l-4 border-blue-500 p-3 sm:p-4 rounded-r-lg">
+                <p className="text-sm text-gray-700 dark:text-gray-300">
+                  <strong>Workflow:</strong> Check watch status first, then use <code className="px-1.5 py-0.5 bg-blue-100 dark:bg-blue-900/40 rounded font-mono text-xs">skipIfWatchActive: true</code> in <code className="px-1.5 py-0.5 bg-blue-100 dark:bg-blue-900/40 rounded font-mono text-xs">refresh_snapshot</code> if watch mode is active. This avoids redundant regeneration and speeds up MCP responses.
+                </p>
               </div>
             </div>
           </AnimatedSection>

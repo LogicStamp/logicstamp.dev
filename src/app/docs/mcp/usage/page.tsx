@@ -59,21 +59,21 @@ export default function MCPUsagePage() {
                       1
                     </div>
                     <div className="flex-1">
-                      <h3 className="font-semibold text-gray-900 dark:text-white mb-2">Start with refresh_snapshot</h3>
+                      <h3 className="font-semibold text-gray-900 dark:text-white mb-2">Check watch mode status (optional)</h3>
                       <p className="text-sm text-gray-600 dark:text-gray-400 mb-3">
-                        This scans the project and generates all context files. Creates <code className="px-1.5 py-0.5 bg-gray-100 dark:bg-gray-800 text-indigo-600 dark:text-indigo-400 rounded font-mono text-xs">context_main.json</code> and per-folder <code className="px-1.5 py-0.5 bg-gray-100 dark:bg-gray-800 text-indigo-600 dark:text-indigo-400 rounded font-mono text-xs">context.json</code> files.
+                        If watch mode might be running, check its status first to optimize refresh calls.
                       </p>
                       <TabbedCodeBlock
                         tabs={[
                           {
-                            label: 'Call',
-                            code: 'logicstamp_refresh_snapshot({ projectPath: "/absolute/path/to/project" })',
-                            copyText: 'logicstamp_refresh_snapshot({ projectPath: "/absolute/path/to/project" })'
+                            label: 'Check watch status',
+                            code: 'logicstamp_watch_status({ projectPath: "/absolute/path/to/project" })',
+                            copyText: 'logicstamp_watch_status({ projectPath: "/absolute/path/to/project" })'
                           }
                         ]}
                       />
                       <p className="text-sm text-gray-500 dark:text-gray-500 mt-2">
-                        Returns a <code className="px-1.5 py-0.5 bg-gray-100 dark:bg-gray-800 text-indigo-600 dark:text-indigo-400 rounded font-mono text-xs">snapshotId</code> you'll use for subsequent calls.
+                        If watch mode is active, use <code className="px-1.5 py-0.5 bg-gray-100 dark:bg-gray-800 text-indigo-600 dark:text-indigo-400 rounded font-mono text-xs">skipIfWatchActive: true</code> in refresh_snapshot.
                       </p>
                     </div>
                   </div>
@@ -83,6 +83,32 @@ export default function MCPUsagePage() {
                   <div className="flex items-start gap-3">
                     <div className="flex-shrink-0 w-8 h-8 rounded-full bg-indigo-100 dark:bg-indigo-900/40 flex items-center justify-center text-indigo-600 dark:text-indigo-400 font-semibold">
                       2
+                    </div>
+                    <div className="flex-1">
+                      <h3 className="font-semibold text-gray-900 dark:text-white mb-2">Start with refresh_snapshot</h3>
+                      <p className="text-sm text-gray-600 dark:text-gray-400 mb-3">
+                        This scans the project and generates all context files. Creates <code className="px-1.5 py-0.5 bg-gray-100 dark:bg-gray-800 text-indigo-600 dark:text-indigo-400 rounded font-mono text-xs">context_main.json</code> and per-folder <code className="px-1.5 py-0.5 bg-gray-100 dark:bg-gray-800 text-indigo-600 dark:text-indigo-400 rounded font-mono text-xs">context.json</code> files.
+                      </p>
+                      <TabbedCodeBlock
+                        tabs={[
+                          {
+                            label: 'Call (with watch mode optimization)',
+                            code: 'logicstamp_refresh_snapshot({ projectPath: "/absolute/path/to/project", skipIfWatchActive: true })',
+                            copyText: 'logicstamp_refresh_snapshot({ projectPath: "/absolute/path/to/project", skipIfWatchActive: true })'
+                          }
+                        ]}
+                      />
+                      <p className="text-sm text-gray-500 dark:text-gray-500 mt-2">
+                        Returns a <code className="px-1.5 py-0.5 bg-gray-100 dark:bg-gray-800 text-indigo-600 dark:text-indigo-400 rounded font-mono text-xs">snapshotId</code> you'll use for subsequent calls. Use <code className="px-1.5 py-0.5 bg-gray-100 dark:bg-gray-800 text-indigo-600 dark:text-indigo-400 rounded font-mono text-xs">skipIfWatchActive: true</code> to skip regeneration when watch mode is active.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="p-4 bg-gray-50 dark:bg-gray-800/50 rounded-lg border border-gray-200 dark:border-gray-700">
+                  <div className="flex items-start gap-3">
+                    <div className="flex-shrink-0 w-8 h-8 rounded-full bg-indigo-100 dark:bg-indigo-900/40 flex items-center justify-center text-indigo-600 dark:text-indigo-400 font-semibold">
+                      3
                     </div>
                     <div className="flex-1">
                       <h3 className="font-semibold text-gray-900 dark:text-white mb-2">Discover bundles with list_bundles</h3>
@@ -108,7 +134,7 @@ export default function MCPUsagePage() {
                 <div className="p-4 bg-gray-50 dark:bg-gray-800/50 rounded-lg border border-gray-200 dark:border-gray-700">
                   <div className="flex items-start gap-3">
                     <div className="flex-shrink-0 w-8 h-8 rounded-full bg-indigo-100 dark:bg-indigo-900/40 flex items-center justify-center text-indigo-600 dark:text-indigo-400 font-semibold">
-                      3
+                      4
                     </div>
                     <div className="flex-1">
                       <h3 className="font-semibold text-gray-900 dark:text-white mb-2">Read bundles with read_bundle</h3>
@@ -134,7 +160,7 @@ export default function MCPUsagePage() {
                 <div className="p-4 bg-gray-50 dark:bg-gray-800/50 rounded-lg border border-gray-200 dark:border-gray-700">
                   <div className="flex items-start gap-3">
                     <div className="flex-shrink-0 w-8 h-8 rounded-full bg-indigo-100 dark:bg-indigo-900/40 flex items-center justify-center text-indigo-600 dark:text-indigo-400 font-semibold">
-                      4
+                      5
                     </div>
                     <div className="flex-1">
                       <h3 className="font-semibold text-gray-900 dark:text-white mb-2">Only then read raw files (if needed)</h3>
@@ -340,8 +366,9 @@ export default function MCPUsagePage() {
                   Key Principles
                 </h2>
                 <ul className="list-disc list-inside space-y-2 text-base text-gray-600 dark:text-gray-400 ml-4">
+                  <li><strong>Use watch mode during active development</strong> - Start <code className="px-1.5 py-0.5 bg-gray-100 dark:bg-gray-800 text-indigo-600 dark:text-indigo-400 rounded font-mono text-xs">stamp context --watch</code> before coding sessions for faster MCP responses and automatic context updates</li>
                   <li><strong>Prefer bundles over raw code</strong> - LogicStamp bundles are pre-parsed, structured summaries optimized for AI consumption</li>
-                  <li><strong>Always start with refresh_snapshot</strong> - Don't assume context files exist</li>
+                  <li><strong>Always start with refresh_snapshot</strong> - Don't assume context files exist (use <code className="px-1.5 py-0.5 bg-gray-100 dark:bg-gray-800 text-indigo-600 dark:text-indigo-400 rounded font-mono text-xs">skipIfWatchActive: true</code> when watch mode is active)</li>
                   <li><strong>Use list_bundles before read_bundle</strong> - Discover what's available first</li>
                   <li><strong>Check token estimates</strong> - Be aware of context size, especially for large projects</li>
                   <li><strong>Verify changes with compare_snapshot</strong> - Always verify modifications before approval</li>

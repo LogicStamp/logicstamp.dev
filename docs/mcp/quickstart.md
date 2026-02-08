@@ -95,11 +95,15 @@ When starting work with a new project, paste this message into your chat to guid
 
 **See [Startup Ritual Guide](startup-ritual.md) for the complete message.**
 
+**Best Practice:** Before starting your coding session, run `stamp context --watch` in a terminal. This keeps context files fresh automatically and speeds up all MCP interactions.
+
 This ritual ensures the AI:
-1. Calls `logicstamp_refresh_snapshot` first to generate context files
+1. Checks watch mode status (or calls `logicstamp_refresh_snapshot` with `skipIfWatchActive: true`)
 2. Uses `logicstamp_list_bundles` to discover available bundles
 3. Reads bundles instead of raw source files when possible
 4. Understands the recommended LogicStamp workflow
+
+**Watch Mode Tip:** With watch mode running, the AI automatically detects it and skips redundant regeneration for faster responses.
 
 **If the AI is confused about LogicStamp:**
 - Ask it to call `logicstamp_read_logicstamp_docs` - this returns comprehensive documentation explaining how LogicStamp works and how to use it effectively.
@@ -133,16 +137,54 @@ Completely quit and restart Claude Desktop for the changes to take effect, then 
 
 The AI will automatically use the LogicStamp tools to analyze your codebase.
 
-## 5. Available Tools
+## 5. Watch Mode (Best Practice for Active Development)
 
-The MCP server provides 6 tools for analyzing codebases:
+**Recommended:** Start watch mode (`stamp context --watch`) when beginning a coding session. Watch mode automatically regenerates context bundles when files change, keeping context fresh without manual regeneration. This dramatically improves MCP response times and workflow efficiency.
+
+### Benefits
+
+- **Faster MCP responses** - AI can skip expensive regeneration when watch mode is active
+- **Automatic updates** - Context stays fresh as you code
+- **Incremental rebuilds** - Only affected bundles are regenerated, not the entire project
+- **Better workflow** - No need to manually regenerate context files
+
+### Using Watch Mode with MCP
+
+1. **Start watch mode in your terminal:**
+   ```bash
+   stamp context --watch
+   ```
+
+2. **The AI will automatically detect it** - When calling `logicstamp_refresh_snapshot`, use `skipIfWatchActive: true` to skip redundant regeneration:
+   ```json
+   {
+     "projectPath": "/path/to/project",
+     "skipIfWatchActive": true
+   }
+   ```
+
+3. **Check watch status** - Use `logicstamp_watch_status` to verify watch mode is running:
+   ```json
+   {
+     "projectPath": "/path/to/project"
+   }
+   ```
+
+**See Also:**
+- [Watch Mode CLI Documentation](../../context/cli/watch.md) - Complete watch mode guide
+- [Watch Status Command](commands/watch-status.md) - MCP command reference
+
+## 6. Available Tools
+
+The MCP server provides 7 tools for analyzing codebases:
 
 1. **`logicstamp_refresh_snapshot`** - Generate context files and create snapshot (STEP 1)
 2. **`logicstamp_list_bundles`** - List available bundles (STEP 2)
 3. **`logicstamp_read_bundle`** - Read component contracts and dependency graphs (STEP 3)
 4. **`logicstamp_compare_snapshot`** - Detect changes after edits
 5. **`logicstamp_compare_modes`** - Generate token cost comparison across all modes
-6. **`logicstamp_read_logicstamp_docs`** - Read LogicStamp documentation (use when confused)
+6. **`logicstamp_watch_status`** - Check if watch mode is active (optimize refresh calls)
+7. **`logicstamp_read_logicstamp_docs`** - Read LogicStamp documentation (use when confused)
 
 See the [Tool Reference](../README.md#tool-reference) in the main README for complete API documentation.
 

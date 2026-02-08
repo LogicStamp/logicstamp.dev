@@ -16,7 +16,7 @@ The command returns a structured diff showing:
 ## When to Use
 
 - **After making edits** - Verify what changed in your codebase
-- **CI/CD validation** - Detect contract drift in CI pipelines
+- **CI/CD validation** - Detect contract drift in CI pipelines (compare against disk snapshots or stored snapshots; git baseline comparison not yet implemented)
 - **Code review** - See impact of changes before committing
 - **Change tracking** - Monitor component contract changes over time
 - **Style changes** - Detect visual/design changes when `includeStyle: true`
@@ -341,7 +341,9 @@ This compares against the stored snapshot from `logicstamp_refresh_snapshot`.
 
 4. **Review changes** from the comparison output
 
-### CI/CD Workflow
+### CI/CD Workflow (Planned)
+
+> **Note:** Git baseline comparison (`baseline: "git:<ref>"`) is not yet implemented. The workflow below describes planned functionality.
 
 1. **Generate context** in CI pipeline
 2. **Compare against baseline:**
@@ -355,6 +357,11 @@ This compares against the stored snapshot from `logicstamp_refresh_snapshot`.
    }
    ```
 3. **Fail build** if `status === 'diff'` and changes are not approved
+
+**Current limitations:**
+- Git baseline comparison (`baseline: "git:<ref>"`) throws an error - not yet implemented
+- Context files are gitignored by default, so git-based comparison requires generating context from git refs (planned feature)
+- For now, use `baseline: "disk"` or `baseline: "snapshot"` to compare against locally generated snapshots
 
 ## Understanding Changes
 

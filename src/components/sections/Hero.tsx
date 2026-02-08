@@ -34,102 +34,23 @@ function useInView(threshold = 0.1) {
   return { ref, inView }
 }
 
-// Enhanced visualization wrapper with scroll-based progressive reveal
+// Simple visualization wrapper matching demo page animation style
 const HeroVisualizationWrapper = forwardRef<HTMLDivElement, { inView: boolean }>(
   function HeroVisualizationWrapper({ inView }, ref) {
-    const [scrollProgress, setScrollProgress] = useState(0)
-    const [prefersReducedMotion, setPrefersReducedMotion] = useState(false)
-
-    useEffect(() => {
-      if (typeof window === 'undefined') return
-
-      const mediaQuery = window.matchMedia('(prefers-reduced-motion: reduce)')
-      setPrefersReducedMotion(mediaQuery.matches)
-
-      const handleChange = (e: MediaQueryListEvent) => {
-        setPrefersReducedMotion(e.matches)
-      }
-
-      mediaQuery.addEventListener('change', handleChange)
-      return () => mediaQuery.removeEventListener('change', handleChange)
-    }, [])
-
-    useEffect(() => {
-      if (prefersReducedMotion || typeof window === 'undefined') {
-        setScrollProgress(inView ? 1 : 0)
-        return
-      }
-
-      const element = typeof ref === 'function' ? null : ref?.current
-      if (!element) return
-
-      const updateProgress = () => {
-        const rect = element.getBoundingClientRect()
-        const windowHeight = window.innerHeight
-        const elementTop = rect.top
-        const elementHeight = rect.height
-        
-        // Calculate when element enters viewport
-        const startPoint = windowHeight * 1.1 // Start animation when element is 80% down viewport
-        const endPoint = windowHeight * 0.4 // Complete animation when element is 40% down viewport
-        
-        // Calculate progress (0 to 1)
-        let progress = 0
-        if (elementTop < startPoint && elementTop > -elementHeight + endPoint) {
-          const distance = startPoint - endPoint
-          const current = startPoint - elementTop
-          progress = Math.min(1, Math.max(0, current / distance))
-        } else if (elementTop <= -elementHeight + endPoint) {
-          progress = 1
-        }
-
-        setScrollProgress(progress)
-      }
-
-      updateProgress()
-      window.addEventListener('scroll', updateProgress, { passive: true })
-      window.addEventListener('resize', updateProgress, { passive: true })
-
-      return () => {
-        window.removeEventListener('scroll', updateProgress)
-        window.removeEventListener('resize', updateProgress)
-      }
-    }, [ref, inView, prefersReducedMotion])
-
-    // Apply different animation progress to each panel
-    const graphProgress = Math.min(1, scrollProgress * 1.3) // Graph animates faster
-    const terminalProgress = Math.min(1, Math.max(0, (scrollProgress - 0.05) * 1.4)) // Terminal starts quickly after graph
-
-    const graphOpacity = graphProgress
-    const graphBlur = Math.max(0, 10 - graphProgress * 10)
-    const graphScale = 0.9 + graphProgress * 0.1
-    const graphTranslateX = (1 - graphProgress) * -30
-
-    const terminalOpacity = terminalProgress
-    const terminalBlur = Math.max(0, 10 - terminalProgress * 10)
-    const terminalScale = 0.9 + terminalProgress * 0.1
-    const terminalTranslateX = (1 - terminalProgress) * 30
-
     return (
       <HeroVisualization
         ref={ref}
         graphStyle={{
-          opacity: graphOpacity,
-          transform: `translateX(${graphTranslateX}px) scale(${graphScale})`,
-          filter: `blur(${graphBlur}px)`,
-          transition: prefersReducedMotion 
-            ? 'opacity 0.3s' 
-            : 'opacity 0.6s cubic-bezier(0.4, 0, 0.2, 1), transform 0.8s cubic-bezier(0.34, 1.56, 0.64, 1), filter 0.6s cubic-bezier(0.4, 0, 0.2, 1)',
+          opacity: inView ? 1 : 0,
+          transform: inView ? 'translateX(0)' : 'translateX(-20px)',
+          transition: 'opacity 1s ease-out, transform 1s ease-out',
         }}
         terminalStyle={{
-          opacity: terminalOpacity,
-          transform: `translateX(${terminalTranslateX}px) scale(${terminalScale})`,
-          filter: `blur(${terminalBlur}px)`,
-          transition: prefersReducedMotion 
-            ? 'opacity 0.3s' 
-            : 'opacity 0.6s cubic-bezier(0.4, 0, 0.2, 1), transform 0.8s cubic-bezier(0.34, 1.56, 0.64, 1), filter 0.6s cubic-bezier(0.4, 0, 0.2, 1)',
+          opacity: inView ? 1 : 0,
+          transform: inView ? 'translateX(0)' : 'translateX(20px)',
+          transition: 'opacity 1s ease-out 0.3s, transform 1s ease-out 0.3s',
         }}
-        arrowOpacity={Math.max(graphOpacity, terminalOpacity) * 0.8}
+        arrowOpacity={inView ? 0.8 : 0}
       />
     )
   }

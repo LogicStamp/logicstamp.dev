@@ -23,7 +23,7 @@
 - **Description:** Analysis profile that controls how components are analyzed
   - `llm-chat` - Balanced analysis for AI chat assistants (default)
   - `llm-safe` - More conservative analysis, suitable for production
-  - `ci-strict` - Strict validation mode for CI/CD pipelines
+  - `ci-strict` - Strict validation mode: contracts only (no code), strict dependency checks, fails on missing dependencies. Useful for validation workflows (note: git baseline comparison is not yet implemented)
 
 ### `mode` (optional)
 - **Type:** `'header' | 'full' | 'none'`
@@ -60,6 +60,20 @@
 - **Type:** `boolean`
 - **Default:** `false`
 - **Description:** Manually force cleanup of `.logicstamp` cache directory. Cache is automatically cleaned if corruption or path mismatches are detected. Only set to `true` if you're experiencing cache-related issues.
+
+### `skipIfWatchActive` (optional)
+- **Type:** `boolean`
+- **Default:** `false`
+- **Description:** Skip regeneration if watch mode (`stamp context --watch`) is active. When `true`:
+  - If watch mode is active: Skips expensive regeneration and reads existing context files (fast path)
+  - If watch mode is NOT active: Performs normal regeneration (slow path)
+  
+  **Use this when:** You want to avoid redundant regeneration when watch mode is already keeping context fresh. This is especially useful in MCP workflows where watch mode may be running in the background.
+  
+  **Benefits:**
+  - Faster execution when watch mode is active
+  - Avoids duplicate work (watch mode already regenerates affected bundles)
+  - Smart fallback: still regenerates if watch mode isn't running
 
 ## Output
 
@@ -159,6 +173,20 @@ This creates a snapshot with default settings (`profile: 'llm-chat'`, `mode: 'he
 }
 ```
 
+### With Watch Mode Awareness
+
+```json
+{
+  "name": "logicstamp_refresh_snapshot",
+  "arguments": {
+    "projectPath": "/absolute/path/to/project",
+    "skipIfWatchActive": true
+  }
+}
+```
+
+This skips regeneration if watch mode is active, reading existing context files instead. If watch mode is not active, it performs normal regeneration.
+
 ### Complete Example
 
 ```json
@@ -168,7 +196,8 @@ This creates a snapshot with default settings (`profile: 'llm-chat'`, `mode: 'he
     "profile": "llm-safe",
     "mode": "header",
     "includeStyle": true,
-    "projectPath": "/absolute/path/to/project"
+    "projectPath": "/absolute/path/to/project",
+    "skipIfWatchActive": true
   }
 }
 ```
@@ -229,12 +258,14 @@ This is **STEP 1** of the LogicStamp MCP workflow:
 - **Style Metadata:** If `includeStyle: true`, style data will be available in bundles when you read them with `logicstamp_read_bundle`, but NOT in the summary.
 - **Non-Interactive:** The command uses `--skip-gitignore` and `--quiet` flags to ensure non-interactive operation.
 - **Snapshot Storage:** The snapshot is stored in the MCP server's state and can be referenced by `snapshotId` in subsequent commands.
+- **Watch Mode Integration:** Use `skipIfWatchActive: true` to avoid redundant regeneration when watch mode is already keeping context fresh. You can check watch mode status with `logicstamp_watch_status` before calling this command.
 
 ## Related Commands
 
 - [`logicstamp_list_bundles`](./list-bundles.md) - List bundles in a snapshot (STEP 2)
 - [`logicstamp_read_bundle`](./read-bundle.md) - Read detailed bundle information (STEP 3)
 - [`logicstamp_compare_snapshot`](./compare-snapshot.md) - Compare snapshots to detect changes
+- [`logicstamp_watch_status`](./watch-status.md) - Check if watch mode is active before calling this command
 
 ## Error Handling
 
