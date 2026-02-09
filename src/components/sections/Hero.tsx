@@ -48,9 +48,9 @@ export default function Hero() {
 
       <div className="mx-auto max-w-[1440px] px-4 lg:px-6 relative z-10">
         {/* Desktop: Split layout with headline left, visualization right */}
-        <div className="hidden lg:grid lg:grid-cols-2 lg:gap-12 lg:items-center lg:min-h-[80vh]">
+        <div className="hidden lg:grid lg:grid-cols-2 lg:gap-12 lg:items-start lg:min-h-[80vh]">
           {/* Left: Headline and CTA */}
-          <div className="flex flex-col justify-center">
+          <div className="flex flex-col justify-start pt-8">
             {/* Title */}
             <div 
               ref={titleRef}

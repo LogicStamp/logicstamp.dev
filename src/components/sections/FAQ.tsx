@@ -91,7 +91,7 @@ const faqs = [
     id: 10,
     question: 'Is watch mode available?',
     answer:
-      'Yes! Watch mode is available in v0.5.1.\nRun `stamp context --watch` to automatically regenerate context files when source files change.\nFeatures include incremental rebuilds (only affected bundles are regenerated), change detection (shows what changed: props, hooks, state), debouncing (batches rapid changes), and style file watching with `--include-style`.\nUse `--debug` to see detailed hash information, or `--log-file` for structured change logs.',
+      'Yes! Watch mode is available.\nRun `stamp context --watch` to automatically regenerate context files when source files change.\nFeatures include incremental rebuilds (only affected bundles are regenerated), change detection (shows what changed: props, hooks, state), debouncing (batches rapid changes), and style file watching with `--include-style`.\nUse `--debug` to see detailed hash information, or `--log-file` for structured change logs.',
   },
 ]
 
