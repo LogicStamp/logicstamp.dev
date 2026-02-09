@@ -49,13 +49,13 @@ const faqs = [
     id: 3,
     question: 'Is LogicStamp free to use?',
     answer:
-      'Yes! LogicStamp Context is completely free and open-source.\nInstall it globally with npm i -g logicstamp-context and use it.\nThe CLI (v0.5.1) includes context generation, drift detection (tracks changes in component contracts over time), validation, token optimization, security scanning (detects potential secrets in your code), style metadata extraction, and watch mode.\nMCP (Model Context Protocol) integration is also available for free, providing real-time context analysis in Cursor, Claude Desktop, and Claude CLI. Install with `npm install -g logicstamp-mcp` and configure your MCP client (see "How do I set up MCP integration?" below for details).\nAll features are available at no cost.',
+      'Yes! LogicStamp Context is completely free and open-source.\nInstall it globally with npm i -g logicstamp-context and use it.\nThe CLI (v0.5.2) includes context generation, drift detection (tracks changes in component contracts over time), validation, token optimization, security scanning (detects potential secrets in your code), style metadata extraction, and watch mode.\nMCP (Model Context Protocol) integration is also available for free, providing real-time context analysis in Cursor, Claude Desktop, and Claude CLI. Install with `npm install -g logicstamp-mcp` and configure your MCP client (see "How do I set up MCP integration?" below for details).\nAll features are available at no cost.',
   },
   {
     id: 4,
     question: 'What frameworks are supported?',
     answer:
-      'Currently supports React and TypeScript projects (including Next.js), plus Vue 3 TypeScript/TSX files.\nBackend support for Express.js and NestJS is available in v0.5.1.\nRequires Node.js >= 18.18.0 (Node 20+ recommended).\nMCP integration is available for Cursor, Claude Desktop, and Claude CLI.\nWorks with any React/TypeScript codebase regardless of styling solution (Tailwind, styled-components, CSS modules, Material UI, ShadCN/UI, Radix UI, Framer Motion, etc.).\nNote: Vue Single File Components (.vue files) support is planned for a future release.',
+      'Currently supports React and TypeScript projects (including Next.js), plus Vue 3 TypeScript/TSX files.\nBackend support for Express.js and NestJS is available in v0.5.2.\nRequires Node.js >= 18.18.0 (Node 20+ recommended).\nMCP integration is available for Cursor, Claude Desktop, and Claude CLI.\nWorks with any React/TypeScript codebase regardless of styling solution (Tailwind, styled-components, CSS modules, Material UI, ShadCN/UI, Radix UI, Framer Motion, etc.).\nNote: Vue Single File Components (.vue files) support is planned for a future release.',
   },
   {
     id: 5,

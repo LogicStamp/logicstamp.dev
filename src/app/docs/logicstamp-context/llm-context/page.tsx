@@ -283,7 +283,7 @@ export default function LlmContextPage() {
                 <div className="p-4 bg-orange-50 dark:bg-orange-950/20 rounded-xl border border-orange-200 dark:border-orange-800">
                   <h4 className="font-semibold text-orange-900 dark:text-orange-200 mb-2">source</h4>
                   <p className="text-sm text-orange-800 dark:text-orange-300">
-                    Generator version string, for example &quot;logicstamp-context@0.3.8&quot;
+                    Generator version string, for example &quot;logicstamp-context@0.5.2&quot;
                   </p>
                 </div>
               </div>
@@ -319,7 +319,7 @@ export default function LlmContextPage() {
                   'Suggest increasing --depth if many "max depth exceeded" entries appear.',
                   'Flag "file not found" entries as potential bugs in the codebase.',
                   'Filter bundles by entryId to focus on relevant modules.',
-                  'Use version.functions and logicSignature to reason about APIs without loading full source.',
+                  'Use composition.functions and interface to reason about APIs without loading full source.',
                   'For deeper context, rerun the CLI with --include-code full or higher --depth before querying the assistant.'
                 ].map((practice, idx) => (
                   <div key={idx} className="flex items-start gap-3 p-4 bg-teal-50 dark:bg-teal-950/20 rounded-xl border border-teal-200 dark:border-teal-800">

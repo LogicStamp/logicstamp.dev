@@ -62,8 +62,7 @@ export default function KnownLimitationsPage() {
                   {[
                     { title: 'Component Contracts', accuracy: '~95%', desc: 'Props, state, hooks detection' },
                     { title: 'Imports Detection', accuracy: '~100%', desc: 'Imports tracked correctly' },
-                    { title: 'Style Metadata', accuracy: '~90%', desc: 'Static classes work well' },
-                    { title: 'Hook Signatures', accuracy: 'Not yet', desc: 'Parameters not captured' }
+                    { title: 'Style Metadata', accuracy: '~90-95%', desc: 'Static classes ~100%, dynamic classes Phase 1 complete ~70-80% of patterns, CSS-in-JS 9/9 major libraries supported ✅ v0.5.1' }
                   ].map((item, idx) => (
                     <div key={idx} className="flex items-start gap-3 p-4 bg-gray-50 dark:bg-gray-800/50 rounded-xl border border-gray-200 dark:border-gray-700">
                       <div className="flex-shrink-0">
@@ -85,12 +84,12 @@ export default function KnownLimitationsPage() {
           {/* Hook Parameter Detection */}
           <AnimatedSection direction="up" delay={200}>
             <div className="relative mb-8 sm:mb-12 lg:mb-16">
-              <div className="absolute -inset-1 bg-gradient-to-r from-purple-600 to-pink-600 rounded-2xl blur opacity-20 dark:opacity-10" />
+              <div className="absolute -inset-1 bg-gradient-to-r from-green-600 to-emerald-600 rounded-2xl blur opacity-20 dark:opacity-10" />
               <div className="relative bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded-2xl p-4 sm:p-6 lg:p-8 shadow-xl">
                 <div className="flex items-baseline gap-3 mb-4 sm:mb-6">
-                  <div className="p-2 bg-purple-100 dark:bg-purple-900/30 rounded-lg flex-shrink-0 -mt-0.5">
-                    <svg className="w-5 h-5 sm:w-6 sm:h-6 text-purple-600 dark:text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
+                  <div className="p-2 bg-green-100 dark:bg-green-900/30 rounded-lg flex-shrink-0 -mt-0.5">
+                    <svg className="w-5 h-5 sm:w-6 sm:h-6 text-green-600 dark:text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
                     </svg>
                   </div>
                   <h2 className="text-xl sm:text-2xl font-bold text-gray-900 dark:text-white m-0">
@@ -99,13 +98,25 @@ export default function KnownLimitationsPage() {
                 </div>
                 
                 <div className="space-y-4">
+                  <div className="p-4 bg-green-50 dark:bg-green-950/20 rounded-lg border-l-4 border-green-500">
+                    <p className="text-sm font-semibold text-green-800 dark:text-green-300 mb-2">
+                      ✅ Fixed in v0.3.6
+                    </p>
+                    <p className="text-sm text-green-700 dark:text-green-400">
+                      Hook parameter detection now correctly extracts function signatures from custom React hooks, including parameter types, default values, and optional parameters. Works even when Props interfaces exist in the same file.
+                    </p>
+                  </div>
+
                   <div>
                     <h3 className="font-semibold text-gray-900 dark:text-white mb-2 text-base sm:text-lg">
-                      Issue
+                      What Works
                     </h3>
-                    <p className="text-sm sm:text-base text-gray-600 dark:text-gray-400 mb-4 leading-relaxed">
-                      We can detect custom React hooks and list them in the <code className="px-2 py-1 bg-gray-100 dark:bg-gray-800 rounded text-sm font-mono">version.hooks</code> array, but we don't capture what parameters they take. The contract will show <code className="px-2 py-1 bg-gray-100 dark:bg-gray-800 rounded text-sm font-mono">props: {}</code> even if the hook actually accepts parameters.
-                    </p>
+                    <ul className="space-y-2 text-sm text-gray-600 dark:text-gray-400 ml-4 list-disc">
+                      <li>Extracts function signatures with parameter types</li>
+                      <li>Captures default parameter values</li>
+                      <li>Handles optional parameters</li>
+                      <li>Works with Props interfaces in the same file</li>
+                    </ul>
                   </div>
 
                   <div>
@@ -128,32 +139,34 @@ export default function KnownLimitationsPage() {
 }`
                         },
                         {
-                          label: 'Context Output',
+                          label: 'Context Output (Correct)',
                           code: `{
-    "version": {
+    "composition": {
       "hooks": ["useTypewriter"]
     },
-    "logic": {
-      "props": {}
+    "interface": {
+      "props": {
+        "text": { "type": "string" },
+        "speed": { "type": "number", "optional": true },
+        "pause": { "type": "number", "optional": true }
+      }
     }
   }`,
                           copyText: `{
-    "version": {
+    "composition": {
       "hooks": ["useTypewriter"]
     },
-    "logic": {
-      "props": {}
+    "interface": {
+      "props": {
+        "text": { "type": "string" },
+        "speed": { "type": "number", "optional": true },
+        "pause": { "type": "number", "optional": true }
+      }
     }
   }`
                         }
                       ]}
                     />
-                  </div>
-
-                  <div className="p-4 bg-amber-50 dark:bg-amber-950/20 rounded-lg border border-amber-200 dark:border-amber-800">
-                    <p className="text-sm text-amber-800 dark:text-amber-300">
-                      <strong>Impact:</strong> You'll need to check the source code to see what parameters a hook takes—the context file won't tell you.
-                    </p>
                   </div>
                 </div>
               </div>
@@ -548,7 +561,7 @@ function Button({ onClick }: ButtonProps) {
                           <li><strong>Component kind</strong>: <code className="px-1.5 py-0.5 bg-gray-100 dark:bg-gray-800 rounded text-xs font-mono">react:component</code>, <code className="px-1.5 py-0.5 bg-gray-100 dark:bg-gray-800 rounded text-xs font-mono">react:hook</code>, <code className="px-1.5 py-0.5 bg-gray-100 dark:bg-gray-800 rounded text-xs font-mono">vue:component</code>, <code className="px-1.5 py-0.5 bg-gray-100 dark:bg-gray-800 rounded text-xs font-mono">vue:composable</code>, <code className="px-1.5 py-0.5 bg-gray-100 dark:bg-gray-800 rounded text-xs font-mono">ts:module</code>, <code className="px-1.5 py-0.5 bg-gray-100 dark:bg-gray-800 rounded text-xs font-mono">node:cli</code></li>
                           <li><strong>Props</strong>: Types and signatures</li>
                           <li><strong>State variables</strong>: With types</li>
-                          <li><strong>Hooks used</strong>: Listed in <code className="px-1.5 py-0.5 bg-gray-100 dark:bg-gray-800 rounded text-xs font-mono">version.hooks</code></li>
+                          <li><strong>Hooks used</strong>: Listed in <code className="px-1.5 py-0.5 bg-gray-100 dark:bg-gray-800 rounded text-xs font-mono">composition.hooks</code></li>
                           <li><strong>Functions</strong>: Signatures captured</li>
                           <li><strong>Imports and dependencies</strong>: Tracked</li>
                           <li><strong>Exports</strong>: Default/named exports</li>
@@ -602,7 +615,7 @@ function Button({ onClick }: ButtonProps) {
                         <ul className="space-y-1 text-sm text-gray-600 dark:text-gray-400 ml-4 list-disc">
                           <li><strong>Created timestamps</strong>: When context was generated</li>
                           <li><strong>OS detection</strong>: Platform info (e.g., <code className="px-1.5 py-0.5 bg-gray-100 dark:bg-gray-800 rounded text-xs font-mono">win32</code>)</li>
-                          <li><strong>Source tool version</strong>: <code className="px-1.5 py-0.5 bg-gray-100 dark:bg-gray-800 rounded text-xs font-mono">logicstamp-context@0.5.1</code> (current), <code className="px-1.5 py-0.5 bg-gray-100 dark:bg-gray-800 rounded text-xs font-mono">0.5.0</code>, <code className="px-1.5 py-0.5 bg-gray-100 dark:bg-gray-800 rounded text-xs font-mono">0.4.1</code>, <code className="px-1.5 py-0.5 bg-gray-100 dark:bg-gray-800 rounded text-xs font-mono">0.4.0</code>, <code className="px-1.5 py-0.5 bg-gray-100 dark:bg-gray-800 rounded text-xs font-mono">0.3.10</code></li>
+                          <li><strong>Source tool version</strong>: <code className="px-1.5 py-0.5 bg-gray-100 dark:bg-gray-800 rounded text-xs font-mono">logicstamp-context@0.5.2</code> (current), <code className="px-1.5 py-0.5 bg-gray-100 dark:bg-gray-800 rounded text-xs font-mono">0.5.1</code>, <code className="px-1.5 py-0.5 bg-gray-100 dark:bg-gray-800 rounded text-xs font-mono">0.5.0</code>, <code className="px-1.5 py-0.5 bg-gray-100 dark:bg-gray-800 rounded text-xs font-mono">0.4.1</code>, <code className="px-1.5 py-0.5 bg-gray-100 dark:bg-gray-800 rounded text-xs font-mono">0.4.0</code>, <code className="px-1.5 py-0.5 bg-gray-100 dark:bg-gray-800 rounded text-xs font-mono">0.3.10</code></li>
                           <li><strong>Missing dependencies</strong>: Tracked in <code className="px-1.5 py-0.5 bg-gray-100 dark:bg-gray-800 rounded text-xs font-mono">missing</code> array</li>
                         </ul>
                       </div>
@@ -686,7 +699,7 @@ function Button({ onClick }: ButtonProps) {
                           <strong>Supported:</strong> styled-components (component names, theme usage, css prop), Emotion (@emotion/styled), Material UI (@mui/material) - components, packages, features, ShadCN/UI - components, variants, sizes, Radix UI - primitives, patterns, accessibility, Framer Motion - components, variants, animation features, Styled JSX - CSS content extraction, selectors, properties, global attribute detection ✅ <strong className="text-green-600 dark:text-green-400">v0.3.5</strong>
                         </p>
                         <p className="text-sm text-gray-600 dark:text-gray-400 mb-2">
-                          <strong>Missing/Incomplete:</strong> Chakra UI - not yet detected, Ant Design - not yet detected
+                          <strong>Status:</strong> ✅ <strong className="text-green-600 dark:text-green-400">Complete in v0.5.1</strong> - All major CSS-in-JS libraries supported including Chakra UI and Ant Design
                         </p>
                         <p className="text-sm text-gray-600 dark:text-gray-400">
                           <strong>Impact:</strong> Most major CSS-in-JS libraries are supported, but some smaller libraries and inline style values are not fully extracted.
@@ -1017,7 +1030,7 @@ function Button({ onClick }: ButtonProps) {
                       Medium Priority
                     </h3>
                     <ol className="space-y-2 text-sm text-gray-600 dark:text-gray-400 ml-4 list-decimal">
-                      <li><strong>CSS-in-JS support</strong>: Complete support for remaining libraries (Chakra UI, Ant Design), extract styled-jsx CSS content</li>
+                      <li>~~<strong>CSS-in-JS support</strong>: Complete support for remaining libraries (Chakra UI, Ant Design)~~ ✅ <strong className="text-green-600 dark:text-green-400">Complete in v0.5.1</strong></li>
                       <li><strong>Enhanced third-party info</strong>: Include package names, versions, prop types</li>
                       <li><strong>TypeScript type extraction</strong>: Capture full type definitions</li>
                       <li><strong>Project-level insights</strong>: Add cross-folder analysis to <code className="px-1.5 py-0.5 bg-gray-100 dark:bg-gray-800 rounded text-xs font-mono">context_main.json</code></li>

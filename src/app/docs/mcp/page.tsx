@@ -703,7 +703,7 @@ claude`,
             "type": "UIFContract",
             "kind": "react:component",
             "description": "Interactive button component",
-            "logicSignature": {
+            "interface": {
               "props": {
                 "onClick": { "type": "() => void" },
                 "variant": { "type": "primary | secondary" }
@@ -711,7 +711,7 @@ claude`,
               "emits": {},
               "state": {}
             },
-            "version": {
+            "composition": {
               "hooks": ["useState"],
               "components": [],
               "functions": ["handleClick"]
@@ -723,7 +723,7 @@ claude`,
     }
   }
 }`,
-                        copyText: JSON.stringify({ snapshotId: "snap_1764033034172", bundlePath: "src/components/context.json", rootComponent: "Button", bundle: { type: "LogicStampBundle", entryId: "...", graph: { nodes: [{ entryId: "...", contract: { type: "UIFContract", kind: "react:component", description: "Interactive button component", logicSignature: { props: { onClick: { type: "() => void" }, variant: { type: "primary | secondary" } }, emits: {}, state: {} }, version: { hooks: ["useState"], components: [], functions: ["handleClick"] } } }], edges: [] } } }, null, 2)
+                        copyText: JSON.stringify({ snapshotId: "snap_1764033034172", bundlePath: "src/components/context.json", rootComponent: "Button", bundle: { type: "LogicStampBundle", entryId: "...", graph: { nodes: [{ entryId: "...", contract: { type: "UIFContract", kind: "react:component", description: "Interactive button component", interface: { props: { onClick: { type: "() => void" }, variant: { type: "primary | secondary" } }, emits: {}, state: {} }, composition: { hooks: ["useState"], components: [], functions: ["handleClick"] } } }], edges: [] } } }, null, 2)
                       }
                     ]}
                   />
@@ -795,7 +795,7 @@ claude`,
           "semanticHashAfter": "uif:7f8d9e0a",
           "tokenDelta": 40,
           "details": {
-            "modifiedFields": ["version.functions"],
+            "modifiedFields": ["composition.functions"],
             "addedFunctions": ["handleKeyDown"]
           }
         }
@@ -803,7 +803,7 @@ claude`,
     }
   ]
 }`,
-                        copyText: JSON.stringify({ baseline: "disk", status: "diff", summary: { totalFolders: 14, unchangedFolders: 12, changedFolders: 2, addedFolders: 0, removedFolders: 0, tokenDelta: { gpt4oMini: 320, claude: 270 } }, folderDiffs: [{ path: "src/components", status: "changed", changes: [{ rootComponent: "Button", type: "uif_contract_changed", semanticHashBefore: "uif:637c3858", semanticHashAfter: "uif:7f8d9e0a", tokenDelta: 40, details: { modifiedFields: ["version.functions"], addedFunctions: ["handleKeyDown"] } }] }] }, null, 2)
+                        copyText: JSON.stringify({ baseline: "disk", status: "diff", summary: { totalFolders: 14, unchangedFolders: 12, changedFolders: 2, addedFolders: 0, removedFolders: 0, tokenDelta: { gpt4oMini: 320, claude: 270 } }, folderDiffs: [{ path: "src/components", status: "changed", changes: [{ rootComponent: "Button", type: "uif_contract_changed", semanticHashBefore: "uif:637c3858", semanticHashAfter: "uif:7f8d9e0a", tokenDelta: 40, details: { modifiedFields: ["composition.functions"], addedFunctions: ["handleKeyDown"] } }] }] }, null, 2)
                       }
                     ]}
                   />

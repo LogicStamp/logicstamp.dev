@@ -33,7 +33,7 @@ Validates a specific context file:
 - Top-level value is an array of `LogicStampBundle` objects
 - Each bundle has the required fields (`type`, `schemaVersion`, `entryId`,
   `graph`, `meta`, etc.)
-- Contracts stored within nodes are `UIFContract` with schema version `0.3`
+- Contracts stored within nodes are `UIFContract` with schema version `0.4`
 - Warns when bundle hashes or schema versions diverge from expected values
 
 #### For Main Index File (`context_main.json`)
@@ -164,7 +164,7 @@ Warnings example (still exits 0):
 
 ## CI/CD Usage
 
-> ⚠️ **Limited CI/CD support:** Git baseline comparison (`git:main`, `git:HEAD~1`) is not yet implemented. Current CI/CD workflows require committing context files (not recommended) or manual baseline generation. See the [roadmap](https://logicstamp.dev/roadmap) for planned features.
+> ⚠️ **Git Baseline Automation Not Yet Implemented:** The `--baseline git:<ref>` option (e.g., `--baseline git:main`) for `stamp context compare` is **not yet implemented**. Until automation is available, CI/CD workflows require either committing context files (not recommended) or using the manual baseline generation workflow. See the [roadmap](https://logicstamp.dev/roadmap) for planned features.
 
 - Use with `stamp context` to block merges when context files become invalid
 - Use multi-file mode (no arguments) to validate **all** context files in one command

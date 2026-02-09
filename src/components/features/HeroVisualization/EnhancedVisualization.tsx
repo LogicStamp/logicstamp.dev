@@ -360,7 +360,7 @@ export default function EnhancedVisualization({ inView }: EnhancedVisualizationP
           {/* AST Stage */}
           <div
             className={`flex flex-col items-center gap-2 ${
-              transformStage === 'ast' ? 'opacity-100 scale-100' : 'opacity-40 scale-95'
+              transformStage === 'ast' ? 'opacity-100 scale-100' : 'opacity-50 scale-95'
             }`}
             style={{ transition: 'all 0.5s' }}
           >
@@ -388,7 +388,7 @@ export default function EnhancedVisualization({ inView }: EnhancedVisualizationP
           {/* Processing Stage */}
           <div
             className={`flex flex-col items-center gap-2 ${
-              transformStage === 'processing' ? 'opacity-100 scale-100' : 'opacity-40 scale-95'
+              transformStage === 'processing' ? 'opacity-100 scale-100' : 'opacity-50 scale-95'
             }`}
             style={{ transition: 'all 0.5s' }}
           >
@@ -397,7 +397,7 @@ export default function EnhancedVisualization({ inView }: EnhancedVisualizationP
             }`}>
               <Sparkles className={`w-8 h-8 ${transformStage === 'processing' ? 'text-purple-600 dark:text-purple-400' : 'text-purple-500/50'}`} />
             </div>
-            <span className={`text-xs font-semibold ${transformStage === 'processing' ? 'text-gray-800 dark:text-gray-200' : 'text-gray-600 dark:text-gray-500'}`}>Transform</span>
+            <span className={`text-xs font-semibold ${transformStage === 'processing' ? 'text-gray-800 dark:text-gray-200' : 'text-gray-600 dark:text-gray-500'}`}>Emit</span>
           </div>
 
           {/* Arrow */}
@@ -416,7 +416,7 @@ export default function EnhancedVisualization({ inView }: EnhancedVisualizationP
           {/* JSON Stage */}
           <div
             className={`flex flex-col items-center gap-2 ${
-              transformStage === 'json' ? 'opacity-100 scale-100' : 'opacity-40 scale-95'
+              transformStage === 'json' ? 'opacity-100 scale-100' : 'opacity-50 scale-95'
             }`}
             style={{ transition: 'all 0.5s' }}
           >
