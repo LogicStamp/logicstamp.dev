@@ -15,15 +15,15 @@ const ReactIcon = () => (
 
 const NextIcon = () => (
   <svg viewBox="0 0 24 24" className="w-10 h-10">
-    <path d="M11.572 0c-.176 0-.31.0004-.358.002A11.383 11.383 0 0 0 .002 11.572c-.0016.048-.002.182-.002.358s.0004.31.002.358A11.383 11.383 0 0 0 11.572 23.93c.048.0016.182.002.358.002s.31-.0004.358-.002A11.383 11.383 0 0 0 23.93 12.288c.0016-.048.002-.182.002-.358s-.0004-.31-.002-.358A11.383 11.383 0 0 0 12.288.002C12.24.0004 12.106 0 11.93 0h-.358z" fill="#000" className="dark:fill-white" />
-    <path d="M8 8h8v8L8 8z" fill="#fff" className="dark:fill-black" />
+    <circle cx="12" cy="12" r="12" fill="#000" className="dark:fill-white" />
+    <path d="M7.5 7.5h2.5l3.34 5.83L16.84 7.5h2.5l-5.84 10.17L7.5 7.5z" fill="#fff" className="dark:fill-black" />
   </svg>
 )
 
 const TypeScriptIcon = () => (
   <svg viewBox="0 0 24 24" className="w-10 h-10">
     <rect width="24" height="24" rx="4" fill="#3178C6" />
-    <path d="M14.5 16.3c.6 0 1.1-.1 1.4-.3.4-.2.7-.4.9-.7v1.4c-.3.3-.6.5-1.1.6-.4.1-.9.2-1.4.2-.6 0-1.1-.1-1.6-.3-.5-.2-.9-.5-1.2-.9-.3-.4-.6-.9-.7-1.4-.2-.5-.3-1.1-.3-1.7 0-.6.1-1.2.3-1.7.2-.5.4-1 .8-1.4.3-.4.7-.7 1.2-.9.5-.2 1-.3 1.6-.3.5 0 1 .1 1.4.2.4.1.8.3 1.1.6V11c-.3-.3-.6-.5-.9-.7-.4-.2-.8-.3-1.4-.3-.4 0-.7.1-1 .2-.3.1-.5.3-.7.5-.2.2-.3.5-.4.8-.1.3-.1.6-.1.9 0 .3 0 .6.1.9.1.3.2.5.4.8.2.2.4.4.7.5.3.1.6.2 1 .2zm-4-1.8v4.7h-1.5v-4.7H6.8v-1.2h5.9v1.2h-2.2z" fill="#fff" />
+    <path d="M1.125 0C.502 0 0 .502 0 1.125v21.75C0 23.498.502 24 1.125 24h21.75c.623 0 1.125-.502 1.125-1.125V1.125C24 .502 23.498 0 22.875 0zm17.363 9.75c.612 0 1.154.037 1.627.111a6.38 6.38 0 0 1 1.306.34v2.458a3.95 3.95 0 0 0-.643-.361 5.093 5.093 0 0 0-.717-.26 5.453 5.453 0 0 0-1.426-.2c-.3 0-.573.028-.819.086a2.1 2.1 0 0 0-.623.242c-.17.104-.3.229-.393.374a.888.888 0 0 0-.14.49c0 .196.053.373.156.529.104.156.252.304.443.444s.423.276.696.41c.273.135.582.274.926.416.47.197.892.407 1.266.628.374.222.695.473.963.753.268.279.472.598.614.957.142.359.214.776.214 1.253 0 .657-.125 1.21-.373 1.656a3.033 3.033 0 0 1-1.012 1.085 4.38 4.38 0 0 1-1.487.596c-.566.12-1.163.18-1.79.18a9.916 9.916 0 0 1-1.84-.164 4.643 4.643 0 0 1-1.512-.493v-2.63a5.28 5.28 0 0 0 3.237 1.2c.333 0 .624-.03.872-.09.249-.06.456-.144.623-.25.166-.108.29-.234.373-.38a1.023 1.023 0 0 0-.074-1.089 2.12 2.12 0 0 0-.537-.5 5.597 5.597 0 0 0-.807-.444 27.72 27.72 0 0 0-1.007-.436c-.918-.383-1.602-.852-2.053-1.405-.45-.553-.676-1.222-.676-2.005 0-.614.123-1.141.369-1.582.246-.441.58-.804 1.004-1.089a4.494 4.494 0 0 1 1.47-.63 5.684 5.684 0 0 1 1.77-.272zm-15.113.188h9.563v2.166H9.506v9.646H6.789v-9.646H3.375z" fill="#fff" />
   </svg>
 )
 
@@ -75,27 +75,26 @@ const CLIIcon = () => (
 const ExpressIcon = () => (
   <svg viewBox="0 0 24 24" className="w-10 h-10">
     <rect width="24" height="24" rx="2" fill="#000" className="dark:fill-white" />
-    <path d="M8 7h8v2h-3v6h-2V9H8V7zm-1 4h2v2H7v-2z" fill="#fff" className="dark:fill-gray-900" />
+    <path d="M24 18.588l-1.192-1.192-3.277-3.277c-.48-.48-.779-1.088-.779-1.192 0-.104.299-.712.779-1.192L22.808 7.38 24 6.188l-1.596-1.596-1.539-1.539-1.192-1.192-1.192 1.192-3.277 3.277c-.48.48-1.088.779-1.192.779-.104 0-.712-.299-1.192-.779L8.908 2.633 7.716 1.441 6.524 2.633 5.332 3.825l-3.277 3.277c-.48.48-.779 1.088-.779 1.192 0 .104.299.712.779 1.192L1.192 10.763 0 11.955l1.596 1.596 1.539 1.539 1.192 1.192 1.192-1.192 3.277-3.277c.48-.48 1.088-.779 1.192-.779.104 0 .712.299 1.192.779l3.277 3.277 1.192 1.192 1.192-1.192 3.277-3.277c.48-.48 1.088-.779 1.192-.779.104 0 .712.299 1.192.779l3.277 3.277L24 18.588z" fill="#fff" className="dark:fill-gray-900" />
   </svg>
 )
 
 const NestJSIcon = () => (
   <svg viewBox="0 0 24 24" className="w-10 h-10">
-    <path d="M12.5 0C5.596 0 0 5.596 0 12.5S5.596 25 12.5 25 25 19.404 25 12.5 19.404 0 12.5 0zm0 22.5C6.71 22.5 2 17.79 2 12.5S6.71 2.5 12.5 2.5 23 7.21 23 12.5 18.29 22.5 12.5 22.5z" fill="#E0234E" />
-    <path d="M12.5 5C8.364 5 5 8.364 5 12.5S8.364 20 12.5 20 20 16.636 20 12.5 16.636 5 12.5 5zm0 13.5c-2.485 0-4.5-2.015-4.5-4.5S10.015 9.5 12.5 9.5 17 11.515 17 14s-2.015 4.5-4.5 4.5z" fill="#E0234E" />
+    <path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm0 22C6.477 22 2 17.523 2 12S6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z" fill="#E0234E" />
+    <path d="M12 4C7.582 4 4 7.582 4 12s3.582 8 8 8 8-3.582 8-8-3.582-8-8-8zm0 14c-3.314 0-6-2.686-6-6s2.686-6 6-6 6 2.686 6 6-2.686 6-6 6z" fill="#E0234E" />
+    <path d="M9 7h2v10H9V7zm4 0h2l-3 5 3 5h-2l-3-5 3-5z" fill="#E0234E" />
   </svg>
 )
 
 const BackendFrameworksIcon = () => (
-  <div className="flex items-center gap-1">
-    <svg viewBox="0 0 24 24" className="w-8 h-8">
-      <rect width="24" height="24" rx="2" fill="#000" className="dark:fill-white" />
-      <path d="M8 7h8v2h-3v6h-2V9H8V7zm-1 4h2v2H7v-2z" fill="#fff" className="dark:fill-gray-900" />
-    </svg>
-    <svg viewBox="0 0 24 24" className="w-8 h-8">
-      <path d="M12.5 0C5.596 0 0 5.596 0 12.5S5.596 25 12.5 25 25 19.404 25 12.5 19.404 0 12.5 0zm0 22.5C6.71 22.5 2 17.79 2 12.5S6.71 2.5 12.5 2.5 23 7.21 23 12.5 18.29 22.5 12.5 22.5z" fill="#E0234E" />
-      <path d="M12.5 5C8.364 5 5 8.364 5 12.5S8.364 20 12.5 20 20 16.636 20 12.5 16.636 5 12.5 5zm0 13.5c-2.485 0-4.5-2.015-4.5-4.5S10.015 9.5 12.5 9.5 17 11.515 17 14s-2.015 4.5-4.5 4.5z" fill="#E0234E" />
-    </svg>
+  <div className="flex items-center gap-3">
+    <div className="inline-flex items-center justify-center rounded-xl bg-gradient-to-br from-gray-700/10 to-gray-900/10 dark:from-gray-500/10 dark:to-gray-700/10 w-16 h-16">
+      <ExpressIcon />
+    </div>
+    <div className="inline-flex items-center justify-center rounded-xl bg-gradient-to-br from-red-500/10 to-red-700/10 w-16 h-16">
+      <NestJSIcon />
+    </div>
   </div>
 )
 
@@ -141,7 +140,7 @@ const integrations = [
     iconBg: 'from-blue-500/10 to-blue-700/10',
     features: ['Type signature extraction', 'Interface documentation', 'Generic parameter tracking'],
   },
-  // Row 2: Watch Mode (left), Backend Frameworks (middle), UI Frameworks (right)
+  // Row 2: Watch Mode, Backend Frameworks, UI Frameworks
   {
     name: 'Watch Mode',
     description: 'Auto-regenerate context on file changes with incremental rebuilds and change detection',
@@ -162,6 +161,7 @@ const integrations = [
     features: ['Route & controller extraction', 'API signature detection', 'Decorator & middleware analysis'],
     isNew: true,
   },
+  // Row 3: UI Frameworks
   {
     name: 'UI Frameworks',
     description: 'Support for Tailwind CSS, Material UI, ShadCN/UI, Radix UI, Styled Components, and Framer Motion',
@@ -477,9 +477,13 @@ export default function Integrations() {
                     
                     <div className="relative z-10">
                       {/* Icon */}
-                      <div className={`inline-flex items-center justify-center rounded-xl bg-gradient-to-br ${integration.iconBg} w-16 h-16`}>
+                      {integration.name === 'Express.js & NestJS' ? (
                         <IconComponent />
-                      </div>
+                      ) : (
+                        <div className={`inline-flex items-center justify-center rounded-xl bg-gradient-to-br ${integration.iconBg} w-16 h-16`}>
+                          <IconComponent />
+                        </div>
+                      )}
 
                       <h4 className="mt-6 font-semibold text-gray-900 dark:text-white text-xl">
                         {integration.name}

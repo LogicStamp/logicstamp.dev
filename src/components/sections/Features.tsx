@@ -300,6 +300,186 @@ $ stamp context clean
 💡 Run with --all --yes to confirm and delete these files.`
     },
     {
+      title: 'Toon Output Format',
+      content: `$ stamp context --format toon
+🔍 Scanning /project/src...
+   Found 24 files
+🔨 Analyzing components...
+   Analyzed 24 components
+📊 Building dependency graph...
+📋 Using profile: llm-chat (depth=2, header only, max 100 nodes)
+📦 Generating context for 22 root components (depth=2)...
+🔍 Validating generated context...
+✅ Validation passed
+📝 Writing context files for 5 folders...
+   ✓ context.toon (2 bundles)
+   ✓ src/context.toon (3 bundles)
+   ✓ src/components/context.toon (5 bundles)
+   ✓ src/utils/context.toon (2 bundles)
+   ✓ app/context.toon (3 bundles)
+📝 Writing main context index...
+   ✓ context_main.json (index of 5 folders)
+✅ 6 context files written successfully
+
+📊 Summary:
+   Total components: 24
+   Root components: 22
+   Bundles generated: 22
+   Format: TOON (Token-Oriented Object Notation)
+
+📏 Token Estimates (TOON format):
+   GPT-4o-mini: 8,540 tokens (~40% savings vs JSON)
+   Claude:      7,590 tokens (~40% savings vs JSON)
+   
+   Comparison:
+     Format     | Tokens GPT-4o | Tokens Claude | Savings vs JSON
+     -----------|---------------|---------------|------------------
+     JSON       |        14,512 |        12,900 | 0%
+     TOON       |         8,540 |         7,590 | 40%
+
+⏱  Completed in 3124ms`
+    },
+    {
+      title: 'Watch Mode',
+      content: `$ stamp context --watch
+🔍 Scanning /project/src...
+   Found 24 files
+🔨 Analyzing components...
+   Analyzed 24 components
+📊 Building dependency graph...
+📋 Using profile: llm-chat (depth=2, header only, max 100 nodes)
+📦 Generating context for 22 root components (depth=2)...
+🔍 Validating generated context...
+✅ Validation passed
+📝 Writing context files for 5 folders...
+   ✓ context.json (2 bundles)
+   ✓ src/context.json (3 bundles)
+   ✓ src/components/context.json (5 bundles)
+   ✓ src/utils/context.json (2 bundles)
+   ✓ app/context.json (3 bundles)
+📝 Writing main context index...
+   ✓ context_main.json (index of 5 folders)
+✅ 6 context files written successfully
+
+👀 Watch mode enabled. Watching for file changes...
+
+📝 File changed: src/components/Button.tsx
+🔄 Incremental rebuild: src/components/context.json
+   ✓ Updated 1 bundle in 234ms
+
+📝 File changed: src/utils/helpers.ts
+🔄 Incremental rebuild: src/utils/context.json
+   ✓ Updated 1 bundle in 189ms
+
+📝 Files changed: src/components/Card.tsx, src/components/Modal.tsx
+🔄 Incremental rebuild: src/components/context.json
+   ✓ Updated 2 bundles in 312ms
+
+💡 Watch mode: Context bundles stay fresh automatically
+   Press Ctrl+C to stop watching`
+    },
+    {
+      title: 'Watch Mode with Style',
+      content: `$ stamp context --watch --include-style
+🔍 Scanning /project/src...
+   Found 24 files
+🔨 Analyzing components...
+   Analyzed 24 components
+🎨 Extracting style metadata (Tailwind, SCSS, Material UI)...
+📊 Building dependency graph...
+📋 Using profile: llm-chat (depth=2, header only, max 100 nodes)
+📦 Generating context for 22 root components (depth=2)...
+🔍 Validating generated context...
+✅ Validation passed
+📝 Writing context files for 5 folders...
+   ✓ context.json (2 bundles)
+   ✓ src/context.json (3 bundles)
+   ✓ src/components/context.json (5 bundles)
+   ✓ src/utils/context.json (2 bundles)
+   ✓ app/context.json (3 bundles)
+📝 Writing main context index...
+   ✓ context_main.json (index of 5 folders)
+✅ 6 context files written successfully
+
+📊 Summary:
+   Total components: 24
+   Root components: 22
+   Bundles generated: 22
+   Style metadata: Enabled
+
+📏 Token Estimates (header+style mode):
+   GPT-4o-mini: 16,234 tokens
+   Claude:      14,428 tokens
+
+👀 Watch mode enabled. Watching for file changes...
+
+📝 File changed: src/components/Button.tsx
+🎨 Extracting style metadata...
+🔄 Incremental rebuild: src/components/context.json
+   ✓ Updated 1 bundle with style metadata in 312ms
+
+📝 File changed: src/components/Card.tsx
+🎨 Extracting style metadata (Tailwind classes detected)...
+🔄 Incremental rebuild: src/components/context.json
+   ✓ Updated 1 bundle with style metadata in 287ms
+
+📝 Files changed: src/components/Modal.tsx, src/components/Dialog.tsx
+🎨 Extracting style metadata (Material UI + animations detected)...
+🔄 Incremental rebuild: src/components/context.json
+   ✓ Updated 2 bundles with style metadata in 445ms
+
+💡 Watch mode with style: Context bundles stay fresh with visual metadata
+   Press Ctrl+C to stop watching`
+    },
+    {
+      title: 'Security Scan',
+      content: `$ stamp security scan
+🔒 Scanning for secrets (API keys, passwords, tokens)...
+   Scanning TypeScript, JavaScript, and JSON files...
+   Found 42 files to scan
+
+🔍 Analyzing files...
+   ✓ src/components/Button.tsx
+   ✓ src/utils/helpers.ts
+   ⚠️  src/config/api.ts - Potential secret detected
+   ✓ src/hooks/useAuth.ts
+   ⚠️  src/config/secrets.js - Potential secret detected
+   ✓ src/app/page.tsx
+   ... (36 more files)
+
+🔒 Security scan complete
+
+📊 Summary:
+   Files scanned: 42
+   Secrets found: 3
+   Files with secrets: 2
+
+⚠️  Detected Secrets:
+   1. src/config/api.ts:15:12
+      Type: API Key
+      Severity: high
+      Snippet: const apiKey = 'FAKE_SECRET_KEY_1234567890abcdefghijklmnop'
+
+   2. src/config/secrets.js:8:23
+      Type: Password
+      Severity: high
+      Snippet: const dbPassword = 'mySecretPassword123!'
+
+   3. src/config/secrets.js:12:5
+      Type: Token
+      Severity: medium
+      Snippet: token: 'ghp_FAKE_GITHUB_TOKEN_00000000000000000000000000000000'
+
+📝 Report written to: stamp_security_report.json
+🔒 Report automatically added to .gitignore
+
+💡 Next steps:
+   - Review the security report: stamp_security_report.json
+   - Move secrets to .env files or environment variables
+   - Use 'stamp ignore <file>' to exclude files from context generation
+   - Run 'stamp security --hard-reset' to delete the report after remediation`
+    },
+    {
       title: 'context.json (folder)',
       content: `// src/components/context.json
 [
@@ -451,17 +631,19 @@ $ stamp context clean
         // Command prompt ($)
         { regex: /^\$\s+/g, color: 'text-green-400' },
         // Commands (stamp, npm, etc.)
-        { regex: /\b(stamp|npm|i|install|-g|context|style|compare|validate|init|clean|--stats|--compare-modes|--approve|--clean-orphaned|--include-style)\b/g, color: 'text-blue-400' },
+        { regex: /\b(stamp|npm|i|install|-g|context|style|compare|validate|init|clean|security|scan|--stats|--compare-modes|--approve|--clean-orphaned|--include-style|--format|--watch|toon|--hard-reset)\b/g, color: 'text-blue-400' },
         // Numbers
         { regex: /\b\d+\b/g, color: 'text-yellow-400' },
         // Paths and URLs
         { regex: /(\/[\w\/\.-]+|https?:\/\/[^\s]+)/g, color: 'text-cyan-400' },
         // Success messages (✅)
         { regex: /✅/g, color: 'text-green-400' },
+        // Warning messages (⚠️)
+        { regex: /⚠️/g, color: 'text-orange-400' },
         // Emojis (🔍, 🔨, 📊, etc.)
-        { regex: /[🔍🔨📊📋📦🔍✅📝⏱🔄🎨]/g, color: 'text-yellow-400' },
+        { regex: /[🔍🔨📊📋📦🔍✅📝⏱🔄🎨👀🔒]/g, color: 'text-yellow-400' },
         // Status words
-        { regex: /\b(PASS|FAIL|Completed|found|Analyzed|Scanning|Generating|Validating|Writing|Summary|Comparison|Mode|Tokens|Savings|Estimates|Extracting|detected|Tailwind|Material UI|SCSS|CSS|Animations)\b/gi, color: 'text-purple-400' },
+        { regex: /\b(PASS|FAIL|Completed|found|Analyzed|Scanning|Generating|Validating|Writing|Summary|Comparison|Mode|Tokens|Savings|Estimates|Extracting|detected|Tailwind|Material UI|SCSS|CSS|Animations|Watch|Watching|Incremental|rebuild|TOON|Format|enabled|changed|Updated|Security|secrets|Secret|API Key|Password|Token|Severity|high|medium|low|Report|remediation)\b/gi, color: 'text-purple-400' },
         // Percentages and special numbers
         { regex: /(~|%|\+|-)\d+/g, color: 'text-orange-400' },
       ]

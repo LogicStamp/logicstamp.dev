@@ -1,69 +1,39 @@
 'use client'
 
-import { useEffect, useRef, useState, forwardRef } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import CopyButton from '../ui/CopyButton'
 import GitHubStats from '../common/GitHubStats'
 import StarGitHubButton from '../ui/StarGitHubButton'
 import ReadTheDocsButton from '../ui/ReadTheDocsButton'
-import HeroVisualization from '../features/HeroVisualization'
+import EnhancedVisualization from '../features/HeroVisualization/EnhancedVisualization'
 import CommunityCTA from './CommunityCTA'
 
-// Custom hook for intersection observer
+// Simple hook that shows elements after mount (no IntersectionObserver complexity)
 function useInView(threshold = 0.1) {
   const ref = useRef<HTMLDivElement>(null)
   const [inView, setInView] = useState(false)
 
   useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setInView(true)
-          observer.disconnect()
-        }
-      },
-      { threshold }
-    )
+    // Simple: show after a short delay to allow layout to settle
+    const timer = setTimeout(() => {
+      setInView(true)
+    }, 100)
 
-    if (ref.current) {
-      observer.observe(ref.current)
-    }
-
-    return () => observer.disconnect()
-  }, [threshold])
+    return () => clearTimeout(timer)
+  }, [])
 
   return { ref, inView }
 }
 
-// Simple visualization wrapper matching demo page animation style
-const HeroVisualizationWrapper = forwardRef<HTMLDivElement, { inView: boolean }>(
-  function HeroVisualizationWrapper({ inView }, ref) {
-    return (
-      <HeroVisualization
-        ref={ref}
-        graphStyle={{
-          opacity: inView ? 1 : 0,
-          transform: inView ? 'translateX(0)' : 'translateX(-20px)',
-          transition: 'opacity 1s ease-out, transform 1s ease-out',
-        }}
-        terminalStyle={{
-          opacity: inView ? 1 : 0,
-          transform: inView ? 'translateX(0)' : 'translateX(20px)',
-          transition: 'opacity 1s ease-out 0.3s, transform 1s ease-out 0.3s',
-        }}
-        arrowOpacity={inView ? 0.8 : 0}
-      />
-    )
-  }
-)
 
 export default function Hero() {
   const [activeTab, setActiveTab] = useState<'cli' | 'mcp'>('cli')
+  const [mcpHovered, setMcpHovered] = useState(false)
   const { ref: titleRef, inView: titleInView } = useInView(0.1)
   const { ref: descriptionRef, inView: descriptionInView } = useInView(0.1)
   const { ref: buttonsRef, inView: buttonsInView } = useInView(0.1)
   const { ref: installRef, inView: installInView } = useInView(0.1)
-  const { ref: betaButtonRef, inView: betaButtonInView } = useInView(0.1)
-  const { ref: badgesRef, inView: badgesInView } = useInView(0.1)
+  const { ref: mcpButtonRef, inView: mcpButtonInView } = useInView(0.1)
   const { ref: statsRef, inView: statsInView } = useInView(0.1)
   const { ref: visualizationRef, inView: visualizationInView } = useInView(0.1)
   const { ref: communityRef, inView: communityInView } = useInView(0.1)
@@ -77,7 +47,186 @@ export default function Hero() {
       </div>
 
       <div className="mx-auto max-w-[1440px] px-4 lg:px-6 relative z-10">
-        <div className="mx-auto max-w-2xl lg:max-w-6xl text-center">
+        {/* Desktop: Split layout with headline left, visualization right */}
+        <div className="hidden lg:grid lg:grid-cols-2 lg:gap-12 lg:items-center lg:min-h-[80vh]">
+          {/* Left: Headline and CTA */}
+          <div className="flex flex-col justify-center">
+            {/* Title */}
+            <div 
+              ref={titleRef}
+              className={`transition-all duration-1000 ${
+                titleInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+              }`}
+            >
+              <h1 className="text-4xl xl:text-5xl 2xl:text-6xl font-extrabold tracking-tight text-gray-900 dark:text-white text-left leading-tight">
+                <span className="whitespace-nowrap">Turn TypeScript Into</span>
+                <br />
+                <span className="relative inline-block">
+                  <span className="bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 bg-clip-text text-transparent">
+                    AI-Ready Context
+                  </span>
+                  <span className="absolute inset-0 bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 blur-xl -z-10 opacity-20 animate-pulse"></span>
+                </span>
+              </h1>
+            </div>
+
+            {/* Description paragraphs */}
+            <div 
+              ref={descriptionRef}
+              className={`mt-6 transition-all duration-1000 delay-200 ${
+                descriptionInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+              }`}
+            >
+              <p className="text-xl xl:text-2xl leading-relaxed text-gray-600 dark:text-gray-300 font-medium text-left">
+                Deterministic architectural context from your TypeScript codebase in seconds.{' '}
+                <span className="text-secondary-700 dark:text-secondary-300 font-semibold">One-time setup, up to 70% token savings.</span>
+              </p>
+              <p className="mt-4 text-base xl:text-lg text-gray-500 dark:text-gray-400 text-left">
+                Fast • Deterministic • Open Source
+              </p>
+            </div>
+
+            {/* Quick install snippet */}
+            <div 
+              ref={installRef}
+              className={`mt-8 transition-all duration-1000 delay-300 ${
+                installInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+              }`}
+            >
+              <div className="flex flex-col items-start">
+                {/* Tabs */}
+                <div className="mb-4 flex items-center gap-2 bg-white/50 dark:bg-gray-900/50 rounded-lg p-1 ring-1 ring-gray-300/50 dark:ring-gray-700/50">
+                  <button
+                    onClick={() => setActiveTab('cli')}
+                    className={`px-4 py-2 rounded-md text-sm font-medium transition-all duration-200 ${
+                      activeTab === 'cli'
+                        ? 'bg-white dark:bg-gray-800 text-gray-900 dark:text-white shadow-sm'
+                        : 'text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-300'
+                    }`}
+                  >
+                    Install the CLI
+                  </button>
+                  <button
+                    onClick={() => setActiveTab('mcp')}
+                    className={`px-4 py-2 rounded-md text-sm font-medium transition-all duration-200 ${
+                      activeTab === 'mcp'
+                        ? 'bg-white dark:bg-gray-800 text-gray-900 dark:text-white shadow-sm'
+                        : 'text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-300'
+                    }`}
+                  >
+                    Install the MCP
+                  </button>
+                </div>
+                
+                {/* Install command */}
+                <div className="relative group">
+                  <div className="absolute -inset-1 bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 rounded-2xl blur opacity-25 group-hover:opacity-40 transition duration-300"></div>
+                  <div className="relative inline-flex items-center gap-3 rounded-xl bg-white dark:bg-gray-900 px-8 py-4 shadow-xl ring-1 ring-gray-300/50 dark:ring-gray-700/50">
+                    <span className="text-base font-bold text-purple-600 dark:text-purple-400" aria-label="Command prompt">
+                      $
+                    </span>
+                    <code className="text-base font-mono font-semibold text-gray-900 dark:text-gray-100" aria-label="Installation command">
+                      {activeTab === 'cli' ? 'npm install -g logicstamp-context' : 'npm install -g logicstamp-mcp'}
+                    </code>
+                    <CopyButton 
+                      text={activeTab === 'cli' ? 'npm install -g logicstamp-context' : 'npm install -g logicstamp-mcp'} 
+                      className="ml-2" 
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Buttons */}
+            <div 
+              ref={buttonsRef}
+              className={`mt-6 transition-all duration-1000 delay-400 ${
+                buttonsInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+              }`}
+            >
+              <div className="flex flex-row items-center gap-4">
+                <StarGitHubButton />
+                <ReadTheDocsButton href="docs/" />
+              </div>
+            </div>
+
+            {/* MCP Button */}
+            <div 
+              ref={mcpButtonRef}
+              className={`mt-6 transition-all duration-1000 delay-500 ${
+                mcpButtonInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+              }`}
+            >
+              <div className="flex justify-center lg:justify-start relative">
+                <div
+                  onMouseEnter={() => setMcpHovered(true)}
+                  onMouseLeave={() => setMcpHovered(false)}
+                  onTouchStart={() => setMcpHovered(false)}
+                  className="relative"
+                >
+                  <a
+                    href="/docs/mcp"
+                    className="inline-flex items-center gap-2 lg:gap-2.5 rounded-full bg-white/80 dark:bg-gray-900/80 px-5 py-2 lg:px-7 lg:py-3 text-base lg:text-lg font-semibold text-gray-900 dark:text-white shadow-lg lg:hover:shadow-xl ring-1 ring-gray-300 dark:ring-gray-700 lg:hover:ring-purple-500 dark:lg:hover:ring-purple-400 backdrop-blur-xl backdrop-saturate-150 transition-all duration-200 lg:hover:-translate-y-0.5"
+                  >
+                    <svg className={`h-5 w-5 lg:h-6 lg:w-6 text-purple-600 dark:text-purple-400 transition-transform duration-200 ${mcpHovered ? 'lg:rotate-[15deg]' : ''}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1" />
+                    </svg>
+                    MCP Compatible
+                  </a>
+                  
+                  {/* Tooltip - Desktop only */}
+                  <div
+                    className={`hidden lg:block absolute left-full ml-3 top-0 -mt-4 z-[100] w-80 transition-all duration-300 ease-out ${
+                      mcpHovered ? 'opacity-100 translate-x-0 pointer-events-auto' : 'opacity-0 -translate-x-2 pointer-events-none'
+                    }`}
+                  >
+                    <div className="relative">
+                      {/* Arrow - pointing left */}
+                      <div className="absolute -left-2 top-6 w-4 h-4 bg-white dark:bg-gray-900 border-l border-b border-gray-200 dark:border-gray-700 rotate-45"></div>
+                      
+                      {/* Tooltip content */}
+                      <div className="relative bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-700 rounded-xl shadow-2xl p-4 backdrop-blur-xl">
+                        <div className="absolute inset-0 bg-gradient-to-br from-purple-50/50 via-blue-50/50 to-pink-50/50 dark:from-purple-950/20 dark:via-blue-950/20 dark:to-pink-950/20 rounded-xl -z-10"></div>
+                        
+                        <div className="flex items-start gap-3">
+                          <div className="flex-shrink-0 p-2 bg-gradient-to-br from-purple-100 to-blue-100 dark:from-purple-900/40 dark:to-blue-900/40 rounded-lg">
+                            <svg className="w-5 h-5 text-purple-600 dark:text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1" />
+                            </svg>
+                          </div>
+                          
+                          <div className="flex-1 min-w-0">
+                            <h3 className="text-sm font-bold text-gray-900 dark:text-white mb-1.5">
+                              Model Context Protocol
+                            </h3>
+                            <p className="text-xs sm:text-sm text-gray-600 dark:text-gray-400 leading-relaxed">
+                              Works with MCP-based AI agents like Claude Desktop and Cursor. Enables direct analysis through LogicStamp's MCP server.
+                            </p>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Right: Enhanced Visualization */}
+          <div 
+            ref={visualizationRef}
+            className={`transition-all duration-1000 delay-500 ${
+              visualizationInView ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-8'
+            }`}
+          >
+            <div className="h-[550px] lg:h-[650px] xl:h-[750px]">
+              <EnhancedVisualization inView={visualizationInView} />
+            </div>
+          </div>
+        </div>
+
+        {/* Mobile: Stacked layout */}
+        <div className="lg:hidden mx-auto max-w-2xl text-center">
           {/* Title */}
           <div 
             ref={titleRef}
@@ -85,7 +234,7 @@ export default function Hero() {
               titleInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
             }`}
           >
-            <h1 className="text-4xl font-extrabold tracking-tight text-gray-900 dark:text-white sm:text-6xl lg:text-7xl xl:text-8xl sm:text-balance leading-tight">
+            <h1 className="text-4xl font-extrabold tracking-tight text-gray-900 dark:text-white sm:text-6xl sm:text-balance leading-tight">
               {/* Mobile: 2 lines */}
               <span className="block sm:hidden">
                 <span className="block whitespace-nowrap">Turn TypeScript Into</span>
@@ -191,52 +340,82 @@ export default function Hero() {
             </div>
           </div>
 
-          {/* Public Beta Button */}
+          {/* MCP Button */}
           <div 
-            ref={betaButtonRef}
+            ref={mcpButtonRef}
             className={`transition-all duration-1000 delay-500 ${
-              betaButtonInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+              mcpButtonInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
             }`}
           >
-            <div className="mt-10 sm:mt-12 flex flex-col items-center justify-center">
-              <a
-                href="/roadmap"
-                className="inline-flex items-center gap-2 px-4 py-2 sm:px-5 sm:py-2.5 rounded-lg bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 text-white font-semibold text-sm sm:text-base shadow-md focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-purple-600"
+            <div className="mt-10 sm:mt-12 flex items-center justify-center relative">
+              <div
+                onMouseEnter={() => setMcpHovered(true)}
+                onMouseLeave={() => setMcpHovered(false)}
+                onTouchStart={() => setMcpHovered(false)}
+                className="relative"
               >
-                <svg className="w-4 h-4 sm:w-5 sm:h-5" fill="currentColor" viewBox="0 0 20 20">
-                  <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.857-9.809a.75.75 0 00-1.214-.882l-3.483 4.79-1.88-1.88a.75.75 0 10-1.06 1.061l2.5 2.5a.75.75 0 001.137-.089l4-5.5z" clipRule="evenodd" />
-                </svg>
-                <span>Join Public Beta</span>
-              </a>
+                <a
+                  href="/docs/mcp"
+                  className="inline-flex items-center gap-2 lg:gap-2.5 rounded-full bg-white/80 dark:bg-gray-900/80 px-5 py-2 lg:px-7 lg:py-3 text-base lg:text-lg font-semibold text-gray-900 dark:text-white shadow-lg lg:hover:shadow-xl ring-1 ring-gray-300 dark:ring-gray-700 lg:hover:ring-purple-500 dark:lg:hover:ring-purple-400 backdrop-blur-xl backdrop-saturate-150 transition-all duration-200 lg:hover:-translate-y-0.5"
+                >
+                  <svg className={`h-5 w-5 lg:h-6 lg:w-6 text-purple-600 dark:text-purple-400 transition-transform duration-200 ${mcpHovered ? 'lg:rotate-[15deg]' : ''}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1" />
+                  </svg>
+                  MCP Compatible
+                </a>
+                
+                {/* Tooltip - Desktop only */}
+                <div
+                  className={`hidden lg:block absolute left-1/2 -translate-x-1/2 bottom-full mb-3 z-[100] w-80 transition-all duration-300 ease-out ${
+                    mcpHovered ? 'opacity-100 translate-y-0 pointer-events-auto' : 'opacity-0 translate-y-2 pointer-events-none'
+                  }`}
+                >
+                  <div className="relative">
+                    {/* Arrow - pointing down */}
+                    <div className="absolute -bottom-2 left-1/2 -translate-x-1/2 w-4 h-4 bg-white dark:bg-gray-900 border-r border-b border-gray-200 dark:border-gray-700 rotate-45"></div>
+                    
+                    {/* Tooltip content */}
+                    <div className="relative bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-700 rounded-xl shadow-2xl p-4 backdrop-blur-xl">
+                      <div className="absolute inset-0 bg-gradient-to-br from-purple-50/50 via-blue-50/50 to-pink-50/50 dark:from-purple-950/20 dark:via-blue-950/20 dark:to-pink-950/20 rounded-xl -z-10"></div>
+                      
+                      <div className="flex items-start gap-3">
+                        <div className="flex-shrink-0 p-2 bg-gradient-to-br from-purple-100 to-blue-100 dark:from-purple-900/40 dark:to-blue-900/40 rounded-lg">
+                          <svg className="w-5 h-5 text-purple-600 dark:text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1" />
+                          </svg>
+                        </div>
+                        
+                        <div className="flex-1 min-w-0">
+                          <h3 className="text-sm font-bold text-gray-900 dark:text-white mb-1.5">
+                            Model Context Protocol
+                          </h3>
+                          <p className="text-xs sm:text-sm text-gray-600 dark:text-gray-400 leading-relaxed">
+                            Native integration with Claude Desktop, Claude Code, and Cursor. AI assistants can analyze your codebase directly through LogicStamp's MCP server.
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
 
-          {/* Launch Badge */}
+          {/* Mobile Visualization */}
           <div 
-            ref={badgesRef}
-            className={`transition-all duration-1000 delay-600 ${
-              badgesInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+            ref={visualizationRef}
+            className={`mt-12 transition-all duration-1000 delay-500 ${
+              visualizationInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
             }`}
           >
-            <div className="mt-10 sm:mt-12 flex items-center justify-center gap-2 lg:gap-3 flex-wrap">
-              <span className="inline-flex items-center gap-1.5 lg:gap-2 rounded-full bg-gradient-to-r from-blue-500/10 via-purple-500/10 to-pink-500/10 px-4 py-1.5 lg:px-6 lg:py-2.5 text-sm lg:text-base font-semibold text-secondary-700 dark:text-secondary-300 ring-1 ring-inset ring-secondary-500/30 animate-pulse">
-                <svg className="h-4 w-4 lg:h-5 lg:w-5 text-green-600 dark:text-green-400" fill="currentColor" viewBox="0 0 20 20">
-                  <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.857-9.809a.75.75 0 00-1.214-.882l-3.483 4.79-1.88-1.88a.75.75 0 10-1.06 1.061l2.5 2.5a.75.75 0 001.137-.089l4-5.5z" clipRule="evenodd" />
-                </svg>
-                Just Launched
-              </span>
-              <span className="inline-flex items-center gap-1.5 lg:gap-2 rounded-full bg-gradient-blue-purple/10 px-3 py-1 lg:px-5 lg:py-2 text-xs sm:text-sm lg:text-base font-medium text-secondary-700 dark:text-secondary-300 ring-1 ring-inset ring-secondary-500/20">
-                <svg className="h-3.5 w-3.5 lg:h-5 lg:w-5" fill="currentColor" viewBox="0 0 20 20">
-                  <path d="M12.316 3.051a1 1 0 01.633 1.265l-4 12a1 1 0 11-1.898-.632l4-12a1 1 0 011.265-.633zM5.707 6.293a1 1 0 010 1.414L3.414 10l2.293 2.293a1 1 0 11-1.414 1.414l-3-3a1 1 0 010-1.414l3-3a1 1 0 011.414 0zm8.586 0a1 1 0 011.414 0l3 3a1 1 0 010 1.414l-3 3a1 1 0 11-1.414-1.414L16.586 10l-2.293-2.293a1 1 0 010-1.414z" />
-                </svg>
-                100% Open Source
-              </span>
+            <div className="h-[450px] sm:h-[550px]">
+              <EnhancedVisualization inView={visualizationInView} />
             </div>
           </div>
         </div>
 
         {/* Mobile CTA */}
-        <div className="mt-10 sm:mt-12 sm:hidden">
+        <div className="mt-56 sm:mt-12 sm:hidden">
           <div className="mx-auto max-w-md px-4">
             <a
               href="https://raw.githubusercontent.com/LogicStamp/logicstamp.dev/main/public/logicstamp-workflow.gif"
@@ -253,9 +432,9 @@ export default function Hero() {
                   </svg>
                 </div>
                 <div className="flex-1 min-w-0">
-                  <h3 className="text-base font-bold text-gray-900 dark:text-white truncate">
+                  <h2 className="text-base font-bold text-gray-900 dark:text-white truncate">
                     See in Action
-                  </h3>
+                  </h2>
                 </div>
                 <div className="flex-shrink-0 inline-flex items-center text-gray-900 dark:text-white">
                   <svg className="h-5 w-5 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -270,11 +449,19 @@ export default function Hero() {
         {/* Workflow GIF - Desktop Only */}
         <div 
           ref={workflowGifRef}
-          className={`hidden sm:block mt-10 sm:mt-12 transition-all duration-500 delay-300 ${
+          className={`hidden sm:block mt-16 sm:mt-20 transition-all duration-500 delay-300 ${
             workflowGifInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
           }`}
         >
           <div className="relative mx-auto max-w-[1440px] -mx-4 lg:-mx-6 px-4 lg:px-6">
+            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-gray-900 dark:text-white text-center mb-6 sm:mb-8">
+              LogicStamp in <span className="relative inline-block">
+                <span className="bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 bg-clip-text text-transparent">
+                  Action
+                </span>
+                <span className="absolute inset-0 bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 blur-xl -z-10 opacity-20 animate-pulse"></span>
+              </span>
+            </h2>
             <div className="relative rounded-2xl overflow-hidden shadow-2xl ring-1 ring-gray-200/50 dark:ring-gray-700/50 bg-gray-900">
               <img 
                 src="/logicstamp-workflow.gif" 
@@ -289,15 +476,12 @@ export default function Hero() {
         {/* GitHub Stats Section */}
         <div 
           ref={statsRef}
-          className={`transition-all duration-1000 delay-600 ${
+          className={`-mt-8 sm:-mt-10 transition-all duration-1000 delay-600 ${
             statsInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
           }`}
         >
           <GitHubStats />
         </div>
-
-        {/* Dependency Graph Visualization with Context.json Preview */}
-        <HeroVisualizationWrapper ref={visualizationRef} inView={visualizationInView} />
 
         {/* Community & Contribution CTA */}
         <div 

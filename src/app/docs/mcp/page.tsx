@@ -57,7 +57,7 @@ export default function MCPPage() {
                 <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
                   <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.857-9.809a.75.75 0 00-1.214-.882l-3.483 4.79-1.88-1.88a.75.75 0 10-1.06 1.061l2.5 2.5a.75.75 0 001.137-.089l4-5.5z" clipRule="evenodd" />
                 </svg>
-                Beta v0.1.4
+                Beta v0.1.5
               </div>
 
               <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-gray-600 dark:text-gray-400 leading-relaxed max-w-3xl mx-auto mb-4">
@@ -207,7 +207,7 @@ claude mcp add --scope user --transport stdio logicstamp -- npx logicstamp-mcp`,
                       ]}
                     />
                     <p className="text-sm text-gray-500 dark:text-gray-500 mt-3">
-                      <strong>What this does:</strong> Adds LogicStamp to your global Claude Code configuration (~/.claude.json), makes the 6 LogicStamp tools available in every project, and server auto-starts when Claude Code needs it (no manual startup required).
+                      <strong>What this does:</strong> Adds LogicStamp to your global Claude Code configuration (~/.claude.json), makes the 7 LogicStamp tools available in every project, and server auto-starts when Claude Code needs it (no manual startup required).
                     </p>
                   </div>
 
@@ -404,7 +404,7 @@ claude`,
                 <p className="text-sm text-gray-600 dark:text-gray-400 italic">[Automatically uses logicstamp_refresh_snapshot and logicstamp_list_bundles]</p>
               </div>
               <p className="text-base text-gray-600 dark:text-gray-400">
-                The 6 LogicStamp tools will be available:
+                The 7 LogicStamp tools will be available:
               </p>
               <ul className="list-disc list-inside space-y-1 text-sm text-gray-600 dark:text-gray-400 ml-4 mt-2">
                 <li><code className="px-1.5 py-0.5 bg-gray-100 dark:bg-gray-800 text-indigo-600 dark:text-indigo-400 rounded font-mono">logicstamp_refresh_snapshot</code> - Analyze project structure</li>
