@@ -9,7 +9,7 @@
 > - **MCP Tool (`logicstamp_read_logicstamp_docs`)**: Reads from the installed package and is the authoritative source for current capabilities
 > - **This Repo File**: May be outdated or out of sync with the published package
 > 
-> The MCP tool embeds this documentation in the published package (v0.1.5+), ensuring it matches the tool's actual capabilities. If you notice discrepancies between this file and the MCP tool output, the MCP tool is correct.
+> The MCP tool embeds this documentation in the published package (v0.1.6+), ensuring it matches the tool's actual capabilities. If you notice discrepancies between this file and the MCP tool output, the MCP tool is correct.
 > 
 > **Best Practice**: Always use `logicstamp_read_logicstamp_docs` when you need accurate, up-to-date documentation about LogicStamp capabilities.
 

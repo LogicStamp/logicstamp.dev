@@ -27,9 +27,9 @@ const sections: DocsNavSection[] = [
   {
     title: 'Getting Started',
     items: [
-      { title: 'CLI - Installation & Quick Start', href: '/docs/getting-started' },
-      { title: 'MCP - Installation & Quick Start', href: '/docs/mcp/getting-started' },
-      { title: 'Complete Installation & Quick Start', href: '/docs/installation-quick-start' },
+      { title: 'Getting Started', href: '/docs/getting-started' },
+      { title: 'CLI', href: '/docs/cli/getting-started' },
+      { title: 'MCP', href: '/docs/mcp/getting-started' },
     ],
   },
   {
@@ -108,6 +108,8 @@ function isActive(pathname: string, href: string) {
   if (href === '/docs/complete-reference') return pathname === '/docs/complete-reference'
   // Reference page should match exactly
   if (href === '/docs/reference') return pathname === '/docs/reference'
+  // MCP Overview should only match exactly, not sub-paths
+  if (href === '/docs/mcp') return pathname === '/docs/mcp'
   return pathname === href || pathname.startsWith(href + '/')
 }
 
