@@ -57,6 +57,11 @@ function getCachedInitialTheme() {
   return cachedInitialTheme
 }
 
+// Reset cache (useful for testing)
+export function resetThemeCache() {
+  cachedInitialTheme = null
+}
+
 export function ThemeProvider({ children }: { children: ReactNode }) {
   // Initialize synchronously from DOM/localStorage to prevent flash
   // Cache the result to avoid multiple calls
