@@ -850,10 +850,14 @@ stamp context --depth 3 --include-code full --max-nodes 50
 
 ### CI/CD Integration
 
+> ⚠️ **Limited CI/CD support:** Git baseline comparison (`git:main`, `git:HEAD~1`) is not yet implemented. Current CI/CD workflows require committing context files (not recommended) or manual baseline generation. See the [roadmap](https://logicstamp.dev/roadmap) for planned features.
+
 **Current CI support:**
 - Context files are gitignored by default (regenerable artifacts)
 - CI can generate context files fresh and validate them
 - Useful for: validation, stats collection, ensuring generation succeeds
+- **Contract verification** — works, but only against disk snapshots
+- **Change detection** — works, but only against disk snapshots
 
 ```bash
 # Generate context files fresh in CI

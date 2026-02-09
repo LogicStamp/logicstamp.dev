@@ -359,9 +359,11 @@ Each component contract (`UIFContract`) includes:
 
 ### CI/CD Integration
 - **Strict validation** - `--strict-missing` flag for dependency checking
-- **Drift detection** - Compare context versions to detect changes
+- **Drift detection** - Compare context versions to detect changes (works against disk snapshots; git baseline comparison not yet implemented)
 - **JSON stats output** - Machine-readable metrics for CI pipelines
 - **Exit codes** - CI-friendly success/failure indicators
+
+> ⚠️ **Note:** Git baseline comparison (`git:main`, `git:HEAD~1`) is not yet implemented. Current CI/CD workflows require committing context files (not recommended) or manual baseline generation. See the [roadmap](https://logicstamp.dev/roadmap) for planned features.
 
 ## Use Cases
 
@@ -385,9 +387,9 @@ Share context bundles with AI assistants to get:
 - **Complexity metrics** - Track component dependency counts
 
 ### CI/CD Validation
-- **Contract verification** - Ensure components match expected contracts
+- **Contract verification** - Ensure components match expected contracts (works against disk snapshots)
 - **Dependency validation** - Catch missing or broken imports
-- **Change detection** - Monitor component contract drift
+- **Change detection** - Monitor component contract drift (works against disk snapshots; git baseline comparison not yet implemented)
 - **Token budgeting** - Track context size for AI workflows
 
 ## Technical Implementation

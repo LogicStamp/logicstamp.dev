@@ -180,13 +180,14 @@ After configuring and restarting Claude Desktop:
    Can you analyze my React project using LogicStamp?
    ```
 
-The AI should be able to use the 6 LogicStamp tools:
+The AI should be able to use the 7 LogicStamp tools:
 - `logicstamp_refresh_snapshot` - Analyze project structure
 - `logicstamp_list_bundles` - List available components
 - `logicstamp_read_bundle` - Read component contracts
 - `logicstamp_compare_snapshot` - Detect changes after edits
 - `logicstamp_compare_modes` - Generate token cost comparison across modes
 - `logicstamp_read_logicstamp_docs` - Read LogicStamp documentation
+- `logicstamp_watch_status` - Check if watch mode is active
 
 **Note:** Unlike Cursor, Claude Desktop doesn't show MCP servers in a UI. The only way to verify it's working is to test it in a conversation. If Claude can use the LogicStamp tools, it's working! If not, check the [Troubleshooting](#troubleshooting) section below.
 

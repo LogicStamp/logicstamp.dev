@@ -419,11 +419,20 @@ Token stats show the delta for each folder with changes.
 
 ### CI/CD Integration
 
-> **Important:** By default, context files are gitignored and won't exist in CI. The examples below require either:
+> ⚠️ **Limited CI/CD support:** Git baseline comparison (`git:main`, `git:HEAD~1`) is not yet implemented. Current CI/CD workflows require committing context files (not recommended) or manual baseline generation.
+>
+> **What works:**
+> - Contract verification — works, but only against disk snapshots
+> - Change detection — works, but only against disk snapshots
+>
+> **What's missing:**
+> - Native git baseline support (`git:main`, `git:HEAD~1`) — planned for future release
+>
+> **Current workarounds:**
 > 1. **Committing context files** - Remove them from `.gitignore` (not recommended)
 > 2. **Manual baseline generation** - Generate context at two points and compare (shown in second example)
 >
-> **Coming soon:** Native git baseline support (`git:main`, `git:HEAD~1`) will simplify CI workflows without requiring committed context files.
+> See the [roadmap](https://logicstamp.dev/roadmap) for planned features.
 
 #### GitHub Actions Example (Auto-Mode Multi-File)
 

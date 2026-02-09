@@ -181,6 +181,15 @@ export default function FAQ() {
                   className={`
                     group relative
                     ${faqsInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}
+                    rounded-xl overflow-hidden
+                    bg-white dark:bg-gray-900/50
+                    border transition-all duration-300 ease-out
+                    ${isOpen 
+                      ? 'border-gray-900 dark:border-gray-100 shadow-[0_0_0_1px_rgba(0,0,0,0.45),0_18px_40px_rgba(15,23,42,0.75)] dark:shadow-[0_0_0_1px_rgba(255,255,255,0.45),0_18px_40px_rgba(15,23,42,0.75)]' 
+                      : 'border-gray-200/60 dark:border-gray-800/80 shadow-sm'
+                    }
+                    backdrop-blur-sm
+                    p-6 sm:p-8
                   `}
                   style={{ 
                     transitionProperty: 'opacity, transform',
@@ -189,19 +198,7 @@ export default function FAQ() {
                     transitionDelay: `${index * 100 + 200}ms, ${index * 100 + 200}ms`
                   }}
                 >
-                  {/* Card with elegant styling */}
-                  <div className={`
-                    relative rounded-xl overflow-hidden
-                    bg-white dark:bg-gray-900/50
-                    border transition-all duration-300 ease-out
-                    ${isOpen 
-                      ? 'border-gray-900 dark:border-gray-100 shadow-[0_0_0_1px_rgba(0,0,0,0.45),0_18px_40px_rgba(15,23,42,0.75)] dark:shadow-[0_0_0_1px_rgba(255,255,255,0.45),0_18px_40px_rgba(15,23,42,0.75)]' 
-                      : 'border-gray-200/60 dark:border-gray-800/80 shadow-sm'
-                    }
-                    backdrop-blur-sm
-                  `}>
-                    <div className="p-6 sm:p-8">
-                      <dt>
+                  <dt className="m-0">
                         <button
                           ref={el => {
                             buttonRefs.current[index] = el
@@ -264,7 +261,7 @@ export default function FAQ() {
                         id={`faq-answer-${faq.id}`}
                         aria-labelledby={`faq-question-${faq.id}`}
                         className={`
-                          grid transition-[grid-template-rows,opacity,margin] duration-300 ease-out
+                          m-0 grid transition-[grid-template-rows,opacity,margin] duration-300 ease-out
                           ${isOpen ? 'grid-rows-[1fr] opacity-100 mt-6' : 'grid-rows-[0fr] opacity-0 mt-0'}
                         `}
                       >
@@ -300,8 +297,6 @@ export default function FAQ() {
                           </div>
                         </div>
                       </dd>
-                    </div>
-                  </div>
                 </div>
               )
             })}

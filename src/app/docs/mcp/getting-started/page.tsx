@@ -132,7 +132,7 @@ claude mcp add --scope user --transport stdio logicstamp -- npx logicstamp-mcp`,
                     </div>
                     
                     <p className="text-sm text-gray-500 dark:text-gray-500 mt-3">
-                      <strong>What this does:</strong> Adds LogicStamp to your global Claude Code configuration (~/.claude.json), makes the 6 LogicStamp tools available in every project, and server auto-starts when Claude Code needs it (no manual startup required).
+                      <strong>What this does:</strong> Adds LogicStamp to your global Claude Code configuration (~/.claude.json), makes the 7 LogicStamp tools available in every project, and server auto-starts when Claude Code needs it (no manual startup required).
                     </p>
                   </div>
 
@@ -399,7 +399,7 @@ claude`,
                 <p className="text-sm text-gray-600 dark:text-gray-400 italic">[Automatically uses logicstamp_refresh_snapshot and logicstamp_list_bundles]</p>
               </div>
               <p className="text-base text-gray-600 dark:text-gray-400">
-                The 6 LogicStamp tools will be available:
+                The 7 LogicStamp tools will be available:
               </p>
               <ul className="list-disc list-inside space-y-1 text-sm text-gray-600 dark:text-gray-400 ml-4 mt-2">
                 <li><code className="px-1.5 py-0.5 bg-gray-100 dark:bg-gray-800 text-indigo-600 dark:text-indigo-400 rounded font-mono">logicstamp_refresh_snapshot</code> - Analyze project structure</li>

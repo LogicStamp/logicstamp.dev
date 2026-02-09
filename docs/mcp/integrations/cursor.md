@@ -95,7 +95,7 @@ Add the following configuration:
 
 **What this does:**
 - Adds LogicStamp to your global Cursor MCP configuration
-- Makes the 6 LogicStamp tools available in every project you open in Cursor
+- Makes the 7 LogicStamp tools available in every project you open in Cursor
 - Server auto-starts when Cursor needs it (no manual startup required)
 
 ### Local Development Setup
@@ -202,13 +202,14 @@ After configuring, verify the server is working:
    Can you analyze my project using LogicStamp?
    ```
 
-The AI should be able to use the 6 LogicStamp tools:
+The AI should be able to use the 7 LogicStamp tools:
 - `logicstamp_refresh_snapshot` - Analyze project structure
 - `logicstamp_list_bundles` - List available components
 - `logicstamp_read_bundle` - Read component contracts
 - `logicstamp_compare_snapshot` - Detect changes after edits
 - `logicstamp_compare_modes` - Generate token cost comparison across modes
 - `logicstamp_read_logicstamp_docs` - Read LogicStamp documentation
+- `logicstamp_watch_status` - Check if watch mode is active
 
 **Quick Check:** If you see `logicstamp` in Settings → Features → Model Context Protocol with a "Connected" status, you're all set! If not, see the [Troubleshooting](#troubleshooting) section below.
 
