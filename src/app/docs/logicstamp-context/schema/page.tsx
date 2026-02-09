@@ -73,7 +73,7 @@ export default function SchemaPage() {
                           <code className="px-2 py-1 bg-blue-100 dark:bg-blue-900/40 text-blue-900 dark:text-blue-100 rounded text-xs sm:text-sm font-mono">UIFContract</code>
                         </td>
                         <td className="px-2 sm:px-6 py-4 whitespace-nowrap">
-                          <code className="px-2 py-1 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 rounded text-xs sm:text-sm font-mono">0.3</code>
+                          <code className="px-2 py-1 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 rounded text-xs sm:text-sm font-mono">0.4</code>
                         </td>
                         <td className="px-2 sm:px-6 py-4 text-sm text-gray-600 dark:text-gray-400">Component contract structure</td>
                       </tr>
@@ -113,25 +113,25 @@ export default function SchemaPage() {
               </p>
               
               <div className="mb-6">
-                <h3 className="text-lg sm:text-xl font-semibold text-gray-900 dark:text-white mb-3">Schema Version: <code className="px-2 py-1 bg-gray-100 dark:bg-gray-800 text-indigo-600 dark:text-indigo-400 rounded-md font-mono text-sm">0.3</code></h3>
+                <h3 className="text-lg sm:text-xl font-semibold text-gray-900 dark:text-white mb-3">Schema Version: <code className="px-2 py-1 bg-gray-100 dark:bg-gray-800 text-indigo-600 dark:text-indigo-400 rounded-md font-mono text-sm">0.4</code></h3>
                 <TabbedCodeBlock
                   tabs={[
                     {
                       label: 'TypeScript Interface',
                       code: `interface UIFContract {
   type: "UIFContract";
-  schemaVersion: "0.3";
+  schemaVersion: "0.4";
   kind: "react:component" | "react:hook" | "vue:component" | "vue:composable" | "ts:module" | "node:cli";
   description?: string;
-  version: {
+  composition: {
     variables: string[];
     hooks: string[];
     components: string[];
     functions: string[];
   };
-  logicSignature: {
+  interface: {
     props: Record<string, PropSignature>;
-    events: Record<string, EventSignature>;
+    emits: Record<string, EventSignature>;
     state: Record<string, StateSignature>;
   };
   exports?: "default" | "named" | { named: string[] };  // Optional export metadata
@@ -249,18 +249,18 @@ interface PageLayoutMetadata {
 }`,
                       copyText: `interface UIFContract {
   type: "UIFContract";
-  schemaVersion: "0.3";
+  schemaVersion: "0.4";
   kind: "react:component" | "react:hook" | "vue:component" | "vue:composable" | "ts:module" | "node:cli";
   description?: string;
-  version: {
+  composition: {
     variables: string[];
     hooks: string[];
     components: string[];
     functions: string[];
   };
-  logicSignature: {
+  interface: {
     props: Record<string, PropSignature>;
-    events: Record<string, EventSignature>;
+    emits: Record<string, EventSignature>;
     state: Record<string, StateSignature>;
   };
   exports?: "default" | "named" | { named: string[] };
@@ -273,7 +273,7 @@ interface PageLayoutMetadata {
                       label: 'JSON Example',
                       code: `{
   "type": "UIFContract",
-  "schemaVersion": "0.3",
+  "schemaVersion": "0.4",
   "kind": "react:component",
   "description": "Button component for user interactions",
   "version": {
@@ -293,7 +293,7 @@ interface PageLayoutMetadata {
         "optional": false
       }
     },
-    "events": {},
+    "emits": {},
     "state": {
       "isLoading": {
         "type": "boolean"
@@ -328,7 +328,7 @@ interface PageLayoutMetadata {
 }`,
                       copyText: `{
   "type": "UIFContract",
-  "schemaVersion": "0.3",
+  "schemaVersion": "0.4",
   "kind": "react:component",
   "description": "Button component for user interactions",
   "version": {
@@ -348,7 +348,7 @@ interface PageLayoutMetadata {
         "optional": false
       }
     },
-    "events": {},
+    "emits": {},
     "state": {
       "isLoading": {
         "type": "boolean"
@@ -405,7 +405,7 @@ interface PageLayoutMetadata {
                     </tr>
                     <tr className="hover:bg-gray-50 dark:hover:bg-gray-800/50 transition-colors">
                       <td className="px-2 sm:px-6 py-4 whitespace-nowrap"><code className="text-xs font-mono">schemaVersion</code></td>
-                      <td className="px-2 sm:px-6 py-4"><code className="text-xs font-mono">"0.3"</code></td>
+                      <td className="px-2 sm:px-6 py-4"><code className="text-xs font-mono">"0.4"</code></td>
                       <td className="px-2 sm:px-6 py-4"><span className="px-2 py-1 bg-green-100 dark:bg-green-900/40 text-green-900 dark:text-green-100 rounded text-xs">✅</span></td>
                       <td className="px-2 sm:px-6 py-4 text-sm text-gray-600 dark:text-gray-400">Schema version for compatibility</td>
                     </tr>
@@ -422,13 +422,13 @@ interface PageLayoutMetadata {
                       <td className="px-2 sm:px-6 py-4 text-sm text-gray-600 dark:text-gray-400">Human-readable description</td>
                     </tr>
                     <tr className="hover:bg-gray-50 dark:hover:bg-gray-800/50 transition-colors">
-                      <td className="px-2 sm:px-6 py-4 whitespace-nowrap"><code className="text-xs font-mono">version</code></td>
+                      <td className="px-2 sm:px-6 py-4 whitespace-nowrap"><code className="text-xs font-mono">composition</code></td>
                       <td className="px-2 sm:px-6 py-4"><code className="text-xs font-mono">object</code></td>
                       <td className="px-2 sm:px-6 py-4"><span className="px-2 py-1 bg-green-100 dark:bg-green-900/40 text-green-900 dark:text-green-100 rounded text-xs">✅</span></td>
                       <td className="px-2 sm:px-6 py-4 text-sm text-gray-600 dark:text-gray-400">Structural composition</td>
                     </tr>
                     <tr className="hover:bg-gray-50 dark:hover:bg-gray-800/50 transition-colors">
-                      <td className="px-2 sm:px-6 py-4 whitespace-nowrap"><code className="text-xs font-mono">logicSignature</code></td>
+                      <td className="px-2 sm:px-6 py-4 whitespace-nowrap"><code className="text-xs font-mono">interface</code></td>
                       <td className="px-2 sm:px-6 py-4"><code className="text-xs font-mono">object</code></td>
                       <td className="px-2 sm:px-6 py-4"><span className="px-2 py-1 bg-green-100 dark:bg-green-900/40 text-green-900 dark:text-green-100 rounded text-xs">✅</span></td>
                       <td className="px-2 sm:px-6 py-4 text-sm text-gray-600 dark:text-gray-400">Public API contract</td>
@@ -555,7 +555,7 @@ interface PageLayoutMetadata {
   };
   meta: {
     missing: MissingDependency[];
-    source: string;  // Tool version (e.g., "logicstamp-context@0.3.8")
+    source: string;  // Tool version (e.g., "logicstamp-context@0.5.2")
   };
 }
 
@@ -609,23 +609,23 @@ interface MissingDependency {
         "entryId": "src/components/Button.tsx",
         "contract": {
           "type": "UIFContract",
-          "schemaVersion": "0.3",
+          "schemaVersion": "0.4",
           "kind": "react:component",
           "description": "Button component",
-          "version": {
+          "composition": {
             "variables": [],
             "hooks": ["useState"],
             "components": [],
             "functions": ["Button"]
           },
-          "logicSignature": {
+          "interface": {
             "props": {
               "onClick": {
                 "type": "function",
                 "signature": "() => void"
               }
             },
-            "events": {},
+            "emits": {},
             "state": {}
           },
           "semanticHash": "uif:1a27d0944bbaaf561ee05a01",
@@ -644,7 +644,7 @@ interface MissingDependency {
         "referencedBy": "src/components/Button.tsx"
       }
     ],
-    "source": "logicstamp-context@0.3.8"
+    "source": "logicstamp-context@0.5.2"
   }
 }`,
                       copyText: `{
@@ -660,7 +660,7 @@ interface MissingDependency {
   },
   "meta": {
     "missing": [...],
-    "source": "logicstamp-context@0.3.8"
+    "source": "logicstamp-context@0.5.2"
   }
 }`
                     }
@@ -771,7 +771,7 @@ interface FolderEntry {
     }
   ],
   "meta": {
-    "source": "logicstamp-context@0.3.8"
+    "source": "logicstamp-context@0.5.2"
   }
 }`,
                       copyText: `{
@@ -787,7 +787,7 @@ interface FolderEntry {
   },
   "folders": [...],
   "meta": {
-    "source": "logicstamp-context@0.3.8"
+    "source": "logicstamp-context@0.5.2"
   }
 }`
                     }

@@ -992,13 +992,13 @@ stamp context style --include-code header`
             "type": "UIFContract",
             "kind": "react:component",
             "description": "Button - Interactive component",
-            "version": {
+            "composition": {
               "variables": ["variant", "size"],
               "hooks": ["useState"],
               "components": [],
               "functions": ["handleClick"]
             },
-            "logicSignature": {
+            "interface": {
               "props": {
                 "onClick": { "type": "function", "signature": "() => void" },
                 "variant": { "type": "literal-union", "literals": ["primary", "secondary"] }
@@ -1011,7 +1011,7 @@ stamp context style --include-code header`
     },
     "meta": {
       "missing": [],
-      "source": "logicstamp-context@0.3.8"
+      "source": "logicstamp-context@0.5.2"
     }
   }
 ]`,
@@ -1033,13 +1033,13 @@ stamp context style --include-code header`
             "type": "UIFContract",
             "kind": "react:component",
             "description": "Button - Interactive component",
-            "version": {
+            "composition": {
               "variables": ["variant", "size"],
               "hooks": ["useState"],
               "components": [],
               "functions": ["handleClick"]
             },
-            "logicSignature": {
+            "interface": {
               "props": {
                 "onClick": { "type": "function", "signature": "() => void" },
                 "variant": { "type": "literal-union", "literals": ["primary", "secondary"] }
@@ -1052,7 +1052,7 @@ stamp context style --include-code header`
     },
     "meta": {
       "missing": [],
-      "source": "logicstamp-context@0.3.8"
+      "source": "logicstamp-context@0.5.2"
     }
   }
 ]`

@@ -110,7 +110,7 @@ export default function BetaPage() {
                 </div>
                 <div className="space-y-4 text-gray-700 dark:text-gray-300">
                   <div>
-                    <p className="font-bold mb-2">v0.5.1 (Current)</p>
+                    <p className="font-bold mb-2">v0.5.2 (Current)</p>
                     <ul className="list-disc list-inside space-y-1 ml-2">
                       <li>CSS-in-JS completeness - Added support for Chakra UI and Ant Design, completing coverage for all major CSS-in-JS libraries. Extracts components, packages, theme usage, and framework-specific features (Chakra UI color mode, responsive props, system props; Ant Design ConfigProvider, Form, locale, icons)</li>
                       <li>Enhanced documentation - New comprehensive guides for Ant Design and Chakra UI support, plus updates to schema, UIF contracts, usage, CLI commands, and UI framework documentation (Material UI, ShadCN, Tailwind)</li>

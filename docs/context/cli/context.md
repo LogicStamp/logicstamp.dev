@@ -105,7 +105,7 @@ export function Button({ onClick, children }: ButtonProps) {
 - **llm-safe** – Depth 2, header-only source, max 30 nodes, allows missing dependencies. Smaller footprint.
 - **ci-strict** – No source code, strict dependency checks. Fails when contracts are missing.
 
-> **Note:** The `ci-strict` profile name implies CI/CD readiness, but full CI/CD integration requires git baseline comparison support (`git:main`, `git:HEAD~1`), which is planned but not yet implemented. Currently, CI workflows can validate context files and detect changes, but only against disk snapshots, not git refs.
+> ⚠️ **Note:** The `ci-strict` profile name implies CI/CD readiness, but full CI/CD integration requires git baseline automation (`--baseline git:main`, `--baseline git:HEAD~1`), which is **not yet implemented**. Currently, CI workflows can validate context files and detect changes, but only against disk snapshots, not git refs. Use the manual workflow shown in the compare command documentation until automation is available.
 
 ## Example workflows
 
@@ -295,7 +295,7 @@ The `context_main.json` file provides a complete directory index:
 Each folder entry includes: `path`, `contextFile`, `bundles`, `components`, `isRoot`, `rootLabel`, and `tokenEstimate`.
 
 Each folder's `context.json` contains bundles with:
-- Contracts (UIFContract schema v0.3)
+- Contracts (UIFContract schema v0.4)
 - Dependency graph (`nodes` and `edges`)
 - `meta.missing` for unresolved dependencies: `file not found`, `external package`, `outside scan path`, `max depth exceeded`, `circular dependency`
 
