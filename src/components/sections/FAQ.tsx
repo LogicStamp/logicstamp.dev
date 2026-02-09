@@ -1,7 +1,7 @@
 'use client'
 
 import { useState, useRef, useEffect } from 'react'
-import { Plus, X } from 'lucide-react'
+import { Plus, X, HelpCircle } from 'lucide-react'
 import GetStartedButton from '../ui/GetStartedButton'
 import ReadTheDocsButton from '../ui/ReadTheDocsButton'
 
@@ -140,222 +140,193 @@ export default function FAQ() {
   }
 
   return (
-    <section id="faq" className="relative pt-24 sm:pt-32 overflow-hidden pb-0 bg-gray-50/40 dark:bg-gray-950/40">
-      <div className="relative mx-auto max-w-[1440px] px-6 lg:px-8">
-        {/* Header */}
-        <div 
-          ref={titleRef}
-          className={`mx-auto max-w-3xl text-center transition-all duration-1000 ${
-            titleInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
-          }`}
-        >
-          <div className="inline-flex items-center gap-2 px-4 py-2 bg-slate-100 dark:bg-slate-800/50 rounded-full mb-6 border border-slate-200/50 dark:border-slate-700/50">
-            <svg className="w-4 h-4 text-slate-600 dark:text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-            </svg>
-            <span className="text-sm font-medium text-slate-700 dark:text-slate-300">Frequently Asked Questions</span>
-          </div>
-          <h2 className="text-4xl font-bold tracking-tight text-gray-900 dark:text-white sm:text-5xl lg:text-6xl mb-4">
-            Common Questions
-          </h2>
-          <p className={`text-lg lg:text-xl leading-relaxed text-gray-600 dark:text-gray-400 transition-all duration-1000 delay-200 ${
-            titleInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
-          }`}>
-            Find answers to the most frequently asked questions about LogicStamp Context
-          </p>
-        </div>
-
+    <section id="faq" className="relative pt-24 sm:pt-32 overflow-hidden pb-0 bg-white dark:bg-gray-950">
+      <div className="relative mx-auto max-w-[1440px] px-4 lg:px-6">
+        {/* Two-column layout */}
         <div 
           ref={faqsRef}
-          className={`mx-auto mt-16 mb-16 transition-all duration-1000 ${
+          className={`grid grid-cols-1 lg:grid-cols-[1fr_1fr] gap-12 lg:gap-16 py-16 transition-all duration-1000 ${
             faqsInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
           }`}
         >
-          <dl className="space-y-4">
-            {faqs.map((faq, index) => {
-              const isOpen = openItem === faq.id
+          {/* Left column - Title */}
+          <div 
+            ref={titleRef}
+            className={`transition-all duration-1000 text-center lg:text-left ${
+              titleInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+            }`}
+          >
+            <h2 className="text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-gray-900 dark:text-white leading-tight">
+              Frequently asked questions
+            </h2>
+            <p className="mt-6 hidden lg:block text-lg text-gray-600 dark:text-gray-400 leading-relaxed max-w-lg">
+              Answers about how LogicStamp works, how it reduces tokens, and how to integrate it into your workflow.
+            </p>
+          </div>
 
-              return (
-                <div
-                  key={faq.id}
-                  className={`
-                    group relative
-                    ${faqsInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}
-                    rounded-xl overflow-hidden
-                    bg-white dark:bg-gray-900/50
-                    border transition-all duration-300 ease-out
-                    ${isOpen 
-                      ? 'border-gray-900 dark:border-gray-100 shadow-[0_0_0_1px_rgba(0,0,0,0.45),0_18px_40px_rgba(15,23,42,0.75)] dark:shadow-[0_0_0_1px_rgba(255,255,255,0.45),0_18px_40px_rgba(15,23,42,0.75)]' 
-                      : 'border-gray-200/60 dark:border-gray-800/80 shadow-sm'
-                    }
-                    backdrop-blur-sm
-                    p-6 sm:p-8
-                  `}
-                  style={{ 
-                    transitionProperty: 'opacity, transform',
-                    transitionDuration: '700ms, 700ms',
-                    transitionTimingFunction: 'ease-out, ease-out',
-                    transitionDelay: `${index * 100 + 200}ms, ${index * 100 + 200}ms`
-                  }}
-                >
-                  <dt className="m-0">
-                        <button
-                          ref={el => {
-                            buttonRefs.current[index] = el
-                          }}
-                          type="button"
-                          id={`faq-question-${faq.id}`}
-                          className="flex w-full items-start justify-between gap-4 text-left rounded-md focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500 dark:focus-visible:outline-indigo-400"
-                          onClick={() => toggleItem(faq.id)}
-                          onKeyDown={e => handleKeyDown(e, index)}
-                          aria-expanded={isOpen}
-                          aria-controls={`faq-answer-${faq.id}`}
-                        >
-                          <div className="flex items-start gap-4 flex-1 min-w-0">
-                            <span className={`
-                              text-lg sm:text-xl lg:text-2xl font-semibold leading-7 flex-1 min-w-0
-                              transition-colors duration-200
-                              ${isOpen 
-                                ? 'text-gray-900 dark:text-white' 
-                                : 'text-gray-800 dark:text-gray-200'
-                              }
-                            `}>
-                              {faq.question}
-                            </span>
-                          </div>
-                          
-                          {/* Icon container */}
-                          <div
-                            className={`relative h-9 w-9 flex-shrink-0 mt-1 rounded-full flex items-center justify-center transition-all duration-300 ease-out ${
-                              isOpen
-                                ? 'bg-indigo-100 dark:bg-indigo-900/30'
-                                : 'bg-gray-100 dark:bg-gray-800/50'
-                            }`}
-                            aria-hidden="true"
-                          >
-                            {/* Plus icon (closed state) */}
-                            <Plus
-                              className={`absolute inset-0 h-5 w-5 m-auto transition-all duration-300 ease-out ${
-                                isOpen
-                                  ? 'opacity-0 rotate-90 scale-75 text-indigo-600 dark:text-indigo-400'
-                                  : 'opacity-100 rotate-0 scale-100 text-slate-600 dark:text-slate-400'
-                              }`}
-                              strokeWidth={2.5}
-                            />
+          {/* Right column - Questions */}
+          <div className="space-y-0">
+            <dl className="space-y-0">
+              {faqs.map((faq, index) => {
+                const isOpen = openItem === faq.id
 
-                            {/* X icon (open state) */}
-                            <X
-                              className={`absolute inset-0 h-5 w-5 m-auto transition-all duration-300 ease-out ${
-                                isOpen
-                                  ? 'opacity-100 rotate-0 scale-100 text-indigo-600 dark:text-indigo-400'
-                                  : 'opacity-0 -rotate-90 scale-75 text-slate-600 dark:text-slate-400'
-                              }`}
-                              strokeWidth={2.5}
-                            />
-                          </div>
-                        </button>
-                      </dt>
-
-                      {/* Answer */}
-                      <dd
-                        id={`faq-answer-${faq.id}`}
-                        aria-labelledby={`faq-question-${faq.id}`}
-                        className={`
-                          m-0 grid transition-[grid-template-rows,opacity,margin] duration-300 ease-out
-                          ${isOpen ? 'grid-rows-[1fr] opacity-100 mt-6' : 'grid-rows-[0fr] opacity-0 mt-0'}
-                        `}
+                return (
+                  <div
+                    key={faq.id}
+                    className={`
+                      ${index > 0 ? 'border-t border-gray-200 dark:border-gray-800' : ''}
+                      py-6
+                      ${faqsInView ? 'opacity-100' : 'opacity-0'}
+                    `}
+                    style={{ 
+                      transitionProperty: 'opacity',
+                      transitionDuration: '500ms',
+                      transitionTimingFunction: 'ease-out',
+                      transitionDelay: `${index * 50 + 200}ms`
+                    }}
+                  >
+                    <dt className="m-0">
+                      <button
+                        ref={el => {
+                          buttonRefs.current[index] = el
+                        }}
+                        type="button"
+                        id={`faq-question-${faq.id}`}
+                        className="flex w-full items-center justify-between gap-4 text-left focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500 dark:focus-visible:outline-indigo-400"
+                        onClick={() => toggleItem(faq.id)}
+                        onKeyDown={e => handleKeyDown(e, index)}
+                        aria-expanded={isOpen}
+                        aria-controls={`faq-answer-${faq.id}`}
                       >
-                        <div className="overflow-hidden">
-                          <div className="pr-2 sm:pr-8">
-                            {/* Divider line */}
-                            <div className="mb-6 h-px bg-gradient-to-r from-transparent via-slate-200 dark:via-slate-700 to-transparent" />
-                            
-                            <div className="text-base sm:text-lg leading-relaxed text-gray-600 dark:text-gray-300 space-y-4">
-                              {faq.answer.split(/(Add this configuration:\n)/).map((part, idx) => {
-                                // Check if this part is JSON (starts with { and contains mcpServers)
-                                if (part.trim().startsWith('{') && part.includes('mcpServers')) {
-                                  // Split on double newline to separate JSON from following text
-                                  const [jsonContent, ...restParts] = part.split('\n\n');
-                                  const restOfText = restParts.join('\n\n');
-                                  return (
-                                    <div key={idx} className="space-y-4">
-                                      <pre className="bg-slate-50 dark:bg-slate-900/50 border border-slate-200 dark:border-slate-800 p-4 rounded-lg text-sm font-mono overflow-x-auto whitespace-pre text-slate-700 dark:text-slate-300">
-                                        {jsonContent}
-                                      </pre>
-                                      {restOfText && <p className="whitespace-pre-line">{restOfText}</p>}
-                                    </div>
-                                  );
-                                }
-                                // Regular text parts - split by newlines for better formatting
-                                return part.split('\n').map((line, lineIdx) => (
-                                  <p key={`${idx}-${lineIdx}`} className={lineIdx > 0 ? 'mt-4' : ''}>
-                                    {line}
-                                  </p>
-                                ));
-                              })}
-                            </div>
-                          </div>
+                        <span className={`
+                          text-lg sm:text-xl font-medium leading-7 flex-1 min-w-0
+                          transition-colors duration-200
+                          ${isOpen 
+                            ? 'text-gray-900 dark:text-white' 
+                            : 'text-gray-900 dark:text-gray-100'
+                          }
+                        `}>
+                          {faq.question}
+                        </span>
+                        
+                        {/* Icon container */}
+                        <div
+                          className="relative flex-shrink-0 flex items-center justify-center"
+                          aria-hidden="true"
+                        >
+                          {/* Plus icon (closed state) */}
+                          <Plus
+                            className={`h-7 w-7 text-gray-900 dark:text-gray-100 ${
+                              isOpen
+                                ? 'opacity-0 rotate-90'
+                                : 'opacity-100 rotate-0'
+                            }`}
+                            strokeWidth={2}
+                            style={{
+                              transition: 'transform 400ms ease-in-out, opacity 50ms linear'
+                            }}
+                          />
+
+                          {/* X icon (open state) */}
+                          <X
+                            className={`absolute h-7 w-7 text-gray-900 dark:text-gray-100 ${
+                              isOpen
+                                ? 'opacity-100 rotate-0'
+                                : 'opacity-0 -rotate-90'
+                            }`}
+                            strokeWidth={2}
+                            style={{
+                              transition: 'transform 400ms ease-in-out, opacity 50ms linear'
+                            }}
+                          />
                         </div>
-                      </dd>
-                </div>
-              )
-            })}
-          </dl>
+                      </button>
+                    </dt>
+
+                    {/* Answer */}
+                    <dd
+                      id={`faq-answer-${faq.id}`}
+                      aria-labelledby={`faq-question-${faq.id}`}
+                      className={`
+                        m-0 grid transition-[grid-template-rows,opacity,margin] duration-300 ease-out
+                        ${isOpen ? 'grid-rows-[1fr] opacity-100 mt-4' : 'grid-rows-[0fr] opacity-0 mt-0'}
+                      `}
+                    >
+                      <div className="overflow-hidden">
+                        <div className="text-base sm:text-lg leading-relaxed text-gray-600 dark:text-gray-400 space-y-4">
+                          {faq.answer.split(/(Add this configuration:\n)/).map((part, idx) => {
+                            // Check if this part is JSON (starts with { and contains mcpServers)
+                            if (part.trim().startsWith('{') && part.includes('mcpServers')) {
+                              // Split on double newline to separate JSON from following text
+                              const [jsonContent, ...restParts] = part.split('\n\n');
+                              const restOfText = restParts.join('\n\n');
+                              return (
+                                <div key={idx} className="space-y-4">
+                                  <pre className="bg-gray-50 dark:bg-gray-900/50 border border-gray-200 dark:border-gray-800 p-4 rounded-lg text-sm font-mono overflow-x-auto whitespace-pre text-gray-700 dark:text-gray-300">
+                                    {jsonContent}
+                                  </pre>
+                                  {restOfText && <p className="whitespace-pre-line">{restOfText}</p>}
+                                </div>
+                              );
+                            }
+                            // Regular text parts - split by newlines for better formatting
+                            return part.split('\n').map((line, lineIdx) => (
+                              <p key={`${idx}-${lineIdx}`} className={lineIdx > 0 ? 'mt-4' : ''}>
+                                {line}
+                              </p>
+                            ));
+                          })}
+                        </div>
+                      </div>
+                    </dd>
+                  </div>
+                )
+              })}
+            </dl>
+          </div>
         </div>
       </div>
 
-      {/* Documentation Link - Full Width */}
+      {/* Documentation Link */}
       <div 
         ref={docsRef}
-        className={`w-full transition-all duration-1000 delay-300 ${
+        className={`w-full border-t border-gray-200 dark:border-gray-800 transition-all duration-1000 delay-300 ${
           docsInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
         }`}
       >
-        <div className="relative mx-auto max-w-[1440px] px-6 lg:px-8 pb-24 sm:pb-32">
-          {/* Elegant card container */}
-          <div className="relative rounded-2xl bg-gradient-to-br from-slate-50 to-white dark:from-slate-900/50 dark:to-slate-900 border border-slate-200 dark:border-slate-800 shadow-xl overflow-hidden">
-            {/* Decorative gradient overlay */}
-            <div className="absolute inset-0 bg-gradient-to-br from-indigo-50/50 via-transparent to-slate-50/50 dark:from-indigo-950/20 dark:via-transparent dark:to-slate-950/20" />
+        <div className="relative mx-auto max-w-[1440px] px-4 lg:px-6 py-16 sm:py-24">
+          <div className="text-center">
+            <div className="flex items-center justify-center mb-4">
+              <HelpCircle className="h-16 w-16 sm:h-16 sm:w-16 text-indigo-600 dark:text-indigo-400" />
+            </div>
+            <h3 className="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white mb-4">
+              Need More Detailed Information?
+            </h3>
+            <p className="text-lg text-gray-600 dark:text-gray-400 mb-8 max-w-2xl mx-auto leading-relaxed">
+              Explore comprehensive documentation covering setup guides, token optimization strategies, CI/CD workflows, and advanced configuration options for{' '}
+              <code className="font-mono text-sm text-indigo-600 dark:text-indigo-400 bg-gray-50 dark:bg-gray-900 px-2 py-1 rounded">
+                stamp context
+              </code>.
+            </p>
             
-            {/* Top accent line */}
-            <div className="absolute top-0 left-0 right-0 h-0.5 bg-gradient-to-r from-transparent via-indigo-400 to-transparent dark:via-indigo-500" />
-            
-            <div className="relative z-10 px-8 py-12 sm:px-12 sm:py-16 lg:px-16 lg:py-20 text-center">
-              <div className="inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-indigo-100 dark:bg-indigo-900/30 mb-6 border border-indigo-200 dark:border-indigo-800">
-                <svg className="w-8 h-8 text-indigo-600 dark:text-indigo-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
+            <div className="flex flex-row flex-nowrap items-center justify-center gap-2 sm:gap-4">
+              <GetStartedButton href="docs/getting-started" className="text-xs sm:text-sm lg:text-base px-4 py-2 sm:px-6 sm:py-3 flex-shrink-0">
+                <svg
+                  className="w-4 h-4 sm:w-5 sm:h-5"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M13 10V3L4 14h7v7l9-11h-7z"
+                  />
                 </svg>
-              </div>
-              
-              <h3 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-gray-900 dark:text-white mb-4">
-                Need More Detailed Information?
-              </h3>
-              <p className="text-lg sm:text-xl text-gray-600 dark:text-gray-400 mb-10 max-w-2xl mx-auto leading-relaxed">
-                Explore comprehensive documentation covering setup guides, token optimization strategies, CI/CD workflows, and advanced configuration options for{' '}
-                <code className="font-mono text-sm text-indigo-600 dark:text-indigo-400 bg-indigo-50 dark:bg-indigo-900/30 px-2 py-1 rounded border border-indigo-200 dark:border-indigo-800">
-                  stamp context
-                </code>.
-              </p>
-              
-              <div className="flex flex-row flex-nowrap items-center justify-center gap-2 sm:gap-4">
-                <GetStartedButton href="docs/getting-started" className="text-xs sm:text-sm lg:text-base px-4 py-2 sm:px-6 sm:py-3 flex-shrink-0">
-                  <svg
-                    className="w-4 h-4 sm:w-5 sm:h-5"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M13 10V3L4 14h7v7l9-11h-7z"
-                    />
-                  </svg>
-                  Quick Start
-                </GetStartedButton>
-                <ReadTheDocsButton href="docs/" className="text-xs sm:text-sm lg:text-base px-4 py-2 sm:px-6 sm:py-3 flex-shrink-0" />
-              </div>
+                Quick Start
+              </GetStartedButton>
+              <ReadTheDocsButton href="docs/" className="text-xs sm:text-sm lg:text-base px-4 py-2 sm:px-6 sm:py-3 flex-shrink-0" />
             </div>
           </div>
         </div>

@@ -18,13 +18,59 @@ interface ThemeContextType {
 
 const ThemeContext = createContext<ThemeContextType | undefined>(undefined)
 
-export function ThemeProvider({ children }: { children: ReactNode }) {
-  // Default to system so server/client match; we resolve real preference after mount
-  const [theme, setThemeState] = useState<ThemePreference>('system')
-  const [systemPrefersDark, setSystemPrefersDark] = useState(false)
-  const [isLoaded, setIsLoaded] = useState(false)
+// Synchronously read theme from DOM/localStorage (only runs on client)
+// The blocking script in layout.tsx already applied the theme to the DOM,
+// so we read from both DOM and storage to get the preference
+function getInitialTheme(): { theme: ThemePreference; systemPrefersDark: boolean; isLoaded: boolean } {
+  if (typeof window === 'undefined' || typeof document === 'undefined') {
+    return { theme: 'system', systemPrefersDark: false, isLoaded: false }
+  }
 
-  // Load theme preference and system preference after mount
+  try {
+    // Read preference from storage (cookie takes precedence)
+    const cookieMatch = document.cookie.match(/(?:^|; )theme=([^;]+)/)
+    const cookieTheme = (cookieMatch ? decodeURIComponent(cookieMatch[1]) : null) as ThemePreference | null
+    
+    let storageTheme: ThemePreference | null = null
+    try {
+      storageTheme = (localStorage.getItem('theme') as ThemePreference | null) || null
+    } catch (e) {
+      // localStorage may not be available
+    }
+    
+    const theme = cookieTheme || storageTheme || 'system'
+    const systemPrefersDark = window.matchMedia?.('(prefers-color-scheme: dark)').matches ?? false
+    
+    // The blocking script already applied the theme, so we're loaded immediately
+    return { theme, systemPrefersDark, isLoaded: true }
+  } catch (e) {
+    return { theme: 'system', systemPrefersDark: false, isLoaded: false }
+  }
+}
+
+// Cache initial theme to avoid multiple calls
+let cachedInitialTheme: ReturnType<typeof getInitialTheme> | null = null
+function getCachedInitialTheme() {
+  if (cachedInitialTheme === null) {
+    cachedInitialTheme = getInitialTheme()
+  }
+  return cachedInitialTheme
+}
+
+// Reset cache (useful for testing)
+export function resetThemeCache() {
+  cachedInitialTheme = null
+}
+
+export function ThemeProvider({ children }: { children: ReactNode }) {
+  // Initialize synchronously from DOM/localStorage to prevent flash
+  // Cache the result to avoid multiple calls
+  const initial = getCachedInitialTheme()
+  const [theme, setThemeState] = useState<ThemePreference>(initial.theme)
+  const [systemPrefersDark, setSystemPrefersDark] = useState(initial.systemPrefersDark)
+  const [isLoaded, setIsLoaded] = useState(initial.isLoaded)
+
+  // Set up media query listener for system preference changes
   useEffect(() => {
     if (typeof window === 'undefined' || typeof document === 'undefined') return
 
@@ -34,40 +80,42 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
         setSystemPrefersDark(event.matches)
       }
 
+      // Sync with current system preference (in case it changed)
       setSystemPrefersDark(mediaQuery.matches)
 
-      const cookieMatch = document.cookie.match(/(?:^|; )theme=([^;]+)/)
-      const cookieTheme = (cookieMatch ? decodeURIComponent(cookieMatch[1]) : null) as ThemePreference | null
-      
-      let storageTheme: ThemePreference | null = null
-      try {
-        storageTheme = (localStorage.getItem('theme') as ThemePreference | null) || null
-      } catch (e) {
-        // localStorage may not be available (e.g., in private browsing)
-        console.warn('localStorage not available:', e)
-      }
-      
-      const initialTheme = cookieTheme || storageTheme || 'system'
-
-      setThemeState(initialTheme)
-
+      // Set up listener for future changes
       mediaQuery.addEventListener('change', handleChange)
-      setIsLoaded(true)
 
       return () => {
         mediaQuery.removeEventListener('change', handleChange)
       }
     } catch (error) {
       console.error('Theme initialization failed:', error)
-      setIsLoaded(true) // Still mark as loaded to prevent infinite loading state
     }
   }, [])
 
   // Apply the effective theme to the document & persist preference
   useEffect(() => {
-    if (!isLoaded || typeof document === 'undefined') return
+    if (typeof document === 'undefined') return
 
     try {
+      const effectiveDark = theme === 'dark' || (theme === 'system' && systemPrefersDark)
+      
+      // Check if theme is already correctly applied (prevents flash)
+      const currentIsDark = document.documentElement.classList.contains('dark')
+      const currentDataTheme = document.documentElement.getAttribute('data-theme')
+      
+      // Only apply if different from current state
+      if (effectiveDark !== currentIsDark || (effectiveDark ? 'dark' : 'light') !== currentDataTheme) {
+        if (effectiveDark) {
+          document.documentElement.classList.add('dark')
+          document.documentElement.setAttribute('data-theme', 'dark')
+        } else {
+          document.documentElement.classList.remove('dark')
+          document.documentElement.setAttribute('data-theme', 'light')
+        }
+      }
+
       // Try to save to localStorage
       try {
         localStorage.setItem('theme', theme)
@@ -83,20 +131,10 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
         // Cookie writes can fail in some environments; fail silently
         console.warn('Failed to save theme to cookie:', e)
       }
-
-      const effectiveDark = theme === 'dark' || (theme === 'system' && systemPrefersDark)
-
-      if (effectiveDark) {
-        document.documentElement.classList.add('dark')
-        document.documentElement.setAttribute('data-theme', 'dark')
-      } else {
-        document.documentElement.classList.remove('dark')
-        document.documentElement.setAttribute('data-theme', 'light')
-      }
     } catch (error) {
       console.error('Failed to apply theme:', error)
     }
-  }, [theme, systemPrefersDark, isLoaded])
+  }, [theme, systemPrefersDark])
 
   const setTheme = (newTheme: ThemePreference) => {
     setThemeState(newTheme)

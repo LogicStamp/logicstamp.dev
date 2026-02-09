@@ -78,7 +78,7 @@ export default function Hero() {
               }`}
             >
               <p className="text-xl xl:text-2xl leading-relaxed text-gray-600 dark:text-gray-300 font-medium text-left">
-                Deterministic architectural context from your TypeScript codebase in seconds.{' '}
+                Deterministic architectural context from your TypeScript codebase - structured component contracts for AI assistants.{' '}
                 <span className="text-secondary-700 dark:text-secondary-300 font-semibold">One-time setup, up to 70% token savings.</span>
               </p>
               <p className="mt-4 text-base xl:text-lg text-gray-500 dark:text-gray-400 text-left">
@@ -171,7 +171,7 @@ export default function Hero() {
                     <svg className={`h-5 w-5 lg:h-6 lg:w-6 text-purple-600 dark:text-purple-400 transition-transform duration-200 ${mcpHovered ? 'lg:rotate-[15deg]' : ''}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1" />
                     </svg>
-                    MCP Compatible
+                    MCP Server Ready
                   </a>
                   
                   {/* Tooltip - Desktop only */}
@@ -197,10 +197,10 @@ export default function Hero() {
                           
                           <div className="flex-1 min-w-0">
                             <h3 className="text-sm font-bold text-gray-900 dark:text-white mb-1.5">
-                              Model Context Protocol
+                              LogicStamp MCP Server
                             </h3>
                             <p className="text-xs sm:text-sm text-gray-600 dark:text-gray-400 leading-relaxed">
-                              Works with MCP-based AI agents like Claude Desktop and Cursor. Enables direct analysis through LogicStamp's MCP server.
+                              Native integration with Claude Desktop, Claude Code, and Cursor. AI assistants can analyze your codebase directly through LogicStamp's MCP server.
                             </p>
                           </div>
                         </div>
@@ -268,7 +268,7 @@ export default function Hero() {
             }`}
           >
             <p className="mt-8 text-xl lg:text-2xl leading-relaxed text-gray-600 dark:text-gray-300 font-medium max-w-4xl mx-auto">
-              Deterministic architectural context from your TypeScript codebase in seconds.{' '}
+              Deterministic architectural context from your TypeScript codebase - structured component contracts for AI assistants.{' '}
               <span className="text-secondary-700 dark:text-secondary-300 font-semibold">One-time setup, up to 70% token savings.</span>
             </p>
             <p className="mt-4 text-base lg:text-lg text-gray-500 dark:text-gray-400">
@@ -361,7 +361,7 @@ export default function Hero() {
                   <svg className={`h-5 w-5 lg:h-6 lg:w-6 text-purple-600 dark:text-purple-400 transition-transform duration-200 ${mcpHovered ? 'lg:rotate-[15deg]' : ''}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1" />
                   </svg>
-                  MCP Compatible
+                  MCP Server Ready
                 </a>
                 
                 {/* Tooltip - Desktop only */}
@@ -387,7 +387,7 @@ export default function Hero() {
                         
                         <div className="flex-1 min-w-0">
                           <h3 className="text-sm font-bold text-gray-900 dark:text-white mb-1.5">
-                            Model Context Protocol
+                            LogicStamp MCP Server
                           </h3>
                           <p className="text-xs sm:text-sm text-gray-600 dark:text-gray-400 leading-relaxed">
                             Native integration with Claude Desktop, Claude Code, and Cursor. AI assistants can analyze your codebase directly through LogicStamp's MCP server.

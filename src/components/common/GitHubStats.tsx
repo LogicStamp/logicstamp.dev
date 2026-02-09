@@ -154,7 +154,7 @@ export default function GitHubStats() {
             />
           </svg>
           <h2 className="text-lg font-semibold text-gray-900 dark:text-white">
-            LogicStamp CLI - Open Source & Active Development
+            LogicStamp CLI - Open Source
           </h2>
         </div>
 

@@ -2,19 +2,18 @@
 
 import { useEffect, useState, useRef } from 'react'
 import { Code2, FileJson, Network, Sparkles } from 'lucide-react'
-import { useTheme } from '@/contexts/ThemeContext'
 
 // Graph structure: nodes represent components, edges represent dependencies
 const GRAPH_NODES = [
-  { id: 0, label: 'App', x: 50, y: 55, type: 'root' as const },
-  { id: 1, label: 'Header', x: 15, y: 25, type: 'component' as const },
-  { id: 2, label: 'Hero', x: 50, y: 25, type: 'component' as const },
-  { id: 3, label: 'Features', x: 85, y: 25, type: 'component' as const },
-  { id: 4, label: 'Button', x: 15, y: 10, type: 'leaf' as const },
-  { id: 5, label: 'Card', x: 40, y: 10, type: 'leaf' as const },
-  { id: 6, label: 'Modal', x: 70, y: 10, type: 'leaf' as const },
-  { id: 7, label: 'Footer', x: 85, y: 55, type: 'component' as const },
-  { id: 8, label: 'About', x: 15, y: 55, type: 'component' as const },
+  { id: 0, label: 'App', x: 50, y: 60, type: 'root' as const },
+  { id: 1, label: 'Header', x: 12, y: 28, type: 'component' as const },
+  { id: 2, label: 'Hero', x: 50, y: 28, type: 'component' as const },
+  { id: 3, label: 'Features', x: 88, y: 28, type: 'component' as const },
+  { id: 4, label: 'Button', x: 12, y: 8, type: 'leaf' as const },
+  { id: 5, label: 'Card', x: 50, y: 8, type: 'leaf' as const },
+  { id: 6, label: 'Modal', x: 88, y: 8, type: 'leaf' as const },
+  { id: 7, label: 'Footer', x: 88, y: 60, type: 'component' as const },
+  { id: 8, label: 'About', x: 12, y: 60, type: 'component' as const },
 ]
 
 const GRAPH_EDGES = [
@@ -35,7 +34,7 @@ interface EnhancedVisualizationProps {
 }
 
 export default function EnhancedVisualization({ inView }: EnhancedVisualizationProps) {
-  const { isDarkMode } = useTheme()
+  // Don't use isDarkMode - use CSS dark: classes instead to avoid hydration mismatch
   const [animatedNodes, setAnimatedNodes] = useState<Set<number>>(new Set())
   const [animatedEdges, setAnimatedEdges] = useState<Set<string>>(new Set())
   const [transformStage, setTransformStage] = useState<'ast' | 'processing' | 'json'>(inView ? 'ast' : 'ast')
@@ -120,11 +119,7 @@ export default function EnhancedVisualization({ inView }: EnhancedVisualizationP
   }, [])
 
   return (
-    <div ref={containerRef} className={`relative w-full h-full min-h-[650px] overflow-hidden rounded-2xl border ${
-      isDarkMode 
-        ? 'border-gray-700/50' 
-        : 'border-gray-200/80'
-    }`}>
+    <div ref={containerRef} className="relative w-full h-full min-h-[650px] overflow-hidden rounded-2xl border border-gray-200/80 dark:border-gray-700/50" suppressHydrationWarning>
       <style jsx>{`
         @keyframes float {
           0%, 100% {
@@ -210,48 +205,40 @@ export default function EnhancedVisualization({ inView }: EnhancedVisualizationP
       `}</style>
 
       {/* Background gradient */}
-      <div className={`absolute inset-0 rounded-2xl ${
-        isDarkMode 
-          ? 'bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900' 
-          : 'bg-gradient-to-br from-gray-50 via-white to-gray-50'
-      }`} />
+      <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-gray-50 via-white to-gray-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900" />
 
       {/* Animated Dependency Graph - Top Left */}
-      <div className={`absolute top-4 left-2 sm:left-4 w-[140px] sm:w-64 h-44 sm:h-56 backdrop-blur-sm rounded-lg border p-2 sm:p-3 ${
-        isDarkMode 
-          ? 'bg-gray-800/50 border-purple-500/20' 
-          : 'bg-white/80 border-purple-500/30 shadow-sm'
-      } ${
+      <div className={`absolute top-4 left-2 sm:left-4 w-[140px] sm:w-72 h-[180px] sm:h-[220px] backdrop-blur-sm rounded-lg border p-2 sm:p-3 bg-white/80 border-purple-500/30 shadow-sm dark:bg-gray-800/50 dark:border-purple-500/20 ${
         inView ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-4'
-      }`} style={{ transition: 'all 0.8s ease-out 0.2s' }}>
-        <div className="flex items-center gap-1 sm:gap-2 mb-1 sm:mb-2">
-          <Network className={`w-3 h-3 sm:w-4 sm:h-4 ${isDarkMode ? 'text-purple-400' : 'text-purple-600'}`} />
-          <span className={`text-[10px] sm:text-xs font-semibold ${isDarkMode ? 'text-gray-300' : 'text-gray-700'}`}>Dependency Graph</span>
+      }`} style={{ transition: 'all 0.8s ease-out 0.2s' }} suppressHydrationWarning>
+        <div className="flex items-center gap-1 sm:gap-2 mb-1 sm:mb-2 pb-1 sm:pb-2 border-b border-gray-300/50 dark:border-gray-700/50">
+          <Network className="w-3 h-3 sm:w-4 sm:h-4 text-purple-600 dark:text-purple-400" />
+          <span className="text-[10px] sm:text-xs font-semibold text-gray-700 dark:text-gray-300">Dependency Graph</span>
         </div>
-        <svg
-          viewBox="0 0 100 100"
-          className="w-full h-full"
-          style={{ opacity: inView ? 1 : 0, transition: 'opacity 0.5s' }}
-        >
-          <defs>
-            <linearGradient id="edgeGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-              <stop offset="0%" stopColor="#3b82f6" stopOpacity={isDarkMode ? "0.4" : "0.6"} />
-              <stop offset="100%" stopColor="#8b5cf6" stopOpacity={isDarkMode ? "0.4" : "0.6"} />
-            </linearGradient>
-          </defs>
-          {/* Edges */}
-          {GRAPH_EDGES.map((edge) => {
-            const fromNode = GRAPH_NODES[edge.from]
-            const toNode = GRAPH_NODES[edge.to]
-            const isAnimated = animatedEdges.has(edge.id)
-            return (
-              <line
-                key={edge.id}
-                x1={fromNode.x}
-                y1={fromNode.y}
-                x2={toNode.x}
-                y2={toNode.y}
-                stroke="url(#edgeGradient)"
+         <svg
+           viewBox="0 0 100 100"
+           className="w-full h-full"
+           style={{ opacity: inView ? 1 : 0, transition: 'opacity 0.5s' }}
+         >
+           <defs>
+             <linearGradient id="edgeGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+               <stop offset="0%" stopColor="#3b82f6" stopOpacity="0.6" />
+               <stop offset="100%" stopColor="#8b5cf6" stopOpacity="0.6" />
+             </linearGradient>
+           </defs>
+           {/* Edges */}
+           {GRAPH_EDGES.map((edge) => {
+             const fromNode = GRAPH_NODES[edge.from]
+             const toNode = GRAPH_NODES[edge.to]
+             const isAnimated = animatedEdges.has(edge.id)
+             return (
+               <line
+                 key={edge.id}
+                 x1={fromNode.x}
+                 y1={fromNode.y}
+                 x2={toNode.x}
+                 y2={toNode.y}
+                 stroke="url(#edgeGradient)"
                 strokeWidth={isAnimated ? '0.5' : '0'}
                 opacity={isAnimated ? 0.6 : 0}
                 className="transition-all duration-500"
@@ -280,11 +267,11 @@ export default function EnhancedVisualization({ inView }: EnhancedVisualizationP
                 />
                 <text
                   x={node.x}
-                  y={node.y + nodeSize + 4.5}
+                  y={node.y + nodeSize + 6}
                   textAnchor="middle"
-                  fontSize="5"
-                  fill={isDarkMode ? "#d1d5db" : "#374151"}
-                  className="font-mono font-semibold dependency-graph-text"
+                  fontSize="5.5"
+                  fill="#374151"
+                  className="font-mono font-semibold dependency-graph-text dark:fill-[#d1d5db]"
                   opacity={isAnimated ? 1 : 0}
                   style={{ transition: 'opacity 0.5s' }}
                 >
@@ -306,17 +293,9 @@ export default function EnhancedVisualization({ inView }: EnhancedVisualizationP
         }}
       >
         <div className="flex items-center justify-center">
-          <div 
-            className={`flex items-center justify-center w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-gradient-to-r from-purple-500/20 to-blue-500/20 backdrop-blur-sm border arrow-pulse-glow ${
-              isDarkMode 
-                ? 'border-purple-500/30' 
-                : 'border-purple-500/40'
-            }`}
-          >
+          <div className="flex items-center justify-center w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-gradient-to-r from-purple-500/20 to-blue-500/20 backdrop-blur-sm border border-purple-500/40 dark:border-purple-500/30">
             <svg
-              className={`w-4 h-4 sm:w-5 sm:h-5 flow-arrow-horizontal ${
-                isDarkMode ? 'text-purple-400' : 'text-purple-600'
-              }`}
+              className="w-4 h-4 sm:w-5 sm:h-5 flow-arrow-horizontal text-purple-600 dark:text-purple-400"
               fill="none"
               stroke="currentColor"
               viewBox="0 0 24 24"
@@ -329,53 +308,46 @@ export default function EnhancedVisualization({ inView }: EnhancedVisualizationP
 
       {/* Component Contract Node Example - Top Right */}
       <div
-        className={`absolute top-4 right-2 sm:right-4 w-[140px] sm:w-64 min-h-[180px] sm:min-h-[200px] backdrop-blur-sm rounded-lg border p-2 sm:p-4 contract-pulse-animation shadow-md ${
-          isDarkMode 
-            ? 'bg-gray-800/80 border-blue-500/30' 
-            : 'bg-white/90 border-blue-500/40'
-        } ${
+        className={`absolute top-4 right-2 sm:right-4 w-[140px] sm:w-72 h-[180px] sm:h-[220px] backdrop-blur-sm rounded-lg border p-2 sm:p-4 shadow-md bg-white/90 border-blue-500/40 dark:bg-gray-800/80 dark:border-blue-500/30 ${
           inView ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-4'
         }`}
         style={{ transition: 'all 0.8s ease-out 0.3s' }}
+        suppressHydrationWarning
       >
-        <div className={`flex items-center gap-1 sm:gap-2 mb-2 sm:mb-3 pb-1 sm:pb-2 border-b ${
-          isDarkMode ? 'border-gray-700/50' : 'border-gray-300/50'
-        }`}>
-          <Code2 className={`w-3 h-3 sm:w-4 sm:h-4 ${isDarkMode ? 'text-blue-400' : 'text-blue-600'}`} />
-          <span className={`text-[10px] sm:text-xs font-semibold ${isDarkMode ? 'text-gray-300' : 'text-gray-700'}`}>Component Contract</span>
-          <div className={`ml-auto w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full pulse-glow-animation ${
-            isDarkMode ? 'bg-green-400' : 'bg-green-500'
-          }`} />
+        <div className="flex items-center gap-1 sm:gap-2 mb-2 sm:mb-3 pb-1 sm:pb-2 border-b border-gray-300/50 dark:border-gray-700/50">
+          <Code2 className="w-3 h-3 sm:w-4 sm:h-4 text-blue-600 dark:text-blue-400" />
+          <span className="text-[10px] sm:text-xs font-semibold text-gray-700 dark:text-gray-300">Component Contract</span>
+          <div className="ml-auto w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full pulse-glow-animation bg-green-500 dark:bg-green-400" />
         </div>
         <div className="space-y-2 sm:space-y-3">
           <div className="flex items-start gap-1 sm:gap-2">
-            <span className={`text-[9px] sm:text-[10px] font-mono font-semibold ${isDarkMode ? 'text-cyan-400' : 'text-cyan-600'}`}>entryId:</span>
-            <span className={`text-[9px] sm:text-[10px] font-mono truncate flex-1 ${isDarkMode ? 'text-green-400' : 'text-green-600'}`}>
+            <span className="text-[9px] sm:text-[10px] font-mono font-semibold text-cyan-600 dark:text-cyan-400">entryId:</span>
+            <span className="text-[9px] sm:text-[10px] font-mono truncate flex-1 text-green-600 dark:text-green-400">
               <span className="hidden sm:inline">"src/components/Hero.tsx"</span>
               <span className="sm:hidden">"Hero.tsx"</span>
             </span>
           </div>
           <div className="flex items-start gap-1 sm:gap-2">
-            <span className={`text-[9px] sm:text-[10px] font-mono font-semibold ${isDarkMode ? 'text-cyan-400' : 'text-cyan-600'}`}>kind:</span>
-            <span className={`text-[9px] sm:text-[10px] font-mono ${isDarkMode ? 'text-purple-400' : 'text-purple-600'}`}>
+            <span className="text-[9px] sm:text-[10px] font-mono font-semibold text-cyan-600 dark:text-cyan-400">kind:</span>
+            <span className="text-[9px] sm:text-[10px] font-mono text-purple-600 dark:text-purple-400">
               <span className="hidden sm:inline">"react:component"</span>
               <span className="sm:hidden">"component"</span>
             </span>
           </div>
           <div className="flex items-start gap-1 sm:gap-2">
-            <span className={`text-[9px] sm:text-[10px] font-mono font-semibold ${isDarkMode ? 'text-cyan-400' : 'text-cyan-600'}`}>props:</span>
-            <span className={`text-[9px] sm:text-[10px] font-mono ${isDarkMode ? 'text-gray-400' : 'text-gray-600'}`}>{"{ title, desc }"}</span>
+            <span className="text-[9px] sm:text-[10px] font-mono font-semibold text-cyan-600 dark:text-cyan-400">props:</span>
+            <span className="text-[9px] sm:text-[10px] font-mono text-gray-600 dark:text-gray-400">{"{ title, desc }"}</span>
           </div>
           <div className="flex items-start gap-1 sm:gap-2">
-            <span className={`text-[9px] sm:text-[10px] font-mono font-semibold ${isDarkMode ? 'text-cyan-400' : 'text-cyan-600'}`}>
+            <span className="text-[9px] sm:text-[10px] font-mono font-semibold text-cyan-600 dark:text-cyan-400">
               <span className="hidden sm:inline">dependencies:</span>
               <span className="sm:hidden">deps:</span>
             </span>
-            <span className={`text-[9px] sm:text-[10px] font-mono ${isDarkMode ? 'text-yellow-400' : 'text-yellow-600'}`}>[Button, Card]</span>
+            <span className="text-[9px] sm:text-[10px] font-mono text-yellow-600 dark:text-yellow-400">[Button, Card]</span>
           </div>
-          <div className={`flex items-start gap-1 sm:gap-2 pt-1 border-t ${isDarkMode ? 'border-gray-700/30' : 'border-gray-300/30'}`}>
-            <span className={`text-[9px] sm:text-[10px] font-mono font-semibold ${isDarkMode ? 'text-cyan-400' : 'text-cyan-600'}`}>style:</span>
-            <span className={`text-[9px] sm:text-[10px] font-mono ${isDarkMode ? 'text-pink-400' : 'text-pink-600'}`}>{"{ tw: {...} }"}</span>
+          <div className="flex items-start gap-1 sm:gap-2 pt-1 border-t border-gray-300/30 dark:border-gray-700/30">
+            <span className="text-[9px] sm:text-[10px] font-mono font-semibold text-cyan-600 dark:text-cyan-400">style:</span>
+            <span className="text-[9px] sm:text-[10px] font-mono text-pink-600 dark:text-pink-400">{"{ tw: {...} }"}</span>
           </div>
         </div>
       </div>
@@ -395,9 +367,9 @@ export default function EnhancedVisualization({ inView }: EnhancedVisualizationP
             <div className={`w-16 h-16 bg-blue-500/20 rounded-lg border-2 flex items-center justify-center ${
               transformStage === 'ast' ? 'border-blue-500/80 shadow-lg shadow-blue-500/20' : 'border-blue-500/30'
             }`}>
-              <Code2 className={`w-8 h-8 ${transformStage === 'ast' ? (isDarkMode ? 'text-blue-400' : 'text-blue-600') : 'text-blue-500/50'}`} />
+              <Code2 className={`w-8 h-8 ${transformStage === 'ast' ? 'text-blue-600 dark:text-blue-400' : 'text-blue-500/50'}`} />
             </div>
-            <span className={`text-xs font-semibold ${transformStage === 'ast' ? (isDarkMode ? 'text-gray-200' : 'text-gray-800') : (isDarkMode ? 'text-gray-500' : 'text-gray-600')}`}>AST</span>
+            <span className={`text-xs font-semibold ${transformStage === 'ast' ? 'text-gray-800 dark:text-gray-200' : 'text-gray-600 dark:text-gray-500'}`}>AST</span>
           </div>
 
           {/* Arrow */}
@@ -410,7 +382,7 @@ export default function EnhancedVisualization({ inView }: EnhancedVisualizationP
                 style={{ transition: 'opacity 0.3s' }}
               />
             </div>
-            <Sparkles className={`w-5 h-5 mx-2 ${isDarkMode ? 'text-purple-400' : 'text-purple-600'}`} />
+            <Sparkles className="w-5 h-5 mx-2 text-purple-600 dark:text-purple-400" />
           </div>
 
           {/* Processing Stage */}
@@ -423,9 +395,9 @@ export default function EnhancedVisualization({ inView }: EnhancedVisualizationP
             <div className={`w-16 h-16 bg-purple-500/20 rounded-lg border-2 flex items-center justify-center ${
               transformStage === 'processing' ? 'border-purple-500/80 shadow-lg shadow-purple-500/20 pulse-glow-animation' : 'border-purple-500/30'
             }`}>
-              <Sparkles className={`w-8 h-8 ${transformStage === 'processing' ? (isDarkMode ? 'text-purple-400' : 'text-purple-600') : 'text-purple-500/50'}`} />
+              <Sparkles className={`w-8 h-8 ${transformStage === 'processing' ? 'text-purple-600 dark:text-purple-400' : 'text-purple-500/50'}`} />
             </div>
-            <span className={`text-xs font-semibold ${transformStage === 'processing' ? (isDarkMode ? 'text-gray-200' : 'text-gray-800') : (isDarkMode ? 'text-gray-500' : 'text-gray-600')}`}>Transform</span>
+            <span className={`text-xs font-semibold ${transformStage === 'processing' ? 'text-gray-800 dark:text-gray-200' : 'text-gray-600 dark:text-gray-500'}`}>Transform</span>
           </div>
 
           {/* Arrow */}
@@ -438,7 +410,7 @@ export default function EnhancedVisualization({ inView }: EnhancedVisualizationP
                 style={{ transition: 'opacity 0.3s', animationDelay: '1.5s' }}
               />
             </div>
-            <Sparkles className={`w-5 h-5 mx-2 ${isDarkMode ? 'text-green-400' : 'text-green-600'}`} />
+            <Sparkles className="w-5 h-5 mx-2 text-green-600 dark:text-green-400" />
           </div>
 
           {/* JSON Stage */}
@@ -451,9 +423,9 @@ export default function EnhancedVisualization({ inView }: EnhancedVisualizationP
             <div className={`w-16 h-16 bg-green-500/20 rounded-lg border-2 flex items-center justify-center ${
               transformStage === 'json' ? 'border-green-500/80 shadow-lg shadow-green-500/20' : 'border-green-500/30'
             }`}>
-              <FileJson className={`w-8 h-8 ${transformStage === 'json' ? (isDarkMode ? 'text-green-400' : 'text-green-600') : 'text-green-500/50'}`} />
+              <FileJson className={`w-8 h-8 ${transformStage === 'json' ? 'text-green-600 dark:text-green-400' : 'text-green-500/50'}`} />
             </div>
-            <span className={`text-xs font-semibold ${transformStage === 'json' ? (isDarkMode ? 'text-gray-200' : 'text-gray-800') : (isDarkMode ? 'text-gray-500' : 'text-gray-600')}`}>JSON</span>
+            <span className={`text-xs font-semibold ${transformStage === 'json' ? 'text-gray-800 dark:text-gray-200' : 'text-gray-600 dark:text-gray-500'}`}>JSON</span>
           </div>
         </div>
       </div>
@@ -469,19 +441,14 @@ export default function EnhancedVisualization({ inView }: EnhancedVisualizationP
             return (
               <div
                 key={bundle.id}
-                className={`backdrop-blur-sm rounded-lg border p-3 w-full ${
-                  isDarkMode 
-                    ? 'bg-gray-800/60 border-purple-500/30' 
-                    : 'bg-white/70 border-purple-500/40 shadow-sm'
-                }`}
+                className="backdrop-blur-sm rounded-lg border p-3 w-full bg-white/70 border-purple-500/40 shadow-sm dark:bg-gray-800/60 dark:border-purple-500/30"
+                suppressHydrationWarning
               >
                 <div className="flex items-center gap-2 mb-1">
-                  <div className={`w-2 h-2 rounded-full pulse-glow-animation ${
-                    isDarkMode ? 'bg-purple-400' : 'bg-purple-600'
-                  }`} />
-                  <span className={`text-[10px] font-semibold ${isDarkMode ? 'text-gray-300' : 'text-gray-700'}`}>{node.label}</span>
+                  <div className="w-2 h-2 rounded-full pulse-glow-animation bg-purple-600 dark:bg-purple-400" />
+                  <span className="text-[10px] font-semibold text-gray-700 dark:text-gray-300">{node.label}</span>
                 </div>
-                <div className={`text-[9px] font-mono ${isDarkMode ? 'text-gray-400' : 'text-gray-600'}`}>
+                <div className="text-[9px] font-mono text-gray-600 dark:text-gray-400">
                   <div>contract: UIFContract</div>
                   <div>deps: {GRAPH_EDGES.filter((e) => e.from === node.id).length}</div>
                 </div>
@@ -496,9 +463,7 @@ export default function EnhancedVisualization({ inView }: EnhancedVisualizationP
         {particles.map((particle, i) => (
           <div
             key={i}
-            className={`absolute w-1 h-1 rounded-full float-animation ${
-              isDarkMode ? 'bg-purple-400/30' : 'bg-purple-500/20'
-            }`}
+            className="absolute w-1 h-1 rounded-full float-animation bg-purple-500/20 dark:bg-purple-400/30"
             style={{
               left: `${particle.left}%`,
               top: `${particle.top}%`,
@@ -507,6 +472,13 @@ export default function EnhancedVisualization({ inView }: EnhancedVisualizationP
             }}
           />
         ))}
+      </div>
+
+      {/* Note below entire visualization */}
+      <div className={`absolute bottom-2 left-0 right-0 text-center px-4 ${inView ? 'opacity-100' : 'opacity-0'}`} style={{ transition: 'opacity 0.8s ease-out 0.8s' }}>
+        <div className="text-[9px] sm:text-[10px] text-gray-500">
+          <span className="italic">Simplified for display</span>
+        </div>
       </div>
     </div>
   )

@@ -5,6 +5,25 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [Unreleased]
+
+### Planned
+- Rename MCP overview page route from `/docs/mcp` to `/docs/mcp-overview` to prevent navigation conflicts (to do)
+  - Fix issue where MCP Overview page is incorrectly highlighted when viewing MCP Getting Started page
+  - Update navigation active state logic to use exact path matching for overview pages
+  - Update all internal links and references to use the new `/docs/mcp-overview` route
+- Create MCP Hub page similar to CLI Hub (to do)
+  - Create new `/docs/mcp` hub page as central landing page for all MCP documentation
+  - Organize MCP documentation with sections: Getting Started, Core Tools/Features, Guides, Reference
+  - Link to all MCP pages: getting-started, reference, usage, best-practices, profiles, style-metadata, changelog
+  - Provide consistent navigation structure matching CLI Hub pattern
+- Migration to Next.js 16 and React 19 (to do)
+  - Upgrade `next` from `^14.2.35` to `^16.x`
+  - Upgrade `react` and `react-dom` from `^18.2.0` to `^19.x`
+  - Update `@types/react` and `@types/react-dom` to match React 19 types
+  - Update codebase to be compatible with React 19's new features and changes
+  - Verify all functionality works correctly with Next.js 16 and React 19
+
 ## [0.1.2] - 2025-12-13
 
 ### Security
