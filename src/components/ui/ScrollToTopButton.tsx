@@ -22,6 +22,23 @@ export default function ScrollToTopButton() {
     return () => window.removeEventListener('scroll', toggleVisibility)
   }, [isDocsPage])
 
+  useEffect(() => {
+    // Set CSS custom property for bottom offset
+    // Detect iOS Safari which properly handles safe-area-inset-bottom
+    const isIOSSafari = /iPad|iPhone|iPod/.test(navigator.userAgent) && 
+                        !(window as any).MSStream &&
+                        !navigator.userAgent.includes('CriOS') &&
+                        !navigator.userAgent.includes('FxiOS')
+    
+    if (isIOSSafari) {
+      // On iOS Safari, use only safe-area-inset-bottom
+      document.documentElement.style.setProperty('--scroll-top-bottom', 'env(safe-area-inset-bottom)')
+    } else {
+      // On desktop/Android, use 1.5rem
+      document.documentElement.style.setProperty('--scroll-top-bottom', '1.5rem')
+    }
+  }, [])
+
   const scrollToTop = () => {
     window.scrollTo({
       top: 0,
@@ -39,7 +56,7 @@ export default function ScrollToTopButton() {
         isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4 pointer-events-none'
       }`}
       style={{
-        bottom: 'calc(0rem + env(safe-area-inset-bottom))',
+        bottom: 'var(--scroll-top-bottom, 1.5rem)',
       }}
       aria-label="Scroll to top"
     >
