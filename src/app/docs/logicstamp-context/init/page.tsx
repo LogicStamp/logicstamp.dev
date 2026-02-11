@@ -571,7 +571,7 @@ stamp init --skip-gitignore`
 
         <ReadyToGetStartedCard
           variant="green"
-          description="Now that your project is initialized, generate your first AI-ready context bundle."
+          description="Generate your first AI-ready context bundle."
           primaryAction={{
             href: '/docs/logicstamp-context/context',
             label: 'Generate Context',

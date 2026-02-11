@@ -393,7 +393,7 @@ stamp context ./app`
 
           {/* Next Steps */}
           <ReadyToGetStartedCard
-            description="Now that you understand Next.js framework support, get started with LogicStamp Context or explore other framework integrations."
+            description="Get started with LogicStamp Context or explore other framework integrations."
             primaryAction={{
               href: '/docs/getting-started',
               label: 'Get Started',

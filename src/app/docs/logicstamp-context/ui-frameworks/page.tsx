@@ -403,7 +403,7 @@ stamp context --include-style
 
           {/* Next Steps */}
           <ReadyToGetStartedCard
-            description="Now that you understand UI framework support, get started with LogicStamp Context or explore style metadata extraction."
+            description="Get started with LogicStamp Context or explore style metadata extraction."
             primaryAction={{
               href: '/docs/getting-started',
               label: 'Get Started',

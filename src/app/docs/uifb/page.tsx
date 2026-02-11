@@ -469,7 +469,7 @@ export default function UifbPage() {
 
         {/* Next Steps */}
         <ReadyToGetStartedCard
-          description="Now that you understand bundleHash, explore other hash types or check out the complete reference for all features."
+          description="Explore other hash types or check out the complete reference for all features."
           primaryAction={{
             href: '/docs/hashes',
             label: 'Hashes Guide',

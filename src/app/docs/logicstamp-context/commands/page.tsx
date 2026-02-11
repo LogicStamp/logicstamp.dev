@@ -584,7 +584,7 @@ stamp context clean --all --yes`
 
         <ReadyToGetStartedCard
           variant="green"
-          description="Now that you understand the commands, initialize your project and generate your first context bundle."
+          description="Initialize your project and generate your first context bundle."
           primaryAction={{
             href: '/docs/logicstamp-context/init',
             label: 'Initialize Project',

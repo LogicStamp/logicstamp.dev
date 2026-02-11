@@ -539,7 +539,7 @@ export function Button({ onClick, label }: ButtonProps) {
 
           {/* Next Steps */}
           <ReadyToGetStartedCard
-            description="Now that you understand UIF contracts, explore the schema reference or check out best practices for using them."
+            description="Explore the schema reference or check out best practices for using them."
             primaryAction={{
               href: '/docs/logicstamp-context/schema',
               label: 'Schema Reference',

@@ -337,7 +337,7 @@ export default function LlmContextPage() {
 
         {/* Next Steps */}
         <ReadyToGetStartedCard
-          description="Now that you understand the LLM context format, explore best practices or check out the usage guide for practical examples."
+          description="Explore best practices or check out the usage guide for practical examples."
           primaryAction={{
             href: '/docs/best-practices',
             label: 'Best Practices',

@@ -467,7 +467,7 @@ stamp context validate`,
 
           {/* Next Steps */}
           <ReadyToGetStartedCard
-            description="Now that you understand best practices, get started with LogicStamp Context or explore the complete reference for all features."
+            description="Get started with LogicStamp Context or explore the complete reference for all features."
             primaryAction={{
               href: '/docs/getting-started',
               label: 'Get Started',

@@ -416,7 +416,7 @@ stamp context compare`
 
         <ReadyToGetStartedCard
           variant="green"
-          description="Now that you understand the clean command, explore other commands or check out the complete reference."
+          description="Explore other commands or check out the complete reference."
           primaryAction={{
             href: '/docs/logicstamp-context/commands',
             label: 'All Commands',

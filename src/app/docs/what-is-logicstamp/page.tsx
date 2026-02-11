@@ -3,6 +3,7 @@ import Link from 'next/link'
 import Footer from '@/components/layout/Footer'
 import AnimatedSection from '@/components/common/AnimatedSection'
 import DocsLayout from '@/components/docs/DocsLayout'
+import ReadyToGetStartedCard from '@/components/docs/ReadyToGetStartedCard'
 
 export const metadata: Metadata = {
   title: 'What is LogicStamp? | Documentation',
@@ -125,27 +126,20 @@ export default function WhatIsLogicStampPage() {
           </AnimatedSection>
 
           {/* Next Steps */}
-          <AnimatedSection direction="up" delay={400}>
-            <div className="border-t border-gray-200 dark:border-gray-800 pt-8">
-              <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">Next Steps</h2>
-              <div className="grid sm:grid-cols-2 gap-4">
-                <Link
-                  href="/docs/getting-started"
-                  className="p-4 border border-gray-200 dark:border-gray-800 rounded-lg md:hover:border-blue-500 dark:md:hover:border-blue-500 transition-colors"
-                >
-                  <h3 className="font-semibold text-gray-900 dark:text-white mb-1">Getting Started →</h3>
-                  <p className="text-sm text-gray-600 dark:text-gray-400">Install and generate your first context</p>
-                </Link>
-                <Link
-                  href="/docs/complete-reference"
-                  className="p-4 border border-gray-200 dark:border-gray-800 rounded-lg md:hover:border-blue-500 dark:md:hover:border-blue-500 transition-colors"
-                >
-                  <h3 className="font-semibold text-gray-900 dark:text-white mb-1">Complete Reference →</h3>
-                  <p className="text-sm text-gray-600 dark:text-gray-400">All commands and options</p>
-                </Link>
-              </div>
-            </div>
-          </AnimatedSection>
+          <ReadyToGetStartedCard
+            title="Ready to Get Started?"
+            description="Install the CLI and generate your first context bundle."
+            primaryAction={{
+              href: '/docs/getting-started',
+              label: 'Installation & Quick Start',
+            }}
+            secondaryAction={{
+              href: '/docs/complete-reference',
+              label: 'Complete Reference',
+            }}
+            delay={400}
+            variant="blue"
+          />
         </div>
       </DocsLayout>
       <Footer />

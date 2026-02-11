@@ -178,7 +178,7 @@ export default function GuidesHomePage() {
         </AnimatedSection>
 
         <ReadyToGetStartedCard
-          description="Now that you've explored the guides, initialize your project and generate your first context bundle."
+          description="Initialize your project and generate your first context bundle."
           primaryAction={{
             href: '/docs/getting-started',
             label: 'Getting Started',

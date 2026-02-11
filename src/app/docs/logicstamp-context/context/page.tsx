@@ -691,7 +691,7 @@ const password = 'EXAMPLE_PRIVATE_DATA';"
 
         <ReadyToGetStartedCard
           variant="green"
-          description="Now that you've generated context, learn how to use it with LLMs or explore watch mode for automatic updates."
+          description="Learn how to use it with LLMs or explore watch mode for automatic updates."
           primaryAction={{
             href: '/docs/logicstamp-context/usage',
             label: 'Usage Guide',

@@ -770,7 +770,7 @@ stamp security scan`
 
         {/* Next Steps */}
         <ReadyToGetStartedCard
-          description="Now that you understand how to use LogicStamp Context, explore best practices or check out watch mode for automatic context updates."
+          description="Explore best practices or check out watch mode for automatic context updates."
           primaryAction={{
             href: '/docs/best-practices',
             label: 'Best Practices',

@@ -701,7 +701,7 @@ stamp context compare --approve --clean-orphaned`
 
         <ReadyToGetStartedCard
           variant="green"
-          description="Now that you understand the compare command, explore other commands or check out the complete reference."
+          description="Explore other commands or check out the complete reference."
           primaryAction={{
             href: '/docs/logicstamp-context/commands',
             label: 'All Commands',

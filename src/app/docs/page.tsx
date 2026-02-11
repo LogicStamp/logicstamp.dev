@@ -62,85 +62,111 @@ export default function DocsHomePage() {
           </div>
         </AnimatedSection>
 
-        {/* Concepts Overview Card */}
+        {/* Concepts Overview */}
         <AnimatedSection direction="up" delay={100}>
-          <div className="relative mb-8 sm:mb-12">
-            <div className="absolute -inset-1 bg-gradient-to-r from-blue-600 to-indigo-600 rounded-2xl blur opacity-20 dark:opacity-10" />
-            <div className="relative bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded-2xl p-4 sm:p-6 lg:p-8 shadow-xl">
-              <div className="flex items-baseline gap-3 mb-4 sm:mb-6">
-                <div className="p-2 bg-blue-100 dark:bg-blue-900/30 rounded-lg flex-shrink-0 -mt-0.5">
-                  <svg className="w-5 h-5 sm:w-6 sm:h-6 text-blue-600 dark:text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-                  </svg>
-                </div>
-                <h2 className="text-xl sm:text-2xl font-bold text-gray-900 dark:text-white m-0">
-                  Concepts Overview
-                </h2>
+          <div className="mb-8 sm:mb-12">
+            <div className="flex items-baseline gap-3 mb-4 sm:mb-6">
+              <div className="p-2 bg-blue-100 dark:bg-blue-900/30 rounded-lg flex-shrink-0 -mt-0.5">
+                <svg className="w-5 h-5 sm:w-6 sm:h-6 text-blue-600 dark:text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                </svg>
               </div>
-              
-              <p className="text-base sm:text-lg text-gray-600 dark:text-gray-400 mb-4 sm:mb-6 leading-relaxed">
-                Understand LogicStamp Context at a high level before you dive into the CLI.
-              </p>
+              <h2 className="text-xl sm:text-2xl font-bold text-gray-900 dark:text-white m-0">
+                Concepts Overview
+              </h2>
+            </div>
+            
+            <p className="text-base sm:text-lg text-gray-600 dark:text-gray-400 mb-4 sm:mb-6 leading-relaxed">
+              Understand LogicStamp Context at a high level before you dive into the CLI.
+            </p>
 
+            <div className="grid sm:grid-cols-2 gap-4">
               <Link
                 href="/docs/what-is-logicstamp"
-                className="group relative flex items-start gap-4 p-4 sm:p-6 bg-gradient-to-br from-blue-50 to-indigo-50 dark:from-blue-950/20 dark:to-indigo-950/10 rounded-xl border border-blue-200 dark:border-blue-800 hover:shadow-lg transition-all duration-200"
+                className="group p-4 border border-gray-200 dark:border-gray-800 rounded-lg hover:border-blue-500 dark:hover:border-blue-500 transition-colors"
               >
-                <div className="flex-1 min-w-0">
-                  <div className="flex items-baseline gap-2 mb-2">
-                    <h3 className="text-lg sm:text-xl font-semibold text-gray-900 dark:text-white">
-                      What is LogicStamp?
-                    </h3>
-                    <svg className="w-5 h-5 text-blue-600 dark:text-blue-400 transition-transform group-hover:translate-x-1 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
-                    </svg>
-                  </div>
-                  <p className="text-sm sm:text-base text-gray-600 dark:text-gray-400 leading-relaxed">
-                    Learn about this open-source CLI, the problems it solves, and how to use it with AI tools.
-                  </p>
+                <div className="flex items-baseline gap-2 mb-2">
+                  <h3 className="text-lg font-semibold text-gray-900 dark:text-white">
+                    What is LogicStamp?
+                  </h3>
+                  <svg className="w-5 h-5 text-gray-400 group-hover:text-blue-500 transition-transform group-hover:translate-x-1 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
+                  </svg>
                 </div>
+                <p className="text-sm text-gray-600 dark:text-gray-400">
+                  Learn about this open-source CLI, the problems it solves, and how to use it with AI tools.
+                </p>
+              </Link>
+              <Link
+                href="/docs/logicstamp-context/uif-contracts"
+                className="group p-4 border border-gray-200 dark:border-gray-800 rounded-lg hover:border-blue-500 dark:hover:border-blue-500 transition-colors"
+              >
+                <div className="flex items-baseline gap-2 mb-2">
+                  <h3 className="text-lg font-semibold text-gray-900 dark:text-white">
+                    UIF Contracts
+                  </h3>
+                  <svg className="w-5 h-5 text-gray-400 group-hover:text-blue-500 transition-transform group-hover:translate-x-1 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
+                  </svg>
+                </div>
+                <p className="text-sm text-gray-600 dark:text-gray-400">
+                  Understand component contracts, props, hooks, and how LogicStamp structures context.
+                </p>
               </Link>
             </div>
           </div>
         </AnimatedSection>
 
-        {/* Getting Started Card */}
+        {/* Getting Started */}
         <AnimatedSection direction="up" delay={150}>
-          <div className="relative mb-8 sm:mb-12">
-            <div className="absolute -inset-1 bg-gradient-to-r from-purple-600 to-pink-600 rounded-2xl blur opacity-20 dark:opacity-10" />
-            <div className="relative bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded-2xl p-4 sm:p-6 lg:p-8 shadow-xl">
-              <div className="flex items-baseline gap-3 mb-4 sm:mb-6">
-                <div className="p-2 bg-purple-100 dark:bg-purple-900/30 rounded-lg flex-shrink-0 -mt-0.5">
-                  <svg className="w-5 h-5 sm:w-6 sm:h-6 text-purple-600 dark:text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
-                  </svg>
-                </div>
-                <h2 className="text-xl sm:text-2xl font-bold text-gray-900 dark:text-white m-0">
-                  Getting Started
-                </h2>
+          <div className="mb-8 sm:mb-12">
+            <div className="flex items-baseline gap-3 mb-4 sm:mb-6">
+              <div className="p-2 bg-purple-100 dark:bg-purple-900/30 rounded-lg flex-shrink-0 -mt-0.5">
+                <svg className="w-5 h-5 sm:w-6 sm:h-6 text-purple-600 dark:text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
+                </svg>
               </div>
-              
-              <p className="text-base sm:text-lg text-gray-600 dark:text-gray-400 mb-4 sm:mb-6 leading-relaxed">
-                Installation & setup for LogicStamp Context CLI and MCP Server.
-              </p>
+              <h2 className="text-xl sm:text-2xl font-bold text-gray-900 dark:text-white m-0">
+                Getting Started
+              </h2>
+            </div>
+            
+            <p className="text-base sm:text-lg text-gray-600 dark:text-gray-400 mb-4 sm:mb-6 leading-relaxed">
+              Installation & setup for LogicStamp Context CLI and MCP Server.
+            </p>
 
+            <div className="grid sm:grid-cols-2 gap-4">
               <Link
                 href="/docs/getting-started"
-                className="group relative flex items-start gap-4 p-4 sm:p-6 bg-gradient-to-br from-purple-50 to-pink-50 dark:from-purple-950/20 dark:to-pink-950/10 rounded-xl border border-purple-200 dark:border-purple-800 hover:shadow-lg transition-all duration-200"
+                className="group p-4 border border-gray-200 dark:border-gray-800 rounded-lg hover:border-purple-500 dark:hover:border-purple-500 transition-colors"
               >
-                <div className="flex-1 min-w-0">
-                  <div className="flex items-baseline gap-2 mb-2">
-                    <h3 className="text-lg sm:text-xl font-semibold text-gray-900 dark:text-white">
-                      CLI - Installation & Quick Start
-                    </h3>
-                    <svg className="w-5 h-5 text-purple-600 dark:text-purple-400 transition-transform group-hover:translate-x-1 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
-                    </svg>
-                  </div>
-                  <p className="text-sm sm:text-base text-gray-600 dark:text-gray-400 leading-relaxed">
-                    Install the CLI globally and set up your project with <code className="px-1.5 py-0.5 bg-purple-100 dark:bg-purple-900/40 rounded font-mono text-xs">stamp init</code>, then generate your first <code className="px-1.5 py-0.5 bg-purple-100 dark:bg-purple-900/40 rounded font-mono text-xs">context.json</code>—CI-friendly and zero prompts.
-                  </p>
+                <div className="flex items-baseline gap-2 mb-2">
+                  <h3 className="text-lg font-semibold text-gray-900 dark:text-white">
+                    CLI - Installation & Quick Start
+                  </h3>
+                  <svg className="w-5 h-5 text-gray-400 group-hover:text-purple-500 transition-transform group-hover:translate-x-1 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
+                  </svg>
                 </div>
+                <p className="text-sm text-gray-600 dark:text-gray-400">
+                  Install the CLI globally and set up your project with <code className="px-1.5 py-0.5 bg-gray-100 dark:bg-gray-800 rounded font-mono text-xs">stamp init</code>, then generate your first <code className="px-1.5 py-0.5 bg-gray-100 dark:bg-gray-800 rounded font-mono text-xs">context.json</code>.
+                </p>
+              </Link>
+              <Link
+                href="/docs/mcp/getting-started"
+                className="group p-4 border border-gray-200 dark:border-gray-800 rounded-lg hover:border-purple-500 dark:hover:border-purple-500 transition-colors"
+              >
+                <div className="flex items-baseline gap-2 mb-2">
+                  <h3 className="text-lg font-semibold text-gray-900 dark:text-white">
+                    MCP - Getting Started
+                  </h3>
+                  <svg className="w-5 h-5 text-gray-400 group-hover:text-purple-500 transition-transform group-hover:translate-x-1 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
+                  </svg>
+                </div>
+                <p className="text-sm text-gray-600 dark:text-gray-400">
+                  Set up the MCP server for native integration with Claude Desktop, Claude Code, and Cursor.
+                </p>
               </Link>
             </div>
           </div>

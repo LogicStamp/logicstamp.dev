@@ -940,7 +940,7 @@ stamp context validate src/components/context.json`
 
           {/* Next Steps */}
           <ReadyToGetStartedCard
-            description="Now that you understand the schema, explore UIF contracts or check out the complete reference for all features."
+            description="Explore UIF contracts or check out the complete reference for all features."
             primaryAction={{
               href: '/docs/logicstamp-context/uif-contracts',
               label: 'UIF Contracts',

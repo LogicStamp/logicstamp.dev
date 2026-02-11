@@ -254,7 +254,7 @@ export default function MCPInstallationPage() {
 
         <ReadyToGetStartedCard
           variant="purple"
-          description="Now that you're set up, explore the complete MCP reference or learn about usage examples and workflows."
+          description="Explore the complete MCP reference or learn about usage examples and workflows."
           primaryAction={{
             href: '/docs/mcp/reference',
             label: 'MCP Reference',

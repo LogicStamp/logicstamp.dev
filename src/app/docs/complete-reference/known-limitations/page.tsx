@@ -3,6 +3,7 @@ import Footer from '@/components/layout/Footer'
 import AnimatedSection from '@/components/common/AnimatedSection'
 import DocsLayout from '@/components/docs/DocsLayout'
 import TabbedCodeBlock from '@/components/docs/TabbedCodeBlock'
+import ReadyToGetStartedCard from '@/components/docs/ReadyToGetStartedCard'
 
 export const metadata: Metadata = {
   title: 'Known Limitations | LogicStamp Context Documentation',
@@ -1118,6 +1119,11 @@ function Button({ onClick }: ButtonProps) {
             </div>
           </AnimatedSection>
         </div>
+
+        {/* Next Steps */}
+        <ReadyToGetStartedCard
+          description="Explore the complete CLI documentation or review additional guides."
+        />
       </DocsLayout>
       <Footer />
     </>

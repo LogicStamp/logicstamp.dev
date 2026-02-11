@@ -550,7 +550,7 @@ export default function HashesPage() {
 
         {/* Next Steps */}
         <ReadyToGetStartedCard
-          description="Now that you understand hashes, explore bundleHash details or check out the complete reference for all features."
+          description="Explore bundleHash details or check out the complete reference for all features."
           primaryAction={{
             href: '/docs/uifb',
             label: 'bundleHash (uifb)',

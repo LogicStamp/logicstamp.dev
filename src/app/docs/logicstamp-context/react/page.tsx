@@ -440,7 +440,7 @@ stamp context --include-style`
 
           {/* Next Steps */}
           <ReadyToGetStartedCard
-            description="Now that you understand React framework support, get started with LogicStamp Context or explore other framework integrations."
+            description="Get started with LogicStamp Context or explore other framework integrations."
             primaryAction={{
               href: '/docs/getting-started',
               label: 'Get Started',

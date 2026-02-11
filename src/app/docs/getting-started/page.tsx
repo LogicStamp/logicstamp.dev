@@ -249,7 +249,7 @@ export default function GettingStartedPage() {
         </AnimatedSection>
 
         <ReadyToGetStartedCard
-          description="Now that you're set up, explore the complete CLI documentation or learn more about what LogicStamp does."
+          description="Explore the complete CLI documentation or learn more about what LogicStamp does."
           primaryAction={{
             href: '/docs/cli/getting-started',
             label: 'CLI Documentation',
