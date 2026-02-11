@@ -657,7 +657,7 @@ stamp context --compare-modes --stats
                   className="p-4 border border-gray-200 dark:border-gray-800 rounded-lg md:hover:border-blue-500 dark:md:hover:border-blue-500 transition-colors"
                 >
                   <h3 className="font-semibold text-gray-900 dark:text-white mb-1">
-                    <code className="text-sm font-mono">stamp context</code>
+                    <code className="text-sm font-mono">stamp context</code> →
                   </h3>
                   <p className="text-sm text-gray-600 dark:text-gray-400">
                     Generate context with your chosen mode
@@ -668,7 +668,7 @@ stamp context --compare-modes --stats
                   className="p-4 border border-gray-200 dark:border-gray-800 rounded-lg md:hover:border-blue-500 dark:md:hover:border-blue-500 transition-colors"
                 >
                   <h3 className="font-semibold text-gray-900 dark:text-white mb-1">
-                    <code className="text-sm font-mono">stamp context style</code>
+                    <code className="text-sm font-mono">stamp context style</code> →
                   </h3>
                   <p className="text-sm text-gray-600 dark:text-gray-400">
                     Generate context with style metadata
@@ -679,7 +679,7 @@ stamp context --compare-modes --stats
                   className="p-4 border border-gray-200 dark:border-gray-800 rounded-lg md:hover:border-blue-500 dark:md:hover:border-blue-500 transition-colors"
                 >
                   <h3 className="font-semibold text-gray-900 dark:text-white mb-1">
-                    Usage Guide
+                    Usage Guide →
                   </h3>
                   <p className="text-sm text-gray-600 dark:text-gray-400">
                     Token optimization best practices

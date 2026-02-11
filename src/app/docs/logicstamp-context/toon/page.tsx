@@ -4,6 +4,7 @@ import AnimatedSection from '@/components/common/AnimatedSection'
 import DocsLayout from '@/components/docs/DocsLayout'
 import TabbedCodeBlock from '@/components/docs/TabbedCodeBlock'
 import Link from 'next/link'
+import ReadyToGetStartedCard from '@/components/docs/ReadyToGetStartedCard'
 
 export const metadata: Metadata = {
   title: 'TOON Format | LogicStamp Context Documentation',
@@ -731,7 +732,7 @@ await writeFile('src/components/context.json', jsonContent);
                   className="p-4 border border-gray-200 dark:border-gray-800 rounded-lg md:hover:border-blue-500 dark:md:hover:border-blue-500 transition-colors"
                 >
                   <h3 className="font-semibold text-gray-900 dark:text-white mb-1">
-                    <code className="text-sm font-mono">stamp context</code>
+                    <code className="text-sm font-mono">stamp context</code> →
                   </h3>
                   <p className="text-sm text-gray-600 dark:text-gray-400">
                     Generate context files (supports all formats including TOON)
@@ -742,7 +743,7 @@ await writeFile('src/components/context.json', jsonContent);
                   className="p-4 border border-gray-200 dark:border-gray-800 rounded-lg md:hover:border-blue-500 dark:md:hover:border-blue-500 transition-colors"
                 >
                   <h3 className="font-semibold text-gray-900 dark:text-white mb-1">
-                    <code className="text-sm font-mono">stamp context validate</code>
+                    <code className="text-sm font-mono">stamp context validate</code> →
                   </h3>
                   <p className="text-sm text-gray-600 dark:text-gray-400">
                     Validate context files (JSON format only)
@@ -753,7 +754,7 @@ await writeFile('src/components/context.json', jsonContent);
                   className="p-4 border border-gray-200 dark:border-gray-800 rounded-lg md:hover:border-blue-500 dark:md:hover:border-blue-500 transition-colors"
                 >
                   <h3 className="font-semibold text-gray-900 dark:text-white mb-1">
-                    <code className="text-sm font-mono">stamp context compare</code>
+                    <code className="text-sm font-mono">stamp context compare</code> →
                   </h3>
                   <p className="text-sm text-gray-600 dark:text-gray-400">
                     Compare context files (JSON format only)
@@ -764,7 +765,7 @@ await writeFile('src/components/context.json', jsonContent);
                   className="p-4 border border-gray-200 dark:border-gray-800 rounded-lg md:hover:border-blue-500 dark:md:hover:border-blue-500 transition-colors"
                 >
                   <h3 className="font-semibold text-gray-900 dark:text-white mb-1">
-                    <code className="text-sm font-mono">stamp context clean</code>
+                    <code className="text-sm font-mono">stamp context clean</code> →
                   </h3>
                   <p className="text-sm text-gray-600 dark:text-gray-400">
                     Clean context files (JSON format only)
@@ -775,7 +776,7 @@ await writeFile('src/components/context.json', jsonContent);
                   className="p-4 border border-gray-200 dark:border-gray-800 rounded-lg md:hover:border-blue-500 dark:md:hover:border-blue-500 transition-colors"
                 >
                   <h3 className="font-semibold text-gray-900 dark:text-white mb-1">
-                    <code className="text-sm font-mono">stamp init</code>
+                    <code className="text-sm font-mono">stamp init</code> →
                   </h3>
                   <p className="text-sm text-gray-600 dark:text-gray-400">
                     Set up <code className="px-1 py-0.5 bg-gray-100 dark:bg-gray-800 rounded text-xs font-mono">.gitignore</code> patterns for TOON files
@@ -785,6 +786,20 @@ await writeFile('src/components/context.json', jsonContent);
             </div>
           </AnimatedSection>
         </div>
+
+        <ReadyToGetStartedCard
+          variant="green"
+          description="Now that you understand TOON format, explore other commands or check out the complete reference."
+          primaryAction={{
+            href: '/docs/logicstamp-context/commands',
+            label: 'All Commands',
+          }}
+          secondaryAction={{
+            href: '/docs/logicstamp-context/context',
+            label: 'Generate Context',
+          }}
+          delay={650}
+        />
       </DocsLayout>
       <Footer />
     </>

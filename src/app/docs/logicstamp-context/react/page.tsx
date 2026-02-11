@@ -3,6 +3,7 @@ import Footer from '@/components/layout/Footer'
 import AnimatedSection from '@/components/common/AnimatedSection'
 import DocsLayout from '@/components/docs/DocsLayout'
 import TabbedCodeBlock from '@/components/docs/TabbedCodeBlock'
+import ReadyToGetStartedCard from '@/components/docs/ReadyToGetStartedCard'
 
 export const metadata: Metadata = {
   title: 'React Framework Support | LogicStamp Context Documentation',
@@ -436,6 +437,19 @@ stamp context --include-style`
               </div>
             </div>
           </AnimatedSection>
+
+          {/* Next Steps */}
+          <ReadyToGetStartedCard
+            description="Now that you understand React framework support, get started with LogicStamp Context or explore other framework integrations."
+            primaryAction={{
+              href: '/docs/getting-started',
+              label: 'Get Started',
+            }}
+            secondaryAction={{
+              href: '/docs/logicstamp-context/typescript',
+              label: 'TypeScript Support',
+            }}
+          />
         </div>
       </DocsLayout>
       <Footer />

@@ -4,6 +4,7 @@ import Footer from '@/components/layout/Footer'
 import AnimatedSection from '@/components/common/AnimatedSection'
 import DocsLayout from '@/components/docs/DocsLayout'
 import TabbedCodeBlock from '@/components/docs/TabbedCodeBlock'
+import ReadyToGetStartedCard from '@/components/docs/ReadyToGetStartedCard'
 
 export const metadata: Metadata = {
   title: 'Usage Guide | LogicStamp Context Documentation',
@@ -766,6 +767,19 @@ stamp security scan`
             </div>
           </div>
         </AnimatedSection>
+
+        {/* Next Steps */}
+        <ReadyToGetStartedCard
+          description="Now that you understand how to use LogicStamp Context, explore best practices or check out watch mode for automatic context updates."
+          primaryAction={{
+            href: '/docs/best-practices',
+            label: 'Best Practices',
+          }}
+          secondaryAction={{
+            href: '/docs/logicstamp-context/watch-mode',
+            label: 'Watch Mode',
+          }}
+        />
       </DocsLayout>
       <Footer />
     </>

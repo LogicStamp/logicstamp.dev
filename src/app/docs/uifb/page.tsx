@@ -2,6 +2,7 @@ import { Metadata } from 'next'
 import Footer from '@/components/layout/Footer'
 import AnimatedSection from '@/components/common/AnimatedSection'
 import DocsLayout from '@/components/docs/DocsLayout'
+import ReadyToGetStartedCard from '@/components/docs/ReadyToGetStartedCard'
 
 export const metadata: Metadata = {
   title: 'bundleHash (uifb) | LogicStamp Context Documentation',
@@ -465,6 +466,19 @@ export default function UifbPage() {
             </div>
           </section>
         </AnimatedSection>
+
+        {/* Next Steps */}
+        <ReadyToGetStartedCard
+          description="Now that you understand bundleHash, explore other hash types or check out the complete reference for all features."
+          primaryAction={{
+            href: '/docs/hashes',
+            label: 'Hashes Guide',
+          }}
+          secondaryAction={{
+            href: '/docs/complete-reference',
+            label: 'Complete Reference',
+          }}
+        />
       </DocsLayout>
       <Footer />
     </>

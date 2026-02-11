@@ -4,6 +4,7 @@ import Footer from '@/components/layout/Footer'
 import AnimatedSection from '@/components/common/AnimatedSection'
 import DocsLayout from '@/components/docs/DocsLayout'
 import TabbedCodeBlock from '@/components/docs/TabbedCodeBlock'
+import ReadyToGetStartedCard from '@/components/docs/ReadyToGetStartedCard'
 
 export const metadata: Metadata = {
   title: '`context` Command | LogicStamp Context Documentation',
@@ -622,7 +623,7 @@ const password = 'EXAMPLE_PRIVATE_DATA';"
                   className="p-4 border border-gray-200 dark:border-gray-800 rounded-lg md:hover:border-blue-500 dark:md:hover:border-blue-500 transition-colors"
                 >
                   <h3 className="font-semibold text-gray-900 dark:text-white mb-1">
-                    <code className="text-sm font-mono">stamp context style</code>
+                    <code className="text-sm font-mono">stamp context style</code> →
                   </h3>
                   <p className="text-sm text-gray-600 dark:text-gray-400">
                     Generate context with style metadata
@@ -633,7 +634,7 @@ const password = 'EXAMPLE_PRIVATE_DATA';"
                   className="p-4 border border-gray-200 dark:border-gray-800 rounded-lg md:hover:border-blue-500 dark:md:hover:border-blue-500 transition-colors"
                 >
                   <h3 className="font-semibold text-gray-900 dark:text-white mb-1">
-                    <code className="text-sm font-mono">stamp context --watch</code>
+                    <code className="text-sm font-mono">stamp context --watch</code> →
                   </h3>
                   <p className="text-sm text-gray-600 dark:text-gray-400">
                     Keep context fresh automatically
@@ -644,7 +645,7 @@ const password = 'EXAMPLE_PRIVATE_DATA';"
                   className="p-4 border border-gray-200 dark:border-gray-800 rounded-lg md:hover:border-blue-500 dark:md:hover:border-blue-500 transition-colors"
                 >
                   <h3 className="font-semibold text-gray-900 dark:text-white mb-1">
-                    <code className="text-sm font-mono">stamp context validate</code>
+                    <code className="text-sm font-mono">stamp context validate</code> →
                   </h3>
                   <p className="text-sm text-gray-600 dark:text-gray-400">
                     Validate generated context files
@@ -655,7 +656,7 @@ const password = 'EXAMPLE_PRIVATE_DATA';"
                   className="p-4 border border-gray-200 dark:border-gray-800 rounded-lg md:hover:border-blue-500 dark:md:hover:border-blue-500 transition-colors"
                 >
                   <h3 className="font-semibold text-gray-900 dark:text-white mb-1">
-                    <code className="text-sm font-mono">stamp context compare</code>
+                    <code className="text-sm font-mono">stamp context compare</code> →
                   </h3>
                   <p className="text-sm text-gray-600 dark:text-gray-400">
                     Detect context drift across folders
@@ -687,6 +688,20 @@ const password = 'EXAMPLE_PRIVATE_DATA';"
             </div>
           </AnimatedSection>
         </div>
+
+        <ReadyToGetStartedCard
+          variant="green"
+          description="Now that you've generated context, learn how to use it with LLMs or explore watch mode for automatic updates."
+          primaryAction={{
+            href: '/docs/logicstamp-context/usage',
+            label: 'Usage Guide',
+          }}
+          secondaryAction={{
+            href: '/docs/logicstamp-context/watch-mode',
+            label: 'Watch Mode',
+          }}
+          delay={650}
+        />
       </DocsLayout>
       <Footer />
     </>

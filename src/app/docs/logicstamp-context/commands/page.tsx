@@ -4,6 +4,7 @@ import Footer from '@/components/layout/Footer'
 import AnimatedSection from '@/components/common/AnimatedSection'
 import DocsLayout from '@/components/docs/DocsLayout'
 import TabbedCodeBlock from '@/components/docs/TabbedCodeBlock'
+import ReadyToGetStartedCard from '@/components/docs/ReadyToGetStartedCard'
 
 export const metadata: Metadata = {
   title: 'LogicStamp Context Commands | Documentation',
@@ -16,27 +17,13 @@ export default function LogicStampCommandsPage() {
       <DocsLayout>
         {/* Hero Section */}
         <AnimatedSection direction="up" delay={0}>
-          <div className="relative mb-8 sm:mb-12 lg:mb-16">
-            {/* Background gradient */}
-            <div className="absolute inset-0 bg-gradient-to-br from-blue-50 via-indigo-50/30 to-purple-50/20 dark:from-blue-950/20 dark:via-indigo-950/10 dark:to-purple-950/5 rounded-3xl -m-4 sm:-m-6 lg:-m-8 blur-3xl opacity-70" />
-            
-            <div className="relative">
-              {/* Badge */}
-              <div className="inline-flex items-center gap-2 px-3 py-1.5 bg-gradient-to-r from-blue-100 to-indigo-100 dark:from-blue-900/40 dark:to-indigo-900/40 text-blue-700 dark:text-blue-300 text-sm font-semibold rounded-full mb-4 sm:mb-6 backdrop-blur-sm border border-blue-200/50 dark:border-blue-700/50">
-                <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
-                  <path fillRule="evenodd" d="M3 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm0 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm0 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm0 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z" clipRule="evenodd" />
-                </svg>
-                CLI Reference
-              </div>
-
-              <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black text-transparent bg-clip-text bg-gradient-to-r from-gray-900 to-gray-700 dark:from-white dark:to-gray-300 mb-4 sm:mb-6 tracking-tight leading-[1.1]">
-                Commands
-              </h1>
-              
-              <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-gray-600 dark:text-gray-400 leading-relaxed max-w-3xl">
-                LogicStamp Context ships as a single CLI entry point, <code className="px-2 py-1 bg-gray-100 dark:bg-gray-800 text-blue-600 dark:text-blue-400 rounded-md font-mono text-xs sm:text-sm">stamp</code>, with <code className="px-2 py-1 bg-gray-100 dark:bg-gray-800 text-blue-600 dark:text-blue-400 rounded-md font-mono text-xs sm:text-sm">context</code> subcommands.
-              </p>
-            </div>
+          <div className="mb-12">
+            <h1 className="text-4xl sm:text-5xl font-black text-transparent bg-clip-text bg-gradient-to-r from-gray-900 to-gray-700 dark:from-white dark:to-gray-300 mb-4 tracking-tight">
+              Commands
+            </h1>
+            <p className="text-xl text-gray-600 dark:text-gray-400 max-w-3xl">
+              LogicStamp Context ships as a single CLI entry point, <code className="px-1.5 py-0.5 bg-gray-100 dark:bg-gray-800 rounded text-xs">stamp</code>, with <code className="px-1.5 py-0.5 bg-gray-100 dark:bg-gray-800 rounded text-xs">context</code> subcommands.
+            </p>
           </div>
         </AnimatedSection>
 
@@ -469,7 +456,7 @@ stamp context clean --all --yes`
                   </svg>
                   <div>
                     <h3 className="text-sm font-semibold text-blue-900 dark:text-blue-200 group-hover:text-blue-700 dark:group-hover:text-blue-100 transition-colors">
-                      <code className="px-1.5 py-0.5 bg-blue-100 dark:bg-blue-900/40 rounded text-xs font-mono">stamp context</code> command
+                      <code className="px-1.5 py-0.5 bg-blue-100 dark:bg-blue-900/40 rounded text-xs font-mono">stamp context</code> command →
                     </h3>
                     <p className="text-xs text-gray-600 dark:text-gray-400 mt-1">
                       Complete <code className="px-1 py-0.5 bg-blue-100 dark:bg-blue-900/40 rounded text-xs font-mono">stamp context</code> command reference
@@ -488,7 +475,7 @@ stamp context clean --all --yes`
                   </svg>
                   <div>
                     <h3 className="text-sm font-semibold text-pink-900 dark:text-pink-200 group-hover:text-pink-700 dark:group-hover:text-pink-100 transition-colors">
-                      <code className="px-1.5 py-0.5 bg-pink-100 dark:bg-pink-900/40 rounded text-xs font-mono">stamp context style</code> command
+                      <code className="px-1.5 py-0.5 bg-pink-100 dark:bg-pink-900/40 rounded text-xs font-mono">stamp context style</code> command →
                     </h3>
                     <p className="text-xs text-gray-600 dark:text-gray-400 mt-1">
                       Style metadata extraction guide
@@ -507,7 +494,7 @@ stamp context clean --all --yes`
                   </svg>
                   <div>
                     <h3 className="text-sm font-semibold text-green-900 dark:text-green-200 group-hover:text-green-700 dark:group-hover:text-green-100 transition-colors">
-                      <code className="px-1.5 py-0.5 bg-green-100 dark:bg-green-900/40 rounded text-xs font-mono">stamp init</code> command
+                      <code className="px-1.5 py-0.5 bg-green-100 dark:bg-green-900/40 rounded text-xs font-mono">stamp init</code> command →
                     </h3>
                     <p className="text-xs text-gray-600 dark:text-gray-400 mt-1">
                       Project initialization guide
@@ -526,7 +513,7 @@ stamp context clean --all --yes`
                   </svg>
                   <div>
                     <h3 className="text-sm font-semibold text-purple-900 dark:text-purple-200 group-hover:text-purple-700 dark:group-hover:text-purple-100 transition-colors">
-                      <code className="px-1.5 py-0.5 bg-purple-100 dark:bg-purple-900/40 rounded text-xs font-mono">stamp context validate</code> command
+                      <code className="px-1.5 py-0.5 bg-purple-100 dark:bg-purple-900/40 rounded text-xs font-mono">stamp context validate</code> command →
                     </h3>
                     <p className="text-xs text-gray-600 dark:text-gray-400 mt-1">
                       Schema validation reference
@@ -545,7 +532,7 @@ stamp context clean --all --yes`
                   </svg>
                   <div>
                     <h3 className="text-sm font-semibold text-amber-900 dark:text-amber-200 group-hover:text-amber-700 dark:group-hover:text-amber-100 transition-colors">
-                      <code className="px-1.5 py-0.5 bg-amber-100 dark:bg-amber-900/40 rounded text-xs font-mono">stamp context compare</code> command
+                      <code className="px-1.5 py-0.5 bg-amber-100 dark:bg-amber-900/40 rounded text-xs font-mono">stamp context compare</code> command →
                     </h3>
                     <p className="text-xs text-gray-600 dark:text-gray-400 mt-1">
                       Context drift detection and comparison
@@ -564,7 +551,7 @@ stamp context clean --all --yes`
                   </svg>
                   <div>
                     <h3 className="text-sm font-semibold text-rose-900 dark:text-rose-200 group-hover:text-rose-700 dark:group-hover:text-rose-100 transition-colors">
-                      <code className="px-1.5 py-0.5 bg-rose-100 dark:bg-rose-900/40 rounded text-xs font-mono">stamp context clean</code> command
+                      <code className="px-1.5 py-0.5 bg-rose-100 dark:bg-rose-900/40 rounded text-xs font-mono">stamp context clean</code> command →
                     </h3>
                     <p className="text-xs text-gray-600 dark:text-gray-400 mt-1">
                       Remove context artifacts
@@ -583,7 +570,7 @@ stamp context clean --all --yes`
                   </svg>
                   <div>
                     <h3 className="text-sm font-semibold text-red-900 dark:text-red-200 group-hover:text-red-700 dark:group-hover:text-red-100 transition-colors">
-                      <code className="px-1.5 py-0.5 bg-red-100 dark:bg-red-900/40 rounded text-xs font-mono">stamp security scan</code> command
+                      <code className="px-1.5 py-0.5 bg-red-100 dark:bg-red-900/40 rounded text-xs font-mono">stamp security scan</code> command →
                     </h3>
                     <p className="text-xs text-gray-600 dark:text-gray-400 mt-1">
                       Find secrets and sensitive data before committing
@@ -594,24 +581,22 @@ stamp context clean --all --yes`
             </div>
           </div>
         </AnimatedSection>
+
+        <ReadyToGetStartedCard
+          variant="green"
+          description="Now that you understand the commands, initialize your project and generate your first context bundle."
+          primaryAction={{
+            href: '/docs/logicstamp-context/init',
+            label: 'Initialize Project',
+          }}
+          secondaryAction={{
+            href: '/docs/getting-started',
+            label: 'Getting Started Guide',
+          }}
+          delay={650}
+        />
       </DocsLayout>
       <Footer />
     </>
   )
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

@@ -4,6 +4,7 @@ import Footer from '@/components/layout/Footer'
 import AnimatedSection from '@/components/common/AnimatedSection'
 import DocsLayout from '@/components/docs/DocsLayout'
 import TabbedCodeBlock from '@/components/docs/TabbedCodeBlock'
+import ReadyToGetStartedCard from '@/components/docs/ReadyToGetStartedCard'
 
 export const metadata: Metadata = {
   title: 'Best Practices | LogicStamp Context Documentation',
@@ -16,29 +17,17 @@ export default function BestPracticesPage() {
       <DocsLayout>
         {/* Hero Section */}
         <AnimatedSection direction="up" delay={0}>
-          <div className="relative mb-8 sm:mb-12 lg:mb-16">
-            <div className="absolute inset-0 bg-gradient-to-br from-blue-50 via-indigo-50/30 to-purple-50/20 dark:from-blue-950/20 dark:via-indigo-950/10 dark:to-purple-950/5 rounded-3xl -m-4 sm:-m-6 lg:-m-8 blur-3xl opacity-70" />
-
-            <div className="relative">
-              <div className="inline-flex items-center gap-2 px-3 py-1.5 bg-gradient-to-r from-blue-100 to-indigo-100 dark:from-blue-900/40 dark:to-indigo-900/40 text-blue-700 dark:text-blue-300 text-sm font-semibold rounded-full mb-4 sm:mb-6 backdrop-blur-sm border border-blue-200/50 dark:border-blue-700/50">
-                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 16h-1v-4h-1m1-4h.01M12 2a10 10 0 1010 10A10 10 0 0012 2z" />
-                </svg>
-                Best Practices
-              </div>
-
-              <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black text-transparent bg-clip-text bg-gradient-to-r from-gray-900 to-gray-700 dark:from-white dark:to-gray-300 mb-4 sm:mb-6 tracking-tight leading-[1.1]">
-                Best Practices
-              </h1>
-
-              <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-gray-600 dark:text-gray-400 leading-relaxed max-w-3xl">
-                Opinionated guidance for getting the most out of LogicStamp Context with AI coding assistants.
-              </p>
-            </div>
+          <div className="mb-12">
+            <h1 className="text-4xl sm:text-5xl font-black text-transparent bg-clip-text bg-gradient-to-r from-gray-900 to-gray-700 dark:from-white dark:to-gray-300 mb-4 tracking-tight">
+              Best Practices
+            </h1>
+            <p className="text-xl text-gray-600 dark:text-gray-400 max-w-3xl">
+              Opinionated guidance for getting the most out of LogicStamp Context with AI coding assistants.
+            </p>
           </div>
         </AnimatedSection>
 
-        <div className="space-y-10 sm:space-y-14 lg:space-y-16">
+        <div className="space-y-12">
           {/* Core Prompting Rule */}
           <AnimatedSection direction="up" delay={100}>
             <div className="relative">
@@ -475,6 +464,19 @@ stamp context validate`,
               </div>
             </div>
           </AnimatedSection>
+
+          {/* Next Steps */}
+          <ReadyToGetStartedCard
+            description="Now that you understand best practices, get started with LogicStamp Context or explore the complete reference for all features."
+            primaryAction={{
+              href: '/docs/getting-started',
+              label: 'Get Started',
+            }}
+            secondaryAction={{
+              href: '/docs/complete-reference',
+              label: 'Complete Reference',
+            }}
+          />
         </div>
       </DocsLayout>
       <Footer />

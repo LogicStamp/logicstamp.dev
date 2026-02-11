@@ -3,6 +3,7 @@ import Footer from '@/components/layout/Footer'
 import AnimatedSection from '@/components/common/AnimatedSection'
 import DocsLayout from '@/components/docs/DocsLayout'
 import TabbedCodeBlock from '@/components/docs/TabbedCodeBlock'
+import ReadyToGetStartedCard from '@/components/docs/ReadyToGetStartedCard'
 
 export const metadata: Metadata = {
   title: 'UIF Contracts | LogicStamp Context Documentation',
@@ -535,6 +536,19 @@ export function Button({ onClick, label }: ButtonProps) {
               </div>
             </div>
           </AnimatedSection>
+
+          {/* Next Steps */}
+          <ReadyToGetStartedCard
+            description="Now that you understand UIF contracts, explore the schema reference or check out best practices for using them."
+            primaryAction={{
+              href: '/docs/logicstamp-context/schema',
+              label: 'Schema Reference',
+            }}
+            secondaryAction={{
+              href: '/docs/best-practices',
+              label: 'Best Practices',
+            }}
+          />
         </div>
       </DocsLayout>
       <Footer />

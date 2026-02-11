@@ -4,6 +4,7 @@ import AnimatedSection from '@/components/common/AnimatedSection'
 import DocsLayout from '@/components/docs/DocsLayout'
 import TabbedCodeBlock from '@/components/docs/TabbedCodeBlock'
 import Image from 'next/image'
+import ReadyToGetStartedCard from '@/components/docs/ReadyToGetStartedCard'
 
 export const metadata: Metadata = {
   title: 'MCP Server | LogicStamp Context Documentation',
@@ -1047,6 +1048,21 @@ npm run build`,
             </div>
           </AnimatedSection>
         </div>
+
+        <ReadyToGetStartedCard
+          variant="purple"
+          description="Install LogicStamp Context MCP server and start using it with Claude Desktop, Claude Code, or Cursor."
+          primaryAction={{
+            href: '/docs/mcp/getting-started',
+            label: 'Installation Guide',
+          }}
+          secondaryAction={{
+            href: '/docs/mcp/reference',
+            label: 'MCP Reference',
+          }}
+          showGitHubLink={false}
+          delay={700}
+        />
       </DocsLayout>
       <Footer />
     </>

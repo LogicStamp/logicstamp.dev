@@ -4,6 +4,7 @@ import Footer from '@/components/layout/Footer'
 import AnimatedSection from '@/components/common/AnimatedSection'
 import DocsLayout from '@/components/docs/DocsLayout'
 import TabbedCodeBlock from '@/components/docs/TabbedCodeBlock'
+import ReadyToGetStartedCard from '@/components/docs/ReadyToGetStartedCard'
 
 export const metadata: Metadata = {
   title: '`stamp init` Command | LogicStamp Context Documentation',
@@ -535,7 +536,7 @@ stamp init --skip-gitignore`
                   className="p-4 border border-gray-200 dark:border-gray-800 rounded-lg md:hover:border-blue-500 dark:md:hover:border-blue-500 transition-colors"
                 >
                   <h3 className="font-semibold text-gray-900 dark:text-white mb-1">
-                    <code className="text-sm font-mono">stamp context</code>
+                    <code className="text-sm font-mono">stamp context</code> →
                   </h3>
                   <p className="text-sm text-gray-600 dark:text-gray-400">
                     Generate AI-ready context bundles
@@ -546,7 +547,7 @@ stamp init --skip-gitignore`
                   className="p-4 border border-gray-200 dark:border-gray-800 rounded-lg md:hover:border-blue-500 dark:md:hover:border-blue-500 transition-colors"
                 >
                   <h3 className="font-semibold text-gray-900 dark:text-white mb-1">
-                    <code className="text-sm font-mono">stamp security scan</code>
+                    <code className="text-sm font-mono">stamp security scan</code> →
                   </h3>
                   <p className="text-sm text-gray-600 dark:text-gray-400">
                     Scan for secrets before generating context
@@ -557,7 +558,7 @@ stamp init --skip-gitignore`
                   className="p-4 border border-gray-200 dark:border-gray-800 rounded-lg md:hover:border-blue-500 dark:md:hover:border-blue-500 transition-colors"
                 >
                   <h3 className="font-semibold text-gray-900 dark:text-white mb-1">
-                    Usage Guide
+                    Usage Guide →
                   </h3>
                   <p className="text-sm text-gray-600 dark:text-gray-400">
                     Learn how to use LogicStamp effectively
@@ -567,6 +568,20 @@ stamp init --skip-gitignore`
             </div>
           </AnimatedSection>
         </div>
+
+        <ReadyToGetStartedCard
+          variant="green"
+          description="Now that your project is initialized, generate your first AI-ready context bundle."
+          primaryAction={{
+            href: '/docs/logicstamp-context/context',
+            label: 'Generate Context',
+          }}
+          secondaryAction={{
+            href: '/docs/getting-started',
+            label: 'Getting Started Guide',
+          }}
+          delay={650}
+        />
       </DocsLayout>
       <Footer />
     </>

@@ -3,6 +3,7 @@ import Footer from '@/components/layout/Footer'
 import AnimatedSection from '@/components/common/AnimatedSection'
 import DocsLayout from '@/components/docs/DocsLayout'
 import TabbedCodeBlock from '@/components/docs/TabbedCodeBlock'
+import ReadyToGetStartedCard from '@/components/docs/ReadyToGetStartedCard'
 
 export const metadata: Metadata = {
   title: 'Schema Reference | LogicStamp Context Documentation',
@@ -936,6 +937,19 @@ stamp context validate src/components/context.json`
               </div>
             </div>
           </AnimatedSection>
+
+          {/* Next Steps */}
+          <ReadyToGetStartedCard
+            description="Now that you understand the schema, explore UIF contracts or check out the complete reference for all features."
+            primaryAction={{
+              href: '/docs/logicstamp-context/uif-contracts',
+              label: 'UIF Contracts',
+            }}
+            secondaryAction={{
+              href: '/docs/complete-reference',
+              label: 'Complete Reference',
+            }}
+          />
         </div>
       </DocsLayout>
       <Footer />

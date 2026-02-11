@@ -1103,7 +1103,7 @@ stamp context compare old/context_main.json new/context_main.json`
                   className="p-4 border border-gray-200 dark:border-gray-800 rounded-lg md:hover:border-blue-500 dark:md:hover:border-blue-500 transition-colors"
                 >
                   <h3 className="font-semibold text-gray-900 dark:text-white mb-1">
-                    <code className="text-sm font-mono">stamp context</code>
+                    <code className="text-sm font-mono">stamp context</code> →
                   </h3>
                   <p className="text-sm text-gray-600 dark:text-gray-400">
                     Generate context without style metadata
@@ -1114,7 +1114,7 @@ stamp context compare old/context_main.json new/context_main.json`
                   className="p-4 border border-gray-200 dark:border-gray-800 rounded-lg md:hover:border-blue-500 dark:md:hover:border-blue-500 transition-colors"
                 >
                   <h3 className="font-semibold text-gray-900 dark:text-white mb-1">
-                    <code className="text-sm font-mono">stamp context validate</code>
+                    <code className="text-sm font-mono">stamp context validate</code> →
                   </h3>
                   <p className="text-sm text-gray-600 dark:text-gray-400">
                     Validate generated context files
@@ -1125,7 +1125,7 @@ stamp context compare old/context_main.json new/context_main.json`
                   className="p-4 border border-gray-200 dark:border-gray-800 rounded-lg md:hover:border-blue-500 dark:md:hover:border-blue-500 transition-colors"
                 >
                   <h3 className="font-semibold text-gray-900 dark:text-white mb-1">
-                    <code className="text-sm font-mono">stamp context compare</code>
+                    <code className="text-sm font-mono">stamp context compare</code> →
                   </h3>
                   <p className="text-sm text-gray-600 dark:text-gray-400">
                     Compare context files including style changes

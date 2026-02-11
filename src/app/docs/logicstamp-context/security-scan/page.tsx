@@ -4,6 +4,7 @@ import Footer from '@/components/layout/Footer'
 import AnimatedSection from '@/components/common/AnimatedSection'
 import DocsLayout from '@/components/docs/DocsLayout'
 import TabbedCodeBlock from '@/components/docs/TabbedCodeBlock'
+import ReadyToGetStartedCard from '@/components/docs/ReadyToGetStartedCard'
 
 export const metadata: Metadata = {
   title: '`stamp security scan` Command | LogicStamp Context Documentation',
@@ -651,7 +652,7 @@ stamp init --no-secure`
                   className="p-4 border border-gray-200 dark:border-gray-800 rounded-lg md:hover:border-blue-500 dark:md:hover:border-blue-500 transition-colors"
                 >
                   <h3 className="font-semibold text-gray-900 dark:text-white mb-1">
-                    <code className="text-sm font-mono">stamp init</code>
+                    <code className="text-sm font-mono">stamp init</code> →
                   </h3>
                   <p className="text-sm text-gray-600 dark:text-gray-400">
                     Initialize LogicStamp with security scan
@@ -662,7 +663,7 @@ stamp init --no-secure`
                   className="p-4 border border-gray-200 dark:border-gray-800 rounded-lg md:hover:border-blue-500 dark:md:hover:border-blue-500 transition-colors"
                 >
                   <h3 className="font-semibold text-gray-900 dark:text-white mb-1">
-                    <code className="text-sm font-mono">stamp context</code>
+                    <code className="text-sm font-mono">stamp context</code> →
                   </h3>
                   <p className="text-sm text-gray-600 dark:text-gray-400">
                     Generate context after scanning for secrets
@@ -673,7 +674,7 @@ stamp init --no-secure`
                   className="p-4 border border-gray-200 dark:border-gray-800 rounded-lg md:hover:border-blue-500 dark:md:hover:border-blue-500 transition-colors"
                 >
                   <h3 className="font-semibold text-gray-900 dark:text-white mb-1">
-                    Usage Guide
+                    Usage Guide →
                   </h3>
                   <p className="text-sm text-gray-600 dark:text-gray-400">
                     Security workflow best practices
@@ -683,6 +684,20 @@ stamp init --no-secure`
             </div>
           </AnimatedSection>
         </div>
+
+        <ReadyToGetStartedCard
+          variant="green"
+          description="Now that you understand security scanning, explore other commands or check out best practices."
+          primaryAction={{
+            href: '/docs/logicstamp-context/commands',
+            label: 'All Commands',
+          }}
+          secondaryAction={{
+            href: '/docs/best-practices',
+            label: 'Best Practices',
+          }}
+          delay={650}
+        />
       </DocsLayout>
       <Footer />
     </>
