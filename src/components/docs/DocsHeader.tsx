@@ -2,7 +2,7 @@
 
 import { useState, useEffect, useRef } from 'react'
 import { usePathname } from 'next/navigation'
-import { ChevronDown, PanelLeft } from 'lucide-react'
+import { ChevronDown } from 'lucide-react'
 
 type Heading = {
   id: string
@@ -26,11 +26,6 @@ export default function DocsHeader({ sidebarOpen, onSidebarToggle }: DocsHeaderP
   const [lastScrollY, setLastScrollY] = useState(0)
   const [mounted, setMounted] = useState(false)
   
-  // Only show on docs pages
-  if (!pathname.startsWith('/docs')) {
-    return null
-  }
-
   // Used only to prevent animations on first render for the TOC dropdown
   useEffect(() => {
     setMounted(true)
@@ -154,6 +149,11 @@ export default function DocsHeader({ sidebarOpen, onSidebarToggle }: DocsHeaderP
       })
     }
   }, [headings])
+
+  // Only show on docs pages
+  if (!pathname.startsWith('/docs')) {
+    return null
+  }
 
   const scrollToHeading = (id: string) => {
     const element = document.getElementById(id)
