@@ -5,14 +5,6 @@ import userEvent from '@testing-library/user-event'
 import FAQ from '@/components/sections/FAQ'
 
 // Mock child components
-vi.mock('@/components/ui/GetStartedButton', () => ({
-  default: ({ children, href }: { children: React.ReactNode; href: string }) => (
-    <a href={href} data-testid="get-started-button">
-      {children}
-    </a>
-  ),
-}))
-
 vi.mock('@/components/ui/ReadTheDocsButton', () => ({
   default: ({ href }: { href: string }) => (
     <a href={href} data-testid="read-docs-button">Read the Docs</a>
@@ -39,7 +31,7 @@ describe('FAQ Component', () => {
       'How does LogicStamp Context work?',
       'Why not just paste code into AI chats?',
       'Is LogicStamp free to use?',
-      'What frameworks are supported?',
+      'Which frameworks are supported?',
       'How do I get started?',
       'How do I set up MCP integration?',
       'How does token optimization work?',
@@ -135,11 +127,12 @@ describe('FAQ Component', () => {
   it('renders documentation links', () => {
     render(<FAQ />)
 
-    expect(screen.getByTestId('get-started-button')).toHaveAttribute(
-      'href',
-      'docs/getting-started'
-    )
-    expect(screen.getByTestId('read-docs-button')).toHaveAttribute('href', 'docs/')
+    // There are two buttons: one for desktop and one for mobile
+    const buttons = screen.getAllByTestId('read-docs-button')
+    expect(buttons).toHaveLength(2)
+    buttons.forEach(button => {
+      expect(button).toHaveAttribute('href', 'docs/')
+    })
   })
 
   it('supports keyboard navigation with arrow keys', async () => {

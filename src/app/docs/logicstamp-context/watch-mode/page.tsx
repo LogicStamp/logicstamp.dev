@@ -490,29 +490,49 @@ kill $(pgrep -f "stamp context --watch")`,
                 Related Commands
               </h2>
               <div className="grid sm:grid-cols-2 gap-4">
-                <Link href="/docs/logicstamp-context/context" className="block p-4 bg-gradient-to-br from-green-50 to-emerald-50 dark:from-green-950/20 dark:to-emerald-950/10 rounded-xl border border-green-200 dark:border-green-800 hover:shadow-lg transition-shadow">
-                  <div className="flex items-center gap-2 mb-2">
-                    <code className="px-2 py-1 bg-green-100 dark:bg-green-900/40 text-green-900 dark:text-green-100 rounded text-sm font-mono">stamp context</code>
-                  </div>
-                  <p className="text-sm text-green-800 dark:text-green-300">Generate context files (one-time)</p>
+                <Link
+                  href="/docs/logicstamp-context/context"
+                  className="p-4 border border-gray-200 dark:border-gray-800 rounded-lg md:hover:border-blue-500 dark:md:hover:border-blue-500 transition-colors"
+                >
+                  <h3 className="font-semibold text-gray-900 dark:text-white mb-1">
+                    <code className="text-sm font-mono">stamp context</code>
+                  </h3>
+                  <p className="text-sm text-gray-600 dark:text-gray-400">
+                    Generate context files (one-time)
+                  </p>
                 </Link>
-                <Link href="/docs/mcp/reference" className="block p-4 bg-gradient-to-br from-purple-50 to-pink-50 dark:from-purple-950/20 dark:to-pink-950/10 rounded-xl border border-purple-200 dark:border-purple-800 hover:shadow-lg transition-shadow">
-                  <div className="flex items-center gap-2 mb-2">
-                    <code className="px-2 py-1 bg-purple-100 dark:bg-purple-900/40 text-purple-900 dark:text-purple-100 rounded text-sm font-mono">MCP Tools</code>
-                  </div>
-                  <p className="text-sm text-purple-800 dark:text-purple-300">MCP server tool reference</p>
+                <Link
+                  href="/docs/mcp/reference"
+                  className="p-4 border border-gray-200 dark:border-gray-800 rounded-lg md:hover:border-blue-500 dark:md:hover:border-blue-500 transition-colors"
+                >
+                  <h3 className="font-semibold text-gray-900 dark:text-white mb-1">
+                    MCP Tools
+                  </h3>
+                  <p className="text-sm text-gray-600 dark:text-gray-400">
+                    MCP server tool reference
+                  </p>
                 </Link>
-                <Link href="/docs/logicstamp-context/compare-command" className="block p-4 bg-gradient-to-br from-amber-50 to-orange-50 dark:from-amber-950/20 dark:to-orange-950/10 rounded-xl border border-amber-200 dark:border-amber-800 hover:shadow-lg transition-shadow">
-                  <div className="flex items-center gap-2 mb-2">
-                    <code className="px-2 py-1 bg-amber-100 dark:bg-amber-900/40 text-amber-900 dark:text-amber-100 rounded text-sm font-mono">stamp context compare</code>
-                  </div>
-                  <p className="text-sm text-amber-800 dark:text-amber-300">Compare context snapshots</p>
+                <Link
+                  href="/docs/logicstamp-context/compare-command"
+                  className="p-4 border border-gray-200 dark:border-gray-800 rounded-lg md:hover:border-blue-500 dark:md:hover:border-blue-500 transition-colors"
+                >
+                  <h3 className="font-semibold text-gray-900 dark:text-white mb-1">
+                    <code className="text-sm font-mono">stamp context compare</code>
+                  </h3>
+                  <p className="text-sm text-gray-600 dark:text-gray-400">
+                    Compare context snapshots
+                  </p>
                 </Link>
-                <Link href="/docs/logicstamp-context/clean" className="block p-4 bg-gradient-to-br from-rose-50 to-pink-50 dark:from-rose-950/20 dark:to-pink-950/10 rounded-xl border border-rose-200 dark:border-rose-800 hover:shadow-lg transition-shadow">
-                  <div className="flex items-center gap-2 mb-2">
-                    <code className="px-2 py-1 bg-rose-100 dark:bg-rose-900/40 text-rose-900 dark:text-rose-100 rounded text-sm font-mono">stamp context clean</code>
-                  </div>
-                  <p className="text-sm text-rose-800 dark:text-rose-300">Remove generated context files</p>
+                <Link
+                  href="/docs/logicstamp-context/clean"
+                  className="p-4 border border-gray-200 dark:border-gray-800 rounded-lg md:hover:border-blue-500 dark:md:hover:border-blue-500 transition-colors"
+                >
+                  <h3 className="font-semibold text-gray-900 dark:text-white mb-1">
+                    <code className="text-sm font-mono">stamp context clean</code>
+                  </h3>
+                  <p className="text-sm text-gray-600 dark:text-gray-400">
+                    Remove generated context files
+                  </p>
                 </Link>
               </div>
             </div>

@@ -639,52 +639,45 @@ stamp init --no-secure`
             </div>
           </AnimatedSection>
 
-          {/* See Also Section */}
+          {/* Related Commands Section */}
           <AnimatedSection direction="up" delay={1400}>
             <div className="mb-8 sm:mb-12 lg:mb-16">
               <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white mb-4 sm:mb-6">
-                See Also
+                Related Commands
               </h2>
-              <p className="text-sm sm:text-base text-gray-600 dark:text-gray-400 mb-6">
-                For related documentation:
-              </p>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div className="grid sm:grid-cols-2 gap-4">
                 <Link
                   href="/docs/logicstamp-context/init"
-                  className="group p-4 bg-gradient-to-br from-blue-50 to-indigo-50 dark:from-blue-950/20 dark:to-indigo-950/10 rounded-xl border border-blue-200 dark:border-blue-800 hover:border-blue-300 dark:hover:border-blue-700 transition-all"
+                  className="p-4 border border-gray-200 dark:border-gray-800 rounded-lg md:hover:border-blue-500 dark:md:hover:border-blue-500 transition-colors"
                 >
-                  <div className="flex items-start gap-3">
-                    <svg className="w-5 h-5 text-blue-600 dark:text-blue-400 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M11.3 1.046A1 1 0 0112 2v5h4a1 1 0 01.82 1.573l-7 10A1 1 0 018 18v-5H4a1 1 0 01-.82-1.573l7-10a1 1 0 011.12-.38z" />
-                    </svg>
-                    <div>
-                      <h3 className="text-sm font-semibold text-blue-900 dark:text-blue-200 group-hover:text-blue-700 dark:group-hover:text-blue-100 transition-colors">
-                        `init` command
-                      </h3>
-                      <p className="text-xs text-gray-600 dark:text-gray-400 mt-1">
-                        Initialize LogicStamp with optional security scan
-                      </p>
-                    </div>
-                  </div>
+                  <h3 className="font-semibold text-gray-900 dark:text-white mb-1">
+                    <code className="text-sm font-mono">stamp init</code>
+                  </h3>
+                  <p className="text-sm text-gray-600 dark:text-gray-400">
+                    Initialize LogicStamp with security scan
+                  </p>
                 </Link>
-
                 <Link
                   href="/docs/logicstamp-context/context"
-                  className="group p-4 bg-gradient-to-br from-green-50 to-emerald-50 dark:from-green-950/20 dark:to-emerald-950/10 rounded-xl border border-green-200 dark:border-green-800 hover:border-green-300 dark:hover:border-green-700 transition-all"
+                  className="p-4 border border-gray-200 dark:border-gray-800 rounded-lg md:hover:border-blue-500 dark:md:hover:border-blue-500 transition-colors"
                 >
-                  <div className="flex items-start gap-3">
-                    <svg className="w-5 h-5 text-green-600 dark:text-green-400 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 2a1 1 0 011 1v2.101a7.002 7.002 0 0111.601 2.566 1 1 0 11-1.885.666A5.002 5.002 0 005.999 7H9a1 1 0 010 2H4a1 1 0 01-1-1V3a1 1 0 011-1zm.008 9.057a1 1 0 011.276.61A5.002 5.002 0 0014.001 13H11a1 1 0 110-2h5a1 1 0 011 1v5a1 1 0 11-2 0v-2.101a7.002 7.002 0 01-11.601-2.566 1 1 0 01.61-1.276z" />
-                    </svg>
-                    <div>
-                      <h3 className="text-sm font-semibold text-green-900 dark:text-green-200 group-hover:text-green-700 dark:group-hover:text-green-100 transition-colors">
-                        `context` command
-                      </h3>
-                      <p className="text-xs text-gray-600 dark:text-gray-400 mt-1">
-                        Generate context (respects `.stampignore`)
-                      </p>
-                    </div>
-                  </div>
+                  <h3 className="font-semibold text-gray-900 dark:text-white mb-1">
+                    <code className="text-sm font-mono">stamp context</code>
+                  </h3>
+                  <p className="text-sm text-gray-600 dark:text-gray-400">
+                    Generate context after scanning for secrets
+                  </p>
+                </Link>
+                <Link
+                  href="/docs/logicstamp-context/usage"
+                  className="p-4 border border-gray-200 dark:border-gray-800 rounded-lg md:hover:border-blue-500 dark:md:hover:border-blue-500 transition-colors"
+                >
+                  <h3 className="font-semibold text-gray-900 dark:text-white mb-1">
+                    Usage Guide
+                  </h3>
+                  <p className="text-sm text-gray-600 dark:text-gray-400">
+                    Security workflow best practices
+                  </p>
                 </Link>
               </div>
             </div>

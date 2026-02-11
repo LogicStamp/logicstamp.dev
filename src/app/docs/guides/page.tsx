@@ -16,6 +16,11 @@ const guidePages = [
     description: 'End-to-end walkthroughs for generating context, curating bundles, and using them with LLMs.',
   },
   {
+    title: 'Watch Mode',
+    href: '/docs/logicstamp-context/watch-mode',
+    description: 'Keep context files fresh automatically with incremental rebuilds. Perfect for active development and MCP workflows.',
+  },
+  {
     title: 'LLM Context Format',
     href: '/docs/logicstamp-context/llm-context',
     description: 'Deep dive into the structure of generated context, how to consume it, and how to customize prompts around it.',

@@ -4,6 +4,7 @@ import { useState, useEffect, useRef, createContext, useContext } from 'react'
 import { usePathname } from 'next/navigation'
 import DocsSidebar from './DocsSidebar'
 import DocsTOC from './DocsTOC'
+import DocsHeader from './DocsHeader'
 
 // Context to disable animations in docs pages
 export const DisableAnimationsContext = createContext(false)
@@ -107,17 +108,14 @@ export default function DocsLayout({ children }: { children: React.ReactNode }) 
 
   return (
     <DisableAnimationsContext.Provider value={true}>
-      <div className="min-h-screen bg-gradient-bg-section pt-[5.5rem] lg:pt-24">
+      <DocsHeader sidebarOpen={sidebarOpen} onSidebarToggle={() => setSidebarOpen(!sidebarOpen)} />
+      <div className="min-h-screen bg-gradient-bg-section pt-[6.5rem] lg:pt-24">
         <div className="max-w-[1440px] mx-auto px-4 lg:px-6 py-8 lg:py-10 w-full">
-        {/* Mobile sidebar toggle button */}
+        {/* Mobile sidebar toggle button - hidden, now integrated into DocsHeader */}
         <button
           ref={toggleButtonRef}
           onClick={() => setSidebarOpen(!sidebarOpen)}
-          className={`lg:hidden fixed z-[100] top-1/2 -translate-y-1/2 transition-all duration-300 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-500 pointer-events-auto ${
-            sidebarOpen ? 'left-60' : 'left-0'
-          } ${
-            sidebarOpen || isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-2 pointer-events-none'
-          }`}
+          className="lg:hidden fixed z-[100] top-1/2 -translate-y-1/2 transition-all duration-300 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-500 pointer-events-auto opacity-0 pointer-events-none sr-only"
           aria-label={sidebarOpen ? 'Close navigation' : 'Open navigation'}
           aria-expanded={sidebarOpen}
           aria-controls="mobile-docs-sidebar"
@@ -144,11 +142,14 @@ export default function DocsLayout({ children }: { children: React.ReactNode }) 
             aria-modal="true"
             aria-labelledby="mobile-sidebar-title"
             className={`
-              lg:hidden fixed bottom-0 left-0 z-30 w-64 bg-gradient-bg-section border-r border-gray-200 dark:border-gray-700 pt-4 pb-8 px-4 overflow-y-auto
+              lg:hidden fixed left-0 z-30 w-64 bg-gradient-bg-section pt-6 pb-8 px-4 overflow-y-auto
               transition-all duration-300 ease-in-out
-              top-[4.75rem]
+              top-[6.9rem]
               ${sidebarOpen ? 'translate-x-0' : '-translate-x-full'}
             `}
+            style={{
+              bottom: 'calc(0rem + env(safe-area-inset-bottom))',
+            }}
           >
             <h2 id="mobile-sidebar-title" className="sr-only">Documentation navigation</h2>
             <DocsSidebar />

@@ -1,4 +1,5 @@
 import { Metadata } from 'next'
+import Link from 'next/link'
 import Footer from '@/components/layout/Footer'
 import AnimatedSection from '@/components/common/AnimatedSection'
 import DocsLayout from '@/components/docs/DocsLayout'
@@ -312,6 +313,50 @@ stamp context validate`
                     The multi-file mode is preferred because it automatically discovers all context files from the index, validates everything in one command, provides a comprehensive summary, and detects if any folder context files are missing or corrupted.
                   </p>
                 </div>
+              </div>
+            </div>
+          </AnimatedSection>
+
+          {/* Related Commands Section */}
+          <AnimatedSection direction="up" delay={400}>
+            <div className="mb-8 sm:mb-12 lg:mb-16">
+              <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white mb-4 sm:mb-6">
+                Related Commands
+              </h2>
+              <div className="grid sm:grid-cols-2 gap-4">
+                <Link
+                  href="/docs/logicstamp-context/context"
+                  className="p-4 border border-gray-200 dark:border-gray-800 rounded-lg md:hover:border-blue-500 dark:md:hover:border-blue-500 transition-colors"
+                >
+                  <h3 className="font-semibold text-gray-900 dark:text-white mb-1">
+                    <code className="text-sm font-mono">stamp context</code>
+                  </h3>
+                  <p className="text-sm text-gray-600 dark:text-gray-400">
+                    Generate context files to validate
+                  </p>
+                </Link>
+                <Link
+                  href="/docs/logicstamp-context/compare-command"
+                  className="p-4 border border-gray-200 dark:border-gray-800 rounded-lg md:hover:border-blue-500 dark:md:hover:border-blue-500 transition-colors"
+                >
+                  <h3 className="font-semibold text-gray-900 dark:text-white mb-1">
+                    <code className="text-sm font-mono">stamp context compare</code>
+                  </h3>
+                  <p className="text-sm text-gray-600 dark:text-gray-400">
+                    Detect context drift after validation
+                  </p>
+                </Link>
+                <Link
+                  href="/docs/logicstamp-context/clean"
+                  className="p-4 border border-gray-200 dark:border-gray-800 rounded-lg md:hover:border-blue-500 dark:md:hover:border-blue-500 transition-colors"
+                >
+                  <h3 className="font-semibold text-gray-900 dark:text-white mb-1">
+                    <code className="text-sm font-mono">stamp context clean</code>
+                  </h3>
+                  <p className="text-sm text-gray-600 dark:text-gray-400">
+                    Remove invalid or corrupted context files
+                  </p>
+                </Link>
               </div>
             </div>
           </AnimatedSection>

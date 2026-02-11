@@ -133,7 +133,7 @@ refresh_snapshot({ projectPath: "...", skipIfWatchActive: true })
    - This scans the project and generates all context files
    - Creates `context_main.json` (the main index) and `context/*.context.json` files (per-folder bundles)
    - Returns a `snapshotId` you'll use for subsequent calls
-   - **Default:** The default depth=2 includes nested components (e.g., App → Hero → Button), ensuring you see the full component tree with contracts and styles for all nested components. This is recommended for most React/TypeScript projects with component hierarchies.
+   - **Default:** The default depth=2 includes nested components (e.g., App → Hero → Button), ensuring you see the full component tree with contracts and styles for all nested components. This is recommended for most TypeScript projects with component hierarchies.
    - **Example:** `{ "projectPath": "...", "skipIfWatchActive": true }` - Uses default depth=2, skips regeneration if watch mode is active. Set `depth: 1` if you only need direct dependencies (e.g., App → Hero but not Hero → Button).
 
 2. **Discover bundles with `logicstamp_list_bundles`**

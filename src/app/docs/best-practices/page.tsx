@@ -1,4 +1,5 @@
 import { Metadata } from 'next'
+import Link from 'next/link'
 import Footer from '@/components/layout/Footer'
 import AnimatedSection from '@/components/common/AnimatedSection'
 import DocsLayout from '@/components/docs/DocsLayout'
@@ -102,7 +103,7 @@ export default function BestPracticesPage() {
                   Stale context is worse than no context. Regenerate bundles when you make structural changes so assistants don&apos;t
                   reason about an outdated graph.
                 </p>
-                <div className="grid sm:grid-cols-2 gap-4 sm:gap-6">
+                <div className="grid sm:grid-cols-2 gap-4 sm:gap-6 mb-4 sm:mb-5">
                   <div className="bg-indigo-50 dark:bg-indigo-950/20 rounded-xl border border-indigo-200 dark:border-indigo-800 p-4 sm:p-5">
                     <h3 className="text-sm sm:text-base font-semibold text-indigo-900 dark:text-indigo-100 mb-2">
                       After big refactors
@@ -132,6 +133,15 @@ export default function BestPracticesPage() {
                       ]}
                     />
                   </div>
+                </div>
+                <div className="bg-cyan-50/50 dark:bg-cyan-950/20 border-l-4 border-cyan-500 p-3 sm:p-4 rounded-r-lg">
+                  <p className="text-xs sm:text-sm text-gray-800 dark:text-cyan-100">
+                    <span className="font-semibold text-cyan-900 dark:text-cyan-200">💡 Best Practice:</span>{' '}
+                    For active development, use <code className="px-1.5 py-0.5 bg-cyan-100 dark:bg-cyan-900/40 rounded text-xs font-mono">stamp context --watch</code> to automatically regenerate context as you code. Watch mode keeps context fresh without manual regeneration and dramatically improves MCP response times. See{' '}
+                    <Link href="/docs/logicstamp-context/watch-mode" className="text-cyan-600 dark:text-cyan-400 hover:underline">
+                      watch mode documentation
+                    </Link> for details.
+                  </p>
                 </div>
               </div>
             </div>
@@ -422,10 +432,23 @@ export default function BestPracticesPage() {
                     <h3 className="text-sm sm:text-base font-semibold text-purple-900 dark:text-purple-100 mb-2">
                       Local development
                     </h3>
-                    <ul className="text-xs sm:text-sm text-purple-800 dark:text-purple-200 space-y-1.5">
-                      <li>• Run on demand before complex AI-assisted work</li>
-                      <li>• Keep bundles in sync with your feature branches</li>
-                    </ul>
+                    <TabbedCodeBlock
+                      tabs={[
+                        {
+                          label: 'Watch Mode (Recommended)',
+                          code: '# Start watch mode at beginning of coding session\nstamp context --watch\n\n# Watch with style metadata\nstamp context style --watch',
+                          copyText: 'stamp context --watch',
+                        },
+                        {
+                          label: 'On Demand',
+                          code: '# Run before complex AI-assisted work\nstamp context\n\n# Keep bundles in sync with feature branches\nstamp context compare',
+                          copyText: 'stamp context',
+                        },
+                      ]}
+                    />
+                    <p className="text-xs sm:text-sm text-purple-800 dark:text-purple-200 mt-3">
+                      <strong>Best practice:</strong> Use watch mode during active development to keep context fresh automatically. This improves MCP response times and ensures AI assistants always see the latest code structure.
+                    </p>
                   </div>
                   <div className="bg-gray-50 dark:bg-gray-900/70 rounded-xl border border-gray-200 dark:border-gray-800 p-4 sm:p-5">
                     <h3 className="text-sm sm:text-base font-semibold text-gray-900 dark:text-white mb-2">

@@ -7,7 +7,7 @@ import Image from 'next/image'
 
 export const metadata: Metadata = {
   title: 'MCP Server | LogicStamp Context Documentation',
-  description: 'Model Context Protocol (MCP) server for LogicStamp Context - enabling AI assistants to safely analyze and understand React/TypeScript codebases.',
+  description: 'Model Context Protocol (MCP) server for LogicStamp Context - enabling AI assistants to safely analyze and understand TypeScript codebases.',
 }
 
 export default function MCPPage() {
@@ -16,13 +16,13 @@ export default function MCPPage() {
       <DocsLayout>
       {/* Hero Section */}
           <AnimatedSection direction="up" delay={0}>
-          <div className="relative mb-8 sm:mb-12 lg:mb-16">
+          <div className="relative mb-8 sm:mb-12 lg:mb-16 overflow-hidden">
             {/* Background gradient */}
             <div className="absolute inset-0 bg-gradient-to-br from-indigo-50 via-violet-50 to-fuchsia-50 dark:from-indigo-950/20 dark:via-violet-950/10 dark:to-fuchsia-950/5 rounded-3xl -m-4 sm:-m-6 lg:-m-8 blur-3xl opacity-70" />
 
             <div className="relative text-center">
               {/* Fox Mascot */}
-              <div className="flex justify-center mb-6 sm:mb-8">
+              <div className="flex justify-center mb-6 sm:mb-8 pt-4 sm:pt-6">
                 <div className="w-16 h-16 sm:w-20 sm:h-20 animate-bounce relative bg-transparent">
                   <Image
                     src="/mascot/logicstamp-fox.svg"
@@ -61,7 +61,7 @@ export default function MCPPage() {
               </div>
 
               <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-gray-600 dark:text-gray-400 leading-relaxed max-w-3xl mx-auto mb-4">
-                Model Context Protocol (MCP) server for LogicStamp Context - enabling AI assistants to safely analyze and understand React/TypeScript codebases.
+                Model Context Protocol (MCP) server for LogicStamp Context - enabling AI assistants to safely analyze and understand TypeScript codebases.
               </p>
 
               <p className="text-base sm:text-lg text-gray-600 dark:text-gray-400 max-w-3xl mx-auto">
@@ -382,7 +382,7 @@ claude mcp add --scope user --transport stdio logicstamp -- node C:\\Users\\Your
                 Quick Start with Claude Code
               </h2>
               <p className="text-base text-gray-600 dark:text-gray-400 mb-4">
-                Once installed, start Claude Code in any React/TypeScript project:
+                Once installed, start Claude Code in any TypeScript project:
               </p>
               <TabbedCodeBlock
                 tabs={[

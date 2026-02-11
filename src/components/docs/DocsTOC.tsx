@@ -95,7 +95,7 @@ export default function DocsTOC() {
   if (headings.length === 0) return null
 
   return (
-    <aside className="hidden xl:block w-56 shrink-0 sticky top-24 self-start">
+    <aside className="hidden xl:block w-56 shrink-0 sticky top-20 self-start">
       <div className="flex flex-col max-h-[calc(100vh-8rem)]">
         <div className="flex-shrink-0 mb-3">
           <h2 className="text-sm font-semibold text-gray-900 dark:text-white">

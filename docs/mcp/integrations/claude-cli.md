@@ -232,7 +232,7 @@ After installation, verify the server is configured:
    logicstamp: npx logicstamp-mcp - ✓ Connected
    ```
 
-3. **Test in Project** - Navigate to a React/TypeScript project and start Claude:
+3. **Test in Project** - Navigate to a TypeScript project and start Claude:
    ```bash
    cd /path/to/your/react-project
    claude
@@ -247,7 +247,7 @@ After installation, verify the server is configured:
 
 ## Usage
 
-Start Claude Code in any React/TypeScript project:
+Start Claude Code in any TypeScript project:
 
 ```bash
 cd /path/to/your/react-project

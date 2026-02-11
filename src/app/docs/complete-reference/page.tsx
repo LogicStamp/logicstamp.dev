@@ -16,30 +16,16 @@ export default function CompleteReferencePage() {
       <DocsLayout>
         {/* Hero Section */}
         <AnimatedSection direction="up" delay={0}>
-          <div className="relative mb-8 sm:mb-12 lg:mb-16">
-            {/* Background gradient */}
-            <div className="absolute inset-0 bg-gradient-to-br from-blue-50 via-indigo-50/30 to-purple-50/20 dark:from-blue-950/20 dark:via-indigo-950/10 dark:to-purple-950/5 rounded-3xl -m-4 sm:-m-6 lg:-m-8 blur-3xl opacity-70" />
-            
-            <div className="relative">
-              {/* Badge */}
-              <div className="inline-flex items-center gap-2 px-3 py-1.5 bg-gradient-to-r from-blue-100 to-indigo-100 dark:from-blue-900/40 dark:to-indigo-900/40 text-blue-700 dark:text-blue-300 text-sm font-semibold rounded-full mb-4 sm:mb-6 backdrop-blur-sm border border-blue-200/50 dark:border-blue-700/50">
-                <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
-                  <path d="M9 2a1 1 0 000 2h2a1 1 0 100-2H9z" />
-                  <path fillRule="evenodd" d="M4 5a2 2 0 012-2 3 3 0 003 3h2a3 3 0 003-3 2 2 0 012 2v11a2 2 0 01-2 2H6a2 2 0 01-2-2V5zm3 4a1 1 0 000 2h.01a1 1 0 100-2H7zm3 0a1 1 0 000 2h3a1 1 0 100-2h-3zm-3 4a1 1 0 100 2h.01a1 1 0 100-2H7zm3 0a1 1 0 100 2h3a1 1 0 100-2h-3z" clipRule="evenodd" />
-                </svg>
-                Complete Reference
-              </div>
+          <div className="mb-12">
+            <h1 className="text-4xl sm:text-5xl font-black text-transparent bg-clip-text bg-gradient-to-r from-gray-900 to-gray-700 dark:from-white dark:to-gray-300 mb-4 tracking-tight">
+              Complete Reference
+            </h1>
+            <p className="text-xl text-gray-600 dark:text-gray-400 max-w-3xl mb-8">
+              Comprehensive documentation for LogicStamp Context CLI - all commands, options, features, examples, and troubleshooting guides. Supports React, Vue 3, and TypeScript projects.
+            </p>
 
-              <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black text-transparent bg-clip-text bg-gradient-to-r from-gray-900 to-gray-700 dark:from-white dark:to-gray-300 mb-4 sm:mb-6 tracking-tight leading-[1.1]">
-                Complete Reference
-              </h1>
-              
-              <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-gray-600 dark:text-gray-400 leading-relaxed max-w-3xl">
-                Comprehensive documentation for LogicStamp Context CLI - all commands, options, features, examples, and troubleshooting guides. Supports React, Vue 3, and TypeScript projects.
-              </p>
-
-              {/* Quick stats */}
-              <div className="flex flex-wrap gap-4 sm:gap-6 mt-6 sm:mt-8">
+            {/* Quick stats */}
+            <div className="flex flex-wrap gap-4 sm:gap-6 mt-6 sm:mt-8">
                 <div className="flex items-center gap-2">
                   <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse" />
                   <span className="text-xs sm:text-sm font-medium text-gray-600 dark:text-gray-400">8 Commands</span>
@@ -52,7 +38,6 @@ export default function CompleteReferencePage() {
                   <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse" />
                   <span className="text-xs sm:text-sm font-medium text-gray-600 dark:text-gray-400">3 Profiles</span>
                 </div>
-              </div>
             </div>
           </div>
         </AnimatedSection>
@@ -110,16 +95,111 @@ export default function CompleteReferencePage() {
                   </svg>
                 </div>
                 <h2 className="text-xl sm:text-2xl font-bold text-gray-900 dark:text-white m-0">
-                  What's New in v0.3.x
+                  What's New
                 </h2>
               </div>
               
-              <p className="text-sm sm:text-base text-gray-600 dark:text-gray-400 mb-4 sm:mb-6 leading-relaxed">
-                The 0.3.x releases include major framework support, output format options, and security improvements. <strong className="text-gray-900 dark:text-white">v0.3.8</strong> enhanced third-party component info with package names and versions. <strong className="text-gray-900 dark:text-white">v0.3.7</strong> fixed emit detection accuracy. <strong className="text-gray-900 dark:text-white">v0.3.6</strong> added hook parameter detection. <strong className="text-gray-900 dark:text-white">v0.3.5</strong> added Styled JSX support and enhanced inline style extraction. <strong className="text-gray-900 dark:text-white">v0.3.4</strong> adds comprehensive Vue.js support for Vue 3 Composition API. <strong className="text-gray-900 dark:text-white">v0.3.3</strong> introduced TOON output format support. <strong className="text-gray-900 dark:text-white">v0.3.2</strong> improved portability with relative paths and AST-based CSS/SCSS parsing. <strong className="text-gray-900 dark:text-white">v0.3.1</strong> fixed hook classification. <strong className="text-gray-900 dark:text-white">v0.3.0</strong> introduced security scanning by default and automatic secret sanitization.
-              </p>
+              <div className="text-sm sm:text-base text-gray-600 dark:text-gray-400 mb-4 sm:mb-6 leading-relaxed space-y-3">
+                <p>
+                  <strong className="text-gray-900 dark:text-white">v0.5.2</strong> fixed JSON Schema completeness issues and documentation gaps.
+                </p>
+                <p>
+                  <strong className="text-gray-900 dark:text-white">v0.5.1</strong> completed CSS-in-JS library support with Chakra UI and Ant Design, bringing coverage to all major CSS-in-JS libraries.
+                </p>
+                <p>
+                  <strong className="text-gray-900 dark:text-white">v0.5.0</strong> introduced strict watch mode, schema improvements (BREAKING changes), and performance optimizations.
+                </p>
+                <p>
+                  <strong className="text-gray-900 dark:text-white">v0.4.1</strong> added watch mode with incremental rebuilds.
+                </p>
+                <p>
+                  <strong className="text-gray-900 dark:text-white">v0.4.0</strong> added backend framework support (Express.js, NestJS).
+                </p>
+                <p>
+                  <strong className="text-gray-900 dark:text-white">v0.3.10</strong> enhanced Next.js App Router features.
+                </p>
+                <p>
+                  <strong className="text-gray-900 dark:text-white">v0.3.9</strong> added dynamic Tailwind class parsing.
+                </p>
+                <p>
+                  <strong className="text-gray-900 dark:text-white">v0.3.x</strong> releases included major framework support, output format options, and security improvements.
+                </p>
+              </div>
               
               <div className="grid sm:grid-cols-2 gap-4 sm:gap-6">
                 {[
+                  {
+                    icon: "✅",
+                    title: "JSON Schema Fixes (v0.5.2)",
+                    desc: "Fixed missing fields in JSON schema that were causing validation errors. Added nextjs field and NextJSMetadata definition, plus missing style metadata fields (antd, chakraUI, shadcnUI, radixUI) to StyleSources. Schema validation now correctly validates all generated fields.",
+                    color: "green"
+                  },
+                  {
+                    icon: "🎨",
+                    title: "CSS-in-JS Completeness (v0.5.1)",
+                    desc: "Complete support for all major CSS-in-JS libraries: styled-components, Emotion, Material UI, ShadCN/UI, Radix UI, Framer Motion, Styled JSX, Chakra UI, and Ant Design. Added comprehensive Chakra UI and Ant Design support with component detection, package tracking, theme usage, color mode, responsive props, and framework-specific features.",
+                    color: "purple"
+                  },
+                  {
+                    icon: "🛡️",
+                    title: "Strict Watch Mode (v0.5.0)",
+                    desc: "Track breaking changes and violations during watch mode with --strict-watch. Automatically detects breaking changes (removed props, events, state, functions; changed prop types; missing dependencies). Real-time violation reporting with cumulative tracking, structured JSON reports, and CI-friendly exit codes.",
+                    color: "red"
+                  },
+                  {
+                    icon: "⚠️",
+                    title: "BREAKING: Schema Field Renames (v0.5.0)",
+                    desc: "Renamed fields for clarity: MissingDependency.version → packageVersion, UIFContract.version → composition, UIFContract.logicSignature → interface. These BREAKING changes improve clarity and avoid confusion. Migration required for code parsing context bundles.",
+                    color: "orange"
+                  },
+                  {
+                    icon: "⚡",
+                    title: "Performance Optimizations (v0.5.0)",
+                    desc: "O(1) dependency collection lookups replacing O(n) linear searches with Map-based index lookup. O(1) missing dependency tracking with Set-based lookup. Significantly improves performance for large projects during context generation.",
+                    color: "blue"
+                  },
+                  {
+                    icon: "🐛",
+                    title: "Watch Mode Fixes (v0.5.0)",
+                    desc: "Fixed race condition in watch mode using Promise-based locking to ensure only one regeneration runs at a time. Fixed silent error swallowing in compare handler. Improved error handling and cleanup.",
+                    color: "yellow"
+                  },
+                  {
+                    icon: "👀",
+                    title: "Watch Mode (v0.4.1)",
+                    desc: "Monitor codebase for file changes and automatically regenerate context bundles. Incremental rebuilds only regenerate affected bundles. Change detection shows what changed (props, hooks, state, events). Debounces rapid changes (500ms). Watches style files when using --include-style. Debug mode shows hash information. Status file for tooling integration.",
+                    color: "green"
+                  },
+                  {
+                    icon: "🔧",
+                    title: "Framework Detection Fix (v0.4.1)",
+                    desc: "Fixed framework detection priority order: Backend > Vue > React > TypeScript module. Backend frameworks (Express/NestJS) are now correctly detected before Vue/React patterns, fixing issue where files with mixed patterns could be incorrectly classified.",
+                    color: "indigo"
+                  },
+                  {
+                    icon: "🖥️",
+                    title: "Backend Framework Support (v0.4.0)",
+                    desc: "Comprehensive support for Node.js backend frameworks (Express.js, NestJS). Extracts API routes, HTTP methods, route parameters, request/response types, and framework-specific metadata. Introduces node:api contract kind and extensible language:type pattern. Enhanced API signature extraction with multi-route aggregation and actual type extraction.",
+                    color: "orange"
+                  },
+                  {
+                    icon: "🔍",
+                    title: "Hash Calculation Fix (v0.4.0)",
+                    desc: "Fixed hash calculation for backend files. Semantic and signature hashes now include backend metadata (routes, framework, controller, language-specific data) and apiSignature field. Backend route changes now properly trigger hash updates for accurate change detection.",
+                    color: "teal"
+                  },
+                  {
+                    icon: "⚛️",
+                    title: "Advanced Next.js App Router (v0.3.10)",
+                    desc: "Enhanced Next.js metadata extraction with route roles, segment paths, and metadata exports. Automatically detects route roles (page, layout, loading, error, not-found, template, default, route). Extracts segment paths from file structure and parses both static (export const metadata) and dynamic (generateMetadata) metadata exports.",
+                    color: "purple"
+                  },
+                  {
+                    icon: "🎨",
+                    title: "Dynamic Tailwind Parsing Phase 1 (v0.3.9)",
+                    desc: "Enhanced Tailwind CSS extractor to resolve dynamic class expressions within template literals. Resolves const/let variables, object properties, and conditional expressions (ternary, logical operators). Handles ~70-80% of common dynamic class patterns. Added support for additional variants (focus-visible, group/peer, ARIA, arbitrary selectors, container queries).",
+                    color: "teal"
+                  },
                   {
                     icon: "📦",
                     title: "Enhanced Third-Party Info (v0.3.8)",

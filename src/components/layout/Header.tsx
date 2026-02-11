@@ -146,7 +146,7 @@ export default function Header() {
             {navigation.map((item, index) => (
               <Fragment key={item.name}>
                 {index > 0 && (
-                  <div className="h-5 w-px bg-gray-300/50 dark:bg-gray-600/50 mx-2" />
+                  <div className="h-5 w-px bg-gray-300/50 dark:bg-gray-600/50 mx-2" style={{ minWidth: '1px', transform: 'translateZ(0)' }} />
                 )}
                 <a
                   href={item.href}
@@ -178,7 +178,7 @@ export default function Header() {
             <div className="pr-1">
               <ThemeToggle compact />
             </div>
-            <div className="h-5 w-px bg-gray-300/50 dark:bg-gray-600/50" />
+            <div className="h-5 w-px bg-gray-300/50 dark:bg-gray-600/50" style={{ minWidth: '1px', transform: 'translateZ(0)' }} />
             <GetStartedButton size="sm" />
           </div>
         </nav>

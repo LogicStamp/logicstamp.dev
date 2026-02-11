@@ -1,4 +1,5 @@
 import { Metadata } from 'next'
+import Link from 'next/link'
 import Footer from '@/components/layout/Footer'
 import AnimatedSection from '@/components/common/AnimatedSection'
 import DocsLayout from '@/components/docs/DocsLayout'
@@ -532,6 +533,76 @@ stamp context style --include-code header`
           </div>
         </AnimatedSection>
 
+        {/* Watch Mode Section */}
+        <AnimatedSection direction="up" delay={600}>
+          <div className="relative mb-8 sm:mb-12 lg:mb-16">
+            <div className="absolute -inset-1 bg-gradient-to-r from-cyan-600 to-sky-600 rounded-2xl blur opacity-20 dark:opacity-10" />
+            <div className="relative bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded-2xl p-4 sm:p-6 lg:p-8 shadow-xl">
+              <div className="flex items-baseline gap-3 mb-4 sm:mb-6">
+                <div className="p-2 bg-cyan-100 dark:bg-cyan-900/30 rounded-lg flex-shrink-0 -mt-0.5">
+                  <svg className="w-5 h-5 sm:w-6 sm:h-6 text-cyan-600 dark:text-cyan-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z" />
+                  </svg>
+                </div>
+                <h2 className="text-xl sm:text-2xl font-bold text-gray-900 dark:text-white m-0">
+                  Watch Mode
+                </h2>
+              </div>
+              <p className="text-base sm:text-lg text-gray-600 dark:text-gray-400 mb-4 sm:mb-6 leading-relaxed">
+                Keep your context files fresh automatically with incremental rebuilds. Watch mode monitors your codebase for file changes and updates only affected bundles.
+              </p>
+              <TabbedCodeBlock
+                tabs={[
+                  {
+                    label: 'Watch Mode',
+                    code: `# Start watch mode (recommended for active development)
+stamp context --watch
+
+# Watch with style metadata
+stamp context style --watch
+
+# Watch with debug output
+stamp context --watch --debug
+
+# Watch with structured change logs
+stamp context --watch --log-file`,
+                    copyText: 'stamp context --watch'
+                  }
+                ]}
+              />
+              <div className="mt-6 sm:mt-8 grid sm:grid-cols-2 gap-4 sm:gap-6">
+                <div className="p-4 bg-gray-50 dark:bg-gray-800/50 rounded-lg">
+                  <h3 className="text-base font-semibold text-gray-900 dark:text-white mb-2">Features</h3>
+                  <ul className="space-y-1.5 text-sm text-gray-600 dark:text-gray-400">
+                    <li>• Incremental rebuilds (only affected bundles)</li>
+                    <li>• Change detection (props, hooks, state changes)</li>
+                    <li>• Debouncing (batches rapid changes)</li>
+                    <li>• Style support (works with --include-style)</li>
+                    <li>• Faster MCP responses (skips regeneration)</li>
+                  </ul>
+                </div>
+                <div className="p-4 bg-gray-50 dark:bg-gray-800/50 rounded-lg">
+                  <h3 className="text-base font-semibold text-gray-900 dark:text-white mb-2">Best Practices</h3>
+                  <ul className="space-y-1.5 text-sm text-gray-600 dark:text-gray-400">
+                    <li>• Start watch mode at the beginning of coding sessions</li>
+                    <li>• Use with MCP for faster AI responses</li>
+                    <li>• Press Ctrl+C to stop</li>
+                    <li>• Works with style metadata extraction</li>
+                    <li>• Automatically detects file changes</li>
+                  </ul>
+                </div>
+              </div>
+              <div className="mt-6 p-4 bg-cyan-50 dark:bg-cyan-950/20 rounded-lg border border-cyan-200 dark:border-cyan-800">
+                <p className="text-sm text-cyan-800 dark:text-cyan-200">
+                  <Link href="/docs/logicstamp-context/watch-mode" className="text-cyan-600 dark:text-cyan-400 hover:underline font-semibold">
+                    Learn more about watch mode →
+                  </Link>
+                </p>
+              </div>
+            </div>
+          </div>
+        </AnimatedSection>
+
         {/* Token Comparison Section */}
         <AnimatedSection direction="up" delay={650}>
           <div className="relative mb-8 sm:mb-12 lg:mb-16">
@@ -620,6 +691,17 @@ stamp context --include-style
 
 # With conservative profile
 stamp context style --profile llm-safe`
+                  },
+                  {
+                    title: 'Watch Mode (Active Development)',
+                    code: `# Start watch mode for automatic updates
+stamp context --watch
+
+# Watch with style metadata
+stamp context style --watch
+
+# Watch with debug output
+stamp context --watch --debug`
                   },
                   {
                     title: 'Token Cost Analysis',

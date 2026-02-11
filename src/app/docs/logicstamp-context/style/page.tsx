@@ -1,4 +1,5 @@
 import { Metadata } from 'next'
+import Link from 'next/link'
 import Footer from '@/components/layout/Footer'
 import AnimatedSection from '@/components/common/AnimatedSection'
 import DocsLayout from '@/components/docs/DocsLayout'
@@ -1097,30 +1098,39 @@ stamp context compare old/context_main.json new/context_main.json`
                 Related Commands
               </h2>
               <div className="grid sm:grid-cols-2 gap-4">
-                <a href="/docs/logicstamp-context/context" className="p-4 bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 hover:border-blue-300 dark:hover:border-blue-500 hover:shadow-md transition-all group">
-                  <h3 className="font-semibold text-gray-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400 mb-1">
+                <Link
+                  href="/docs/logicstamp-context/context"
+                  className="p-4 border border-gray-200 dark:border-gray-800 rounded-lg md:hover:border-blue-500 dark:md:hover:border-blue-500 transition-colors"
+                >
+                  <h3 className="font-semibold text-gray-900 dark:text-white mb-1">
                     <code className="text-sm font-mono">stamp context</code>
                   </h3>
                   <p className="text-sm text-gray-600 dark:text-gray-400">
                     Generate context without style metadata
                   </p>
-                </a>
-                <a href="/docs/logicstamp-context/validate" className="p-4 bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 hover:border-blue-300 dark:hover:border-blue-500 hover:shadow-md transition-all group">
-                  <h3 className="font-semibold text-gray-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400 mb-1">
+                </Link>
+                <Link
+                  href="/docs/logicstamp-context/validate"
+                  className="p-4 border border-gray-200 dark:border-gray-800 rounded-lg md:hover:border-blue-500 dark:md:hover:border-blue-500 transition-colors"
+                >
+                  <h3 className="font-semibold text-gray-900 dark:text-white mb-1">
                     <code className="text-sm font-mono">stamp context validate</code>
                   </h3>
                   <p className="text-sm text-gray-600 dark:text-gray-400">
                     Validate generated context files
                   </p>
-                </a>
-                <a href="/docs/logicstamp-context/compare-command" className="p-4 bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 hover:border-blue-300 dark:hover:border-blue-500 hover:shadow-md transition-all group">
-                  <h3 className="font-semibold text-gray-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400 mb-1">
+                </Link>
+                <Link
+                  href="/docs/logicstamp-context/compare-command"
+                  className="p-4 border border-gray-200 dark:border-gray-800 rounded-lg md:hover:border-blue-500 dark:md:hover:border-blue-500 transition-colors"
+                >
+                  <h3 className="font-semibold text-gray-900 dark:text-white mb-1">
                     <code className="text-sm font-mono">stamp context compare</code>
                   </h3>
                   <p className="text-sm text-gray-600 dark:text-gray-400">
                     Compare context files including style changes
                   </p>
-                </a>
+                </Link>
               </div>
             </div>
           </AnimatedSection>

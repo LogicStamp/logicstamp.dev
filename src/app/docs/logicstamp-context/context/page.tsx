@@ -7,7 +7,7 @@ import TabbedCodeBlock from '@/components/docs/TabbedCodeBlock'
 
 export const metadata: Metadata = {
   title: '`context` Command | LogicStamp Context Documentation',
-  description: 'Generate AI-ready bundles that describe your React/TypeScript codebase using stamp context.',
+  description: 'Generate AI-ready bundles that describe your TypeScript codebase using stamp context.',
 }
 
 export default function ContextCommandPage() {
@@ -34,7 +34,7 @@ export default function ContextCommandPage() {
               </h1>
               
               <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-gray-600 dark:text-gray-400 leading-relaxed max-w-3xl">
-                Generate AI-ready bundles that describe your React/TypeScript codebase.
+                Generate AI-ready bundles that describe your TypeScript codebase.
               </p>
             </div>
           </div>
@@ -606,6 +606,83 @@ const password = 'EXAMPLE_PRIVATE_DATA';"
                   </p>
                   <pre className="mt-2 text-xs bg-gray-100 dark:bg-gray-800 p-2 rounded overflow-x-auto"><code className="block whitespace-pre-wrap break-words">stamp context --strict-missing || exit 1</code></pre>
                 </div>
+              </div>
+            </div>
+          </AnimatedSection>
+
+          {/* Related Commands Section */}
+          <AnimatedSection direction="up" delay={600}>
+            <div className="mb-8 sm:mb-12 lg:mb-16">
+              <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white mb-4 sm:mb-6">
+                Related Commands
+              </h2>
+              <div className="grid sm:grid-cols-2 gap-4">
+                <Link
+                  href="/docs/logicstamp-context/style"
+                  className="p-4 border border-gray-200 dark:border-gray-800 rounded-lg md:hover:border-blue-500 dark:md:hover:border-blue-500 transition-colors"
+                >
+                  <h3 className="font-semibold text-gray-900 dark:text-white mb-1">
+                    <code className="text-sm font-mono">stamp context style</code>
+                  </h3>
+                  <p className="text-sm text-gray-600 dark:text-gray-400">
+                    Generate context with style metadata
+                  </p>
+                </Link>
+                <Link
+                  href="/docs/logicstamp-context/watch-mode"
+                  className="p-4 border border-gray-200 dark:border-gray-800 rounded-lg md:hover:border-blue-500 dark:md:hover:border-blue-500 transition-colors"
+                >
+                  <h3 className="font-semibold text-gray-900 dark:text-white mb-1">
+                    <code className="text-sm font-mono">stamp context --watch</code>
+                  </h3>
+                  <p className="text-sm text-gray-600 dark:text-gray-400">
+                    Keep context fresh automatically
+                  </p>
+                </Link>
+                <Link
+                  href="/docs/logicstamp-context/validate"
+                  className="p-4 border border-gray-200 dark:border-gray-800 rounded-lg md:hover:border-blue-500 dark:md:hover:border-blue-500 transition-colors"
+                >
+                  <h3 className="font-semibold text-gray-900 dark:text-white mb-1">
+                    <code className="text-sm font-mono">stamp context validate</code>
+                  </h3>
+                  <p className="text-sm text-gray-600 dark:text-gray-400">
+                    Validate generated context files
+                  </p>
+                </Link>
+                <Link
+                  href="/docs/logicstamp-context/compare-command"
+                  className="p-4 border border-gray-200 dark:border-gray-800 rounded-lg md:hover:border-blue-500 dark:md:hover:border-blue-500 transition-colors"
+                >
+                  <h3 className="font-semibold text-gray-900 dark:text-white mb-1">
+                    <code className="text-sm font-mono">stamp context compare</code>
+                  </h3>
+                  <p className="text-sm text-gray-600 dark:text-gray-400">
+                    Detect context drift across folders
+                  </p>
+                </Link>
+                <Link
+                  href="/docs/logicstamp-context/clean"
+                  className="p-4 border border-gray-200 dark:border-gray-800 rounded-lg md:hover:border-blue-500 dark:md:hover:border-blue-500 transition-colors"
+                >
+                  <h3 className="font-semibold text-gray-900 dark:text-white mb-1">
+                    <code className="text-sm font-mono">stamp context clean</code>
+                  </h3>
+                  <p className="text-sm text-gray-600 dark:text-gray-400">
+                    Remove generated context files
+                  </p>
+                </Link>
+                <Link
+                  href="/docs/logicstamp-context/init"
+                  className="p-4 border border-gray-200 dark:border-gray-800 rounded-lg md:hover:border-blue-500 dark:md:hover:border-blue-500 transition-colors"
+                >
+                  <h3 className="font-semibold text-gray-900 dark:text-white mb-1">
+                    <code className="text-sm font-mono">stamp init</code>
+                  </h3>
+                  <p className="text-sm text-gray-600 dark:text-gray-400">
+                    Initialize LogicStamp in your project
+                  </p>
+                </Link>
               </div>
             </div>
           </AnimatedSection>
