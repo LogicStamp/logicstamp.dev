@@ -8,7 +8,7 @@ import ReadyToGetStartedCard from '@/components/docs/ReadyToGetStartedCard'
 export const metadata: Metadata = {
   title: 'What is LogicStamp? | Documentation',
   description:
-    'Learn what LogicStamp is, why it exists, and how it helps you generate AI-ready context from your codebase for chat, agents, and CI workflows.',
+    'LogicStamp Context generates deterministic architectural context, explicit component contracts, and dependency graphs for AI workflows from TypeScript codebases.',
 }
 
 export default function WhatIsLogicStampPage() {
@@ -22,9 +22,8 @@ export default function WhatIsLogicStampPage() {
               What is LogicStamp?
             </h1>
             <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-gray-600 dark:text-gray-400 mb-8 max-w-3xl leading-relaxed">
-              LogicStamp Context is an open-source CLI that generates{' '}
-              <span className="font-semibold text-gray-900 dark:text-white">AI-ready context bundles</span> from your TypeScript codebase.
-              No setup, no configuration - just install and run.
+              LogicStamp Context is a compiler-like static analyzer that generates deterministic architectural context, explicit component contracts, and dependency graphs for AI workflows from your TypeScript codebase.
+              Zero configuration. Install and run.
             </p>
           </div>
         </AnimatedSection>
@@ -41,7 +40,7 @@ export default function WhatIsLogicStampPage() {
               <div className="bg-blue-50 dark:bg-blue-950/20 border-l-4 border-blue-500 p-4 rounded-r-lg">
                 <p className="text-sm text-gray-700 dark:text-gray-300">
                   <span className="font-semibold text-blue-900 dark:text-blue-200">Solution:</span> LogicStamp scans your codebase and generates{' '}
-                  <code className="px-1.5 py-0.5 bg-blue-100 dark:bg-blue-900/40 rounded text-xs font-mono">context.json</code> files with component contracts, dependencies, and relationships—optimized for AI consumption.
+                  <code className="px-1.5 py-0.5 bg-blue-100 dark:bg-blue-900/40 rounded text-xs font-mono">context.json</code> files with component contracts, dependencies, and relationships—optimized for AI workflows.
                 </p>
               </div>
             </div>
@@ -52,7 +51,7 @@ export default function WhatIsLogicStampPage() {
             <div className="mb-12">
               <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white mb-4">How It Works</h2>
               <p className="text-sm sm:text-base text-gray-600 dark:text-gray-400 mb-6">
-                LogicStamp generates an <span className="font-semibold text-gray-900 dark:text-white">architectural blueprint</span> of your codebase:
+                LogicStamp Context is a <span className="font-semibold text-gray-900 dark:text-white">compiler-like static analyzer</span> that extracts deterministic architectural contracts from your TypeScript source code. It generates an <span className="font-semibold text-gray-900 dark:text-white">architectural blueprint</span> of your codebase:
               </p>
               <ul className="space-y-2 text-sm sm:text-base text-gray-600 dark:text-gray-400 mb-6">
                 <li>• <strong>Component contracts</strong> - Props, hooks, and interfaces</li>
@@ -61,8 +60,70 @@ export default function WhatIsLogicStampPage() {
                 <li>• <strong>Structure</strong> - File organization and relationships</li>
               </ul>
               <p className="text-sm text-gray-500 dark:text-gray-500">
-                High-signal, low-noise output optimized for AI consumption.
+                High-signal, low-noise output optimized for AI workflows.
               </p>
+            </div>
+          </AnimatedSection>
+
+          {/* What LogicStamp Generates Section */}
+          <AnimatedSection direction="up" delay={175}>
+            <div className="mb-12">
+              <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white mb-4">What LogicStamp Generates</h2>
+              <p className="text-sm sm:text-base text-gray-600 dark:text-gray-400 mb-6">
+                LogicStamp generates <strong>deterministic contracts</strong> that describe a component's API without implementation noise:
+              </p>
+              
+              <div className="mb-6">
+                <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-3">What is a Component Contract?</h3>
+                <p className="text-sm sm:text-base text-gray-600 dark:text-gray-400 mb-4">
+                  A component contract is a structured description of a component's API—everything needed to understand and use it without reading the implementation:
+                </p>
+                <ul className="space-y-2 text-sm sm:text-base text-gray-600 dark:text-gray-400 mb-4 ml-4">
+                  <li className="flex items-start gap-2">
+                    <span className="text-blue-600 dark:text-blue-400 mt-1">•</span>
+                    <span><strong>Props</strong> - Type information, default values, and required vs optional</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="text-blue-600 dark:text-blue-400 mt-1">•</span>
+                    <span><strong>Hooks</strong> - React hooks used (useState, useEffect, etc.)</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="text-blue-600 dark:text-blue-400 mt-1">•</span>
+                    <span><strong>State</strong> - Component state structure and types</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="text-blue-600 dark:text-blue-400 mt-1">•</span>
+                    <span><strong>Events</strong> - Callbacks and event handlers</span>
+                  </li>
+                </ul>
+              </div>
+
+              <div className="mb-6">
+                <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-3">What is Architectural Context?</h3>
+                <p className="text-sm sm:text-base text-gray-600 dark:text-gray-400 mb-4">
+                  Architectural context captures the <strong>relationships and structure</strong> of your codebase:
+                </p>
+                <ul className="space-y-2 text-sm sm:text-base text-gray-600 dark:text-gray-400 mb-4 ml-4">
+                  <li className="flex items-start gap-2">
+                    <span className="text-blue-600 dark:text-blue-400 mt-1">•</span>
+                    <span><strong>Dependency graphs</strong> - Which components import and use which other components</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="text-blue-600 dark:text-blue-400 mt-1">•</span>
+                    <span><strong>File organization</strong> - How your project structure maps to component relationships</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="text-blue-600 dark:text-blue-400 mt-1">•</span>
+                    <span><strong>Framework detection</strong> - React, Next.js, Vue, Express, NestJS patterns</span>
+                  </li>
+                </ul>
+              </div>
+
+              <div className="bg-blue-50 dark:bg-blue-950/20 border-l-4 border-blue-500 p-4 rounded-r-lg">
+                <p className="text-sm text-gray-700 dark:text-gray-300">
+                  <span className="font-semibold text-blue-900 dark:text-blue-200">Key insight:</span> AI assistants don't need your implementation—they need your <em>interfaces</em>. LogicStamp Context extracts what matters and discards the noise, giving AI explicit architectural context instead of requiring it to infer from raw source code.
+                </p>
+              </div>
             </div>
           </AnimatedSection>
 
