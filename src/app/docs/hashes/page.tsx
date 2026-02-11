@@ -2,6 +2,7 @@ import { Metadata } from 'next'
 import Footer from '@/components/layout/Footer'
 import AnimatedSection from '@/components/common/AnimatedSection'
 import DocsLayout from '@/components/docs/DocsLayout'
+import ReadyToGetStartedCard from '@/components/docs/ReadyToGetStartedCard'
 
 export const metadata: Metadata = {
   title: 'Hashes | LogicStamp Context Documentation',
@@ -546,6 +547,19 @@ export default function HashesPage() {
             </div>
           </section>
         </AnimatedSection>
+
+        {/* Next Steps */}
+        <ReadyToGetStartedCard
+          description="Now that you understand hashes, explore bundleHash details or check out the complete reference for all features."
+          primaryAction={{
+            href: '/docs/uifb',
+            label: 'bundleHash (uifb)',
+          }}
+          secondaryAction={{
+            href: '/docs/complete-reference',
+            label: 'Complete Reference',
+          }}
+        />
       </DocsLayout>
       <Footer />
     </>

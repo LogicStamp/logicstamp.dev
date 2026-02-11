@@ -4,6 +4,7 @@ import Footer from '@/components/layout/Footer'
 import AnimatedSection from '@/components/common/AnimatedSection'
 import TabbedCodeBlock from '@/components/docs/TabbedCodeBlock'
 import DocsLayout from '@/components/docs/DocsLayout'
+import ReadyToGetStartedCard from '@/components/docs/ReadyToGetStartedCard'
 
 export const metadata: Metadata = {
   title: 'CLI Getting Started | LogicStamp Context',
@@ -269,19 +270,33 @@ export default function QuickStartPage() {
                 href="/docs/logicstamp-context/commands"
                 className="p-4 border border-gray-200 dark:border-gray-800 rounded-lg md:hover:border-blue-500 dark:md:hover:border-blue-500 transition-colors"
               >
-                <h3 className="font-semibold text-gray-900 dark:text-white mb-1">CLI Commands</h3>
+                <h3 className="font-semibold text-gray-900 dark:text-white mb-1">CLI Commands →</h3>
                 <p className="text-sm text-gray-600 dark:text-gray-400">Complete command reference</p>
               </Link>
               <Link
                 href="/docs/getting-started"
                 className="p-4 border border-gray-200 dark:border-gray-800 rounded-lg md:hover:border-blue-500 dark:md:hover:border-blue-500 transition-colors"
               >
-                <h3 className="font-semibold text-gray-900 dark:text-white mb-1">Main Getting Started</h3>
+                <h3 className="font-semibold text-gray-900 dark:text-white mb-1">Main Getting Started →</h3>
                 <p className="text-sm text-gray-600 dark:text-gray-400">Quick start guide</p>
               </Link>
             </div>
           </div>
         </AnimatedSection>
+
+        <ReadyToGetStartedCard
+          variant="green"
+          description="Now that you're set up, explore the complete command reference or learn about advanced features."
+          primaryAction={{
+            href: '/docs/logicstamp-context/commands',
+            label: 'Command Reference',
+          }}
+          secondaryAction={{
+            href: '/docs/guides',
+            label: 'Guides & Playbooks',
+          }}
+          delay={700}
+        />
       </DocsLayout>
       <Footer />
     </>

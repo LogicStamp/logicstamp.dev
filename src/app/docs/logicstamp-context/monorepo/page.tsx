@@ -3,6 +3,7 @@ import Footer from '@/components/layout/Footer'
 import AnimatedSection from '@/components/common/AnimatedSection'
 import DocsLayout from '@/components/docs/DocsLayout'
 import TabbedCodeBlock from '@/components/docs/TabbedCodeBlock'
+import ReadyToGetStartedCard from '@/components/docs/ReadyToGetStartedCard'
 
 export const metadata: Metadata = {
   title: 'Monorepo Support | LogicStamp Context Documentation',
@@ -447,6 +448,19 @@ stamp context`
               </div>
             </div>
           </AnimatedSection>
+
+          {/* Next Steps */}
+          <ReadyToGetStartedCard
+            description="Now that you understand monorepo support, get started with LogicStamp Context or explore framework-specific guides."
+            primaryAction={{
+              href: '/docs/getting-started',
+              label: 'Get Started',
+            }}
+            secondaryAction={{
+              href: '/docs/logicstamp-context/react',
+              label: 'React Support',
+            }}
+          />
         </div>
       </DocsLayout>
       <Footer />

@@ -2,6 +2,7 @@ import { Metadata } from 'next'
 import Footer from '@/components/layout/Footer'
 import AnimatedSection from '@/components/common/AnimatedSection'
 import DocsLayout from '@/components/docs/DocsLayout'
+import ReadyToGetStartedCard from '@/components/docs/ReadyToGetStartedCard'
 
 export const metadata: Metadata = {
   title: 'LLM Context Format | LogicStamp Context Documentation',
@@ -333,6 +334,19 @@ export default function LlmContextPage() {
             </div>
           </div>
         </AnimatedSection>
+
+        {/* Next Steps */}
+        <ReadyToGetStartedCard
+          description="Now that you understand the LLM context format, explore best practices or check out the usage guide for practical examples."
+          primaryAction={{
+            href: '/docs/best-practices',
+            label: 'Best Practices',
+          }}
+          secondaryAction={{
+            href: '/docs/logicstamp-context/usage',
+            label: 'Usage Guide',
+          }}
+        />
         </DocsLayout>
       <Footer />
     </>

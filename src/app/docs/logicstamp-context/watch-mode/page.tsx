@@ -4,6 +4,7 @@ import Footer from '@/components/layout/Footer'
 import AnimatedSection from '@/components/common/AnimatedSection'
 import DocsLayout from '@/components/docs/DocsLayout'
 import TabbedCodeBlock from '@/components/docs/TabbedCodeBlock'
+import ReadyToGetStartedCard from '@/components/docs/ReadyToGetStartedCard'
 
 export const metadata: Metadata = {
   title: 'Watch Mode | LogicStamp Context Documentation',
@@ -495,7 +496,7 @@ kill $(pgrep -f "stamp context --watch")`,
                   className="p-4 border border-gray-200 dark:border-gray-800 rounded-lg md:hover:border-blue-500 dark:md:hover:border-blue-500 transition-colors"
                 >
                   <h3 className="font-semibold text-gray-900 dark:text-white mb-1">
-                    <code className="text-sm font-mono">stamp context</code>
+                    <code className="text-sm font-mono">stamp context</code> →
                   </h3>
                   <p className="text-sm text-gray-600 dark:text-gray-400">
                     Generate context files (one-time)
@@ -506,7 +507,7 @@ kill $(pgrep -f "stamp context --watch")`,
                   className="p-4 border border-gray-200 dark:border-gray-800 rounded-lg md:hover:border-blue-500 dark:md:hover:border-blue-500 transition-colors"
                 >
                   <h3 className="font-semibold text-gray-900 dark:text-white mb-1">
-                    MCP Tools
+                    MCP Tools →
                   </h3>
                   <p className="text-sm text-gray-600 dark:text-gray-400">
                     MCP server tool reference
@@ -517,7 +518,7 @@ kill $(pgrep -f "stamp context --watch")`,
                   className="p-4 border border-gray-200 dark:border-gray-800 rounded-lg md:hover:border-blue-500 dark:md:hover:border-blue-500 transition-colors"
                 >
                   <h3 className="font-semibold text-gray-900 dark:text-white mb-1">
-                    <code className="text-sm font-mono">stamp context compare</code>
+                    <code className="text-sm font-mono">stamp context compare</code> →
                   </h3>
                   <p className="text-sm text-gray-600 dark:text-gray-400">
                     Compare context snapshots
@@ -528,7 +529,7 @@ kill $(pgrep -f "stamp context --watch")`,
                   className="p-4 border border-gray-200 dark:border-gray-800 rounded-lg md:hover:border-blue-500 dark:md:hover:border-blue-500 transition-colors"
                 >
                   <h3 className="font-semibold text-gray-900 dark:text-white mb-1">
-                    <code className="text-sm font-mono">stamp context clean</code>
+                    <code className="text-sm font-mono">stamp context clean</code> →
                   </h3>
                   <p className="text-sm text-gray-600 dark:text-gray-400">
                     Remove generated context files
@@ -537,6 +538,19 @@ kill $(pgrep -f "stamp context --watch")`,
               </div>
             </div>
           </AnimatedSection>
+
+          {/* Next Steps */}
+          <ReadyToGetStartedCard
+            description="Now that you understand watch mode, explore best practices or check out the usage guide for more workflows."
+            primaryAction={{
+              href: '/docs/best-practices',
+              label: 'Best Practices',
+            }}
+            secondaryAction={{
+              href: '/docs/logicstamp-context/usage',
+              label: 'Usage Guide',
+            }}
+          />
         </div>
       </DocsLayout>
       <Footer />

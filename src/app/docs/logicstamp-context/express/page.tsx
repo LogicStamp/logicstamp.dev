@@ -3,6 +3,7 @@ import Footer from '@/components/layout/Footer'
 import AnimatedSection from '@/components/common/AnimatedSection'
 import DocsLayout from '@/components/docs/DocsLayout'
 import TabbedCodeBlock from '@/components/docs/TabbedCodeBlock'
+import ReadyToGetStartedCard from '@/components/docs/ReadyToGetStartedCard'
 
 export const metadata: Metadata = {
   title: 'Express.js Framework Support | LogicStamp Context Documentation',
@@ -433,6 +434,19 @@ function createUser(
               </div>
             </div>
           </AnimatedSection>
+
+          {/* Next Steps */}
+          <ReadyToGetStartedCard
+            description="Now that you understand Express.js framework support, get started with LogicStamp Context or explore other backend framework integrations."
+            primaryAction={{
+              href: '/docs/getting-started',
+              label: 'Get Started',
+            }}
+            secondaryAction={{
+              href: '/docs/logicstamp-context/nestjs',
+              label: 'NestJS Support',
+            }}
+          />
         </div>
       </DocsLayout>
       <Footer />

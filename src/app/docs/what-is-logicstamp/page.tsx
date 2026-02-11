@@ -20,7 +20,7 @@ export default function WhatIsLogicStampPage() {
             <h1 className="text-4xl sm:text-5xl font-black text-transparent bg-clip-text bg-gradient-to-r from-gray-900 to-gray-700 dark:from-white dark:to-gray-300 mb-4 tracking-tight">
               What is LogicStamp?
             </h1>
-            <p className="text-xl text-gray-600 dark:text-gray-400 max-w-3xl">
+            <p className="text-xl text-gray-600 dark:text-gray-400 mb-8 max-w-3xl">
               LogicStamp Context is an open-source CLI that generates{' '}
               <span className="font-semibold text-gray-900 dark:text-white">AI-ready context bundles</span> from your TypeScript codebase.
               No setup, no configuration - just install and run.
@@ -133,14 +133,14 @@ export default function WhatIsLogicStampPage() {
                   href="/docs/getting-started"
                   className="p-4 border border-gray-200 dark:border-gray-800 rounded-lg md:hover:border-blue-500 dark:md:hover:border-blue-500 transition-colors"
                 >
-                  <h3 className="font-semibold text-gray-900 dark:text-white mb-1">Getting Started</h3>
+                  <h3 className="font-semibold text-gray-900 dark:text-white mb-1">Getting Started →</h3>
                   <p className="text-sm text-gray-600 dark:text-gray-400">Install and generate your first context</p>
                 </Link>
                 <Link
                   href="/docs/complete-reference"
                   className="p-4 border border-gray-200 dark:border-gray-800 rounded-lg md:hover:border-blue-500 dark:md:hover:border-blue-500 transition-colors"
                 >
-                  <h3 className="font-semibold text-gray-900 dark:text-white mb-1">Complete Reference</h3>
+                  <h3 className="font-semibold text-gray-900 dark:text-white mb-1">Complete Reference →</h3>
                   <p className="text-sm text-gray-600 dark:text-gray-400">All commands and options</p>
                 </Link>
               </div>
