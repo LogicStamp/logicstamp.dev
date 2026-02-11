@@ -18,10 +18,10 @@ export default function LogicStampCommandsPage() {
         {/* Hero Section */}
         <AnimatedSection direction="up" delay={0}>
           <div className="mb-12">
-            <h1 className="text-4xl sm:text-5xl font-black text-transparent bg-clip-text bg-gradient-to-r from-gray-900 to-gray-700 dark:from-white dark:to-gray-300 mb-4 tracking-tight">
+            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black text-transparent bg-clip-text bg-gradient-to-r from-gray-900 to-gray-700 dark:from-white dark:to-gray-300 mb-4 sm:mb-6 tracking-tight leading-[1.1]">
               Commands
             </h1>
-            <p className="text-xl text-gray-600 dark:text-gray-400 max-w-3xl">
+            <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-gray-600 dark:text-gray-400 max-w-3xl leading-relaxed">
               LogicStamp Context ships as a single CLI entry point, <code className="px-1.5 py-0.5 bg-gray-100 dark:bg-gray-800 rounded text-xs">stamp</code>, with <code className="px-1.5 py-0.5 bg-gray-100 dark:bg-gray-800 rounded text-xs">context</code> subcommands.
             </p>
           </div>

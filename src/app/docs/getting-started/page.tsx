@@ -19,10 +19,10 @@ export default function GettingStartedPage() {
         {/* Hero - Lead with the simplest path */}
         <AnimatedSection direction="up" delay={0}>
           <div className="mb-12">
-            <h1 className="text-4xl sm:text-5xl font-black text-transparent bg-clip-text bg-gradient-to-r from-gray-900 to-gray-700 dark:from-white dark:to-gray-300 mb-4 tracking-tight">
+            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black text-transparent bg-clip-text bg-gradient-to-r from-gray-900 to-gray-700 dark:from-white dark:to-gray-300 mb-4 sm:mb-6 tracking-tight leading-[1.1]">
               Getting Started
             </h1>
-            <p className="text-xl text-gray-600 dark:text-gray-400 mb-8 max-w-2xl">
+            <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-gray-600 dark:text-gray-400 mb-8 max-w-3xl leading-relaxed">
               Generate AI-ready context from your TypeScript codebase in 30 seconds.
             </p>
           </div>
@@ -83,11 +83,11 @@ export default function GettingStartedPage() {
         {/* What happened? */}
         <AnimatedSection direction="up" delay={300}>
           <div className="mb-12">
-            <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">What happened?</h2>
-            <p className="text-gray-600 dark:text-gray-400 mb-4">
+            <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white mb-4">What happened?</h2>
+            <p className="text-sm sm:text-base text-gray-600 dark:text-gray-400 mb-4">
               LogicStamp scanned your TypeScript files and generated structured context bundles:
             </p>
-            <ul className="space-y-2 text-gray-600 dark:text-gray-400 mb-6">
+            <ul className="space-y-2 text-sm sm:text-base text-gray-600 dark:text-gray-400 mb-6">
               <li className="flex items-start gap-2">
                 <span className="text-blue-600 dark:text-blue-400 mt-1">•</span>
                 <span><code className="px-1.5 py-0.5 bg-gray-100 dark:bg-gray-800 rounded text-xs">context.json</code> files in each folder with component contracts</span>
@@ -106,7 +106,7 @@ export default function GettingStartedPage() {
         {/* Next Steps - Progressive Disclosure */}
         <AnimatedSection direction="up" delay={400}>
           <div className="mb-12">
-            <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-6">Next Steps</h2>
+            <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white mb-6">Next Steps</h2>
             
             <div className="space-y-6">
               {/* Option 1: Install for regular use */}
@@ -114,7 +114,7 @@ export default function GettingStartedPage() {
                 <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">
                   1. Install for regular use
                 </h3>
-                <p className="text-gray-600 dark:text-gray-400 mb-4">
+                <p className="text-sm sm:text-base text-gray-600 dark:text-gray-400 mb-4">
                   Install globally to use the <code className="px-1.5 py-0.5 bg-gray-100 dark:bg-gray-800 rounded text-xs">stamp</code> command:
                 </p>
                 <TabbedCodeBlock
@@ -163,7 +163,7 @@ export default function GettingStartedPage() {
                 <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">
                   2. Use with AI assistants (MCP)
                 </h3>
-                <p className="text-gray-600 dark:text-gray-400 mb-4">
+                <p className="text-sm sm:text-base text-gray-600 dark:text-gray-400 mb-4">
                   Install the MCP server to give Claude Desktop, Claude Code, or Cursor direct access to your codebase:
                 </p>
                 <div className="relative mb-4">
@@ -184,7 +184,7 @@ export default function GettingStartedPage() {
                 <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">
                   3. Keep context fresh (Watch Mode)
                 </h3>
-                <p className="text-gray-600 dark:text-gray-400 mb-4">
+                <p className="text-sm sm:text-base text-gray-600 dark:text-gray-400 mb-4">
                   Automatically regenerate context as you code:
                 </p>
                 <TabbedCodeBlock
@@ -214,7 +214,7 @@ export default function GettingStartedPage() {
         {/* Learn More */}
         <AnimatedSection direction="up" delay={500}>
           <div className="border-t border-gray-200 dark:border-gray-800 pt-8">
-            <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">Learn More</h2>
+            <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white mb-4">Learn More</h2>
             <div className="grid sm:grid-cols-2 gap-4">
               <Link
                 href="/docs/what-is-logicstamp"

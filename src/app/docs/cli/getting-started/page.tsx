@@ -18,12 +18,28 @@ export default function QuickStartPage() {
         {/* Hero */}
         <AnimatedSection direction="up" delay={0}>
           <div className="mb-12">
-            <h1 className="text-4xl sm:text-5xl font-black text-transparent bg-clip-text bg-gradient-to-r from-gray-900 to-gray-700 dark:from-white dark:to-gray-300 mb-4 tracking-tight">
+            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black text-transparent bg-clip-text bg-gradient-to-r from-gray-900 to-gray-700 dark:from-white dark:to-gray-300 mb-4 sm:mb-6 tracking-tight leading-[1.1]">
               CLI Getting Started
             </h1>
-            <p className="text-xl text-gray-600 dark:text-gray-400 mb-8 max-w-2xl">
+            <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-gray-600 dark:text-gray-400 mb-8 max-w-3xl leading-relaxed">
               Install LogicStamp Context CLI and generate AI-ready context for your TypeScript projects.
             </p>
+
+            {/* Quick stats */}
+            <div className="flex flex-wrap gap-4 sm:gap-6 mt-6 sm:mt-8">
+              <div className="flex items-center gap-2">
+                <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse" />
+                <span className="text-xs sm:text-sm font-medium text-gray-600 dark:text-gray-400">Quick start</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse" />
+                <span className="text-xs sm:text-sm font-medium text-gray-600 dark:text-gray-400">Global install</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse" />
+                <span className="text-xs sm:text-sm font-medium text-gray-600 dark:text-gray-400">CLI Tool</span>
+              </div>
+            </div>
           </div>
         </AnimatedSection>
 
@@ -64,8 +80,8 @@ export default function QuickStartPage() {
         {/* Installation */}
         <AnimatedSection direction="up" delay={200}>
           <div className="mb-12">
-            <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">Install LogicStamp Context</h2>
-            <p className="text-gray-600 dark:text-gray-400 mb-4">
+            <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white mb-4">Install LogicStamp Context</h2>
+            <p className="text-sm sm:text-base text-gray-600 dark:text-gray-400 mb-4">
               Install the CLI globally to use the <code className="px-1.5 py-0.5 bg-gray-100 dark:bg-gray-800 rounded text-xs">stamp</code> command from anywhere on your system.
             </p>
             <TabbedCodeBlock
@@ -98,11 +114,11 @@ export default function QuickStartPage() {
         {/* Initialize (Optional) */}
         <AnimatedSection direction="up" delay={300}>
           <div className="mb-12">
-            <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-2">
+            <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white mb-2">
               Initialize Your Project
               <span className="ml-2 text-sm font-normal px-2 py-1 bg-gray-100 dark:bg-gray-800 text-gray-500 dark:text-gray-400 rounded-full">Optional</span>
             </h2>
-            <p className="text-gray-600 dark:text-gray-400 mb-4">
+            <p className="text-sm sm:text-base text-gray-600 dark:text-gray-400 mb-4">
               Set up <code className="px-1.5 py-0.5 bg-gray-100 dark:bg-gray-800 rounded text-xs">.gitignore</code> patterns and <code className="px-1.5 py-0.5 bg-gray-100 dark:bg-gray-800 rounded text-xs">LLM_CONTEXT.md</code>. If you skip this step, <code className="px-1.5 py-0.5 bg-gray-100 dark:bg-gray-800 rounded text-xs">stamp context</code> uses safe defaults (CI-friendly, never prompts).
             </p>
             
@@ -142,8 +158,8 @@ export default function QuickStartPage() {
         {/* Generate Context */}
         <AnimatedSection direction="up" delay={400}>
           <div className="mb-12">
-            <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">Generate AI Context</h2>
-            <p className="text-gray-600 dark:text-gray-400 mb-4">
+            <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white mb-4">Generate AI Context</h2>
+            <p className="text-sm sm:text-base text-gray-600 dark:text-gray-400 mb-4">
               Run the context generator to analyze your codebase and create structured bundles optimized for AI assistants.
             </p>
             <TabbedCodeBlock
@@ -174,11 +190,11 @@ export default function QuickStartPage() {
         {/* What You Get */}
         <AnimatedSection direction="up" delay={500}>
           <div className="mb-12">
-            <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">What You Get</h2>
-            <p className="text-gray-600 dark:text-gray-400 mb-4">
+            <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white mb-4">What You Get</h2>
+            <p className="text-sm sm:text-base text-gray-600 dark:text-gray-400 mb-4">
               LogicStamp generates structured context files in your project:
             </p>
-            <ul className="space-y-2 text-gray-600 dark:text-gray-400 mb-6">
+            <ul className="space-y-2 text-sm sm:text-base text-gray-600 dark:text-gray-400 mb-6">
               <li className="flex items-start gap-2">
                 <span className="text-blue-600 dark:text-blue-400 mt-1">•</span>
                 <span><code className="px-1.5 py-0.5 bg-gray-100 dark:bg-gray-800 rounded text-xs">context_main.json</code> in your project root with an overview</span>
@@ -197,7 +213,7 @@ export default function QuickStartPage() {
         {/* Next Steps */}
         <AnimatedSection direction="up" delay={600}>
           <div className="mb-12">
-            <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-6">Next Steps</h2>
+            <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white mb-6">Next Steps</h2>
             
             <div className="space-y-6">
               {/* Watch Mode */}
@@ -205,7 +221,7 @@ export default function QuickStartPage() {
                 <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">
                   Keep Context Fresh (Watch Mode)
                 </h3>
-                <p className="text-gray-600 dark:text-gray-400 mb-4">
+                <p className="text-sm sm:text-base text-gray-600 dark:text-gray-400 mb-4">
                   Automatically regenerate context as you code:
                 </p>
                 <TabbedCodeBlock
@@ -234,7 +250,7 @@ export default function QuickStartPage() {
                 <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">
                   Advanced Options
                 </h3>
-                <p className="text-gray-600 dark:text-gray-400 mb-4">
+                <p className="text-sm sm:text-base text-gray-600 dark:text-gray-400 mb-4">
                   Customize output and optimize token usage:
                 </p>
                 <TabbedCodeBlock
@@ -264,7 +280,7 @@ export default function QuickStartPage() {
         {/* Learn More */}
         <AnimatedSection direction="up" delay={700}>
           <div className="border-t border-gray-200 dark:border-gray-800 pt-8">
-            <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">Learn More</h2>
+            <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white mb-4">Learn More</h2>
             <div className="grid sm:grid-cols-2 gap-4">
               <Link
                 href="/docs/logicstamp-context/commands"
