@@ -1426,7 +1426,7 @@ stamp context --compare-modes`
 
         {/* Next Steps */}
         <ReadyToGetStartedCard
-          description="Now that you understand the complete reference, check out the installation guide or explore more documentation."
+          description="Explore the complete CLI documentation or review additional guides."
         />
       </DocsLayout>
       <Footer />

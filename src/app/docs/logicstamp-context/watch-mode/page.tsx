@@ -541,7 +541,7 @@ kill $(pgrep -f "stamp context --watch")`,
 
           {/* Next Steps */}
           <ReadyToGetStartedCard
-            description="Now that you understand watch mode, explore best practices or check out the usage guide for more workflows."
+            description="Explore best practices or check out the usage guide for more workflows."
             primaryAction={{
               href: '/docs/best-practices',
               label: 'Best Practices',

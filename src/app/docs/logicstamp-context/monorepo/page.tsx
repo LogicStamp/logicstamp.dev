@@ -451,7 +451,7 @@ stamp context`
 
           {/* Next Steps */}
           <ReadyToGetStartedCard
-            description="Now that you understand monorepo support, get started with LogicStamp Context or explore framework-specific guides."
+            description="Get started with LogicStamp Context or explore framework-specific guides."
             primaryAction={{
               href: '/docs/getting-started',
               label: 'Get Started',

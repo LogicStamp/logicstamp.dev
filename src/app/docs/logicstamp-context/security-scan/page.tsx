@@ -687,7 +687,7 @@ stamp init --no-secure`
 
         <ReadyToGetStartedCard
           variant="green"
-          description="Now that you understand security scanning, explore other commands or check out best practices."
+          description="Explore other commands or check out best practices."
           primaryAction={{
             href: '/docs/logicstamp-context/commands',
             label: 'All Commands',

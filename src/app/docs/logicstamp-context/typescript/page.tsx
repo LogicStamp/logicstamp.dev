@@ -679,7 +679,7 @@ stamp context --include-code full`
 
           {/* Next Steps */}
           <ReadyToGetStartedCard
-            description="Now that you understand TypeScript framework support, get started with LogicStamp Context or explore framework-specific guides."
+            description="Get started with LogicStamp Context or explore framework-specific guides."
             primaryAction={{
               href: '/docs/getting-started',
               label: 'Get Started',

@@ -446,7 +446,7 @@ export default function Hero() {
           </div>
         </div>
 
-        {/* Workflow GIF - Desktop Only */}
+        {/* Workflow Video - Desktop Only */}
         <div 
           ref={workflowGifRef}
           className={`hidden sm:block mt-16 sm:mt-20 transition-all duration-500 delay-300 ${
@@ -463,11 +463,14 @@ export default function Hero() {
               </span>
             </h2>
             <div className="relative rounded-2xl overflow-hidden shadow-2xl ring-1 ring-gray-200/50 dark:ring-gray-700/50 bg-gray-900">
-              <img 
-                src="/logicstamp-workflow.gif" 
-                alt="LogicStamp CLI and MCP workflow demonstration"
+              <video 
+                src="/logicstamp-workflow.mp4" 
                 className="w-full h-auto max-h-[1100px] sm:max-h-[1100px] lg:max-h-[1200px] object-contain"
-                loading="lazy"
+                autoPlay
+                loop
+                muted
+                playsInline
+                aria-label="LogicStamp CLI and MCP workflow demonstration"
               />
             </div>
           </div>

@@ -789,7 +789,7 @@ await writeFile('src/components/context.json', jsonContent);
 
         <ReadyToGetStartedCard
           variant="green"
-          description="Now that you understand TOON format, explore other commands or check out the complete reference."
+          description="Explore other commands or check out the complete reference."
           primaryAction={{
             href: '/docs/logicstamp-context/commands',
             label: 'All Commands',

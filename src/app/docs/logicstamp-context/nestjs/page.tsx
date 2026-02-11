@@ -424,7 +424,7 @@ stamp context
 
           {/* Next Steps */}
           <ReadyToGetStartedCard
-            description="Now that you understand NestJS framework support, get started with LogicStamp Context or explore other backend framework integrations."
+            description="Get started with LogicStamp Context or explore other backend framework integrations."
             primaryAction={{
               href: '/docs/getting-started',
               label: 'Get Started',

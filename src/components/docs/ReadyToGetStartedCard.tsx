@@ -42,7 +42,7 @@ const variantStyles = {
 
 export default function ReadyToGetStartedCard({
   title = 'Next Steps',
-  description = 'Now that you understand the complete reference, check out the installation guide or explore more documentation.',
+  description = 'Explore the complete CLI documentation or review additional guides.',
   primaryAction = {
     href: '/docs/getting-started',
     label: 'Installation & Quick Start',

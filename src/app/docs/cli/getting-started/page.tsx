@@ -286,7 +286,7 @@ export default function QuickStartPage() {
 
         <ReadyToGetStartedCard
           variant="green"
-          description="Now that you're set up, explore the complete command reference or learn about advanced features."
+          description="Explore the complete command reference or learn about advanced features."
           primaryAction={{
             href: '/docs/logicstamp-context/commands',
             label: 'Command Reference',
