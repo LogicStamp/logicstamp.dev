@@ -75,7 +75,7 @@ export default function LlmContextPage() {
                   {
                     icon: "⚡",
                     title: "AI-Friendly Bundles",
-                    desc: "Generates context bundles from React/TypeScript projects without build steps"
+                    desc: "Generates context bundles from TypeScript projects without build steps"
                   },
                   {
                     icon: "🌐",

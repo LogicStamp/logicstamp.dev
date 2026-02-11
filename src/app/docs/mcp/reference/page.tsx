@@ -51,7 +51,7 @@ export default function MCPReferencePage() {
                   Overview
                 </h2>
                 <p className="text-base sm:text-lg text-gray-600 dark:text-gray-400 mb-4 leading-relaxed">
-                  The LogicStamp Context MCP server provides 7 core tools for analyzing React/TypeScript codebases:
+                  The LogicStamp Context MCP server provides 7 core tools for analyzing TypeScript codebases:
                 </p>
                 <ul className="list-disc list-inside space-y-2 text-base text-gray-600 dark:text-gray-400 ml-4">
                   <li><code className="px-1.5 py-0.5 bg-gray-100 dark:bg-gray-800 text-indigo-600 dark:text-indigo-400 rounded font-mono text-xs">logicstamp_refresh_snapshot</code> - Analyze project and create snapshot</li>

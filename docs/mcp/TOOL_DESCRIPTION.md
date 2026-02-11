@@ -4,7 +4,7 @@
 
 ## Overview
 
-**LogicStamp Context** is a zero-configuration CLI tool that analyzes React/TypeScript codebases and generates machine-readable context bundles optimized for AI assistants and CI/CD pipelines. It extracts comprehensive component metadata, builds dependency graphs, and produces structured JSON documentation that captures the complete architecture of your application.
+**LogicStamp Context** is a zero-configuration CLI tool that analyzes TypeScript codebases and generates machine-readable context bundles optimized for AI assistants and CI/CD pipelines. It extracts comprehensive component metadata, builds dependency graphs, and produces structured JSON documentation that captures the complete architecture of your application.
 
 > **Note:** This document describes LogicStamp Context CLI capabilities. For MCP server usage, see the [MCP Integration Guide](mcp_integration.md) and [README](../README.md).
 
@@ -334,7 +334,7 @@ Each component contract (`UIFContract`) includes:
 ## Key Features
 
 ### Zero Configuration
-- Works out of the box on any React/TypeScript project
+- Works out of the box on any TypeScript project
 - No build step required - analyzes source files directly
 - Automatic component detection and classification
 

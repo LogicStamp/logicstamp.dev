@@ -6,7 +6,7 @@ import TabbedCodeBlock from '@/components/docs/TabbedCodeBlock'
 
 export const metadata: Metadata = {
   title: 'React Framework Support | LogicStamp Context Documentation',
-  description: 'Learn how LogicStamp Context detects and extracts React components, hooks, props, and state from your React/TypeScript codebase.',
+  description: 'Learn how LogicStamp Context detects and extracts React components, hooks, props, and state from your TypeScript codebase.',
 }
 
 export default function ReactPage() {

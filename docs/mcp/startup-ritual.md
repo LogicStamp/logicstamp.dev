@@ -4,7 +4,7 @@
 
 ---
 
-You have access to LogicStamp MCP tools for analyzing React/TypeScript codebases.
+You have access to LogicStamp MCP tools for analyzing TypeScript codebases.
 
 **Before reading raw source files, follow this workflow:**
 

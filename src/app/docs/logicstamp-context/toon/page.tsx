@@ -728,10 +728,10 @@ await writeFile('src/components/context.json', jsonContent);
               <div className="grid sm:grid-cols-2 gap-4">
                 <Link
                   href="/docs/logicstamp-context/context"
-                  className="p-4 bg-gray-50 dark:bg-gray-800/50 rounded-lg border border-gray-200 dark:border-gray-700 hover:border-blue-300 dark:hover:border-blue-500 hover:bg-blue-50 dark:hover:bg-blue-900/20 transition-colors"
+                  className="p-4 border border-gray-200 dark:border-gray-800 rounded-lg md:hover:border-blue-500 dark:md:hover:border-blue-500 transition-colors"
                 >
                   <h3 className="font-semibold text-gray-900 dark:text-white mb-1">
-                    <code className="px-1.5 py-0.5 bg-gray-100 dark:bg-gray-800 rounded text-xs font-mono">stamp context</code>
+                    <code className="text-sm font-mono">stamp context</code>
                   </h3>
                   <p className="text-sm text-gray-600 dark:text-gray-400">
                     Generate context files (supports all formats including TOON)
@@ -739,10 +739,10 @@ await writeFile('src/components/context.json', jsonContent);
                 </Link>
                 <Link
                   href="/docs/logicstamp-context/validate"
-                  className="p-4 bg-gray-50 dark:bg-gray-800/50 rounded-lg border border-gray-200 dark:border-gray-700 hover:border-blue-300 dark:hover:border-blue-500 hover:bg-blue-50 dark:hover:bg-blue-900/20 transition-colors"
+                  className="p-4 border border-gray-200 dark:border-gray-800 rounded-lg md:hover:border-blue-500 dark:md:hover:border-blue-500 transition-colors"
                 >
                   <h3 className="font-semibold text-gray-900 dark:text-white mb-1">
-                    <code className="px-1.5 py-0.5 bg-gray-100 dark:bg-gray-800 rounded text-xs font-mono">stamp context validate</code>
+                    <code className="text-sm font-mono">stamp context validate</code>
                   </h3>
                   <p className="text-sm text-gray-600 dark:text-gray-400">
                     Validate context files (JSON format only)
@@ -750,10 +750,10 @@ await writeFile('src/components/context.json', jsonContent);
                 </Link>
                 <Link
                   href="/docs/logicstamp-context/compare-command"
-                  className="p-4 bg-gray-50 dark:bg-gray-800/50 rounded-lg border border-gray-200 dark:border-gray-700 hover:border-blue-300 dark:hover:border-blue-500 hover:bg-blue-50 dark:hover:bg-blue-900/20 transition-colors"
+                  className="p-4 border border-gray-200 dark:border-gray-800 rounded-lg md:hover:border-blue-500 dark:md:hover:border-blue-500 transition-colors"
                 >
                   <h3 className="font-semibold text-gray-900 dark:text-white mb-1">
-                    <code className="px-1.5 py-0.5 bg-gray-100 dark:bg-gray-800 rounded text-xs font-mono">stamp context compare</code>
+                    <code className="text-sm font-mono">stamp context compare</code>
                   </h3>
                   <p className="text-sm text-gray-600 dark:text-gray-400">
                     Compare context files (JSON format only)
@@ -761,10 +761,10 @@ await writeFile('src/components/context.json', jsonContent);
                 </Link>
                 <Link
                   href="/docs/logicstamp-context/clean"
-                  className="p-4 bg-gray-50 dark:bg-gray-800/50 rounded-lg border border-gray-200 dark:border-gray-700 hover:border-blue-300 dark:hover:border-blue-500 hover:bg-blue-50 dark:hover:bg-blue-900/20 transition-colors"
+                  className="p-4 border border-gray-200 dark:border-gray-800 rounded-lg md:hover:border-blue-500 dark:md:hover:border-blue-500 transition-colors"
                 >
                   <h3 className="font-semibold text-gray-900 dark:text-white mb-1">
-                    <code className="px-1.5 py-0.5 bg-gray-100 dark:bg-gray-800 rounded text-xs font-mono">stamp context clean</code>
+                    <code className="text-sm font-mono">stamp context clean</code>
                   </h3>
                   <p className="text-sm text-gray-600 dark:text-gray-400">
                     Clean context files (JSON format only)
@@ -772,10 +772,10 @@ await writeFile('src/components/context.json', jsonContent);
                 </Link>
                 <Link
                   href="/docs/logicstamp-context/init"
-                  className="p-4 bg-gray-50 dark:bg-gray-800/50 rounded-lg border border-gray-200 dark:border-gray-700 hover:border-blue-300 dark:hover:border-blue-500 hover:bg-blue-50 dark:hover:bg-blue-900/20 transition-colors"
+                  className="p-4 border border-gray-200 dark:border-gray-800 rounded-lg md:hover:border-blue-500 dark:md:hover:border-blue-500 transition-colors"
                 >
                   <h3 className="font-semibold text-gray-900 dark:text-white mb-1">
-                    <code className="px-1.5 py-0.5 bg-gray-100 dark:bg-gray-800 rounded text-xs font-mono">stamp init</code>
+                    <code className="text-sm font-mono">stamp init</code>
                   </h3>
                   <p className="text-sm text-gray-600 dark:text-gray-400">
                     Set up <code className="px-1 py-0.5 bg-gray-100 dark:bg-gray-800 rounded text-xs font-mono">.gitignore</code> patterns for TOON files

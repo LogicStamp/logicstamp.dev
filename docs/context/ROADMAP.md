@@ -34,7 +34,7 @@ This roadmap outlines the planned features, improvements, and known limitations 
 
 ### v0.3.6 (January 2026)
 - ✅ **Hook parameter detection** - Comprehensive support for extracting function signatures from custom React hooks, including parameter types, default values, and optional parameters. Works even when Props interfaces exist in the same file.
-- ✅ **Default depth changed from 1 to 2** - Default `--depth` parameter now set to `2` to ensure proper signature extraction for React/TypeScript projects, including nested component signatures in dependency graphs.
+- ✅ **Default depth changed from 1 to 2** - Default `--depth` parameter now set to `2` to ensure proper signature extraction, including nested component signatures in dependency graphs.
 
 ### v0.3.5 (January 2026)
 - ✅ **Styled JSX support** - Full CSS extraction from `<style jsx>` blocks with selector and property parsing
@@ -271,7 +271,7 @@ Add static analysis hints about runtime behavior.
 
 These items expand LogicStamp Context to support additional languages, frameworks, and development workflows.
 
-### Near-Term (v0.4.x)
+### Near-Term
 
 #### 1. Backend Framework Support
 **Status:** ✅ **Complete in v0.4.0**
@@ -343,7 +343,7 @@ Automatic context regeneration when source files change.
 
 ---
 
-### Future (v0.5.x+)
+### Future
 
 #### 4. Complete Vue.js Support
 **Status:** 🟡 Partially Complete

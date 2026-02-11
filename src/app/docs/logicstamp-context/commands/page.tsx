@@ -461,7 +461,7 @@ stamp context clean --all --yes`
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <Link
                 href="/docs/logicstamp-context/context"
-                className="group p-4 bg-gradient-to-br from-blue-50 to-indigo-50 dark:from-blue-950/20 dark:to-indigo-950/10 rounded-xl border border-blue-200 dark:border-blue-800 hover:border-blue-300 dark:hover:border-blue-700 transition-all"
+                className="group p-4 bg-blue-50 dark:bg-blue-950/20 rounded-xl border border-blue-200 dark:border-blue-800 hover:border-blue-300 dark:hover:border-blue-700 transition-all"
               >
                 <div className="flex items-start gap-3">
                   <svg className="w-5 h-5 text-blue-600 dark:text-blue-400 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -469,7 +469,7 @@ stamp context clean --all --yes`
                   </svg>
                   <div>
                     <h3 className="text-sm font-semibold text-blue-900 dark:text-blue-200 group-hover:text-blue-700 dark:group-hover:text-blue-100 transition-colors">
-                      `context` command
+                      <code className="px-1.5 py-0.5 bg-blue-100 dark:bg-blue-900/40 rounded text-xs font-mono">stamp context</code> command
                     </h3>
                     <p className="text-xs text-gray-600 dark:text-gray-400 mt-1">
                       Complete <code className="px-1 py-0.5 bg-blue-100 dark:bg-blue-900/40 rounded text-xs font-mono">stamp context</code> command reference
@@ -480,7 +480,7 @@ stamp context clean --all --yes`
 
               <Link
                 href="/docs/logicstamp-context/style"
-                className="group p-4 bg-gradient-to-br from-pink-50 to-rose-50 dark:from-pink-950/20 dark:to-rose-950/10 rounded-xl border border-pink-200 dark:border-pink-800 hover:border-pink-300 dark:hover:border-pink-700 transition-all"
+                className="group p-4 bg-pink-50 dark:bg-pink-950/20 rounded-xl border border-pink-200 dark:border-pink-800 hover:border-pink-300 dark:hover:border-pink-700 transition-all"
               >
                 <div className="flex items-start gap-3">
                   <svg className="w-5 h-5 text-pink-600 dark:text-pink-400 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -488,7 +488,7 @@ stamp context clean --all --yes`
                   </svg>
                   <div>
                     <h3 className="text-sm font-semibold text-pink-900 dark:text-pink-200 group-hover:text-pink-700 dark:group-hover:text-pink-100 transition-colors">
-                      `style` command
+                      <code className="px-1.5 py-0.5 bg-pink-100 dark:bg-pink-900/40 rounded text-xs font-mono">stamp context style</code> command
                     </h3>
                     <p className="text-xs text-gray-600 dark:text-gray-400 mt-1">
                       Style metadata extraction guide
@@ -499,7 +499,7 @@ stamp context clean --all --yes`
 
               <Link
                 href="/docs/logicstamp-context/init"
-                className="group p-4 bg-gradient-to-br from-green-50 to-emerald-50 dark:from-green-950/20 dark:to-emerald-950/10 rounded-xl border border-green-200 dark:border-green-800 hover:border-green-300 dark:hover:border-green-700 transition-all"
+                className="group p-4 bg-green-50 dark:bg-green-950/20 rounded-xl border border-green-200 dark:border-green-800 hover:border-green-300 dark:hover:border-green-700 transition-all"
               >
                 <div className="flex items-start gap-3">
                   <svg className="w-5 h-5 text-green-600 dark:text-green-400 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -507,7 +507,7 @@ stamp context clean --all --yes`
                   </svg>
                   <div>
                     <h3 className="text-sm font-semibold text-green-900 dark:text-green-200 group-hover:text-green-700 dark:group-hover:text-green-100 transition-colors">
-                      `init` command
+                      <code className="px-1.5 py-0.5 bg-green-100 dark:bg-green-900/40 rounded text-xs font-mono">stamp init</code> command
                     </h3>
                     <p className="text-xs text-gray-600 dark:text-gray-400 mt-1">
                       Project initialization guide
@@ -518,7 +518,7 @@ stamp context clean --all --yes`
 
               <Link
                 href="/docs/logicstamp-context/validate"
-                className="group p-4 bg-gradient-to-br from-purple-50 to-pink-50 dark:from-purple-950/20 dark:to-pink-950/10 rounded-xl border border-purple-200 dark:border-purple-800 hover:border-purple-300 dark:hover:border-purple-700 transition-all"
+                className="group p-4 bg-purple-50 dark:bg-purple-950/20 rounded-xl border border-purple-200 dark:border-purple-800 hover:border-purple-300 dark:hover:border-purple-700 transition-all"
               >
                 <div className="flex items-start gap-3">
                   <svg className="w-5 h-5 text-purple-600 dark:text-purple-400 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -526,7 +526,7 @@ stamp context clean --all --yes`
                   </svg>
                   <div>
                     <h3 className="text-sm font-semibold text-purple-900 dark:text-purple-200 group-hover:text-purple-700 dark:group-hover:text-purple-100 transition-colors">
-                      `validate` command
+                      <code className="px-1.5 py-0.5 bg-purple-100 dark:bg-purple-900/40 rounded text-xs font-mono">stamp context validate</code> command
                     </h3>
                     <p className="text-xs text-gray-600 dark:text-gray-400 mt-1">
                       Schema validation reference
@@ -537,7 +537,7 @@ stamp context clean --all --yes`
 
               <Link
                 href="/docs/logicstamp-context/compare-command"
-                className="group p-4 bg-gradient-to-br from-amber-50 to-yellow-50 dark:from-amber-950/20 dark:to-yellow-950/10 rounded-xl border border-amber-200 dark:border-amber-800 hover:border-amber-300 dark:hover:border-amber-700 transition-all"
+                className="group p-4 bg-amber-50 dark:bg-amber-950/20 rounded-xl border border-amber-200 dark:border-amber-800 hover:border-amber-300 dark:hover:border-amber-700 transition-all"
               >
                 <div className="flex items-start gap-3">
                   <svg className="w-5 h-5 text-amber-600 dark:text-amber-400 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -545,7 +545,7 @@ stamp context clean --all --yes`
                   </svg>
                   <div>
                     <h3 className="text-sm font-semibold text-amber-900 dark:text-amber-200 group-hover:text-amber-700 dark:group-hover:text-amber-100 transition-colors">
-                      `compare` command
+                      <code className="px-1.5 py-0.5 bg-amber-100 dark:bg-amber-900/40 rounded text-xs font-mono">stamp context compare</code> command
                     </h3>
                     <p className="text-xs text-gray-600 dark:text-gray-400 mt-1">
                       Context drift detection and comparison
@@ -556,7 +556,7 @@ stamp context clean --all --yes`
 
               <Link
                 href="/docs/logicstamp-context/clean"
-                className="group p-4 bg-gradient-to-br from-rose-50 to-pink-50 dark:from-rose-950/20 dark:to-pink-950/10 rounded-xl border border-rose-200 dark:border-rose-800 hover:border-rose-300 dark:hover:border-rose-700 transition-all"
+                className="group p-4 bg-rose-50 dark:bg-rose-950/20 rounded-xl border border-rose-200 dark:border-rose-800 hover:border-rose-300 dark:hover:border-rose-700 transition-all"
               >
                 <div className="flex items-start gap-3">
                   <svg className="w-5 h-5 text-rose-600 dark:text-rose-400 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -564,7 +564,7 @@ stamp context clean --all --yes`
                   </svg>
                   <div>
                     <h3 className="text-sm font-semibold text-rose-900 dark:text-rose-200 group-hover:text-rose-700 dark:group-hover:text-rose-100 transition-colors">
-                      `clean` command
+                      <code className="px-1.5 py-0.5 bg-rose-100 dark:bg-rose-900/40 rounded text-xs font-mono">stamp context clean</code> command
                     </h3>
                     <p className="text-xs text-gray-600 dark:text-gray-400 mt-1">
                       Remove context artifacts
@@ -575,7 +575,7 @@ stamp context clean --all --yes`
 
               <Link
                 href="/docs/logicstamp-context/security-scan"
-                className="group p-4 bg-gradient-to-br from-red-50 to-orange-50 dark:from-red-950/20 dark:to-orange-950/10 rounded-xl border border-red-200 dark:border-red-800 hover:border-red-300 dark:hover:border-red-700 transition-all"
+                className="group p-4 bg-red-50 dark:bg-red-950/20 rounded-xl border border-red-200 dark:border-red-800 hover:border-red-300 dark:hover:border-red-700 transition-all"
               >
                 <div className="flex items-start gap-3">
                   <svg className="w-5 h-5 text-red-600 dark:text-red-400 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -583,7 +583,7 @@ stamp context clean --all --yes`
                   </svg>
                   <div>
                     <h3 className="text-sm font-semibold text-red-900 dark:text-red-200 group-hover:text-red-700 dark:group-hover:text-red-100 transition-colors">
-                      `security scan` command
+                      <code className="px-1.5 py-0.5 bg-red-100 dark:bg-red-900/40 rounded text-xs font-mono">stamp security scan</code> command
                     </h3>
                     <p className="text-xs text-gray-600 dark:text-gray-400 mt-1">
                       Find secrets and sensitive data before committing

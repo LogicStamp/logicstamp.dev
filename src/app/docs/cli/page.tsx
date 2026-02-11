@@ -120,7 +120,7 @@ export default function LogicStampContextDocsPage() {
                   </svg>
                 </div>
                 <p className="text-sm sm:text-base text-gray-600 dark:text-gray-400">
-                  Generate AI-ready context bundles from your React/TypeScript codebase. The primary command for context generation.
+                  Generate AI-ready context bundles from your TypeScript codebase. The primary command for context generation.
                 </p>
               </Link>
 

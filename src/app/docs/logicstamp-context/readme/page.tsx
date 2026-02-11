@@ -33,7 +33,7 @@ export default function LogicStampReadmePage() {
               </h1>
               
               <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-gray-600 dark:text-gray-400 leading-relaxed max-w-3xl mb-4 sm:mb-6">
-                LogicStamp Context is a lightweight CLI that scans your React/TypeScript codebase and generates
+                LogicStamp Context is a lightweight CLI that scans your TypeScript codebase and generates
                 AI-ready context bundles optimized for tools like Claude, ChatGPT, and other LLMs.
               </p>
               
@@ -121,7 +121,7 @@ export default function LogicStampReadmePage() {
                 />
                 <p className="text-base sm:text-lg text-gray-600 dark:text-gray-400 mt-4 sm:mt-6 leading-relaxed">
                   After installation, the <code className="px-2 py-1 bg-gray-100 dark:bg-gray-800 text-green-600 dark:text-green-400 rounded-md font-mono text-xs sm:text-sm">stamp</code> command is available globally and can be run from any
-                  React/TypeScript project.
+                  TypeScript project.
                 </p>
                 <div className="mt-4 p-4 bg-green-50 dark:bg-green-950/20 rounded-xl border border-green-200 dark:border-green-800">
                   <p className="text-sm sm:text-base text-green-800 dark:text-green-300">

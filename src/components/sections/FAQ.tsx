@@ -2,7 +2,6 @@
 
 import { useState, useRef, useEffect } from 'react'
 import { Plus, X, HelpCircle } from 'lucide-react'
-import GetStartedButton from '../ui/GetStartedButton'
 import ReadTheDocsButton from '../ui/ReadTheDocsButton'
 
 // Custom hook for intersection observer
@@ -53,7 +52,7 @@ const faqs = [
   },
   {
     id: 4,
-    question: 'What frameworks are supported?',
+    question: 'Which frameworks are supported?',
     answer:
       'Currently supports React and TypeScript projects (including Next.js), plus Vue 3 TypeScript/TSX files.\nBackend support for Express.js and NestJS is available in v0.5.2.\nRequires Node.js >= 18.18.0 (Node 20+ recommended).\nMCP integration is available for Cursor, Claude Desktop, and Claude CLI.\nWorks with any React/TypeScript codebase regardless of styling solution (Tailwind, styled-components, CSS modules, Material UI, ShadCN/UI, Radix UI, Framer Motion, etc.).\nNote: Vue Single File Components (.vue files) support is planned for a future release.',
   },
@@ -152,16 +151,43 @@ export default function FAQ() {
           {/* Left column - Title */}
           <div 
             ref={titleRef}
-            className={`transition-all duration-1000 text-center lg:text-left ${
+            className={`transition-all duration-1000 text-center lg:text-left lg:flex lg:flex-col lg:justify-between lg:min-h-[600px] ${
               titleInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
             }`}
           >
-            <h2 className="text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-gray-900 dark:text-white leading-tight">
-              Frequently asked questions
-            </h2>
-            <p className="mt-6 hidden lg:block text-lg text-gray-600 dark:text-gray-400 leading-relaxed max-w-lg">
-              Answers about how LogicStamp works, how it reduces tokens, and how to integrate it into your workflow.
-            </p>
+            <div>
+              <h2 className="text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-gray-900 dark:text-white leading-tight">
+                Frequently asked questions
+              </h2>
+              <p className="mt-6 hidden lg:block text-lg text-gray-600 dark:text-gray-400 leading-relaxed max-w-lg">
+                Answers about how LogicStamp works, how it reduces tokens, and how to integrate it into your workflow.
+              </p>
+            </div>
+            
+            {/* Documentation Link - Desktop only in left column */}
+            <div 
+              ref={docsRef}
+              className={`hidden lg:block lg:mt-8 lg:opacity-100 lg:translate-y-0 transition-all duration-1000 delay-300 ${
+                docsInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+              }`}
+            >
+              <div className="flex items-center justify-start mb-4">
+                <HelpCircle className="h-12 w-12 text-indigo-600 dark:text-indigo-400" />
+              </div>
+              <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-3">
+                Need More Detailed Information?
+              </h3>
+              <p className="text-base text-gray-600 dark:text-gray-400 mb-6 leading-relaxed">
+                Explore comprehensive documentation covering setup guides, token optimization strategies, CI/CD workflows, and advanced configuration options for{' '}
+                <code className="font-mono text-sm text-indigo-600 dark:text-indigo-400 bg-gray-50 dark:bg-gray-900 px-2 py-1 rounded">
+                  stamp context
+                </code>.
+              </p>
+              
+              <div className="flex flex-row flex-nowrap items-center justify-start">
+                <ReadTheDocsButton href="docs/" size="lg" />
+              </div>
+            </div>
           </div>
 
           {/* Right column - Questions */}
@@ -287,10 +313,10 @@ export default function FAQ() {
         </div>
       </div>
 
-      {/* Documentation Link */}
+      {/* Documentation Link - Mobile only (desktop version is in left column) */}
       <div 
         ref={docsRef}
-        className={`w-full border-t border-gray-200 dark:border-gray-800 transition-all duration-1000 delay-300 ${
+        className={`lg:hidden w-full border-t border-gray-200 dark:border-gray-800 transition-all duration-1000 delay-300 ${
           docsInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
         }`}
       >
@@ -309,24 +335,8 @@ export default function FAQ() {
               </code>.
             </p>
             
-            <div className="flex flex-row flex-nowrap items-center justify-center gap-2 sm:gap-4">
-              <GetStartedButton href="docs/getting-started" className="text-xs sm:text-sm lg:text-base px-4 py-2 sm:px-6 sm:py-3 flex-shrink-0">
-                <svg
-                  className="w-4 h-4 sm:w-5 sm:h-5"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M13 10V3L4 14h7v7l9-11h-7z"
-                  />
-                </svg>
-                Quick Start
-              </GetStartedButton>
-              <ReadTheDocsButton href="docs/" className="text-xs sm:text-sm lg:text-base px-4 py-2 sm:px-6 sm:py-3 flex-shrink-0" />
+            <div className="flex flex-row flex-nowrap items-center justify-center">
+              <ReadTheDocsButton href="docs/" size="lg" />
             </div>
           </div>
         </div>

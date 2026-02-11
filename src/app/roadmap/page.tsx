@@ -240,7 +240,7 @@ export default function BetaPage() {
                     </svg>
                   </div>
                   <h3 className="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white">
-                    Framework Expansion (v0.4.x)
+                    Framework Expansion
                   </h3>
                 </div>
                 <div className="space-y-6">
@@ -465,7 +465,7 @@ export default function BetaPage() {
                     </svg>
                   </div>
                   <h3 className="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white">
-                    Future Enhancements (v0.5.x+)
+                    Future Enhancements
                   </h3>
                 </div>
                 <div className="space-y-4">
