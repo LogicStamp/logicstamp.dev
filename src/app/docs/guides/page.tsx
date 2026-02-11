@@ -77,14 +77,14 @@ export default function GuidesHomePage() {
 
               <Link
                 href="/docs/getting-started"
-                className="group relative flex items-start gap-4 p-4 sm:p-6 bg-gradient-to-br from-blue-50 to-indigo-50 dark:from-blue-950/20 dark:to-indigo-950/10 rounded-xl border border-blue-200 dark:border-blue-800 hover:shadow-lg transition-all duration-200"
+                className="group relative flex items-start gap-4 p-4 sm:p-6 bg-gradient-to-br from-blue-50 to-indigo-50 dark:from-blue-950/20 dark:to-indigo-950/10 rounded-xl border border-blue-200 dark:border-blue-800 md:hover:shadow-lg transition-all duration-200"
               >
                 <div className="flex-1 min-w-0">
                   <div className="flex items-baseline gap-2 mb-2">
                     <h3 className="text-lg sm:text-xl font-semibold text-gray-900 dark:text-white">
                       Getting Started
                     </h3>
-                    <svg className="w-5 h-5 text-blue-600 dark:text-blue-400 transition-transform group-hover:translate-x-1 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <svg className="w-5 h-5 text-blue-600 dark:text-blue-400 transition-transform md:group-hover:translate-x-1 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
                     </svg>
                   </div>
@@ -111,13 +111,13 @@ export default function GuidesHomePage() {
                 <Link
                   key={page.href}
                   href={page.href}
-                  className="group p-4 border border-gray-200 dark:border-gray-800 rounded-lg hover:border-blue-500 dark:hover:border-blue-500 transition-colors"
+                  className="group p-4 border border-gray-200 dark:border-gray-800 rounded-lg md:hover:border-blue-500 dark:md:hover:border-blue-500 transition-colors"
                 >
                   <div className="flex items-baseline gap-2 mb-2">
                     <h3 className="text-lg font-semibold text-gray-900 dark:text-white">
                       {page.title}
                     </h3>
-                    <svg className="w-5 h-5 text-gray-400 group-hover:text-blue-500 transition-transform group-hover:translate-x-1 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <svg className="w-5 h-5 text-gray-400 md:group-hover:text-blue-500 transition-transform md:group-hover:translate-x-1 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
                     </svg>
                   </div>
@@ -142,13 +142,13 @@ export default function GuidesHomePage() {
             <div className="grid sm:grid-cols-2 gap-4">
               <Link
                 href="/docs/cli"
-                className="group p-4 border border-gray-200 dark:border-gray-800 rounded-lg hover:border-blue-500 dark:hover:border-blue-500 transition-colors"
+                className="group p-4 border border-gray-200 dark:border-gray-800 rounded-lg md:hover:border-blue-500 dark:md:hover:border-blue-500 transition-colors"
               >
                 <div className="flex items-baseline gap-2 mb-2">
                   <h3 className="text-lg font-semibold text-gray-900 dark:text-white">
                     CLI Documentation Hub
                   </h3>
-                  <svg className="w-5 h-5 text-gray-400 group-hover:text-blue-500 transition-transform group-hover:translate-x-1 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <svg className="w-5 h-5 text-gray-400 md:group-hover:text-blue-500 transition-transform md:group-hover:translate-x-1 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
                   </svg>
                 </div>
@@ -159,13 +159,13 @@ export default function GuidesHomePage() {
 
               <Link
                 href="/docs/complete-reference"
-                className="group p-4 border border-gray-200 dark:border-gray-800 rounded-lg hover:border-blue-500 dark:hover:border-blue-500 transition-colors"
+                className="group p-4 border border-gray-200 dark:border-gray-800 rounded-lg md:hover:border-blue-500 dark:md:hover:border-blue-500 transition-colors"
               >
                 <div className="flex items-baseline gap-2 mb-2">
                   <h3 className="text-lg font-semibold text-gray-900 dark:text-white">
                     Complete Reference
                   </h3>
-                  <svg className="w-5 h-5 text-gray-400 group-hover:text-blue-500 transition-transform group-hover:translate-x-1 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <svg className="w-5 h-5 text-gray-400 md:group-hover:text-blue-500 transition-transform md:group-hover:translate-x-1 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
                   </svg>
                 </div>

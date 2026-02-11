@@ -83,13 +83,13 @@ export default function DocsHomePage() {
             <div className="grid sm:grid-cols-2 gap-4">
               <Link
                 href="/docs/what-is-logicstamp"
-                className="group p-4 border border-gray-200 dark:border-gray-800 rounded-lg hover:border-blue-500 dark:hover:border-blue-500 transition-colors"
+                className="group p-4 border border-gray-200 dark:border-gray-800 rounded-lg md:hover:border-blue-500 dark:md:hover:border-blue-500 transition-colors"
               >
                 <div className="flex items-baseline gap-2 mb-2">
                   <h3 className="text-lg font-semibold text-gray-900 dark:text-white">
                     What is LogicStamp?
                   </h3>
-                  <svg className="w-5 h-5 text-gray-400 group-hover:text-blue-500 transition-transform group-hover:translate-x-1 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <svg className="w-5 h-5 text-gray-400 md:group-hover:text-blue-500 transition-transform md:group-hover:translate-x-1 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
                   </svg>
                 </div>
@@ -99,13 +99,13 @@ export default function DocsHomePage() {
               </Link>
               <Link
                 href="/docs/logicstamp-context/uif-contracts"
-                className="group p-4 border border-gray-200 dark:border-gray-800 rounded-lg hover:border-blue-500 dark:hover:border-blue-500 transition-colors"
+                className="group p-4 border border-gray-200 dark:border-gray-800 rounded-lg md:hover:border-blue-500 dark:md:hover:border-blue-500 transition-colors"
               >
                 <div className="flex items-baseline gap-2 mb-2">
                   <h3 className="text-lg font-semibold text-gray-900 dark:text-white">
                     UIF Contracts
                   </h3>
-                  <svg className="w-5 h-5 text-gray-400 group-hover:text-blue-500 transition-transform group-hover:translate-x-1 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <svg className="w-5 h-5 text-gray-400 md:group-hover:text-blue-500 transition-transform md:group-hover:translate-x-1 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
                   </svg>
                 </div>
@@ -138,13 +138,13 @@ export default function DocsHomePage() {
             <div className="grid sm:grid-cols-2 gap-4">
               <Link
                 href="/docs/getting-started"
-                className="group p-4 border border-gray-200 dark:border-gray-800 rounded-lg hover:border-purple-500 dark:hover:border-purple-500 transition-colors"
+                className="group p-4 border border-gray-200 dark:border-gray-800 rounded-lg md:hover:border-purple-500 dark:md:hover:border-purple-500 transition-colors"
               >
                 <div className="flex items-baseline gap-2 mb-2">
                   <h3 className="text-lg font-semibold text-gray-900 dark:text-white">
                     CLI - Installation & Quick Start
                   </h3>
-                  <svg className="w-5 h-5 text-gray-400 group-hover:text-purple-500 transition-transform group-hover:translate-x-1 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <svg className="w-5 h-5 text-gray-400 md:group-hover:text-purple-500 transition-transform md:group-hover:translate-x-1 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
                   </svg>
                 </div>
@@ -154,13 +154,13 @@ export default function DocsHomePage() {
               </Link>
               <Link
                 href="/docs/mcp/getting-started"
-                className="group p-4 border border-gray-200 dark:border-gray-800 rounded-lg hover:border-purple-500 dark:hover:border-purple-500 transition-colors"
+                className="group p-4 border border-gray-200 dark:border-gray-800 rounded-lg md:hover:border-purple-500 dark:md:hover:border-purple-500 transition-colors"
               >
                 <div className="flex items-baseline gap-2 mb-2">
                   <h3 className="text-lg font-semibold text-gray-900 dark:text-white">
                     MCP - Getting Started
                   </h3>
-                  <svg className="w-5 h-5 text-gray-400 group-hover:text-purple-500 transition-transform group-hover:translate-x-1 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <svg className="w-5 h-5 text-gray-400 md:group-hover:text-purple-500 transition-transform md:group-hover:translate-x-1 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
                   </svg>
                 </div>
