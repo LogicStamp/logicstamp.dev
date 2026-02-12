@@ -620,7 +620,7 @@ const password = 'EXAMPLE_PRIVATE_DATA';"
               <div className="grid sm:grid-cols-2 gap-4">
                 <Link
                   href="/docs/logicstamp-context/style"
-                  className="p-4 border border-gray-200 dark:border-gray-800 rounded-lg md:hover:border-blue-500 dark:md:hover:border-blue-500 transition-colors"
+                  className="p-4 border border-gray-200 dark:border-gray-800 rounded-lg md:hover:border-green-500 dark:md:hover:border-green-500 transition-colors"
                 >
                   <h3 className="font-semibold text-gray-900 dark:text-white mb-1">
                     <code className="text-sm font-mono">stamp context style</code> →
@@ -631,7 +631,7 @@ const password = 'EXAMPLE_PRIVATE_DATA';"
                 </Link>
                 <Link
                   href="/docs/logicstamp-context/watch-mode"
-                  className="p-4 border border-gray-200 dark:border-gray-800 rounded-lg md:hover:border-blue-500 dark:md:hover:border-blue-500 transition-colors"
+                  className="p-4 border border-gray-200 dark:border-gray-800 rounded-lg md:hover:border-green-500 dark:md:hover:border-green-500 transition-colors"
                 >
                   <h3 className="font-semibold text-gray-900 dark:text-white mb-1">
                     <code className="text-sm font-mono">stamp context --watch</code> →
@@ -642,7 +642,7 @@ const password = 'EXAMPLE_PRIVATE_DATA';"
                 </Link>
                 <Link
                   href="/docs/logicstamp-context/validate"
-                  className="p-4 border border-gray-200 dark:border-gray-800 rounded-lg md:hover:border-blue-500 dark:md:hover:border-blue-500 transition-colors"
+                  className="p-4 border border-gray-200 dark:border-gray-800 rounded-lg md:hover:border-green-500 dark:md:hover:border-green-500 transition-colors"
                 >
                   <h3 className="font-semibold text-gray-900 dark:text-white mb-1">
                     <code className="text-sm font-mono">stamp context validate</code> →
@@ -653,7 +653,7 @@ const password = 'EXAMPLE_PRIVATE_DATA';"
                 </Link>
                 <Link
                   href="/docs/logicstamp-context/compare-command"
-                  className="p-4 border border-gray-200 dark:border-gray-800 rounded-lg md:hover:border-blue-500 dark:md:hover:border-blue-500 transition-colors"
+                  className="p-4 border border-gray-200 dark:border-gray-800 rounded-lg md:hover:border-green-500 dark:md:hover:border-green-500 transition-colors"
                 >
                   <h3 className="font-semibold text-gray-900 dark:text-white mb-1">
                     <code className="text-sm font-mono">stamp context compare</code> →
@@ -664,7 +664,7 @@ const password = 'EXAMPLE_PRIVATE_DATA';"
                 </Link>
                 <Link
                   href="/docs/logicstamp-context/clean"
-                  className="p-4 border border-gray-200 dark:border-gray-800 rounded-lg md:hover:border-blue-500 dark:md:hover:border-blue-500 transition-colors"
+                  className="p-4 border border-gray-200 dark:border-gray-800 rounded-lg md:hover:border-green-500 dark:md:hover:border-green-500 transition-colors"
                 >
                   <h3 className="font-semibold text-gray-900 dark:text-white mb-1">
                     <code className="text-sm font-mono">stamp context clean</code>
@@ -675,7 +675,7 @@ const password = 'EXAMPLE_PRIVATE_DATA';"
                 </Link>
                 <Link
                   href="/docs/logicstamp-context/init"
-                  className="p-4 border border-gray-200 dark:border-gray-800 rounded-lg md:hover:border-blue-500 dark:md:hover:border-blue-500 transition-colors"
+                  className="p-4 border border-gray-200 dark:border-gray-800 rounded-lg md:hover:border-green-500 dark:md:hover:border-green-500 transition-colors"
                 >
                   <h3 className="font-semibold text-gray-900 dark:text-white mb-1">
                     <code className="text-sm font-mono">stamp init</code>

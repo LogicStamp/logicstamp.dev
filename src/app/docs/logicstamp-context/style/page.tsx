@@ -5,6 +5,7 @@ import AnimatedSection from '@/components/common/AnimatedSection'
 import DocsLayout from '@/components/docs/DocsLayout'
 import TabbedCodeBlock from '@/components/docs/TabbedCodeBlock'
 import { Code } from 'lucide-react'
+import ReadyToGetStartedCard from '@/components/docs/ReadyToGetStartedCard'
 
 export const metadata: Metadata = {
   title: '`context style` Command | LogicStamp Context Documentation',
@@ -1100,7 +1101,7 @@ stamp context compare old/context_main.json new/context_main.json`
               <div className="grid sm:grid-cols-2 gap-4">
                 <Link
                   href="/docs/logicstamp-context/context"
-                  className="p-4 border border-gray-200 dark:border-gray-800 rounded-lg md:hover:border-blue-500 dark:md:hover:border-blue-500 transition-colors"
+                  className="p-4 border border-gray-200 dark:border-gray-800 rounded-lg md:hover:border-green-500 dark:md:hover:border-green-500 transition-colors"
                 >
                   <h3 className="font-semibold text-gray-900 dark:text-white mb-1">
                     <code className="text-sm font-mono">stamp context</code> →
@@ -1111,7 +1112,7 @@ stamp context compare old/context_main.json new/context_main.json`
                 </Link>
                 <Link
                   href="/docs/logicstamp-context/validate"
-                  className="p-4 border border-gray-200 dark:border-gray-800 rounded-lg md:hover:border-blue-500 dark:md:hover:border-blue-500 transition-colors"
+                  className="p-4 border border-gray-200 dark:border-gray-800 rounded-lg md:hover:border-green-500 dark:md:hover:border-green-500 transition-colors"
                 >
                   <h3 className="font-semibold text-gray-900 dark:text-white mb-1">
                     <code className="text-sm font-mono">stamp context validate</code> →
@@ -1122,7 +1123,7 @@ stamp context compare old/context_main.json new/context_main.json`
                 </Link>
                 <Link
                   href="/docs/logicstamp-context/compare-command"
-                  className="p-4 border border-gray-200 dark:border-gray-800 rounded-lg md:hover:border-blue-500 dark:md:hover:border-blue-500 transition-colors"
+                  className="p-4 border border-gray-200 dark:border-gray-800 rounded-lg md:hover:border-green-500 dark:md:hover:border-green-500 transition-colors"
                 >
                   <h3 className="font-semibold text-gray-900 dark:text-white mb-1">
                     <code className="text-sm font-mono">stamp context compare</code> →
@@ -1135,6 +1136,19 @@ stamp context compare old/context_main.json new/context_main.json`
             </div>
           </AnimatedSection>
         </div>
+        <ReadyToGetStartedCard
+          variant="green"
+          description="Learn how to use it with LLMs or explore watch mode for automatic updates, including style metadata."
+          primaryAction={{
+            href: '/docs/logicstamp-context/usage',
+            label: 'Usage Guide',
+          }}
+          secondaryAction={{
+            href: '/docs/logicstamp-context/watch-mode',
+            label: 'Watch Mode',
+          }}
+          delay={650}
+        />
       </DocsLayout>
       <Footer />
     </>

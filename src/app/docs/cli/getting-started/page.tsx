@@ -284,14 +284,14 @@ export default function QuickStartPage() {
             <div className="grid sm:grid-cols-2 gap-4">
               <Link
                 href="/docs/logicstamp-context/commands"
-                className="p-4 border border-gray-200 dark:border-gray-800 rounded-lg md:hover:border-blue-500 dark:md:hover:border-blue-500 transition-colors"
+                className="p-4 border border-gray-200 dark:border-gray-800 rounded-lg md:hover:border-green-500 dark:md:hover:border-green-500 transition-colors"
               >
                 <h3 className="font-semibold text-gray-900 dark:text-white mb-1">CLI Commands →</h3>
                 <p className="text-sm text-gray-600 dark:text-gray-400">Complete command reference</p>
               </Link>
               <Link
                 href="/docs/getting-started"
-                className="p-4 border border-gray-200 dark:border-gray-800 rounded-lg md:hover:border-blue-500 dark:md:hover:border-blue-500 transition-colors"
+                className="p-4 border border-gray-200 dark:border-gray-800 rounded-lg md:hover:border-green-500 dark:md:hover:border-green-500 transition-colors"
               >
                 <h3 className="font-semibold text-gray-900 dark:text-white mb-1">Main Getting Started →</h3>
                 <p className="text-sm text-gray-600 dark:text-gray-400">Quick start guide</p>
