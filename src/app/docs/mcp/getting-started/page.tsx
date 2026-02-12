@@ -236,14 +236,14 @@ export default function MCPInstallationPage() {
             <div className="grid sm:grid-cols-2 gap-4">
               <Link
                 href="/docs/mcp/reference"
-                className="p-4 border border-gray-200 dark:border-gray-800 rounded-lg md:hover:border-blue-500 dark:md:hover:border-blue-500 transition-colors"
+                className="p-4 border border-gray-200 dark:border-gray-800 rounded-lg md:hover:border-purple-500 dark:md:hover:border-purple-500 transition-colors"
               >
                 <h3 className="font-semibold text-gray-900 dark:text-white mb-1">MCP Reference →</h3>
                 <p className="text-sm text-gray-600 dark:text-gray-400">Complete tool documentation</p>
               </Link>
               <Link
                 href="/docs/mcp"
-                className="p-4 border border-gray-200 dark:border-gray-800 rounded-lg md:hover:border-blue-500 dark:md:hover:border-blue-500 transition-colors"
+                className="p-4 border border-gray-200 dark:border-gray-800 rounded-lg md:hover:border-purple-500 dark:md:hover:border-purple-500 transition-colors"
               >
                 <h3 className="font-semibold text-gray-900 dark:text-white mb-1">MCP Overview →</h3>
                 <p className="text-sm text-gray-600 dark:text-gray-400">How MCP works</p>
