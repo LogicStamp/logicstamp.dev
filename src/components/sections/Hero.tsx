@@ -162,7 +162,7 @@ export default function Hero() {
                   onMouseEnter={() => setMcpHovered(true)}
                   onMouseLeave={() => setMcpHovered(false)}
                   onTouchStart={() => setMcpHovered(false)}
-                  className="relative"
+                  className="relative inline-block"
                 >
                   <a
                     href="/docs/mcp"
@@ -176,15 +176,13 @@ export default function Hero() {
                   
                   {/* Tooltip - Desktop only */}
                   <div
-                    className={`hidden lg:block absolute left-full ml-3 top-0 -mt-4 z-[100] w-80 transition-all duration-300 ease-out ${
+                    className={`hidden lg:block absolute left-0 top-full mt-3 z-[100] w-80 transition-all duration-300 ease-out ${
                       mcpHovered ? 'opacity-100 translate-x-0 pointer-events-auto' : 'opacity-0 -translate-x-2 pointer-events-none'
                     }`}
                   >
                     <div className="relative">
                       {/* Arrow - pointing left */}
-                      <div className="absolute -left-2 top-6 w-4 h-4 bg-white dark:bg-gray-900 border-l border-b border-gray-200 dark:border-gray-700 rotate-45"></div>
-                      
-                      {/* Tooltip content */}
+                      <div className="absolute -top-2 left-8 w-4 h-4 bg-white dark:bg-gray-900 border-t border-l rotate-45 border-gray-200 dark:border-gray-700 rotate-45"></div>
                       <div className="relative bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-700 rounded-xl shadow-2xl p-4 backdrop-blur-xl">
                         <div className="absolute inset-0 bg-gradient-to-br from-purple-50/50 via-blue-50/50 to-pink-50/50 dark:from-purple-950/20 dark:via-blue-950/20 dark:to-pink-950/20 rounded-xl -z-10"></div>
                         
@@ -200,7 +198,7 @@ export default function Hero() {
                               LogicStamp MCP Server
                             </h3>
                             <p className="text-xs sm:text-sm text-gray-600 dark:text-gray-400 leading-relaxed">
-                              Native integration with Claude Desktop, Claude Code, and Cursor. AI assistants can analyze your codebase directly through LogicStamp's MCP server.
+                              Native integration with Claude Desktop, Claude Code, and Cursor.
                             </p>
                           </div>
                         </div>
@@ -366,13 +364,13 @@ export default function Hero() {
                 
                 {/* Tooltip - Desktop only */}
                 <div
-                  className={`hidden lg:block absolute left-1/2 -translate-x-1/2 bottom-full mb-3 z-[100] w-80 transition-all duration-300 ease-out ${
+                  className={`hidden lg:block absolute left-0 top-full mt-3 z-[100] w-80 transition-all duration-300 ease-out ${
                     mcpHovered ? 'opacity-100 translate-y-0 pointer-events-auto' : 'opacity-0 translate-y-2 pointer-events-none'
                   }`}
                 >
                   <div className="relative">
                     {/* Arrow - pointing down */}
-                    <div className="absolute -bottom-2 left-1/2 -translate-x-1/2 w-4 h-4 bg-white dark:bg-gray-900 border-r border-b border-gray-200 dark:border-gray-700 rotate-45"></div>
+                    <div className="absolute -top-2 left-1/2 -translate-x-1/2 w-4 h-4 bg-white dark:bg-gray-900 border-t border-l border-gray-200 dark:border-gray-700 rotate-45"></div>
                     
                     {/* Tooltip content */}
                     <div className="relative bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-700 rounded-xl shadow-2xl p-4 backdrop-blur-xl">
@@ -453,7 +451,7 @@ export default function Hero() {
             workflowGifInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
           }`}
         >
-          <div className="relative mx-auto max-w-[1440px] -mx-4 lg:-mx-6 px-4 lg:px-6">
+          <div className="relative mx-auto max-w-[1440px] -mx-4 lg:-mx-6 px-4 lg:px-6 mt-32 lg:mt-32">
             <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-gray-900 dark:text-white text-center mb-6 sm:mb-8">
               LogicStamp in <span className="relative inline-block">
                 <span className="bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 bg-clip-text text-transparent">

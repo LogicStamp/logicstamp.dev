@@ -225,14 +225,14 @@ export default function GettingStartedPage() {
               </Link>
               <Link
                 href="/docs/cli/getting-started"
-                className="p-4 border border-gray-200 dark:border-gray-800 rounded-lg md:hover:border-blue-500 dark:md:hover:border-blue-500 transition-colors"
+                className="p-4 border border-gray-200 dark:border-gray-800 rounded-lg md:hover:border-green-500 dark:md:hover:border-green-500 transition-colors"
               >
                 <h3 className="font-semibold text-gray-900 dark:text-white mb-1">CLI Guide →</h3>
                 <p className="text-sm text-gray-600 dark:text-gray-400">Complete CLI documentation</p>
               </Link>
               <Link
                 href="/docs/mcp/getting-started"
-                className="p-4 border border-gray-200 dark:border-gray-800 rounded-lg md:hover:border-blue-500 dark:md:hover:border-blue-500 transition-colors"
+                className="p-4 border border-gray-200 dark:border-gray-800 rounded-lg md:hover:border-purple-500 dark:md:hover:border-purple-500 transition-colors"
               >
                 <h3 className="font-semibold text-gray-900 dark:text-white mb-1">MCP Guide →</h3>
                 <p className="text-sm text-gray-600 dark:text-gray-400">MCP server setup and configuration</p>

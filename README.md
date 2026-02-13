@@ -36,7 +36,7 @@
 
 ## About
 
-This is the official landing page and documentation website for **LogicStamp**, a powerful tool for generating structured context bundles for LLMs. LogicStamp helps developers create efficient, maintainable context files that improve AI-assisted development workflows.
+This is the official landing page and documentation website for **LogicStamp**, a powerful tool for generating structured context bundles for LLMs. LogicStamp helps developers create efficient, maintainable architectural context files that improve AI-assisted development workflows.
 
 **LogicStamp MCP** enables AI assistants (Claude, Cursor, etc.) to analyze TypeScript codebases through the Model Context Protocol, providing structured component contracts, dependency graphs, and style metadata.
 
