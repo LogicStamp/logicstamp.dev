@@ -32,7 +32,7 @@ export default function ScrollToTopButton() {
     
     if (isIOSSafari) {
       // On iOS Safari, use only safe-area-inset-bottom
-      document.documentElement.style.setProperty('--scroll-top-bottom', 'env(safe-area-inset-bottom)')
+      document.documentElement.style.setProperty('--scroll-top-bottom', 'env(safe-area-inset-bottom + 0.1rem')
     } else {
       // On desktop/Android, use 1.5rem
       document.documentElement.style.setProperty('--scroll-top-bottom', '1.5rem')
