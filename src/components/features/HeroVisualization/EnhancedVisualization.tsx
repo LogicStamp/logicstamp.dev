@@ -7,7 +7,7 @@ const GRAPH_NODES = [
   { id: 0, label: 'App', x: 50, y: 75, type: 'root' as const },
   { id: 1, label: 'Header', x: 5, y: 45, type: 'component' as const },
   { id: 2, label: 'Hero', x: 50, y: 45, type: 'component' as const },
-  { id: 3, label: 'Features', x: 95, y: 45, type: 'component' as const },
+  { id: 3, label: 'FAQ', x: 95, y: 45, type: 'component' as const },
   { id: 4, label: 'Button', x: 5, y: 15, type: 'leaf' as const },
   { id: 5, label: 'Card', x: 50, y: 15, type: 'leaf' as const },
   { id: 6, label: 'Modal', x: 95, y: 15, type: 'leaf' as const },
@@ -34,6 +34,28 @@ interface EnhancedVisualizationProps {
 
 type TransformStage = 'ast' | 'processing' | 'json'
 
+function useIsMobile(breakpointPx = 640) {
+  const [isMobile, setIsMobile] = useState(false)
+
+  useEffect(() => {
+    const mq = window.matchMedia(`(max-width: ${breakpointPx - 1}px)`)
+    const onChange = () => setIsMobile(mq.matches)
+    onChange()
+    mq.addEventListener?.('change', onChange)
+    return () => mq.removeEventListener?.('change', onChange)
+  }, [breakpointPx])
+
+  return isMobile
+}
+
+// Pull points toward center (cx, cy). k < 1 => tighter graph.
+function compressPoint(x: number, y: number, kx: number, ky: number, cx = 50, cy = 50) {
+  return {
+    x: cx + (x - cx) * kx,
+    y: cy + (y - cy) * ky,
+  }
+}
+
 export default function EnhancedVisualization({ inView }: EnhancedVisualizationProps) {
   const containerRef = useRef<HTMLDivElement>(null)
 
@@ -47,19 +69,30 @@ export default function EnhancedVisualization({ inView }: EnhancedVisualizationP
     []
   )
 
-  const nodeById = useMemo(() => new Map(GRAPH_NODES.map((n) => [n.id, n])), [])
+  // ✅ Mobile compression (tweak these factors)
+  const isMobile = useIsMobile(640)
+  const kx = isMobile ? 0.82 : 1
+  const ky = isMobile ? 0.92 : 1
+
+  const nodes = useMemo(() => {
+    return GRAPH_NODES.map((n) => {
+      const p = compressPoint(n.x, n.y, kx, ky, 50, 50)
+      return { ...n, x: p.x, y: p.y }
+    })
+  }, [kx, ky])
+
+  const nodeById = useMemo(() => new Map(nodes.map((n) => [n.id, n])), [nodes])
 
   // Robust animation (works in React Strict Mode): timeouts + cleanup.
   useEffect(() => {
     if (!inView) return
 
-    // restart animation every time we enter view
     setAnimatedNodes(new Set())
     setAnimatedEdges(new Set())
 
     const timeouts: number[] = []
 
-    GRAPH_NODES.forEach((node, idx) => {
+    nodes.forEach((node, idx) => {
       timeouts.push(
         window.setTimeout(() => {
           setAnimatedNodes((prev) => {
@@ -72,7 +105,7 @@ export default function EnhancedVisualization({ inView }: EnhancedVisualizationP
       )
     })
 
-    const edgesStart = GRAPH_NODES.length * 180 + 120
+    const edgesStart = nodes.length * 180 + 120
     GRAPH_EDGES.forEach((edge, idx) => {
       timeouts.push(
         window.setTimeout(() => {
@@ -86,10 +119,8 @@ export default function EnhancedVisualization({ inView }: EnhancedVisualizationP
       )
     })
 
-    return () => {
-      timeouts.forEach((t) => window.clearTimeout(t))
-    }
-  }, [inView])
+    return () => timeouts.forEach((t) => window.clearTimeout(t))
+  }, [inView, nodes])
 
   // Transform animation stages
   useEffect(() => {
@@ -109,14 +140,14 @@ export default function EnhancedVisualization({ inView }: EnhancedVisualizationP
   // Generate floating bundles
   useEffect(() => {
     if (!inView) return
-    const bundles = GRAPH_NODES.filter((n) => n.type === 'root' || n.type === 'component').map((node, idx) => ({
+    const bundles = nodes.filter((n) => n.type === 'root' || n.type === 'component').map((node, idx) => ({
       id: node.id,
       x: 20 + (idx % 3) * 30 + Math.random() * 10,
       y: 15 + Math.floor(idx / 3) * 25 + Math.random() * 10,
       delay: idx * 0.2,
     }))
     setFloatingBundles(bundles)
-  }, [inView])
+  }, [inView, nodes])
 
   // Decorative particles (client-only randomness)
   useEffect(() => {
@@ -138,7 +169,11 @@ export default function EnhancedVisualization({ inView }: EnhancedVisualizationP
       </div>
 
       <div className="flex-1 min-h-0">
-        <svg viewBox="0 0 100 100" className="w-full h-full" style={{ opacity: inView ? 1 : 0, transition: 'opacity 0.5s' }}>
+        <svg
+          viewBox="0 0 100 100"
+          className="w-full h-full"
+          style={{ opacity: inView ? 1 : 0, transition: 'opacity 0.5s' }}
+        >
           <defs>
             <linearGradient id="edgeGradient" x1="0%" y1="0%" x2="100%" y2="100%">
               <stop offset="0%" stopColor="#3b82f6" stopOpacity="0.6" />
@@ -170,7 +205,7 @@ export default function EnhancedVisualization({ inView }: EnhancedVisualizationP
           })}
 
           {/* Nodes */}
-          {GRAPH_NODES.map((node) => {
+          {nodes.map((node) => {
             const isAnimated = animatedNodes.has(node.id)
             const nodeSize = node.type === 'root' ? 7.5 : node.type === 'component' ? 6.5 : 6
             const nodeColor = node.type === 'root' ? '#8b5cf6' : node.type === 'component' ? '#3b82f6' : '#10b981'
@@ -215,7 +250,9 @@ export default function EnhancedVisualization({ inView }: EnhancedVisualizationP
 
       <div className="space-y-2 sm:space-y-3">
         <div className="flex items-start gap-1 sm:gap-2">
-          <span className="text-[9px] sm:text-[10px] font-mono font-semibold text-cyan-600 dark:text-cyan-400">entryId:</span>
+          <span className="text-[9px] sm:text-[10px] font-mono font-semibold text-cyan-600 dark:text-cyan-400">
+            entryId:
+          </span>
           <span className="text-[9px] sm:text-[10px] font-mono truncate flex-1 text-green-600 dark:text-green-400">
             <span className="hidden sm:inline">"src/components/Hero.tsx"</span>
             <span className="sm:hidden">"Hero.tsx"</span>
@@ -223,7 +260,9 @@ export default function EnhancedVisualization({ inView }: EnhancedVisualizationP
         </div>
 
         <div className="flex items-start gap-1 sm:gap-2">
-          <span className="text-[9px] sm:text-[10px] font-mono font-semibold text-cyan-600 dark:text-cyan-400">kind:</span>
+          <span className="text-[9px] sm:text-[10px] font-mono font-semibold text-cyan-600 dark:text-cyan-400">
+            kind:
+          </span>
           <span className="text-[9px] sm:text-[10px] font-mono text-purple-600 dark:text-purple-400">
             <span className="hidden sm:inline">"react:component"</span>
             <span className="sm:hidden">"component"</span>
@@ -231,7 +270,9 @@ export default function EnhancedVisualization({ inView }: EnhancedVisualizationP
         </div>
 
         <div className="flex items-start gap-1 sm:gap-2">
-          <span className="text-[9px] sm:text-[10px] font-mono font-semibold text-cyan-600 dark:text-cyan-400">props:</span>
+          <span className="text-[9px] sm:text-[10px] font-mono font-semibold text-cyan-600 dark:text-cyan-400">
+            props:
+          </span>
           <span className="text-[9px] sm:text-[10px] font-mono text-gray-600 dark:text-gray-400">{'{ title, desc }'}</span>
         </div>
 
@@ -244,7 +285,9 @@ export default function EnhancedVisualization({ inView }: EnhancedVisualizationP
         </div>
 
         <div className="flex items-start gap-1 sm:gap-2 pt-1 border-t border-gray-300/30 dark:border-gray-700/30">
-          <span className="text-[9px] sm:text-[10px] font-mono font-semibold text-cyan-600 dark:text-cyan-400">style:</span>
+          <span className="text-[9px] sm:text-[10px] font-mono font-semibold text-cyan-600 dark:text-cyan-400">
+            style:
+          </span>
           <span className="text-[9px] sm:text-[10px] font-mono text-pink-600 dark:text-pink-400">{'{ tw: {...} }'}</span>
         </div>
       </div>
@@ -252,7 +295,11 @@ export default function EnhancedVisualization({ inView }: EnhancedVisualizationP
   )
 
   return (
-    <div ref={containerRef} className="relative w-full h-full min-h-[650px] overflow-hidden rounded-2xl border border-gray-200/80 dark:border-gray-700/50" suppressHydrationWarning>
+    <div
+      ref={containerRef}
+      className="relative w-full h-full min-h-[650px] overflow-hidden rounded-2xl border border-gray-200/80 dark:border-gray-700/50"
+      suppressHydrationWarning
+    >
       <style jsx>{`
         @keyframes float {
           0%,
@@ -339,11 +386,21 @@ export default function EnhancedVisualization({ inView }: EnhancedVisualizationP
 
       {/* 2xl+ corners layout */}
       <div className="hidden 2xl:block">
-        <div className={`absolute top-4 left-4 w-72 h-[220px] ${inView ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-4'}`} style={{ transition: 'all 0.8s ease-out 0.2s' }}>
+        <div
+          className={`absolute top-4 left-4 w-72 h-[220px] ${
+            inView ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-4'
+          }`}
+          style={{ transition: 'all 0.8s ease-out 0.2s' }}
+        >
           {DependencyCard}
         </div>
 
-        <div className={`absolute top-[110px] left-1/2 -translate-x-1/2 z-20 pointer-events-none ${inView ? 'opacity-100' : 'opacity-0'}`} style={{ transition: 'opacity 0.8s ease-out 0.4s' }}>
+        <div
+          className={`absolute top-[110px] left-1/2 -translate-x-1/2 z-20 pointer-events-none ${
+            inView ? 'opacity-100' : 'opacity-0'
+          }`}
+          style={{ transition: 'opacity 0.8s ease-out 0.4s' }}
+        >
           <div className="flex items-center justify-center">
             <div className="flex items-center justify-center w-10 h-10 rounded-full bg-gradient-to-r from-purple-500/20 to-blue-500/20 backdrop-blur-sm border border-purple-500/40 dark:border-purple-500/30">
               <svg className="w-5 h-5 flow-arrow-horizontal text-purple-600 dark:text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -353,7 +410,12 @@ export default function EnhancedVisualization({ inView }: EnhancedVisualizationP
           </div>
         </div>
 
-        <div className={`absolute top-4 right-4 w-72 h-[220px] ${inView ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-4'}`} style={{ transition: 'all 0.8s ease-out 0.3s' }}>
+        <div
+          className={`absolute top-4 right-4 w-72 h-[220px] ${
+            inView ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-4'
+          }`}
+          style={{ transition: 'all 0.8s ease-out 0.3s' }}
+        >
           {ContractCard}
         </div>
       </div>
@@ -371,51 +433,130 @@ export default function EnhancedVisualization({ inView }: EnhancedVisualizationP
         }}
       >
         <div className="flex items-center justify-center gap-4">
-          <div className={`flex flex-col items-center gap-2 ${transformStage === 'ast' ? 'opacity-100 scale-100' : 'opacity-50 scale-95'}`} style={{ transition: 'all 0.5s' }}>
-            <div className={`w-16 h-16 bg-blue-500/20 rounded-lg border-2 flex items-center justify-center ${transformStage === 'ast' ? 'border-blue-500/80 shadow-lg shadow-blue-500/20' : 'border-blue-500/30'}`}>
-              <Code2 className={`w-8 h-8 ${transformStage === 'ast' ? 'text-blue-600 dark:text-blue-400' : 'text-blue-500/50'}`} />
+          <div
+            className={`flex flex-col items-center gap-2 ${
+              transformStage === 'ast' ? 'opacity-100 scale-100' : 'opacity-50 scale-95'
+            }`}
+            style={{ transition: 'all 0.5s' }}
+          >
+            <div
+              className={`w-16 h-16 bg-blue-500/20 rounded-lg border-2 flex items-center justify-center ${
+                transformStage === 'ast'
+                  ? 'border-blue-500/80 shadow-lg shadow-blue-500/20'
+                  : 'border-blue-500/30'
+              }`}
+            >
+              <Code2
+                className={`w-8 h-8 ${
+                  transformStage === 'ast' ? 'text-blue-600 dark:text-blue-400' : 'text-blue-500/50'
+                }`}
+              />
             </div>
-            <span className={`text-xs font-semibold ${transformStage === 'ast' ? 'text-gray-800 dark:text-gray-200' : 'text-gray-600 dark:text-gray-500'}`}>AST</span>
+            <span
+              className={`text-xs font-semibold ${
+                transformStage === 'ast' ? 'text-gray-800 dark:text-gray-200' : 'text-gray-600 dark:text-gray-500'
+              }`}
+            >
+              AST
+            </span>
           </div>
 
           <div className="flex-1 flex items-center justify-center">
             <div className="relative w-full h-0.5 bg-gradient-to-r from-blue-500/50 via-purple-500/50 to-green-500/50">
-              <div className={`absolute top-1/2 left-0 w-3 h-3 bg-purple-500 rounded-full -translate-y-1/2 flow-right-animation ${transformStage === 'processing' ? 'opacity-100' : 'opacity-0'}`} style={{ transition: 'opacity 0.3s' }} />
+              <div
+                className={`absolute top-1/2 left-0 w-3 h-3 bg-purple-500 rounded-full -translate-y-1/2 flow-right-animation ${
+                  transformStage === 'processing' ? 'opacity-100' : 'opacity-0'
+                }`}
+                style={{ transition: 'opacity 0.3s' }}
+              />
             </div>
             <Sparkles className="w-5 h-5 mx-2 text-purple-600 dark:text-purple-400" />
           </div>
 
-          <div className={`flex flex-col items-center gap-2 ${transformStage === 'processing' ? 'opacity-100 scale-100' : 'opacity-50 scale-95'}`} style={{ transition: 'all 0.5s' }}>
-            <div className={`w-16 h-16 bg-purple-500/20 rounded-lg border-2 flex items-center justify-center ${transformStage === 'processing' ? 'border-purple-500/80 shadow-lg shadow-purple-500/20 pulse-glow-animation' : 'border-purple-500/30'}`}>
-              <Sparkles className={`w-8 h-8 ${transformStage === 'processing' ? 'text-purple-600 dark:text-purple-400' : 'text-purple-500/50'}`} />
+          <div
+            className={`flex flex-col items-center gap-2 ${
+              transformStage === 'processing' ? 'opacity-100 scale-100' : 'opacity-50 scale-95'
+            }`}
+            style={{ transition: 'all 0.5s' }}
+          >
+            <div
+              className={`w-16 h-16 bg-purple-500/20 rounded-lg border-2 flex items-center justify-center ${
+                transformStage === 'processing'
+                  ? 'border-purple-500/80 shadow-lg shadow-purple-500/20 pulse-glow-animation'
+                  : 'border-purple-500/30'
+              }`}
+            >
+              <Sparkles
+                className={`w-8 h-8 ${
+                  transformStage === 'processing' ? 'text-purple-600 dark:text-purple-400' : 'text-purple-500/50'
+                }`}
+              />
             </div>
-            <span className={`text-xs font-semibold ${transformStage === 'processing' ? 'text-gray-800 dark:text-gray-200' : 'text-gray-600 dark:text-gray-500'}`}>Emit</span>
+            <span
+              className={`text-xs font-semibold ${
+                transformStage === 'processing' ? 'text-gray-800 dark:text-gray-200' : 'text-gray-600 dark:text-gray-500'
+              }`}
+            >
+              Emit
+            </span>
           </div>
 
           <div className="flex-1 flex items-center justify-center">
             <div className="relative w-full h-0.5 bg-gradient-to-r from-purple-500/50 via-green-500/50 to-green-500/50">
-              <div className={`absolute top-1/2 left-0 w-3 h-3 bg-green-500 rounded-full -translate-y-1/2 flow-right-animation ${transformStage === 'json' ? 'opacity-100' : 'opacity-0'}`} style={{ transition: 'opacity 0.3s', animationDelay: '1.5s' }} />
+              <div
+                className={`absolute top-1/2 left-0 w-3 h-3 bg-green-500 rounded-full -translate-y-1/2 flow-right-animation ${
+                  transformStage === 'json' ? 'opacity-100' : 'opacity-0'
+                }`}
+                style={{ transition: 'opacity 0.3s', animationDelay: '1.5s' }}
+              />
             </div>
             <Sparkles className="w-5 h-5 mx-2 text-green-600 dark:text-green-400" />
           </div>
 
-          <div className={`flex flex-col items-center gap-2 ${transformStage === 'json' ? 'opacity-100 scale-100' : 'opacity-50 scale-95'}`} style={{ transition: 'all 0.5s' }}>
-            <div className={`w-16 h-16 bg-green-500/20 rounded-lg border-2 flex items-center justify-center ${transformStage === 'json' ? 'border-green-500/80 shadow-lg shadow-green-500/20' : 'border-green-500/30'}`}>
-              <FileJson className={`w-8 h-8 ${transformStage === 'json' ? 'text-green-600 dark:text-green-400' : 'text-green-500/50'}`} />
+          <div
+            className={`flex flex-col items-center gap-2 ${
+              transformStage === 'json' ? 'opacity-100 scale-100' : 'opacity-50 scale-95'
+            }`}
+            style={{ transition: 'all 0.5s' }}
+          >
+            <div
+              className={`w-16 h-16 bg-green-500/20 rounded-lg border-2 flex items-center justify-center ${
+                transformStage === 'json'
+                  ? 'border-green-500/80 shadow-lg shadow-green-500/20'
+                  : 'border-green-500/30'
+              }`}
+            >
+              <FileJson
+                className={`w-8 h-8 ${
+                  transformStage === 'json' ? 'text-green-600 dark:text-green-400' : 'text-green-500/50'
+                }`}
+              />
             </div>
-            <span className={`text-xs font-semibold ${transformStage === 'json' ? 'text-gray-800 dark:text-gray-200' : 'text-gray-600 dark:text-gray-500'}`}>JSON</span>
+            <span
+              className={`text-xs font-semibold ${
+                transformStage === 'json' ? 'text-gray-800 dark:text-gray-200' : 'text-gray-600 dark:text-gray-500'
+              }`}
+            >
+              JSON
+            </span>
           </div>
         </div>
       </div>
 
       {/* Bottom bundles */}
-      <div className={`absolute bottom-10 left-0 right-0 px-8 ${inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`} style={{ transition: 'all 0.8s ease-out 0.6s' }}>
+      <div
+        className={`absolute bottom-10 left-0 right-0 px-8 ${inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}
+        style={{ transition: 'all 0.8s ease-out 0.6s' }}
+      >
         <div className="grid grid-cols-3 gap-5 justify-items-center max-w-2xl mx-auto">
           {floatingBundles.map((bundle) => {
             const node = nodeById.get(bundle.id)
             if (!node) return null
             return (
-              <div key={bundle.id} className="backdrop-blur-sm rounded-lg border p-3 w-full bg-white/70 border-purple-500/40 shadow-sm dark:bg-gray-800/60 dark:border-purple-500/30">
+              <div
+                key={bundle.id}
+                className="backdrop-blur-sm rounded-lg border p-3 w-full bg-white/70 border-purple-500/40 shadow-sm dark:bg-gray-800/60 dark:border-purple-500/30"
+              >
                 <div className="flex items-center gap-2 mb-1">
                   <div className="w-2 h-2 rounded-full pulse-glow-animation bg-purple-600 dark:bg-purple-400" />
                   <span className="text-[10px] font-semibold text-gray-700 dark:text-gray-300">{node.label}</span>
@@ -447,7 +588,10 @@ export default function EnhancedVisualization({ inView }: EnhancedVisualizationP
       </div>
 
       {/* Note */}
-      <div className={`absolute bottom-2 left-0 right-0 text-center px-4 ${inView ? 'opacity-100' : 'opacity-0'}`} style={{ transition: 'opacity 0.8s ease-out 0.8s' }}>
+      <div
+        className={`absolute bottom-2 left-0 right-0 text-center px-4 ${inView ? 'opacity-100' : 'opacity-0'}`}
+        style={{ transition: 'opacity 0.8s ease-out 0.8s' }}
+      >
         <div className="text-[9px] sm:text-[10px] text-gray-500">
           <span className="italic">Simplified for display</span>
         </div>
