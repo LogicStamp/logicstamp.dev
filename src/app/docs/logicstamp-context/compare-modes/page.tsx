@@ -4,6 +4,7 @@ import Footer from '@/components/layout/Footer'
 import AnimatedSection from '@/components/common/AnimatedSection'
 import DocsLayout from '@/components/docs/DocsLayout'
 import TabbedCodeBlock from '@/components/docs/TabbedCodeBlock'
+import ReadyToGetStartedCard from '@/components/docs/ReadyToGetStartedCard'
 
 export const metadata: Metadata = {
   title: 'Compare Modes Guide | LogicStamp Context Documentation',
@@ -689,6 +690,19 @@ stamp context --compare-modes --stats
             </div>
           </AnimatedSection>
         </div>
+        {/* Next Steps */}
+        <ReadyToGetStartedCard
+            variant="green"
+            description="Explore best practices or check out the usage guide for more workflows."
+            primaryAction={{
+              href: '/docs/best-practices',
+              label: 'Best Practices',
+            }}
+            secondaryAction={{
+              href: '/docs/logicstamp-context/usage',
+              label: 'Usage Guide',
+            }}
+          />
       </DocsLayout>
       <Footer />
     </>
