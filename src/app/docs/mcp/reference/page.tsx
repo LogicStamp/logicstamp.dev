@@ -378,6 +378,134 @@ export default function MCPReferencePage() {
             </div>
           </AnimatedSection>
 
+          <AnimatedSection direction="up" delay={550}>
+            <div className="mb-8">
+              <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white mb-4 sm:mb-6">
+                5. logicstamp_compare_modes
+              </h2>
+              <p className="text-base text-gray-600 dark:text-gray-400 mb-3">
+                Generate token cost comparison across all available context generation modes. Use this to optimize token budgets before committing to a mode.
+              </p>
+              <div className="mb-3">
+                <p className="text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">Input Parameters:</p>
+                <TabbedCodeBlock
+                  tabs={[
+                    {
+                      label: 'Input',
+                      code: `{
+  "projectPath": "/abs/path",  // optional: defaults to current working directory
+  "cleanCache": false          // optional: force cache cleanup (default: false)
+}`,
+                      copyText: JSON.stringify({ projectPath: "/abs/path", cleanCache: false }, null, 2)
+                    }
+                  ]}
+                />
+              </div>
+              <div className="mb-4">
+                <p className="text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">Response:</p>
+                <TabbedCodeBlock
+                  tabs={[
+                    {
+                      label: 'Output',
+                      code: `{
+  "projectPath": "/path/to/project",
+  "tokenEstimation": {
+    "method": "GPT-4o (tiktoken) | Claude (tokenizer)"
+  },
+  "comparisonVsRawSource": {
+    "rawSource": { "tokensGPT4o": 273006, "tokensClaude": 289573, "savingsPercent": 0 },
+    "header": { "tokensGPT4o": 82917, "tokensClaude": 90131, "savingsPercent": 70 },
+    "headerStyle": { "tokensGPT4o": 170466, "tokensClaude": 184864, "savingsPercent": 38 }
+  },
+  "modeBreakdown": {
+    "none": { "tokensGPT4o": 49751, "tokensClaude": 54079, "savingsVsFull": 86 },
+    "header": { "tokensGPT4o": 82917, "tokensClaude": 90131, "savingsVsFull": 77 },
+    "headerStyle": { "tokensGPT4o": 170466, "tokensClaude": 184864, "savingsVsFull": 52 },
+    "full": { "tokensGPT4o": 355923, "tokensClaude": 379704, "savingsVsFull": 0 }
+  },
+  "stats": { "totalFiles": 150, "totalTS": 100, "totalTSX": 50 }
+}`,
+                      copyText: JSON.stringify({ projectPath: "/path/to/project", tokenEstimation: { method: "GPT-4o (tiktoken) | Claude (tokenizer)" }, comparisonVsRawSource: { rawSource: { tokensGPT4o: 273006, tokensClaude: 289573, savingsPercent: 0 }, header: { tokensGPT4o: 82917, tokensClaude: 90131, savingsPercent: 70 }, headerStyle: { tokensGPT4o: 170466, tokensClaude: 184864, savingsPercent: 38 } }, modeBreakdown: { none: { tokensGPT4o: 49751, tokensClaude: 54079, savingsVsFull: 86 }, header: { tokensGPT4o: 82917, tokensClaude: 90131, savingsVsFull: 77 }, headerStyle: { tokensGPT4o: 170466, tokensClaude: 184864, savingsVsFull: 52 }, full: { tokensGPT4o: 355923, tokensClaude: 379704, savingsVsFull: 0 } }, stats: { totalFiles: 150, totalTS: 100, totalTSX: 50 } }, null, 2)
+                    }
+                  ]}
+                />
+              </div>
+              <div className="bg-blue-50 dark:bg-blue-950/20 border-l-4 border-blue-500 p-3 sm:p-4 rounded-r-lg">
+                <p className="text-sm text-gray-700 dark:text-gray-300">
+                  <strong>Use Cases:</strong> Optimize token budgets before committing to a mode, evaluate style overhead (token impact of including style metadata), compare against raw source (calculate savings from using LogicStamp), and plan AI workflows (choose the most cost-effective mode).
+                </p>
+              </div>
+            </div>
+          </AnimatedSection>
+
+          <AnimatedSection direction="up" delay={575}>
+            <div className="mb-8">
+              <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white mb-4 sm:mb-6">
+                6. logicstamp_read_logicstamp_docs
+              </h2>
+              <p className="text-base text-gray-600 dark:text-gray-400 mb-3">
+                Read LogicStamp documentation to understand how the tool works and how to use it effectively. This is your escape hatch when confused about LogicStamp.
+              </p>
+              <div className="mb-3">
+                <p className="text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">Input Parameters:</p>
+                <TabbedCodeBlock
+                  tabs={[
+                    {
+                      label: 'Input',
+                      code: `{}  // No parameters required`,
+                      copyText: '{}'
+                    }
+                  ]}
+                />
+              </div>
+              <div className="mb-4">
+                <p className="text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">Response:</p>
+                <TabbedCodeBlock
+                  tabs={[
+                    {
+                      label: 'Output',
+                      code: `{
+  "type": "LogicStampDocs",
+  "version": "1.0",
+  "docs": {
+    "forLLMs": "# LogicStamp for LLMs\\n..."
+  },
+  "canonicalDocs": {
+    "landingPage": "https://logicstamp.dev/docs/logicstamp-context/context",
+    "cliRepo": "https://github.com/LogicStamp/logicstamp-context",
+    "usage": { "primary": "https://logicstamp.dev/docs/...", "fallback": "https://github.com/..." },
+    // ... more canonical links
+  },
+  "summary": {
+    "purpose": "LogicStamp is a CLI tool + MCP server that scans TypeScript/Next.js codebases...",
+    "howToUse": [
+      "1. Call logicstamp_refresh_snapshot to generate context files and get a snapshotId",
+      "2. Call logicstamp_list_bundles with the snapshotId to discover available bundles",
+      "3. Call logicstamp_read_bundle with bundlePath to get component contracts",
+      "4. Prefer reading bundles over raw source files",
+      "5. Only read raw .ts/.tsx files when you need exact implementation details"
+    ],
+    "keyConcepts": [
+      "Bundles are pre-parsed, structured summaries (not raw code)",
+      "context_main.json is the main index",
+      "Each folder gets a context.json file with bundles",
+      "Use header mode (default) for most cases (~70% token savings)"
+    ]
+  }
+}`,
+                      copyText: JSON.stringify({ type: "LogicStampDocs", version: "1.0", docs: { forLLMs: "# LogicStamp for LLMs..." }, canonicalDocs: { landingPage: "https://logicstamp.dev/docs/logicstamp-context/context", cliRepo: "https://github.com/LogicStamp/logicstamp-context" }, summary: { purpose: "LogicStamp is a CLI tool + MCP server...", howToUse: ["1. Call logicstamp_refresh_snapshot...", "2. Call logicstamp_list_bundles...", "3. Call logicstamp_read_bundle..."], keyConcepts: ["Bundles are pre-parsed summaries", "context_main.json is the main index"] } }, null, 2)
+                    }
+                  ]}
+                />
+              </div>
+              <div className="bg-blue-50 dark:bg-blue-950/20 border-l-4 border-blue-500 p-3 sm:p-4 rounded-r-lg">
+                <p className="text-sm text-gray-700 dark:text-gray-300">
+                  <strong>When to Use:</strong> When confused about LogicStamp, before starting with a new project, when you need to understand bundle structure or contract format, or when you want to understand the recommended workflow. This is your go-to tool when LogicStamp concepts are unclear.
+                </p>
+              </div>
+            </div>
+          </AnimatedSection>
+
           {/* Parameters Reference */}
           <AnimatedSection direction="up" delay={600}>
             <div className="relative mb-8 sm:mb-12 lg:mb-16">

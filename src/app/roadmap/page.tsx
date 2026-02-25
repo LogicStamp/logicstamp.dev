@@ -110,10 +110,58 @@ export default function BetaPage() {
                 </div>
                 <div className="space-y-4 text-gray-700 dark:text-gray-300">
                   <div>
-                    <p className="font-bold mb-2">v0.5.2 (Current)</p>
+                    <p className="font-bold mb-2">v0.6.0 (Current)</p>
                     <ul className="list-disc list-inside space-y-1 ml-2">
-                      <li>CSS-in-JS completeness - Added support for Chakra UI and Ant Design, completing coverage for all major CSS-in-JS libraries. Extracts components, packages, theme usage, and framework-specific features (Chakra UI color mode, responsive props, system props; Ant Design ConfigProvider, Form, locale, icons)</li>
-                      <li>Enhanced documentation - New comprehensive guides for Ant Design and Chakra UI support, plus updates to schema, UIF contracts, usage, CLI commands, and UI framework documentation (Material UI, ShadCN, Tailwind)</li>
+                      <li>Runtime schema validation (AJV-enforced) - <code className="text-sm bg-gray-100 dark:bg-gray-800 px-1 py-0.5 rounded">.uif.json</code> contracts are now validated during load. Invalid, malformed, or outdated contracts are rejected with capped, structured error reporting (max 20 errors)</li>
+                      <li>Fail-closed contract loading - If the schema fails to load, contracts are rejected instead of silently bypassing validation</li>
+                      <li>Hardened contract loader error handling - Explicit distinction between file-not-found, read errors, JSON parse errors, and schema validation failures</li>
+                      <li>Path traversal protection - Enforced strict project-root boundaries across internal file utilities</li>
+                      <li>File lock race condition fix - Prevents concurrent lock acquisition mid-write</li>
+                      <li>Dependency security updates - <code className="text-sm bg-gray-100 dark:bg-gray-800 px-1 py-0.5 rounded">glob@13.0.6</code> (patched minimatch ReDoS), <code className="text-sm bg-gray-100 dark:bg-gray-800 px-1 py-0.5 rounded">ts-morph@27.0.2</code> with improved TypeScript 5.x support</li>
+                      <li>⚠️ Node.js &gt;= 20 required - Required by dependency and security updates</li>
+                      <li>Test coverage expansion - Added root-boundary traversal tests and expanded extraction coverage</li>
+                    </ul>
+                  </div>
+                  <div>
+                    <p className="font-bold mb-2">v0.5.5 (February 2026)</p>
+                    <ul className="list-disc list-inside space-y-1 ml-2">
+                      <li>State-based strict watch diffing - Strict watch mode now compares current state vs the original baseline (like <code className="text-sm bg-gray-100 dark:bg-gray-800 px-1 py-0.5 rounded">git diff</code>), not cumulative history. Violations reflect current drift only and are automatically cleared when changes are reverted</li>
+                      <li>Removed missing dependencies from strict watch violations - Third-party packages are no longer treated as breaking changes in strict watch mode</li>
+                      <li>Watch mode cleanup on exit (Windows/Cursor reliability) - Signal handlers register at watch startup, watch status paths resolve to absolute paths, synchronous cleanup runs on <code className="text-sm bg-gray-100 dark:bg-gray-800 px-1 py-0.5 rounded">process.on(&apos;exit&apos;)</code>, and MCP tools remove stale status files when PID validation fails</li>
+                      <li>Watch mode revert correctness - If <code className="text-sm bg-gray-100 dark:bg-gray-800 px-1 py-0.5 rounded">pack()</code> fails during incremental rebuild, bundles/contracts/manifest now revert consistently</li>
+                      <li>Resilient glob pattern failure handling - <code className="text-sm bg-gray-100 dark:bg-gray-800 px-1 py-0.5 rounded">globFiles()</code> now continues across pattern failures, returns partial results when possible</li>
+                      <li>Config read/write race condition (TOCTOU) fixed - Added lightweight file locking using exclusive lockfiles + PID tracking</li>
+                      <li>Atomic writes to prevent crash corruption - Config + status writes now use temp-file + rename pattern</li>
+                    </ul>
+                  </div>
+                  <div>
+                    <p className="font-bold mb-2">v0.5.4 (February 2026)</p>
+                    <ul className="list-disc list-inside space-y-1 ml-2">
+                      <li>Graceful shutdown on process exit - Introduced a centralized cleanup registry so watchers/status files are reliably cleaned up on errors and signals (SIGINT/SIGTERM/SIGHUP)</li>
+                      <li>Token comparison fails loudly when all bundles fail - Added <code className="text-sm bg-gray-100 dark:bg-gray-800 px-1 py-0.5 rounded">checkBundleResults()</code> to detect complete failure for <code className="text-sm bg-gray-100 dark:bg-gray-800 px-1 py-0.5 rounded">--compare-modes</code></li>
+                      <li>Improved debug logging for unresolved dependencies</li>
+                      <li>Reduced duplicated error handling in config writes</li>
+                    </ul>
+                  </div>
+                  <div>
+                    <p className="font-bold mb-2">v0.5.3 (February 2026)</p>
+                    <ul className="list-disc list-inside space-y-1 ml-2">
+                      <li>Bug fixes - Fixed JSON schema validation (removed incorrect required fields), race condition in sanitization stats, memory leak in global caches, and Windows path separator bug in dependency resolution</li>
+                      <li>Performance improvements - O(n²) to O(n) in dependency collection (replaced <code className="text-sm bg-gray-100 dark:bg-gray-800 px-1 py-0.5 rounded">array.shift()</code> with index-based iteration), eliminated redundant file reads in token estimation via caching</li>
+                      <li>Type safety - Replaced unsafe <code className="text-sm bg-gray-100 dark:bg-gray-800 px-1 py-0.5 rounded">as any</code> casts with proper ts-morph type guards across 10+ files</li>
+                    </ul>
+                  </div>
+                  <div>
+                    <p className="font-bold mb-2">v0.5.2 (February 2026)</p>
+                    <ul className="list-disc list-inside space-y-1 ml-2">
+                      <li>JSON Schema completeness - Added missing fields to JSON schema (<code className="text-sm bg-gray-100 dark:bg-gray-800 px-1 py-0.5 rounded">nextjs</code>, <code className="text-sm bg-gray-100 dark:bg-gray-800 px-1 py-0.5 rounded">antd</code>, <code className="text-sm bg-gray-100 dark:bg-gray-800 px-1 py-0.5 rounded">chakraUI</code>, <code className="text-sm bg-gray-100 dark:bg-gray-800 px-1 py-0.5 rounded">shadcnUI</code>, <code className="text-sm bg-gray-100 dark:bg-gray-800 px-1 py-0.5 rounded">radixUI</code>) that were causing IDE validation errors</li>
+                    </ul>
+                  </div>
+                  <div>
+                    <p className="font-bold mb-2">v0.5.1 (February 2026)</p>
+                    <ul className="list-disc list-inside space-y-1 ml-2">
+                      <li>Chakra UI support - Complete style metadata extraction for Chakra UI components</li>
+                      <li>Ant Design support - Complete style metadata extraction for Ant Design components</li>
                     </ul>
                   </div>
                   <div>
@@ -428,9 +476,9 @@ export default function BetaPage() {
                 </div>
                 <div className="space-y-4 text-gray-600 dark:text-gray-400">
                   <div className="flex items-start gap-3">
-                    <span className="text-purple-600 dark:text-purple-400 font-bold">•</span>
+                    <span className="text-green-600 dark:text-green-400 font-bold">✓</span>
                     <div>
-                      <span className="font-semibold text-gray-900 dark:text-white">CSS-in-JS Support Completeness</span> - Add Chakra UI and Ant Design support
+                      <span className="font-semibold text-gray-900 dark:text-white">CSS-in-JS Support Completeness</span> - <span className="text-green-600 dark:text-green-400">Complete (v0.5.1)</span> - Added Chakra UI and Ant Design support, completing coverage for all 9 major CSS-in-JS libraries
                     </div>
                   </div>
                   <div className="flex items-start gap-3">
@@ -472,7 +520,7 @@ export default function BetaPage() {
                   <div>
                     <h4 className="font-semibold text-gray-900 dark:text-white mb-2">Performance & Optimization</h4>
                     <ul className="list-disc list-inside space-y-1 ml-2 text-gray-600 dark:text-gray-400">
-                      <li>Incremental bundle caching - Only regenerate changed bundles</li>
+                      <li><span className="text-green-600 dark:text-green-400">✓</span> Incremental bundle caching - <span className="text-green-600 dark:text-green-400">Complete (v0.4.1)</span> - Only regenerates changed bundles in watch mode</li>
                       <li>Output size optimization - Further reduce token counts while maintaining accuracy</li>
                     </ul>
                   </div>

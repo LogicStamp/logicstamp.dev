@@ -156,7 +156,8 @@ export default function WhyLogicStamp() {
           </h2>
           <p className="mt-6 text-lg sm:text-xl leading-8 text-gray-600 dark:text-gray-300">
             One command. Instant AI-ready context bundles. Zero manual work.{' '}
-            <span className="font-semibold text-gray-700 dark:text-gray-200">Works with React, TypeScript, Express.js, and NestJS.</span>
+            <br />
+            <span className="font-semibold text-gray-700 dark:text-gray-200">Built for TypeScript. Works with React, Next.js, Express, and NestJS.</span>
           </p>
           <p className="mt-4 flex items-center justify-center">
             <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-gradient-to-r from-amber-500/10 to-orange-500/10 text-amber-700 dark:text-amber-400 border border-amber-500/20 whitespace-nowrap">
@@ -230,7 +231,7 @@ export default function WhyLogicStamp() {
                   problemInView ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-4'
                 }`}>
                   <p className="text-sm font-medium text-red-900 dark:text-red-300">
-                    Result: 30+ minutes wasted copying files, searching for dependencies, and manually explaining your codebase. Incomplete context leads to confused AI responses. Pay for 3x more tokens than needed. Frustrated developer.
+                    Result: 10+ minutes wasted copying files, searching for dependencies, and manually explaining your codebase. Incomplete context leads to confused AI responses. Pay for 3x more tokens than needed. Frustrated developer.
                   </p>
                 </div>
               </div>
@@ -315,7 +316,7 @@ export default function WhyLogicStamp() {
                   solutionInView ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-4'
                 }`}>
                   <p className="text-sm font-medium text-emerald-900 dark:text-emerald-300">
-                    Result: 30 minutes → 8-10 seconds (usually for mid-sized projects). One command (<code className="text-xs font-mono bg-emerald-200 dark:bg-emerald-900/50 px-1.5 py-0.5 rounded">$ stamp context</code>) generates optimized context.json files with complete dependency graphs. Up to 70% cost savings. AI has complete context of your entire codebase. Happy developer.
+                    Result: 10+ minutes → 8-10 seconds (usually for mid-sized projects). One command (<code className="text-xs font-mono bg-emerald-200 dark:bg-emerald-900/50 px-1.5 py-0.5 rounded">$ stamp context</code>) generates optimized context.json files with complete dependency graphs. Up to 70% cost savings. AI has complete context of your entire codebase. Happy developer.
                   </p>
                 </div>
               </div>

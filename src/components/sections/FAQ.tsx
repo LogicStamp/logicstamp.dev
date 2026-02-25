@@ -1,8 +1,7 @@
 'use client'
 
 import { useState, useRef, useEffect } from 'react'
-import { Plus, X, HelpCircle } from 'lucide-react'
-import ReadTheDocsButton from '../ui/ReadTheDocsButton'
+import { Plus, X } from 'lucide-react'
 
 // Custom hook for intersection observer
 function useInView(threshold = 0.1) {
@@ -48,13 +47,13 @@ const faqs = [
     id: 3,
     question: 'Is LogicStamp free to use?',
     answer:
-      'Yes! LogicStamp Context is completely free and open-source.\nInstall it globally with npm i -g logicstamp-context and use it.\nThe CLI (v0.5.2) includes context generation, drift detection (tracks changes in component contracts over time), validation, token optimization, security scanning (detects potential secrets in your code), style metadata extraction, and watch mode.\nMCP (Model Context Protocol) integration is also available for free, providing real-time context analysis in Cursor, Claude Desktop, and Claude CLI. Install with `npm install -g logicstamp-mcp` and configure your MCP client (see "How do I set up MCP integration?" below for details).\nAll features are available at no cost.',
+      'Yes! LogicStamp Context is completely free and open-source.\nInstall it globally with npm i -g logicstamp-context and use it.\nThe CLI includes context generation, drift detection (tracks changes in component contracts over time), validation, token optimization, security scanning (detects potential secrets in your code), style metadata extraction, and watch mode.\nMCP (Model Context Protocol) integration is also available for free, providing real-time context analysis in Cursor, Claude Desktop, and Claude CLI. Install with `npm install -g logicstamp-mcp` and configure your MCP client (see "How do I set up MCP integration?" below for details).\nAll features are available at no cost.',
   },
   {
     id: 4,
     question: 'Which frameworks are supported?',
     answer:
-      'Currently supports React and TypeScript projects (including Next.js), plus Vue 3 TypeScript/TSX files.\nBackend support for Express.js and NestJS is available in v0.5.2.\nRequires Node.js >= 18.18.0 (Node 20+ recommended).\nMCP integration is available for Cursor, Claude Desktop, and Claude CLI.\nWorks with any React/TypeScript codebase regardless of styling solution (Tailwind, styled-components, CSS modules, Material UI, ShadCN/UI, Radix UI, Framer Motion, etc.).\nNote: Vue Single File Components (.vue files) support is planned for a future release.',
+      'Currently supports React and TypeScript projects (including Next.js), plus Vue 3 TypeScript/TSX files.\nBackend support for Express.js and NestJS is available.\nRequires Node.js >= 18.18.0 (Node 20+ recommended).\nMCP integration is available for Cursor, Claude Desktop, and Claude CLI.\nWorks with any React/TypeScript codebase regardless of styling solution (Tailwind, styled-components, CSS modules, Material UI, ShadCN/UI, Radix UI, Framer Motion, etc.).\nNote: Vue Single File Components (.vue files) support is planned for a future release.',
   },
   {
     id: 5,
@@ -90,7 +89,7 @@ const faqs = [
     id: 10,
     question: 'Is watch mode available?',
     answer:
-      'Yes! Watch mode is available.\nRun `stamp context --watch` to automatically regenerate context files when source files change.\nFeatures include incremental rebuilds (only affected bundles are regenerated), change detection (shows what changed: props, hooks, state), debouncing (batches rapid changes), and style file watching with `--include-style`.\nUse `--debug` to see detailed hash information, or `--log-file` for structured change logs.',
+      'Yes! Watch mode is available.\nRun `stamp context --watch` to automatically regenerate context files when source files change.\nFeatures include incremental rebuilds (only affected bundles are regenerated), change detection (shows what changed: props, hooks, state), debouncing (batches rapid changes), and style file watching with `--include-style`.\nUse `--debug` to see detailed hash information, or `--log-file` for structured change logs.\n\nStrict Watch Mode: Add `--strict-watch` to detect breaking changes and track violations during development. It classifies changes as errors (removed props, events, functions) or warnings (removed state, variables) and writes a violations report to `.logicstamp/strict_watch_violations.json`. The report uses state-based semantics (like `git diff`) - if you fix the violations, the report is deleted. On exit, strict watch returns exit code 1 if errors were detected, or use `|| true` for awareness-only mode.',
   },
 ]
 
@@ -99,7 +98,6 @@ export default function FAQ() {
   const buttonRefs = useRef<(HTMLButtonElement | null)[]>([])
   const { ref: titleRef, inView: titleInView } = useInView(0.1)
   const { ref: faqsRef, inView: faqsInView } = useInView(0.1)
-  const { ref: docsRef, inView: docsInView } = useInView(0.1)
 
   // Initialize refs array
   useEffect(() => {
@@ -149,9 +147,9 @@ export default function FAQ() {
           }`}
         >
           {/* Left column - Title */}
-          <div 
+          <div
             ref={titleRef}
-            className={`transition-all duration-1000 text-center lg:text-left lg:flex lg:flex-col lg:justify-between lg:min-h-[600px] ${
+            className={`transition-all duration-1000 text-center lg:text-left ${
               titleInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
             }`}
           >
@@ -162,31 +160,6 @@ export default function FAQ() {
               <p className="mt-6 hidden lg:block text-lg text-gray-600 dark:text-gray-400 leading-relaxed max-w-lg">
                 Answers about how LogicStamp works, how it reduces tokens, and how to integrate it into your workflow.
               </p>
-            </div>
-            
-            {/* Documentation Link - Desktop only in left column */}
-            <div 
-              ref={docsRef}
-              className={`hidden lg:block lg:mt-8 lg:opacity-100 lg:translate-y-0 transition-all duration-1000 delay-300 ${
-                docsInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
-              }`}
-            >
-              <div className="flex items-center justify-start mb-4">
-                <HelpCircle className="h-12 w-12 text-indigo-600 dark:text-indigo-400" />
-              </div>
-              <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-3">
-                Need More Detailed Information?
-              </h3>
-              <p className="text-base text-gray-600 dark:text-gray-400 mb-6 leading-relaxed">
-                Explore comprehensive documentation covering setup guides, token optimization strategies, CI/CD workflows, and advanced configuration options for{' '}
-                <code className="font-mono text-sm text-indigo-600 dark:text-indigo-400 bg-gray-50 dark:bg-gray-900 px-2 py-1 rounded">
-                  stamp context
-                </code>.
-              </p>
-              
-              <div className="flex flex-row flex-nowrap items-center justify-start">
-                <ReadTheDocsButton href="docs/" size="lg" />
-              </div>
             </div>
           </div>
 
@@ -309,35 +282,6 @@ export default function FAQ() {
                 )
               })}
             </dl>
-          </div>
-        </div>
-      </div>
-
-      {/* Documentation Link - Mobile only (desktop version is in left column) */}
-      <div 
-        ref={docsRef}
-        className={`lg:hidden w-full border-t border-gray-200 dark:border-gray-800 transition-all duration-1000 delay-300 ${
-          docsInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
-        }`}
-      >
-        <div className="relative mx-auto max-w-[1440px] px-4 lg:px-6 py-16 sm:py-24">
-          <div className="text-center">
-            <div className="flex items-center justify-center mb-4">
-              <HelpCircle className="h-16 w-16 sm:h-16 sm:w-16 text-indigo-600 dark:text-indigo-400" />
-            </div>
-            <h3 className="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white mb-4">
-              Need More Detailed Information?
-            </h3>
-            <p className="text-lg text-gray-600 dark:text-gray-400 mb-8 max-w-2xl mx-auto leading-relaxed">
-              Explore comprehensive documentation covering setup guides, token optimization strategies, CI/CD workflows, and advanced configuration options for{' '}
-              <code className="font-mono text-sm text-indigo-600 dark:text-indigo-400 bg-gray-50 dark:bg-gray-900 px-2 py-1 rounded">
-                stamp context
-              </code>.
-            </p>
-            
-            <div className="flex flex-row flex-nowrap items-center justify-center">
-              <ReadTheDocsButton href="docs/" size="lg" />
-            </div>
           </div>
         </div>
       </div>

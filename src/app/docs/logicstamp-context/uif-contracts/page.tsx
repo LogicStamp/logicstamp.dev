@@ -92,7 +92,7 @@ export default function UIFContractsPage() {
                 Contract Structure
               </h2>
               <p className="text-base sm:text-lg text-gray-600 dark:text-gray-400 mb-4 leading-relaxed">
-                Each UIF contract follows the <code className="px-2 py-1 bg-gray-100 dark:bg-gray-800 text-indigo-600 dark:text-indigo-400 rounded-md font-mono text-xs sm:text-sm">UIFContract</code> schema (version <code className="px-2 py-1 bg-gray-100 dark:bg-gray-800 text-indigo-600 dark:text-indigo-400 rounded-md font-mono text-xs sm:text-sm">0.3</code>):
+                Each UIF contract follows the <code className="px-2 py-1 bg-gray-100 dark:bg-gray-800 text-indigo-600 dark:text-indigo-400 rounded-md font-mono text-xs sm:text-sm">UIFContract</code> schema (version <code className="px-2 py-1 bg-gray-100 dark:bg-gray-800 text-indigo-600 dark:text-indigo-400 rounded-md font-mono text-xs sm:text-sm">0.4</code>):
               </p>
               <TabbedCodeBlock
                 tabs={[
@@ -100,16 +100,16 @@ export default function UIFContractsPage() {
                     label: 'UIF Contract Example',
                     code: `{
   "type": "UIFContract",
-  "schemaVersion": "0.3",
+  "schemaVersion": "0.4",
   "kind": "react:component",
   "description": "Component description from JSDoc",
-  "version": {
+  "composition": {
     "variables": ["count", "isOpen"],
     "hooks": ["useState", "useEffect"],
     "components": ["Button", "Card"],
     "functions": ["handleClick", "validate"]
   },
-  "logicSignature": {
+  "interface": {
     "props": {
       "onClick": {
         "type": "function",
@@ -120,7 +120,7 @@ export default function UIFContractsPage() {
         "optional": false
       }
     },
-    "events": {
+    "emits": {
       "onSubmit": {
         "type": "function",
         "signature": "(data: FormData) => void"
@@ -161,16 +161,16 @@ export default function UIFContractsPage() {
 }`,
                     copyText: `{
   "type": "UIFContract",
-  "schemaVersion": "0.3",
+  "schemaVersion": "0.4",
   "kind": "react:component",
   "description": "Component description from JSDoc",
-  "version": {
+  "composition": {
     "variables": ["count", "isOpen"],
     "hooks": ["useState", "useEffect"],
     "components": ["Button", "Card"],
     "functions": ["handleClick", "validate"]
   },
-  "logicSignature": {
+  "interface": {
     "props": {
       "onClick": {
         "type": "function",
@@ -181,7 +181,7 @@ export default function UIFContractsPage() {
         "optional": false
       }
     },
-    "events": {
+    "emits": {
       "onSubmit": {
         "type": "function",
         "signature": "(data: FormData) => void"
@@ -247,7 +247,7 @@ export default function UIFContractsPage() {
                   <h3 className="font-semibold text-purple-900 dark:text-purple-200 mb-2 text-base sm:text-lg">
                     <code className="px-2 py-1 bg-purple-100 dark:bg-purple-900/40 rounded text-xs font-mono">schemaVersion</code>
                   </h3>
-                  <p className="text-sm text-purple-800 dark:text-purple-300">Schema version string (currently <code className="px-1 py-0.5 bg-purple-100 dark:bg-purple-900/40 rounded text-xs font-mono">"0.3"</code>). Used for compatibility checking and validation.</p>
+                  <p className="text-sm text-purple-800 dark:text-purple-300">Schema version string (currently <code className="px-1 py-0.5 bg-purple-100 dark:bg-purple-900/40 rounded text-xs font-mono">"0.4"</code>). Used for compatibility checking and validation.</p>
                 </div>
 
                 {/* Kind Field */}
@@ -262,14 +262,15 @@ export default function UIFContractsPage() {
                     <li><code className="px-1 py-0.5 bg-green-100 dark:bg-green-900/40 rounded text-xs font-mono">"vue:component"</code> – Vue component (Composition API)</li>
                     <li><code className="px-1 py-0.5 bg-green-100 dark:bg-green-900/40 rounded text-xs font-mono">"vue:composable"</code> – Vue composable (reusable composition function)</li>
                     <li><code className="px-1 py-0.5 bg-green-100 dark:bg-green-900/40 rounded text-xs font-mono">"ts:module"</code> – TypeScript module/utility</li>
+                    <li><code className="px-1 py-0.5 bg-green-100 dark:bg-green-900/40 rounded text-xs font-mono">"node:api"</code> – Node.js backend API route/handler (Express, NestJS)</li>
                     <li><code className="px-1 py-0.5 bg-green-100 dark:bg-green-900/40 rounded text-xs font-mono">"node:cli"</code> – Node.js CLI script</li>
                   </ul>
                 </div>
 
-                {/* Version Field */}
+                {/* Composition Field */}
                 <div className="p-5 bg-gradient-to-br from-amber-50 to-yellow-50 dark:from-amber-950/20 dark:to-yellow-950/10 rounded-xl border border-amber-200 dark:border-amber-800">
                   <h3 className="font-semibold text-amber-900 dark:text-amber-200 mb-3 text-base sm:text-lg">
-                    <code className="px-2 py-1 bg-amber-100 dark:bg-amber-900/40 rounded text-xs font-mono">version</code>
+                    <code className="px-2 py-1 bg-amber-100 dark:bg-amber-900/40 rounded text-xs font-mono">composition</code>
                   </h3>
                   <p className="text-sm text-amber-800 dark:text-amber-300 mb-3">Structural composition of the component:</p>
                   <div className="overflow-x-auto">
@@ -306,14 +307,14 @@ export default function UIFContractsPage() {
                     </table>
                   </div>
                   <p className="text-xs text-amber-700 dark:text-amber-400 mt-3">
-                    <strong>Note:</strong> This captures the structural footprint, not implementation details. Adding a new hook or function changes the version.
+                    <strong>Note:</strong> This captures the structural footprint, not implementation details. Adding a new hook or function changes the composition.
                   </p>
                 </div>
 
-                {/* Logic Signature Field */}
+                {/* Interface Field */}
                 <div className="p-5 bg-gradient-to-br from-rose-50 to-pink-50 dark:from-rose-950/20 dark:to-pink-950/10 rounded-xl border border-rose-200 dark:border-rose-800">
                   <h3 className="font-semibold text-rose-900 dark:text-rose-200 mb-3 text-base sm:text-lg">
-                    <code className="px-2 py-1 bg-rose-100 dark:bg-rose-900/40 rounded text-xs font-mono">logicSignature</code>
+                    <code className="px-2 py-1 bg-rose-100 dark:bg-rose-900/40 rounded text-xs font-mono">interface</code>
                   </h3>
                   <p className="text-sm text-rose-800 dark:text-rose-300 mb-3">The public API contract of the component:</p>
                   <div className="space-y-3">
@@ -322,7 +323,7 @@ export default function UIFContractsPage() {
                       <p className="text-xs text-rose-700 dark:text-rose-400">Object mapping prop names to their type information. Includes <code className="px-1 py-0.5 bg-rose-100 dark:bg-rose-900/40 rounded text-xs font-mono">type</code>, <code className="px-1 py-0.5 bg-rose-100 dark:bg-rose-900/40 rounded text-xs font-mono">signature</code> (for function props), and <code className="px-1 py-0.5 bg-rose-100 dark:bg-rose-900/40 rounded text-xs font-mono">optional</code> flag.</p>
                     </div>
                     <div>
-                      <h4 className="font-medium text-rose-900 dark:text-rose-200 mb-1 text-sm"><code className="px-1.5 py-0.5 bg-rose-100 dark:bg-rose-900/40 rounded text-xs font-mono">events</code></h4>
+                      <h4 className="font-medium text-rose-900 dark:text-rose-200 mb-1 text-sm"><code className="px-1.5 py-0.5 bg-rose-100 dark:bg-rose-900/40 rounded text-xs font-mono">emits</code></h4>
                       <p className="text-xs text-rose-700 dark:text-rose-400">Object mapping event names to their signatures. For React components, these are typically callback props that represent events.</p>
                     </div>
                     <div>
@@ -362,7 +363,7 @@ export default function UIFContractsPage() {
                   <p className="text-sm text-pink-800 dark:text-pink-300 mb-3">Visual and layout metadata extracted when using <code className="px-1.5 py-0.5 bg-pink-100 dark:bg-pink-900/40 rounded text-xs font-mono">stamp context style</code> or <code className="px-1.5 py-0.5 bg-pink-100 dark:bg-pink-900/40 rounded text-xs font-mono">--include-style</code>.</p>
                   <div className="space-y-2 text-xs text-pink-700 dark:text-pink-400">
                     <div>
-                      <strong className="text-pink-900 dark:text-pink-200">styleSources:</strong> Tailwind classes, SCSS/CSS modules, inline styles (with property/value extraction ✅ v0.3.5), styled-jsx (CSS content extraction ✅ v0.3.5), styled-components, framer-motion, Material UI
+                      <strong className="text-pink-900 dark:text-pink-200">styleSources:</strong> Tailwind classes, SCSS/CSS modules, inline styles, styled-jsx, styled-components, framer-motion, Material UI, Ant Design (✅ v0.5.1), Chakra UI (✅ v0.5.1), ShadCN/UI, Radix UI
                     </div>
                     <div>
                       <strong className="text-pink-900 dark:text-pink-200">layout:</strong> Flex/grid patterns, hero sections, feature cards

@@ -21,7 +21,7 @@ const sections: DocsNavSection[] = [
     items: [
       { title: 'Docs Home', href: '/docs' },
       { title: 'What is LogicStamp?', href: '/docs/what-is-logicstamp' },
-      { title: 'MCP Overview (Beta)', href: '/docs/mcp' },
+      // { title: 'MCP Overview (Beta)', href: '/docs/mcp' },
     ],
   },
   {
@@ -30,14 +30,6 @@ const sections: DocsNavSection[] = [
       { title: 'Getting Started', href: '/docs/getting-started' },
       { title: 'CLI', href: '/docs/cli/getting-started' },
       { title: 'MCP', href: '/docs/mcp/getting-started' },
-    ],
-  },
-  {
-    title: 'Reference',
-    items: [
-      { title: 'Reference', href: '/docs/reference' },
-      { title: 'Complete Reference', href: '/docs/complete-reference' },
-      { title: 'Known Limitations', href: '/docs/complete-reference/known-limitations' },
     ],
   },
   {
@@ -72,6 +64,7 @@ const sections: DocsNavSection[] = [
   {
     title: 'MCP',
     items: [
+      { title: 'MCP Overview (Beta)', href: '/docs/mcp' },
       { title: 'MCP Reference', href: '/docs/mcp/reference' },
       { title: 'Usage Examples', href: '/docs/mcp/usage' },
       { title: 'Best Practices', href: '/docs/mcp/best-practices' },
@@ -90,6 +83,14 @@ const sections: DocsNavSection[] = [
       { title: 'bundleHash (uifb)', href: '/docs/uifb' },
       { title: 'UIF Contracts', href: '/docs/logicstamp-context/uif-contracts' },
       { title: 'Schema', href: '/docs/logicstamp-context/schema' },
+    ],
+  },
+  {
+    title: 'Reference',
+    items: [
+      { title: 'Reference', href: '/docs/reference' },
+      { title: 'Complete Reference', href: '/docs/complete-reference' },
+      { title: 'Known Limitations', href: '/docs/complete-reference/known-limitations' },
     ],
   },
   {

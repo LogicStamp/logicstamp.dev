@@ -4,13 +4,6 @@ import { setupIntersectionObserverMock } from '../utils/test-utils'
 import userEvent from '@testing-library/user-event'
 import FAQ from '@/components/sections/FAQ'
 
-// Mock child components
-vi.mock('@/components/ui/ReadTheDocsButton', () => ({
-  default: ({ href }: { href: string }) => (
-    <a href={href} data-testid="read-docs-button">Read the Docs</a>
-  ),
-}))
-
 describe('FAQ Component', () => {
   beforeEach(() => {
     setupIntersectionObserverMock()
@@ -121,17 +114,6 @@ describe('FAQ Component', () => {
         expect(button).toHaveAttribute('aria-controls')
         expect(button).toHaveAttribute('id')
       }
-    })
-  })
-
-  it('renders documentation links', () => {
-    render(<FAQ />)
-
-    // There are two buttons: one for desktop and one for mobile
-    const buttons = screen.getAllByTestId('read-docs-button')
-    expect(buttons).toHaveLength(2)
-    buttons.forEach(button => {
-      expect(button).toHaveAttribute('href', 'docs/')
     })
   })
 
