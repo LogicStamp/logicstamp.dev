@@ -102,6 +102,18 @@ export default function CompleteReferencePage() {
               
               <div className="text-sm sm:text-base text-gray-600 dark:text-gray-400 mb-4 sm:mb-6 leading-relaxed space-y-3">
                 <p>
+                  <strong className="text-gray-900 dark:text-white">v0.6.0</strong> added runtime schema validation (AJV-enforced), fail-closed contract loading, path traversal protection, and security updates. Node.js &gt;= 20 now required.
+                </p>
+                <p>
+                  <strong className="text-gray-900 dark:text-white">v0.5.5</strong> improved strict watch mode with state-based diffing (like git diff), watch mode cleanup reliability on Windows/Cursor, and atomic writes.
+                </p>
+                <p>
+                  <strong className="text-gray-900 dark:text-white">v0.5.4</strong> added graceful shutdown with centralized cleanup registry, improved debug logging, and reduced duplicated error handling.
+                </p>
+                <p>
+                  <strong className="text-gray-900 dark:text-white">v0.5.3</strong> fixed JSON schema validation, race conditions, memory leaks, Windows path bugs, and improved performance (O(n²) → O(n) dependency collection).
+                </p>
+                <p>
                   <strong className="text-gray-900 dark:text-white">v0.5.2</strong> fixed JSON Schema completeness issues and documentation gaps.
                 </p>
                 <p>
@@ -111,34 +123,43 @@ export default function CompleteReferencePage() {
                   <strong className="text-gray-900 dark:text-white">v0.5.0</strong> introduced strict watch mode, schema improvements (BREAKING changes), and performance optimizations.
                 </p>
                 <p>
-                  <strong className="text-gray-900 dark:text-white">v0.4.1</strong> added watch mode with incremental rebuilds.
+                  <strong className="text-gray-900 dark:text-white">v0.4.x</strong> added watch mode with incremental rebuilds (v0.4.1) and backend framework support for Express.js and NestJS (v0.4.0).
                 </p>
                 <p>
-                  <strong className="text-gray-900 dark:text-white">v0.4.0</strong> added backend framework support (Express.js, NestJS).
-                </p>
-                <p>
-                  <strong className="text-gray-900 dark:text-white">v0.3.10</strong> enhanced Next.js App Router features.
-                </p>
-                <p>
-                  <strong className="text-gray-900 dark:text-white">v0.3.9</strong> added dynamic Tailwind class parsing.
-                </p>
-                <p>
-                  <strong className="text-gray-900 dark:text-white">v0.3.x</strong> releases included major framework support, output format options, and security improvements.
+                  <strong className="text-gray-900 dark:text-white">v0.3.x</strong> releases included Next.js App Router features, dynamic Tailwind parsing, Vue.js support, and security improvements.
                 </p>
               </div>
               
               <div className="grid sm:grid-cols-2 gap-4 sm:gap-6">
                 {[
                   {
-                    icon: "✅",
-                    title: "JSON Schema Fixes (v0.5.2)",
-                    desc: "Fixed missing fields in JSON schema that were causing validation errors. Added nextjs field and NextJSMetadata definition, plus missing style metadata fields (antd, chakraUI, shadcnUI, radixUI) to StyleSources. Schema validation now correctly validates all generated fields.",
+                    icon: "🔒",
+                    title: "Runtime Schema Validation (v0.6.0)",
+                    desc: "AJV-enforced schema validation during contract loading. Invalid, malformed, or outdated contracts are rejected with capped, structured error reporting (max 20 errors). Fail-closed loading ensures contracts are rejected if schema fails to load.",
+                    color: "red"
+                  },
+                  {
+                    icon: "🛡️",
+                    title: "Security Hardening (v0.6.0)",
+                    desc: "Path traversal protection with strict project-root boundaries. File lock race condition fix prevents concurrent lock acquisition. Dependency security updates: glob@13.0.6 (patched minimatch ReDoS), ts-morph@27.0.2 with TypeScript 5.x support. Node.js >= 20 now required.",
+                    color: "orange"
+                  },
+                  {
+                    icon: "🔄",
+                    title: "State-Based Strict Watch (v0.5.5)",
+                    desc: "Strict watch mode now compares current state vs the original baseline (like git diff), not cumulative history. Violations reflect current drift only and are automatically cleared when changes are reverted. Third-party packages removed from violations.",
+                    color: "blue"
+                  },
+                  {
+                    icon: "🧹",
+                    title: "Watch Mode Reliability (v0.5.5)",
+                    desc: "Improved Windows/Cursor reliability with signal handlers at startup, absolute path resolution, synchronous cleanup on exit, and stale status file removal. Atomic writes prevent crash corruption. TOCTOU race condition fixed with file locking.",
                     color: "green"
                   },
                   {
-                    icon: "🎨",
-                    title: "CSS-in-JS Completeness (v0.5.1)",
-                    desc: "Complete support for all major CSS-in-JS libraries: styled-components, Emotion, Material UI, ShadCN/UI, Radix UI, Framer Motion, Styled JSX, Chakra UI, and Ant Design. Added comprehensive Chakra UI and Ant Design support with component detection, package tracking, theme usage, color mode, responsive props, and framework-specific features.",
+                    icon: "⚡",
+                    title: "Performance & Bug Fixes (v0.5.3)",
+                    desc: "O(n²) to O(n) dependency collection, eliminated redundant file reads via caching. Fixed JSON schema validation, race conditions, memory leaks, and Windows path separator bugs. Type safety improvements across 10+ files.",
                     color: "purple"
                   },
                   {
@@ -1092,7 +1113,7 @@ stamp context style --include-code header`
     },
     "meta": {
       "missing": [],
-      "source": "logicstamp-context@0.5.2"
+      "source": "logicstamp-context@0.6.0"
     }
   }
 ]`,
@@ -1133,7 +1154,7 @@ stamp context style --include-code header`
     },
     "meta": {
       "missing": [],
-      "source": "logicstamp-context@0.5.2"
+      "source": "logicstamp-context@0.6.0"
     }
   }
 ]`

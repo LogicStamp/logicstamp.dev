@@ -4,6 +4,42 @@ This roadmap outlines the planned features, improvements, and known limitations 
 
 ## Recent Achievements
 
+## v0.6.0 (February 2026)
+- ✅ **Runtime schema validation (AJV-enforced)** – `.uif.json` contracts are now validated during load. Invalid, malformed, or outdated contracts are rejected with capped, structured error reporting (max 20 errors).
+- ✅ **Fail-closed contract loading** – If the schema fails to load, contracts are rejected instead of silently bypassing validation.
+- ✅ **Hardened contract loader error handling** – Explicit distinction between file-not-found, read errors, JSON parse errors, and schema validation failures.
+- ✅ **Path traversal protection** – Enforced strict project-root boundaries across internal file utilities.
+- ✅ **File lock race condition fix** – Prevents concurrent lock acquisition mid-write.
+- ✅ **Dependency security updates** – `glob@13.0.6` (patched minimatch ReDoS), `ts-morph@27.0.2` with improved TypeScript 5.x support.
+- ⚠️ **Node.js >= 20 required** – Required by dependency and security updates.
+- ✅ **Test coverage expansion** – Added root-boundary traversal tests and expanded extraction coverage.
+
+### v0.5.5 (February 2026)
+- ✅ **State-based strict watch diffing** - Strict watch mode now compares current state vs the original baseline (like `git diff`), not cumulative history. Violations reflect current drift only and are automatically cleared when changes are reverted.
+- ✅ **Removed missing dependencies from strict watch violations** - Third-party packages are no longer treated as breaking changes in strict watch mode.
+- ✅ **Watch mode cleanup on exit (Windows/Cursor reliability)** - Signal handlers register at watch startup, watch status paths resolve to absolute paths, synchronous cleanup runs on `process.on('exit')`, and MCP tools remove stale status files when PID validation fails.
+- ✅ **Watch mode revert correctness** - If `pack()` fails during incremental rebuild, bundles/contracts/manifest now revert consistently: old bundle contracts are restored, reverse index entries preserved, and final contracts + manifest rebuilt from actual bundle contents.
+- ✅ **Resilient glob pattern failure handling** - `globFiles()` now continues across pattern failures, returns partial results when possible, and only throws an aggregate error if *all* patterns fail (with debug warnings for partial failures).
+- ✅ **Config read/write race condition (TOCTOU) fixed** - Added lightweight file locking using exclusive lockfiles + PID tracking; `updateConfig()` and `appendWatchLog()` acquire locks; conservative stale detection (ESRCH vs EPERM); configurable timeout/retry/stale thresholds; no new dependencies.
+- ✅ **Atomic writes to prevent crash corruption** - Config + status writes now use temp-file + rename pattern (`writeConfig()`, `writeWatchStatus()`, `writeStrictWatchStatus()`, `appendWatchLog()`), with temp cleanup on error.
+- ✅ **Compare handler control-flow fix** - Added explicit `return` before `process.exit()` calls to prevent unintended execution after exit.
+- ✅ **Test coverage expansion** - Added comprehensive unit tests for cleanup utilities, file locking, CLI routing/entry points, commands, watch mode behavior, compare handler modes, and glob resilience.
+
+### v0.5.4 (February 2026)
+- ✅ **Graceful shutdown on process exit** - Introduced a centralized cleanup registry (`src/utils/cleanup.ts`) so watchers/status files are reliably cleaned up on errors and signals (SIGINT/SIGTERM/SIGHUP), routing shutdown through `gracefulShutdown()` with priority-ordered async handlers.
+- ✅ **Token comparison fails loudly when all bundles fail** - Added `checkBundleResults()` to detect complete failure across `Promise.allSettled`, throwing a descriptive error (and logging warnings for partial failures) for `--compare-modes`.
+- ✅ **Improved debug logging for unresolved dependencies** - Added `debugLog()` and surfaced unresolved dependency details in manifest building when `LOGICSTAMP_DEBUG=1`.
+- ✅ **Reduced duplicated error handling in config writes** - Refactored config/status/log write helpers (`ensureConfigDir*`, `formatWriteError()`) to remove duplicated error paths and improve consistency.
+- ✅ **New unit tests for context command modules** - Added coverage for `bundleFormatter`, `configManager`, `contractBuilder`, `fileWriter`, `statsCalculator`, `tokenEstimator`, and `watchDiff`.
+
+### v0.5.3 (February 2026)
+- ✅ **Bug fixes** - Fixed JSON schema validation (removed incorrect required fields), race condition in sanitization stats, memory leak in global caches, and Windows path separator bug in dependency resolution.
+- ✅ **Performance improvements** - O(n²) to O(n) in dependency collection (replaced `array.shift()` with index-based iteration), eliminated redundant file reads in token estimation via caching.
+- ✅ **Type safety** - Replaced unsafe `as any` casts with proper ts-morph type guards across 10+ files.
+
+### v0.5.2 (February 2026)
+- ✅ **JSON Schema completeness** - Added missing fields to JSON schema (`nextjs`, `antd`, `chakraUI`, `shadcnUI`, `radixUI`) that were causing IDE validation errors.
+
 ### v0.5.1 (February 2026)
 - ✅ **Chakra UI support** - Complete style metadata extraction for Chakra UI components. Extracts Chakra UI component props (`colorScheme`, `size`, `variant`, etc.), responsive props, and style system tokens. Handles Chakra UI's component composition patterns and theme-aware styling.
 - ✅ **Ant Design support** - Complete style metadata extraction for Ant Design components. Extracts Ant Design component props (`type`, `size`, `shape`, `ghost`, etc.), theme tokens, and component-specific styling patterns. Supports Ant Design's design system and component API patterns.
@@ -44,7 +80,7 @@ This roadmap outlines the planned features, improvements, and known limitations 
 - ✅ **Vue.js TypeScript/TSX support** - Comprehensive Vue 3 Composition API support (components, composables, props, emits)
 
 ### v0.3.3 (December 2025)
-- ✅ **TOON output format** - New `--format toon` option for alternative AI consumption format
+- ✅ **TOON output format** - New `--format toon` option for alternative format optimized for AI workflows
 
 ### v0.3.2 (December 2025)
 - ✅ **CSS/SCSS AST-based parsing** - Migrated from regex to deterministic AST walk using `css-tree`
@@ -612,11 +648,11 @@ export type UIFContract = ReactUIFContract | BackendUIFContract | VueUIFContract
   - **Full extraction preserved**: Entry components (depth 0) always get full extraction; use `--full-style` flag to restore current behavior (full extraction for all components)
   - **Impact**: ~30-40% reduction in style metadata tokens with depth=2, while maintaining full detail for entry components
   - **Backward compatible**: Existing context files remain valid; old behavior available via `--full-style` flag
-  - **Status**: 🔴 Planned for v0.5.3
+  - **Status**: 🔴 Planned
 
 ### Configuration & Extensibility
 - **Custom profile configuration and overrides** - User-defined profiles beyond preset options
-- **Additional output formats** - More format options for different AI consumption patterns
+- **Additional output formats** - More format options for different AI workflow patterns
 
 ### Developer Experience
 - **Integration examples** - Examples for popular AI assistants (Cursor, Claude Desktop, GitHub Copilot Chat)
@@ -674,7 +710,7 @@ We welcome contributions! If you'd like to work on any of these roadmap items:
 
 For detailed release notes and changes, see [CHANGELOG.md](CHANGELOG.md).
 
-**Current Version:** v0.5.1 (Beta)
+**Current Version:** v0.6.0 (Beta)
 
 **Status:** Actively developed - we're working on improving accuracy and expanding feature coverage based on user feedback.
 
