@@ -60,7 +60,7 @@ export default function QuickStartPage() {
               
               <div className="grid sm:grid-cols-3 gap-4">
                 {[
-                  { icon: "🟢", title: "Node.js >= 18.18.0", desc: "Latest LTS recommended" },
+                  { icon: "🟢", title: "Node.js >= 20", desc: "Latest LTS recommended" },
                   { icon: "⚛️", title: "TypeScript", desc: "Your project codebase" },
                   { icon: "💻", title: "Terminal", desc: "Basic CLI knowledge" }
                 ].map((item, idx) => (
