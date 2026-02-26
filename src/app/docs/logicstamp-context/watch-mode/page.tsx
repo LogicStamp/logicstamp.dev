@@ -151,10 +151,7 @@ stamp context --watch --log-file`,
 stamp context --watch --strict-watch
 
 # With style metadata
-stamp context --include-style --watch --strict-watch
-
-# Awareness-only (ignore exit code)
-stamp context --watch --strict-watch || true`,
+stamp context --include-style --watch --strict-watch`,
                       copyText: 'stamp context --watch --strict-watch',
                     },
                   ]}
@@ -544,10 +541,7 @@ stamp context --watch --strict-watch`,
 stamp context --watch --strict-watch
 
 # Combine with style metadata
-stamp context --include-style --watch --strict-watch
-
-# Awareness-only (ignore exit code)
-stamp context --watch --strict-watch || true`,
+stamp context --include-style --watch --strict-watch`,
                       copyText: 'stamp context --watch --strict-watch',
                     },
                     {
@@ -614,7 +608,7 @@ kill $(pgrep -f "stamp context --watch")`,
                     <strong className="text-gray-900 dark:text-white">Note:</strong> Regular watch mode shows changes, but doesn&apos;t classify them as breaking.
                     Use{' '}
                     <code className="px-1.5 py-0.5 bg-amber-100 dark:bg-amber-900/40 rounded text-xs font-mono">--strict-watch</code>{' '}
-                    to detect breaking changes (removed props/events/functions, etc.) with violation tracking and exit codes.
+                    to detect breaking changes (removed props/events/functions, etc.) with violation tracking.
                   </p>
                 </div>
               </div>
@@ -706,14 +700,14 @@ stamp context --include-style --watch --strict-watch`,
                   </div>
 
                   <div className="p-4 bg-yellow-50 dark:bg-yellow-950/20 rounded-lg border border-yellow-200 dark:border-yellow-800">
-                    <h3 className="font-semibold text-yellow-900 dark:text-yellow-200 mb-2">Exit codes</h3>
+                    <h3 className="font-semibold text-yellow-900 dark:text-yellow-200 mb-2">Exit behavior</h3>
                     <p className="text-sm text-yellow-800 dark:text-yellow-300">
-                      On <code className="px-1.5 py-0.5 bg-yellow-100 dark:bg-yellow-900/40 rounded text-xs font-mono">Ctrl+C</code>:
-                      <br />• Exit <strong>0</strong> if no errors were detected
-                      <br />• Exit <strong>1</strong> if one or more errors were detected
-                      <br />
-                      Use{' '}
-                      <code className="px-1.5 py-0.5 bg-yellow-100 dark:bg-yellow-900/40 rounded text-xs font-mono">|| true</code> for awareness-only runs.
+                      Watch mode is for <strong>development awareness</strong>, not CI enforcement. On{' '}
+                      <code className="px-1.5 py-0.5 bg-yellow-100 dark:bg-yellow-900/40 rounded text-xs font-mono">Ctrl+C</code>,
+                      it exits with signal code (130) regardless of violations.
+                      <br /><br />
+                      For CI with exit codes, use{' '}
+                      <code className="px-1.5 py-0.5 bg-yellow-100 dark:bg-yellow-900/40 rounded text-xs font-mono">stamp compare</code> instead.
                     </p>
                   </div>
                 </div>
