@@ -432,6 +432,63 @@ $ stamp context clean
    Press Ctrl+C to stop watching`
     },
     {
+      title: 'Strict Watch',
+      content: `$ stamp context --watch --strict-watch
+🔍 Scanning /project/src...
+   Found 24 files
+🔨 Analyzing components...
+   Analyzed 24 components
+📊 Building dependency graph...
+📋 Using profile: llm-chat (depth=2, header only, max 100 nodes)
+📦 Generating context for 22 root components (depth=2)...
+🔍 Validating generated context...
+✅ Validation passed
+📝 Writing context files for 5 folders...
+   ✓ context.json (2 bundles)
+   ✓ src/context.json (3 bundles)
+   ✓ src/components/context.json (5 bundles)
+   ✓ src/utils/context.json (2 bundles)
+   ✓ app/context.json (3 bundles)
+📝 Writing main context index...
+   ✓ context_main.json (index of 5 folders)
+✅ 6 context files written successfully
+
+👀 Watch mode enabled. Watching for file changes...
+   Strict mode: Tracking breaking changes
+
+📝 Changed: src/components/Button.tsx
+
+🔄 Regenerating (1 file changed)...
+
+✏️  Modified contract:
+  src/components/Button.tsx
+   • Removed props: \`loading\`
+
+✅ Regenerated
+
+⚠️  Strict Watch: 1 violation(s) detected
+
+   ❌ Errors (1):
+      Breaking change: prop 'loading' removed from src/components/Button.tsx
+
+   📊 Current state: 1 error(s), 0 warning(s)
+
+📝 Changed: src/components/Button.tsx
+
+🔄 Regenerating (1 file changed)...
+
+✏️  Modified contract:
+  src/components/Button.tsx
+   • Added props: \`loading\`
+
+✅ Regenerated
+
+✅ Strict Watch: All violations resolved
+
+💡 Strict watch: Detect breaking changes in real-time
+   Press Ctrl+C to stop watching`
+    },
+    {
       title: 'Security Scan',
       content: `$ stamp security scan
 🔒 Scanning for secrets (API keys, passwords, tokens)...

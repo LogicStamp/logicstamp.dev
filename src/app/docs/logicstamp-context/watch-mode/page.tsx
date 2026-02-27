@@ -238,16 +238,28 @@ stamp context --include-style --watch --strict-watch`,
                     </div>
                   </div>
 
+                  <div className="flex items-start gap-4 p-4 bg-gray-50 dark:bg-gray-800/50 rounded-lg">
+                    <div className="flex-shrink-0 w-8 h-8 bg-purple-100 dark:bg-purple-900/40 rounded-full flex items-center justify-center text-purple-700 dark:text-purple-300 font-bold text-sm">
+                      5
+                    </div>
+                    <div>
+                      <p className="font-semibold text-gray-900 dark:text-white mb-1">Change Detection</p>
+                      <p className="text-sm text-gray-600 dark:text-gray-400">
+                        Shows what changed (props, hooks, state, etc.)
+                      </p>
+                    </div>
+                  </div>
+
                   {/* Strict watch step */}
                   <div className="flex items-start gap-4 p-4 bg-amber-50/60 dark:bg-amber-950/20 rounded-lg border border-amber-200 dark:border-amber-800">
                     <div className="flex-shrink-0 w-8 h-8 bg-amber-100 dark:bg-amber-900/40 rounded-full flex items-center justify-center text-amber-700 dark:text-amber-300 font-bold text-sm">
-                      +
+                      6
                     </div>
                     <div>
-                      <p className="font-semibold text-gray-900 dark:text-white mb-1">Strict Watch (Optional)</p>
+                      <p className="font-semibold text-gray-900 dark:text-white mb-1">Strict Watch Mode</p>
                       <p className="text-sm text-gray-700 dark:text-gray-300">
-                        With{' '}
-                        <code className="px-1.5 py-0.5 bg-amber-100 dark:bg-amber-900/40 rounded text-xs font-mono">--strict-watch</code>, changes are classified into violations (errors/warnings) relative to the baseline when watch mode started.
+                        Optionally track breaking changes (removed props, events, functions) and report violations in real-time with{' '}
+                        <code className="px-1.5 py-0.5 bg-amber-100 dark:bg-amber-900/40 rounded text-xs font-mono">--strict-watch</code>
                       </p>
                     </div>
                   </div>
