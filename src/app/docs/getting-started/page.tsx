@@ -23,7 +23,7 @@ export default function GettingStartedPage() {
               Getting Started
             </h1>
             <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-gray-600 dark:text-gray-400 mb-8 max-w-3xl leading-relaxed">
-              Compile AI-ready context from your TypeScript codebase in 30 seconds.
+              Compile AI-ready context from your TypeScript codebase.
             </p>
           </div>
         </AnimatedSection>
@@ -45,7 +45,7 @@ export default function GettingStartedPage() {
               
               <div className="grid sm:grid-cols-3 gap-4">
                 {[
-                  { icon: "🟢", title: "Node.js >= 18.18.0", desc: "Latest LTS recommended" },
+                  { icon: "🟢", title: "Node.js >= 20", desc: "Latest LTS recommended" },
                   { icon: "⚛️", title: "TypeScript", desc: "Your project codebase" },
                   { icon: "💻", title: "Terminal", desc: "Basic CLI knowledge" }
                 ].map((item, idx) => (
