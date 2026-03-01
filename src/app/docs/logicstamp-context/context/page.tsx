@@ -8,7 +8,7 @@ import ReadyToGetStartedCard from '@/components/docs/ReadyToGetStartedCard'
 
 export const metadata: Metadata = {
   title: '`context` Command | LogicStamp Context Documentation',
-  description: 'Generate AI-ready bundles that describe your TypeScript codebase using stamp context.',
+  description: 'Compile AI-ready bundles that describe your TypeScript codebase using stamp context.',
 }
 
 export default function ContextCommandPage() {
@@ -27,7 +27,7 @@ export default function ContextCommandPage() {
                 <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
                   <path fillRule="evenodd" d="M4 2a1 1 0 011 1v2.101a7.002 7.002 0 0111.601 2.566 1 1 0 11-1.885.666A5.002 5.002 0 005.999 7H9a1 1 0 010 2H4a1 1 0 01-1-1V3a1 1 0 011-1zm.008 9.057a1 1 0 011.276.61A5.002 5.002 0 0014.001 13H11a1 1 0 110-2h5a1 1 0 011 1v5a1 1 0 11-2 0v-2.101a7.002 7.002 0 01-11.601-2.566 1 1 0 01.61-1.276z" clipRule="evenodd" />
                 </svg>
-                Generation Command
+                Compilation Command
               </div>
 
               <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black text-transparent bg-clip-text bg-gradient-to-r from-gray-900 to-gray-700 dark:from-white dark:to-gray-300 mb-4 sm:mb-6 tracking-tight leading-[1.1]">
@@ -35,7 +35,7 @@ export default function ContextCommandPage() {
               </h1>
               
               <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-gray-600 dark:text-gray-400 leading-relaxed max-w-3xl">
-                Generate AI-ready bundles that describe your TypeScript codebase.
+                Compile AI-ready bundles that describe your TypeScript codebase.
               </p>
             </div>
           </div>
@@ -83,7 +83,7 @@ export default function ContextCommandPage() {
                   </h2>
                 </div>
                 <p className="text-base sm:text-lg text-gray-600 dark:text-gray-400 mb-4 sm:mb-6 leading-relaxed">
-                  LogicStamp Context generates <strong className="text-gray-900 dark:text-white">folder-organized, multi-file output</strong>:
+                  LogicStamp Context compiles <strong className="text-gray-900 dark:text-white">folder-organized, multi-file output</strong>:
                 </p>
                 <div className="space-y-3 mb-4">
                   <div className="flex items-start gap-3 p-3 bg-green-50 dark:bg-green-950/20 rounded-lg border border-green-200 dark:border-green-800">

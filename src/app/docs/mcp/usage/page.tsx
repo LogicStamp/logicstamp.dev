@@ -88,7 +88,7 @@ export default function MCPUsagePage() {
                     <div className="flex-1">
                       <h3 className="font-semibold text-gray-900 dark:text-white mb-2">Start with refresh_snapshot</h3>
                       <p className="text-sm text-gray-600 dark:text-gray-400 mb-3">
-                        This scans the project and generates all context files. Creates <code className="px-1.5 py-0.5 bg-gray-100 dark:bg-gray-800 text-indigo-600 dark:text-indigo-400 rounded font-mono text-xs">context_main.json</code> and per-folder <code className="px-1.5 py-0.5 bg-gray-100 dark:bg-gray-800 text-indigo-600 dark:text-indigo-400 rounded font-mono text-xs">context.json</code> files.
+                        This compiles the project into context files. Creates <code className="px-1.5 py-0.5 bg-gray-100 dark:bg-gray-800 text-indigo-600 dark:text-indigo-400 rounded font-mono text-xs">context_main.json</code> and per-folder <code className="px-1.5 py-0.5 bg-gray-100 dark:bg-gray-800 text-indigo-600 dark:text-indigo-400 rounded font-mono text-xs">context.json</code> files.
                       </p>
                       <TabbedCodeBlock
                         tabs={[

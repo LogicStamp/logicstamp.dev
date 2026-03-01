@@ -1,10 +1,10 @@
 # Getting Started with LogicStamp Context
 
-Welcome to LogicStamp Context! This guide will help you get started with generating deterministic architectural context for your TypeScript codebase.
+Welcome to LogicStamp Context - the context compiler for TypeScript. This guide will help you compile your codebase into deterministic architectural contracts for AI workflows.
 
 ## What is LogicStamp Context?
 
-LogicStamp Context is a compiler-like static analyzer that extracts **deterministic component contracts** from your TypeScript codebase. Instead of AI assistants parsing raw source code, they can read structured contracts that explicitly describe:
+LogicStamp Context compiles TypeScript codebases into **deterministic architectural contracts** and dependency graphs. Instead of AI assistants parsing raw source code, they consume a structured, machine-consumable representation that explicitly describes:
 
 - Component props and their types
 - Hooks and state management
@@ -73,7 +73,7 @@ TypeScript Code  →  AST Parsing  →  Deterministic Contracts  →  AI Assista
 2. **Analyze** - Parses components and APIs using TypeScript AST (via `ts-morph`)
 3. **Extract** - Builds contracts with props, hooks, state, signatures
 4. **Graph** - Creates dependency graph showing relationships
-5. **Bundle** - Packages context optimized for AI consumption
+5. **Bundle** - Packages context optimized for AI workflows
 6. **Organize** - Groups by folder, writes `context.json` files
 7. **Index** - Creates `context_main.json` with metadata and statistics
 

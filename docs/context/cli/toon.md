@@ -204,7 +204,7 @@ await writeFile('src/components/context.json', jsonContent);
 LogicStamp uses the official [`@toon-format/toon`](https://github.com/toon-format/toon) package (v1.0.0) for encoding and decoding TOON files. This ensures compatibility with the TOON format specification.
 
 For complete TOON format documentation, syntax reference, and benchmarks, see:
-- **Official TOON Format**: https://toonformat.dev
+- **Official TOON Format**: https://toon-format.dev
 - **TOON Specification**: https://github.com/toon-format/toon/blob/main/SPEC.md
 - **TOON Package**: https://www.npmjs.com/package/@toon-format/toon
 

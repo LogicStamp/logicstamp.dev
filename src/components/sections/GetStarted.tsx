@@ -53,7 +53,7 @@ export default function GetStarted() {
               </span>
             </h2>
             <p className="mx-auto mt-6 max-w-2xl text-lg lg:text-xl leading-8 text-blue-100 font-medium">
-              Generate AI-ready context from your codebase in seconds. Fast, deterministic, one-time setup.
+              Compile AI-ready context from your codebase in seconds. Fast, deterministic, one-time setup.
             </p>
             <div className="mt-10 flex flex-row items-center justify-center gap-2 sm:gap-4">
               <a
@@ -73,7 +73,7 @@ export default function GetStarted() {
             <div className="mt-12">
               <blockquote className="text-lg lg:text-xl italic text-blue-100 max-w-2xl mx-auto">
                 "Stop pasting code. Start sharing structured context bundles that AI actually understands.
-                LogicStamp Context transforms your codebase into machine-readable documentation
+                LogicStamp Context compiles your codebase into deterministic architectural contracts
                 with built-in token optimization."
               </blockquote>
               <cite className="mt-4 block text-base text-blue-100">

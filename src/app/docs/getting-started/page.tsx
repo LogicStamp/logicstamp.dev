@@ -9,7 +9,7 @@ import ReadyToGetStartedCard from '@/components/docs/ReadyToGetStartedCard'
 
 export const metadata: Metadata = {
   title: 'Getting Started | LogicStamp Context',
-  description: 'Get started with LogicStamp Context in 30 seconds. Generate AI-ready context from your TypeScript codebase.',
+  description: 'Get started with LogicStamp Context in 30 seconds. Compile AI-ready context from your TypeScript codebase.',
 }
 
 export default function GettingStartedPage() {
@@ -23,7 +23,7 @@ export default function GettingStartedPage() {
               Getting Started
             </h1>
             <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-gray-600 dark:text-gray-400 mb-8 max-w-3xl leading-relaxed">
-              Generate AI-ready context from your TypeScript codebase in 30 seconds.
+              Compile AI-ready context from your TypeScript codebase in 30 seconds.
             </p>
           </div>
         </AnimatedSection>
@@ -74,7 +74,7 @@ export default function GettingStartedPage() {
                 </code>
               </div>
               <p className="text-xs text-gray-600 dark:text-gray-400 mt-3">
-                This scans your repo and creates <code className="px-1 py-0.5 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded text-gray-900 dark:text-gray-100">context.json</code> files.
+                This compiles your repo into <code className="px-1 py-0.5 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded text-gray-900 dark:text-gray-100">context.json</code> files.
               </p>
             </div>
           </div>
@@ -85,7 +85,7 @@ export default function GettingStartedPage() {
           <div className="mb-12">
             <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white mb-4">What happened?</h2>
             <p className="text-sm sm:text-base text-gray-600 dark:text-gray-400 mb-4">
-              LogicStamp scanned your TypeScript files and generated structured context bundles:
+              LogicStamp compiled your TypeScript files into structured context bundles:
             </p>
             <ul className="space-y-2 text-sm sm:text-base text-gray-600 dark:text-gray-400 mb-6">
               <li className="flex items-start gap-2">
@@ -137,7 +137,7 @@ export default function GettingStartedPage() {
                   ]}
                 />
                 <p className="text-sm text-gray-600 dark:text-gray-400 mt-4 mb-3">
-                  Then generate context:
+                  Then compile context:
                 </p>
                 <TabbedCodeBlock
                   tabs={[

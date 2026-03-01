@@ -35,13 +35,13 @@ const faqs = [
     id: 1,
     question: 'How does LogicStamp Context work?',
     answer:
-      'LogicStamp Context scans your React/TypeScript codebase and generates structured context bundles optimized for AI consumption.\nIt analyzes component structure, extracts logic signatures (component props, state variables, event handlers, and exported functions), builds dependency graphs showing how components connect, and packages everything into machine-readable JSON with built-in token optimization.\nNo configuration needed - just run `stamp context` and get instant AI-ready context bundles.',
+      'LogicStamp Context is a context compiler that compiles your React/TypeScript codebase into structured context bundles optimized for AI consumption.\nIt uses the TypeScript compiler API (via ts-morph) to compile deterministic contracts from your source code - component props, state variables, event handlers, exported functions - then builds dependency graphs showing how components connect, and outputs machine-readable JSON with built-in token optimization.\nNo configuration needed - just run `stamp context` and get instant AI-ready context bundles.',
   },
   {
     id: 2,
     question: 'Why not just paste code into AI chats?',
     answer:
-      'Pasting raw code wastes tokens on boilerplate, imports, and redundant formatting.\nLogicStamp Context extracts only what AI needs - component contracts, dependency relationships, and logic signatures - saving up to 65% tokens compared to full source code.\nPlus, it provides structured context that AI can actually parse and understand, not just raw text.',
+      'Pasting raw code wastes tokens on boilerplate, imports, and redundant formatting.\nLogicStamp Context compiles only what AI needs - deterministic architectural contracts, dependency relationships, and logic signatures - saving up to 65% tokens compared to full source code.\nPlus, it provides structured context that AI can actually parse and understand, not just raw text.',
   },
   {
     id: 3,
@@ -59,7 +59,7 @@ const faqs = [
     id: 5,
     question: 'How do I get started?',
     answer:
-      'Quick start: Run `npx logicstamp-context context` (no install needed) or install globally with `npm i -g logicstamp-context`.\nFor first-time setup, run `stamp init` in your project directory (sets up .gitignore patterns and scans for secrets). This step is optional but recommended.\nNext, run `stamp context` to generate multiple `context.json` files (one per folder) plus a `context_main.json` index with AI-ready bundles.\nShare these files with Claude, ChatGPT, or any AI assistant for instant codebase understanding.\nUse `stamp context validate` to verify the output, or try the MCP integration for real-time analysis in Cursor, Claude Desktop, or Claude CLI.',
+      'Quick start: Run `npx logicstamp-context context` (no install needed) or install globally with `npm i -g logicstamp-context`.\nFor first-time setup, run `stamp init` in your project directory (sets up .gitignore patterns and scans for secrets). This step is optional but recommended.\nNext, run `stamp context` to compile multiple `context.json` files (one per folder) plus a `context_main.json` index with AI-ready bundles.\nShare these files with Claude, ChatGPT, or any AI assistant for instant codebase understanding.\nUse `stamp context validate` to verify the output, or try the MCP integration for real-time analysis in Cursor, Claude Desktop, or Claude CLI.',
   },
   {
     id: 6,
@@ -71,19 +71,19 @@ const faqs = [
     id: 7,
     question: 'How does token optimization work?',
     answer:
-      'LogicStamp Context offers three code inclusion modes: `none` (contracts only, ~79% savings vs full context), `header` (recommended, ~65% savings vs full context, ~70% vs raw source), and `full` (complete source).\nThe header mode includes just enough context for AI to understand component logic without wasting tokens on implementation details.\nAdditionally, you can use `--format toon` for an alternative output format (a compact text-based format) that uses ~40% fewer tokens than JSON while maintaining the same data structure.\nUse `stamp context --compare-modes` to see exact savings for your codebase.\n\nToken counts are automatically calculated using model-accurate tokenizers (GPT-4 and Claude) when available, or character-based estimation as a fallback.',
+      'LogicStamp Context offers three code inclusion modes: `none` (contracts only, ~79% savings vs full context), `header` (recommended, ~65% savings vs full context, ~70% vs raw source), and `full` (complete source).\nThe header mode compiles just enough context for AI to understand component logic without wasting tokens on implementation details.\nAdditionally, you can use `--format toon` for an alternative output format (a compact text-based format) that uses ~40% fewer tokens than JSON while maintaining the same data structure.\nUse `stamp context --compare-modes` to see exact savings for your codebase.\n\nToken counts are automatically calculated using model-accurate tokenizers (GPT-4 and Claude) when available, or character-based estimation as a fallback.',
   },
   {
     id: 8,
     question: 'Why bundles instead of individual component files?',
     answer:
-      'LogicStamp Context generates per-root bundles (one bundle per page/feature component) rather than individual files per component.\nEach bundle contains the root component plus its complete dependency graph - all related components together.\nThis design matches how developers work: when you need help with a specific page or feature, share that bundle and the AI has complete context in one self-contained unit.',
+      'LogicStamp Context compiles per-root bundles (one bundle per page/feature component) rather than individual files per component.\nEach bundle contains the root component plus its complete dependency graph - all related components together.\nThis design matches how developers work: when you need help with a specific page or feature, share that bundle and the AI has complete context in one self-contained unit.',
   },
   {
     id: 9,
     question: 'What does `stamp context style` do?',
     answer:
-      'The `stamp context style` command generates context bundles with visual and layout metadata included.\nIt extracts style information from your components including Tailwind CSS classes, SCSS/CSS modules, inline styles, styled-components/Emotion, framer-motion animations, Material UI, ShadCN/UI, Radix UI, and Styled JSX.\nThis enables AI assistants to understand visual design, suggest visually consistent components, analyze layout patterns, track color palettes, and identify animations.\nUse it when you need AI to understand the visual aspects of your UI (design system analysis, styling questions, visual consistency checks). For logic-only questions, use regular `stamp context` to save tokens. Note: Style metadata adds more tokens (~52-65% of raw source vs ~30% for header mode), so use `--compare-modes` to see the exact cost impact for your codebase.',
+      'The `stamp context style` command compiles context bundles with visual and layout metadata included.\nIt extracts style information from your components including Tailwind CSS classes, SCSS/CSS modules, inline styles, styled-components/Emotion, framer-motion animations, Material UI, ShadCN/UI, Radix UI, and Styled JSX.\nThis enables AI assistants to understand visual design, suggest visually consistent components, analyze layout patterns, track color palettes, and identify animations.\nUse it when you need AI to understand the visual aspects of your UI (design system analysis, styling questions, visual consistency checks). For logic-only questions, use regular `stamp context` to save tokens. Note: Style metadata adds more tokens (~52-65% of raw source vs ~30% for header mode), so use `--compare-modes` to see the exact cost impact for your codebase.',
   },
   {
     id: 10,

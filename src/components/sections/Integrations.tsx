@@ -145,7 +145,7 @@ const integrations = [
   // Row 1: Core frameworks
   {
     name: 'React',
-    description: 'Analyze React components with hooks, props, and JSX structure',
+    description: 'Compile React components into contracts with hooks, props, and JSX structure',
     icon: ReactIcon,
     gradient: 'from-cyan-500/20 via-blue-500/20 to-blue-600/20',
     borderGradient: 'from-cyan-400 via-blue-500 to-blue-600',
@@ -163,7 +163,7 @@ const integrations = [
   },
   {
     name: 'TypeScript',
-    description: 'Deep TypeScript analysis for types, interfaces, and generics',
+    description: 'Deep TypeScript compilation for types, interfaces, and generics',
     icon: TypeScriptIcon,
     gradient: 'from-blue-500/20 via-blue-600/20 to-blue-700/20',
     borderGradient: 'from-blue-500 via-blue-600 to-blue-700',
@@ -183,7 +183,7 @@ const integrations = [
   },
   {
     name: 'Express.js & NestJS',
-    description: 'Analyze backend routes, API handlers, controllers, and extract API signatures from Node.js code',
+    description: 'Compile backend routes, API handlers, controllers, and extract API signatures from Node.js code',
     icon: BackendFrameworksIcon,
     gradient: 'from-gray-700/20 via-gray-800/20 to-gray-900/20 dark:from-gray-500/20 dark:via-gray-600/20 dark:to-gray-700/20',
     borderGradient: 'from-gray-700 via-gray-800 to-gray-900 dark:from-gray-500 dark:via-gray-600 dark:to-gray-700',
@@ -444,7 +444,7 @@ export default function Integrations() {
               Supported Frameworks
             </h3>
             <p className="text-base sm:text-lg text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
-              AI-ready context generation for modern frontend frameworks and TypeScript codebases.
+              AI-ready context compilation for modern frontend frameworks and TypeScript codebases.
             </p>
             <div className="mt-4 max-w-2xl mx-auto rounded-xl border border-gray-200/70 px-4 py-3 text-left text-sm text-gray-900 dark:border-gray-700/70 dark:text-gray-100 flex gap-3 bg-transparent dark:bg-transparent">
               <div className="mt-0.5 flex-shrink-0">

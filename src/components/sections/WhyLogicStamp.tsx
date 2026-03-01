@@ -307,7 +307,7 @@ export default function WhyLogicStamp() {
                   }`}>
                     <div className="opacity-80">✓ Scanning 42 components...</div>
                     <div className="opacity-80">✓ Building dependency graphs...</div>
-                    <div className="opacity-80">✓ Generating context bundles...</div>
+                    <div className="opacity-80">✓ Compiling context bundles...</div>
                     <div className="text-green-400">✓ Complete! Context ready in ~9s</div>
                   </div>
                 </div>
@@ -316,7 +316,7 @@ export default function WhyLogicStamp() {
                   solutionInView ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-4'
                 }`}>
                   <p className="text-sm font-medium text-emerald-900 dark:text-emerald-300">
-                    Result: 10+ minutes → 8-10 seconds (usually for mid-sized projects). One command (<code className="text-xs font-mono bg-emerald-200 dark:bg-emerald-900/50 px-1.5 py-0.5 rounded">$ stamp context</code>) generates optimized context.json files with complete dependency graphs. Up to 70% cost savings. AI has complete context of your entire codebase. Happy developer.
+                    Result: 10+ minutes → 8-10 seconds (usually for mid-sized projects). One command (<code className="text-xs font-mono bg-emerald-200 dark:bg-emerald-900/50 px-1.5 py-0.5 rounded">$ stamp context</code>) compiles optimized context.json files with complete dependency graphs. Up to 70% cost savings. AI has complete context of your entire codebase. Happy developer.
                   </p>
                 </div>
               </div>
@@ -415,7 +415,7 @@ export default function WhyLogicStamp() {
                 <div className="flex-1 text-center sm:text-left">
                   <p className="text-base lg:text-xl text-gray-700 dark:text-gray-300">
                     <strong className="text-gray-900 dark:text-white">LogicStamp is your codebase's stamp of approval.</strong>{' '}
-                    One command generates a verified, AI-optimized snapshot of your entire project structure - like an official document stamped and certified for AI consumption.
+                    One command compiles a verified, AI-optimized snapshot of your entire project structure - like an official document stamped and certified for AI consumption.
                   </p>
                 </div>
               </div>

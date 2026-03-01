@@ -1,6 +1,8 @@
 # Schema Reference
 
-Complete schema reference for all LogicStamp data structures. All schemas are versioned and validated to ensure compatibility.
+LogicStamp compiles TypeScript source code into a structured intermediate representation (IR) — deterministic architectural contracts that describe your system's interfaces, dependencies, and composition.
+
+This document covers all LogicStamp data structures. All schemas are versioned and validated to ensure compatibility.
 
 ## Schema Versions
 
@@ -640,7 +642,24 @@ See [hashes.md](./hashes.md) for detailed information about hash computation.
 
 ## Validation
 
-All schemas can be validated using `stamp context validate`:
+### Runtime Validation
+
+LogicStamp performs **automatic runtime validation** when loading sidecar `.uif.json` contract files using [AJV](https://ajv.js.org/). This ensures that:
+
+- Malformed or corrupted contract files are caught immediately
+- Outdated contracts (wrong `schemaVersion`) are rejected
+- Unexpected fields are detected (schema uses `additionalProperties: false`)
+- Type mismatches are reported with clear error messages
+
+Invalid contracts return `null` from `loadContract()` with detailed errors logged via `debugError()`. Enable debug logging to see validation errors:
+
+```bash
+LOGICSTAMP_DEBUG=1 stamp context
+```
+
+### CLI Validation
+
+All schemas can also be validated explicitly using `stamp context validate`:
 
 ```bash
 # Validate all context files (multi-file mode)
