@@ -78,7 +78,7 @@ export default function Hero() {
               }`}
             >
               <p className="text-xl xl:text-2xl leading-relaxed text-gray-600 dark:text-gray-300 font-medium text-left">
-                Deterministic architectural context from your TypeScript codebase - structured component contracts for AI assistants.{' '}
+              The Context Compiler for TypeScript. Deterministic architectural contracts with strict diffs and AST-level guarantees.{' '}
                 <span className="text-secondary-700 dark:text-secondary-300 font-semibold">One-time setup, up to 70% token savings.</span>
               </p>
               <p className="mt-4 text-base xl:text-lg text-gray-500 dark:text-gray-400 text-left">
@@ -266,7 +266,7 @@ export default function Hero() {
             }`}
           >
             <p className="mt-8 text-xl lg:text-2xl leading-relaxed text-gray-600 dark:text-gray-300 font-medium max-w-4xl mx-auto">
-              Deterministic architectural context from your TypeScript codebase - structured component contracts for AI assistants.{' '}
+            The Context Compiler for TypeScript. Deterministic architectural contracts with strict diffs and AST-level guarantees.{' '}
               <span className="text-secondary-700 dark:text-secondary-300 font-semibold">One-time setup, up to 70% token savings.</span>
             </p>
             <p className="mt-4 text-base lg:text-lg text-gray-500 dark:text-gray-400">

@@ -43,7 +43,7 @@ export default function LogicStampContextDocsPage() {
               </div>
               
               <p className="text-base sm:text-lg text-gray-600 dark:text-gray-400 mb-4 sm:mb-6 leading-relaxed">
-                Initialize LogicStamp in your project and generate your first context bundle.
+                Initialize LogicStamp in your project and compile your first context bundle.
               </p>
 
               <Link
@@ -75,7 +75,7 @@ export default function LogicStampContextDocsPage() {
               Core Commands
             </h2>
             <p className="text-gray-600 dark:text-gray-400 mb-4">
-              Essential commands for generating and managing AI-ready context bundles.
+              Essential commands for compiling and managing AI-ready context bundles.
             </p>
             <div className="grid sm:grid-cols-2 gap-4">
               <Link
@@ -91,7 +91,7 @@ export default function LogicStampContextDocsPage() {
                   </svg>
                 </div>
                 <p className="text-sm text-gray-600 dark:text-gray-400">
-                  Generate AI-ready context bundles from your TypeScript codebase. The primary command for context generation.
+                  Compile AI-ready context bundles from your TypeScript codebase. The primary command for context compilation.
                 </p>
               </Link>
 

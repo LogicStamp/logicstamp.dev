@@ -6,7 +6,7 @@ import DocsLayout from '@/components/docs/DocsLayout'
 
 export const metadata: Metadata = {
   title: 'Documentation | LogicStamp Context',
-  description: 'Open-source CLI for generating AI-ready context from TypeScript codebases. CI-friendly, zero prompts, built-in token optimization.',
+  description: 'The Context Compiler for TypeScript. Compile AI-ready context from your codebase. CI-friendly, zero prompts, built-in token optimization.',
 }
 
 export default function DocsHomePage() {
@@ -33,13 +33,13 @@ export default function DocsHomePage() {
               </h1>
               
               <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-gray-600 dark:text-gray-400 leading-relaxed max-w-3xl">
-                Open-source CLI for generating AI-ready context from TypeScript codebases. CI-friendly, zero prompts, built-in token optimization.
+                The Context Compiler for TypeScript. Compile AI-ready context from your codebase. CI-friendly, zero prompts, built-in token optimization.
               </p>
 
               {/* Technical Note */}
               <div className="mt-4 sm:mt-6 p-3 sm:p-4 bg-amber-50/50 dark:bg-amber-950/20 border-l-4 border-amber-500 dark:border-amber-400 rounded-r-lg">
                 <p className="text-xs sm:text-sm text-gray-700 dark:text-gray-300">
-                  <span className="font-semibold text-amber-900 dark:text-amber-200">TypeScript-only analysis:</span> LogicStamp Context currently analyzes <code className="px-1 bg-gray-100 dark:bg-gray-800 rounded font-mono text-[0.7rem]">.ts</code> and <code className="px-1 bg-gray-100 dark:bg-gray-800 rounded font-mono text-[0.7rem]">.tsx</code> files. JavaScript <code className="px-1 bg-gray-100 dark:bg-gray-800 rounded font-mono text-[0.7rem]">.js</code> and <code className="px-1 bg-gray-100 dark:bg-gray-800 rounded font-mono text-[0.7rem]">.jsx</code> files are not analyzed yet, so JS components will not appear in generated context bundles.
+                  <span className="font-semibold text-amber-900 dark:text-amber-200">TypeScript-only compilation:</span> LogicStamp Context currently compiles <code className="px-1 bg-gray-100 dark:bg-gray-800 rounded font-mono text-[0.7rem]">.ts</code> and <code className="px-1 bg-gray-100 dark:bg-gray-800 rounded font-mono text-[0.7rem]">.tsx</code> files. JavaScript <code className="px-1 bg-gray-100 dark:bg-gray-800 rounded font-mono text-[0.7rem]">.js</code> and <code className="px-1 bg-gray-100 dark:bg-gray-800 rounded font-mono text-[0.7rem]">.jsx</code> files are not compiled yet, so JS components will not appear in context bundles.
                 </p>
               </div>
 

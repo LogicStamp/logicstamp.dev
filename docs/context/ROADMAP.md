@@ -4,6 +4,13 @@ This roadmap outlines the planned features, improvements, and known limitations 
 
 ## Recent Achievements
 
+## v0.6.1 (March 2026)
+- ✅ **Module export completeness** – Context CLI modules are now consistently exported via the barrel file with explicit public API boundaries.
+- ✅ **Extractor refactoring for maintainability** – Flattened nested error handling in `propExtractor` and introduced focused helper extraction functions.
+- ✅ **Expanded failure-mode and edge-case coverage** – Added tests for AST edge cases, watch-mode error paths, and circular dependency scenarios.
+- ✅ **Improved CI and coverage signal quality** – Excluded non-executable barrel files from coverage metrics and optimized sharded test execution.
+- ✅ **Security report awareness in context output** – `stamp context` now shows accurate messaging based on security report status: verified clean, secrets sanitized, or scan skipped (prompting `stamp init` or `stamp security`).
+
 ## v0.6.0 (February 2026)
 - ✅ **Runtime schema validation (AJV-enforced)** – `.uif.json` contracts are now validated during load. Invalid, malformed, or outdated contracts are rejected with capped, structured error reporting (max 20 errors).
 - ✅ **Fail-closed contract loading** – If the schema fails to load, contracts are rejected instead of silently bypassing validation.
@@ -710,7 +717,7 @@ We welcome contributions! If you'd like to work on any of these roadmap items:
 
 For detailed release notes and changes, see [CHANGELOG.md](CHANGELOG.md).
 
-**Current Version:** v0.6.0 (Beta)
+**Current Version:** v0.6.1 (Beta)
 
 **Status:** Actively developed - we're working on improving accuracy and expanding feature coverage based on user feedback.
 

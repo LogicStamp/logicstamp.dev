@@ -8,7 +8,7 @@ import ReadyToGetStartedCard from '@/components/docs/ReadyToGetStartedCard'
 export const metadata: Metadata = {
   title: 'What is LogicStamp? | Documentation',
   description:
-    'LogicStamp Context generates deterministic architectural context, explicit component contracts, and dependency graphs for AI workflows from TypeScript codebases.',
+    'LogicStamp Context compiles deterministic architectural contracts, explicit component interfaces, and dependency graphs for AI workflows from TypeScript codebases.',
 }
 
 export default function WhatIsLogicStampPage() {
@@ -22,7 +22,7 @@ export default function WhatIsLogicStampPage() {
               What is LogicStamp?
             </h1>
             <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-gray-600 dark:text-gray-400 mb-8 max-w-3xl leading-relaxed">
-              LogicStamp Context is a compiler-like static analyzer that generates deterministic architectural context, explicit component contracts, and dependency graphs for AI workflows from your TypeScript codebase.
+              LogicStamp Context is a context compiler that compiles deterministic architectural contracts, explicit component interfaces, and dependency graphs for AI workflows from your TypeScript codebase.
               Zero configuration. Install and run.
             </p>
           </div>
@@ -39,7 +39,7 @@ export default function WhatIsLogicStampPage() {
               </p>
               <div className="bg-blue-50 dark:bg-blue-950/20 border-l-4 border-blue-500 p-4 rounded-r-lg">
                 <p className="text-sm text-gray-700 dark:text-gray-300">
-                  <span className="font-semibold text-blue-900 dark:text-blue-200">Solution:</span> LogicStamp scans your codebase and generates{' '}
+                  <span className="font-semibold text-blue-900 dark:text-blue-200">Solution:</span> LogicStamp compiles your codebase into{' '}
                   <code className="px-1.5 py-0.5 bg-blue-100 dark:bg-blue-900/40 rounded text-xs font-mono">context.json</code> files with component contracts, dependencies, and relationships—optimized for AI workflows.
                 </p>
               </div>
@@ -51,7 +51,7 @@ export default function WhatIsLogicStampPage() {
             <div className="mb-12">
               <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white mb-4">How It Works</h2>
               <p className="text-sm sm:text-base text-gray-600 dark:text-gray-400 mb-6">
-                LogicStamp Context is a <span className="font-semibold text-gray-900 dark:text-white">compiler-like static analyzer</span> that extracts deterministic architectural contracts from your TypeScript source code. It generates an <span className="font-semibold text-gray-900 dark:text-white">architectural blueprint</span> of your codebase:
+                LogicStamp Context is <span className="font-semibold text-gray-900 dark:text-white">The Context Compiler for TypeScript</span> that compiles deterministic architectural contracts from your source code using the TypeScript compiler API (via ts-morph). It produces an <span className="font-semibold text-gray-900 dark:text-white">architectural blueprint</span> of your codebase:
               </p>
               <ul className="space-y-2 text-sm sm:text-base text-gray-600 dark:text-gray-400 mb-6">
                 <li>• <strong>Component contracts</strong> - Props, hooks, and interfaces</li>
@@ -68,9 +68,9 @@ export default function WhatIsLogicStampPage() {
           {/* What LogicStamp Generates Section */}
           <AnimatedSection direction="up" delay={175}>
             <div className="mb-12">
-              <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white mb-4">What LogicStamp Generates</h2>
+              <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white mb-4">What LogicStamp Compiles</h2>
               <p className="text-sm sm:text-base text-gray-600 dark:text-gray-400 mb-6">
-                LogicStamp generates <strong>deterministic contracts</strong> that describe a component's API without implementation noise:
+                LogicStamp compiles <strong>deterministic contracts</strong> that describe a component's API without implementation noise:
               </p>
               
               <div className="mb-6">
@@ -132,7 +132,7 @@ export default function WhatIsLogicStampPage() {
             <div className="mb-12">
               <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white mb-4">Key Features</h2>
               <ul className="space-y-3 text-sm sm:text-base text-gray-600 dark:text-gray-400 mb-6">
-                <li>• <strong>Context generation</strong> - Component contracts, dependencies, and type signatures</li>
+                <li>• <strong>Context compilation</strong> - Component contracts, dependencies, and type signatures</li>
                 <li>• <strong>Style metadata</strong> - Extract Tailwind, SCSS, Material UI patterns (optional)</li>
                 <li>• <strong>Token optimization</strong> - Save up to ~70% tokens vs full source</li>
                 <li>• <strong>Watch mode</strong> - Auto-regenerate as you code</li>

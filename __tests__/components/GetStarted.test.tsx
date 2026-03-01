@@ -36,7 +36,7 @@ describe('GetStarted Component', () => {
     render(<GetStarted />)
 
     expect(
-      screen.getByText(/generate AI-ready context from your codebase/i)
+      screen.getByText(/compile AI-ready context from your codebase/i)
     ).toBeInTheDocument()
   })
 

@@ -53,7 +53,7 @@ export default function MCPBestPracticesPage() {
                 <div className="p-4 bg-green-50 dark:bg-green-950/20 border-l-4 border-green-500 rounded-r-lg">
                   <h3 className="font-semibold text-gray-900 dark:text-white mb-2">✓ Always start with refresh_snapshot</h3>
                   <p className="text-sm text-gray-600 dark:text-gray-400">
-                    Don't assume context files exist. Always call <code className="px-1.5 py-0.5 bg-green-100 dark:bg-green-900/40 rounded font-mono text-xs">logicstamp_refresh_snapshot</code> first to generate fresh context files and get a snapshotId.
+                    Don't assume context files exist. Always call <code className="px-1.5 py-0.5 bg-green-100 dark:bg-green-900/40 rounded font-mono text-xs">logicstamp_refresh_snapshot</code> first to compile fresh context files and get a snapshotId.
                   </p>
                 </div>
 
