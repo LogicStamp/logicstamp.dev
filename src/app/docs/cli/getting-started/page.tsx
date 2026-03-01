@@ -22,7 +22,7 @@ export default function QuickStartPage() {
               CLI Getting Started
             </h1>
             <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-gray-600 dark:text-gray-400 mb-8 max-w-3xl leading-relaxed">
-              Install LogicStamp Context CLI and generate AI-ready context for your TypeScript projects.
+            Install the LogicStamp Context CLI to compile your TypeScript codebase into deterministic architectural contracts and dependency graphs.
             </p>
 
             {/* Quick stats */}
