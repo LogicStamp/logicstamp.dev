@@ -111,12 +111,12 @@ export default function QuickStartPage() {
           </div>
         </AnimatedSection>
 
-        {/* Initialize (Optional) */}
+        {/* Initialize (Recommended) */}
         <AnimatedSection direction="up" delay={300}>
           <div className="mb-12">
             <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white mb-2">
               Initialize Your Project
-              <span className="ml-2 text-sm font-normal px-2 py-1 bg-gray-100 dark:bg-gray-800 text-gray-500 dark:text-gray-400 rounded-full">Optional</span>
+              <span className="ml-2 text-sm font-normal px-2 py-1 bg-blue-100 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300 rounded-full">Recommended</span>
             </h2>
             <p className="text-sm sm:text-base text-gray-600 dark:text-gray-400 mb-4">
               Set up <code className="px-1.5 py-0.5 bg-gray-100 dark:bg-gray-800 rounded text-xs">.gitignore</code> patterns and <code className="px-1.5 py-0.5 bg-gray-100 dark:bg-gray-800 rounded text-xs">LLM_CONTEXT.md</code>. If you skip this step, <code className="px-1.5 py-0.5 bg-gray-100 dark:bg-gray-800 rounded text-xs">stamp context</code> uses safe defaults (CI-friendly, never prompts).

@@ -137,6 +137,26 @@ export default function GettingStartedPage() {
                   ]}
                 />
                 <p className="text-sm text-gray-600 dark:text-gray-400 mt-4 mb-3">
+                  Initialize your project (recommended):
+                </p>
+                <TabbedCodeBlock
+                  tabs={[
+                    {
+                      label: 'Initialize',
+                      code: 'stamp init',
+                      copyText: 'stamp init'
+                    },
+                    {
+                      label: 'CI-Friendly',
+                      code: 'stamp init --yes',
+                      copyText: 'stamp init --yes'
+                    }
+                  ]}
+                />
+                <p className="text-xs text-gray-500 dark:text-gray-500 mt-2 mb-3">
+                  Sets up <code className="px-1 py-0.5 bg-gray-100 dark:bg-gray-800 rounded">.gitignore</code> patterns, runs security scan, and creates <code className="px-1 py-0.5 bg-gray-100 dark:bg-gray-800 rounded">LLM_CONTEXT.md</code>. You can skip this and go straight to generating context.
+                </p>
+                <p className="text-sm text-gray-600 dark:text-gray-400 mt-4 mb-3">
                   Then compile context:
                 </p>
                 <TabbedCodeBlock

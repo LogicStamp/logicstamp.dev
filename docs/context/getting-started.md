@@ -146,7 +146,7 @@ LogicStamp Context generates structured JSON bundles:
 
 ### Development Workflow
 ```bash
-# Initialize project
+# Initialize project (recommended)
 stamp init
 
 # Start watch mode (auto-regenerates on changes)
