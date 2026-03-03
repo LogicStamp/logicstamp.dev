@@ -110,9 +110,23 @@ export default function BetaPage() {
                 </div>
                 <div className="space-y-4 text-gray-700 dark:text-gray-300">
                   <div>
-                    <p className="font-bold mb-2">v0.7.0 (Current - Beta)</p>
+                    <p className="font-bold mb-2">v0.7.0 (Current) - 2026-03-03</p>
                     <ul className="list-disc list-inside space-y-1 ml-2">
-                      <li>Lean style mode default - Reduced style metadata verbosity for nested components when using <code className="text-sm bg-gray-100 dark:bg-gray-800 px-1 py-0.5 rounded">depth=2</code>, maintaining full detail for entry components</li>
+                      <li><strong>⚠️ Breaking Changes:</strong> Default <code className="text-sm bg-gray-100 dark:bg-gray-800 px-1 py-0.5 rounded">stamp context style</code> output is now <code className="text-sm bg-gray-100 dark:bg-gray-800 px-1 py-0.5 rounded">--style-mode lean</code> - Previously emitted full style metadata by default. Now defaults to lean output for smaller, faster bundles. Use <code className="text-sm bg-gray-100 dark:bg-gray-800 px-1 py-0.5 rounded">--style-mode full</code> to restore previous behavior</li>
+                      <li><strong>Improved:</strong> Context module barrel exports - Added missing <code className="text-sm bg-gray-100 dark:bg-gray-800 px-1 py-0.5 rounded">watchMode</code> and <code className="text-sm bg-gray-100 dark:bg-gray-800 px-1 py-0.5 rounded">watchDiff</code> exports. All context command modules now explicitly exported via barrel file</li>
+                      <li><strong>Improved:</strong> Refactored propExtractor structure - Flattened deeply nested try-catch blocks using <code className="text-sm bg-gray-100 dark:bg-gray-800 px-1 py-0.5 rounded">safeExtract()</code> helper pattern. Extracted focused helper functions for improved readability and maintainability</li>
+                      <li><strong>Improved:</strong> Expanded failure-mode coverage - Added tests covering AST parser edge cases, watch mode error handling paths, and circular dependency pack scenarios</li>
+                      <li><strong>Improved:</strong> Security report awareness - Added <code className="text-sm bg-gray-100 dark:bg-gray-800 px-1 py-0.5 rounded">securityReportLoaded</code> to <code className="text-sm bg-gray-100 dark:bg-gray-800 px-1 py-0.5 rounded">SanitizeStats</code>. Updated messaging to warn when no security report is found</li>
+                      <li><strong>Improved:</strong> Enhanced extraction and error-path test coverage - Added sanitization tests, expanded manifest handling tests, improved component/event extraction edge-case coverage</li>
+                      <li><strong>Improved:</strong> Incremental watch style cache optimization - <code className="text-sm bg-gray-100 dark:bg-gray-800 px-1 py-0.5 rounded">incrementalRebuild</code> now reuses cached style metadata when available. Automatically extracts and caches style metadata when missing. Added defensive error handling for style extraction failures</li>
+                      <li><strong>Improved:</strong> Error logging for style extraction failures - Style extraction failures in watch mode now log errors via <code className="text-sm bg-gray-100 dark:bg-gray-800 px-1 py-0.5 rounded">debugError()</code> when <code className="text-sm bg-gray-100 dark:bg-gray-800 px-1 py-0.5 rounded">LOGICSTAMP_DEBUG=1</code> is set</li>
+                      <li><strong>Improved:</strong> Watch status file includes <code className="text-sm bg-gray-100 dark:bg-gray-800 px-1 py-0.5 rounded">strictWatch</code> field - Added boolean field to indicate whether strict watch mode is enabled. MCP servers can now detect if watch mode is running with <code className="text-sm bg-gray-100 dark:bg-gray-800 px-1 py-0.5 rounded">--strict-watch</code></li>
+                      <li><strong>Fixed:</strong> Schema validation for lean style mode - Updated JSON schema to support both <code className="text-sm bg-gray-100 dark:bg-gray-800 px-1 py-0.5 rounded">lean</code> and <code className="text-sm bg-gray-100 dark:bg-gray-800 px-1 py-0.5 rounded">full</code> style mode variants. Schema was missing lean mode fields which would cause validation failures</li>
+                      <li><strong>Fixed:</strong> Stale lock removal consistency in <code className="text-sm bg-gray-100 dark:bg-gray-800 px-1 py-0.5 rounded">fileLock</code> - Added delay after stale lock removal to improve filesystem consistency and Windows reliability</li>
+                      <li><strong>Chore:</strong> CI and Vitest configuration refinement - Excluded barrel files from coverage reporting, optimized CI matrix and enabled sharded test execution</li>
+                      <li><strong>Tests:</strong> Windows stale-lock handling, Vue Extractor coverage expansion, watch mode test suite refactor, coverage expansion & metrics visibility (Statements: 88%, Branches: 77.21%, Functions: 93.9%, Lines: 88.19%)</li>
+                      <li><strong>Documentation:</strong> Reframed LogicStamp as the &quot;Context Compiler for TypeScript&quot; - Updated README positioning and terminology. Complete documentation terminology sync across all markdown files. Documented <code className="text-sm bg-gray-100 dark:bg-gray-800 px-1 py-0.5 rounded">--style-mode</code> behavior and defaults</li>
+                      <li><strong>Refactor:</strong> Adopted &quot;Context Compiler&quot; terminology across CLI and documentation - Replaced &quot;context generation&quot; with &quot;context compilation&quot; across the codebase</li>
                     </ul>
                   </div>
                   <div>
@@ -129,54 +143,20 @@ export default function BetaPage() {
                     </ul>
                   </div>
                   <div>
-                    <p className="font-bold mb-2">v0.5.5 (February 2026)</p>
-                    <ul className="list-disc list-inside space-y-1 ml-2">
-                      <li>State-based strict watch diffing - Strict watch mode now compares current state vs the original baseline (like <code className="text-sm bg-gray-100 dark:bg-gray-800 px-1 py-0.5 rounded">git diff</code>), not cumulative history. Violations reflect current drift only and are automatically cleared when changes are reverted</li>
-                      <li>Removed missing dependencies from strict watch violations - Third-party packages are no longer treated as breaking changes in strict watch mode</li>
-                      <li>Watch mode cleanup on exit (Windows/Cursor reliability) - Signal handlers register at watch startup, watch status paths resolve to absolute paths, synchronous cleanup runs on <code className="text-sm bg-gray-100 dark:bg-gray-800 px-1 py-0.5 rounded">process.on(&apos;exit&apos;)</code>, and MCP tools remove stale status files when PID validation fails</li>
-                      <li>Watch mode revert correctness - If <code className="text-sm bg-gray-100 dark:bg-gray-800 px-1 py-0.5 rounded">pack()</code> fails during incremental rebuild, bundles/contracts/manifest now revert consistently</li>
-                      <li>Resilient glob pattern failure handling - <code className="text-sm bg-gray-100 dark:bg-gray-800 px-1 py-0.5 rounded">globFiles()</code> now continues across pattern failures, returns partial results when possible</li>
-                      <li>Config read/write race condition (TOCTOU) fixed - Added lightweight file locking using exclusive lockfiles + PID tracking</li>
-                      <li>Atomic writes to prevent crash corruption - Config + status writes now use temp-file + rename pattern</li>
-                    </ul>
-                  </div>
-                  <div>
-                    <p className="font-bold mb-2">v0.5.4 (February 2026)</p>
-                    <ul className="list-disc list-inside space-y-1 ml-2">
-                      <li>Graceful shutdown on process exit - Introduced a centralized cleanup registry so watchers/status files are reliably cleaned up on errors and signals (SIGINT/SIGTERM/SIGHUP)</li>
-                      <li>Token comparison fails loudly when all bundles fail - Added <code className="text-sm bg-gray-100 dark:bg-gray-800 px-1 py-0.5 rounded">checkBundleResults()</code> to detect complete failure for <code className="text-sm bg-gray-100 dark:bg-gray-800 px-1 py-0.5 rounded">--compare-modes</code></li>
-                      <li>Improved debug logging for unresolved dependencies</li>
-                      <li>Reduced duplicated error handling in config writes</li>
-                    </ul>
-                  </div>
-                  <div>
-                    <p className="font-bold mb-2">v0.5.3 (February 2026)</p>
-                    <ul className="list-disc list-inside space-y-1 ml-2">
-                      <li>Bug fixes - Fixed JSON schema validation (removed incorrect required fields), race condition in sanitization stats, memory leak in global caches, and Windows path separator bug in dependency resolution</li>
-                      <li>Performance improvements - O(n²) to O(n) in dependency collection (replaced <code className="text-sm bg-gray-100 dark:bg-gray-800 px-1 py-0.5 rounded">array.shift()</code> with index-based iteration), eliminated redundant file reads in token estimation via caching</li>
-                      <li>Type safety - Replaced unsafe <code className="text-sm bg-gray-100 dark:bg-gray-800 px-1 py-0.5 rounded">as any</code> casts with proper ts-morph type guards across 10+ files</li>
-                    </ul>
-                  </div>
-                  <div>
-                    <p className="font-bold mb-2">v0.5.2 (February 2026)</p>
-                    <ul className="list-disc list-inside space-y-1 ml-2">
-                      <li>JSON Schema completeness - Added missing fields to JSON schema (<code className="text-sm bg-gray-100 dark:bg-gray-800 px-1 py-0.5 rounded">nextjs</code>, <code className="text-sm bg-gray-100 dark:bg-gray-800 px-1 py-0.5 rounded">antd</code>, <code className="text-sm bg-gray-100 dark:bg-gray-800 px-1 py-0.5 rounded">chakraUI</code>, <code className="text-sm bg-gray-100 dark:bg-gray-800 px-1 py-0.5 rounded">shadcnUI</code>, <code className="text-sm bg-gray-100 dark:bg-gray-800 px-1 py-0.5 rounded">radixUI</code>) that were causing IDE validation errors</li>
-                    </ul>
-                  </div>
-                  <div>
-                    <p className="font-bold mb-2">v0.5.1 (February 2026)</p>
-                    <ul className="list-disc list-inside space-y-1 ml-2">
-                      <li>Chakra UI support - Complete style metadata extraction for Chakra UI components</li>
-                      <li>Ant Design support - Complete style metadata extraction for Ant Design components</li>
-                    </ul>
-                  </div>
-                  <div>
                     <p className="font-bold mb-2">v0.5.0 (January 2026)</p>
                     <ul className="list-disc list-inside space-y-1 ml-2">
                       <li>Strict watch mode (<code className="text-sm bg-gray-100 dark:bg-gray-800 px-1 py-0.5 rounded">--strict-watch</code>) - Track breaking changes and violations during watch mode. Automatically detects breaking changes when files are modified (removed props, events, state, functions, variables; changed prop types; removed contracts; missing dependencies). Real-time violation reporting with cumulative tracking across watch sessions. Writes structured JSON violation reports and provides CI-friendly exit codes</li>
                       <li>Schema improvements - Renamed fields for clarity: <code className="text-sm bg-gray-100 dark:bg-gray-800 px-1 py-0.5 rounded">MissingDependency.version</code> → <code className="text-sm bg-gray-100 dark:bg-gray-800 px-1 py-0.5 rounded">packageVersion</code>, <code className="text-sm bg-gray-100 dark:bg-gray-800 px-1 py-0.5 rounded">UIFContract.version</code> → <code className="text-sm bg-gray-100 dark:bg-gray-800 px-1 py-0.5 rounded">composition</code>, <code className="text-sm bg-gray-100 dark:bg-gray-800 px-1 py-0.5 rounded">UIFContract.logicSignature</code> → <code className="text-sm bg-gray-100 dark:bg-gray-800 px-1 py-0.5 rounded">interface</code>. These changes improve clarity and avoid confusion between component composition and version numbers</li>
                       <li>Performance optimizations - O(1) dependency collection lookups and missing dependency tracking. Replaced O(n) linear searches with Map-based and Set-based lookups for significantly improved performance on large projects</li>
                       <li>Watch mode improvements - Fixed race condition in watch mode using Promise-based locking. Fixed silent error swallowing in compare handler</li>
+                    </ul>
+                  </div>
+                  <div>
+                    <p className="font-bold mb-2">v0.5.1-0.5.5 (February 2026)</p>
+                    <ul className="list-disc list-inside space-y-1 ml-2">
+                      <li>v0.5.1: Chakra UI and Ant Design support - Complete style metadata extraction for Chakra UI and Ant Design components</li>
+                      <li>v0.5.5: State-based strict watch diffing - Strict watch mode now compares current state vs baseline (like <code className="text-sm bg-gray-100 dark:bg-gray-800 px-1 py-0.5 rounded">git diff</code>), not cumulative history. Violations reflect current drift only and are automatically cleared when changes are reverted</li>
+                      <li>Additional improvements: Watch mode cleanup reliability, bug fixes, performance improvements, JSON schema completeness, type safety enhancements</li>
                     </ul>
                   </div>
                   <div>
@@ -192,54 +172,12 @@ export default function BetaPage() {
                     </ul>
                   </div>
                   <div>
-                    <p className="font-bold mb-2">v0.3.10 (January 2026)</p>
-                    <ul className="list-disc list-inside space-y-1 ml-2">
-                      <li>Advanced Next.js App Router features - Enhanced Next.js metadata extraction with route roles, segment paths, and metadata exports. Automatically detects route roles (<code className="text-sm bg-gray-100 dark:bg-gray-800 px-1 py-0.5 rounded">page</code>, <code className="text-sm bg-gray-100 dark:bg-gray-800 px-1 py-0.5 rounded">layout</code>, <code className="text-sm bg-gray-100 dark:bg-gray-800 px-1 py-0.5 rounded">loading</code>, <code className="text-sm bg-gray-100 dark:bg-gray-800 px-1 py-0.5 rounded">error</code>, etc.), extracts segment paths from file structure, and parses both static and dynamic metadata exports</li>
-                    </ul>
-                  </div>
-                  <div>
-                    <p className="font-bold mb-2">v0.3.9 (January 2026)</p>
-                    <ul className="list-disc list-inside space-y-1 ml-2">
-                      <li>Dynamic Tailwind class parsing (Phase 1) - Enhanced Tailwind CSS extractor to resolve dynamic class expressions within template literals. Resolves const/let variables, object properties, and conditional expressions. Handles ~70-80% of common dynamic class patterns</li>
-                    </ul>
-                  </div>
-                  <div>
-                    <p className="font-bold mb-2">v0.3.8 (January 2026)</p>
-                    <ul className="list-disc list-inside space-y-1 ml-2">
-                      <li>Enhanced third-party component info (Phase 1) - Missing dependencies now include package names and versions for third-party packages. Package name extraction handles scoped packages and subpath imports. Version lookup reads from package.json with caching for efficiency</li>
-                    </ul>
-                  </div>
-                  <div>
-                    <p className="font-bold mb-2">v0.3.7 (January 2026)</p>
-                    <ul className="list-disc list-inside space-y-1 ml-2">
-                      <li>Emit detection accuracy - Fixed issue where internal event handlers were incorrectly listed as component emits. Now only includes handlers that are part of the component&apos;s public API (props)</li>
-                    </ul>
-                  </div>
-                  <div>
-                    <p className="font-bold mb-2">v0.3.6 (January 2026)</p>
-                    <ul className="list-disc list-inside space-y-1 ml-2">
-                      <li>Hook parameter detection - Comprehensive support for extracting function signatures from custom React hooks</li>
-                      <li>Default depth changed from 1 to 2 for better nested component signature extraction</li>
-                    </ul>
-                  </div>
-                  <div>
-                    <p className="font-bold mb-2">v0.3.5 (January 2026)</p>
-                    <ul className="list-disc list-inside space-y-1 ml-2">
-                      <li>Styled JSX support with full CSS extraction</li>
-                      <li>Enhanced inline style extraction</li>
-                    </ul>
-                  </div>
-                  <div>
-                    <p className="font-bold mb-2">v0.3.4 (January 2026)</p>
-                    <ul className="list-disc list-inside space-y-1 ml-2">
-                      <li>Vue.js TypeScript/TSX support - Comprehensive Vue 3 Composition API support</li>
-                    </ul>
-                  </div>
-                  <div>
                     <p className="font-bold mb-2">Earlier Releases</p>
                     <ul className="list-disc list-inside space-y-1 ml-2">
                       <li>MCP Server Integration - Available now! <a href="/docs/mcp" className="text-green-600 dark:text-green-400 hover:underline font-semibold">Get started</a></li>
-                      <li>Style metadata extraction (Tailwind, SCSS, Material UI, ShadCN, Radix UI, Framer Motion)</li>
+                      <li>Style metadata extraction (Tailwind, SCSS, Material UI, ShadCN, Radix UI, Framer Motion, Chakra UI, Ant Design)</li>
+                      <li>Dynamic Tailwind class parsing (Phase 1) - Enhanced Tailwind CSS extractor to resolve dynamic class expressions</li>
+                      <li>Vue.js TypeScript/TSX support - Comprehensive Vue 3 Composition API support</li>
                       <li>Security scanning and secret sanitization</li>
                       <li>TOON output format</li>
                     </ul>
