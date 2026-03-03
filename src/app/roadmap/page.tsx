@@ -110,7 +110,13 @@ export default function BetaPage() {
                 </div>
                 <div className="space-y-4 text-gray-700 dark:text-gray-300">
                   <div>
-                    <p className="font-bold mb-2">v0.6.0 (Current)</p>
+                    <p className="font-bold mb-2">v0.7.0 (Current - Beta)</p>
+                    <ul className="list-disc list-inside space-y-1 ml-2">
+                      <li>Lean style mode default - Reduced style metadata verbosity for nested components when using <code className="text-sm bg-gray-100 dark:bg-gray-800 px-1 py-0.5 rounded">depth=2</code>, maintaining full detail for entry components</li>
+                    </ul>
+                  </div>
+                  <div>
+                    <p className="font-bold mb-2">v0.6.0</p>
                     <ul className="list-disc list-inside space-y-1 ml-2">
                       <li>Runtime schema validation (AJV-enforced) - <code className="text-sm bg-gray-100 dark:bg-gray-800 px-1 py-0.5 rounded">.uif.json</code> contracts are now validated during load. Invalid, malformed, or outdated contracts are rejected with capped, structured error reporting (max 20 errors)</li>
                       <li>Fail-closed contract loading - If the schema fails to load, contracts are rejected instead of silently bypassing validation</li>
@@ -258,8 +264,29 @@ export default function BetaPage() {
                 <div className="space-y-6">
                   <div className="flex items-start gap-4">
                     <div className="flex-shrink-0 pt-1">
+                      <div className="w-8 h-8 bg-green-100 dark:bg-green-900/30 rounded-lg flex items-center justify-center">
+                        <span className="text-green-600 dark:text-green-400 font-bold">✓</span>
+                      </div>
+                    </div>
+                    <div className="flex-1">
+                      <h4 className="text-lg font-bold text-gray-900 dark:text-white mb-2">
+                        Emit Detection Accuracy
+                      </h4>
+                      <p className="text-gray-600 dark:text-gray-400 leading-relaxed">
+                        <span className="text-green-600 dark:text-green-400 font-semibold">✅ Fixed in v0.3.7</span> - Emit detection now correctly distinguishes between internal handlers and component public API emits. Only handlers that are part of the component&apos;s Props interface/type are included in the emits object.
+                      </p>
+                      <div className="mt-2">
+                        <span className="px-3 py-1 bg-green-100 dark:bg-green-900/30 text-green-600 dark:text-green-400 rounded-full text-sm font-semibold">✅ Fixed in v0.3.7</span>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="border-t border-gray-200 dark:border-gray-700"></div>
+
+                  <div className="flex items-start gap-4">
+                    <div className="flex-shrink-0 pt-1">
                       <div className="w-8 h-8 bg-red-100 dark:bg-red-900/30 rounded-lg flex items-center justify-center">
-                        <span className="text-red-600 dark:text-red-400 font-bold">1</span>
+                        <span className="text-red-600 dark:text-red-400 font-bold">2</span>
                       </div>
                     </div>
                     <div className="flex-1">
@@ -267,7 +294,7 @@ export default function BetaPage() {
                         Dynamic Class Parsing (Phase 2)
                       </h4>
                       <p className="text-gray-600 dark:text-gray-400 leading-relaxed">
-                        Resolve advanced variable-based classes within template literals. <span className="text-green-600 dark:text-green-400 font-semibold">Phase 1 complete (v0.3.9)</span> - handles const/let variables, object properties, and conditional expressions (~70-80% of patterns). Phase 2 will handle object lookups with variables, cross-file references, and function calls returning class strings (~15-20% of edge cases).
+                        Resolve advanced variable-based classes within template literals. <span className="text-green-600 dark:text-green-400 font-semibold">Phase 1 complete (v0.3.9)</span> - handles const/let variables, object properties, and conditional expressions (~70-80% of patterns). Phase 2 will handle object lookups with variables, cross-file references, and function calls returning class strings (~15-20% of edge cases). Estimated effort: 8+ hours.
                       </p>
                       <div className="mt-2">
                         <span className="px-3 py-1 bg-yellow-100 dark:bg-yellow-900/30 text-yellow-600 dark:text-yellow-400 rounded-full text-sm font-semibold">🟡 Phase 1 Complete, Phase 2 Planned</span>
@@ -294,20 +321,19 @@ export default function BetaPage() {
                 <div className="space-y-6">
                   <div className="flex items-start gap-4">
                     <div className="flex-shrink-0 pt-1">
-                      <div className="w-8 h-8 bg-blue-100 dark:bg-blue-900/30 rounded-lg flex items-center justify-center">
-                        <span className="text-blue-600 dark:text-blue-400 font-bold">1</span>
+                      <div className="w-8 h-8 bg-green-100 dark:bg-green-900/30 rounded-lg flex items-center justify-center">
+                        <span className="text-green-600 dark:text-green-400 font-bold">✓</span>
                       </div>
                     </div>
                     <div className="flex-1">
                       <h4 className="text-lg font-bold text-gray-900 dark:text-white mb-2">
-                        JavaScript & JSX Support
+                        Backend Framework Support
                       </h4>
                       <p className="text-gray-600 dark:text-gray-400 leading-relaxed">
-                        Add support for JavaScript (<code className="text-sm bg-gray-100 dark:bg-gray-800 px-1 py-0.5 rounded">.js</code>) and JSX (<code className="text-sm bg-gray-100 dark:bg-gray-800 px-1 py-0.5 rounded">.jsx</code>) files in addition to TypeScript. Support JSDoc type annotations for type inference.
+                        <span className="text-green-600 dark:text-green-400 font-semibold">✅ Complete in v0.4.0</span> - Comprehensive support for Node.js backend frameworks (Express.js, NestJS). Extracts API routes, HTTP methods, route parameters, request/response types, and framework-specific metadata. Introduces new <code className="text-sm bg-gray-100 dark:bg-gray-800 px-1 py-0.5 rounded">node:api</code> contract kind.
                       </p>
                       <div className="mt-2">
-                        <span className="px-3 py-1 bg-blue-100 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 rounded-full text-sm font-semibold">🔴 Not Started</span>
-                        <span className="ml-2 px-3 py-1 bg-purple-100 dark:bg-purple-900/30 text-purple-600 dark:text-purple-400 rounded-full text-sm font-semibold">High Priority</span>
+                        <span className="px-3 py-1 bg-green-100 dark:bg-green-900/30 text-green-600 dark:text-green-400 rounded-full text-sm font-semibold">✅ Complete (v0.4.0)</span>
                       </div>
                     </div>
                   </div>
@@ -322,13 +348,13 @@ export default function BetaPage() {
                     </div>
                     <div className="flex-1">
                       <h4 className="text-lg font-bold text-gray-900 dark:text-white mb-2">
-                        Complete Vue.js Support
+                        JavaScript & JSX Support
                       </h4>
                       <p className="text-gray-600 dark:text-gray-400 leading-relaxed">
-                        Add full support for Vue Single File Components (<code className="text-sm bg-gray-100 dark:bg-gray-800 px-1 py-0.5 rounded">.vue</code> files). Parse template, script, and style blocks. Support both Options API and Composition API.
+                        Add support for JavaScript (<code className="text-sm bg-gray-100 dark:bg-gray-800 px-1 py-0.5 rounded">.js</code>) and JSX (<code className="text-sm bg-gray-100 dark:bg-gray-800 px-1 py-0.5 rounded">.jsx</code>) files in addition to TypeScript. Extend AST parser to handle JavaScript syntax, support JSDoc type annotations for type inference, and handle JavaScript-specific patterns (CommonJS, ES modules).
                       </p>
                       <div className="mt-2">
-                        <span className="px-3 py-1 bg-yellow-100 dark:bg-yellow-900/30 text-yellow-600 dark:text-yellow-400 rounded-full text-sm font-semibold">🟡 Partially Complete</span>
+                        <span className="px-3 py-1 bg-red-100 dark:bg-red-900/30 text-red-600 dark:text-red-400 rounded-full text-sm font-semibold">🔴 Not Started</span>
                         <span className="ml-2 px-3 py-1 bg-purple-100 dark:bg-purple-900/30 text-purple-600 dark:text-purple-400 rounded-full text-sm font-semibold">High Priority</span>
                       </div>
                     </div>
@@ -339,7 +365,7 @@ export default function BetaPage() {
                   <div className="flex items-start gap-4">
                     <div className="flex-shrink-0 pt-1">
                       <div className="w-8 h-8 bg-green-100 dark:bg-green-900/30 rounded-lg flex items-center justify-center">
-                        <span className="text-green-600 dark:text-green-400 font-bold">3</span>
+                        <span className="text-green-600 dark:text-green-400 font-bold">✓</span>
                       </div>
                     </div>
                     <div className="flex-1">
@@ -347,10 +373,32 @@ export default function BetaPage() {
                         Watch Mode
                       </h4>
                       <p className="text-gray-600 dark:text-gray-400 leading-relaxed">
-                        Automatic context regeneration when source files change. Incremental rebuilds only regenerate affected bundles. Change detection shows what changed (props, hooks, state). Debouncing batches rapid changes. Status files for tooling integration.
+                        <span className="text-green-600 dark:text-green-400 font-semibold">✅ Complete (v0.4.1)</span> - Automatic context regeneration when source files change. Incremental rebuilds only regenerate affected bundles. Change detection shows what changed (props, hooks, state, events, components, functions). Debouncing (500ms) batches rapid changes. Status files for tooling integration. Strict watch mode available for breaking change detection.
                       </p>
                       <div className="mt-2">
                         <span className="px-3 py-1 bg-green-100 dark:bg-green-900/30 text-green-600 dark:text-green-400 rounded-full text-sm font-semibold">✅ Complete (v0.4.1)</span>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="border-t border-gray-200 dark:border-gray-700"></div>
+
+                  <div className="flex items-start gap-4">
+                    <div className="flex-shrink-0 pt-1">
+                      <div className="w-8 h-8 bg-blue-100 dark:bg-blue-900/30 rounded-lg flex items-center justify-center">
+                        <span className="text-blue-600 dark:text-blue-400 font-bold">4</span>
+                      </div>
+                    </div>
+                    <div className="flex-1">
+                      <h4 className="text-lg font-bold text-gray-900 dark:text-white mb-2">
+                        Complete Vue.js Support
+                      </h4>
+                      <p className="text-gray-600 dark:text-gray-400 leading-relaxed">
+                        Add full support for Vue Single File Components (<code className="text-sm bg-gray-100 dark:bg-gray-800 px-1 py-0.5 rounded">.vue</code> files). Parse template, script, and style blocks. Extract template syntax (directives, bindings, slots), script setup and composition API usage, and scoped styles/CSS modules. Support both Options API and Composition API.
+                      </p>
+                      <div className="mt-2">
+                        <span className="px-3 py-1 bg-yellow-100 dark:bg-yellow-900/30 text-yellow-600 dark:text-yellow-400 rounded-full text-sm font-semibold">🟡 Partially Complete</span>
+                        <span className="ml-2 px-3 py-1 bg-purple-100 dark:bg-purple-900/30 text-purple-600 dark:text-purple-400 rounded-full text-sm font-semibold">High Priority</span>
                       </div>
                     </div>
                   </div>
@@ -402,14 +450,14 @@ export default function BetaPage() {
                     </div>
                     <div className="flex-1">
                       <h4 className="text-lg font-bold text-gray-900 dark:text-white mb-2">
-                        Git Baseline Support
+                        Git Baseline for Compare
                       </h4>
                       <p className="text-gray-600 dark:text-gray-400 leading-relaxed">
-                        Enable comparison against git commits/branches using <code className="text-sm bg-gray-100 dark:bg-gray-800 px-1 py-0.5 rounded">baseline: "git:&lt;ref&gt;"</code> syntax. This enables CI/CD integration and better change tracking.
+                        Add git-based baseline support for context comparison, enabling meaningful drift detection against known reference points. Supports <code className="text-sm bg-gray-100 dark:bg-gray-800 px-1 py-0.5 rounded">--baseline git:HEAD</code>, <code className="text-sm bg-gray-100 dark:bg-gray-800 px-1 py-0.5 rounded">git:main</code>, or any git ref. Uses git worktree for clean isolation. Enables CI integration and <code className="text-sm bg-gray-100 dark:bg-gray-800 px-1 py-0.5 rounded">--fail-on-breaking</code> flag for contract drift detection.
                       </p>
                       <div className="mt-2">
                         <span className="px-3 py-1 bg-red-100 dark:bg-red-900/30 text-red-600 dark:text-red-400 rounded-full text-sm font-semibold">🔴 Not Started</span>
-                        <span className="ml-2 px-3 py-1 bg-blue-100 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 rounded-full text-sm font-semibold">Medium Priority</span>
+                        <span className="ml-2 px-3 py-1 bg-purple-100 dark:bg-purple-900/30 text-purple-600 dark:text-purple-400 rounded-full text-sm font-semibold">High Priority</span>
                       </div>
                     </div>
                   </div>
@@ -474,29 +522,86 @@ export default function BetaPage() {
                     Medium Priority Improvements
                   </h3>
                 </div>
-                <div className="space-y-4 text-gray-600 dark:text-gray-400">
-                  <div className="flex items-start gap-3">
-                    <span className="text-green-600 dark:text-green-400 font-bold">✓</span>
-                    <div>
-                      <span className="font-semibold text-gray-900 dark:text-white">CSS-in-JS Support Completeness</span> - <span className="text-green-600 dark:text-green-400">Complete (v0.5.1)</span> - Added Chakra UI and Ant Design support, completing coverage for all 9 major CSS-in-JS libraries
+                <div className="space-y-6">
+                  <div className="flex items-start gap-4">
+                    <div className="flex-shrink-0 pt-1">
+                      <div className="w-8 h-8 bg-green-100 dark:bg-green-900/30 rounded-lg flex items-center justify-center">
+                        <span className="text-green-600 dark:text-green-400 font-bold">✓</span>
+                      </div>
+                    </div>
+                    <div className="flex-1">
+                      <h4 className="text-lg font-bold text-gray-900 dark:text-white mb-2">
+                        CSS-in-JS Support Completeness
+                      </h4>
+                      <p className="text-gray-600 dark:text-gray-400 leading-relaxed">
+                        <span className="text-green-600 dark:text-green-400 font-semibold">✅ Complete in v0.5.1</span> - All major CSS-in-JS libraries now supported: styled-components, Emotion, Material UI, ShadCN/UI, Radix UI, Framer Motion, Styled JSX, Chakra UI, and Ant Design.
+                      </p>
+                      <div className="mt-2">
+                        <span className="px-3 py-1 bg-green-100 dark:bg-green-900/30 text-green-600 dark:text-green-400 rounded-full text-sm font-semibold">✅ Complete (v0.5.1)</span>
+                      </div>
                     </div>
                   </div>
-                  <div className="flex items-start gap-3">
-                    <span className="text-purple-600 dark:text-purple-400 font-bold">•</span>
-                    <div>
-                      <span className="font-semibold text-gray-900 dark:text-white">Enhanced Third-Party Component Info (Phase 2)</span> - Extract prop types from TypeScript declaration files. <span className="text-green-600 dark:text-green-400">Phase 1 complete (v0.3.8)</span> - Package names and versions now included
+
+                  <div className="border-t border-gray-200 dark:border-gray-700"></div>
+
+                  <div className="flex items-start gap-4">
+                    <div className="flex-shrink-0 pt-1">
+                      <div className="w-8 h-8 bg-yellow-100 dark:bg-yellow-900/30 rounded-lg flex items-center justify-center">
+                        <span className="text-yellow-600 dark:text-yellow-400 font-bold">2</span>
+                      </div>
+                    </div>
+                    <div className="flex-1">
+                      <h4 className="text-lg font-bold text-gray-900 dark:text-white mb-2">
+                        Enhanced Third-Party Component Info (Phase 2)
+                      </h4>
+                      <p className="text-gray-600 dark:text-gray-400 leading-relaxed">
+                        <span className="text-green-600 dark:text-green-400 font-semibold">Phase 1 complete (v0.3.8)</span> - Package names and versions now included. Phase 2 will extract prop types from TypeScript declaration files (<code className="text-sm bg-gray-100 dark:bg-gray-800 px-1 py-0.5 rounded">.d.ts</code>) in <code className="text-sm bg-gray-100 dark:bg-gray-800 px-1 py-0.5 rounded">node_modules</code>, handle different package structures and re-exports, and support generic types and type aliases.
+                      </p>
+                      <div className="mt-2">
+                        <span className="px-3 py-1 bg-yellow-100 dark:bg-yellow-900/30 text-yellow-600 dark:text-yellow-400 rounded-full text-sm font-semibold">🟡 Phase 1 Complete, Phase 2 Pending</span>
+                      </div>
                     </div>
                   </div>
-                  <div className="flex items-start gap-3">
-                    <span className="text-purple-600 dark:text-purple-400 font-bold">•</span>
-                    <div>
-                      <span className="font-semibold text-gray-900 dark:text-white">TypeScript Type Extraction</span> - Capture generics and complex unions/intersections
+
+                  <div className="border-t border-gray-200 dark:border-gray-700"></div>
+
+                  <div className="flex items-start gap-4">
+                    <div className="flex-shrink-0 pt-1">
+                      <div className="w-8 h-8 bg-yellow-100 dark:bg-yellow-900/30 rounded-lg flex items-center justify-center">
+                        <span className="text-yellow-600 dark:text-yellow-400 font-bold">3</span>
+                      </div>
+                    </div>
+                    <div className="flex-1">
+                      <h4 className="text-lg font-bold text-gray-900 dark:text-white mb-2">
+                        TypeScript Type Extraction
+                      </h4>
+                      <p className="text-gray-600 dark:text-gray-400 leading-relaxed">
+                        Currently supports basic types, literal unions, and function types. Missing: generics (e.g., <code className="text-sm bg-gray-100 dark:bg-gray-800 px-1 py-0.5 rounded">ListProps&lt;T&gt;</code>), complex unions/intersections, and generic type parameters.
+                      </p>
+                      <div className="mt-2">
+                        <span className="px-3 py-1 bg-yellow-100 dark:bg-yellow-900/30 text-yellow-600 dark:text-yellow-400 rounded-full text-sm font-semibold">🟡 Partially Complete</span>
+                      </div>
                     </div>
                   </div>
-                  <div className="flex items-start gap-3">
-                    <span className="text-purple-600 dark:text-purple-400 font-bold">•</span>
-                    <div>
-                      <span className="font-semibold text-gray-900 dark:text-white">Project-Level Insights</span> - Cross-folder relationships and project-wide statistics
+
+                  <div className="border-t border-gray-200 dark:border-gray-700"></div>
+
+                  <div className="flex items-start gap-4">
+                    <div className="flex-shrink-0 pt-1">
+                      <div className="w-8 h-8 bg-red-100 dark:bg-red-900/30 rounded-lg flex items-center justify-center">
+                        <span className="text-red-600 dark:text-red-400 font-bold">4</span>
+                      </div>
+                    </div>
+                    <div className="flex-1">
+                      <h4 className="text-lg font-bold text-gray-900 dark:text-white mb-2">
+                        Project-Level Insights
+                      </h4>
+                      <p className="text-gray-600 dark:text-gray-400 leading-relaxed">
+                        Add cross-folder relationships and project-wide statistics to <code className="text-sm bg-gray-100 dark:bg-gray-800 px-1 py-0.5 rounded">context_main.json</code>. Planned: cross-folder dependency analysis, project-wide component counts, aggregate style metadata statistics, and architecture pattern detection.
+                      </p>
+                      <div className="mt-2">
+                        <span className="px-3 py-1 bg-red-100 dark:bg-red-900/30 text-red-600 dark:text-red-400 rounded-full text-sm font-semibold">🔴 Not Started</span>
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -516,29 +621,123 @@ export default function BetaPage() {
                     Future Enhancements
                   </h3>
                 </div>
-                <div className="space-y-4">
+                <div className="space-y-6">
                   <div>
-                    <h4 className="font-semibold text-gray-900 dark:text-white mb-2">Performance & Optimization</h4>
-                    <ul className="list-disc list-inside space-y-1 ml-2 text-gray-600 dark:text-gray-400">
-                      <li><span className="text-green-600 dark:text-green-400">✓</span> Incremental bundle caching - <span className="text-green-600 dark:text-green-400">Complete (v0.4.1)</span> - Only regenerates changed bundles in watch mode</li>
-                      <li>Output size optimization - Further reduce token counts while maintaining accuracy</li>
-                    </ul>
+                    <h4 className="font-semibold text-gray-900 dark:text-white mb-3 text-lg">Comparison & Drift Detection</h4>
+                    <div className="space-y-4 ml-2">
+                      <div className="flex items-start gap-3">
+                        <span className="text-red-600 dark:text-red-400 font-bold">•</span>
+                        <div className="text-gray-600 dark:text-gray-400">
+                          <span className="font-semibold text-gray-900 dark:text-white">Git Baseline for Compare</span> - Add git-based baseline support using <code className="text-sm bg-gray-100 dark:bg-gray-800 px-1 py-0.5 rounded">--baseline git:&lt;ref&gt;</code> syntax. Enables CI/CD integration and <code className="text-sm bg-gray-100 dark:bg-gray-800 px-1 py-0.5 rounded">--fail-on-breaking</code> flag for contract drift detection. Uses git worktree for clean isolation.
+                        </div>
+                      </div>
+                    </div>
                   </div>
+
+                  <div className="border-t border-gray-200 dark:border-gray-700"></div>
+
                   <div>
-                    <h4 className="font-semibold text-gray-900 dark:text-white mb-2">Framework Expansion</h4>
-                    <ul className="list-disc list-inside space-y-1 ml-2 text-gray-600 dark:text-gray-400">
-                      <li>Svelte support - Parse <code className="text-sm bg-gray-100 dark:bg-gray-800 px-1 py-0.5 rounded">.svelte</code> files</li>
-                      <li>Python support (experimental) - Expand beyond JavaScript/TypeScript ecosystems</li>
-                      <li>Java support (experimental) - Enterprise Java codebases</li>
-                    </ul>
+                    <h4 className="font-semibold text-gray-900 dark:text-white mb-3 text-lg">Schema & Architecture</h4>
+                    <div className="space-y-4 ml-2">
+                      <div className="flex items-start gap-3">
+                        <span className="text-red-600 dark:text-red-400 font-bold">•</span>
+                        <div className="text-gray-600 dark:text-gray-400">
+                          <span className="font-semibold text-gray-900 dark:text-white">Conditional Schema by Language</span> - <span className="text-purple-600 dark:text-purple-400">Planned for v0.8.x</span> - Make the UIFContract schema conditional based on the <code className="text-sm bg-gray-100 dark:bg-gray-800 px-1 py-0.5 rounded">kind</code> field. Use TypeScript discriminated unions and JSON Schema conditional validation to ensure language-specific fields are only present when relevant. Prerequisite for Python/Java support in v0.9.x.
+                        </div>
+                      </div>
+                    </div>
                   </div>
+
+                  <div className="border-t border-gray-200 dark:border-gray-700"></div>
+
                   <div>
-                    <h4 className="font-semibold text-gray-900 dark:text-white mb-2">Developer Experience</h4>
-                    <ul className="list-disc list-inside space-y-1 ml-2 text-gray-600 dark:text-gray-400">
-                      <li>Integration examples for popular AI assistants</li>
-                      <li>Advanced debugging tools and diagnostics</li>
-                      <li>Custom profile configuration and overrides</li>
-                    </ul>
+                    <h4 className="font-semibold text-gray-900 dark:text-white mb-3 text-lg">Performance & Optimization</h4>
+                    <div className="space-y-4 ml-2">
+                      <div className="flex items-start gap-3">
+                        <span className="text-green-600 dark:text-green-400 font-bold">✓</span>
+                        <div className="text-gray-600 dark:text-gray-400">
+                          <span className="font-semibold text-gray-900 dark:text-white">Incremental bundle caching</span> - <span className="text-green-600 dark:text-green-400">Complete (v0.4.1)</span> - Only regenerates changed bundles in watch mode
+                        </div>
+                      </div>
+                      <div className="flex items-start gap-3">
+                        <span className="text-red-600 dark:text-red-400 font-bold">•</span>
+                        <div className="text-gray-600 dark:text-gray-400">
+                          <span className="font-semibold text-gray-900 dark:text-white">Output size optimization</span> - Further reduce token counts while maintaining accuracy
+                        </div>
+                      </div>
+                      <div className="flex items-start gap-3">
+                        <span className="text-red-600 dark:text-red-400 font-bold">•</span>
+                        <div className="text-gray-600 dark:text-gray-400">
+                          <span className="font-semibold text-gray-900 dark:text-white">Style metadata verbosity reduction</span> - Reduce style extraction verbosity for nested components (depth &gt;= 1) when using <code className="text-sm bg-gray-100 dark:bg-gray-800 px-1 py-0.5 rounded">depth=2</code>. Default behavior reduces Tailwind classes, component library lists, and removes SCSS/CSS details for nested components while preserving full extraction for entry components. Estimated ~30-40% reduction in style metadata tokens.
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="border-t border-gray-200 dark:border-gray-700"></div>
+
+                  <div>
+                    <h4 className="font-semibold text-gray-900 dark:text-white mb-3 text-lg">Framework Expansion</h4>
+                    <div className="space-y-4 ml-2">
+                      <div className="flex items-start gap-3">
+                        <span className="text-red-600 dark:text-red-400 font-bold">•</span>
+                        <div className="text-gray-600 dark:text-gray-400">
+                          <span className="font-semibold text-gray-900 dark:text-white">Svelte Support</span> - Parse <code className="text-sm bg-gray-100 dark:bg-gray-800 px-1 py-0.5 rounded">.svelte</code> files. Extract props, reactive statements, stores, template syntax, bindings, scoped styles, and SvelteKit routing/layouts.
+                        </div>
+                      </div>
+                      <div className="flex items-start gap-3">
+                        <span className="text-red-600 dark:text-red-400 font-bold">•</span>
+                        <div className="text-gray-600 dark:text-gray-400">
+                          <span className="font-semibold text-gray-900 dark:text-white">Python Support</span> - <span className="text-purple-600 dark:text-purple-400">Planned for v0.9.x</span> - Parse Python AST, extract function signatures, classes, modules, type hints, and docstrings. Support FastAPI, Django, Flask. Generate Python-specific contracts with <code className="text-sm bg-gray-100 dark:bg-gray-800 px-1 py-0.5 rounded">python:function</code> or <code className="text-sm bg-gray-100 dark:bg-gray-800 px-1 py-0.5 rounded">python:class</code> kind. Prerequisites: Conditional schema (v0.8.x) and JS/JSX support.
+                        </div>
+                      </div>
+                      <div className="flex items-start gap-3">
+                        <span className="text-red-600 dark:text-red-400 font-bold">•</span>
+                        <div className="text-gray-600 dark:text-gray-400">
+                          <span className="font-semibold text-gray-900 dark:text-white">Java Support</span> - <span className="text-purple-600 dark:text-purple-400">Planned for v0.9.x</span> - Parse Java source files, extract class definitions, methods, interfaces, annotations, and Javadoc. Support Spring Boot and other popular frameworks. Generate Java-specific contracts with <code className="text-sm bg-gray-100 dark:bg-gray-800 px-1 py-0.5 rounded">java:class</code> kind. Prerequisites: Conditional schema (v0.8.x) and JS/JSX support.
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="border-t border-gray-200 dark:border-gray-700"></div>
+
+                  <div>
+                    <h4 className="font-semibold text-gray-900 dark:text-white mb-3 text-lg">Configuration & Extensibility</h4>
+                    <div className="space-y-4 ml-2">
+                      <div className="flex items-start gap-3">
+                        <span className="text-red-600 dark:text-red-400 font-bold">•</span>
+                        <div className="text-gray-600 dark:text-gray-400">
+                          <span className="font-semibold text-gray-900 dark:text-white">Custom profile configuration and overrides</span> - User-defined profiles beyond preset options
+                        </div>
+                      </div>
+                      <div className="flex items-start gap-3">
+                        <span className="text-red-600 dark:text-red-400 font-bold">•</span>
+                        <div className="text-gray-600 dark:text-gray-400">
+                          <span className="font-semibold text-gray-900 dark:text-white">Additional output formats</span> - More format options for different AI workflow patterns
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="border-t border-gray-200 dark:border-gray-700"></div>
+
+                  <div>
+                    <h4 className="font-semibold text-gray-900 dark:text-white mb-3 text-lg">Developer Experience</h4>
+                    <div className="space-y-4 ml-2">
+                      <div className="flex items-start gap-3">
+                        <span className="text-red-600 dark:text-red-400 font-bold">•</span>
+                        <div className="text-gray-600 dark:text-gray-400">
+                          <span className="font-semibold text-gray-900 dark:text-white">Integration examples</span> - Examples for popular AI assistants (Cursor, Claude Desktop, GitHub Copilot Chat)
+                        </div>
+                      </div>
+                      <div className="flex items-start gap-3">
+                        <span className="text-red-600 dark:text-red-400 font-bold">•</span>
+                        <div className="text-gray-600 dark:text-gray-400">
+                          <span className="font-semibold text-gray-900 dark:text-white">Advanced debugging tools</span> - Better diagnostics and troubleshooting capabilities
+                        </div>
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -551,13 +750,18 @@ export default function BetaPage() {
             </p>
             <p className="text-sm text-gray-500 dark:text-gray-400 mt-2">
               For the complete roadmap with detailed implementation plans, see{' '}
-              <a href="https://github.com/LogicStamp/logicstamp-context/blob/main/ROADMAP.md" className="text-blue-600 dark:text-blue-400 hover:underline font-semibold" target="_blank" rel="noopener noreferrer">
-                CLI ROADMAP.md
+              <a href="https://github.com/LogicStamp/logicstamp-context/blob/main/docs/context/ROADMAP.md" className="text-blue-600 dark:text-blue-400 hover:underline font-semibold" target="_blank" rel="noopener noreferrer">
+                Context ROADMAP.md
               </a>
               {' '}and{' '}
               <a href="https://github.com/LogicStamp/logicstamp-mcp/blob/main/docs/mcp/ROADMAP.md" className="text-blue-600 dark:text-blue-400 hover:underline font-semibold" target="_blank" rel="noopener noreferrer">
                 MCP ROADMAP.md
               </a>
+              . For known limitations with code evidence, see{' '}
+              <a href="/docs/logicstamp-context/known-limitations" className="text-blue-600 dark:text-blue-400 hover:underline font-semibold">
+                Known Limitations
+              </a>
+              .
             </p>
             <p className="text-sm text-gray-600 dark:text-gray-300 mt-4 font-medium">
               Looking for contributors! If you're interested in helping build LogicStamp, check out the{' '}

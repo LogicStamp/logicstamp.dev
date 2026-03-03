@@ -13,7 +13,7 @@ stamp context [path] [options]
 
 **Setup:** `stamp context` respects preferences saved in `.logicstamp/config.json` and never prompts. On first run (no config), it defaults to skipping both `.gitignore` and `LLM_CONTEXT.md` setup for CI-friendly behavior. Use [`stamp init`](init.md) to configure these options (non-interactive by default; use `--no-secure` for interactive mode).
 
-**File Exclusion:** `stamp context` respects `.stampignore` and excludes those files from context generation. You'll see how many files were excluded (unless using `--quiet`). Use `stamp ignore <file>` to add files to `.stampignore`. `.stampignore` is completely optional and independent of security scanning. See [stampignore.md](../stampignore.md) for details.
+**File Exclusion:** `stamp context` respects `.stampignore` and excludes those files from context compilation. You'll see how many files were excluded (unless using `--quiet`). Use `stamp ignore <file>` to add files to `.stampignore`. `.stampignore` is completely optional and independent of security scanning. See [stampignore.md](../stampignore.md) for details.
 
 **Secret Sanitization:** If a security report (`stamp_security_report.json`) exists, `stamp context` automatically replaces detected secrets with `"PRIVATE_DATA"` in the generated JSON files. **Your source code files are never modified** - only the generated context files contain sanitized values. See [security-scan.md](security-scan.md) for details.
 
@@ -34,6 +34,7 @@ stamp context [path] [options]
 | `--stats` | | `false` | Emit single-line JSON stats (ideal for CI). When combined with `--compare-modes`, writes `context_compare_modes.json` for MCP integration. |
 | `--compare-modes` | | `false` | Show detailed token comparison table across all modes (none/header/header+style/full) with accurate style metadata impact. When combined with `--stats`, writes `context_compare_modes.json` for MCP (Model Context Protocol) integration. See [compare-modes.md](compare-modes.md) for comprehensive guide. |
 | `--include-style` | | `false` | Extract style metadata (Tailwind, SCSS, Material UI, Ant Design, Chakra UI, animations, layout). |
+| `--style-mode <mode>` | | `lean` | Style output format: `lean` (counts + flags, compact) or `full` (arrays + details, verbose). Default is `lean` for token efficiency. |
 | `--skip-gitignore` | | `false` | Skip `.gitignore` setup (never prompt or modify). |
 | `--quiet` | `-q` | `false` | Suppress verbose output (show only errors). |
 | `--watch` | `-w` | `false` | Watch for file changes and regenerate automatically. |
@@ -165,7 +166,7 @@ stamp context --out ./output/context.json
 
 ## File Exclusion with .stampignore
 
-Files in `.stampignore` are excluded from context generation (no flags needed). You'll see how many files were excluded (unless using `--quiet`). Supports glob patterns and exact file paths.
+Files in `.stampignore` are excluded from context compilation (no flags needed). You'll see how many files were excluded (unless using `--quiet`). Supports glob patterns and exact file paths.
 
 Example `.stampignore`:
 ```json
@@ -354,7 +355,7 @@ For comprehensive watch mode documentation, see [watch.md](watch.md).
 - Use `--max-nodes` to keep bundle size manageable before sharing with LLMs.
 - Run `stamp context validate` after generation to catch schema drift early.
 - Use `stamp context clean` to remove all context artifacts when resetting or switching branches.
-- Use `stamp context style` or `--include-style` to extract visual and layout metadata for design-aware context bundles. See [style.md](style.md) for detailed documentation.
+- Use `stamp context style` or `--include-style` to extract visual and layout metadata for design-aware context bundles. Use `--style-mode lean` (default) for compact output or `--style-mode full` for detailed arrays. See [style.md](style.md) for detailed documentation.
 - Use `--compare-modes` to see accurate token estimates across all modes (none/header/header+style/full) and understand the cost impact of including style metadata.
 - Use `--watch` during development for automatic context regeneration on file changes. See [watch.md](watch.md) for details.
 

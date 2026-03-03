@@ -199,22 +199,99 @@ export default function UIFContractsPage() {
       "tailwind": {
         "categories": {
           "layout": ["flex", "flex-col", "items-center"],
-          "spacing": ["py-4", "px-6", "gap-2"],
-          "colors": ["bg-blue-500", "text-white"],
-          "typography": ["text-lg", "font-semibold"]
+          "spacing": ["py-16", "px-8", "gap-4"],
+          "colors": ["bg-black", "text-white"],
+          "typography": ["text-4xl", "font-semibold"]
         },
         "breakpoints": ["md", "lg"],
-        "classCount": 8
+        "classCount": 15
+      },
+      "motion": {
+        "components": ["div"],
+        "variants": ["fadeIn", "slideUp"],
+        "features": {
+          "gestures": true,
+          "viewportAnimations": true
+        }
+      },
+      "materialUI": {
+        "components": ["Button", "TextField", "Card"],
+        "packages": ["@mui/material"],
+        "features": {
+          "usesTheme": true,
+          "usesSxProp": true,
+          "usesSystemProps": true
+        }
+      },
+      "antd": {
+        "components": ["Button", "Card", "Form", "Input", "Table"],
+        "packages": ["antd", "@ant-design/icons"],
+        "features": {
+          "usesTheme": true,
+          "usesConfigProvider": true,
+          "usesForm": true,
+          "usesLocale": true,
+          "usesIcons": true
+        }
+      },
+      "chakraUI": {
+        "components": ["Button", "Card", "Box", "Stack", "Input"],
+        "packages": ["@chakra-ui/react"],
+        "features": {
+          "usesTheme": true,
+          "usesColorMode": true,
+          "usesResponsiveProps": true,
+          "usesSystemProps": true
+        }
+      },
+      "shadcnUI": {
+        "components": ["Button", "Card", "Dialog"],
+        "variants": {
+          "button": ["default", "outline"],
+          "badge": ["secondary"]
+        },
+        "sizes": ["sm", "lg"],
+        "features": {
+          "usesForm": true,
+          "usesTheme": true,
+          "usesIcons": true,
+          "componentDensity": "medium"
+        }
+      },
+      "radixUI": {
+        "primitives": {
+          "react-dialog": ["Dialog", "DialogTrigger", "DialogContent"],
+          "react-popover": ["Popover", "PopoverTrigger"]
+        },
+        "patterns": {
+          "controlled": ["Dialog"],
+          "portals": 2,
+          "asChild": 1
+        },
+        "accessibility": {
+          "usesFocusManagement": true,
+          "usesModal": true
+        },
+        "features": {
+          "primitiveCount": 5,
+          "compositionDepth": "moderate"
+        }
       }
     },
     "layout": {
       "type": "flex",
-      "hasHeroPattern": false
+      "hasHeroPattern": true
     },
     "visual": {
-      "colors": ["bg-blue-500", "text-white"],
-      "spacing": ["py-4", "px-6"],
-      "radius": "md"
+      "colors": ["bg-black", "text-white"],
+      "spacing": ["py-16", "px-8"],
+      "radius": "xl",
+      "typography": ["text-4xl", "font-semibold"]
+    },
+    "animation": {
+      "library": "framer-motion",
+      "type": "fade-in",
+      "trigger": "inView"
     }
   },
   "semanticHash": "uif:1a27d0944bbaaf561ee05a01",
