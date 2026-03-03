@@ -128,6 +128,16 @@ export default function QuickStartPage() {
               </p>
             </div>
 
+            <div className="bg-gray-50 dark:bg-gray-800/50 rounded-lg p-4 mb-4 border border-gray-200 dark:border-gray-700">
+              <p className="text-sm font-semibold text-gray-900 dark:text-white mb-2">What <code className="px-1.5 py-0.5 bg-gray-100 dark:bg-gray-800 rounded text-xs">stamp init</code> does:</p>
+              <ul className="space-y-1 text-sm text-gray-600 dark:text-gray-400 list-disc list-inside">
+                <li>Sets up <code className="px-1 bg-gray-100 dark:bg-gray-800 rounded text-xs">.gitignore</code> patterns for generated files</li>
+                <li>Runs security scan for secrets (API keys, passwords, tokens)</li>
+                <li>Generates <code className="px-1 bg-gray-100 dark:bg-gray-800 rounded text-xs">LLM_CONTEXT.md</code> guide</li>
+                <li>Creates <code className="px-1 bg-gray-100 dark:bg-gray-800 rounded text-xs">.logicstamp/config.json</code> for preferences</li>
+              </ul>
+            </div>
+
             <TabbedCodeBlock
               tabs={[
                 {
@@ -204,9 +214,18 @@ export default function QuickStartPage() {
                 <span><code className="px-1.5 py-0.5 bg-gray-100 dark:bg-gray-800 rounded text-xs">context.json</code> files in each folder with component contracts</span>
               </li>
             </ul>
-            <p className="text-sm text-gray-500 dark:text-gray-500">
+            <p className="text-sm text-gray-500 dark:text-gray-500 mb-4">
               These files describe your components' props, hooks, dependencies, and relationships—optimized for AI consumption.
             </p>
+            <div className="bg-gray-50 dark:bg-gray-800/50 rounded-lg p-4 border border-gray-200 dark:border-gray-700">
+              <p className="text-xs font-mono text-gray-600 dark:text-gray-400 whitespace-pre-wrap overflow-x-auto">{`your-project/
+├── context_main.json          # Main index
+├── context.json               # Root folder bundles
+├── src/
+│   └── context.json          # Bundles from src/
+└── src/components/
+    └── context.json          # Bundles from src/components/`}</p>
+            </div>
           </div>
         </AnimatedSection>
 
@@ -269,6 +288,161 @@ export default function QuickStartPage() {
                       label: 'Custom Output',
                       code: 'stamp context --output ./ai-context',
                       copyText: 'stamp context --output ./ai-context'
+                    },
+                    {
+                      label: 'Profiles',
+                      code: 'stamp context --profile llm-safe',
+                      copyText: 'stamp context --profile llm-safe'
+                    },
+                    {
+                      label: 'Depth Control',
+                      code: 'stamp context --depth 1',
+                      copyText: 'stamp context --depth 1'
+                    }
+                  ]}
+                />
+                <p className="text-xs text-gray-500 dark:text-gray-500 mt-3">
+                  Profiles: <code className="px-1 bg-gray-100 dark:bg-gray-800 rounded">llm-chat</code> (default), <code className="px-1 bg-gray-100 dark:bg-gray-800 rounded">llm-safe</code> (30 nodes max), <code className="px-1 bg-gray-100 dark:bg-gray-800 rounded">ci-strict</code> (contracts only)
+                </p>
+              </div>
+            </div>
+          </div>
+        </AnimatedSection>
+
+        {/* Common Tasks */}
+        <AnimatedSection direction="up" delay={650}>
+          <div className="mb-12">
+            <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white mb-6">Common Tasks</h2>
+            
+            <div className="grid sm:grid-cols-2 gap-6">
+              {/* Exclude Files */}
+              <div className="border border-gray-200 dark:border-gray-800 rounded-lg p-6">
+                <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">
+                  Exclude Files
+                </h3>
+                <p className="text-sm text-gray-600 dark:text-gray-400 mb-4">
+                  Add files to <code className="px-1.5 py-0.5 bg-gray-100 dark:bg-gray-800 rounded text-xs">.stampignore</code>:
+                </p>
+                <TabbedCodeBlock
+                  tabs={[
+                    {
+                      label: 'Single File',
+                      code: 'stamp ignore src/secrets.ts',
+                      copyText: 'stamp ignore src/secrets.ts'
+                    },
+                    {
+                      label: 'Glob Pattern',
+                      code: 'stamp ignore "**/secrets.ts"',
+                      copyText: 'stamp ignore "**/secrets.ts"'
+                    }
+                  ]}
+                />
+              </div>
+
+              {/* Validate Context */}
+              <div className="border border-gray-200 dark:border-gray-800 rounded-lg p-6">
+                <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">
+                  Validate Context
+                </h3>
+                <p className="text-sm text-gray-600 dark:text-gray-400 mb-4">
+                  Check context files for errors:
+                </p>
+                <TabbedCodeBlock
+                  tabs={[
+                    {
+                      label: 'Validate All',
+                      code: 'stamp context validate',
+                      copyText: 'stamp context validate'
+                    },
+                    {
+                      label: 'Specific File',
+                      code: 'stamp context validate context_main.json',
+                      copyText: 'stamp context validate context_main.json'
+                    }
+                  ]}
+                />
+              </div>
+
+              {/* Compare Context */}
+              <div className="border border-gray-200 dark:border-gray-800 rounded-lg p-6">
+                <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">
+                  Compare Context
+                </h3>
+                <p className="text-sm text-gray-600 dark:text-gray-400 mb-4">
+                  Detect changes (drift detection):
+                </p>
+                <TabbedCodeBlock
+                  tabs={[
+                    {
+                      label: 'Compare',
+                      code: 'stamp context compare',
+                      copyText: 'stamp context compare'
+                    },
+                    {
+                      label: 'Approve Changes',
+                      code: 'stamp context compare --approve',
+                      copyText: 'stamp context compare --approve'
+                    }
+                  ]}
+                />
+              </div>
+
+              {/* Security Scan */}
+              <div className="border border-gray-200 dark:border-gray-800 rounded-lg p-6">
+                <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">
+                  Security Scan
+                </h3>
+                <p className="text-sm text-gray-600 dark:text-gray-400 mb-4">
+                  Scan for secrets in your codebase:
+                </p>
+                <TabbedCodeBlock
+                  tabs={[
+                    {
+                      label: 'Run Scan',
+                      code: 'stamp security scan',
+                      copyText: 'stamp security scan'
+                    }
+                  ]}
+                />
+                <p className="text-xs text-gray-500 dark:text-gray-500 mt-3">
+                  Context generation automatically sanitizes detected secrets.
+                </p>
+              </div>
+            </div>
+          </div>
+        </AnimatedSection>
+
+        {/* Common Workflows */}
+        <AnimatedSection direction="up" delay={700}>
+          <div className="mb-12">
+            <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white mb-6">Common Workflows</h2>
+            
+            <div className="space-y-4">
+              <div className="border border-gray-200 dark:border-gray-800 rounded-lg p-6">
+                <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">
+                  Development Workflow
+                </h3>
+                <TabbedCodeBlock
+                  tabs={[
+                    {
+                      label: 'Setup',
+                      code: 'stamp init\nstamp context --watch',
+                      copyText: 'stamp init\nstamp context --watch'
+                    }
+                  ]}
+                />
+              </div>
+
+              <div className="border border-gray-200 dark:border-gray-800 rounded-lg p-6">
+                <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">
+                  CI/CD Workflow
+                </h3>
+                <TabbedCodeBlock
+                  tabs={[
+                    {
+                      label: 'CI',
+                      code: 'stamp context --profile ci-strict --strict-missing\nstamp context validate',
+                      copyText: 'stamp context --profile ci-strict --strict-missing\nstamp context validate'
                     }
                   ]}
                 />
@@ -277,8 +451,81 @@ export default function QuickStartPage() {
           </div>
         </AnimatedSection>
 
+        {/* Troubleshooting */}
+        <AnimatedSection direction="up" delay={750}>
+          <div className="mb-12">
+            <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white mb-4">Troubleshooting</h2>
+            
+            <div className="space-y-4">
+              <div className="border-l-4 border-blue-500 bg-blue-50/50 dark:bg-blue-950/20 p-4 rounded-r-lg">
+                <p className="text-sm font-semibold text-gray-900 dark:text-white mb-1">Context files not generating?</p>
+                <p className="text-sm text-gray-600 dark:text-gray-400">
+                  Check Node.js version (requires &gt;= 20), verify TypeScript files exist, or run with <code className="px-1 bg-gray-100 dark:bg-gray-800 rounded text-xs">LOGICSTAMP_DEBUG=1</code> for detailed logs.
+                </p>
+              </div>
+
+              <div className="border-l-4 border-amber-500 bg-amber-50/50 dark:bg-amber-950/20 p-4 rounded-r-lg">
+                <p className="text-sm font-semibold text-gray-900 dark:text-white mb-1">Large bundle sizes?</p>
+                <p className="text-sm text-gray-600 dark:text-gray-400">
+                  Reduce depth with <code className="px-1 bg-gray-100 dark:bg-gray-800 rounded text-xs">--depth 1</code>, use <code className="px-1 bg-gray-100 dark:bg-gray-800 rounded text-xs">--profile llm-safe</code>, or exclude files with <code className="px-1 bg-gray-100 dark:bg-gray-800 rounded text-xs">.stampignore</code>.
+                </p>
+              </div>
+
+              <div className="border-l-4 border-purple-500 bg-purple-50/50 dark:bg-purple-950/20 p-4 rounded-r-lg">
+                <p className="text-sm font-semibold text-gray-900 dark:text-white mb-1">Missing dependencies?</p>
+                <p className="text-sm text-gray-600 dark:text-gray-400">
+                  External packages (React, lodash) are expected. Use <code className="px-1 bg-gray-100 dark:bg-gray-800 rounded text-xs">--strict-missing</code> in CI to catch unexpected missing dependencies.
+                </p>
+              </div>
+            </div>
+          </div>
+        </AnimatedSection>
+
+        {/* Quick Reference */}
+        <AnimatedSection direction="up" delay={800}>
+          <div className="mb-12">
+            <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white mb-4">Quick Reference</h2>
+            <div className="bg-gray-50 dark:bg-gray-800/50 rounded-lg p-6 border border-gray-200 dark:border-gray-700">
+              <div className="grid sm:grid-cols-2 gap-4 text-sm font-mono">
+                <div>
+                  <p className="text-gray-500 dark:text-gray-400 mb-2">Installation</p>
+                  <p className="text-gray-900 dark:text-white">npm install -g logicstamp-context</p>
+                </div>
+                <div>
+                  <p className="text-gray-500 dark:text-gray-400 mb-2">Initialize</p>
+                  <p className="text-gray-900 dark:text-white">stamp init</p>
+                </div>
+                <div>
+                  <p className="text-gray-500 dark:text-gray-400 mb-2">Generate Context</p>
+                  <p className="text-gray-900 dark:text-white">stamp context</p>
+                </div>
+                <div>
+                  <p className="text-gray-500 dark:text-gray-400 mb-2">Watch Mode</p>
+                  <p className="text-gray-900 dark:text-white">stamp context --watch</p>
+                </div>
+                <div>
+                  <p className="text-gray-500 dark:text-gray-400 mb-2">With Style</p>
+                  <p className="text-gray-900 dark:text-white">stamp context style</p>
+                </div>
+                <div>
+                  <p className="text-gray-500 dark:text-gray-400 mb-2">Validate</p>
+                  <p className="text-gray-900 dark:text-white">stamp context validate</p>
+                </div>
+                <div>
+                  <p className="text-gray-500 dark:text-gray-400 mb-2">Compare</p>
+                  <p className="text-gray-900 dark:text-white">stamp context compare</p>
+                </div>
+                <div>
+                  <p className="text-gray-500 dark:text-gray-400 mb-2">Exclude Files</p>
+                  <p className="text-gray-900 dark:text-white">stamp ignore &lt;file&gt;</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </AnimatedSection>
+
         {/* Learn More */}
-        <AnimatedSection direction="up" delay={700}>
+        <AnimatedSection direction="up" delay={850}>
           <div className="border-t border-gray-200 dark:border-gray-800 pt-8">
             <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white mb-4">Learn More</h2>
             <div className="grid sm:grid-cols-2 gap-4">
@@ -311,7 +558,7 @@ export default function QuickStartPage() {
             href: '/docs/guides',
             label: 'Guides & Playbooks',
           }}
-          delay={700}
+          delay={850}
         />
       </DocsLayout>
       <Footer />

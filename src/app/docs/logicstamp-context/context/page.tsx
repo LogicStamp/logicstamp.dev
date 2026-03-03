@@ -256,7 +256,7 @@ export default function ContextCommandPage() {
                         <td className="px-2 sm:px-6 py-4 whitespace-nowrap">
                           <code className="px-1.5 py-0.5 bg-blue-100 dark:bg-blue-900/40 text-blue-900 dark:text-blue-100 rounded text-xs font-mono">llm-chat</code>
                         </td>
-                        <td className="px-2 sm:px-6 py-4 text-sm text-gray-600 dark:text-gray-400">Preset configuration (<code className="px-1 py-0.5 bg-gray-100 dark:bg-gray-800 rounded text-xs font-mono">llm-chat</code>, <code className="px-1 py-0.5 bg-gray-100 dark:bg-gray-800 rounded text-xs font-mono">llm-safe</code>, <code className="px-1 py-0.5 bg-gray-100 dark:bg-gray-800 rounded text-xs font-mono">ci-strict</code>).</td>
+                        <td className="px-2 sm:px-6 py-4 text-sm text-gray-600 dark:text-gray-400">Preset configuration (<code className="px-1 py-0.5 bg-gray-100 dark:bg-gray-800 rounded text-xs font-mono">llm-chat</code>, <code className="px-1 py-0.5 bg-gray-100 dark:bg-gray-800 rounded text-xs font-mono">llm-safe</code>, <code className="px-1 py-0.5 bg-gray-100 dark:bg-gray-800 rounded text-xs font-mono">ci-strict</code>, <code className="px-1 py-0.5 bg-gray-100 dark:bg-gray-800 rounded text-xs font-mono">watch-fast</code>).</td>
                       </tr>
                       <tr className="hover:bg-gray-50 dark:hover:bg-gray-800/50 transition-colors">
                         <td className="px-2 sm:px-6 py-4 whitespace-nowrap">
@@ -319,7 +319,16 @@ export default function ContextCommandPage() {
                         <td className="px-2 sm:px-6 py-4 whitespace-nowrap">
                           <code className="px-1.5 py-0.5 bg-red-100 dark:bg-red-900/40 text-red-900 dark:text-red-100 rounded text-xs font-mono">false</code>
                         </td>
-                        <td className="px-2 sm:px-6 py-4 text-sm text-gray-600 dark:text-gray-400">Extract style metadata (Tailwind, SCSS, Material UI, animations, layout).</td>
+                        <td className="px-2 sm:px-6 py-4 text-sm text-gray-600 dark:text-gray-400">Extract style metadata (Tailwind, SCSS, Material UI, Ant Design, Chakra UI, animations, layout).</td>
+                      </tr>
+                      <tr className="hover:bg-gray-50 dark:hover:bg-gray-800/50 transition-colors">
+                        <td className="px-2 sm:px-6 py-4 whitespace-nowrap">
+                          <code className="px-2 py-1 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 rounded text-xs sm:text-sm font-mono">--style-mode &lt;mode&gt;</code>
+                        </td>
+                        <td className="px-2 sm:px-6 py-4 whitespace-nowrap">
+                          <code className="px-1.5 py-0.5 bg-blue-100 dark:bg-blue-900/40 text-blue-900 dark:text-blue-100 rounded text-xs font-mono">lean</code>
+                        </td>
+                        <td className="px-2 sm:px-6 py-4 text-sm text-gray-600 dark:text-gray-400">Style output format: <code className="px-1 py-0.5 bg-gray-100 dark:bg-gray-800 rounded text-xs font-mono">lean</code> (counts + flags, compact) or <code className="px-1 py-0.5 bg-gray-100 dark:bg-gray-800 rounded text-xs font-mono">full</code> (arrays + details, verbose). Default is <code className="px-1 py-0.5 bg-gray-100 dark:bg-gray-800 rounded text-xs font-mono">lean</code> for token efficiency.</td>
                       </tr>
                       <tr className="hover:bg-gray-50 dark:hover:bg-gray-800/50 transition-colors">
                         <td className="px-2 sm:px-6 py-4 whitespace-nowrap">
@@ -341,6 +350,42 @@ export default function ContextCommandPage() {
                       </tr>
                       <tr className="hover:bg-gray-50 dark:hover:bg-gray-800/50 transition-colors">
                         <td className="px-2 sm:px-6 py-4 whitespace-nowrap">
+                          <code className="px-2 py-1 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 rounded text-xs sm:text-sm font-mono">--watch</code>
+                        </td>
+                        <td className="px-2 sm:px-6 py-4 whitespace-nowrap">
+                          <code className="px-1.5 py-0.5 bg-red-100 dark:bg-red-900/40 text-red-900 dark:text-red-100 rounded text-xs font-mono">false</code>
+                        </td>
+                        <td className="px-2 sm:px-6 py-4 text-sm text-gray-600 dark:text-gray-400">Watch for file changes and regenerate automatically.</td>
+                      </tr>
+                      <tr className="hover:bg-gray-50 dark:hover:bg-gray-800/50 transition-colors">
+                        <td className="px-2 sm:px-6 py-4 whitespace-nowrap">
+                          <code className="px-2 py-1 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 rounded text-xs sm:text-sm font-mono">--strict-watch</code>
+                        </td>
+                        <td className="px-2 sm:px-6 py-4 whitespace-nowrap">
+                          <code className="px-1.5 py-0.5 bg-red-100 dark:bg-red-900/40 text-red-900 dark:text-red-100 rounded text-xs font-mono">false</code>
+                        </td>
+                        <td className="px-2 sm:px-6 py-4 text-sm text-gray-600 dark:text-gray-400">Enable strict watch mode - track breaking changes and violations during development. Exits with code 1 if errors detected.</td>
+                      </tr>
+                      <tr className="hover:bg-gray-50 dark:hover:bg-gray-800/50 transition-colors">
+                        <td className="px-2 sm:px-6 py-4 whitespace-nowrap">
+                          <code className="px-2 py-1 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 rounded text-xs sm:text-sm font-mono">--debug</code>
+                        </td>
+                        <td className="px-2 sm:px-6 py-4 whitespace-nowrap">
+                          <code className="px-1.5 py-0.5 bg-red-100 dark:bg-red-900/40 text-red-900 dark:text-red-100 rounded text-xs font-mono">false</code>
+                        </td>
+                        <td className="px-2 sm:px-6 py-4 text-sm text-gray-600 dark:text-gray-400">Show detailed hash information in watch mode.</td>
+                      </tr>
+                      <tr className="hover:bg-gray-50 dark:hover:bg-gray-800/50 transition-colors">
+                        <td className="px-2 sm:px-6 py-4 whitespace-nowrap">
+                          <code className="px-2 py-1 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 rounded text-xs sm:text-sm font-mono">--log-file</code>
+                        </td>
+                        <td className="px-2 sm:px-6 py-4 whitespace-nowrap">
+                          <code className="px-1.5 py-0.5 bg-red-100 dark:bg-red-900/40 text-red-900 dark:text-red-100 rounded text-xs font-mono">false</code>
+                        </td>
+                        <td className="px-2 sm:px-6 py-4 text-sm text-gray-600 dark:text-gray-400">Write structured change logs to file (watch mode only, for change notifications).</td>
+                      </tr>
+                      <tr className="hover:bg-gray-50 dark:hover:bg-gray-800/50 transition-colors">
+                        <td className="px-2 sm:px-6 py-4 whitespace-nowrap">
                           <code className="px-2 py-1 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 rounded text-xs sm:text-sm font-mono">--help</code>
                         </td>
                         <td className="px-2 sm:px-6 py-4 whitespace-nowrap">
@@ -350,6 +395,131 @@ export default function ContextCommandPage() {
                       </tr>
                     </tbody>
                   </table>
+                </div>
+              </div>
+            </div>
+          </AnimatedSection>
+
+          {/* Depth Parameter Section */}
+          <AnimatedSection direction="up" delay={375}>
+            <div className="relative mb-8 sm:mb-12 lg:mb-16">
+              <div className="absolute -inset-1 bg-gradient-to-r from-blue-600 to-indigo-600 rounded-2xl blur opacity-20 dark:opacity-10" />
+              <div className="relative bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded-2xl p-4 sm:p-6 lg:p-8 shadow-xl">
+                <div className="flex items-baseline gap-3 mb-4 sm:mb-6">
+                  <div className="p-2 bg-blue-100 dark:bg-blue-900/30 rounded-lg flex-shrink-0 -mt-0.5">
+                    <svg className="w-5 h-5 sm:w-6 sm:h-6 text-blue-600 dark:text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" />
+                    </svg>
+                  </div>
+                  <h2 className="text-xl sm:text-2xl font-bold text-gray-900 dark:text-white m-0">
+                    Depth Parameter
+                  </h2>
+                </div>
+                <p className="text-base sm:text-lg text-gray-600 dark:text-gray-400 mb-4 sm:mb-6 leading-relaxed">
+                  The <code className="px-2 py-1 bg-gray-100 dark:bg-gray-800 text-blue-600 dark:text-blue-400 rounded-md font-mono text-xs sm:text-sm">--depth</code> option controls how many levels deep the dependency graph includes. <strong className="text-gray-900 dark:text-white">The default is <code className="px-1.5 py-0.5 bg-blue-100 dark:bg-blue-900/40 rounded text-xs font-mono">2</code></strong> to ensure proper signature extraction for TypeScript projects.
+                </p>
+                
+                <div className="space-y-4 mb-4">
+                  <div className="p-4 bg-red-50 dark:bg-red-950/20 rounded-xl border border-red-200 dark:border-red-800">
+                    <h3 className="font-semibold text-red-900 dark:text-red-200 mb-2 text-base sm:text-lg">Problem with Depth 1</h3>
+                    <ul className="text-sm text-red-800 dark:text-red-300 space-y-1 ml-4 list-disc">
+                      <li>Only includes direct dependencies (components directly imported/used)</li>
+                      <li><strong className="text-red-900 dark:text-red-200">Missing nested component signatures</strong>: If <code className="px-1 py-0.5 bg-red-100 dark:bg-red-900/40 rounded text-xs font-mono">App</code> uses <code className="px-1 py-0.5 bg-red-100 dark:bg-red-900/40 rounded text-xs font-mono">Hero</code>, and <code className="px-1 py-0.5 bg-red-100 dark:bg-red-900/40 rounded text-xs font-mono">Hero</code> uses <code className="px-1 py-0.5 bg-red-100 dark:bg-red-900/40 rounded text-xs font-mono">Button</code>, depth=1 only includes <code className="px-1 py-0.5 bg-red-100 dark:bg-red-900/40 rounded text-xs font-mono">Hero</code> in the bundle—<code className="px-1 py-0.5 bg-red-100 dark:bg-red-900/40 rounded text-xs font-mono">Button</code>&apos;s contract and signatures are missing</li>
+                      <li>This leads to incomplete signature extraction, making it harder for AI assistants to understand component APIs</li>
+                    </ul>
+                  </div>
+                  
+                  <div className="p-4 bg-green-50 dark:bg-green-950/20 rounded-xl border border-green-200 dark:border-green-800">
+                    <h3 className="font-semibold text-green-900 dark:text-green-200 mb-2 text-base sm:text-lg">Why Depth 2 Works Better</h3>
+                    <ul className="text-sm text-green-800 dark:text-green-300 space-y-1 ml-4 list-disc">
+                      <li>Includes nested components (components used by components)</li>
+                      <li><strong className="text-green-900 dark:text-green-200">Complete signature extraction</strong>: With depth=2, <code className="px-1 py-0.5 bg-green-100 dark:bg-green-900/40 rounded text-xs font-mono">App</code> → <code className="px-1 py-0.5 bg-green-100 dark:bg-green-900/40 rounded text-xs font-mono">Hero</code> → <code className="px-1 py-0.5 bg-green-100 dark:bg-green-900/40 rounded text-xs font-mono">Button</code> all appear in the bundle with their full contracts</li>
+                      <li>Better for React projects with component hierarchies</li>
+                      <li>Still efficient: header mode saves ~70% vs raw source even with depth=2</li>
+                    </ul>
+                  </div>
+                </div>
+
+                <div className="p-4 bg-blue-50 dark:bg-blue-950/20 rounded-lg border border-blue-200 dark:border-blue-800 mb-4">
+                  <h3 className="font-semibold text-blue-900 dark:text-blue-200 mb-2 text-base sm:text-lg">Example</h3>
+                  <TabbedCodeBlock
+                    tabs={[
+                      {
+                        label: 'TypeScript',
+                        code: `// App.tsx
+import { Hero } from './Hero'
+
+export function App() {
+  return <Hero />
+}
+
+// Hero.tsx  
+import { Button } from './Button'
+
+export function Hero() {
+  return <Button>Click me</Button>
+}
+
+// Button.tsx
+export function Button({ onClick, children }: ButtonProps) {
+  return <button onClick={onClick}>{children}</button>
+}`,
+                        copyText: `// App.tsx
+import { Hero } from './Hero'
+
+export function App() {
+  return <Hero />
+}
+
+// Hero.tsx  
+import { Button } from './Button'
+
+export function Hero() {
+  return <Button>Click me</Button>
+}
+
+// Button.tsx
+export function Button({ onClick, children }: ButtonProps) {
+  return <button onClick={onClick}>{children}</button>
+}`
+                      }
+                    ]}
+                  />
+                  <div className="mt-4 space-y-2">
+                    <div className="flex items-start gap-2">
+                      <span className="text-sm font-semibold text-red-600 dark:text-red-400">Depth 1:</span>
+                      <p className="text-sm text-gray-700 dark:text-gray-300">Bundle includes <code className="px-1 py-0.5 bg-gray-100 dark:bg-gray-800 rounded text-xs font-mono">App</code> and <code className="px-1 py-0.5 bg-gray-100 dark:bg-gray-800 rounded text-xs font-mono">Hero</code>, but <code className="px-1 py-0.5 bg-gray-100 dark:bg-gray-800 rounded text-xs font-mono">Button</code> is missing → no <code className="px-1 py-0.5 bg-gray-100 dark:bg-gray-800 rounded text-xs font-mono">Button</code> props/signatures</p>
+                    </div>
+                    <div className="flex items-start gap-2">
+                      <span className="text-sm font-semibold text-green-600 dark:text-green-400">Depth 2:</span>
+                      <p className="text-sm text-gray-700 dark:text-gray-300">Bundle includes <code className="px-1 py-0.5 bg-gray-100 dark:bg-gray-800 rounded text-xs font-mono">App</code>, <code className="px-1 py-0.5 bg-gray-100 dark:bg-gray-800 rounded text-xs font-mono">Hero</code>, and <code className="px-1 py-0.5 bg-gray-100 dark:bg-gray-800 rounded text-xs font-mono">Button</code> → complete component tree with all signatures ✅</p>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="p-4 bg-amber-50 dark:bg-amber-950/20 rounded-lg border border-amber-200 dark:border-amber-800">
+                  <h3 className="font-semibold text-amber-900 dark:text-amber-200 mb-2 text-base sm:text-lg">When to Adjust Depth</h3>
+                  <div className="space-y-3">
+                    <div>
+                      <p className="text-sm font-semibold text-amber-900 dark:text-amber-200 mb-1">Reduce to depth=1 if:</p>
+                      <ul className="text-sm text-amber-800 dark:text-amber-300 ml-4 list-disc space-y-1">
+                        <li>You only need direct dependencies</li>
+                        <li>Bundle size is a concern and you&apos;re hitting <code className="px-1 py-0.5 bg-amber-100 dark:bg-amber-900/40 rounded text-xs font-mono">max-nodes</code> limits</li>
+                        <li>You&apos;re analyzing simple projects without component hierarchies</li>
+                      </ul>
+                    </div>
+                    <div>
+                      <p className="text-sm font-semibold text-amber-900 dark:text-amber-200 mb-1">Increase to depth=3+ if:</p>
+                      <ul className="text-sm text-amber-800 dark:text-amber-300 ml-4 list-disc space-y-1">
+                        <li>You have deeply nested component trees</li>
+                        <li>You need to see dependencies 3+ levels deep</li>
+                        <li>You&apos;re doing comprehensive architecture analysis</li>
+                      </ul>
+                    </div>
+                  </div>
+                  <p className="text-sm text-amber-800 dark:text-amber-300 mt-3">
+                    <strong className="text-amber-900 dark:text-amber-200">Note:</strong> The <code className="px-1 py-0.5 bg-amber-100 dark:bg-amber-900/40 rounded text-xs font-mono">max-nodes</code> limit (default 100) prevents bundles from growing too large. If you hit this limit with depth=2, consider reducing depth or increasing <code className="px-1 py-0.5 bg-amber-100 dark:bg-amber-900/40 rounded text-xs font-mono">max-nodes</code>.
+                  </p>
                 </div>
               </div>
             </div>
@@ -405,7 +575,22 @@ stamp context --out ./output/context.json
 
 # Generate TOON format (compact, AI-optimized)
 stamp context --format toon
-# Creates: context_main.json + context.toon files in each folder`,
+# Creates: context_main.json + context.toon files in each folder
+
+# Watch mode - auto-regenerate on file changes
+stamp context --watch
+
+# Watch with style metadata
+stamp context style --watch
+
+# Watch a specific directory for fast incremental rebuilds
+stamp context ./src/components --watch
+
+# Watch with debug output (shows hash changes)
+stamp context --watch --debug
+
+# Strict watch mode - track breaking changes and violations
+stamp context --watch --strict-watch`,
                     copyText: `# Scan entire repo and write context files (defaults)
 stamp context
 # Creates: context_main.json + context.json files in each folder
@@ -445,10 +630,107 @@ stamp context --out ./output/context.json
 
 # Generate TOON format (compact, AI-optimized)
 stamp context --format toon
-# Creates: context_main.json + context.toon files in each folder`
+# Creates: context_main.json + context.toon files in each folder
+
+# Watch mode - auto-regenerate on file changes
+stamp context --watch
+
+# Watch with style metadata
+stamp context style --watch
+
+# Watch a specific directory for fast incremental rebuilds
+stamp context ./src/components --watch
+
+# Watch with debug output (shows hash changes)
+stamp context --watch --debug
+
+# Strict watch mode - track breaking changes and violations
+stamp context --watch --strict-watch`
                   }
                 ]}
               />
+              </div>
+            </div>
+          </AnimatedSection>
+
+          {/* Watch Mode Section */}
+          <AnimatedSection direction="up" delay={412}>
+            <div className="relative mb-8 sm:mb-12 lg:mb-16">
+              <div className="absolute -inset-1 bg-gradient-to-r from-purple-600 to-pink-600 rounded-2xl blur opacity-20 dark:opacity-10" />
+              <div className="relative bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded-2xl p-4 sm:p-6 lg:p-8 shadow-xl">
+                <div className="flex items-baseline gap-3 mb-4 sm:mb-6">
+                  <div className="p-2 bg-purple-100 dark:bg-purple-900/30 rounded-lg flex-shrink-0 -mt-0.5">
+                    <svg className="w-5 h-5 sm:w-6 sm:h-6 text-purple-600 dark:text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+                    </svg>
+                  </div>
+                  <h2 className="text-xl sm:text-2xl font-bold text-gray-900 dark:text-white m-0">
+                    Watch Mode
+                  </h2>
+                </div>
+                <p className="text-base sm:text-lg text-gray-600 dark:text-gray-400 mb-4 sm:mb-6 leading-relaxed">
+                  Watch mode monitors your codebase for file changes and automatically regenerates context bundles with incremental rebuilds.
+                </p>
+                <div className="p-4 bg-purple-50 dark:bg-purple-950/20 rounded-lg border border-purple-200 dark:border-purple-800 mb-4">
+                  <TabbedCodeBlock
+                    tabs={[
+                      {
+                        label: 'Example',
+                        code: `# Start watch mode
+stamp context --watch
+
+# Press Ctrl+C to stop`,
+                        copyText: `# Start watch mode
+stamp context --watch
+
+# Press Ctrl+C to stop`
+                      }
+                    ]}
+                  />
+                </div>
+                <div className="space-y-4 mb-4">
+                  <div>
+                    <h3 className="font-semibold text-purple-900 dark:text-purple-200 mb-2 text-base sm:text-lg">Features</h3>
+                    <ul className="text-sm text-purple-800 dark:text-purple-300 space-y-2 ml-4 list-disc">
+                      <li><strong className="text-purple-900 dark:text-purple-200">Incremental rebuilds</strong> - Only rebuilds affected bundles, not the entire project</li>
+                      <li><strong className="text-purple-900 dark:text-purple-200">Change detection</strong> - Shows what changed (props added/removed, hooks, state, etc.)</li>
+                      <li><strong className="text-purple-900 dark:text-purple-200">Debouncing</strong> - Batches rapid changes (500ms delay)</li>
+                      <li><strong className="text-purple-900 dark:text-purple-200">Style support</strong> - Works with <code className="px-1 py-0.5 bg-purple-100 dark:bg-purple-900/40 rounded text-xs font-mono">--include-style</code> for style metadata</li>
+                      <li><strong className="text-purple-900 dark:text-purple-200">Strict mode</strong> - Use <code className="px-1 py-0.5 bg-purple-100 dark:bg-purple-900/40 rounded text-xs font-mono">--strict-watch</code> to detect breaking changes (removed props, events, etc.) with violation tracking</li>
+                    </ul>
+                  </div>
+                  <div className="p-4 bg-blue-50 dark:bg-blue-950/20 rounded-lg border border-blue-200 dark:border-blue-800">
+                    <h3 className="font-semibold text-blue-900 dark:text-blue-200 mb-2 text-base sm:text-lg">Watched file types</h3>
+                    <ul className="text-sm text-blue-800 dark:text-blue-300 space-y-1 ml-4 list-disc">
+                      <li><code className="px-1 py-0.5 bg-blue-100 dark:bg-blue-900/40 rounded text-xs font-mono">.ts</code>, <code className="px-1 py-0.5 bg-blue-100 dark:bg-blue-900/40 rounded text-xs font-mono">.tsx</code> (always)</li>
+                      <li><code className="px-1 py-0.5 bg-blue-100 dark:bg-blue-900/40 rounded text-xs font-mono">.css</code>, <code className="px-1 py-0.5 bg-blue-100 dark:bg-blue-900/40 rounded text-xs font-mono">.scss</code>, <code className="px-1 py-0.5 bg-blue-100 dark:bg-blue-900/40 rounded text-xs font-mono">.module.css</code>, <code className="px-1 py-0.5 bg-blue-100 dark:bg-blue-900/40 rounded text-xs font-mono">.module.scss</code> (with <code className="px-1 py-0.5 bg-blue-100 dark:bg-blue-900/40 rounded text-xs font-mono">--include-style</code>)</li>
+                    </ul>
+                  </div>
+                  <div className="p-4 bg-amber-50 dark:bg-amber-950/20 rounded-lg border border-amber-200 dark:border-amber-800">
+                    <h3 className="font-semibold text-amber-900 dark:text-amber-200 mb-2 text-base sm:text-lg">Debug mode</h3>
+                    <p className="text-sm text-amber-800 dark:text-amber-300 mb-2">
+                      Debug mode shows detailed hash information:
+                    </p>
+                    <TabbedCodeBlock
+                      tabs={[
+                        {
+                          label: 'Example',
+                          code: 'stamp context --watch --debug',
+                          copyText: 'stamp context --watch --debug'
+                        }
+                      ]}
+                    />
+                  </div>
+                </div>
+                <div className="p-4 bg-indigo-50/50 dark:bg-indigo-950/20 border-l-4 border-indigo-500 rounded-r-lg">
+                  <p className="text-sm text-gray-700 dark:text-gray-300">
+                    <strong className="text-gray-900 dark:text-white">Learn more:</strong>{' '}
+                    <Link href="/docs/logicstamp-context/watch-mode" className="text-indigo-600 dark:text-indigo-400 hover:text-indigo-700 dark:hover:text-indigo-300 underline font-medium">
+                      Read the complete watch mode documentation →
+                    </Link>
+                  </p>
+                </div>
               </div>
             </div>
           </AnimatedSection>

@@ -328,7 +328,7 @@ export default function StyleCommandPage() {
                   </h2>
                 </div>
                 <p className="text-base sm:text-lg text-gray-600 dark:text-gray-400 mb-4 sm:mb-6 leading-relaxed">
-                  All options from <code className="px-2 py-1 bg-gray-100 dark:bg-gray-800 text-blue-600 dark:text-blue-400 rounded-md font-mono text-xs sm:text-sm">stamp context</code> are supported. The style command accepts the same flags:
+                  All options from <code className="px-2 py-1 bg-gray-100 dark:bg-gray-800 text-blue-600 dark:text-blue-400 rounded-md font-mono text-xs sm:text-sm">stamp context</code> are supported except <code className="px-1.5 py-0.5 bg-gray-100 dark:bg-gray-800 rounded text-xs font-mono">--compare-modes</code>. The style command accepts the same flags. <strong className="text-gray-900 dark:text-white">Note:</strong> <code className="px-1.5 py-0.5 bg-gray-100 dark:bg-gray-800 rounded text-xs font-mono">--compare-modes</code> is not available for <code className="px-1.5 py-0.5 bg-gray-100 dark:bg-gray-800 rounded text-xs font-mono">stamp context style</code>; use <code className="px-1.5 py-0.5 bg-gray-100 dark:bg-gray-800 rounded text-xs font-mono">stamp context --compare-modes</code> instead to analyze token costs.
                 </p>
                 <div className="overflow-x-auto -mx-4 sm:mx-0 px-4 sm:px-0">
                   <table className="w-full min-w-full divide-y divide-gray-200 dark:divide-gray-700">
@@ -365,6 +365,18 @@ export default function StyleCommandPage() {
                         </td>
                         <td className="px-2 sm:px-6 py-4 text-sm text-gray-600 dark:text-gray-400">Include <code className="px-1 py-0.5 bg-gray-100 dark:bg-gray-800 rounded text-xs font-mono">none</code>, <code className="px-1 py-0.5 bg-gray-100 dark:bg-gray-800 rounded text-xs font-mono">header</code>, or <code className="px-1 py-0.5 bg-gray-100 dark:bg-gray-800 rounded text-xs font-mono">full</code> source snippets.</td>
                       </tr>
+                      <tr className="hover:bg-gray-50 dark:hover:bg-gray-800/50 transition-colors bg-violet-50/30 dark:bg-violet-950/20">
+                        <td className="px-2 sm:px-6 py-4 whitespace-nowrap">
+                          <code className="px-2 py-1 bg-violet-100 dark:bg-violet-900/40 text-violet-900 dark:text-violet-100 rounded text-xs sm:text-sm font-mono">--style-mode &lt;mode&gt;</code>
+                        </td>
+                        <td className="px-2 sm:px-6 py-4 whitespace-nowrap">
+                          <span className="text-xs text-gray-400">—</span>
+                        </td>
+                        <td className="px-2 sm:px-6 py-4 whitespace-nowrap">
+                          <code className="px-1.5 py-0.5 bg-blue-100 dark:bg-blue-900/40 text-blue-900 dark:text-blue-100 rounded text-xs font-mono">lean</code>
+                        </td>
+                        <td className="px-2 sm:px-6 py-4 text-sm text-gray-600 dark:text-gray-400">Style output format: <code className="px-1 py-0.5 bg-gray-100 dark:bg-gray-800 rounded text-xs font-mono">lean</code> (counts + flags, compact) or <code className="px-1 py-0.5 bg-gray-100 dark:bg-gray-800 rounded text-xs font-mono">full</code> (arrays + details, verbose). Default is <code className="px-1 py-0.5 bg-gray-100 dark:bg-gray-800 rounded text-xs font-mono">lean</code> for token efficiency.</td>
+                      </tr>
                       <tr className="hover:bg-gray-50 dark:hover:bg-gray-800/50 transition-colors">
                         <td className="px-2 sm:px-6 py-4 whitespace-nowrap">
                           <code className="px-2 py-1 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 rounded text-xs sm:text-sm font-mono">--format &lt;fmt&gt;</code>
@@ -375,7 +387,7 @@ export default function StyleCommandPage() {
                         <td className="px-2 sm:px-6 py-4 whitespace-nowrap">
                           <code className="px-1.5 py-0.5 bg-blue-100 dark:bg-blue-900/40 text-blue-900 dark:text-blue-100 rounded text-xs font-mono">json</code>
                         </td>
-                        <td className="px-2 sm:px-6 py-4 text-sm text-gray-600 dark:text-gray-400">Output format: <code className="px-1 py-0.5 bg-gray-100 dark:bg-gray-800 rounded text-xs font-mono">json</code>, <code className="px-1 py-0.5 bg-gray-100 dark:bg-gray-800 rounded text-xs font-mono">pretty</code>, or <code className="px-1 py-0.5 bg-gray-100 dark:bg-gray-800 rounded text-xs font-mono">ndjson</code>.</td>
+                        <td className="px-2 sm:px-6 py-4 text-sm text-gray-600 dark:text-gray-400">Output format: <code className="px-1 py-0.5 bg-gray-100 dark:bg-gray-800 rounded text-xs font-mono">json</code>, <code className="px-1 py-0.5 bg-gray-100 dark:bg-gray-800 rounded text-xs font-mono">pretty</code>, <code className="px-1 py-0.5 bg-gray-100 dark:bg-gray-800 rounded text-xs font-mono">ndjson</code>, or <code className="px-1 py-0.5 bg-gray-100 dark:bg-gray-800 rounded text-xs font-mono">toon</code>.</td>
                       </tr>
                       <tr className="hover:bg-gray-50 dark:hover:bg-gray-800/50 transition-colors">
                         <td className="px-2 sm:px-6 py-4 whitespace-nowrap">
@@ -387,7 +399,7 @@ export default function StyleCommandPage() {
                         <td className="px-2 sm:px-6 py-4 whitespace-nowrap">
                           <code className="px-1.5 py-0.5 bg-blue-100 dark:bg-blue-900/40 text-blue-900 dark:text-blue-100 rounded text-xs font-mono">context.json</code>
                         </td>
-                        <td className="px-2 sm:px-6 py-4 text-sm text-gray-600 dark:text-gray-400">Output directory or file path.</td>
+                        <td className="px-2 sm:px-6 py-4 text-sm text-gray-600 dark:text-gray-400">Output directory or file path. If a <code className="px-1 py-0.5 bg-gray-100 dark:bg-gray-800 rounded text-xs font-mono">.json</code> file is specified, its directory is used as the output directory. Otherwise, the path is used as the output directory. All context files will be written within this directory structure.</td>
                       </tr>
                       <tr className="hover:bg-gray-50 dark:hover:bg-gray-800/50 transition-colors">
                         <td className="px-2 sm:px-6 py-4 whitespace-nowrap">
@@ -411,7 +423,7 @@ export default function StyleCommandPage() {
                         <td className="px-2 sm:px-6 py-4 whitespace-nowrap">
                           <code className="px-1.5 py-0.5 bg-blue-100 dark:bg-blue-900/40 text-blue-900 dark:text-blue-100 rounded text-xs font-mono">llm-chat</code>
                         </td>
-                        <td className="px-2 sm:px-6 py-4 text-sm text-gray-600 dark:text-gray-400">Preset configuration (<code className="px-1 py-0.5 bg-gray-100 dark:bg-gray-800 rounded text-xs font-mono">llm-chat</code>, <code className="px-1 py-0.5 bg-gray-100 dark:bg-gray-800 rounded text-xs font-mono">llm-safe</code>, <code className="px-1 py-0.5 bg-gray-100 dark:bg-gray-800 rounded text-xs font-mono">ci-strict</code>).</td>
+                        <td className="px-2 sm:px-6 py-4 text-sm text-gray-600 dark:text-gray-400">Preset configuration (<code className="px-1 py-0.5 bg-gray-100 dark:bg-gray-800 rounded text-xs font-mono">llm-chat</code>, <code className="px-1 py-0.5 bg-gray-100 dark:bg-gray-800 rounded text-xs font-mono">llm-safe</code>, <code className="px-1 py-0.5 bg-gray-100 dark:bg-gray-800 rounded text-xs font-mono">ci-strict</code>, <code className="px-1 py-0.5 bg-gray-100 dark:bg-gray-800 rounded text-xs font-mono">watch-fast</code>).</td>
                       </tr>
                       <tr className="hover:bg-gray-50 dark:hover:bg-gray-800/50 transition-colors">
                         <td className="px-2 sm:px-6 py-4 whitespace-nowrap">
@@ -424,6 +436,30 @@ export default function StyleCommandPage() {
                           <code className="px-1.5 py-0.5 bg-red-100 dark:bg-red-900/40 text-red-900 dark:text-red-100 rounded text-xs font-mono">false</code>
                         </td>
                         <td className="px-2 sm:px-6 py-4 text-sm text-gray-600 dark:text-gray-400">Fail when dependencies are missing.</td>
+                      </tr>
+                      <tr className="hover:bg-gray-50 dark:hover:bg-gray-800/50 transition-colors">
+                        <td className="px-2 sm:px-6 py-4 whitespace-nowrap">
+                          <code className="px-2 py-1 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 rounded text-xs sm:text-sm font-mono">--predict-behavior</code>
+                        </td>
+                        <td className="px-2 sm:px-6 py-4 whitespace-nowrap">
+                          <span className="text-xs text-gray-400">—</span>
+                        </td>
+                        <td className="px-2 sm:px-6 py-4 whitespace-nowrap">
+                          <code className="px-1.5 py-0.5 bg-red-100 dark:bg-red-900/40 text-red-900 dark:text-red-100 rounded text-xs font-mono">false</code>
+                        </td>
+                        <td className="px-2 sm:px-6 py-4 text-sm text-gray-600 dark:text-gray-400">Include experimental behavioral predictions.</td>
+                      </tr>
+                      <tr className="hover:bg-gray-50 dark:hover:bg-gray-800/50 transition-colors">
+                        <td className="px-2 sm:px-6 py-4 whitespace-nowrap">
+                          <code className="px-2 py-1 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 rounded text-xs sm:text-sm font-mono">--strict-missing</code>
+                        </td>
+                        <td className="px-2 sm:px-6 py-4 whitespace-nowrap">
+                          <span className="text-xs text-gray-400">—</span>
+                        </td>
+                        <td className="px-2 sm:px-6 py-4 whitespace-nowrap">
+                          <code className="px-1.5 py-0.5 bg-red-100 dark:bg-red-900/40 text-red-900 dark:text-red-100 rounded text-xs font-mono">false</code>
+                        </td>
+                        <td className="px-2 sm:px-6 py-4 text-sm text-gray-600 dark:text-gray-400">Exit with error if any missing dependencies found.</td>
                       </tr>
                       <tr className="hover:bg-gray-50 dark:hover:bg-gray-800/50 transition-colors">
                         <td className="px-2 sm:px-6 py-4 whitespace-nowrap">
@@ -473,6 +509,66 @@ export default function StyleCommandPage() {
                         </td>
                         <td className="px-2 sm:px-6 py-4 text-sm text-gray-600 dark:text-gray-400">Suppress verbose output (show only errors).</td>
                       </tr>
+                      <tr className="hover:bg-gray-50 dark:hover:bg-gray-800/50 transition-colors">
+                        <td className="px-2 sm:px-6 py-4 whitespace-nowrap">
+                          <code className="px-2 py-1 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 rounded text-xs sm:text-sm font-mono">--watch</code>
+                        </td>
+                        <td className="px-2 sm:px-6 py-4 whitespace-nowrap">
+                          <code className="px-1.5 py-0.5 bg-blue-100 dark:bg-blue-900/40 text-blue-900 dark:text-blue-100 rounded text-xs font-mono">-w</code>
+                        </td>
+                        <td className="px-2 sm:px-6 py-4 whitespace-nowrap">
+                          <code className="px-1.5 py-0.5 bg-red-100 dark:bg-red-900/40 text-red-900 dark:text-red-100 rounded text-xs font-mono">false</code>
+                        </td>
+                        <td className="px-2 sm:px-6 py-4 text-sm text-gray-600 dark:text-gray-400">Watch for file changes and regenerate automatically.</td>
+                      </tr>
+                      <tr className="hover:bg-gray-50 dark:hover:bg-gray-800/50 transition-colors">
+                        <td className="px-2 sm:px-6 py-4 whitespace-nowrap">
+                          <code className="px-2 py-1 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 rounded text-xs sm:text-sm font-mono">--strict-watch</code>
+                        </td>
+                        <td className="px-2 sm:px-6 py-4 whitespace-nowrap">
+                          <span className="text-xs text-gray-400">—</span>
+                        </td>
+                        <td className="px-2 sm:px-6 py-4 whitespace-nowrap">
+                          <code className="px-1.5 py-0.5 bg-red-100 dark:bg-red-900/40 text-red-900 dark:text-red-100 rounded text-xs font-mono">false</code>
+                        </td>
+                        <td className="px-2 sm:px-6 py-4 text-sm text-gray-600 dark:text-gray-400">Enable strict watch mode - track breaking changes and violations.</td>
+                      </tr>
+                      <tr className="hover:bg-gray-50 dark:hover:bg-gray-800/50 transition-colors">
+                        <td className="px-2 sm:px-6 py-4 whitespace-nowrap">
+                          <code className="px-2 py-1 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 rounded text-xs sm:text-sm font-mono">--debug</code>
+                        </td>
+                        <td className="px-2 sm:px-6 py-4 whitespace-nowrap">
+                          <span className="text-xs text-gray-400">—</span>
+                        </td>
+                        <td className="px-2 sm:px-6 py-4 whitespace-nowrap">
+                          <code className="px-1.5 py-0.5 bg-red-100 dark:bg-red-900/40 text-red-900 dark:text-red-100 rounded text-xs font-mono">false</code>
+                        </td>
+                        <td className="px-2 sm:px-6 py-4 text-sm text-gray-600 dark:text-gray-400">Show detailed hash information in watch mode.</td>
+                      </tr>
+                      <tr className="hover:bg-gray-50 dark:hover:bg-gray-800/50 transition-colors">
+                        <td className="px-2 sm:px-6 py-4 whitespace-nowrap">
+                          <code className="px-2 py-1 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 rounded text-xs sm:text-sm font-mono">--log-file</code>
+                        </td>
+                        <td className="px-2 sm:px-6 py-4 whitespace-nowrap">
+                          <span className="text-xs text-gray-400">—</span>
+                        </td>
+                        <td className="px-2 sm:px-6 py-4 whitespace-nowrap">
+                          <code className="px-1.5 py-0.5 bg-red-100 dark:bg-red-900/40 text-red-900 dark:text-red-100 rounded text-xs font-mono">false</code>
+                        </td>
+                        <td className="px-2 sm:px-6 py-4 text-sm text-gray-600 dark:text-gray-400">Write structured change logs to file (watch mode only, for change notifications).</td>
+                      </tr>
+                      <tr className="hover:bg-gray-50 dark:hover:bg-gray-800/50 transition-colors">
+                        <td className="px-2 sm:px-6 py-4 whitespace-nowrap">
+                          <code className="px-2 py-1 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 rounded text-xs sm:text-sm font-mono">--help</code>
+                        </td>
+                        <td className="px-2 sm:px-6 py-4 whitespace-nowrap">
+                          <code className="px-1.5 py-0.5 bg-blue-100 dark:bg-blue-900/40 text-blue-900 dark:text-blue-100 rounded text-xs font-mono">-h</code>
+                        </td>
+                        <td className="px-2 sm:px-6 py-4 whitespace-nowrap">
+                          <span className="text-xs text-gray-400">—</span>
+                        </td>
+                        <td className="px-2 sm:px-6 py-4 text-sm text-gray-600 dark:text-gray-400">Print usage help.</td>
+                      </tr>
                     </tbody>
                   </table>
                 </div>
@@ -505,6 +601,27 @@ stamp context style --include-code full
 # Custom output directory
 stamp context style --out ./output
 
+# Use lean style mode (counts + flags, compact) - default
+stamp context style --style-mode lean
+
+# Use full style mode (arrays + details, verbose)
+stamp context style --style-mode full
+
+# Watch mode - auto-regenerate on file changes
+stamp context style --watch
+
+# Watch a specific directory for fast incremental rebuilds
+stamp context style ./src/components --watch
+
+# Watch with debug output (shows hash changes)
+stamp context style --watch --debug
+
+# Watch with structured change logs (for change notifications)
+stamp context style --watch --log-file
+
+# Strict watch mode - track breaking changes
+stamp context style --watch --strict-watch
+
 # Equivalent syntax using flag
 stamp context --include-style`,
                     copyText: `# Generate context with style metadata for entire project
@@ -521,6 +638,27 @@ stamp context style --include-code full
 
 # Custom output directory
 stamp context style --out ./output
+
+# Use lean style mode (counts + flags, compact) - default
+stamp context style --style-mode lean
+
+# Use full style mode (arrays + details, verbose)
+stamp context style --style-mode full
+
+# Watch mode - auto-regenerate on file changes
+stamp context style --watch
+
+# Watch a specific directory for fast incremental rebuilds
+stamp context style ./src/components --watch
+
+# Watch with debug output (shows hash changes)
+stamp context style --watch --debug
+
+# Watch with structured change logs (for change notifications)
+stamp context style --watch --log-file
+
+# Strict watch mode - track breaking changes
+stamp context style --watch --strict-watch
 
 # Equivalent syntax using flag
 stamp context --include-style`

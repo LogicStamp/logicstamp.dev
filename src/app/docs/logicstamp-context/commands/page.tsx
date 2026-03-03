@@ -194,7 +194,7 @@ export default function LogicStampCommandsPage() {
                       <td className="px-2 sm:px-6 py-4 whitespace-nowrap">
                         <code className="px-2 py-1 bg-pink-100 dark:bg-pink-900/40 text-pink-900 dark:text-pink-100 rounded text-xs sm:text-sm font-mono">stamp context style [path] [options]</code>
                       </td>
-                      <td className="px-2 sm:px-6 py-4 text-sm text-gray-600 dark:text-gray-400">Generates context with style metadata included. Extracts visual and layout information (Tailwind, SCSS, animations, layout patterns). Equivalent to <code className="px-1 py-0.5 bg-gray-100 dark:bg-gray-800 rounded text-xs font-mono">stamp context --include-style</code>. Automatically excludes files listed in <code className="px-1 py-0.5 bg-gray-100 dark:bg-gray-800 rounded text-xs font-mono">.stampignore</code>.</td>
+                      <td className="px-2 sm:px-6 py-4 text-sm text-gray-600 dark:text-gray-400">Generates context with style metadata included. Extracts visual and layout information (Tailwind, SCSS, Material UI, animations, layout patterns). Equivalent to <code className="px-1 py-0.5 bg-gray-100 dark:bg-gray-800 rounded text-xs font-mono">stamp context --include-style</code>. Uses <code className="px-1 py-0.5 bg-gray-100 dark:bg-gray-800 rounded text-xs font-mono">lean</code> mode by default (counts + flags); use <code className="px-1 py-0.5 bg-gray-100 dark:bg-gray-800 rounded text-xs font-mono">--style-mode full</code> for detailed arrays.</td>
                       <td className="px-2 sm:px-6 py-4 text-sm text-gray-600 dark:text-gray-400">Design system analysis, AI-assisted design suggestions, layout understanding, animation detection.</td>
                     </tr>
                     <tr className="hover:bg-gray-50 dark:hover:bg-gray-800/50 transition-colors">
@@ -269,7 +269,7 @@ export default function LogicStampCommandsPage() {
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2v-4a2 2 0 00-2-2h-2.343M11 7.343l1.657-1.657a2 2 0 012.828 0l2.829 2.829a2 2 0 010 2.828l-8.486 8.485M7 17h.01" />
                 </svg>
                 <p className="text-sm sm:text-base text-gray-700 dark:text-gray-300">
-                  Run <code className="px-1.5 py-0.5 bg-pink-100 dark:bg-pink-900/40 rounded text-xs font-mono">stamp context style</code> or use <code className="px-1.5 py-0.5 bg-pink-100 dark:bg-pink-900/40 rounded text-xs font-mono">stamp context --include-style</code> to generate context with style metadata (Tailwind, SCSS, animations, layout patterns). This makes context bundles design-aware, enabling AI assistants to understand both the logic and visual presentation of your components.
+                  Run <code className="px-1.5 py-0.5 bg-pink-100 dark:bg-pink-900/40 rounded text-xs font-mono">stamp context style</code> or use <code className="px-1.5 py-0.5 bg-pink-100 dark:bg-pink-900/40 rounded text-xs font-mono">stamp context --include-style</code> to generate context with style metadata (Tailwind, SCSS, Material UI, animations, layout patterns). Uses <code className="px-1.5 py-0.5 bg-pink-100 dark:bg-pink-900/40 rounded text-xs font-mono">lean</code> mode by default (counts + flags); use <code className="px-1.5 py-0.5 bg-pink-100 dark:bg-pink-900/40 rounded text-xs font-mono">--style-mode full</code> for detailed arrays. This makes context bundles design-aware, enabling AI assistants to understand both the logic and visual presentation of your components.
                 </p>
               </div>
               <div className="flex items-start gap-3 p-4 bg-gradient-to-br from-purple-50 to-pink-50 dark:from-purple-950/20 dark:to-pink-950/10 rounded-xl border border-purple-200 dark:border-purple-800">
@@ -347,6 +347,21 @@ stamp context ./src --profile llm-safe
 # Compare token costs across all modes
 stamp context --compare-modes
 
+# Watch mode - auto-regenerate on file changes
+stamp context --watch
+
+# Watch with style metadata
+stamp context style --watch
+
+# Watch with debug output
+stamp context --watch --debug
+
+# Watch with structured change logs (for change notifications)
+stamp context --watch --log-file
+
+# Strict watch mode - track breaking changes and violations
+stamp context --watch --strict-watch
+
 # Validate all context files (multi-file mode)
 stamp context validate       # uses context_main.json to validate all folders
 
@@ -369,7 +384,17 @@ stamp context compare old.json new.json
 stamp context clean
 
 # Actually delete all context files
-stamp context clean --all --yes`,
+stamp context clean --all --yes
+
+# Scan your project for secrets (API keys, passwords, tokens)
+# Runs 100% locally — nothing is uploaded or sent anywhere
+stamp security scan
+
+# Scan with custom output path
+stamp security scan --out ./reports/security.json
+
+# Reset security configuration (delete security report)
+stamp security --hard-reset --force`,
                     copyText: `# Show version number
 stamp --version
 
@@ -389,8 +414,15 @@ stamp ignore src/secrets.ts
 # Add multiple files or use glob patterns
 stamp ignore src/config/credentials.ts "**/*.key"
 
-# Scan for secrets and sensitive data
+# Scan your project for secrets (API keys, passwords, tokens)
+# Runs 100% locally — nothing is uploaded or sent anywhere
 stamp security scan
+
+# Scan with custom output path
+stamp security scan --out ./reports/security.json
+
+# Reset security configuration (delete security report)
+stamp security --hard-reset --force
 
 # Generate context for your repository
 stamp context
@@ -406,6 +438,21 @@ stamp context ./src --profile llm-safe
 
 # Compare token costs across all modes
 stamp context --compare-modes
+
+# Watch mode - auto-regenerate on file changes
+stamp context --watch
+
+# Watch with style metadata
+stamp context style --watch
+
+# Watch with debug output
+stamp context --watch --debug
+
+# Watch with structured change logs (for change notifications)
+stamp context --watch --log-file
+
+# Strict watch mode - track breaking changes and violations
+stamp context --watch --strict-watch
 
 # Validate all context files (multi-file mode)
 stamp context validate       # uses context_main.json to validate all folders
@@ -573,7 +620,45 @@ stamp context clean --all --yes`
                       <code className="px-1.5 py-0.5 bg-red-100 dark:bg-red-900/40 rounded text-xs font-mono">stamp security scan</code> command →
                     </h3>
                     <p className="text-xs text-gray-600 dark:text-gray-400 mt-1">
-                      Find secrets and sensitive data before committing
+                      Security scanning and secret detection guide
+                    </p>
+                  </div>
+                </div>
+              </Link>
+
+              <Link
+                href="/docs/logicstamp-context/watch-mode"
+                className="group p-4 bg-cyan-50 dark:bg-cyan-950/20 rounded-xl border border-cyan-200 dark:border-cyan-800 hover:border-cyan-300 dark:hover:border-cyan-700 transition-all"
+              >
+                <div className="flex items-start gap-3">
+                  <svg className="w-5 h-5 text-cyan-600 dark:text-cyan-400 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z" />
+                  </svg>
+                  <div>
+                    <h3 className="text-sm font-semibold text-cyan-900 dark:text-cyan-200 group-hover:text-cyan-700 dark:group-hover:text-cyan-100 transition-colors">
+                      Watch mode →
+                    </h3>
+                    <p className="text-xs text-gray-600 dark:text-gray-400 mt-1">
+                      Watch mode for automatic regeneration
+                    </p>
+                  </div>
+                </div>
+              </Link>
+
+              <Link
+                href="/docs/logicstamp-context/compare-modes"
+                className="group p-4 bg-violet-50 dark:bg-violet-950/20 rounded-xl border border-violet-200 dark:border-violet-800 hover:border-violet-300 dark:hover:border-violet-700 transition-all"
+              >
+                <div className="flex items-start gap-3">
+                  <svg className="w-5 h-5 text-violet-600 dark:text-violet-400 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
+                  </svg>
+                  <div>
+                    <h3 className="text-sm font-semibold text-violet-900 dark:text-violet-200 group-hover:text-violet-700 dark:group-hover:text-violet-100 transition-colors">
+                      Token cost analysis →
+                    </h3>
+                    <p className="text-xs text-gray-600 dark:text-gray-400 mt-1">
+                      Token cost analysis and mode comparison
                     </p>
                   </div>
                 </div>

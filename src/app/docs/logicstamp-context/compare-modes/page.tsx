@@ -125,7 +125,7 @@ export default function CompareModesPage() {
                   {[
                     { mode: 'none', desc: 'Contracts only (props, state, hooks, dependencies) with no source code' },
                     { mode: 'header', desc: 'Contracts plus JSDoc headers and function signatures' },
-                    { mode: 'header+style', desc: 'Header mode plus extracted style metadata (Tailwind, SCSS, animations, layout)' },
+                    { mode: 'header+style', desc: 'Header mode plus extracted style metadata (Tailwind, SCSS, Material UI, animations, layout)' },
                     { mode: 'full', desc: 'Everything including complete source code' }
                   ].map((item) => (
                     <div key={item.mode} className="p-3 bg-gray-50 dark:bg-gray-800/50 rounded-lg border border-gray-200 dark:border-gray-700">

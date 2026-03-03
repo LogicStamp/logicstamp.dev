@@ -164,7 +164,8 @@ stamp --help                       # Show help
 stamp init [path] [options]        # Initialize LogicStamp in project
 stamp ignore <path> [path2] ...     # Add files/folders to .stampignore
 stamp context [path] [options]
-stamp context style [path] [options]  # Generate context with style metadata
+stamp context style [path] [options]  # Compile context with style metadata
+stamp context --watch [path] [options] # Watch mode - recompile on changes
 stamp context validate [file]
 stamp context compare [oldFile] [newFile] [options]  # Auto-mode (default): omit files to compare all context files
 stamp context clean [path] [options]
@@ -175,7 +176,8 @@ stamp --help                       # Show help
 stamp init [path] [options]        # Initialize LogicStamp in project
 stamp ignore <path> [path2] ...     # Add files/folders to .stampignore
 stamp context [path] [options]
-stamp context style [path] [options]  # Generate context with style metadata
+stamp context style [path] [options]  # Compile context with style metadata
+stamp context --watch [path] [options] # Watch mode - recompile on changes
 stamp context validate [file]
 stamp context compare [oldFile] [newFile] [options]  # Auto-mode (default): omit files to compare all context files
 stamp context clean [path] [options]
@@ -493,6 +495,12 @@ stamp context style
 # Equivalent using flag
 stamp context --include-style
 
+# Use full style mode (arrays + details, verbose)
+stamp context style --style-mode full
+
+# Use lean style mode (counts + flags, compact) - default
+stamp context style --style-mode lean
+
 # With specific options
 stamp context style --profile llm-safe
 stamp context style --include-code header`,
@@ -502,22 +510,57 @@ stamp context style
 # Equivalent using flag
 stamp context --include-style
 
+# Use full style mode (arrays + details, verbose)
+stamp context style --style-mode full
+
+# Use lean style mode (counts + flags, compact) - default
+stamp context style --style-mode lean
+
 # With specific options
 stamp context style --profile llm-safe
 stamp context style --include-code header`
                   }
                 ]}
               />
-              <div className="mt-6 sm:mt-8 grid sm:grid-cols-2 gap-4 sm:gap-6">
+              <div className="mt-4 p-4 bg-pink-50 dark:bg-pink-950/20 rounded-lg border border-pink-200 dark:border-pink-800">
+                <h3 className="text-sm font-semibold text-pink-900 dark:text-pink-200 mb-2">Style Mode Options</h3>
+                <div className="space-y-2 text-sm text-pink-800 dark:text-pink-300">
+                  <div>
+                    <code className="px-1.5 py-0.5 bg-pink-100 dark:bg-pink-900/40 rounded text-xs font-mono">--style-mode lean</code> (default) – Compact format with counts and flags for token efficiency
+                  </div>
+                  <div>
+                    <code className="px-1.5 py-0.5 bg-pink-100 dark:bg-pink-900/40 rounded text-xs font-mono">--style-mode full</code> – Verbose format with arrays and detailed information for comprehensive analysis
+                  </div>
+                </div>
+              </div>
+              <div className="mt-6 sm:mt-8 space-y-4">
                 <div className="p-4 bg-gray-50 dark:bg-gray-800/50 rounded-lg">
-                  <h3 className="text-base font-semibold text-gray-900 dark:text-white mb-2">What Gets Extracted</h3>
-                  <ul className="space-y-1.5 text-sm text-gray-600 dark:text-gray-400">
-                    <li>• Tailwind CSS classes (layout, spacing, colors)</li>
-                    <li>• SCSS/CSS module imports and details</li>
-                    <li>• Layout patterns (flex, grid, hero sections)</li>
-                    <li>• Animation metadata (framer-motion, CSS)</li>
-                    <li>• Visual patterns (colors, spacing, typography)</li>
-                  </ul>
+                  <h3 className="text-base font-semibold text-gray-900 dark:text-white mb-3">What Gets Extracted</h3>
+                  <div className="grid sm:grid-cols-2 gap-4">
+                    <div>
+                      <h4 className="text-sm font-semibold text-gray-800 dark:text-gray-200 mb-2">Style Sources</h4>
+                      <ul className="space-y-1.5 text-sm text-gray-600 dark:text-gray-400">
+                        <li>• Tailwind CSS classes (categorized by type)</li>
+                        <li>• SCSS/CSS module imports and details</li>
+                        <li>• Inline styles detection</li>
+                        <li>• styled-components/emotion usage</li>
+                        <li>• framer-motion animation components</li>
+                        <li>• Material UI components and features</li>
+                        <li>• Ant Design components and features</li>
+                        <li>• Chakra UI components and features</li>
+                      </ul>
+                    </div>
+                    <div>
+                      <h4 className="text-sm font-semibold text-gray-800 dark:text-gray-200 mb-2">Metadata</h4>
+                      <ul className="space-y-1.5 text-sm text-gray-600 dark:text-gray-400">
+                        <li>• Layout patterns (flex, grid, hero sections)</li>
+                        <li>• Visual metadata (colors, spacing, typography)</li>
+                        <li>• Animation metadata (types, triggers)</li>
+                        <li>• Border radius patterns</li>
+                        <li>• Breakpoint detection</li>
+                      </ul>
+                    </div>
+                  </div>
                 </div>
                 <div className="p-4 bg-gray-50 dark:bg-gray-800/50 rounded-lg">
                   <h3 className="text-base font-semibold text-gray-900 dark:text-white mb-2">Use Cases</h3>

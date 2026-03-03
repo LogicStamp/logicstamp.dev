@@ -209,7 +209,7 @@ stamp context --include-style --watch --strict-watch`,
                     <div>
                       <p className="font-semibold text-gray-900 dark:text-white mb-1">File Monitoring</p>
                       <p className="text-sm text-gray-600 dark:text-gray-400">
-                        Watches for changes to{' '}
+                        Uses <a href="https://github.com/paulmillr/chokidar" className="text-sky-600 dark:text-sky-400 hover:underline" target="_blank" rel="noopener noreferrer">chokidar</a> to watch for changes to{' '}
                         <code className="px-1.5 py-0.5 bg-gray-100 dark:bg-gray-800 rounded text-xs font-mono">.ts</code>,{' '}
                         <code className="px-1.5 py-0.5 bg-gray-100 dark:bg-gray-800 rounded text-xs font-mono">.tsx</code> files (and style files when enabled)
                       </p>
@@ -261,6 +261,72 @@ stamp context --include-style --watch --strict-watch`,
                         Optionally track breaking changes (removed props, events, functions) and report violations in real-time with{' '}
                         <code className="px-1.5 py-0.5 bg-amber-100 dark:bg-amber-900/40 rounded text-xs font-mono">--strict-watch</code>
                       </p>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="mt-8 pt-6 border-t border-gray-200 dark:border-gray-700">
+                  <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">File Events</h3>
+                  <div className="overflow-x-auto">
+                    <table className="w-full divide-y divide-gray-200 dark:divide-gray-700">
+                      <thead className="bg-gray-50 dark:bg-gray-800">
+                        <tr>
+                          <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">Event</th>
+                          <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">Description</th>
+                        </tr>
+                      </thead>
+                      <tbody className="bg-white dark:bg-gray-900 divide-y divide-gray-200 dark:divide-gray-700">
+                        <tr className="hover:bg-gray-50 dark:hover:bg-gray-800/50 transition-colors">
+                          <td className="px-4 py-3 whitespace-nowrap">
+                            <code className="px-2 py-1 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 rounded text-xs font-mono">change</code>
+                          </td>
+                          <td className="px-4 py-3 text-sm text-gray-600 dark:text-gray-400">File content modified</td>
+                        </tr>
+                        <tr className="hover:bg-gray-50 dark:hover:bg-gray-800/50 transition-colors">
+                          <td className="px-4 py-3 whitespace-nowrap">
+                            <code className="px-2 py-1 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 rounded text-xs font-mono">add</code>
+                          </td>
+                          <td className="px-4 py-3 text-sm text-gray-600 dark:text-gray-400">New file created</td>
+                        </tr>
+                        <tr className="hover:bg-gray-50 dark:hover:bg-gray-800/50 transition-colors">
+                          <td className="px-4 py-3 whitespace-nowrap">
+                            <code className="px-2 py-1 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 rounded text-xs font-mono">unlink</code>
+                          </td>
+                          <td className="px-4 py-3 text-sm text-gray-600 dark:text-gray-400">File deleted</td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+
+                  <div className="mt-6 grid sm:grid-cols-2 gap-6">
+                    <div>
+                      <h4 className="font-semibold text-gray-900 dark:text-white mb-3">Watched File Types</h4>
+                      <p className="text-sm text-gray-600 dark:text-gray-400 mb-2">By default, watch mode monitors:</p>
+                      <ul className="space-y-1 text-sm text-gray-600 dark:text-gray-400 ml-4 list-disc">
+                        <li><code className="px-1.5 py-0.5 bg-gray-100 dark:bg-gray-800 rounded text-xs font-mono">.ts</code> files</li>
+                        <li><code className="px-1.5 py-0.5 bg-gray-100 dark:bg-gray-800 rounded text-xs font-mono">.tsx</code> files</li>
+                      </ul>
+                      <p className="text-sm text-gray-600 dark:text-gray-400 mt-3">When using <code className="px-1.5 py-0.5 bg-gray-100 dark:bg-gray-800 rounded text-xs font-mono">--include-style</code>, it also watches:</p>
+                      <ul className="space-y-1 text-sm text-gray-600 dark:text-gray-400 ml-4 list-disc">
+                        <li><code className="px-1.5 py-0.5 bg-gray-100 dark:bg-gray-800 rounded text-xs font-mono">.css</code> files</li>
+                        <li><code className="px-1.5 py-0.5 bg-gray-100 dark:bg-gray-800 rounded text-xs font-mono">.scss</code> files</li>
+                        <li><code className="px-1.5 py-0.5 bg-gray-100 dark:bg-gray-800 rounded text-xs font-mono">.module.css</code> files</li>
+                        <li><code className="px-1.5 py-0.5 bg-gray-100 dark:bg-gray-800 rounded text-xs font-mono">.module.scss</code> files</li>
+                      </ul>
+                    </div>
+
+                    <div>
+                      <h4 className="font-semibold text-gray-900 dark:text-white mb-3">Ignored Paths</h4>
+                      <p className="text-sm text-gray-600 dark:text-gray-400 mb-2">Watch mode automatically ignores:</p>
+                      <ul className="space-y-1 text-sm text-gray-600 dark:text-gray-400 ml-4 list-disc">
+                        <li><code className="px-1.5 py-0.5 bg-gray-100 dark:bg-gray-800 rounded text-xs font-mono">node_modules/</code></li>
+                        <li><code className="px-1.5 py-0.5 bg-gray-100 dark:bg-gray-800 rounded text-xs font-mono">dist/</code></li>
+                        <li><code className="px-1.5 py-0.5 bg-gray-100 dark:bg-gray-800 rounded text-xs font-mono">build/</code></li>
+                        <li><code className="px-1.5 py-0.5 bg-gray-100 dark:bg-gray-800 rounded text-xs font-mono">.next/</code></li>
+                        <li><code className="px-1.5 py-0.5 bg-gray-100 dark:bg-gray-800 rounded text-xs font-mono">coverage/</code></li>
+                        <li><code className="px-1.5 py-0.5 bg-gray-100 dark:bg-gray-800 rounded text-xs font-mono">context.json</code> files (generated output)</li>
+                        <li><code className="px-1.5 py-0.5 bg-gray-100 dark:bg-gray-800 rounded text-xs font-mono">context_main.json</code> (generated output)</li>
+                      </ul>
                     </div>
                   </div>
                 </div>
@@ -480,7 +546,7 @@ stamp context --include-style --watch --strict-watch`,
               <p className="text-base sm:text-lg text-gray-600 dark:text-gray-400 mb-6 leading-relaxed">
                 Watch mode writes a status file at{' '}
                 <code className="px-2 py-1 bg-gray-100 dark:bg-gray-800 text-cyan-600 dark:text-cyan-400 rounded-md font-mono text-xs sm:text-sm">
-                  .logicstamp/watch_status.json
+                  .logicstamp/context_watch-status.json
                 </code>{' '}
                 that other tools (like MCP) can use to detect if watch mode is running.
               </p>
@@ -489,13 +555,14 @@ stamp context --include-style --watch --strict-watch`,
                 <TabbedCodeBlock
                   tabs={[
                     {
-                      label: 'watch_status.json',
+                      label: 'context_watch-status.json',
                       code: `{
   "active": true,
   "projectRoot": "/path/to/project",
   "pid": 12345,
-  "startedAt": "2026-01-21T11:33:48.260Z",
-  "outputDir": "/path/to/project"
+  "startedAt": "2025-01-19T10:30:00.000Z",
+  "outputDir": "/path/to/project",
+  "strictWatch": false
 }`,
                       copyText: '',
                     },
@@ -514,6 +581,46 @@ stamp context --watch --log-file
 
               <div className="mt-4 p-4 bg-blue-50/50 dark:bg-blue-950/20 border-l-4 border-blue-500 rounded-r-lg">
                 <p className="text-sm text-gray-700 dark:text-gray-300">The status file is created when watch mode starts and cleaned up when watch mode stops.</p>
+              </div>
+
+              <div className="mt-6">
+                <h3 className="text-lg sm:text-xl font-semibold text-gray-900 dark:text-white mb-3">Watch Log (`.logicstamp/context_watch-mode-logs.json`)</h3>
+                <p className="text-base sm:text-lg text-gray-600 dark:text-gray-400 mb-4 leading-relaxed">
+                  <strong className="text-gray-900 dark:text-white">Opt-in with <code className="px-1.5 py-0.5 bg-gray-100 dark:bg-gray-800 rounded text-xs font-mono">--log-file</code> flag.</strong> When enabled, logs are appended after each regeneration:
+                </p>
+                <TabbedCodeBlock
+                  tabs={[
+                    {
+                      label: 'Enable Logging',
+                      code: `# Enable watch mode with log file output
+stamp context --watch --log-file`,
+                      copyText: 'stamp context --watch --log-file',
+                    },
+                    {
+                      label: 'Log Format',
+                      code: `{
+  "timestamp": "2025-01-19T10:30:05.000Z",
+  "changedFiles": ["src/components/Button.tsx"],
+  "fileCount": 1,
+  "durationMs": 234,
+  "modifiedContracts": [...],
+  "modifiedBundles": [...],
+  "summary": {
+    "modifiedContractsCount": 1,
+    "modifiedBundlesCount": 1,
+    "addedContractsCount": 0,
+    "removedContractsCount": 0
+  }
+}`,
+                      copyText: '',
+                    },
+                  ]}
+                />
+                <div className="mt-4 p-4 bg-cyan-50/50 dark:bg-cyan-950/20 border-l-4 border-cyan-500 rounded-r-lg">
+                  <p className="text-sm text-gray-700 dark:text-gray-300">
+                    By default, watch mode does not write log files. Use <code className="px-1.5 py-0.5 bg-cyan-100 dark:bg-cyan-900/40 rounded text-xs font-mono">--log-file</code> when you need structured change notifications (e.g., to display &quot;what changed&quot; in a UI or for debugging).
+                  </p>
+                </div>
               </div>
             </div>
           </AnimatedSection>
@@ -817,10 +924,244 @@ stamp context --include-style --watch --strict-watch`,
             </div>
           </AnimatedSection>
 
+          {/* Debug Mode Section */}
+          <AnimatedSection direction="up" delay={525}>
+            <div className="relative mb-8 sm:mb-12 lg:mb-16">
+              <div className="absolute -inset-1 bg-gradient-to-r from-purple-600 to-indigo-600 rounded-2xl blur opacity-20 dark:opacity-10" />
+              <div className="relative bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded-2xl p-4 sm:p-6 lg:p-8 shadow-xl">
+                <div className="flex items-baseline gap-3 mb-4 sm:mb-6">
+                  <div className="p-2 bg-purple-100 dark:bg-purple-900/30 rounded-lg flex-shrink-0 -mt-0.5">
+                    <svg className="w-5 h-5 sm:w-6 sm:h-6 text-purple-600 dark:text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                    </svg>
+                  </div>
+                  <h2 className="text-xl sm:text-2xl font-bold text-gray-900 dark:text-white m-0">Debug Mode</h2>
+                </div>
+
+                <p className="text-base sm:text-lg text-gray-600 dark:text-gray-400 mb-4 sm:mb-6 leading-relaxed">
+                  Use <code className="px-2 py-1 bg-gray-100 dark:bg-gray-800 text-purple-600 dark:text-purple-400 rounded-md font-mono text-xs sm:text-sm">--debug</code> to see detailed information about what changed:
+                </p>
+
+                <TabbedCodeBlock
+                  tabs={[
+                    {
+                      label: 'Enable Debug',
+                      code: `stamp context --watch --debug`,
+                      copyText: 'stamp context --watch --debug',
+                    },
+                    {
+                      label: 'Debug Output',
+                      code: `[DEBUG] Changed file: src/components/Button.tsx
+[DEBUG] Modified contracts (1):
+  ~ src/components/Button.tsx
+    semanticHash (API/logic): uif:abc123... → uif:def456...
+      ↳ Detects: props, events, state, hooks, components, functions
+    Detailed changes:
+      + Props: disabled
+      - Props: loading`,
+                      copyText: '',
+                    },
+                  ]}
+                />
+
+                <div className="mt-6 grid sm:grid-cols-3 gap-4">
+                  <div className="p-4 bg-purple-50 dark:bg-purple-950/20 rounded-lg border border-purple-200 dark:border-purple-800">
+                    <h3 className="font-semibold text-purple-900 dark:text-purple-200 mb-2 text-sm">semanticHash</h3>
+                    <p className="text-xs text-purple-800 dark:text-purple-300">
+                      Changes when the component&apos;s API changes (props, events, state, hooks)
+                    </p>
+                  </div>
+
+                  <div className="p-4 bg-indigo-50 dark:bg-indigo-950/20 rounded-lg border border-indigo-200 dark:border-indigo-800">
+                    <h3 className="font-semibold text-indigo-900 dark:text-indigo-200 mb-2 text-sm">fileHash</h3>
+                    <p className="text-xs text-indigo-800 dark:text-indigo-300">
+                      Changes when any file content changes (including comments, formatting)
+                    </p>
+                  </div>
+
+                  <div className="p-4 bg-blue-50 dark:bg-blue-950/20 rounded-lg border border-blue-200 dark:border-blue-800">
+                    <h3 className="font-semibold text-blue-900 dark:text-blue-200 mb-2 text-sm">bundleHash</h3>
+                    <p className="text-xs text-blue-800 dark:text-blue-300">
+                      Changes when the dependency graph structure changes
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </AnimatedSection>
+
+          {/* Performance Tips Section */}
+          <AnimatedSection direction="up" delay={540}>
+            <div className="relative mb-8 sm:mb-12 lg:mb-16">
+              <div className="absolute -inset-1 bg-gradient-to-r from-emerald-600 to-teal-600 rounded-2xl blur opacity-20 dark:opacity-10" />
+              <div className="relative bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded-2xl p-4 sm:p-6 lg:p-8 shadow-xl">
+                <div className="flex items-baseline gap-3 mb-4 sm:mb-6">
+                  <div className="p-2 bg-emerald-100 dark:bg-emerald-900/30 rounded-lg flex-shrink-0 -mt-0.5">
+                    <svg className="w-5 h-5 sm:w-6 sm:h-6 text-emerald-600 dark:text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
+                    </svg>
+                  </div>
+                  <h2 className="text-xl sm:text-2xl font-bold text-gray-900 dark:text-white m-0">Performance Tips</h2>
+                </div>
+                <div className="space-y-4">
+                  <div className="flex items-start gap-3">
+                    <svg className="w-5 h-5 text-emerald-600 dark:text-emerald-400 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                    </svg>
+                    <div>
+                      <p className="font-semibold text-gray-900 dark:text-white text-sm sm:text-base mb-1">Focus on subdirectories</p>
+                      <p className="text-sm text-gray-700 dark:text-gray-300">
+                        Watch a specific directory when working on one feature
+                      </p>
+                    </div>
+                  </div>
+
+                  <div className="flex items-start gap-3">
+                    <svg className="w-5 h-5 text-emerald-600 dark:text-emerald-400 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                    </svg>
+                    <div>
+                      <p className="font-semibold text-gray-900 dark:text-white text-sm sm:text-base mb-1">Use <code className="px-1.5 py-0.5 bg-gray-100 dark:bg-gray-800 rounded text-xs font-mono">watch-fast</code> profile</p>
+                      <p className="text-sm text-gray-700 dark:text-gray-300">
+                        Lighter style extraction when you need faster rebuilds
+                      </p>
+                    </div>
+                  </div>
+
+                  <div className="flex items-start gap-3">
+                    <svg className="w-5 h-5 text-emerald-600 dark:text-emerald-400 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                    </svg>
+                    <div>
+                      <p className="font-semibold text-gray-900 dark:text-white text-sm sm:text-base mb-1">Skip style if not needed</p>
+                      <p className="text-sm text-gray-700 dark:text-gray-300">
+                        Don&apos;t use <code className="px-1.5 py-0.5 bg-gray-100 dark:bg-gray-800 rounded text-xs font-mono">--include-style</code> if you don&apos;t need style metadata
+                      </p>
+                    </div>
+                  </div>
+
+                  <div className="flex items-start gap-3">
+                    <svg className="w-5 h-5 text-emerald-600 dark:text-emerald-400 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                    </svg>
+                    <div>
+                      <p className="font-semibold text-gray-900 dark:text-white text-sm sm:text-base mb-1">Check debug mode sparingly</p>
+                      <p className="text-sm text-gray-700 dark:text-gray-300">
+                        Debug output adds overhead; use it for troubleshooting
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </AnimatedSection>
+
+          {/* Stopping Watch Mode Section */}
+          <AnimatedSection direction="up" delay={555}>
+            <div className="relative mb-8 sm:mb-12 lg:mb-16">
+              <div className="absolute -inset-1 bg-gradient-to-r from-slate-600 to-gray-600 rounded-2xl blur opacity-20 dark:opacity-10" />
+              <div className="relative bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded-2xl p-4 sm:p-6 lg:p-8 shadow-xl">
+                <div className="flex items-baseline gap-3 mb-4 sm:mb-6">
+                  <div className="p-2 bg-slate-100 dark:bg-slate-900/30 rounded-lg flex-shrink-0 -mt-0.5">
+                    <svg className="w-5 h-5 sm:w-6 sm:h-6 text-slate-600 dark:text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                    </svg>
+                  </div>
+                  <h2 className="text-xl sm:text-2xl font-bold text-gray-900 dark:text-white m-0">Stopping Watch Mode</h2>
+                </div>
+
+                <p className="text-base sm:text-lg text-gray-600 dark:text-gray-400 mb-4 sm:mb-6 leading-relaxed">
+                  Press <code className="px-2 py-1 bg-gray-100 dark:bg-gray-800 text-slate-600 dark:text-slate-400 rounded-md font-mono text-xs sm:text-sm">Ctrl+C</code> to stop watch mode gracefully:
+                </p>
+
+                <TabbedCodeBlock
+                  tabs={[
+                    {
+                      label: 'Stop Watch Mode',
+                      code: `^C
+👋 Watch mode stopped`,
+                      copyText: '',
+                    },
+                  ]}
+                />
+
+                <p className="text-base sm:text-lg text-gray-600 dark:text-gray-400 mt-6 mb-4 leading-relaxed">
+                  Watch mode cleans up:
+                </p>
+                <ul className="space-y-2 text-sm sm:text-base text-gray-600 dark:text-gray-400 ml-4 list-disc">
+                  <li>Closes file watcher</li>
+                  <li>Deletes watch status file (<code className="px-1.5 py-0.5 bg-gray-100 dark:bg-gray-800 rounded text-xs font-mono">.logicstamp/context_watch-status.json</code>)</li>
+                  <li>Flushes any pending logs</li>
+                </ul>
+
+                <div className="mt-6 p-4 bg-slate-50/50 dark:bg-slate-950/20 border-l-4 border-slate-500 rounded-r-lg">
+                  <h3 className="font-semibold text-gray-900 dark:text-white mb-2">Graceful Shutdown (v0.5.4+)</h3>
+                  <p className="text-sm text-gray-700 dark:text-gray-300">
+                    Watch mode uses a centralized cleanup registry to ensure resources are properly cleaned up on any exit:
+                  </p>
+                  <ul className="space-y-1 text-sm text-gray-700 dark:text-gray-300 mt-2 ml-4 list-disc">
+                    <li><strong>Signal handlers</strong> - SIGINT (Ctrl+C), SIGTERM, and SIGHUP all trigger graceful shutdown</li>
+                    <li><strong>Error exits</strong> - Even when errors occur, cleanup handlers run before the process exits</li>
+                    <li><strong>Priority ordering</strong> - Cleanup handlers run in priority order (watch mode cleanup runs first)</li>
+                  </ul>
+                  <p className="text-sm text-gray-700 dark:text-gray-300 mt-2">
+                    This prevents orphaned resources (file watchers, status files) that could occur if the process exits unexpectedly. The cleanup is automatic—no user action required.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </AnimatedSection>
+
+          {/* Troubleshooting Section */}
+          <AnimatedSection direction="up" delay={570}>
+            <div className="relative mb-8 sm:mb-12 lg:mb-16">
+              <div className="absolute -inset-1 bg-gradient-to-r from-orange-600 to-red-600 rounded-2xl blur opacity-20 dark:opacity-10" />
+              <div className="relative bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded-2xl p-4 sm:p-6 lg:p-8 shadow-xl">
+                <div className="flex items-baseline gap-3 mb-4 sm:mb-6">
+                  <div className="p-2 bg-orange-100 dark:bg-orange-900/30 rounded-lg flex-shrink-0 -mt-0.5">
+                    <svg className="w-5 h-5 sm:w-6 sm:h-6 text-orange-600 dark:text-orange-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 9v2m0 4h.01M10.29 3.86l-7.5 13A2 2 0 004.53 20h15a2 2 0 001.74-3.14l-7.5-13a2 2 0 00-3.48 0z" />
+                    </svg>
+                  </div>
+                  <h2 className="text-xl sm:text-2xl font-bold text-gray-900 dark:text-white m-0">Troubleshooting</h2>
+                </div>
+
+                <div className="space-y-6">
+                  <div>
+                    <h3 className="font-semibold text-gray-900 dark:text-white mb-2">Changes not detected</h3>
+                    <ol className="space-y-2 text-sm text-gray-600 dark:text-gray-400 ml-4 list-decimal">
+                      <li>Check if the file type is watched (<code className="px-1.5 py-0.5 bg-gray-100 dark:bg-gray-800 rounded text-xs font-mono">.ts</code>, <code className="px-1.5 py-0.5 bg-gray-100 dark:bg-gray-800 rounded text-xs font-mono">.tsx</code>, or style files with <code className="px-1.5 py-0.5 bg-gray-100 dark:bg-gray-800 rounded text-xs font-mono">--include-style</code>)</li>
+                      <li>Verify the file isn&apos;t in an ignored directory</li>
+                      <li>Enable debug logging: <code className="px-1.5 py-0.5 bg-gray-100 dark:bg-gray-800 rounded text-xs font-mono">LOGICSTAMP_DEBUG=1 stamp context --watch</code></li>
+                    </ol>
+                  </div>
+
+                  <div>
+                    <h3 className="font-semibold text-gray-900 dark:text-white mb-2">Slow rebuilds</h3>
+                    <ol className="space-y-2 text-sm text-gray-600 dark:text-gray-400 ml-4 list-decimal">
+                      <li>Use <code className="px-1.5 py-0.5 bg-gray-100 dark:bg-gray-800 rounded text-xs font-mono">--profile watch-fast</code> for lighter style extraction</li>
+                      <li>Focus on a subdirectory instead of the entire project</li>
+                      <li>Check if you&apos;re hitting <code className="px-1.5 py-0.5 bg-gray-100 dark:bg-gray-800 rounded text-xs font-mono">max-nodes</code> limits</li>
+                    </ol>
+                  </div>
+
+                  <div>
+                    <h3 className="font-semibold text-gray-900 dark:text-white mb-2">Watch mode crashes</h3>
+                    <ol className="space-y-2 text-sm text-gray-600 dark:text-gray-400 ml-4 list-decimal">
+                      <li>Check available memory (large projects need more RAM)</li>
+                      <li>Enable debug mode to identify problematic files</li>
+                      <li>Report issues at <a href="https://github.com/LogicStamp/logicstamp-context/issues" className="text-orange-600 dark:text-orange-400 hover:underline" target="_blank" rel="noopener noreferrer">https://github.com/LogicStamp/logicstamp-context/issues</a></li>
+                    </ol>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </AnimatedSection>
+
           {/* Related Commands Section */}
-          <AnimatedSection direction="up" delay={550}>
+          <AnimatedSection direction="up" delay={585}>
             <div className="mb-8 sm:mb-12 lg:mb-16">
-              <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white mb-4 sm:mb-6">Related Commands</h2>
+              <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white mb-4 sm:mb-6">See Also</h2>
               <div className="grid sm:grid-cols-2 gap-4">
                 <Link
                   href="/docs/logicstamp-context/context"
@@ -841,23 +1182,33 @@ stamp context --include-style --watch --strict-watch`,
                 </Link>
 
                 <Link
+                  href="/docs/logicstamp-context/context"
+                  className="p-4 border border-gray-200 dark:border-gray-800 rounded-lg md:hover:border-green-500 dark:md:hover:border-green-500 transition-colors"
+                >
+                  <h3 className="font-semibold text-gray-900 dark:text-white mb-1">
+                    <code className="text-sm font-mono">context.md</code> →
+                  </h3>
+                  <p className="text-sm text-gray-600 dark:text-gray-400">Complete <code className="text-xs font-mono">stamp context</code> command reference</p>
+                </Link>
+
+                <Link
+                  href="/docs/logicstamp-context/style"
+                  className="p-4 border border-gray-200 dark:border-gray-800 rounded-lg md:hover:border-green-500 dark:md:hover:border-green-500 transition-colors"
+                >
+                  <h3 className="font-semibold text-gray-900 dark:text-white mb-1">
+                    <code className="text-sm font-mono">style.md</code> →
+                  </h3>
+                  <p className="text-sm text-gray-600 dark:text-gray-400">Style metadata extraction guide</p>
+                </Link>
+
+                <Link
                   href="/docs/logicstamp-context/compare-command"
                   className="p-4 border border-gray-200 dark:border-gray-800 rounded-lg md:hover:border-green-500 dark:md:hover:border-green-500 transition-colors"
                 >
                   <h3 className="font-semibold text-gray-900 dark:text-white mb-1">
-                    <code className="text-sm font-mono">stamp context compare</code> →
+                    <code className="text-sm font-mono">compare.md</code> →
                   </h3>
-                  <p className="text-sm text-gray-600 dark:text-gray-400">Compare context snapshots</p>
-                </Link>
-
-                <Link
-                  href="/docs/logicstamp-context/clean"
-                  className="p-4 border border-gray-200 dark:border-gray-800 rounded-lg md:hover:border-green-500 dark:md:hover:border-green-500 transition-colors"
-                >
-                  <h3 className="font-semibold text-gray-900 dark:text-white mb-1">
-                    <code className="text-sm font-mono">stamp context clean</code> →
-                  </h3>
-                  <p className="text-sm text-gray-600 dark:text-gray-400">Remove generated context files</p>
+                  <p className="text-sm text-gray-600 dark:text-gray-400">Context drift detection</p>
                 </Link>
               </div>
             </div>

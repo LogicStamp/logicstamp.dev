@@ -7,17 +7,20 @@
     </picture>
   </a>
 
-### The Context Compiler for TypeScript.
+## The Context Compiler for TypeScript.
 
-Compile codebases into deterministic architectural contracts and dependency graphs.  
+<em>Supports: React · Next.js · Vue (TS/TSX) · Express · NestJS</em>
 
-A **structured, compact source of truth** for AI coding workflows.
+<br/>
+</div>
 
-Watch mode. Structured context bundles. Strict, auditable diffs. Catch breaking changes in real time.
+LogicStamp Context is a CLI that compiles TypeScript codebases into deterministic, diffable architectural contracts and dependency graphs - a compact, structured source of truth for AI coding workflows.
 
-  <small><em>Supports: React · Next.js · Vue (TS/TSX) · Express · NestJS</em></small>
+Watch mode. Strict, auditable diffs. Real-time breaking change detection. AST-based contract extraction.
 
-  **Works with Claude, Cursor, Copilot Chat, and any MCP-compatible agent.**
+**Includes an MCP server. Works with Claude, Cursor, Copilot Chat, and any MCP-compatible agent.**
+
+<div align="center">
 
   <br/>
   <a href="https://github.com/LogicStamp">
@@ -222,7 +225,7 @@ The compilation pipeline:
 
 One command. No build step required.
 
-> **💡Tip:** Use `stamp context` for basic contracts. Use `stamp context style` when you need style metadata (Tailwind classes, SCSS selectors, layout patterns).
+> **💡Tip:** Use `stamp context` for basic contracts. Use `stamp context style` when you need style metadata (Tailwind classes, SCSS selectors, layout patterns). Use `--style-mode lean` (default) for compact output or `--style-mode full` for detailed arrays.
 
 <details>
 <summary><strong>📋 What LogicStamp Context Is (and Isn't)</strong></summary>
@@ -315,7 +318,7 @@ After installation, the `stamp` command is available globally.
 
 LogicStamp Context protects sensitive data in generated context:
 
-- **Security scanning by default** - `stamp init` scans source files (`.ts`, `.tsx`, `.js`, `.jsx`) and `.json` files for hard-coded secrets before context generation
+- **Security scanning by default** - `stamp init` scans source files (`.ts`, `.tsx`, `.js`, `.jsx`) and `.json` files for hard-coded secrets before context compilation
 - **Automatic sanitization** - Detected secrets replaced with `"PRIVATE_DATA"` in output
 - **Manual exclusions** - Use `stamp ignore <file>` to exclude files via `.stampignore`
 - **Safe by default** - Only metadata included. Credentials only appear in `--include-code full` mode
@@ -335,7 +338,8 @@ stamp --help                       # Show help
 stamp init [path]                  # Initialize project (security scan by default)
 stamp ignore <path>                # Add to .stampignore
 stamp context [path]               # Generate context bundles
-stamp context style [path]         # Generate with style metadata
+stamp context style [path]         # Generate with style metadata (lean mode by default)
+stamp context style --style-mode full  # Generate with full style details (verbose)
 stamp context --watch              # Watch mode
 stamp context --watch --strict-watch  # Watch with breaking change detection
 stamp context compare              # Detect changes vs existing context

@@ -250,7 +250,7 @@ stamp context --watch --strict-watch
 
 ## Excluding Files
 
-If you need to exclude files from context generation:
+If you need to exclude files from context compilation:
 
 ```bash
 # Add files to .stampignore
@@ -378,7 +378,7 @@ This shows token estimates for:
 
 ### Context files not generating
 
-- **Check Node.js version**: Requires Node.js >= 18.18.0
+- **Check Node.js version**: Requires Node.js >= 20
 - **Verify TypeScript files exist**: LogicStamp only analyzes `.ts` and `.tsx` files
 - **Check for errors**: Run with `LOGICSTAMP_DEBUG=1 stamp context` for detailed logs
 

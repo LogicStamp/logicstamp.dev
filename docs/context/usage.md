@@ -124,7 +124,7 @@ stamp init --no-secure
 
 ### `stamp ignore`
 
-Add files or folders to `.stampignore` to exclude them from context generation. This is useful for excluding files with secrets, large generated files, or other files that shouldn't be included in context bundles.
+Add files or folders to `.stampignore` to exclude them from context compilation. This is useful for excluding files with secrets, large generated files, or other files that shouldn't be included in context bundles.
 
 **Arguments**
 
@@ -227,6 +227,11 @@ Like `stamp context`, the style command also automatically sanitizes secrets in 
 
 All options from `stamp context` are supported except `--compare-modes`. The style command is equivalent to `stamp context --include-style`. **Note:** `--compare-modes` is not available for `stamp context style`; use `stamp context --compare-modes` instead to analyze token costs.
 
+**Style mode:**
+
+- `--style-mode lean` (default) – Compact format with counts and flags for token efficiency
+- `--style-mode full` – Verbose format with arrays and detailed information for comprehensive analysis
+
 **What it extracts**
 
 The style command analyzes components and extracts:
@@ -277,6 +282,12 @@ stamp context style ./src
 
 # Use with other options
 stamp context style --profile llm-safe --out ./output
+
+# Use full style mode (arrays + details, verbose)
+stamp context style --style-mode full
+
+# Use lean style mode (counts + flags, compact) - default
+stamp context style --style-mode lean
 
 # Equivalent to using the flag
 stamp context --include-style
@@ -980,7 +991,7 @@ LogicStamp generates per-root component bundles (not individual files per compon
 
 Each bundle is self-contained with the complete dependency graph, so the AI sees all related components together. This structure also supports a future `--split` mode without breaking changes.
 
-Per-component files would be useful for advanced use cases (granular Git diffs, component analytics, platform indexing), but those are future platform features, not v1 "context generation for AI chat" use cases.
+Per-component files would be useful for advanced use cases (granular Git diffs, component analytics, platform indexing), but those are future platform features, not v1 "context compilation for AI chat" use cases.
 
 **Example: `src/components/context.json`**
 
@@ -1283,7 +1294,7 @@ Debug logs help identify:
 | Use case | Quick AI context | Full contract management |
 
 **When to use logicstamp-context:**
-- Quick AI context generation
+- Quick AI context compilation
 - One-off codebase analysis
 - Lightweight tool
 - No project configuration
