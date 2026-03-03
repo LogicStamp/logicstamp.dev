@@ -23,6 +23,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Changed
 - Migrated from Next.js 14 to Next.js 16
   - Upgraded `next` from `^14.2.35` to `^16.1.6`
+  - **Breaking change**: Node.js >=20.9.0 is now required (previously supported Node.js 18.x)
+  - Added `engines` field to `package.json` specifying Node.js >=20.9.0 and npm >=10.0.0
+  - Added `.nvmrc` file for nvm users (specifies Node.js 20.9.0)
+  - Updated CI workflow to test with Node.js 20.x and 22.x (removed 18.x)
   - Updated `tsconfig.json` configuration for Next.js 16 compatibility
     - Added `.next/dev/types/**/*.ts` to `include` array
     - Set `jsx` to `react-jsx` (Next.js uses React automatic runtime)

@@ -6,6 +6,10 @@
     "LogicStamp Contributors"
   ],
   "license": "MIT",
+  "engines": {
+    "node": ">=20.9.0",
+    "npm": ">=10.0.0"
+  },
   "repository": {
     "type": "git",
     "url": "https://github.com/LogicStamp/logicstamp.dev"
