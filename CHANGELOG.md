@@ -17,12 +17,25 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - Organize MCP documentation with sections: Getting Started, Core Tools/Features, Guides, Reference
   - Link to all MCP pages: getting-started, reference, usage, best-practices, profiles, style-metadata, changelog
   - Provide consistent navigation structure matching CLI Hub pattern
-- Migration to Next.js 16 and React 19 (to do)
-  - Upgrade `next` from `^14.2.35` to `^16.x`
-  - Upgrade `react` and `react-dom` from `^18.2.0` to `^19.x`
-  - Update `@types/react` and `@types/react-dom` to match React 19 types
-  - Update codebase to be compatible with React 19's new features and changes
-  - Verify all functionality works correctly with Next.js 16 and React 19
+
+## [0.2.0] - 2026-03-04
+
+### Changed
+- Migrated from Next.js 14 to Next.js 16
+  - Upgraded `next` from `^14.2.35` to `^16.1.6`
+  - **Breaking change**: Node.js >=20.9.0 is now required (previously supported Node.js 18.x)
+  - Added `engines` field to `package.json` specifying Node.js >=20.9.0 and npm >=10.0.0
+  - Added `.nvmrc` file for nvm users (specifies Node.js 20.9.0)
+  - Updated CI workflow to test with Node.js 20.x and 22.x (removed 18.x)
+  - Updated `tsconfig.json` configuration for Next.js 16 compatibility
+    - Added `.next/dev/types/**/*.ts` to `include` array
+    - Set `jsx` to `react-jsx` (Next.js uses React automatic runtime)
+  - Removed deprecated `swcMinify` option from `next.config.js` (enabled by default in Next.js 16+)
+
+### Fixed
+- Fixed CSS build error in Next.js 16 migration
+  - Moved `@import` statements to the top of `globals.css` before all CSS rules (required by CSS spec and enforced by Turbopack)
+  - CSS `@import` rules must now precede all rules aside from `@charset` and `@layer` statements
 
 ## [0.1.2] - 2025-12-13
 

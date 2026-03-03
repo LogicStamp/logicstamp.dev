@@ -1,11 +1,15 @@
 {
   "name": "logicstamp-landing",
-  "version": "0.1.2",
+  "version": "0.2.0",
   "author": "Amit Levi <logicstamp.dev@gmail.com> (https://amitlevi.dev)",
   "contributors": [
     "LogicStamp Contributors"
   ],
   "license": "MIT",
+  "engines": {
+    "node": ">=20.9.0",
+    "npm": ">=10.0.0"
+  },
   "repository": {
     "type": "git",
     "url": "https://github.com/LogicStamp/logicstamp.dev"
@@ -25,7 +29,7 @@
     "@supabase/supabase-js": "^2.49.1",
     "geist": "^1.5.1",
     "lucide-react": "^0.554.0",
-    "next": "^14.2.35",
+    "next": "^16.1.6",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-markdown": "^10.1.0"
