@@ -146,7 +146,7 @@ This returns the complete documentation bundle with embedded guide and canonical
   "type": "LogicStampDocs",
   "version": "1.0",
   "docs": {
-    "forLLMs": "# LogicStamp for LLMs\n\nLogicStamp is a CLI tool + MCP server that scans TypeScript/Next.js codebases and produces structured, AI-ready summaries (bundles) optimized for LLM consumption...\n\n## How LogicStamp Works\n\n..."
+    "forLLMs": "# LogicStamp for LLMs\n\nLogicStamp is a CLI tool + MCP server that scans TypeScript codebases and produces structured, AI-ready summaries (bundles) optimized for LLM consumption...\n\n## How LogicStamp Works\n\n..."
   },
   "canonicalDocs": {
     "landingPage": "https://logicstamp.dev/docs/logicstamp-context/context",
@@ -177,7 +177,7 @@ This returns the complete documentation bundle with embedded guide and canonical
     }
   },
   "summary": {
-    "purpose": "LogicStamp is a CLI tool + MCP server that scans TypeScript/Next.js codebases and produces structured, AI-ready summaries (bundles) optimized for LLM consumption.",
+    "purpose": "LogicStamp is a CLI tool + MCP server that scans TypeScriptcodebases and produces structured, AI-ready summaries (bundles) optimized for LLM consumption.",
     "howToUse": [
       "1. Call logicstamp_refresh_snapshot to generate context files and get a snapshotId",
       "2. Call logicstamp_list_bundles with the snapshotId to discover available bundles",

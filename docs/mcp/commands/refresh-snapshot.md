@@ -63,7 +63,7 @@
 
 ### `skipIfWatchActive` (optional)
 - **Type:** `boolean`
-- **Default:** `false`
+- **Default:** `true`
 - **Description:** Skip regeneration if watch mode (`stamp context --watch`) is active. When `true`:
   - If watch mode is active: Skips expensive regeneration and reads existing context files (fast path)
   - If watch mode is NOT active: Performs normal regeneration (slow path)
@@ -74,6 +74,8 @@
   - Faster execution when watch mode is active
   - Avoids duplicate work (watch mode already regenerates affected bundles)
   - Smart fallback: still regenerates if watch mode isn't running
+  
+  **Note:** The default is `true` - regeneration is automatically skipped when watch mode is active. Set to `false` only if you need to force regeneration even when watch mode is running.
 
 ## Output
 

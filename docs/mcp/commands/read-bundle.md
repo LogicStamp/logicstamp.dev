@@ -452,6 +452,7 @@ If `includeStyle: true`, access style metadata from `bundle.graph.nodes[0].contr
 
 - **Must call after list_bundles:** Use the `bundlePath` from `logicstamp_list_bundles` output.
 - **Multiple bundles per file:** A single `context.json` file can contain multiple bundles. Use `rootComponent` to specify which one.
+- **⚠️ Finding dependencies:** If a component isn't found as a root (not in `list_bundles`), it's a dependency. Read bundles that might import it and check `bundle.graph.nodes[]` for the dependency contract. Dependencies appear in the `graph.nodes[]` array of the root component that imports them.
 - **Style metadata:** Only available if `includeStyle: true` was used in `refresh_snapshot`.
 - **Code inclusion:** The `codeHeader` and `fullCode` fields depend on the `mode` used in `refresh_snapshot`:
   - `none` - No code included
