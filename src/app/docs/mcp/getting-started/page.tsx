@@ -45,7 +45,7 @@ export default function MCPInstallationPage() {
               <ul className="space-y-2 text-sm sm:text-base text-gray-600 dark:text-gray-400 ml-4">
                 <li className="flex items-start gap-2">
                   <span className="text-blue-600 dark:text-blue-400 mt-1">•</span>
-                  <span><strong>Node.js</strong> 18.18.0 or higher</span>
+                  <span><strong>Node.js</strong> {'>='} 20</span>
                 </li>
                 <li className="flex items-start gap-2">
                   <span className="text-blue-600 dark:text-blue-400 mt-1">•</span>

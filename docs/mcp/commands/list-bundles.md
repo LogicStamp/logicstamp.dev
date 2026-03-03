@@ -4,9 +4,18 @@
 
 ## Overview
 
-`logicstamp_list_bundles` lists all available component bundles in a snapshot. This command must be called **after** `logicstamp_refresh_snapshot` to discover what components are available in your codebase.
+`logicstamp_list_bundles` lists all available **ROOT** component bundles in a snapshot. This command must be called **after** `logicstamp_refresh_snapshot` to discover what components are available in your codebase.
 
 The command returns bundle descriptors with component names, file paths, bundle paths (for use in `logicstamp_read_bundle`), and token estimates. You can filter bundles by directory using the `folderPrefix` parameter.
+
+**⚠️ IMPORTANT: Root vs Dependencies**
+
+- **This command only lists ROOT components** - Components that have their own bundles (entry points)
+- **Dependencies are NOT listed here** - Components imported by root components appear in `bundle.graph.nodes[]` of the root that imports them, not as separate root bundles
+- **If a component isn't in this list**, it's a dependency. To find it:
+  1. Read bundles that might import it (check `bundle.graph.nodes[]` for the dependency contract)
+  2. Search source code to find which root component imports it
+  3. Check bundles in the same folder (dependencies are typically co-located)
 
 **Important:** You MUST call this before reading bundles - it tells you which `bundlePath` values to use in `logicstamp_read_bundle`.
 
@@ -175,6 +184,7 @@ Filter by architectural layer:
 - **bundlePath is required:** The `bundlePath` field from the output is what you use in `logicstamp_read_bundle`.
 - **Multiple bundles per file:** A single `context.json` file can contain multiple bundles. Use `rootComponent` to specify which one you want.
 - **Token estimates:** The `approxTokens` field provides a rough estimate. Actual token counts may vary.
+- **⚠️ Only lists ROOT components:** If a component isn't in this list, it's a dependency. Read the bundle of the root component that imports it, then check `bundle.graph.nodes[]` for the dependency contract.
 
 ## Related Commands
 

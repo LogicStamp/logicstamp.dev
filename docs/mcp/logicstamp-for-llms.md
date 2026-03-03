@@ -137,14 +137,17 @@ refresh_snapshot({ projectPath: "...", skipIfWatchActive: true })
    - **Example:** `{ "projectPath": "...", "skipIfWatchActive": true }` - Uses default depth=2, skips regeneration if watch mode is active. Set `depth: 1` if you only need direct dependencies (e.g., App → Hero but not Hero → Button).
 
 2. **Discover bundles with `logicstamp_list_bundles`**
-   - Lists all available bundles with their locations
+   - Lists all ROOT bundles with their locations
    - Shows component names, file paths, bundle paths, token estimates
+   - ⚠️ **IMPORTANT**: Only lists ROOT components (components with their own bundles)
+   - Dependencies are NOT listed here - they appear in `bundle.graph.nodes[]` of the root that imports them
    - Use `folderPrefix` to filter by directory if needed
 
 3. **Read bundles with `logicstamp_read_bundle`**
    - This is where the valuable data is
    - Pass the `bundlePath` from `list_bundles` output
    - Returns complete component contracts with dependency graphs
+   - **Finding dependencies**: If a component isn't in `list_bundles`, it's a dependency. Read bundles that might import it and check `bundle.graph.nodes[]` for the dependency contract
 
 4. **Only then read raw files** (if needed)
    - Use bundles first to understand structure
@@ -288,37 +291,40 @@ refresh_snapshot({ projectPath: "...", depth: 1 })
 4. Analyze contract.props, contract.logicSignature, contract.graph
 ```
 
-### Finding Components: Root vs Dependencies
+### ⚠️ Finding Components: Root vs Dependencies (CRITICAL CONCEPT)
 
-LogicStamp organizes components into two categories:
+**LogicStamp organizes components into two categories:**
 
-- **Root components** - Components that have their own bundles (listed in `context_main.json` under each folder's `components` array). These are entry points that other components import.
-- **Dependencies** - Components that are imported by root components. They appear in the importing component's bundle as nodes in `graph.nodes[]`, not as separate root bundles.
+- **Root components** - Components that have their own bundles (listed in `logicstamp_list_bundles` output and in `context_main.json` under each folder's `components` array). These are entry points that other components import.
+- **Dependencies** - Components that are imported by root components. They appear in the importing component's bundle as nodes in `bundle.graph.nodes[]`, **NOT** as separate root bundles and **NOT** listed in `list_bundles`.
 
-**Workflow for finding a component:**
+**🔍 Workflow for finding a component:**
 
-1. **Check `context_main.json` first** - Look in the `folders[]` array for the component's file name in the `components` list. If found, it's a root component with its own bundle.
-2. **If not found as a root** - The component is likely a dependency. Find which root component imports it:
-   - Search for import statements in source code, or
-   - Check bundles in the same folder (dependencies are typically in the same folder as their importing component)
-3. **Read the importing root's bundle** - The dependency's contract will be in `graph.nodes[]` of that bundle.
+1. **First, call `logicstamp_list_bundles`** - Check if the component is listed. If found, it's a root component with its own bundle.
+2. **If NOT found in `list_bundles`** - The component is a dependency. To find it:
+   - **Option A**: Read bundles that might import it (check `bundle.graph.nodes[]` for the dependency contract)
+   - **Option B**: Search source code to find which root component imports it, then read that root's bundle
+   - **Option C**: Check bundles in the same folder (dependencies are typically in the same folder as their importing component)
+3. **Read the importing root's bundle** - The dependency's contract will be in `bundle.graph.nodes[]` of that bundle (not as the root node).
 
-**Example:**
+**📝 Example:**
 
 ```
-FAQ.tsx is imported by src/app/page.tsx (line 7)
-→ FAQ is NOT in src/components/sections/context.json (not a root)
-→ FAQ IS in src/app/page.tsx bundle (as a dependency node)
-→ To access FAQ: read src/app/context.json with rootComponent: "page"
+Looking for CopyButton component:
+1. Call logicstamp_list_bundles → CopyButton NOT in the list
+2. CopyButton is a dependency, not a root
+3. Find which root imports it: TabbedInstallation imports CopyButton
+4. Read TabbedInstallation's bundle: read_bundle(bundlePath, rootComponent: "TabbedInstallation")
+5. Check bundle.graph.nodes[] → CopyButton contract is there as a dependency node
 ```
 
 **Why this matters:**
 
-- Root components = own bundles (e.g., `Features.tsx`, `Stats.tsx` in `src/components/sections/context.json`)
-- Dependencies = included in importing root component's bundle graph (e.g., `FAQ.tsx` in `src/app/page.tsx` bundle)
+- **Root components** = Have their own bundles, listed in `list_bundles` (e.g., `Features.tsx`, `Stats.tsx`, `TabbedInstallation.tsx`)
+- **Dependencies** = Included in importing root component's bundle graph (e.g., `CopyButton.tsx` appears in `TabbedInstallation.tsx` bundle's `graph.nodes[]`)
 - This structure matches how developers think: pages/features are entry points, their dependencies are included automatically
 
-**Common mistake:** Looking for a component as a root when it's actually a dependency. Always check `context_main.json` first to see if it's listed as a root component.
+**🚨 Common mistake:** Looking for a component as a root when it's actually a dependency. Always check `logicstamp_list_bundles` first - if it's not there, it's a dependency and you need to find which root imports it.
 
 ### Finding Dependencies
 

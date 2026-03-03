@@ -89,7 +89,7 @@ export default function MCPReferencePage() {
   "depth": 2,                  // optional: dependency depth (default: 2)
   "projectPath": "/abs/path",  // REQUIRED: absolute path to project root
   "cleanCache": false,         // optional: force cache cleanup (default: false)
-  "skipIfWatchActive": false   // optional: skip regeneration if watch mode is active (default: false)
+  "skipIfWatchActive": true    // optional: skip regeneration if watch mode is active (default: true)
 }`,
                       copyText: JSON.stringify({ profile: "llm-chat", mode: "header", includeStyle: false, depth: 2, projectPath: "/abs/path", cleanCache: false }, null, 2)
                     }
