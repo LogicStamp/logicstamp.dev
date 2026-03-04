@@ -1,0 +1,1248 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://logicstamp.dev/schemas/context/v0.1.json",
+  "title": "LogicStamp Context Bundle",
+  "description": "JSON Schema for LogicStamp Context bundles - AI-ready documentation of TypeScript codebases. Each bundle represents component contracts, dependency graphs, and metadata. For detailed documentation on the meta.missing field and dependency resolution, see README.md 'Understanding the Meta Field' section.",
+  "type": "array",
+  "items": {
+    "$ref": "#/definitions/LogicStampBundle"
+  },
+  "definitions": {
+    "LogicStampBundle": {
+      "type": "object",
+      "required": ["type", "schemaVersion", "entryId", "depth", "createdAt", "bundleHash", "graph", "meta"],
+      "properties": {
+        "type": {
+          "type": "string",
+          "const": "LogicStampBundle",
+          "description": "Type identifier for LogicStamp bundles"
+        },
+        "schemaVersion": {
+          "type": "string",
+          "const": "0.1",
+          "description": "Schema version for the bundle format"
+        },
+        "position": {
+          "type": "string",
+          "pattern": "^\\d+/\\d+$",
+          "description": "Position of this bundle in the output (e.g., '1/10')"
+        },
+        "entryId": {
+          "type": "string",
+          "description": "Entry point identifier (file path)"
+        },
+        "depth": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Dependency traversal depth"
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time",
+          "description": "ISO 8601 timestamp of bundle creation"
+        },
+        "bundleHash": {
+          "type": "string",
+          "pattern": "^uifb:[a-f0-9]{24}$",
+          "description": "Content hash of the bundle"
+        },
+        "graph": {
+          "$ref": "#/definitions/BundleGraph"
+        },
+        "meta": {
+          "$ref": "#/definitions/BundleMeta"
+        }
+      },
+      "additionalProperties": false
+    },
+    "BundleGraph": {
+      "type": "object",
+      "required": ["nodes", "edges"],
+      "properties": {
+        "nodes": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/BundleNode"
+          },
+          "description": "Component nodes in the dependency graph"
+        },
+        "edges": {
+          "type": "array",
+          "items": {
+            "type": "array",
+            "minItems": 2,
+            "maxItems": 2,
+            "items": {
+              "type": "string"
+            }
+          },
+          "description": "Dependency edges as [from, to] tuples"
+        }
+      },
+      "additionalProperties": false
+    },
+    "BundleNode": {
+      "type": "object",
+      "required": ["entryId", "contract"],
+      "properties": {
+        "entryId": {
+          "type": "string",
+          "description": "Unique identifier for this component"
+        },
+        "contract": {
+          "$ref": "#/definitions/UIFContract"
+        },
+        "codeHeader": {
+          "type": ["string", "null"],
+          "description": "Header comment from the source file (when includeCode=header)"
+        },
+        "code": {
+          "type": ["string", "null"],
+          "description": "Full source code (when includeCode=full)"
+        }
+      },
+      "additionalProperties": false
+    },
+    "BundleMeta": {
+      "type": "object",
+      "required": ["missing", "source"],
+      "properties": {
+        "missing": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/MissingDependency"
+          },
+          "description": "Array of unresolved dependencies. Empty array [] indicates complete dependency resolution. Non-empty indicates external packages, missing files, or dependencies outside scan scope."
+        },
+        "source": {
+          "type": "string",
+          "pattern": "^logicstamp-context@\\d+\\.\\d+\\.\\d+$",
+          "description": "Generator identifier with version (e.g., 'logicstamp-context@0.3.x'). Used for compatibility tracking and debugging."
+        }
+      },
+      "additionalProperties": false
+    },
+    "MissingDependency": {
+      "type": "object",
+      "required": ["name", "reason"],
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "Import specifier that could not be resolved (e.g., './Component', '@mui/material')"
+        },
+        "reason": {
+          "type": "string",
+          "enum": ["file not found", "external package", "outside scan path", "max depth exceeded", "circular dependency"],
+          "description": "Reason for missing dependency: 'file not found' (deleted/moved), 'external package' (npm module), 'outside scan path' (not in scan dir), 'max depth exceeded' (beyond depth limit), 'circular dependency' (import cycle)"
+        },
+        "referencedBy": {
+          "type": "string",
+          "description": "File path of the component that attempted to import this dependency"
+        },
+        "packageName": {
+          "type": "string",
+          "description": "Extracted package name for third-party dependencies (e.g., '@mui/material' from '@mui/material/Button')"
+        },
+        "packageVersion": {
+          "type": "string",
+          "description": "Package version from package.json (if available, e.g., '^5.15.0')"
+        }
+      },
+      "additionalProperties": false
+    },
+    "UIFContract": {
+      "type": "object",
+      "required": ["type", "schemaVersion", "kind", "entryId", "description", "composition", "interface", "semanticHash", "fileHash"],
+      "properties": {
+        "type": {
+          "type": "string",
+          "const": "UIFContract",
+          "description": "Type identifier for UIF contracts"
+        },
+        "schemaVersion": {
+          "type": "string",
+          "const": "0.4",
+          "description": "Schema version for UIF contracts"
+        },
+        "kind": {
+          "type": "string",
+          "pattern": "^[a-z]+:[a-z-]+$",
+          "description": "Component kind in format 'language:type' (e.g., 'react:component', 'python:function', 'java:class', 'node:api'). Extensible to support any language and type combination."
+        },
+        "entryId": {
+          "type": "string",
+          "description": "File path identifier"
+        },
+        "description": {
+          "type": "string",
+          "description": "Human-readable description of the component"
+        },
+        "usedIn": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "Components that depend on this one"
+        },
+        "composition": {
+          "$ref": "#/definitions/ComponentVersion"
+        },
+        "interface": {
+          "$ref": "#/definitions/LogicSignature"
+        },
+        "prediction": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "Behavioral predictions about the component"
+        },
+        "metrics": {
+          "$ref": "#/definitions/ContractMetrics"
+        },
+        "links": {
+          "$ref": "#/definitions/ContractLinks"
+        },
+        "style": {
+          "$ref": "#/definitions/StyleMetadata",
+          "description": "Optional style metadata (only when --include-style is used)"
+        },
+        "nextjs": {
+          "$ref": "#/definitions/NextJSMetadata",
+          "description": "Optional Next.js App Router metadata (route roles, segment paths, metadata exports)"
+        },
+        "exports": {
+          "oneOf": [
+            {
+              "type": "string",
+              "enum": ["default", "named"],
+              "description": "Export type: 'default' for default export, 'named' for single named export"
+            },
+            {
+              "type": "object",
+              "required": ["named"],
+              "properties": {
+                "named": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  },
+                  "description": "Array of named export names (for multiple named exports)"
+                }
+              },
+              "additionalProperties": false,
+              "description": "Multiple named exports with explicit list"
+            }
+          ],
+          "description": "Optional export metadata: export type and exported names"
+        },
+        "semanticHash": {
+          "type": "string",
+          "pattern": "^uif:[a-f0-9]{24}$",
+          "description": "Hash of the component's semantic structure"
+        },
+        "fileHash": {
+          "type": "string",
+          "pattern": "^uif:[a-f0-9]{24}$",
+          "description": "Hash of the source file"
+        }
+      },
+      "additionalProperties": false
+    },
+    "ComponentVersion": {
+      "type": "object",
+      "required": ["variables", "hooks", "components", "functions"],
+      "properties": {
+        "variables": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "Variable declarations"
+        },
+        "hooks": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "React hooks used (empty array [] for non-React files)"
+        },
+        "components": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "React/Vue components used (empty array [] for non-React/Vue files)"
+        },
+        "functions": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "Function declarations"
+        },
+        "imports": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "Import statements"
+        },
+        "languageSpecific": {
+          "$ref": "#/definitions/LanguageSpecificVersion",
+          "description": "Language-specific extensions (e.g., decorators for Python, annotations for Java)"
+        }
+      },
+      "additionalProperties": false
+    },
+    "LanguageSpecificVersion": {
+      "type": "object",
+      "properties": {
+        "decorators": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "Python decorators (e.g., ['@app.get', '@app.post'])"
+        },
+        "annotations": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "Java annotations (e.g., ['@RestController', '@GetMapping'])"
+        },
+        "classes": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "Python/Java classes (e.g., ['UserController', 'UserService'])"
+        },
+        "methods": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "Java methods (if different from functions, e.g., ['getUser', 'createUser'])"
+        }
+      },
+      "additionalProperties": false
+    },
+    "LogicSignature": {
+      "type": "object",
+      "required": ["props", "emits"],
+      "properties": {
+        "props": {
+          "type": "object",
+          "additionalProperties": {
+            "$ref": "#/definitions/PropType"
+          },
+          "description": "Component props with types (empty object {} for backend files)"
+        },
+        "emits": {
+          "type": "object",
+          "additionalProperties": {
+            "$ref": "#/definitions/EventType"
+          },
+          "description": "Event handlers (empty object {} for backend files)"
+        },
+        "state": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "Component state variables (empty object {} for backend files)"
+        },
+        "apiSignature": {
+          "$ref": "#/definitions/ApiSignature",
+          "description": "API signature for backend functions/methods (parameters, return types, etc.)"
+        }
+      },
+      "additionalProperties": false
+    },
+    "ApiSignature": {
+      "type": "object",
+      "properties": {
+        "parameters": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "Function/method parameters with types (e.g., { user_id: 'int', name: 'str' })"
+        },
+        "returnType": {
+          "type": "string",
+          "description": "Return type (e.g., 'User', 'List[User]', 'void')"
+        },
+        "requestType": {
+          "type": "string",
+          "description": "Request body type for POST/PUT requests (e.g., 'CreateUserRequest')"
+        },
+        "responseType": {
+          "type": "string",
+          "description": "Response type (e.g., 'UserResponse', 'List[UserResponse]')"
+        }
+      },
+      "additionalProperties": false
+    },
+    "PropType": {
+      "oneOf": [
+        {
+          "type": "string",
+          "description": "Simple type (e.g., 'string', 'number', 'boolean')"
+        },
+        {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "Legacy literal union format"
+        },
+        {
+          "type": "object",
+          "required": ["type"],
+          "properties": {
+            "type": {
+              "type": "string",
+              "description": "Type descriptor (literal-union, function, object, array, etc.)"
+            },
+            "optional": {
+              "type": "boolean",
+              "description": "Whether the prop is optional"
+            },
+            "literals": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              },
+              "description": "Literal values for literal-union types"
+            },
+            "signature": {
+              "type": "string",
+              "description": "Function signature for function types"
+            }
+          },
+          "additionalProperties": false,
+          "description": "Rich type descriptor"
+        }
+      ]
+    },
+    "EventType": {
+      "oneOf": [
+        {
+          "type": "string",
+          "description": "Legacy format (e.g., 'function', 'arrow function')"
+        },
+        {
+          "type": "object",
+          "required": ["type", "signature"],
+          "properties": {
+            "type": {
+              "type": "string",
+              "const": "function",
+              "description": "Event handler type"
+            },
+            "signature": {
+              "type": "string",
+              "description": "Function signature (e.g., '() => void')"
+            },
+            "optional": {
+              "type": "boolean",
+              "description": "Whether the event handler is optional"
+            }
+          },
+          "additionalProperties": false,
+          "description": "Normalized event descriptor"
+        }
+      ]
+    },
+    "ContractMetrics": {
+      "type": "object",
+      "properties": {
+        "a11y": {
+          "$ref": "#/definitions/A11yMetrics"
+        },
+        "latency": {
+          "$ref": "#/definitions/LatencyMetrics"
+        },
+        "coverage": {
+          "$ref": "#/definitions/CoverageMetrics"
+        }
+      },
+      "additionalProperties": false
+    },
+    "A11yMetrics": {
+      "type": "object",
+      "properties": {
+        "contrastMin": {
+          "type": "number",
+          "description": "Minimum color contrast ratio"
+        },
+        "role": {
+          "type": "string",
+          "description": "ARIA role"
+        }
+      },
+      "additionalProperties": false
+    },
+    "LatencyMetrics": {
+      "type": "object",
+      "properties": {
+        "clientP95Ms": {
+          "type": "number",
+          "description": "95th percentile client latency in milliseconds"
+        }
+      },
+      "additionalProperties": false
+    },
+    "CoverageMetrics": {
+      "type": "object",
+      "properties": {
+        "lines": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 100,
+          "description": "Line coverage percentage"
+        },
+        "branches": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 100,
+          "description": "Branch coverage percentage"
+        }
+      },
+      "additionalProperties": false
+    },
+    "ContractLinks": {
+      "type": "object",
+      "properties": {
+        "tokens": {
+          "type": "string",
+          "description": "Link to design tokens"
+        },
+        "figma": {
+          "type": "string",
+          "format": "uri",
+          "description": "Link to Figma design"
+        },
+        "spec": {
+          "type": "string",
+          "format": "uri",
+          "description": "Link to specification"
+        }
+      },
+      "additionalProperties": false
+    },
+    "StyleMetadata": {
+      "type": "object",
+      "properties": {
+        "styleSources": {
+          "$ref": "#/definitions/StyleSources"
+        },
+        "layout": {
+          "$ref": "#/definitions/LayoutMetadata"
+        },
+        "visual": {
+          "$ref": "#/definitions/VisualMetadata"
+        },
+        "animation": {
+          "$ref": "#/definitions/AnimationMetadata"
+        },
+        "pageLayout": {
+          "$ref": "#/definitions/PageLayoutMetadata"
+        },
+        "summary": {
+          "$ref": "#/definitions/StyleSummary"
+        }
+      },
+      "additionalProperties": false
+    },
+    "StyleSources": {
+      "type": "object",
+      "properties": {
+        "tailwind": {
+          "type": "object",
+          "properties": {
+            "categories": {
+              "type": "object",
+              "additionalProperties": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "description": "Tailwind classes categorized by type (layout, spacing, colors, typography, borders, effects) - full mode only"
+            },
+            "categoriesUsed": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              },
+              "description": "Category names used (e.g., ['layout', 'spacing', 'colors']) - lean mode only"
+            },
+            "breakpoints": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              },
+              "description": "Responsive breakpoints used (sm, md, lg, xl, 2xl)"
+            },
+            "classCount": {
+              "type": "number",
+              "description": "Total number of Tailwind classes detected"
+            }
+          },
+          "additionalProperties": false
+        },
+        "scssModule": {
+          "type": "string",
+          "description": "Path to imported SCSS module file"
+        },
+        "scssDetails": {
+          "type": "object",
+          "properties": {
+            "selectors": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              },
+              "description": "CSS selectors found in the SCSS file"
+            },
+            "properties": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              },
+              "description": "CSS properties used"
+            },
+            "features": {
+              "type": "object",
+              "properties": {
+                "variables": {
+                  "type": "boolean",
+                  "description": "Uses SCSS variables"
+                },
+                "nesting": {
+                  "type": "boolean",
+                  "description": "Uses SCSS nesting"
+                },
+                "mixins": {
+                  "type": "boolean",
+                  "description": "Uses SCSS mixins"
+                }
+              },
+              "additionalProperties": false
+            }
+          },
+          "additionalProperties": false
+        },
+        "cssModule": {
+          "type": "string",
+          "description": "Path to imported CSS module file"
+        },
+        "cssDetails": {
+          "type": "object",
+          "properties": {
+            "selectors": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "properties": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          },
+          "additionalProperties": false
+        },
+        "inlineStyles": {
+          "oneOf": [
+            {
+              "type": "boolean",
+              "description": "Uses inline styles (style={{...}}) - legacy format"
+            },
+            {
+              "type": "object",
+              "description": "Inline styles with extracted properties and values",
+              "properties": {
+                "properties": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  },
+                  "description": "CSS property names found in inline styles"
+                },
+                "values": {
+                  "type": "object",
+                  "additionalProperties": {
+                    "type": "string"
+                  },
+                  "description": "Property-value pairs for literal values"
+                }
+              },
+              "additionalProperties": false
+            }
+          ]
+        },
+        "styledJsx": {
+          "type": "object",
+          "description": "Styled JSX CSS content extracted from <style jsx> blocks",
+          "properties": {
+            "css": {
+              "type": "string",
+              "description": "Extracted CSS content from <style jsx> blocks - full mode only"
+            },
+            "global": {
+              "type": "boolean",
+              "description": "Whether the style block has global attribute (<style jsx global>)"
+            },
+            "selectors": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              },
+              "description": "CSS selectors found in the extracted CSS - full mode only"
+            },
+            "selectorCount": {
+              "type": "number",
+              "description": "Number of CSS selectors found - lean mode only"
+            },
+            "properties": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              },
+              "description": "CSS properties found in the extracted CSS - full mode only"
+            },
+            "propertyCount": {
+              "type": "number",
+              "description": "Number of CSS properties found - lean mode only"
+            }
+          },
+          "additionalProperties": false
+        },
+        "styledComponents": {
+          "type": "object",
+          "properties": {
+            "components": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              },
+              "description": "Styled component names (e.g., ['div', 'Button']) - full mode only"
+            },
+            "componentCount": {
+              "type": "number",
+              "description": "Number of styled components - lean mode only"
+            },
+            "usesTheme": {
+              "type": "boolean",
+              "description": "Uses theme"
+            },
+            "usesCssProp": {
+              "type": "boolean",
+              "description": "Uses css prop"
+            }
+          },
+          "additionalProperties": false
+        },
+        "motion": {
+          "type": "object",
+          "properties": {
+            "components": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              },
+              "description": "Motion components (motion.div, motion.button, etc.)"
+            },
+            "variants": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              },
+              "description": "Variant names used"
+            },
+            "features": {
+              "type": "object",
+              "properties": {
+                "gestures": {
+                  "type": "boolean",
+                  "description": "Uses gesture handlers (whileHover, whileTap, etc.)"
+                },
+                "layoutAnimations": {
+                  "type": "boolean",
+                  "description": "Uses layout animations (layout prop)"
+                },
+                "viewportAnimations": {
+                  "type": "boolean",
+                  "description": "Uses viewport-triggered animations (useInView, viewport)"
+                }
+              },
+              "additionalProperties": false
+            }
+          },
+          "required": ["features"],
+          "additionalProperties": false
+        },
+        "materialUI": {
+          "type": "object",
+          "properties": {
+            "components": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              },
+              "description": "Material UI component names used (e.g., ['Button', 'TextField', 'Card'])"
+            },
+            "packages": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              },
+              "description": "Material UI packages imported (e.g., ['@mui/material', '@mui/icons-material'])"
+            },
+            "features": {
+              "type": "object",
+              "properties": {
+                "usesTheme": {
+                  "type": "boolean",
+                  "description": "Uses theme (useTheme, ThemeProvider, createTheme)"
+                },
+                "usesSxProp": {
+                  "type": "boolean",
+                  "description": "Uses sx prop for styling"
+                },
+                "usesStyled": {
+                  "type": "boolean",
+                  "description": "Uses styled from @mui/material/styles"
+                },
+                "usesMakeStyles": {
+                  "type": "boolean",
+                  "description": "Uses makeStyles (legacy)"
+                },
+                "usesSystemProps": {
+                  "type": "boolean",
+                  "description": "Uses system props on Box/Stack components"
+                }
+              },
+              "additionalProperties": false
+            }
+          },
+          "required": ["features"],
+          "additionalProperties": false
+        },
+        "antd": {
+          "type": "object",
+          "properties": {
+            "components": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              },
+              "description": "Ant Design component names used (e.g., ['Button', 'Input', 'Form', 'Table'])"
+            },
+            "packages": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              },
+              "description": "Ant Design packages imported (e.g., ['antd', '@ant-design/icons'])"
+            },
+            "features": {
+              "type": "object",
+              "properties": {
+                "usesTheme": {
+                  "type": "boolean",
+                  "description": "Uses theme (theme, useToken, getDesignToken)"
+                },
+                "usesConfigProvider": {
+                  "type": "boolean",
+                  "description": "Uses ConfigProvider for global configuration"
+                },
+                "usesForm": {
+                  "type": "boolean",
+                  "description": "Uses Form component with validation"
+                },
+                "usesLocale": {
+                  "type": "boolean",
+                  "description": "Uses internationalization (useLocale, getLocale)"
+                },
+                "usesIcons": {
+                  "type": "boolean",
+                  "description": "Uses @ant-design/icons"
+                }
+              },
+              "additionalProperties": false
+            }
+          },
+          "required": ["features"],
+          "additionalProperties": false
+        },
+        "chakraUI": {
+          "type": "object",
+          "properties": {
+            "components": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              },
+              "description": "Chakra UI component names used (e.g., ['Box', 'Button', 'Input', 'FormControl'])"
+            },
+            "packages": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              },
+              "description": "Chakra UI packages imported (e.g., ['@chakra-ui/react', '@chakra-ui/icons'])"
+            },
+            "features": {
+              "type": "object",
+              "properties": {
+                "usesTheme": {
+                  "type": "boolean",
+                  "description": "Uses theme (useTheme, extendTheme, createTheme)"
+                },
+                "usesColorMode": {
+                  "type": "boolean",
+                  "description": "Uses color mode (useColorMode, useColorModeValue, dark/light mode)"
+                },
+                "usesResponsiveProps": {
+                  "type": "boolean",
+                  "description": "Uses responsive props (array syntax [base, md, lg])"
+                },
+                "usesSystemProps": {
+                  "type": "boolean",
+                  "description": "Uses system props on Box/Stack/Flex components"
+                }
+              },
+              "additionalProperties": false
+            }
+          },
+          "required": ["features"],
+          "additionalProperties": false
+        },
+        "shadcnUI": {
+          "type": "object",
+          "properties": {
+            "components": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              },
+              "description": "ShadCN/UI component names used (e.g., ['Button', 'Card', 'Dialog', 'Sheet'])"
+            },
+            "variants": {
+              "type": "object",
+              "additionalProperties": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "description": "Variant usage per component type (e.g., { button: ['default', 'outline'], badge: ['secondary'] })"
+            },
+            "sizes": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              },
+              "description": "Size prop values used (e.g., ['sm', 'lg', 'icon'])"
+            },
+            "features": {
+              "type": "object",
+              "properties": {
+                "usesForm": {
+                  "type": "boolean",
+                  "description": "Uses react-hook-form integration"
+                },
+                "usesTheme": {
+                  "type": "boolean",
+                  "description": "Uses theme (next-themes or dark mode)"
+                },
+                "usesIcons": {
+                  "type": "boolean",
+                  "description": "Uses icons (lucide-react or radix icons)"
+                },
+                "componentDensity": {
+                  "type": "string",
+                  "enum": ["low", "medium", "high"],
+                  "description": "Number of ShadCN components used"
+                }
+              },
+              "additionalProperties": false
+            }
+          },
+          "required": ["features"],
+          "additionalProperties": false
+        },
+        "radixUI": {
+          "type": "object",
+          "properties": {
+            "primitives": {
+              "type": "object",
+              "additionalProperties": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "description": "Primitive components by package (e.g., { 'react-dialog': ['Dialog', 'DialogContent'], 'react-popover': ['Popover', 'PopoverTrigger'] })"
+            },
+            "patterns": {
+              "type": "object",
+              "properties": {
+                "controlled": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  },
+                  "description": "Components using controlled pattern"
+                },
+                "uncontrolled": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  },
+                  "description": "Components using uncontrolled pattern"
+                },
+                "portals": {
+                  "type": "number",
+                  "description": "Portal usage count"
+                },
+                "asChild": {
+                  "type": "number",
+                  "description": "asChild composition pattern count"
+                }
+              },
+              "additionalProperties": false
+            },
+            "accessibility": {
+              "type": "object",
+              "properties": {
+                "usesDirection": {
+                  "type": "boolean",
+                  "description": "Uses RTL/LTR support"
+                },
+                "usesFocusManagement": {
+                  "type": "boolean",
+                  "description": "Uses focus trapping"
+                },
+                "usesKeyboardNav": {
+                  "type": "boolean",
+                  "description": "Uses keyboard navigation (loop, orientation, etc.)"
+                },
+                "usesModal": {
+                  "type": "boolean",
+                  "description": "Uses modal dialogs"
+                }
+              },
+              "additionalProperties": false
+            },
+            "features": {
+              "type": "object",
+              "properties": {
+                "primitiveCount": {
+                  "type": "number",
+                  "description": "Total unique primitives used"
+                },
+                "compositionDepth": {
+                  "type": "string",
+                  "enum": ["simple", "moderate", "complex"],
+                  "description": "Composition complexity"
+                }
+              },
+              "additionalProperties": false
+            }
+          },
+          "additionalProperties": false
+        }
+      },
+      "additionalProperties": false
+    },
+    "LayoutMetadata": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "type": "string",
+          "enum": ["flex", "grid", "relative", "absolute"],
+          "description": "Layout type"
+        },
+        "cols": {
+          "type": "string",
+          "description": "Grid column pattern (e.g., 'grid-cols-2 md:grid-cols-3')"
+        },
+        "hasHeroPattern": {
+          "type": "boolean",
+          "description": "Indicates hero section pattern (large text + CTA buttons)"
+        },
+        "hasFeatureCards": {
+          "type": "boolean",
+          "description": "Indicates feature card grid pattern"
+        },
+        "sections": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "Identified page sections - full mode only"
+        },
+        "sectionCount": {
+          "type": "number",
+          "description": "Number of identified page sections - lean mode only"
+        }
+      },
+      "additionalProperties": false
+    },
+    "VisualMetadata": {
+      "type": "object",
+      "properties": {
+        "colors": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "Color utility classes (sorted, limited to top 10) - full mode only"
+        },
+        "colorCount": {
+          "type": "number",
+          "description": "Number of color utility classes - lean mode only"
+        },
+        "spacing": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "Spacing utility classes (sorted, limited to top 10) - full mode only"
+        },
+        "spacingCount": {
+          "type": "number",
+          "description": "Number of spacing utility classes - lean mode only"
+        },
+        "radius": {
+          "type": "string",
+          "description": "Most common border radius pattern"
+        },
+        "typography": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "Typography classes (sorted, limited to top 10) - full mode only"
+        },
+        "typographyCount": {
+          "type": "number",
+          "description": "Number of typography classes - lean mode only"
+        }
+      },
+      "additionalProperties": false
+    },
+    "AnimationMetadata": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "type": "string",
+          "description": "Animation type (e.g., 'fade-in', 'slide')"
+        },
+        "library": {
+          "type": "string",
+          "enum": ["framer-motion", "css"],
+          "description": "Animation library"
+        },
+        "trigger": {
+          "type": "string",
+          "description": "Trigger type (e.g., 'inView', 'hover', 'click')"
+        }
+      },
+      "additionalProperties": false
+    },
+    "PageLayoutMetadata": {
+      "type": "object",
+      "properties": {
+        "pageRole": {
+          "type": "string",
+          "description": "Page role (e.g., 'landing', 'dashboard')"
+        },
+        "sections": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "Page sections"
+        },
+        "ctaCount": {
+          "type": "number",
+          "description": "Number of call-to-action elements"
+        }
+      },
+      "additionalProperties": false
+    },
+    "StyleSummary": {
+      "type": "object",
+      "required": ["mode", "sources"],
+      "properties": {
+        "mode": {
+          "type": "string",
+          "enum": ["lean", "full"],
+          "description": "Style extraction mode: 'lean' (compact with counts/flags) or 'full' (verbose with arrays)"
+        },
+        "sources": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "Style sources detected (e.g., ['tailwind', 'shadcn', 'scss'])"
+        },
+        "fullModeBytes": {
+          "type": "number",
+          "description": "Estimated byte size of full mode output (only present in lean mode)"
+        }
+      },
+      "additionalProperties": false
+    },
+    "NextJSMetadata": {
+      "type": "object",
+      "properties": {
+        "isInAppDir": {
+          "type": "boolean",
+          "description": "Whether the file is in the Next.js App Router directory (/app/)"
+        },
+        "directive": {
+          "type": "string",
+          "enum": ["client", "server"],
+          "description": "Next.js directive ('use client' or 'use server')"
+        },
+        "routeRole": {
+          "type": "string",
+          "enum": ["page", "layout", "loading", "error", "not-found", "template", "default", "route"],
+          "description": "Route role in Next.js App Router (page, layout, loading, error, not-found, template, default, route)"
+        },
+        "segmentPath": {
+          "type": "string",
+          "description": "Route path derived from file structure (e.g., '/blog/[slug]', '/api/users')"
+        },
+        "metadata": {
+          "type": "object",
+          "properties": {
+            "static": {
+              "type": "object",
+              "additionalProperties": true,
+              "description": "Static metadata from `export const metadata = {...}`"
+            },
+            "dynamic": {
+              "type": "boolean",
+              "description": "True if `export function generateMetadata()` exists"
+            }
+          },
+          "additionalProperties": false,
+          "description": "Next.js metadata exports (static and dynamic)"
+        }
+      },
+      "additionalProperties": false
+    }
+  }
+}
