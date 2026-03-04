@@ -122,38 +122,100 @@ export default function SchemaPage() {
                       code: `interface UIFContract {
   type: "UIFContract";
   schemaVersion: "0.4";
-  kind: "react:component" | "react:hook" | "vue:component" | "vue:composable" | "ts:module" | "node:cli";
-  description?: string;
-  composition: {
-    variables: string[];
-    hooks: string[];
-    components: string[];
-    functions: string[];
-  };
-  interface: {
-    props: Record<string, PropSignature>;
-    emits: Record<string, EventSignature>;
-    state: Record<string, StateSignature>;
-  };
-  exports?: "default" | "named" | { named: string[] };  // Optional export metadata
-  style?: StyleMetadata;  // Optional style metadata (when --include-style is used)
+  kind: string; // Pattern: "^[a-z]+:[a-z-]+$" (e.g., "react:component", "node:api", "python:function")
+  entryId: string; // File path identifier
+  description: string;
+  usedIn?: string[]; // Components that depend on this one
+  composition: ComponentVersion;
+  interface: LogicSignature;
+  prediction?: string[]; // Behavioral predictions about the component
+  metrics?: ContractMetrics; // Accessibility, latency, coverage metrics
+  links?: ContractLinks; // Links to design tokens, Figma, specs
+  style?: StyleMetadata; // Optional style metadata (when --include-style is used)
+  nextjs?: NextJSMetadata; // Optional Next.js App Router metadata
+  exports?: "default" | "named" | { named: string[] }; // Optional export metadata
   semanticHash: string; // Format: "uif:..." (24 hex chars)
-  fileHash: string;     // Format: "uif:..." (24 hex chars)
+  fileHash: string; // Format: "uif:..." (24 hex chars)
 }
 
-interface PropSignature {
-  type: string;
-  signature?: string;  // For function props
+interface ComponentVersion {
+  variables: string[];
+  hooks: string[];
+  components: string[];
+  functions: string[];
+  imports?: string[]; // Import statements
+  languageSpecific?: LanguageSpecificVersion; // Language-specific extensions
+}
+
+interface LanguageSpecificVersion {
+  decorators?: string[]; // Python decorators (e.g., ['@app.get', '@app.post'])
+  annotations?: string[]; // Java annotations (e.g., ['@RestController', '@GetMapping'])
+  classes?: string[]; // Python/Java classes
+  methods?: string[]; // Java methods
+}
+
+interface LogicSignature {
+  props: Record<string, PropType>; // Empty {} for backend files
+  emits: Record<string, EventType>; // Empty {} for backend files
+  state?: Record<string, string>; // Component state variables (empty {} for backend files)
+  apiSignature?: ApiSignature; // API signature for backend functions/methods
+}
+
+interface ApiSignature {
+  parameters?: Record<string, string>; // Function/method parameters with types
+  returnType?: string; // Return type (e.g., 'User', 'List[User]', 'void')
+  requestType?: string; // Request body type for POST/PUT requests
+  responseType?: string; // Response type
+}
+
+interface PropType {
+  type: string; // Simple type or descriptor (literal-union, function, object, array, etc.)
+  optional?: boolean;
+  literals?: string[]; // Literal values for literal-union types
+  signature?: string; // Function signature for function types
+}
+
+interface EventType {
+  type: "function";
+  signature: string; // Function signature (e.g., '() => void')
   optional?: boolean;
 }
 
-interface EventSignature {
-  type: string;
-  signature?: string;  // Function signature
+interface ContractMetrics {
+  a11y?: A11yMetrics;
+  latency?: LatencyMetrics;
+  coverage?: CoverageMetrics;
 }
 
-interface StateSignature {
-  type: string;
+interface A11yMetrics {
+  contrastMin?: number; // Minimum color contrast ratio
+  role?: string; // ARIA role
+}
+
+interface LatencyMetrics {
+  clientP95Ms?: number; // 95th percentile client latency in milliseconds
+}
+
+interface CoverageMetrics {
+  lines?: number; // Line coverage percentage (0-100)
+  branches?: number; // Branch coverage percentage (0-100)
+}
+
+interface ContractLinks {
+  tokens?: string; // Link to design tokens
+  figma?: string; // Link to Figma design
+  spec?: string; // Link to specification
+}
+
+interface NextJSMetadata {
+  isInAppDir?: boolean;
+  directive?: "client" | "server";
+  routeRole?: "page" | "layout" | "loading" | "error" | "not-found" | "template" | "default" | "route";
+  segmentPath?: string; // Route path (e.g., '/blog/[slug]', '/api/users')
+  metadata?: {
+    static?: Record<string, any>; // Static metadata from export const metadata
+    dynamic?: boolean; // True if export function generateMetadata() exists
+  };
 }
 
 interface StyleMetadata {
@@ -162,15 +224,17 @@ interface StyleMetadata {
   visual?: VisualMetadata;
   animation?: AnimationMetadata;
   pageLayout?: PageLayoutMetadata;
+  summary?: StyleSummary; // Style extraction mode and sources
 }
 
 interface StyleSources {
   tailwind?: {
-    categories: Record<string, string[]>; // layout, spacing, colors, typography, borders, effects
-    breakpoints?: string[]; // sm, md, lg, xl, 2xl
+    categories?: Record<string, string[]>; // Full mode: categorized classes
+    categoriesUsed?: string[]; // Lean mode: category names only
+    breakpoints?: string[];
     classCount: number;
   };
-  scssModule?: string; // Path to SCSS module file
+  scssModule?: string;
   scssDetails?: {
     selectors: string[];
     properties: string[];
@@ -180,23 +244,26 @@ interface StyleSources {
       mixins?: boolean;
     };
   };
-  cssModule?: string; // Path to CSS module file
+  cssModule?: string;
   cssDetails?: {
     selectors: string[];
     properties: string[];
   };
   inlineStyles?: boolean | {
-    properties?: string[]; // CSS property names (e.g., ['animationDelay', 'color', 'padding'])
-    values?: Record<string, string>; // Property-value pairs for literal values (e.g., { animationDelay: '2s', color: 'blue' })
+    properties?: string[];
+    values?: Record<string, string>;
   };
   styledJsx?: {
-    css?: string; // Extracted CSS content from <style jsx> blocks
-    global?: boolean; // Whether the style block has global attribute
-    selectors?: string[]; // CSS selectors found in the extracted CSS
-    properties?: string[]; // CSS properties found in the extracted CSS
+    css?: string; // Full mode only
+    global?: boolean;
+    selectors?: string[]; // Full mode only
+    selectorCount?: number; // Lean mode only
+    properties?: string[]; // Full mode only
+    propertyCount?: number; // Lean mode only
   };
   styledComponents?: {
-    components?: string[];
+    components?: string[]; // Full mode only
+    componentCount?: number; // Lean mode only
     usesTheme?: boolean;
     usesCssProp?: boolean;
   };
@@ -220,27 +287,88 @@ interface StyleSources {
       usesSystemProps?: boolean;
     };
   };
+  antd?: {
+    components?: string[];
+    packages?: string[];
+    features: {
+      usesTheme?: boolean;
+      usesConfigProvider?: boolean;
+      usesForm?: boolean;
+      usesLocale?: boolean;
+      usesIcons?: boolean;
+    };
+  };
+  chakraUI?: {
+    components?: string[];
+    packages?: string[];
+    features: {
+      usesTheme?: boolean;
+      usesColorMode?: boolean;
+      usesResponsiveProps?: boolean;
+      usesSystemProps?: boolean;
+    };
+  };
+  shadcnUI?: {
+    components?: string[];
+    variants?: Record<string, string[]>;
+    sizes?: string[];
+    features: {
+      usesForm?: boolean;
+      usesTheme?: boolean;
+      usesIcons?: boolean;
+      componentDensity?: "low" | "medium" | "high";
+    };
+  };
+  radixUI?: {
+    primitives?: Record<string, string[]>; // Primitive components by package
+    patterns?: {
+      controlled?: string[];
+      uncontrolled?: string[];
+      portals?: number;
+      asChild?: number;
+    };
+    accessibility?: {
+      usesDirection?: boolean;
+      usesFocusManagement?: boolean;
+      usesKeyboardNav?: boolean;
+      usesModal?: boolean;
+    };
+    features?: {
+      primitiveCount?: number;
+      compositionDepth?: "simple" | "moderate" | "complex";
+    };
+  };
+}
+
+interface StyleSummary {
+  mode: "lean" | "full";
+  sources: string[]; // Style sources detected (e.g., ['tailwind', 'shadcn', 'scss'])
+  fullModeBytes?: number; // Estimated byte size (only in lean mode)
 }
 
 interface LayoutMetadata {
   type?: "flex" | "grid" | "relative" | "absolute";
-  cols?: string; // Grid column pattern (e.g., "grid-cols-2 md:grid-cols-3")
+  cols?: string;
   hasHeroPattern?: boolean;
   hasFeatureCards?: boolean;
-  sections?: string[];
+  sections?: string[]; // Full mode only
+  sectionCount?: number; // Lean mode only
 }
 
 interface VisualMetadata {
-  colors?: string[]; // Color utility classes (limited to top 10)
-  spacing?: string[]; // Spacing utility classes (limited to top 10)
-  radius?: string; // Most common border radius pattern
-  typography?: string[]; // Typography classes (limited to top 10)
+  colors?: string[]; // Full mode only (limited to top 10)
+  colorCount?: number; // Lean mode only
+  spacing?: string[]; // Full mode only (limited to top 10)
+  spacingCount?: number; // Lean mode only
+  radius?: string;
+  typography?: string[]; // Full mode only (limited to top 10)
+  typographyCount?: number; // Lean mode only
 }
 
 interface AnimationMetadata {
-  type?: string; // Animation type (e.g., "fade-in", "slide")
-  library?: string; // "framer-motion" or "css"
-  trigger?: string; // Trigger type (e.g., "inView", "hover")
+  type?: string;
+  library?: "framer-motion" | "css";
+  trigger?: string;
 }
 
 interface PageLayoutMetadata {
@@ -251,21 +379,14 @@ interface PageLayoutMetadata {
                       copyText: `interface UIFContract {
   type: "UIFContract";
   schemaVersion: "0.4";
-  kind: "react:component" | "react:hook" | "vue:component" | "vue:composable" | "ts:module" | "node:cli";
-  description?: string;
-  composition: {
-    variables: string[];
-    hooks: string[];
-    components: string[];
-    functions: string[];
-  };
-  interface: {
-    props: Record<string, PropSignature>;
-    emits: Record<string, EventSignature>;
-    state: Record<string, StateSignature>;
-  };
+  kind: string; // Pattern: "^[a-z]+:[a-z-]+$"
+  entryId: string;
+  description: string;
+  composition: ComponentVersion;
+  interface: LogicSignature;
   exports?: "default" | "named" | { named: string[] };
-  style?: StyleMetadata;  // Optional style metadata
+  style?: StyleMetadata;
+  nextjs?: NextJSMetadata;
   semanticHash: string;
   fileHash: string;
 }`
@@ -276,14 +397,15 @@ interface PageLayoutMetadata {
   "type": "UIFContract",
   "schemaVersion": "0.4",
   "kind": "react:component",
+  "entryId": "src/components/Button.tsx",
   "description": "Button component for user interactions",
-  "version": {
+  "composition": {
     "variables": ["count"],
     "hooks": ["useState"],
     "components": ["Icon"],
     "functions": ["handleClick"]
   },
-  "logicSignature": {
+  "interface": {
     "props": {
       "onClick": {
         "type": "function",
@@ -331,14 +453,15 @@ interface PageLayoutMetadata {
   "type": "UIFContract",
   "schemaVersion": "0.4",
   "kind": "react:component",
+  "entryId": "src/components/Button.tsx",
   "description": "Button component for user interactions",
-  "version": {
+  "composition": {
     "variables": ["count"],
     "hooks": ["useState"],
     "components": ["Icon"],
     "functions": ["handleClick"]
   },
-  "logicSignature": {
+  "interface": {
     "props": {
       "onClick": {
         "type": "function",
@@ -414,7 +537,43 @@ interface PageLayoutMetadata {
                       <td className="px-2 sm:px-6 py-4 whitespace-nowrap"><code className="text-xs font-mono">kind</code></td>
                       <td className="px-2 sm:px-6 py-4"><code className="text-xs font-mono">string</code></td>
                       <td className="px-2 sm:px-6 py-4"><span className="px-2 py-1 bg-green-100 dark:bg-green-900/40 text-green-900 dark:text-green-100 rounded text-xs">✅</span></td>
-                      <td className="px-2 sm:px-6 py-4 text-sm text-gray-600 dark:text-gray-400">Component type (react:component, react:hook, etc.)</td>
+                      <td className="px-2 sm:px-6 py-4 text-sm text-gray-600 dark:text-gray-400">Component type pattern: <code className="px-1 bg-gray-100 dark:bg-gray-800 rounded text-xs">^[a-z]+:[a-z-]+$</code> (e.g., react:component, node:api, python:function)</td>
+                    </tr>
+                    <tr className="hover:bg-gray-50 dark:hover:bg-gray-800/50 transition-colors">
+                      <td className="px-2 sm:px-6 py-4 whitespace-nowrap"><code className="text-xs font-mono">entryId</code></td>
+                      <td className="px-2 sm:px-6 py-4"><code className="text-xs font-mono">string</code></td>
+                      <td className="px-2 sm:px-6 py-4"><span className="px-2 py-1 bg-green-100 dark:bg-green-900/40 text-green-900 dark:text-green-100 rounded text-xs">✅</span></td>
+                      <td className="px-2 sm:px-6 py-4 text-sm text-gray-600 dark:text-gray-400">File path identifier</td>
+                    </tr>
+                    <tr className="hover:bg-gray-50 dark:hover:bg-gray-800/50 transition-colors">
+                      <td className="px-2 sm:px-6 py-4 whitespace-nowrap"><code className="text-xs font-mono">usedIn</code></td>
+                      <td className="px-2 sm:px-6 py-4"><code className="text-xs font-mono">string[]</code></td>
+                      <td className="px-2 sm:px-6 py-4"><span className="px-2 py-1 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 rounded text-xs">❌</span></td>
+                      <td className="px-2 sm:px-6 py-4 text-sm text-gray-600 dark:text-gray-400">Components that depend on this one</td>
+                    </tr>
+                    <tr className="hover:bg-gray-50 dark:hover:bg-gray-800/50 transition-colors">
+                      <td className="px-2 sm:px-6 py-4 whitespace-nowrap"><code className="text-xs font-mono">prediction</code></td>
+                      <td className="px-2 sm:px-6 py-4"><code className="text-xs font-mono">string[]</code></td>
+                      <td className="px-2 sm:px-6 py-4"><span className="px-2 py-1 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 rounded text-xs">❌</span></td>
+                      <td className="px-2 sm:px-6 py-4 text-sm text-gray-600 dark:text-gray-400">Behavioral predictions about the component</td>
+                    </tr>
+                    <tr className="hover:bg-gray-50 dark:hover:bg-gray-800/50 transition-colors">
+                      <td className="px-2 sm:px-6 py-4 whitespace-nowrap"><code className="text-xs font-mono">metrics</code></td>
+                      <td className="px-2 sm:px-6 py-4"><code className="text-xs font-mono">ContractMetrics</code></td>
+                      <td className="px-2 sm:px-6 py-4"><span className="px-2 py-1 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 rounded text-xs">❌</span></td>
+                      <td className="px-2 sm:px-6 py-4 text-sm text-gray-600 dark:text-gray-400">Accessibility, latency, and coverage metrics</td>
+                    </tr>
+                    <tr className="hover:bg-gray-50 dark:hover:bg-gray-800/50 transition-colors">
+                      <td className="px-2 sm:px-6 py-4 whitespace-nowrap"><code className="text-xs font-mono">links</code></td>
+                      <td className="px-2 sm:px-6 py-4"><code className="text-xs font-mono">ContractLinks</code></td>
+                      <td className="px-2 sm:px-6 py-4"><span className="px-2 py-1 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 rounded text-xs">❌</span></td>
+                      <td className="px-2 sm:px-6 py-4 text-sm text-gray-600 dark:text-gray-400">Links to design tokens, Figma designs, and specifications</td>
+                    </tr>
+                    <tr className="hover:bg-gray-50 dark:hover:bg-gray-800/50 transition-colors">
+                      <td className="px-2 sm:px-6 py-4 whitespace-nowrap"><code className="text-xs font-mono">nextjs</code></td>
+                      <td className="px-2 sm:px-6 py-4"><code className="text-xs font-mono">NextJSMetadata</code></td>
+                      <td className="px-2 sm:px-6 py-4"><span className="px-2 py-1 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 rounded text-xs">❌</span></td>
+                      <td className="px-2 sm:px-6 py-4 text-sm text-gray-600 dark:text-gray-400">Next.js App Router metadata (route roles, segment paths, metadata exports)</td>
                     </tr>
                     <tr className="hover:bg-gray-50 dark:hover:bg-gray-800/50 transition-colors">
                       <td className="px-2 sm:px-6 py-4 whitespace-nowrap"><code className="text-xs font-mono">description</code></td>
@@ -494,6 +653,10 @@ interface PageLayoutMetadata {
                           <li>• <strong>styledComponents</strong> - Styled-components/Emotion usage</li>
                           <li>• <strong>motion</strong> - Framer Motion components</li>
                           <li>• <strong>materialUI</strong> - Material UI components and features</li>
+                          <li>• <strong>antd</strong> - Ant Design components and features</li>
+                          <li>• <strong>chakraUI</strong> - Chakra UI components and features</li>
+                          <li>• <strong>shadcnUI</strong> - ShadCN/UI components and variants</li>
+                          <li>• <strong>radixUI</strong> - Radix UI primitives and patterns</li>
                         </ul>
                       </div>
                       <div className="bg-purple-50 dark:bg-purple-950/20 rounded-xl border border-purple-200 dark:border-purple-800 p-4">
@@ -574,7 +737,9 @@ interface BundleEdge {
 interface MissingDependency {
   name: string;
   reason: "external package" | "file not found" | "outside scan path" | "max depth exceeded" | "circular dependency";
-  referencedBy: string; // Component that imports it
+  referencedBy?: string; // Component that imports it
+  packageName?: string; // Extracted package name for third-party dependencies
+  packageVersion?: string; // Package version from package.json
 }`,
                       copyText: `interface LogicStampBundle {
   type: "LogicStampBundle";
@@ -642,7 +807,9 @@ interface MissingDependency {
       {
         "name": "@mui/material",
         "reason": "external package",
-        "referencedBy": "src/components/Button.tsx"
+        "referencedBy": "src/components/Button.tsx",
+        "packageName": "@mui/material",
+        "packageVersion": "^5.15.0"
       }
     ],
     "source": "logicstamp-context@0.6.0"
