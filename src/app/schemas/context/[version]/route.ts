@@ -1,11 +1,16 @@
 import { NextResponse } from 'next/server'
+import { readFile } from 'fs/promises'
+import { join } from 'path'
 
 // In-memory cache for schema files
 const schemaCache: Map<string, { data: unknown; timestamp: number }> = new Map()
 const CACHE_DURATION = 24 * 60 * 60 * 1000 // 24 hours (schemas change infrequently)
 const isFetching: Set<string> = new Set()
 
-// GitHub repository and path
+// Local schema file path
+const LOCAL_SCHEMA_PATH = join(process.cwd(), 'docs', 'context', 'logicstamp.context.schema.json')
+
+// GitHub repository and path (fallback)
 const GITHUB_REPO = 'LogicStamp/logicstamp-context'
 const SCHEMA_PATH = 'schema/logicstamp.context.schema.json'
 
@@ -51,48 +56,61 @@ export async function GET(
     isFetching.add(cacheKey)
 
     try {
-      const githubToken = process.env.GITHUB_TOKEN
-      const headers: Record<string, string> = {
-        'Accept': 'application/vnd.github.v3+json',
-      }
+      let schemaData: unknown
 
-      if (githubToken) {
-        headers['Authorization'] = `token ${githubToken}`
-      }
-
-      // Fetch schema from GitHub raw content
-      const schemaUrl = `https://raw.githubusercontent.com/${GITHUB_REPO}/main/${SCHEMA_PATH}`
-      const response = await fetch(schemaUrl, {
-        headers,
-        next: { revalidate: 86400 }, // Revalidate every 24 hours
-      })
-
-      if (!response.ok) {
-        // If rate limited but we have cached data, return it
-        if ((response.status === 403 || response.status === 429) && cached) {
-          isFetching.delete(cacheKey)
-          return NextResponse.json(cached.data, {
-            headers: {
-              'Content-Type': 'application/schema+json',
-              'Cache-Control': 'public, max-age=86400, s-maxage=86400, stale-while-revalidate=604800',
-              'Access-Control-Allow-Origin': '*',
-            },
-          })
+      // Try reading from local file first (faster, more reliable)
+      try {
+        const fileContent = await readFile(LOCAL_SCHEMA_PATH, 'utf-8')
+        schemaData = JSON.parse(fileContent)
+        console.log('[Schema API] Loaded schema from local file')
+      } catch (localError) {
+        // Local file not found or error reading - fallback to GitHub
+        console.log('[Schema API] Local file not found, fetching from GitHub...')
+        
+        const githubToken = process.env.GITHUB_TOKEN
+        const headers: Record<string, string> = {
+          'Accept': 'application/vnd.github.v3+json',
         }
 
-        isFetching.delete(cacheKey)
-        return NextResponse.json(
-          { error: 'Failed to fetch schema', status: response.status },
-          {
-            status: response.status,
-            headers: {
-              'Cache-Control': 'no-store',
-            },
-          }
-        )
-      }
+        if (githubToken) {
+          headers['Authorization'] = `token ${githubToken}`
+        }
 
-      const schemaData = await response.json()
+        // Fetch schema from GitHub raw content
+        const schemaUrl = `https://raw.githubusercontent.com/${GITHUB_REPO}/main/${SCHEMA_PATH}`
+        const response = await fetch(schemaUrl, {
+          headers,
+          next: { revalidate: 86400 }, // Revalidate every 24 hours
+        })
+
+        if (!response.ok) {
+          // If rate limited but we have cached data, return it
+          if ((response.status === 403 || response.status === 429) && cached) {
+            isFetching.delete(cacheKey)
+            return NextResponse.json(cached.data, {
+              headers: {
+                'Content-Type': 'application/schema+json',
+                'Cache-Control': 'public, max-age=86400, s-maxage=86400, stale-while-revalidate=604800',
+                'Access-Control-Allow-Origin': '*',
+              },
+            })
+          }
+
+          isFetching.delete(cacheKey)
+          return NextResponse.json(
+            { error: 'Failed to fetch schema', status: response.status },
+            {
+              status: response.status,
+              headers: {
+                'Cache-Control': 'no-store',
+              },
+            }
+          )
+        }
+
+        schemaData = await response.json()
+        console.log('[Schema API] Loaded schema from GitHub')
+      }
 
       // Update cache
       schemaCache.set(cacheKey, {
