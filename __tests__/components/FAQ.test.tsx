@@ -99,7 +99,7 @@ describe('FAQ Component', () => {
     await user.click(button)
 
     // Check that answer is visible
-    const answer = screen.getByText(/LogicStamp Context is a context compiler that compiles your React/i)
+    const answer = screen.getByText(/LogicStamp Context is a context compiler that compiles your TypeScript/i)
     expect(answer).toBeInTheDocument()
   })
 
