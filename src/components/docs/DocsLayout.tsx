@@ -144,7 +144,7 @@ export default function DocsLayout({ children }: { children: React.ReactNode }) 
             className={`
               lg:hidden fixed left-0 z-30 w-64 bg-gradient-bg-section pt-6 pb-8 px-4 overflow-y-auto
               transition-all duration-300 ease-in-out
-              top-[6.9rem]
+              top-[7.25rem]
               ${sidebarOpen ? 'translate-x-0' : '-translate-x-full'}
             `}
             style={{
