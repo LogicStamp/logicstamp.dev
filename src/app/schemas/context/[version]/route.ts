@@ -11,10 +11,10 @@ const SCHEMA_PATH = 'schema/logicstamp.context.schema.json'
 
 export async function GET(
   request: Request,
-  { params }: { params: { version: string } }
+  { params }: { params: Promise<{ version: string }> }
 ) {
   try {
-    const version = params.version
+    const { version } = await params
     const cacheKey = `${version}`
 
     // Check for force refresh query parameter
