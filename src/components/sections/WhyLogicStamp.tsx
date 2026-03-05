@@ -107,7 +107,7 @@ export default function WhyLogicStamp() {
         </svg>
       ),
       title: 'Watch mode: Always up-to-date',
-      description: 'Automatic context regeneration when files change. Incremental rebuilds keep your context fresh without manual runs.',
+      description: 'Automatic context regeneration when files change. Incremental rebuilds keep your context fresh without manual runs. Use strict watch mode to detect breaking changes during refactors.',
       stat: 'Auto',
       statLabel: 'Real-time',
       gradient: 'from-emerald-500/20 via-green-600/20 to-teal-600/20',
