@@ -218,10 +218,16 @@ export default function GettingStartedPage() {
                       label: 'Watch with Style',
                       code: 'stamp context style --watch',
                       copyText: 'stamp context style --watch'
+                    },
+                    {
+                      label: 'Strict Watch',
+                      code: 'stamp context --strict-watch',
+                      copyText: 'stamp context --strict-watch'
                     }
                   ]}
                 />
                 <p className="text-sm text-gray-500 dark:text-gray-500 mt-4">
+                  <strong>Strict Watch</strong> detects breaking changes (removed props/events) and tracks violations during refactors.{' '}
                   <Link href="/docs/logicstamp-context/watch-mode" className="text-blue-600 dark:text-blue-400 hover:underline">
                     Learn more about watch mode →
                   </Link>

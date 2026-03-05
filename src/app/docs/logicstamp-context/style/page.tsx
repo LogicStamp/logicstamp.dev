@@ -375,7 +375,7 @@ export default function StyleCommandPage() {
                         <td className="px-2 sm:px-6 py-4 whitespace-nowrap">
                           <code className="px-1.5 py-0.5 bg-blue-100 dark:bg-blue-900/40 text-blue-900 dark:text-blue-100 rounded text-xs font-mono">lean</code>
                         </td>
-                        <td className="px-2 sm:px-6 py-4 text-sm text-gray-600 dark:text-gray-400">Style output format: <code className="px-1 py-0.5 bg-gray-100 dark:bg-gray-800 rounded text-xs font-mono">lean</code> (counts + flags, compact) or <code className="px-1 py-0.5 bg-gray-100 dark:bg-gray-800 rounded text-xs font-mono">full</code> (arrays + details, verbose). Default is <code className="px-1 py-0.5 bg-gray-100 dark:bg-gray-800 rounded text-xs font-mono">lean</code> for token efficiency.</td>
+                        <td className="px-2 sm:px-6 py-4 text-sm text-gray-600 dark:text-gray-400">Style output format: <code className="px-1 py-0.5 bg-gray-100 dark:bg-gray-800 rounded text-xs font-mono">lean</code> (counts + flags, compact) or <code className="px-1 py-0.5 bg-gray-100 dark:bg-gray-800 rounded text-xs font-mono">full</code> (arrays + details, verbose). Default is <code className="px-1 py-0.5 bg-gray-100 dark:bg-gray-800 rounded text-xs font-mono">lean</code> for token efficiency (changed from <code className="px-1 py-0.5 bg-gray-100 dark:bg-gray-800 rounded text-xs font-mono">full</code> in v0.7.0).</td>
                       </tr>
                       <tr className="hover:bg-gray-50 dark:hover:bg-gray-800/50 transition-colors">
                         <td className="px-2 sm:px-6 py-4 whitespace-nowrap">
@@ -619,7 +619,10 @@ stamp context style --watch --debug
 # Watch with structured change logs (for change notifications)
 stamp context style --watch --log-file
 
-# Strict watch mode - track breaking changes
+# Strict watch mode (--strict-watch automatically enables watch mode)
+stamp context style --strict-watch
+
+# Alternative: explicitly enable both (equivalent, backward compatible)
 stamp context style --watch --strict-watch
 
 # Equivalent syntax using flag
@@ -657,7 +660,10 @@ stamp context style --watch --debug
 # Watch with structured change logs (for change notifications)
 stamp context style --watch --log-file
 
-# Strict watch mode - track breaking changes
+# Strict watch mode (--strict-watch automatically enables watch mode)
+stamp context style --strict-watch
+
+# Alternative: explicitly enable both (equivalent, backward compatible)
 stamp context style --watch --strict-watch
 
 # Equivalent syntax using flag

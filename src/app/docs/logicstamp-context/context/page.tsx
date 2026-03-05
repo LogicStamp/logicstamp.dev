@@ -350,6 +350,15 @@ export default function ContextCommandPage() {
                       </tr>
                       <tr className="hover:bg-gray-50 dark:hover:bg-gray-800/50 transition-colors">
                         <td className="px-2 sm:px-6 py-4 whitespace-nowrap">
+                          <code className="px-2 py-1 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 rounded text-xs sm:text-sm font-mono">--verbose</code>
+                        </td>
+                        <td className="px-2 sm:px-6 py-4 whitespace-nowrap">
+                          <code className="px-1.5 py-0.5 bg-red-100 dark:bg-red-900/40 text-red-900 dark:text-red-100 rounded text-xs font-mono">false</code>
+                        </td>
+                        <td className="px-2 sm:px-6 py-4 text-sm text-gray-600 dark:text-gray-400">Show detailed bundle output (checkmarks for each file written). By default, only shows summary messages.</td>
+                      </tr>
+                      <tr className="hover:bg-gray-50 dark:hover:bg-gray-800/50 transition-colors">
+                        <td className="px-2 sm:px-6 py-4 whitespace-nowrap">
                           <code className="px-2 py-1 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 rounded text-xs sm:text-sm font-mono">--watch</code>
                         </td>
                         <td className="px-2 sm:px-6 py-4 whitespace-nowrap">
@@ -364,7 +373,7 @@ export default function ContextCommandPage() {
                         <td className="px-2 sm:px-6 py-4 whitespace-nowrap">
                           <code className="px-1.5 py-0.5 bg-red-100 dark:bg-red-900/40 text-red-900 dark:text-red-100 rounded text-xs font-mono">false</code>
                         </td>
-                        <td className="px-2 sm:px-6 py-4 text-sm text-gray-600 dark:text-gray-400">Enable strict watch mode - track breaking changes and violations during development. Exits with code 1 if errors detected.</td>
+                        <td className="px-2 sm:px-6 py-4 text-sm text-gray-600 dark:text-gray-400">Enable strict watch mode - automatically enables watch mode and tracks breaking changes and violations during development. Exits with code 1 if errors detected.</td>
                       </tr>
                       <tr className="hover:bg-gray-50 dark:hover:bg-gray-800/50 transition-colors">
                         <td className="px-2 sm:px-6 py-4 whitespace-nowrap">
@@ -589,7 +598,10 @@ stamp context ./src/components --watch
 # Watch with debug output (shows hash changes)
 stamp context --watch --debug
 
-# Strict watch mode - track breaking changes and violations
+# Strict watch mode (--strict-watch automatically enables watch mode)
+stamp context --strict-watch
+
+# Alternative: explicitly enable both (equivalent, backward compatible)
 stamp context --watch --strict-watch`,
                     copyText: `# Scan entire repo and write context files (defaults)
 stamp context
@@ -644,7 +656,10 @@ stamp context ./src/components --watch
 # Watch with debug output (shows hash changes)
 stamp context --watch --debug
 
-# Strict watch mode - track breaking changes and violations
+# Strict watch mode (--strict-watch automatically enables watch mode)
+stamp context --strict-watch
+
+# Alternative: explicitly enable both (equivalent, backward compatible)
 stamp context --watch --strict-watch`
                   }
                 ]}

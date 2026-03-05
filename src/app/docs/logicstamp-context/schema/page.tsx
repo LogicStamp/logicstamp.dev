@@ -719,7 +719,7 @@ interface PageLayoutMetadata {
   };
   meta: {
     missing: MissingDependency[];
-    source: string;  // Tool version (e.g., "logicstamp-context@0.6.0")
+    source: string;  // Tool version (e.g., "logicstamp-context@0.7.1")
   };
 }
 
@@ -812,7 +812,7 @@ interface MissingDependency {
         "packageVersion": "^5.15.0"
       }
     ],
-    "source": "logicstamp-context@0.6.0"
+      "source": "logicstamp-context@0.7.1"
   }
 }`,
                       copyText: `{
@@ -828,7 +828,7 @@ interface MissingDependency {
   },
   "meta": {
     "missing": [...],
-    "source": "logicstamp-context@0.6.0"
+      "source": "logicstamp-context@0.7.1"
   }
 }`
                     }
@@ -939,7 +939,7 @@ interface FolderEntry {
     }
   ],
   "meta": {
-    "source": "logicstamp-context@0.6.0"
+      "source": "logicstamp-context@0.7.1"
   }
 }`,
                       copyText: `{
@@ -955,7 +955,7 @@ interface FolderEntry {
   },
   "folders": [...],
   "meta": {
-    "source": "logicstamp-context@0.6.0"
+      "source": "logicstamp-context@0.7.1"
   }
 }`
                     }

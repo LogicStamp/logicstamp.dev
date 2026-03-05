@@ -33,7 +33,7 @@ export default function CompleteReferencePage() {
                 </div>
                 <div className="flex items-center gap-2">
                   <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse" />
-                  <span className="text-xs sm:text-sm font-medium text-gray-600 dark:text-gray-400">17+ Options</span>
+                  <span className="text-xs sm:text-sm font-medium text-gray-600 dark:text-gray-400">20+ Options</span>
                 </div>
                 <div className="flex items-center gap-2">
                   <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse" />
@@ -580,6 +580,9 @@ export default function CompleteReferencePage() {
                       { option: "--include-style", alias: "-", desc: "Extract style metadata (Tailwind, SCSS, animations, layout)", default: "false" },
                       { option: "--skip-gitignore", alias: "-", desc: "Skip .gitignore setup (never prompt or modify)", default: "false" },
                       { option: "--quiet", alias: "-q", desc: "Suppress verbose output (show only errors)", default: "false" },
+                      { option: "--verbose", alias: "-", desc: "Show detailed bundle output (checkmarks for each file written). By default, only shows summary messages.", default: "false" },
+                      { option: "--watch", alias: "-w", desc: "Watch for file changes and regenerate automatically", default: "false" },
+                      { option: "--strict-watch", alias: "-", desc: "Enable strict watch mode - automatically enables watch mode and tracks breaking changes and violations during development. Exits with code 1 if errors detected.", default: "false" },
                       { option: "--help", alias: "-h", desc: "Show help message", default: "-" }
                     ].map((opt, idx) => (
                       <tr key={idx} className={idx % 2 === 0 ? "bg-white dark:bg-gray-900" : "bg-gray-50 dark:bg-gray-800/50"}>
@@ -1113,7 +1116,7 @@ stamp context style --include-code header`
     },
     "meta": {
       "missing": [],
-      "source": "logicstamp-context@0.6.0"
+      "source": "logicstamp-context@0.7.1"
     }
   }
 ]`,
@@ -1154,7 +1157,7 @@ stamp context style --include-code header`
     },
     "meta": {
       "missing": [],
-      "source": "logicstamp-context@0.6.0"
+      "source": "logicstamp-context@0.7.1"
     }
   }
 ]`

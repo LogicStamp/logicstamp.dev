@@ -254,11 +254,11 @@ stamp security --hard-reset [options]  # Reset security configuration`
                   tabs={[
                     {
                       label: 'Examples',
-                      code: `stamp --version    # Shows: fox mascot + "Version: 0.6.0"
+                      code: `stamp --version    # Shows: fox mascot + "Version: 0.7.1"
 stamp -v           # Same as --version
 stamp --help       # Shows main help
 stamp -h           # Same as --help`,
-                      copyText: `stamp --version    # Shows: fox mascot + "Version: 0.6.0"
+                      copyText: `stamp --version    # Shows: fox mascot + "Version: 0.7.1"
 stamp -v           # Same as --version
 stamp --help       # Shows main help
 stamp -h           # Same as --help`
@@ -314,6 +314,15 @@ stamp -h           # Same as --help`
                           <code className="px-2 py-1 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 rounded text-xs sm:text-sm font-mono">-q</code>
                         </td>
                         <td className="px-2 sm:px-6 py-4 text-sm text-gray-600 dark:text-gray-400">Suppress verbose output (show only errors)</td>
+                      </tr>
+                      <tr className="hover:bg-gray-50 dark:hover:bg-gray-800/50 transition-colors">
+                        <td className="px-2 sm:px-6 py-4 whitespace-nowrap">
+                          <code className="px-2 py-1 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 rounded text-xs sm:text-sm font-mono">--verbose</code>
+                        </td>
+                        <td className="px-2 sm:px-6 py-4 whitespace-nowrap">
+                          <span className="text-xs text-gray-500 dark:text-gray-400">—</span>
+                        </td>
+                        <td className="px-2 sm:px-6 py-4 text-sm text-gray-600 dark:text-gray-400">Show detailed bundle output (checkmarks for each file written). By default, only shows summary messages.</td>
                       </tr>
                     </tbody>
                   </table>

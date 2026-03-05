@@ -147,12 +147,15 @@ stamp context --watch --log-file`,
                     },
                     {
                       label: 'Strict Watch',
-                      code: `# Strict watch mode (breaking changes + violations)
+                      code: `# Strict watch mode (--strict-watch automatically enables watch mode)
+stamp context --strict-watch
+
+# Alternative: explicitly enable both (equivalent, backward compatible)
 stamp context --watch --strict-watch
 
 # With style metadata
-stamp context --include-style --watch --strict-watch`,
-                      copyText: 'stamp context --watch --strict-watch',
+stamp context style --strict-watch`,
+                      copyText: 'stamp context --strict-watch',
                     },
                   ]}
                 />
@@ -385,7 +388,7 @@ stamp context --include-style --watch --strict-watch`,
                           <code className="px-1.5 py-0.5 bg-red-100 dark:bg-red-900/40 text-red-900 dark:text-red-100 rounded text-xs font-mono">false</code>
                         </td>
                         <td className="px-2 sm:px-6 py-4 text-sm text-gray-700 dark:text-gray-300">
-                          <strong className="text-gray-900 dark:text-white">Strict watch mode</strong> — detect breaking changes and track violations (errors/warnings) relative to baseline
+                          <strong className="text-gray-900 dark:text-white">Strict watch mode</strong> — automatically enables watch mode and detects breaking changes, tracking violations (errors/warnings) relative to baseline
                         </td>
                       </tr>
 
@@ -650,18 +653,21 @@ stamp context --watch --debug
 # Watch with structured change logs (for change notifications)
 stamp context --watch --log-file
 
-# Strict watch mode - track breaking changes and violations
-stamp context --watch --strict-watch`,
+# Strict watch mode (--strict-watch automatically enables watch mode)
+stamp context --strict-watch`,
                       copyText: 'stamp context --watch',
                     },
                     {
                       label: 'Strict Watch',
-                      code: `# Strict watch mode (breaking changes + violations)
+                      code: `# Strict watch mode (--strict-watch automatically enables watch mode)
+stamp context --strict-watch
+
+# Alternative: explicitly enable both (equivalent, backward compatible)
 stamp context --watch --strict-watch
 
-# Combine with style metadata
-stamp context --include-style --watch --strict-watch`,
-                      copyText: 'stamp context --watch --strict-watch',
+# With style metadata
+stamp context style --strict-watch`,
+                      copyText: 'stamp context --strict-watch',
                     },
                     {
                       label: 'Background (Unix)',
@@ -758,12 +764,15 @@ kill $(pgrep -f "stamp context --watch")`,
                     tabs={[
                       {
                         label: 'Enable',
-                        code: `# Enable strict watch mode
+                        code: `# Enable strict watch mode (--strict-watch automatically enables watch mode)
+stamp context --strict-watch
+
+# Alternative: explicitly enable both (equivalent, backward compatible)
 stamp context --watch --strict-watch
 
 # Combine with style metadata
-stamp context --include-style --watch --strict-watch`,
-                        copyText: 'stamp context --watch --strict-watch',
+stamp context style --strict-watch`,
+                        copyText: 'stamp context --strict-watch',
                       },
                       {
                         label: 'Output Example',

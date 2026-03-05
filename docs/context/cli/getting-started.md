@@ -239,16 +239,22 @@ stamp context --watch
 stamp context style --watch
 
 # Strict watch mode (detects breaking changes)
-stamp context --watch --strict-watch
+# (--strict-watch automatically enables watch mode)
+stamp context --strict-watch
 ```
 
 **Features:**
 - ✅ **Incremental rebuilds** - Only rebuilds affected bundles
 - ✅ **Change detection** - Shows what changed (props, hooks, etc.)
 - ✅ **Debouncing** - Batches rapid changes (500ms delay)
-- ✅ **Breaking change detection** - Use `--strict-watch` to catch removed props/events
+- ✅ **Breaking change detection** - Use `--strict-watch` to catch removed props/events and track violations
 
-📋 **See [Watch Mode Documentation](watch.md)** for complete details.
+**Strict Watch Mode** (`--strict-watch`) goes beyond regular watch mode by:
+- Classifying changes as breaking (removed props, events, functions)
+- Tracking violations during your coding session
+- Reporting violations summary on exit
+
+📋 **See [Watch Mode Documentation](watch.md)** for complete details, including strict watch mode.
 
 ## Excluding Files
 
