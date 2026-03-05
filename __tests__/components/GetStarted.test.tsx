@@ -20,16 +20,16 @@ describe('GetStarted Component', () => {
     render(<GetStarted />)
 
     expect(
-      screen.getByRole('heading', { name: /ready to supercharge/i })
+      screen.getByRole('heading', { name: /ready to compile your codebase into AI-ready context/i })
     ).toBeInTheDocument()
   })
 
   it('renders the main heading with gradient text', () => {
     render(<GetStarted />)
 
-    const heading = screen.getByRole('heading', { name: /ready to supercharge/i })
+    const heading = screen.getByRole('heading', { name: /ready to compile your codebase into AI-ready context/i })
     expect(heading).toBeInTheDocument()
-    expect(heading).toHaveTextContent(/your AI workflow/i)
+    expect(heading).toHaveTextContent(/ready to compile your codebase into AI-ready context/i)
   })
 
   it('renders the description text', () => {
@@ -73,7 +73,7 @@ describe('GetStarted Component', () => {
   it('has correct section ID for navigation', () => {
     render(<GetStarted />)
 
-    const section = screen.getByRole('heading', { name: /ready to supercharge/i }).closest('section')
+    const section = screen.getByRole('heading', { name: /ready to compile your codebase into AI-ready context/i }).closest('section')
     expect(section).toHaveAttribute('id', 'get-started')
   })
 

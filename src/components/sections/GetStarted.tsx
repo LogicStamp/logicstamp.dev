@@ -45,12 +45,7 @@ export default function GetStarted() {
           }`}
         >
             <h2 className="text-4xl font-bold tracking-tight text-white sm:text-5xl lg:text-6xl">
-              Ready to supercharge{' '}
-              <span className="relative inline-block">
-                <span className="text-white">
-                  your AI workflow?
-                </span>
-              </span>
+              Ready to compile your codebase into AI-ready context?
             </h2>
             <p className="mx-auto mt-6 max-w-2xl text-lg lg:text-xl leading-8 text-blue-100 font-medium">
               Compile AI-ready context from your codebase in seconds. Fast, deterministic, one-time setup.
@@ -77,7 +72,7 @@ export default function GetStarted() {
                 with built-in token optimization."
               </blockquote>
               <cite className="mt-4 block text-base text-blue-100">
-                — LogicStamp Team
+                — LogicStamp
               </cite>
             </div>
         </div>
