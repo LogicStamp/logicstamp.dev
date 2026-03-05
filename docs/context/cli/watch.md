@@ -26,7 +26,8 @@ stamp context --watch --debug
 stamp context --watch --log-file
 
 # Strict watch mode - track breaking changes and violations
-stamp context --watch --strict-watch
+# (--strict-watch automatically enables watch mode)
+stamp context --strict-watch
 ```
 
 ## How It Works
@@ -120,7 +121,7 @@ Watch mode automatically ignores:
 | Option | Alias | Description |
 |--------|-------|-------------|
 | `--watch` | `-w` | Enable watch mode |
-| `--strict-watch` | | Enable strict watch mode - track breaking changes and violations |
+| `--strict-watch` | | Enable strict watch mode - automatically enables watch mode and tracks breaking changes and violations |
 | `--debug` | | Show detailed hash information on changes |
 | `--quiet` | `-q` | Suppress verbose output (show only errors) |
 | `--include-style` | | Watch style files and include style metadata |
@@ -219,12 +220,17 @@ By default, watch mode does not write log files. Use `--log-file` when you need 
 
 Strict watch mode (`--strict-watch`) tracks breaking changes and violations during development. It detects API changes in real-time as you code.
 
+**Note:** `--strict-watch` automatically enables watch mode, so `--watch` is optional. Both `stamp context --strict-watch` and `stamp context --watch --strict-watch` are equivalent and fully supported for backward compatibility.
+
 ```bash
-# Enable strict watch mode
+# Enable strict watch mode (--strict-watch automatically enables watch mode)
+stamp context --strict-watch
+
+# Alternative: explicitly enable both (equivalent to above, backward compatible)
 stamp context --watch --strict-watch
 
 # Combine with style metadata
-stamp context style --watch --strict-watch
+stamp context style --strict-watch
 ```
 
 ### What It Detects
@@ -260,11 +266,22 @@ When violations are detected, strict watch mode displays them after each regener
       Breaking change: prop 'loading' removed from src/components/Button.tsx
 
    📊 Current state: 1 error(s), 0 warning(s)
+
+📊 Session status:
+   ❌ Errors detected:   1
+   ⚠️  Warnings detected: 0
+   🔧 Resolved:          0
+   📌 Active:            1
 ```
+
+**Note:** The session status block only appears when violations change (not on every file change), keeping terminal output clean. It tracks cumulative statistics throughout the watch session:
+- **Errors/Warnings detected**: Total count of violations detected during the session (cumulative across all checks, only increments when new violations appear or count increases)
+- **Resolved**: Number of times all violations were completely resolved (increments only when ALL violations - both errors and warnings - go from >0 to 0, reverted back to baseline). Partial fixes (e.g., warnings decreasing from 2 to 1) do not increment this count.
+- **Active**: Current number of active violations (errors + warnings)
 
 ### Violations Report File
 
-Strict watch mode writes a structured JSON report to `.logicstamp/strict_watch_violations.json`:
+When violations are detected, strict watch mode creates a structured JSON report at `.logicstamp/strict_watch_violations.json`. **The file only exists when violations are present** - if there are no violations, the file is not created (or is deleted if all violations are resolved):
 
 ```json
 {
@@ -295,7 +312,7 @@ Strict watch mode writes a structured JSON report to `.logicstamp/strict_watch_v
 
 **State-based semantics (v0.5.5+):** The violations report shows **current** violations relative to the baseline (state when watch mode started), not cumulative history:
 - `cumulativeViolations/Errors/Warnings` reflect the current state, not a running total
-- If you fix the violations (revert breaking changes), the file is **deleted** (no violations = no report)
+- **File lifecycle**: The file is created when violations are detected and automatically deleted when all violations are resolved (reverted back to baseline)
 - This works like `git diff` - only shows what's currently different from baseline
 
 ### Exit Behavior
@@ -309,7 +326,7 @@ For CI/CD pipelines with exit codes based on contract drift, use the `stamp comp
 stamp compare --baseline .logicstamp/baseline.json
 
 # Development: Awareness-only (no exit code enforcement)
-stamp context --watch --strict-watch
+stamp context --strict-watch
 ```
 
 The violations report (`.logicstamp/strict_watch_violations.json`) persists after watch mode stops, allowing you to review violations before committing.
@@ -322,21 +339,45 @@ When exiting, strict watch mode displays a session summary:
 ^C
 👋 Watch mode stopped
 
-📋 Strict Watch Session Summary:
-   Regenerations: 12
-   Total violations: 5
-   Errors: 3
-   Warnings: 2
+❌ Strict Watch session complete - 3 errors, 2 warnings detected
+
+📊 Session summary:
+   ❌ Errors detected:   3
+   ⚠️  Warnings detected: 2
+   🔧 Resolved:          1
+   📌 Active:            5
+
    Report saved to: .logicstamp/strict_watch_violations.json
 ```
 
-If no violations were detected:
+If no violations were detected during the session:
 
 ```
 ^C
 👋 Watch mode stopped
 
-✅ Strict Watch: No violations detected during session
+✅ Strict Watch session complete - no violations detected
+
+📊 Session summary:
+   ❌ Errors detected:   0
+   ⚠️  Warnings detected: 0
+   🔧 Resolved:          0
+   📌 Active:            0
+```
+
+If only warnings were detected:
+
+```
+^C
+👋 Watch mode stopped
+
+⚠️ Strict Watch session complete - 2 warnings detected
+
+📊 Session summary:
+   ❌ Errors detected:   0
+   ⚠️  Warnings detected: 2
+   🔧 Resolved:          0
+   📌 Active:            2
 ```
 
 ### Use Cases
@@ -365,7 +406,7 @@ stamp context --watch
 # 👀 Watch mode enabled. Watching for file changes...
 #    Press Ctrl+C to stop
 #
-#    Watching: /path/to/project
+#    Watching: my-project
 #    Ignoring: context.json files, node_modules, dist, build, etc.
 #    Watching extensions: .ts, .tsx
 #

@@ -206,11 +206,13 @@ export default function LogicStampReadmePage() {
                 <div className="space-y-4">
                   <div className="p-4 bg-green-50 dark:bg-green-950/20 rounded-xl border border-green-200 dark:border-green-800">
                     <h3 className="font-semibold text-green-900 dark:text-green-200 mb-2 text-base sm:text-lg">
-                      v0.3.8
+                      v0.7.1
                     </h3>
                     <ul className="space-y-2 text-sm text-green-800 dark:text-green-300 ml-4 list-disc">
-                      <li><strong>Enhanced third-party component info (Phase 1)</strong> – Missing dependencies now include package names and versions for third-party packages. Package name extraction handles scoped packages and subpath imports. Version lookup reads from <code className="px-1 py-0.5 bg-green-100 dark:bg-green-900/40 rounded text-xs font-mono">package.json</code> with caching for efficiency</li>
-                      <li><strong>Beta release note</strong> – This is a beta release (v0.3.8). We&apos;re actively improving the tool based on user feedback. If you encounter any issues or have suggestions, please open an issue on GitHub</li>
+                      <li><strong>Style mode default changed</strong> – Default output mode for <code className="px-1 py-0.5 bg-green-100 dark:bg-green-900/40 rounded text-xs font-mono">stamp context style</code> is now <code className="px-1 py-0.5 bg-green-100 dark:bg-green-900/40 rounded text-xs font-mono">--style-mode lean</code> instead of <code className="px-1 py-0.5 bg-green-100 dark:bg-green-900/40 rounded text-xs font-mono">full</code> for smaller, faster bundles by default</li>
+                      <li><strong>Watch mode improvements</strong> – Incremental watch mode reuses cached style metadata, reducing redundant extraction. Style extraction failures now log errors when <code className="px-1 py-0.5 bg-green-100 dark:bg-green-900/40 rounded text-xs font-mono">LOGICSTAMP_DEBUG=1</code></li>
+                      <li><strong>Security awareness</strong> – <code className="px-1 py-0.5 bg-green-100 dark:bg-green-900/40 rounded text-xs font-mono">stamp context</code> warns when no security report is found</li>
+                      <li><strong>File lock consistency</strong> – Added delay after stale lock removal for improved filesystem consistency on Windows</li>
                     </ul>
                   </div>
                   <div className="p-4 bg-green-50 dark:bg-green-950/20 rounded-xl border border-green-200 dark:border-green-800">

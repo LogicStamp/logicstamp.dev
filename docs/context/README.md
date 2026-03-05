@@ -75,7 +75,7 @@ These contracts:
 - Enable early detection of architectural drift and breaking changes
 
 ![LogicStamp MCP Workflow](./assets/logicstamp-workflow.gif)
-*Context bundles generated and consumed across MCP-powered AI workflows.*
+*Example workflow: `stamp context --strict-watch` generates context bundles that MCP-powered assistants use to explain component architecture (ThemeContext shown here).*
 
 **Same code ⇒ same context output.** Contracts are diffable, so you can detect drift and breaking changes.
 
@@ -175,13 +175,18 @@ Pre-parsed. Categorized. Stable. The AI reads contracts, not implementations.
 
 ## Watch Mode
 
+<p align="center">
+  <img src="./assets/logicstamp-strict-watch.gif" width="820" />
+</p>
+
+*Strict watch mode in action: detecting violations and clearing them when resolved.*
+
 For development, run watch mode to keep context fresh as you code:
 
 ```bash
 stamp context --watch                  # regenerate on changes
-stamp context --watch --strict-watch   # also detect breaking changes
+stamp context --strict-watch           # also detect breaking changes (implies --watch)
 ```
-
 Strict watch catches breaking changes that affect consumers:
 
 | Violation | Example |
@@ -191,9 +196,22 @@ Strict watch catches breaking changes that affect consumers:
 | `breaking_change_function_removed` | Deleted exported `formatDate()` |
 | `contract_removed` | Deleted entire component |
 
-![Strict Watch Mode](./assets/strict_watch_mode.png)
+**Errors vs Warnings:** Violations are classified by severity:
 
-*Strict watch mode detecting a breaking change in real time.*
+**❌ Errors** indicate breaking changes that will affect consumers (removed props, events, functions, or entire contracts).
+
+**⚠️ Warnings** indicate less severe changes (type signature changes, removed internal state). Violations are tracked in real-time and automatically cleared when resolved.
+
+**Session Status Tracking:** Strict watch mode displays a session status block showing cumulative statistics:
+- **Errors/Warnings detected**: Total violations detected during the session
+- **Resolved**: Number of times all violations were completely resolved
+- **Active**: Current number of active violations
+
+The status block only appears when violations change (not on every file change), keeping terminal output clean.
+
+![Strict Watch Mode Terminal Output](./assets/logicstamp-strict-watch-output.png)
+
+*Example terminal output showing violations and session status.*
 
 > ℹ️ **Note:** Strict Watch currently detects breaking changes at the source. Next step: a symbol-level import/export reverse index to trace which consumer files will break.
 
@@ -341,7 +359,7 @@ stamp context [path]               # Generate context bundles
 stamp context style [path]         # Generate with style metadata (lean mode by default)
 stamp context style --style-mode full  # Generate with full style details (verbose)
 stamp context --watch              # Watch mode
-stamp context --watch --strict-watch  # Watch with breaking change detection
+stamp context --strict-watch       # Watch with breaking change detection (--watch optional)
 stamp context compare              # Detect changes vs existing context
 stamp context validate [file]      # Validate context files
 stamp context clean [path]         # Remove generated files
