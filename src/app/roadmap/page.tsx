@@ -110,54 +110,79 @@ export default function BetaPage() {
                 </div>
                 <div className="space-y-4 text-gray-700 dark:text-gray-300">
                   <div>
-                    <p className="font-bold mb-2">v0.7.0 (Current) - 2026-03-03</p>
-                    <ul className="list-disc list-inside space-y-1 ml-2">
-                      <li><strong>⚠️ Breaking Changes:</strong> Default <code className="text-sm bg-gray-100 dark:bg-gray-800 px-1 py-0.5 rounded">stamp context style</code> output is now <code className="text-sm bg-gray-100 dark:bg-gray-800 px-1 py-0.5 rounded">--style-mode lean</code> - Previously emitted full style metadata by default. Now defaults to lean output for smaller, faster bundles. Use <code className="text-sm bg-gray-100 dark:bg-gray-800 px-1 py-0.5 rounded">--style-mode full</code> to restore previous behavior</li>
-                      <li><strong>Improved:</strong> Context module barrel exports - Added missing <code className="text-sm bg-gray-100 dark:bg-gray-800 px-1 py-0.5 rounded">watchMode</code> and <code className="text-sm bg-gray-100 dark:bg-gray-800 px-1 py-0.5 rounded">watchDiff</code> exports. All context command modules now explicitly exported via barrel file</li>
-                      <li><strong>Improved:</strong> Refactored propExtractor structure - Flattened deeply nested try-catch blocks using <code className="text-sm bg-gray-100 dark:bg-gray-800 px-1 py-0.5 rounded">safeExtract()</code> helper pattern. Extracted focused helper functions for improved readability and maintainability</li>
-                      <li><strong>Improved:</strong> Expanded failure-mode coverage - Added tests covering AST parser edge cases, watch mode error handling paths, and circular dependency pack scenarios</li>
-                      <li><strong>Improved:</strong> Security report awareness - Added <code className="text-sm bg-gray-100 dark:bg-gray-800 px-1 py-0.5 rounded">securityReportLoaded</code> to <code className="text-sm bg-gray-100 dark:bg-gray-800 px-1 py-0.5 rounded">SanitizeStats</code>. Updated messaging to warn when no security report is found</li>
-                      <li><strong>Improved:</strong> Enhanced extraction and error-path test coverage - Added sanitization tests, expanded manifest handling tests, improved component/event extraction edge-case coverage</li>
-                      <li><strong>Improved:</strong> Incremental watch style cache optimization - <code className="text-sm bg-gray-100 dark:bg-gray-800 px-1 py-0.5 rounded">incrementalRebuild</code> now reuses cached style metadata when available. Automatically extracts and caches style metadata when missing. Added defensive error handling for style extraction failures</li>
-                      <li><strong>Improved:</strong> Error logging for style extraction failures - Style extraction failures in watch mode now log errors via <code className="text-sm bg-gray-100 dark:bg-gray-800 px-1 py-0.5 rounded">debugError()</code> when <code className="text-sm bg-gray-100 dark:bg-gray-800 px-1 py-0.5 rounded">LOGICSTAMP_DEBUG=1</code> is set</li>
-                      <li><strong>Improved:</strong> Watch status file includes <code className="text-sm bg-gray-100 dark:bg-gray-800 px-1 py-0.5 rounded">strictWatch</code> field - Added boolean field to indicate whether strict watch mode is enabled. MCP servers can now detect if watch mode is running with <code className="text-sm bg-gray-100 dark:bg-gray-800 px-1 py-0.5 rounded">--strict-watch</code></li>
-                      <li><strong>Fixed:</strong> Schema validation for lean style mode - Updated JSON schema to support both <code className="text-sm bg-gray-100 dark:bg-gray-800 px-1 py-0.5 rounded">lean</code> and <code className="text-sm bg-gray-100 dark:bg-gray-800 px-1 py-0.5 rounded">full</code> style mode variants. Schema was missing lean mode fields which would cause validation failures</li>
-                      <li><strong>Fixed:</strong> Stale lock removal consistency in <code className="text-sm bg-gray-100 dark:bg-gray-800 px-1 py-0.5 rounded">fileLock</code> - Added delay after stale lock removal to improve filesystem consistency and Windows reliability</li>
-                      <li><strong>Chore:</strong> CI and Vitest configuration refinement - Excluded barrel files from coverage reporting, optimized CI matrix and enabled sharded test execution</li>
-                      <li><strong>Tests:</strong> Windows stale-lock handling, Vue Extractor coverage expansion, watch mode test suite refactor, coverage expansion & metrics visibility (Statements: 88%, Branches: 77.21%, Functions: 93.9%, Lines: 88.19%)</li>
-                      <li><strong>Documentation:</strong> Reframed LogicStamp as the &quot;Context Compiler for TypeScript&quot; - Updated README positioning and terminology. Complete documentation terminology sync across all markdown files. Documented <code className="text-sm bg-gray-100 dark:bg-gray-800 px-1 py-0.5 rounded">--style-mode</code> behavior and defaults</li>
-                      <li><strong>Refactor:</strong> Adopted &quot;Context Compiler&quot; terminology across CLI and documentation - Replaced &quot;context generation&quot; with &quot;context compilation&quot; across the codebase</li>
-                    </ul>
+                  <p className="font-bold mb-2">v0.7.0 (Current) — 2026-03-03</p>
+<ul className="list-disc list-inside space-y-1 ml-2">
+  <li>
+    ⚠️ <strong>Breaking:</strong> <code>stamp context style</code> now defaults to 
+    <code>--style-mode lean</code> for smaller bundles. Use 
+    <code>--style-mode full</code> for full metadata.
+  </li>
+  <li>
+    <strong>Watch mode improvements:</strong> faster incremental rebuilds and cached style metadata.
+  </li>
+  <li>
+    <strong>Extraction improvements:</strong> refactored prop extraction and expanded AST edge-case handling.
+  </li>
+  <li>
+    <strong>Schema fixes:</strong> lean/full style modes now properly validated.
+  </li>
+  <li>
+    <strong>Security awareness:</strong> CLI warns when security reports are missing.
+  </li>
+  <li>
+    <strong>Testing & reliability:</strong> expanded coverage across watch mode, extraction, and dependency scenarios.
+  </li>
+  <li>
+    <strong>Docs refresh:</strong> LogicStamp positioned as the <em>Context Compiler for TypeScript</em>.
+  </li>
+</ul>
                   </div>
                   <div>
-                    <p className="font-bold mb-2">v0.6.0</p>
-                    <ul className="list-disc list-inside space-y-1 ml-2">
-                      <li>Runtime schema validation (AJV-enforced) - <code className="text-sm bg-gray-100 dark:bg-gray-800 px-1 py-0.5 rounded">.uif.json</code> contracts are now validated during load. Invalid, malformed, or outdated contracts are rejected with capped, structured error reporting (max 20 errors)</li>
-                      <li>Fail-closed contract loading - If the schema fails to load, contracts are rejected instead of silently bypassing validation</li>
-                      <li>Hardened contract loader error handling - Explicit distinction between file-not-found, read errors, JSON parse errors, and schema validation failures</li>
-                      <li>Path traversal protection - Enforced strict project-root boundaries across internal file utilities</li>
-                      <li>File lock race condition fix - Prevents concurrent lock acquisition mid-write</li>
-                      <li>Dependency security updates - <code className="text-sm bg-gray-100 dark:bg-gray-800 px-1 py-0.5 rounded">glob@13.0.6</code> (patched minimatch ReDoS), <code className="text-sm bg-gray-100 dark:bg-gray-800 px-1 py-0.5 rounded">ts-morph@27.0.2</code> with improved TypeScript 5.x support</li>
-                      <li>⚠️ Node.js &gt;= 20 required - Required by dependency and security updates</li>
-                      <li>Test coverage expansion - Added root-boundary traversal tests and expanded extraction coverage</li>
-                    </ul>
+                  <p className="font-bold mb-2">v0.6.0</p>
+<ul className="list-disc list-inside space-y-1 ml-2">
+  <li>
+    <strong>Runtime schema validation:</strong> contracts now validated with AJV.
+  </li>
+  <li>
+    <strong>Fail-closed loading:</strong> invalid or malformed contracts are rejected.
+  </li>
+  <li>
+    <strong>Security hardening:</strong> path traversal protection and improved error handling.
+  </li>
+  <li>
+    <strong>Dependency updates:</strong> improved TypeScript 5.x support and patched vulnerabilities.
+  </li>
+  <li>
+    ⚠️ <strong>Node.js ≥ 20 required</strong>
+  </li>
+</ul>
                   </div>
                   <div>
-                    <p className="font-bold mb-2">v0.5.0 (January 2026)</p>
-                    <ul className="list-disc list-inside space-y-1 ml-2">
-                      <li>Strict watch mode (<code className="text-sm bg-gray-100 dark:bg-gray-800 px-1 py-0.5 rounded">--strict-watch</code>) - Track breaking changes and violations during watch mode. Automatically detects breaking changes when files are modified (removed props, events, state, functions, variables; changed prop types; removed contracts; missing dependencies). Real-time violation reporting with cumulative tracking across watch sessions. Writes structured JSON violation reports and provides CI-friendly exit codes</li>
-                      <li>Schema improvements - Renamed fields for clarity: <code className="text-sm bg-gray-100 dark:bg-gray-800 px-1 py-0.5 rounded">MissingDependency.version</code> → <code className="text-sm bg-gray-100 dark:bg-gray-800 px-1 py-0.5 rounded">packageVersion</code>, <code className="text-sm bg-gray-100 dark:bg-gray-800 px-1 py-0.5 rounded">UIFContract.version</code> → <code className="text-sm bg-gray-100 dark:bg-gray-800 px-1 py-0.5 rounded">composition</code>, <code className="text-sm bg-gray-100 dark:bg-gray-800 px-1 py-0.5 rounded">UIFContract.logicSignature</code> → <code className="text-sm bg-gray-100 dark:bg-gray-800 px-1 py-0.5 rounded">interface</code>. These changes improve clarity and avoid confusion between component composition and version numbers</li>
-                      <li>Performance optimizations - O(1) dependency collection lookups and missing dependency tracking. Replaced O(n) linear searches with Map-based and Set-based lookups for significantly improved performance on large projects</li>
-                      <li>Watch mode improvements - Fixed race condition in watch mode using Promise-based locking. Fixed silent error swallowing in compare handler</li>
-                    </ul>
+                  <p className="font-bold mb-2">v0.5.0</p>
+<ul className="list-disc list-inside space-y-1 ml-2">
+  <li>
+    <strong>Strict watch mode:</strong> detect breaking contract changes in real time.
+  </li>
+  <li>
+    <strong>Violation reporting:</strong> structured JSON reports and CI-friendly exit codes.
+  </li>
+  <li>
+    <strong>Schema clarity:</strong> improved contract field naming and semantics.
+  </li>
+  <li>
+    <strong>Performance improvements:</strong> faster dependency tracking and extraction.
+  </li>
+</ul>
                   </div>
                   <div>
-                    <p className="font-bold mb-2">v0.5.1-0.5.5 (February 2026)</p>
-                    <ul className="list-disc list-inside space-y-1 ml-2">
-                      <li>v0.5.1: Chakra UI and Ant Design support - Complete style metadata extraction for Chakra UI and Ant Design components</li>
-                      <li>v0.5.5: State-based strict watch diffing - Strict watch mode now compares current state vs baseline (like <code className="text-sm bg-gray-100 dark:bg-gray-800 px-1 py-0.5 rounded">git diff</code>), not cumulative history. Violations reflect current drift only and are automatically cleared when changes are reverted</li>
-                      <li>Additional improvements: Watch mode cleanup reliability, bug fixes, performance improvements, JSON schema completeness, type safety enhancements</li>
-                    </ul>
+                  <p className="font-bold mb-2">v0.4.x</p>
+<ul className="list-disc list-inside space-y-1 ml-2">
+  <li>Watch mode with incremental rebuilds.</li>
+  <li>Backend framework support (Express, NestJS).</li>
+  <li>Vue 3 TypeScript support.</li>
+  <li>Style metadata extraction across major UI frameworks.</li>
+  <li>MCP server integration.</li>
+</ul>
                   </div>
                   <div>
                     <p className="font-bold mb-2">v0.4.1 (January 2026)</p>
