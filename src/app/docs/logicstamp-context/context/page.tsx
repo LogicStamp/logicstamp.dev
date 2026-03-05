@@ -691,7 +691,7 @@ stamp context --watch --strict-watch`
                   <TabbedCodeBlock
                     tabs={[
                       {
-                        label: 'Example',
+                        label: 'Basic Watch',
                         code: `# Start watch mode
 stamp context --watch
 
@@ -700,6 +700,16 @@ stamp context --watch
 stamp context --watch
 
 # Press Ctrl+C to stop`
+                      },
+                      {
+                        label: 'Strict Watch',
+                        code: `# Strict watch mode (detects breaking changes)
+# (--strict-watch automatically enables watch mode)
+stamp context --strict-watch
+
+# Alternative: explicitly enable both
+stamp context --watch --strict-watch`,
+                        copyText: 'stamp context --strict-watch'
                       }
                     ]}
                   />

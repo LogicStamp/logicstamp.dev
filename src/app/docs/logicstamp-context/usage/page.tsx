@@ -620,6 +620,19 @@ stamp context --watch --debug
 # Watch with structured change logs
 stamp context --watch --log-file`,
                     copyText: 'stamp context --watch'
+                  },
+                  {
+                    label: 'Strict Watch',
+                    code: `# Strict watch mode (detects breaking changes)
+# (--strict-watch automatically enables watch mode)
+stamp context --strict-watch
+
+# Alternative: explicitly enable both (equivalent)
+stamp context --watch --strict-watch
+
+# With style metadata
+stamp context style --strict-watch`,
+                    copyText: 'stamp context --strict-watch'
                   }
                 ]}
               />
@@ -632,12 +645,14 @@ stamp context --watch --log-file`,
                     <li>• Debouncing (batches rapid changes)</li>
                     <li>• Style support (works with --include-style)</li>
                     <li>• Faster MCP responses (skips regeneration)</li>
+                    <li>• <strong>Strict watch</strong> - Use <code className="px-1 py-0.5 bg-gray-100 dark:bg-gray-800 rounded text-xs font-mono">--strict-watch</code> to detect breaking changes</li>
                   </ul>
                 </div>
                 <div className="p-4 bg-gray-50 dark:bg-gray-800/50 rounded-lg">
                   <h3 className="text-base font-semibold text-gray-900 dark:text-white mb-2">Best Practices</h3>
                   <ul className="space-y-1.5 text-sm text-gray-600 dark:text-gray-400">
                     <li>• Start watch mode at the beginning of coding sessions</li>
+                    <li>• Use <code className="px-1 py-0.5 bg-gray-100 dark:bg-gray-800 rounded text-xs font-mono">--strict-watch</code> during refactors to catch breaking changes</li>
                     <li>• Use with MCP for faster AI responses</li>
                     <li>• Press Ctrl+C to stop</li>
                     <li>• Works with style metadata extraction</li>
@@ -752,6 +767,9 @@ stamp context --watch
 
 # Watch with style metadata
 stamp context style --watch
+
+# Strict watch mode (detects breaking changes)
+stamp context --strict-watch
 
 # Watch with debug output
 stamp context --watch --debug`
