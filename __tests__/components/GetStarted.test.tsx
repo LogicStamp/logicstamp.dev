@@ -67,7 +67,7 @@ describe('GetStarted Component', () => {
     expect(
       screen.getByText(/stop pasting code. start sharing structured context/i)
     ).toBeInTheDocument()
-    expect(screen.getByText(/— LogicStamp Team/i)).toBeInTheDocument()
+    expect(screen.getByText(/— LogicStamp/i)).toBeInTheDocument()
   })
 
   it('has correct section ID for navigation', () => {
