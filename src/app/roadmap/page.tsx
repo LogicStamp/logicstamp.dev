@@ -110,7 +110,30 @@ export default function BetaPage() {
                 </div>
                 <div className="space-y-4 text-gray-700 dark:text-gray-300">
                   <div>
-                  <p className="font-bold mb-2">v0.7.0 (Current) — 2026-03-03</p>
+                  <p className="font-bold mb-2">v0.7.1 (Current) — 2026-03-06</p>
+<ul className="list-disc list-inside space-y-1 ml-2">
+  <li>
+    <strong>Strict watch session tracking:</strong> added session-level statistics for errors, warnings, and resolved violations. Status block shows cumulative session metrics and active violations.
+  </li>
+  <li>
+    <strong>Simplified strict watch usage:</strong> <code>--strict-watch</code> now automatically enables watch mode. Use <code>stamp context --strict-watch</code> instead of requiring both flags.
+  </li>
+  <li>
+    <strong>Verbose output flag:</strong> added <code>--verbose</code> flag for detailed bundle output. Default CLI output now prioritizes summary messages, with detailed file output moved to verbose mode.
+  </li>
+  <li>
+    <strong>Normalized path display:</strong> consistent relative path formatting across all CLI commands for improved readability.
+  </li>
+  <li>
+    <strong>Performance improvements:</strong> reduced terminal noise by updating strict watch output only when violations change.
+  </li>
+  <li>
+    <strong>Internal refactoring:</strong> watch mode modules reorganized into dedicated <code>watchMode/</code> folder for better structure and maintainability.
+  </li>
+</ul>
+                  </div>
+                  <div>
+                  <p className="font-bold mb-2">v0.7.0 — 2026-03-03</p>
 <ul className="list-disc list-inside space-y-1 ml-2">
   <li>
     ⚠️ <strong>Breaking:</strong> <code>stamp context style</code> now defaults to 
