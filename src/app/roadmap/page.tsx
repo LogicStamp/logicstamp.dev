@@ -138,7 +138,7 @@ export default function BetaPage() {
 </ul>
                   </div>
                   <div>
-                  <p className="font-bold mb-2">v0.6.0</p>
+                  <p className="font-bold mb-2">v0.6.0 (February 2026)</p>
 <ul className="list-disc list-inside space-y-1 ml-2">
   <li>
     <strong>Runtime schema validation:</strong> contracts now validated with AJV.
@@ -158,24 +158,30 @@ export default function BetaPage() {
 </ul>
                   </div>
                   <div>
-                  <p className="font-bold mb-2">v0.5.0</p>
+                  <p className="font-bold mb-2">v0.5.x (January - February 2026)</p>
 <ul className="list-disc list-inside space-y-1 ml-2">
-  <li>
-    <strong>Strict watch mode:</strong> detect breaking contract changes in real time.
-  </li>
-  <li>
-    <strong>Violation reporting:</strong> structured JSON reports and CI-friendly exit codes.
-  </li>
-  <li>
-    <strong>Schema clarity:</strong> improved contract field naming and semantics.
-  </li>
-  <li>
-    <strong>Performance improvements:</strong> faster dependency tracking and extraction.
-  </li>
+<li>
+  <strong>Context bundle generation:</strong> deterministic JSON bundles describing components, props, hooks, and dependencies.
+</li>
+<li>
+  <strong>Dependency graph extraction:</strong> automatic analysis of component relationships across React and TypeScript projects.
+</li>
+<li>
+  <strong>Token optimization modes:</strong> multiple output modes designed to reduce LLM token usage while preserving structure.
+</li>
+<li>
+  <strong>Style metadata extraction:</strong> optional analysis of Tailwind, CSS modules, and styling frameworks.
+</li>
+<li>
+  <strong>Validation and CLI tooling:</strong> commands for validating generated context and inspecting bundle structure.
+</li>
+<li>
+  <strong>Workflow automation:</strong> foundation for CI usage and automated AI workflows with structured context bundles.
+</li>
 </ul>
                   </div>
                   <div>
-                  <p className="font-bold mb-2">v0.4.x</p>
+                  <p className="font-bold mb-2">v0.4.x (January 2026)</p>
 <ul className="list-disc list-inside space-y-1 ml-2">
   <li>Watch mode with incremental rebuilds.</li>
   <li>Backend framework support (Express, NestJS).</li>
@@ -183,18 +189,6 @@ export default function BetaPage() {
   <li>Style metadata extraction across major UI frameworks.</li>
   <li>MCP server integration.</li>
 </ul>
-                  </div>
-                  <div>
-                    <p className="font-bold mb-2">v0.4.1 (January 2026)</p>
-                    <ul className="list-disc list-inside space-y-1 ml-2">
-                      <li>Watch mode - Automatic context regeneration when source files change. Incremental rebuilds only regenerate affected bundles. Detects and displays contract changes (props, hooks, state, events). Debounces rapid changes. Watches style files when using <code className="text-sm bg-gray-100 dark:bg-gray-800 px-1 py-0.5 rounded">--include-style</code>. Debug mode shows hash changes. Status files for tooling integration</li>
-                    </ul>
-                  </div>
-                  <div>
-                    <p className="font-bold mb-2">v0.4.0 (January 2026)</p>
-                    <ul className="list-disc list-inside space-y-1 ml-2">
-                      <li>Backend framework support - Comprehensive support for Node.js backend frameworks (Express.js, NestJS). Extracts API routes, HTTP methods, route parameters, request/response types, and framework-specific metadata. Automatically detects backend frameworks and skips frontend extraction for backend files. Introduces new <code className="text-sm bg-gray-100 dark:bg-gray-800 px-1 py-0.5 rounded">node:api</code> contract kind and extensible <code className="text-sm bg-gray-100 dark:bg-gray-800 px-1 py-0.5 rounded">language:type</code> pattern for future language support</li>
-                    </ul>
                   </div>
                   <div>
                     <p className="font-bold mb-2">Earlier Releases</p>
