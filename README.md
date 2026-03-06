@@ -29,7 +29,8 @@
 </div>
 
 <p align="center">
-  *Example workflow: `stamp context --strict-watch` generates context bundles that MCP-powered assistants use to explain component architecture (ThemeContext shown here).*
+  <em>Example workflow: `stamp context --strict-watch` generates context bundles that MCP-powered assistants use to explain component architecture (ThemeContext shown here).
+  </em>
 </p>
 
 ---
