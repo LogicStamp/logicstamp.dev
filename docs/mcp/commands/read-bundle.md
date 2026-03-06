@@ -465,6 +465,21 @@ If `includeStyle: true`, access style metadata from `bundle.graph.nodes[0].contr
 - [`logicstamp_list_bundles`](./list-bundles.md) - List bundles (STEP 2)
 - [`logicstamp_compare_snapshot`](./compare-snapshot.md) - Compare snapshots to detect changes
 
+## Watch Mode Behavior
+
+When watch mode (`stamp context --watch`) is active, this command automatically handles race conditions that can occur when files are being written:
+
+- **Initial delay:** Adds a small delay before reading files to let watch mode finish writing:
+  - Regular watch mode: 200ms delay
+  - Strict watch mode (`--strict-watch`): 500ms delay (breaking change detection takes slightly longer)
+- **Retry logic:** If JSON parsing fails (indicating a partially written file), automatically retries up to 3 times with exponential backoff (100ms, 200ms, 400ms)
+  - Worst case total wait: ~900ms (200ms initial + retries) for regular watch, ~1.1s for strict watch
+- **Transparent operation:** This behavior is automatic and only applies when watch mode is active - no performance impact when watch mode is off
+
+This ensures reliable file reading even when watch mode is actively regenerating context files, with minimal user-perceived latency.
+
+> **⚠️ Important for AI Assistants:** These delays are **internal to the MCP tool** and handled automatically. **Do not use `sleep()` or other delays before calling this tool** - the tool handles all necessary waiting internally. When watch mode is active, bundles are already fresh - just call the tool directly.
+
 ## Error Handling
 
 If the command fails, it will throw an error with a descriptive message. Common errors:
@@ -473,6 +488,7 @@ If the command fails, it will throw an error with a descriptive message. Common 
 - **Bundle not found** - The `bundlePath` doesn't exist or the `rootComponent` isn't in that file
 - **Invalid bundle path** - The `bundlePath` format is incorrect
 - **No bundles in file** - The `context.json` file is empty or corrupted
+- **File read errors** - When watch mode is active, retries are attempted automatically. If all retries fail, the error will indicate the file may still be writing
 
 ## See Also
 

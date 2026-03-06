@@ -905,7 +905,7 @@ interface ComponentChange {
 {
   "server": {
     "name": "logicstamp-context",
-    "version": "0.2.0",
+    "version": "0.1.6",
     "defaultProfile": "llm-chat",
     "defaultMode": "header"
   },

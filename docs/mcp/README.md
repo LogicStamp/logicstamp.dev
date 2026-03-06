@@ -28,9 +28,8 @@
 
 ---
 
-![LogicStamp in action](./assets/logicstamp-workflow.gif)
-
-*MCP server calling the CLI to generate and consume context bundles*
+![LogicStamp MCP Workflow](./assets/logicstamp-workflow.gif)
+*Example workflow: `stamp context --strict-watch` generates context bundles that MCP-powered assistants use to explain component architecture (ThemeContext shown here).*
 
 ---
 

@@ -286,7 +286,7 @@ These enhancements are valuable but lower priority or require significant effort
 
 ### 6. Incremental Snapshot Updates
 
-**Status:** 🔴 Not Started  
+**Status:** 🟢 Completed  
 **Priority:** Low  
 **Effort:** High  
 **Impact:** Medium-High
@@ -295,33 +295,35 @@ These enhancements are valuable but lower priority or require significant effort
 Only regenerate changed files/components instead of full snapshots. Use file modification times and hashes to detect changes and update incrementally.
 
 **Current State:**  
-- All snapshots are full regenerations
-- No incremental update logic exists
-- CLI may support some caching, but MCP doesn't leverage it
+- ✅ **Implemented in CLI** - Watch mode (`stamp context --watch`) provides incremental rebuilds (added in v0.4.1, improved in v0.5.5)
+- ✅ **MCP Integration Complete** - MCP server detects watch mode and leverages incremental updates via `skipIfWatchActive` parameter
+- ✅ **Watch Mode Detection** - `logicstamp_watch_status` tool checks if watch mode is active
+- ✅ **Automatic Skip** - `logicstamp_refresh_snapshot` automatically skips regeneration when watch mode is active (default `skipIfWatchActive: true`)
+- ✅ **Direct Access** - `logicstamp_list_bundles` and `logicstamp_read_bundle` support direct `projectPath` access when watch mode is active (no snapshotId needed)
+- ✅ **Incremental Rebuilds** - Watch mode only rebuilds affected bundles when files change (not entire project)
+- ✅ **State-Based Diffing** - Watch mode uses state-based diffing to track changes from baseline (v0.5.5)
 
-**Implementation Tasks:**
-- [ ] Add file change detection (mtime, hash comparison)
-- [ ] Implement incremental bundle generation
-- [ ] Update only changed components in context files
-- [ ] Handle dependency changes (when dependency changes, update dependents)
-- [ ] Add tests for incremental updates
-- [ ] Document incremental update behavior
+**Implementation Details:**
+- Watch mode detects file changes and triggers incremental rebuilds
+- Only affected bundles are regenerated (not entire project)
+- Uses semantic hashing and file hashes for change detection
+- Handles dependency changes (when dependency changes, dependents are updated)
+- MCP server detects watch mode via `.logicstamp/context_watch-status.json`
+- MCP tools skip expensive regeneration when watch mode is active
 
 **Benefits:**
-- Faster snapshot generation for large codebases
-- Reduced CLI execution time
-- Lower resource usage
-- Better performance for frequent updates
-
-**Technical Considerations:**
-- Complex dependency tracking
-- Need to handle edge cases (moved files, renamed components)
-- May require changes to CLI
-- Testing complexity increases
+- ✅ Faster snapshot generation for large codebases
+- ✅ Reduced CLI execution time
+- ✅ Lower resource usage
+- ✅ Better performance for frequent updates
+- ✅ Zero-cost context access when watch mode is active
 
 **Related Files:**
-- `src/mcp/tools/refresh-snapshot.ts`
-- `src/mcp/state.ts` (snapshot management)
+- `src/mcp/tools/refresh-snapshot.ts` (watch mode detection, skipIfWatchActive)
+- `src/mcp/tools/watch-status.ts` (watch mode status checking)
+- `src/mcp/tools/list-bundles.ts` (direct projectPath access)
+- `src/mcp/tools/read-bundle.ts` (direct projectPath access)
+- CLI: Watch mode implementation in `logicstamp-context` (v0.4.1+)
 
 ---
 
@@ -429,7 +431,7 @@ Implement security features documented in security considerations: path validati
 
 ### Phase 4: Advanced Features
 - 🔴 Git baseline support (#2)
-- 🔴 Incremental snapshot updates (#6)
+- 🟢 Incremental snapshot updates (#6) - Completed via watch mode integration
 - 🔴 Streaming support (#7)
 
 ---
