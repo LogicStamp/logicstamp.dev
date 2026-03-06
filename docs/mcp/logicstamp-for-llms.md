@@ -124,6 +124,48 @@ refresh_snapshot({ projectPath: "...", skipIfWatchActive: true })
 - **Efficient** - Watch mode only rebuilds affected bundles, not entire project
 - **Smart** - MCP detects watch mode automatically and guides you
 
+### ⚠️ Important: Do Not Use `sleep()` with Watch Mode
+
+**Why `sleep()` is unnecessary:**
+
+Watch mode automatically regenerates bundles in the background when files change. The MCP tools handle this correctly without any waiting:
+
+1. **Watch mode updates bundles automatically** - When a file changes, LogicStamp regenerates the bundle in the background. No waiting needed.
+2. **Bundles are already fresh** - If watch mode is active, bundles are already up-to-date when you read them. Just read directly.
+3. **Internal retry logic** - The MCP tools (`list_bundles`, `read_bundle`) have built-in retry logic with exponential backoff to handle race conditions during file writes. This is handled internally - you don't need to wait.
+4. **Check timestamps if needed** - If you need to verify when a bundle was updated, check the `createdAt` timestamp in the bundle metadata. Don't use `sleep()`.
+
+**❌ Avoid this pattern:**
+```typescript
+// Incorrect: Using sleep to wait for watch mode regeneration
+sleep(3000)  // Unnecessary delay
+read_bundle({ projectPath: "...", bundlePath: "..." })
+```
+
+**✅ Correct approach:**
+```typescript
+// CORRECT: Just read directly - bundles are already fresh if watch mode is active
+read_bundle({ projectPath: "...", bundlePath: "..." })
+
+// If you need to verify updates, check timestamps in the bundle response
+// The bundle includes metadata about when it was created/updated
+```
+
+**How it works:**
+- When watch mode is active, LogicStamp monitors file changes and regenerates bundles automatically
+- The MCP tools detect watch mode and read bundles directly (no snapshot needed)
+- Internal retry logic handles any race conditions during file writes (200-500ms delays built-in)
+- Bundles are immediately available - no external waiting required
+
+**Architecture explanation:**
+- Watch mode runs `stamp context --watch` in the background, monitoring file system changes
+- When files change, LogicStamp incrementally rebuilds only affected bundles
+- The rebuild happens asynchronously - bundles are written to disk when ready
+- MCP tools use `readFileWithRetry()` which includes small delays (200-500ms) and exponential backoff for edge cases
+- This retry logic is internal to the MCP server - AI assistants should not add external `sleep()` calls
+
+**Key takeaway:** Watch mode keeps bundles fresh automatically. When watch mode is active, skip `refresh_snapshot` and read bundles directly - they're already fresh. Do not use `sleep()` to wait for regeneration.
+
 ## The LogicStamp Workflow
 
 **Always follow this workflow when working with a new project:**
