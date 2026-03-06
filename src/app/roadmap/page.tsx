@@ -108,9 +108,20 @@ export default function BetaPage() {
                     Recent Achievements
                   </h3>
                 </div>
+                <div className="mt-6 mb-4">
+  <a
+    href="https://github.com/LogicStamp/logicstamp-context/blob/main/CHANGELOG.md"
+    target="_blank"
+    rel="noopener noreferrer"
+    className="inline-flex items-center gap-2 text-blue-600 dark:text-blue-400 hover:underline font-semibold"
+  >
+    View full changelog
+    <span aria-hidden="true">→</span>
+  </a>
+</div>
                 <div className="space-y-4 text-gray-700 dark:text-gray-300">
                   <div>
-                  <p className="font-bold mb-2">v0.7.1 (Current) — 2026-03-06</p>
+                  <p className="font-bold mb-2">v0.7.1 (Current) - 2026-03-05</p>
 <ul className="list-disc list-inside space-y-1 ml-2">
   <li>
     <strong>Strict watch session tracking:</strong> added session-level statistics for errors, warnings, and resolved violations. Status block shows cumulative session metrics and active violations.
@@ -133,7 +144,7 @@ export default function BetaPage() {
 </ul>
                   </div>
                   <div>
-                  <p className="font-bold mb-2">v0.7.0 — 2026-03-03</p>
+                  <p className="font-bold mb-2">v0.7.0 (March 2026)</p>
 <ul className="list-disc list-inside space-y-1 ml-2">
   <li>
     ⚠️ <strong>Breaking:</strong> <code>stamp context style</code> now defaults to 
