@@ -741,15 +741,15 @@ export default function BetaPage() {
             </p>
             <p className="text-sm text-gray-500 dark:text-gray-400 mt-2">
               For the complete roadmap with detailed implementation plans, see{' '}
-              <a href="https://github.com/LogicStamp/logicstamp-context/blob/main/docs/context/ROADMAP.md" className="text-blue-600 dark:text-blue-400 hover:underline font-semibold" target="_blank" rel="noopener noreferrer">
+              <a href="https://github.com/LogicStamp/logicstamp-context/blob/main/ROADMAP.md" className="text-blue-600 dark:text-blue-400 hover:underline font-semibold" target="_blank" rel="noopener noreferrer">
                 Context ROADMAP.md
               </a>
               {' '}and{' '}
-              <a href="https://github.com/LogicStamp/logicstamp-mcp/blob/main/docs/mcp/ROADMAP.md" className="text-blue-600 dark:text-blue-400 hover:underline font-semibold" target="_blank" rel="noopener noreferrer">
+              <a href="https://github.com/LogicStamp/logicstamp-mcp/blob/main/ROADMAP.md" className="text-blue-600 dark:text-blue-400 hover:underline font-semibold" target="_blank" rel="noopener noreferrer">
                 MCP ROADMAP.md
               </a>
               . For known limitations with code evidence, see{' '}
-              <a href="/docs/logicstamp-context/known-limitations" className="text-blue-600 dark:text-blue-400 hover:underline font-semibold">
+              <a href="/docs/complete-reference/known-limitations" className="text-blue-600 dark:text-blue-400 hover:underline font-semibold">
                 Known Limitations
               </a>
               .

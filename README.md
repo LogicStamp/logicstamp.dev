@@ -20,16 +20,16 @@
 
 ---
 
-<p align="center">
+<div align="center">
   <img
     src="https://raw.githubusercontent.com/LogicStamp/logicstamp.dev/main/public/logicstamp-workflow.gif"
-    alt="LogicStamp MCP analyzing a real React + Tailwind codebase"
+    alt="LogicStamp Context strict watch generates context bundles that MCP-powered assistants use"
     width="900"
   />
-</p>
+</div>
 
 <p align="center">
-  <em>LogicStamp MCP building a structured, Tailwind-aware view of a real React codebase.</em>
+  *Example workflow: `stamp context --strict-watch` generates context bundles that MCP-powered assistants use to explain component architecture (ThemeContext shown here).*
 </p>
 
 ---
