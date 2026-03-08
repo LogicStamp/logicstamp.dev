@@ -95,7 +95,7 @@ const faqs = [
     id: 11,
     question: 'Does LogicStamp modify my source code?',
     answer:
-      'No. LogicStamp is completely read-only.\nIt analyzes your codebase using the TypeScript AST and generates structured context bundles without modifying any source files.\nAll output is written to context files that you can commit, ignore, or share with AI assistants.',
+      'No. LogicStamp is completely read-only.\nIt analyzes your codebase using the TypeScript AST and generates structured context bundles without modifying any source files.\nAll output is written to context files that you can share with AI assistants.',
   },
 ]
 
