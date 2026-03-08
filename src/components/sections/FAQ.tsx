@@ -31,12 +31,12 @@ function useInView(threshold = 0.1) {
 
 // Essential FAQs - the most common questions users ask
 const faqs = [
-  {
-    id: 1,
-    question: 'How does LogicStamp Context work?',
-    answer:
-      'LogicStamp Context is a context compiler that compiles your TypeScript codebase into structured context bundles optimized for AI consumption.\nIt uses the TypeScript compiler API (via ts-morph) to compile deterministic contracts from your source code - component props, state variables, event handlers, exported functions - then builds dependency graphs showing how components connect, and outputs machine-readable JSON with built-in token optimization.\nNo configuration needed - just run `stamp context` and get instant AI-ready context bundles.',
-  },
+    {
+        id: 1,
+        question: 'How does LogicStamp Context work?',
+        answer:
+          'LogicStamp Context is a context compiler that compiles your TypeScript codebase into structured context bundles optimized for AI consumption.\nIt uses the TypeScript compiler API (via ts-morph) to extract deterministic architectural contracts from your source code — component props, state variables, event handlers, exported functions — and builds dependency graphs showing how components connect.\nThe result is machine-readable JSON bundles with built-in token optimization.\nNo configuration required — just run `stamp context` and generate AI-ready context instantly.',
+      },
   {
     id: 2,
     question: 'Why not just paste code into AI chats?',
@@ -47,19 +47,19 @@ const faqs = [
     id: 3,
     question: 'Is LogicStamp free to use?',
     answer:
-      'Yes! LogicStamp Context is completely free and open-source.\nInstall it globally with npm i -g logicstamp-context and use it.\nThe CLI includes context generation, drift detection (tracks changes in component contracts over time), validation, token optimization, security scanning (detects potential secrets in your code), style metadata extraction, and watch mode.\nMCP (Model Context Protocol) integration is also available for free, providing real-time context analysis in Cursor, Claude Desktop, and Claude CLI. Install with `npm install -g logicstamp-mcp` and configure your MCP client (see "How do I set up MCP integration?" below for details).\nAll features are available at no cost.',
+      'Yes. LogicStamp Context is completely free and open-source.\nInstall it globally with `npm i -g logicstamp-context` and generate AI-ready context bundles immediately.\nMCP integration is also available via `logicstamp-mcp` for real-time analysis in Cursor, Claude Desktop, and Claude CLI.',
   },
   {
     id: 4,
     question: 'Which frameworks are supported?',
     answer:
-      'Currently supports React and TypeScript projects (including Next.js), plus Vue 3 TypeScript/TSX files.\nBackend support for Express.js and NestJS is available.\nRequires Node.js >= 18.18.0 (Node 20+ recommended).\nMCP integration is available for Cursor, Claude Desktop, and Claude CLI.\nWorks with any React/TypeScript codebase regardless of styling solution (Tailwind, styled-components, CSS modules, Material UI, ShadCN/UI, Radix UI, Framer Motion, etc.).\nNote: Vue Single File Components (.vue files) support is planned for a future release.',
+      'LogicStamp Context currently supports TypeScript codebases including React, Next.js, Express, and NestJS, plus Vue 3 TypeScript/TSX files.\nRequires Node.js 20+.\nMCP integration is available for Cursor, Claude Desktop, and Claude CLI.\nWorks with any React/TypeScript styling approach, including Tailwind, CSS modules, SCSS, styled-components, Material UI, ShadCN/UI, Radix UI, and Framer Motion.\nNote: Vue Single File Components (`.vue`) are planned for a future release.',
   },
   {
     id: 5,
     question: 'How do I get started?',
     answer:
-      'Quick start: Run `npx logicstamp-context context` (no install needed) or install globally with `npm i -g logicstamp-context`.\nFor first-time setup, run `stamp init` in your project directory (sets up .gitignore patterns and scans for secrets). This step is optional but recommended.\nNext, run `stamp context` to compile multiple `context.json` files (one per folder) plus a `context_main.json` index with AI-ready bundles.\nShare these files with Claude, ChatGPT, or any AI assistant for instant codebase understanding.\nUse `stamp context validate` to verify the output, or try the MCP integration for real-time analysis in Cursor, Claude Desktop, or Claude CLI.',
+      'Run `npx logicstamp-context context` to get started instantly, or install it globally with `npm i -g logicstamp-context`.\nOptionally run `stamp init` in your project directory to set up recommended defaults.\nThen run `stamp context` to generate `context.json` bundles plus a `context_main.json` index for AI-ready codebase understanding.\nYou can validate the output with `stamp context validate`, or use MCP integration for real-time analysis in supported clients.',
   },
   {
     id: 6,
@@ -89,7 +89,13 @@ const faqs = [
     id: 10,
     question: 'Is watch mode available?',
     answer:
-      'Yes! Watch mode is available.\nRun `stamp context --watch` to automatically regenerate context files when source files change.\nFeatures include incremental rebuilds (only affected bundles are regenerated), change detection (shows what changed: props, hooks, state), debouncing (batches rapid changes), and style file watching with `--include-style`.\nUse `--debug` to see detailed hash information, or `--log-file` for structured change logs.\n\n**Strict Watch Mode:** Add `--strict-watch` to detect breaking changes and track violations during development. It automatically enables watch mode and:\n• Classifies changes as errors (removed props, events, functions) or warnings (removed state, variables)\n• Writes a violations report to `.logicstamp/strict_watch_violations.json` (only when violations exist)\n• Uses state-based semantics (like `git diff`) - if you fix violations, the report is deleted\n• Shows real-time violation counts and session summaries\n\nPerfect for refactoring sessions where you want to catch breaking changes early. Watch mode is designed for development awareness, not CI enforcement - it exits with signal code 130 (Ctrl+C) regardless of violations. For CI with exit codes, use `stamp compare` instead.',
+      'Yes. Run `stamp context --watch` to automatically regenerate context files when source files change.\nIt supports incremental rebuilds, change detection, debouncing, and optional style file watching.\nFor stricter development workflows, `--strict-watch` detects breaking changes and writes violations to `.logicstamp/strict_watch_violations.json` when needed.\nWatch mode is designed for development awareness rather than CI enforcement. For CI with exit codes, use `stamp context compare`.',
+  },
+  {
+    id: 11,
+    question: 'Does LogicStamp modify my source code?',
+    answer:
+      'No. LogicStamp is completely read-only.\nIt analyzes your codebase using the TypeScript AST and generates structured context bundles without modifying any source files.\nAll output is written to context files that you can commit, ignore, or share with AI assistants.',
   },
 ]
 
