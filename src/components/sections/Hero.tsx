@@ -217,7 +217,7 @@ export default function Hero() {
               visualizationInView ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-8'
             }`}
           >
-            <div className="h-[550px] lg:h-[650px] xl:h-[750px]">
+            <div className="h-[550px] lg:h-[550px] xl:h-[650px]">
               <EnhancedVisualization inView={visualizationInView} />
             </div>
           </div>
