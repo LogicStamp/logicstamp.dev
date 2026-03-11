@@ -170,37 +170,44 @@ export default function EnhancedVisualization({ inView }: EnhancedVisualizationP
 
       <div className="flex-1 min-h-0">
         <svg
-          viewBox="0 0 100 100"
+          viewBox="0 0 96 96"
           className="w-full h-full"
-          style={{ opacity: inView ? 1 : 0, transition: 'opacity 0.5s' }}
+          style={{ opacity: inView ? 1 : 1, transition: 'opacity 0.5s', overflow: 'visible' }}
+          preserveAspectRatio="xMidYMid meet"
         >
           <defs>
-            <linearGradient id="edgeGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+            <linearGradient id="enhancedEdgeGradient" x1="0%" y1="0%" x2="100%" y2="100%">
               <stop offset="0%" stopColor="#3b82f6" stopOpacity="0.6" />
               <stop offset="100%" stopColor="#8b5cf6" stopOpacity="0.6" />
             </linearGradient>
           </defs>
 
-          {/* Edges */}
+          {/* Edges - render behind nodes */}
           {GRAPH_EDGES.map((edge) => {
             const fromNode = nodeById.get(edge.from)
             const toNode = nodeById.get(edge.to)
             if (!fromNode || !toNode) return null
-            const isAnimated = animatedEdges.has(edge.id)
+            const bothNodesAnimated = animatedNodes.has(edge.from) && animatedNodes.has(edge.to)
+            const isAnimated = animatedEdges.has(edge.id) || bothNodesAnimated
 
             return (
-              <line
-                key={edge.id}
-                x1={fromNode.x}
-                y1={fromNode.y}
-                x2={toNode.x}
-                y2={toNode.y}
-                stroke="url(#edgeGradient)"
-                strokeWidth={isAnimated ? '0.5' : '0'}
-                opacity={isAnimated ? 0.6 : 0}
-                className="transition-all duration-500"
-                vectorEffect="non-scaling-stroke"
-              />
+            <line
+              key={edge.id}
+              x1={fromNode.x}
+              y1={fromNode.y}
+              x2={toNode.x}
+              y2={toNode.y}
+              stroke="#64748b"
+              strokeWidth="0.65"
+              opacity={isAnimated ? 0.75 : 0.2}
+              className="transition-all duration-500"
+              strokeLinecap="round"
+              strokeDasharray="2,1"
+              style={{ 
+                filter: 'drop-shadow(0 0 2px rgba(139, 92, 246, 0.5))',
+                pointerEvents: 'none'
+              }}
+            />
             )
           })}
 
@@ -297,7 +304,7 @@ export default function EnhancedVisualization({ inView }: EnhancedVisualizationP
   return (
     <div
       ref={containerRef}
-      className="relative w-full h-full min-h-[650px] overflow-hidden rounded-2xl border border-gray-200/80 dark:border-gray-700/50"
+      className="relative w-full h-full min-h-[650px] lg:min-h-[550px] xl:min-h-[600px] overflow-hidden rounded-2xl border border-gray-200/80 dark:border-gray-700/50"
       suppressHydrationWarning
     >
       <style jsx>{`

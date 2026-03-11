@@ -50,6 +50,16 @@ export default function DependencyGraph({ animatedNodes }: DependencyGraphProps)
         })
         return next
       })
+      
+      // Fallback: if all nodes are animated, ensure all edges are visible
+      if (animatedNodes.size === GRAPH_NODES.length) {
+        setTimeout(() => {
+          setAnimatedEdges((prev) => {
+            const allEdges = new Set(GRAPH_EDGES.map(e => e.id))
+            return allEdges
+          })
+        }, 500)
+      }
     } catch (error) {
       console.error('Error animating graph edges:', error)
       setHasError(true)
@@ -69,15 +79,16 @@ export default function DependencyGraph({ animatedNodes }: DependencyGraphProps)
   return (
     <div className="relative w-full h-full flex items-center justify-center p-3 sm:p-5 lg:p-8 overflow-x-auto sm:overflow-hidden">
       <svg
-        viewBox="5 5 90 90"
+        viewBox="0 0 90 90"
         className="w-full h-full min-w-full"
-        style={{ maxWidth: '100%', height: 'auto' }}
+        style={{ maxWidth: '100%', height: 'auto', overflow: 'visible' }}
         role="img"
         aria-label="Component dependency graph visualization"
+        preserveAspectRatio="xMidYMid meet"
       >
         {/* Animated background gradient */}
         <defs>
-          <linearGradient id="edgeGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+          <linearGradient id="dependencyEdgeGradient" x1="0%" y1="0%" x2="100%" y2="100%">
             <stop offset="0%" stopColor="#3b82f6" stopOpacity="0.4" />
             <stop offset="100%" stopColor="#8b5cf6" stopOpacity="0.4" />
           </linearGradient>
@@ -90,11 +101,12 @@ export default function DependencyGraph({ animatedNodes }: DependencyGraphProps)
           </filter>
         </defs>
 
-        {/* Render edges */}
+        {/* Render edges - ensure they're always visible when nodes are animated */}
         {GRAPH_EDGES.map((edge) => {
           const fromNode = GRAPH_NODES[edge.from]
           const toNode = GRAPH_NODES[edge.to]
-          const isAnimated = animatedEdges.has(edge.id)
+          const bothNodesAnimated = animatedNodes.has(edge.from) && animatedNodes.has(edge.to)
+          const isAnimated = animatedEdges.has(edge.id) || bothNodesAnimated
 
           return (
             <line
@@ -103,11 +115,16 @@ export default function DependencyGraph({ animatedNodes }: DependencyGraphProps)
               y1={fromNode.y}
               x2={toNode.x}
               y2={toNode.y}
-              stroke="url(#edgeGradient)"
-              strokeWidth={isAnimated ? '0.5' : '0'}
-              opacity={isAnimated ? 0.6 : 0}
+              stroke="#64748b"
+              strokeWidth="0.65"
+              opacity={isAnimated ? 1 : 0.3}
               className="transition-all duration-500"
-              strokeDasharray={isAnimated ? '1.5,0.8' : '0'}
+              strokeDasharray="2,1"
+              strokeLinecap="round"
+              style={{ 
+                filter: 'drop-shadow(0 0 2px rgba(139, 92, 246, 0.5))',
+                pointerEvents: 'none'
+              }}
             />
           )
         })}
