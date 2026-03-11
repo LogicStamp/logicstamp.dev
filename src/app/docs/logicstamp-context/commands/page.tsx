@@ -374,6 +374,11 @@ stamp context validate src/context.json
 # Compare all context files for drift (multi-file mode)
 stamp context compare        # uses context_main.json as index
 
+# Git baseline: Compare against git ref (v0.7.2)
+stamp context compare --baseline git:main
+stamp context compare --baseline git:v1.0.0
+stamp context compare --baseline git:HEAD
+
 # Auto-approve and update all drifted files (like jest -u)
 stamp context compare --approve
 
@@ -468,6 +473,11 @@ stamp context validate src/context.json
 
 # Compare all context files for drift (multi-file mode)
 stamp context compare        # uses context_main.json as index
+
+# Git baseline: Compare against git ref (v0.7.2)
+stamp context compare --baseline git:main
+stamp context compare --baseline git:v1.0.0
+stamp context compare --baseline git:HEAD
 
 # Auto-approve and update all drifted files (like jest -u)
 stamp context compare --approve

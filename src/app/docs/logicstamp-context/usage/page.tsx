@@ -192,7 +192,7 @@ stamp security --hard-reset [options]  # Reset security configuration`
                 <code className="px-2 py-1 bg-gray-100 dark:bg-gray-800 text-purple-600 dark:text-purple-400 rounded-md font-mono text-xs sm:text-sm">stamp context</code> to generate folder-organized context files,{' '}
                 <code className="px-2 py-1 bg-gray-100 dark:bg-gray-800 text-purple-600 dark:text-purple-400 rounded-md font-mono text-xs sm:text-sm">stamp context style</code> to generate context with style metadata (Tailwind, SCSS, animations),{' '}
                 <code className="px-2 py-1 bg-gray-100 dark:bg-gray-800 text-purple-600 dark:text-purple-400 rounded-md font-mono text-xs sm:text-sm">stamp context validate</code> to verify them,{' '}
-                <code className="px-2 py-1 bg-gray-100 dark:bg-gray-800 text-purple-600 dark:text-purple-400 rounded-md font-mono text-xs sm:text-sm">stamp context compare</code> to detect drift across all folders, and{' '}
+                <code className="px-2 py-1 bg-gray-100 dark:bg-gray-800 text-purple-600 dark:text-purple-400 rounded-md font-mono text-xs sm:text-sm">stamp context compare</code> to detect drift across all folders (supports git baseline mode with <code className="px-2 py-1 bg-gray-100 dark:bg-gray-800 text-purple-600 dark:text-purple-400 rounded-md font-mono text-xs sm:text-sm">--baseline git:&lt;ref&gt;</code> for CI/CD), and{' '}
                 <code className="px-2 py-1 bg-gray-100 dark:bg-gray-800 text-purple-600 dark:text-purple-400 rounded-md font-mono text-xs sm:text-sm">stamp context clean</code> to remove context artifacts.
               </p>
             </div>
@@ -460,7 +460,7 @@ stamp ignore src/secrets.ts --quiet`
                   'Use --stats to emit machine-readable summary lines and append them to logs or dashboards.',
                   'Use --compare-modes to see token costs across all modes (none/header/header+style/full) before generating context.',
                   'Use stamp context style or --include-style to generate design-aware context with visual and layout metadata.',
-                  'Use stamp context compare in CI to detect context drift across all folders. Use --approve for auto-updates (like Jest snapshots).',
+                  'Use stamp context compare in CI to detect context drift across all folders. Use --approve for auto-updates (like Jest snapshots). Use --baseline git:main (v0.7.2) to compare against git refs without committing context files.',
                   'Combine stamp security scan, stamp context, and stamp context validate in pre-commit hooks or CI jobs to keep context files secure and in sync.',
                   'Use stamp context clean --all --yes to reset context files before regenerating or switching branches.'
                 ].map((tip, idx) => (
@@ -796,6 +796,9 @@ stamp context validate
 
 # Check for drift
 stamp context compare --stats
+
+# Git baseline: Compare against main branch (v0.7.2)
+stamp context compare --baseline git:main --stats
 
 # Auto-approve updates
 stamp context compare --approve`

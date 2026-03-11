@@ -54,6 +54,11 @@ stamp context compare
 # Auto-approve updates (like jest -u)
 stamp context compare --approve
 
+# Git baseline: Compare against a git ref (v0.7.2)
+stamp context compare --baseline git:main
+stamp context compare --baseline git:v1.0.0
+stamp context compare --baseline git:HEAD
+
 # Single-file: Compare two specific files
 stamp context compare old.json new.json
 
@@ -71,6 +76,11 @@ stamp context compare
 # Auto-approve updates (like jest -u)
 stamp context compare --approve
 
+# Git baseline: Compare against a git ref (v0.7.2)
+stamp context compare --baseline git:main
+stamp context compare --baseline git:v1.0.0
+stamp context compare --baseline git:HEAD
+
 # Single-file: Compare two specific files
 stamp context compare old.json new.json
 
@@ -87,16 +97,16 @@ stamp context compare --approve --clean-orphaned`
             />
           </AnimatedSection>
 
-          {/* Two Comparison Modes Section */}
+          {/* Three Comparison Modes Section */}
           <AnimatedSection direction="up" delay={200}>
             <div className="mb-8 sm:mb-12 lg:mb-16">
               <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white mb-4 sm:mb-6">
-                Two Comparison Modes
+                Three Comparison Modes
               </h2>
               <p className="text-base sm:text-lg text-gray-600 dark:text-gray-400 mb-6 leading-relaxed">
-                The compare command supports <strong className="text-gray-900 dark:text-white">two comparison modes</strong>:
+                The compare command supports <strong className="text-gray-900 dark:text-white">three comparison modes</strong>:
               </p>
-              <div className="grid sm:grid-cols-2 gap-4 sm:gap-6">
+              <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
                 <div className="p-5 bg-gradient-to-br from-amber-50 to-orange-50 dark:from-amber-950/20 dark:to-orange-950/10 rounded-xl border border-amber-200 dark:border-amber-800">
                   <h3 className="font-semibold text-amber-900 dark:text-amber-200 mb-3 text-base sm:text-lg flex items-center gap-2">
                     <span className="w-6 h-6 rounded-full bg-amber-600 text-white text-xs font-bold flex items-center justify-center">1</span>
@@ -109,9 +119,22 @@ stamp context compare --approve --clean-orphaned`
                     <li>Shows three-tier output: folder-level summary → component-level summary → detailed per-folder changes</li>
                   </ul>
                 </div>
+                <div className="p-5 bg-gradient-to-br from-green-50 to-emerald-50 dark:from-green-950/20 dark:to-emerald-950/10 rounded-xl border border-green-200 dark:border-green-800">
+                  <h3 className="font-semibold text-green-900 dark:text-green-200 mb-3 text-base sm:text-lg flex items-center gap-2">
+                    <span className="w-6 h-6 rounded-full bg-green-600 text-white text-xs font-bold flex items-center justify-center">2</span>
+                    Git Baseline Mode (v0.7.2)
+                  </h3>
+                  <ul className="space-y-2 text-sm text-green-800 dark:text-green-300 ml-2 list-disc">
+                    <li>Compares current working tree against a <strong>git ref</strong> (branch, tag, or commit)</li>
+                    <li>Uses <code className="px-1 py-0.5 bg-green-100 dark:bg-green-900/40 rounded text-xs font-mono">--baseline git:&lt;ref&gt;</code> syntax</li>
+                    <li>Creates temporary git worktree for clean isolation</li>
+                    <li>Perfect for <strong>PR reviews</strong> and <strong>CI/CD validation</strong></li>
+                    <li>Filters hash-only changes and git-ignored files automatically</li>
+                  </ul>
+                </div>
                 <div className="p-5 bg-gradient-to-br from-blue-50 to-indigo-50 dark:from-blue-950/20 dark:to-indigo-950/10 rounded-xl border border-blue-200 dark:border-blue-800">
                   <h3 className="font-semibold text-blue-900 dark:text-blue-200 mb-3 text-base sm:text-lg flex items-center gap-2">
-                    <span className="w-6 h-6 rounded-full bg-blue-600 text-white text-xs font-bold flex items-center justify-center">2</span>
+                    <span className="w-6 h-6 rounded-full bg-blue-600 text-white text-xs font-bold flex items-center justify-center">3</span>
                     Single-File Mode
                   </h3>
                   <ul className="space-y-2 text-sm text-blue-800 dark:text-blue-300 ml-2 list-disc">
@@ -248,9 +271,60 @@ stamp context compare --approve --clean-orphaned`
                     This is perfect for local development – just run it after making changes!
                   </p>
                 </div>
+                <div className="p-5 bg-gradient-to-br from-green-50 to-emerald-50 dark:from-green-950/20 dark:to-emerald-950/10 rounded-xl border border-green-200 dark:border-green-800">
+                  <h3 className="font-semibold text-green-900 dark:text-green-200 mb-3 text-base sm:text-lg flex items-center gap-2">
+                    <span className="w-6 h-6 rounded-full bg-green-600 text-white text-xs font-bold flex items-center justify-center">2</span>
+                    Git Baseline Mode (v0.7.2)
+                  </h3>
+                  <TabbedCodeBlock
+                    tabs={[
+                      {
+                        label: 'Git Baseline',
+                        code: `# Compare against main branch
+stamp context compare --baseline git:main
+
+# Compare against a tag
+stamp context compare --baseline git:v1.0.0
+
+# Compare against HEAD
+stamp context compare --baseline git:HEAD
+
+# With token statistics
+stamp context compare --baseline git:main --stats`,
+                        copyText: `stamp context compare --baseline git:main`
+                      }
+                    ]}
+                  />
+                  <p className="text-sm text-green-800 dark:text-green-300 mt-3 mb-2">
+                    <strong>What happens:</strong>
+                  </p>
+                  <ol className="list-decimal list-inside space-y-1 text-sm text-green-800 dark:text-green-300 ml-2">
+                    <li>Validates you're in a git repository</li>
+                    <li>Resolves the git ref to a commit hash</li>
+                    <li>Creates a temporary git worktree at the specified ref</li>
+                    <li>Generates context for the baseline (from worktree)</li>
+                    <li>Generates context for the current working tree</li>
+                    <li>Compares baseline vs current</li>
+                    <li>Cleans up worktree and temp directories automatically</li>
+                    <li>Exits with code 1 if drift detected (useful for CI)</li>
+                  </ol>
+                  <p className="text-sm text-green-800 dark:text-green-300 mt-3 mb-2">
+                    <strong>Use cases:</strong>
+                  </p>
+                  <ul className="text-sm text-green-800 dark:text-green-300 ml-4 list-disc space-y-1">
+                    <li><strong>PR review:</strong> "What changed in this branch vs main?"</li>
+                    <li><strong>CI validation:</strong> "Did this PR introduce breaking changes?"</li>
+                    <li><strong>Release checks:</strong> "What changed since the last release tag?"</li>
+                  </ul>
+                  <div className="mt-3 p-3 bg-green-50/50 dark:bg-green-950/20 rounded-lg border border-green-200 dark:border-green-800">
+                    <p className="text-xs text-green-800 dark:text-green-300 mb-1">
+                      <strong>Note:</strong> Git baseline only works with <strong>local refs</strong> that exist in your local repository. Remote branches must be fetched first (e.g., <code className="px-1 py-0.5 bg-green-100 dark:bg-green-900/40 rounded text-xs font-mono">git fetch origin main</code> before using <code className="px-1 py-0.5 bg-green-100 dark:bg-green-900/40 rounded text-xs font-mono">--baseline git:origin/main</code>).
+                    </p>
+                  </div>
+                </div>
                 <div className="p-5 bg-gradient-to-br from-purple-50 to-pink-50 dark:from-purple-950/20 dark:to-pink-950/10 rounded-xl border border-purple-200 dark:border-purple-800">
                   <h3 className="font-semibold text-purple-900 dark:text-purple-200 mb-3 text-base sm:text-lg flex items-center gap-2">
-                    <span className="w-6 h-6 rounded-full bg-purple-600 text-white text-xs font-bold flex items-center justify-center">2</span>
+                    <span className="w-6 h-6 rounded-full bg-purple-600 text-white text-xs font-bold flex items-center justify-center">3</span>
                     Manual Mode - Single File
                   </h3>
                   <TabbedCodeBlock
@@ -275,9 +349,9 @@ stamp context compare --approve --clean-orphaned`
                     Use this when you want to compare specific snapshots or versions.
                   </p>
                 </div>
-                <div className="p-5 bg-gradient-to-br from-green-50 to-emerald-50 dark:from-green-950/20 dark:to-emerald-950/10 rounded-xl border border-green-200 dark:border-green-800">
-                  <h3 className="font-semibold text-green-900 dark:text-green-200 mb-3 text-base sm:text-lg flex items-center gap-2">
-                    <span className="w-6 h-6 rounded-full bg-green-600 text-white text-xs font-bold flex items-center justify-center">3</span>
+                <div className="p-5 bg-gradient-to-br from-indigo-50 to-violet-50 dark:from-indigo-950/20 dark:to-violet-950/10 rounded-xl border border-indigo-200 dark:border-indigo-800">
+                  <h3 className="font-semibold text-indigo-900 dark:text-indigo-200 mb-3 text-base sm:text-lg flex items-center gap-2">
+                    <span className="w-6 h-6 rounded-full bg-indigo-600 text-white text-xs font-bold flex items-center justify-center">4</span>
                     Manual Mode - Multi-File
                   </h3>
                   <TabbedCodeBlock
@@ -289,18 +363,135 @@ stamp context compare --approve --clean-orphaned`
                       }
                     ]}
                   />
-                  <p className="text-sm text-green-800 dark:text-green-300 mt-3 mb-2">
+                  <p className="text-sm text-indigo-800 dark:text-indigo-300 mt-3 mb-2">
                     <strong>What happens:</strong>
                   </p>
-                  <ol className="list-decimal list-inside space-y-1 text-sm text-green-800 dark:text-green-300 ml-2">
-                    <li>Auto-detects that you're comparing <code className="px-1 py-0.5 bg-green-100 dark:bg-green-900/40 rounded text-xs font-mono">context_main.json</code> files</li>
+                  <ol className="list-decimal list-inside space-y-1 text-sm text-indigo-800 dark:text-indigo-300 ml-2">
+                    <li>Auto-detects that you're comparing <code className="px-1 py-0.5 bg-indigo-100 dark:bg-indigo-900/40 rounded text-xs font-mono">context_main.json</code> files</li>
                     <li>Loads both indices and compares <strong>all referenced context files</strong></li>
                     <li>Shows three-tier output (folder summary + component summary + details)</li>
                     <li><strong>Prompts to update all files</strong> if drift detected (in terminal)</li>
                     <li><strong>Exits with error</strong> if drift detected (in CI)</li>
                   </ol>
-                  <p className="text-sm text-green-800 dark:text-green-300 mt-3">
+                  <p className="text-sm text-indigo-800 dark:text-indigo-300 mt-3">
                     Use this when comparing different branches, commits, or environments.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </AnimatedSection>
+
+          {/* Git Baseline Mode Details Section */}
+          <AnimatedSection direction="up" delay={375}>
+            <div className="mb-8 sm:mb-12 lg:mb-16">
+              <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white mb-4 sm:mb-6">
+                Git Baseline Mode Features (v0.7.2)
+              </h2>
+              <div className="space-y-6">
+                <div className="p-5 bg-gradient-to-br from-green-50 to-emerald-50 dark:from-green-950/20 dark:to-emerald-950/10 rounded-xl border border-green-200 dark:border-green-800">
+                  <h3 className="font-semibold text-green-900 dark:text-green-200 mb-3 text-base sm:text-lg">
+                    Hash-Only Filtering
+                  </h3>
+                  <p className="text-sm text-green-800 dark:text-green-300 mb-2">
+                    In git baseline mode, <strong>hash-only changes are filtered</strong> to prevent false positives:
+                  </p>
+                  <ul className="space-y-2 text-sm text-green-800 dark:text-green-300 ml-4 list-disc">
+                    <li><strong>Hash-only changes are ignored:</strong> When only the semantic hash differs (with no changes to imports, hooks, functions, components, props, emits, or exports), the hash change is filtered out</li>
+                    <li><strong>Hash changes with other changes are reported:</strong> When the hash differs AND there are other structural changes, the hash is still reported to provide context</li>
+                    <li><strong>Why filter hash-only?</strong> TypeScript project resolution can produce slightly different AST structures between worktree and working directory contexts (different absolute paths, module resolution contexts, or TypeScript compiler state) even for functionally identical code. Filtering hash-only changes ensures deterministic structural comparison while preserving hash information when there are real changes.</li>
+                  </ul>
+                  <div className="mt-3 p-3 bg-green-50/50 dark:bg-green-950/20 rounded-lg">
+                    <p className="text-xs text-green-800 dark:text-green-300">
+                      <strong>Note:</strong> In regular comparison modes (single-file, multi-file, auto-mode), all hash changes are reported. Hash-only filtering only applies to git baseline mode.
+                    </p>
+                  </div>
+                </div>
+                <div className="p-5 bg-gradient-to-br from-blue-50 to-indigo-50 dark:from-blue-950/20 dark:to-indigo-950/10 rounded-xl border border-blue-200 dark:border-blue-800">
+                  <h3 className="font-semibold text-blue-900 dark:text-blue-200 mb-3 text-base sm:text-lg">
+                    Prop/Emit Type Change Detection
+                  </h3>
+                  <p className="text-sm text-blue-800 dark:text-blue-300 mb-2">
+                    In git baseline mode, prop and emit <strong>type changes</strong> are not detected—only added/removed props and emits are reported:
+                  </p>
+                  <ul className="space-y-2 text-sm text-blue-800 dark:text-blue-300 ml-4 list-disc">
+                    <li><strong>Type changes are skipped:</strong> Prop type changes (e.g., <code className="px-1 py-0.5 bg-blue-100 dark:bg-blue-900/40 rounded text-xs font-mono">string</code> → <code className="px-1 py-0.5 bg-blue-100 dark:bg-blue-900/40 rounded text-xs font-mono">number</code>) and emit type changes are not detected in git baseline mode</li>
+                    <li><strong>Added/removed are detected:</strong> Props and emits that are added or removed are still reported normally</li>
+                    <li><strong>Why skip type changes?</strong> TypeScript resolution can produce slightly different type representations between worktree and working directory contexts. The same prop might be extracted as <code className="px-1 py-0.5 bg-blue-100 dark:bg-blue-900/40 rounded text-xs font-mono">"string"</code> in one context and <code className="px-1 py-0.5 bg-blue-100 dark:bg-blue-900/40 rounded text-xs font-mono">{"{ type: \"string\" }"}</code> in another, even for identical code</li>
+                  </ul>
+                  <div className="mt-3 p-3 bg-blue-50/50 dark:bg-blue-950/20 rounded-lg">
+                    <p className="text-xs text-blue-800 dark:text-blue-300">
+                      <strong>Note:</strong> In regular comparison modes, both added/removed and type changes are detected since both sides are generated from the same environment.
+                    </p>
+                  </div>
+                </div>
+                <div className="p-5 bg-gradient-to-br from-purple-50 to-pink-50 dark:from-purple-950/20 dark:to-pink-950/10 rounded-xl border border-purple-200 dark:border-purple-800">
+                  <h3 className="font-semibold text-purple-900 dark:text-purple-200 mb-3 text-base sm:text-lg">
+                    Git-Ignored File Filtering
+                  </h3>
+                  <p className="text-sm text-purple-800 dark:text-purple-300 mb-2">
+                    Git-ignored files are automatically filtered from comparison results in git baseline mode:
+                  </p>
+                  <ul className="space-y-2 text-sm text-purple-800 dark:text-purple-300 ml-4 list-disc">
+                    <li><strong>Prevents false positives:</strong> Git-ignored files (like <code className="px-1 py-0.5 bg-purple-100 dark:bg-purple-900/40 rounded text-xs font-mono">next-env.d.ts</code>, <code className="px-1 py-0.5 bg-purple-100 dark:bg-purple-900/40 rounded text-xs font-mono">.env.local</code>, etc.) are automatically filtered from comparison results</li>
+                    <li><strong>Why filter?</strong> These files exist in your working directory but not in the git worktree (since git doesn't track them), which would otherwise appear as "added" components</li>
+                    <li><strong>Automatic:</strong> This behavior is automatic and requires no configuration</li>
+                  </ul>
+                  <div className="mt-3 p-3 bg-purple-50/50 dark:bg-purple-950/20 rounded-lg">
+                    <p className="text-xs text-purple-800 dark:text-purple-300">
+                      <strong>Example:</strong> If <code className="px-1 py-0.5 bg-purple-100 dark:bg-purple-900/40 rounded text-xs font-mono">next-env.d.ts</code> exists in your working directory but is git-ignored, it won't appear as an "added" component in the comparison results, even though it's included in context generation with <code className="px-1 py-0.5 bg-purple-100 dark:bg-purple-900/40 rounded text-xs font-mono">--skip-gitignore</code>.
+                    </p>
+                  </div>
+                </div>
+                <div className="p-5 bg-gradient-to-br from-amber-50 to-orange-50 dark:from-amber-950/20 dark:to-orange-950/10 rounded-xl border border-amber-200 dark:border-amber-800">
+                  <h3 className="font-semibold text-amber-900 dark:text-amber-200 mb-3 text-base sm:text-lg">
+                    Symmetric File Exclusion
+                  </h3>
+                  <p className="text-sm text-amber-800 dark:text-amber-300 mb-2">
+                    Both baseline and current context generation use the working directory's <code className="px-1 py-0.5 bg-amber-100 dark:bg-amber-900/40 rounded text-xs font-mono">.stampignore</code> file for symmetric file scanning:
+                  </p>
+                  <ul className="space-y-2 text-sm text-amber-800 dark:text-amber-300 ml-4 list-disc">
+                    <li><strong>Consistent exclusion:</strong> Prevents false positives when <code className="px-1 py-0.5 bg-amber-100 dark:bg-amber-900/40 rounded text-xs font-mono">.stampignore</code> differs between the git ref and current state</li>
+                    <li><strong>Deterministic results:</strong> Ensures consistent file exclusion patterns across both sides of the comparison</li>
+                  </ul>
+                </div>
+                <div className="p-5 bg-gradient-to-br from-teal-50 to-cyan-50 dark:from-teal-950/20 dark:to-cyan-950/10 rounded-xl border border-teal-200 dark:border-teal-800">
+                  <h3 className="font-semibold text-teal-900 dark:text-teal-200 mb-3 text-base sm:text-lg">
+                    CI/CD Integration Example
+                  </h3>
+                  <TabbedCodeBlock
+                    tabs={[
+                      {
+                        label: 'GitHub Actions',
+                        code: `name: Context Drift Check
+
+on:
+  pull_request:
+    branches: [main]
+
+jobs:
+  check-drift:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0  # Required for git baseline
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Check for context drift against main
+        run: stamp context compare --baseline git:origin/main --stats`,
+                        copyText: `stamp context compare --baseline git:origin/main --stats`
+                      }
+                    ]}
+                  />
+                  <p className="text-sm text-teal-800 dark:text-teal-300 mt-3">
+                    This workflow compares your PR branch against <code className="px-1 py-0.5 bg-teal-100 dark:bg-teal-900/40 rounded text-xs font-mono">origin/main</code> and fails if drift is detected, making it perfect for CI validation.
                   </p>
                 </div>
               </div>
@@ -619,13 +810,28 @@ stamp context compare --approve --clean-orphaned`
                     What is compared
                   </h3>
                   <ul className="space-y-2 text-sm text-blue-800 dark:text-blue-300 ml-4 list-disc">
-                    <li><strong>Hash changes</strong> – component structure or logic changed</li>
+                    <li><strong>Hash changes</strong> – component structure or logic changed
+                      <ul className="ml-4 mt-1 space-y-1 list-disc text-xs">
+                        <li><strong>Git baseline mode:</strong> Hash-only changes are filtered; hash changes with other changes are reported</li>
+                        <li><strong>Regular modes:</strong> All hash changes are reported</li>
+                      </ul>
+                    </li>
                     <li><strong>Import changes</strong> – import dependencies added/removed or order changed</li>
                     <li><strong>Hook changes</strong> – React hooks usage changed</li>
                     <li><strong>Function changes</strong> – functions declared in the module added/removed</li>
                     <li><strong>Component changes</strong> – referenced React components changed</li>
-                    <li><strong>Prop changes</strong> – component API surface changed</li>
-                    <li><strong>Event/emit changes</strong> – event/callback interface changed</li>
+                    <li><strong>Prop changes</strong> – component API surface changed
+                      <ul className="ml-4 mt-1 space-y-1 list-disc text-xs">
+                        <li><strong>Git baseline mode:</strong> Only added/removed props detected; type changes skipped</li>
+                        <li><strong>Regular modes:</strong> Both added/removed and type changes detected</li>
+                      </ul>
+                    </li>
+                    <li><strong>Event/emit changes</strong> – event/callback interface changed
+                      <ul className="ml-4 mt-1 space-y-1 list-disc text-xs">
+                        <li><strong>Git baseline mode:</strong> Only added/removed emits detected; type changes skipped</li>
+                        <li><strong>Regular modes:</strong> Both added/removed and type changes detected</li>
+                      </ul>
+                    </li>
                     <li><strong>Export changes</strong> – export type changed (e.g., from <code className="px-1 py-0.5 bg-blue-100 dark:bg-blue-900/40 rounded text-xs font-mono">export default</code> to <code className="px-1 py-0.5 bg-blue-100 dark:bg-blue-900/40 rounded text-xs font-mono">export const</code>)</li>
                   </ul>
                 </div>

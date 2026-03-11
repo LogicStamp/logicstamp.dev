@@ -1417,10 +1417,56 @@ export default function BlogPost({ params }: { params: { slug: string } }) {
                         </p>
                       </div>
 
+                      <div className="p-4 bg-green-50 dark:bg-green-950/20 rounded-lg border-l-4 border-green-500">
+                        <div className="flex items-start justify-between gap-3 mb-2">
+                          <h4 className="font-semibold text-gray-900 dark:text-white text-sm sm:text-base">
+                            12. Git Baseline Comparison
+                          </h4>
+                          <span className="px-2 py-1 rounded-full text-xs font-semibold bg-green-100 dark:bg-green-900/40 text-green-800 dark:text-green-200">
+                            ✅ Complete (v0.7.2)
+                          </span>
+                        </div>
+                        <p className="text-sm text-gray-600 dark:text-gray-400 mb-2">
+                          Git-based baseline support for context comparison, enabling meaningful drift detection against known reference points.
+                        </p>
+                        <p className="text-sm text-gray-600 dark:text-gray-400 mb-2">
+                          <strong>What Works:</strong>
+                        </p>
+                        <ul className="space-y-1 text-sm text-gray-600 dark:text-gray-400 ml-4 list-disc mb-2">
+                          <li>✅ <code className="px-1.5 py-0.5 bg-gray-100 dark:bg-gray-800 rounded text-xs font-mono">--baseline git:&lt;ref&gt;</code> option to compare against any local git ref (branch, tag, commit)</li>
+                          <li>✅ Uses git worktrees for clean isolation during comparison</li>
+                          <li>✅ Generates context for both baseline and current code, then compares</li>
+                          <li>✅ Automatic cleanup of worktrees and temp directories</li>
+                          <li>✅ Works with branches, tags, and commit hashes</li>
+                          <li>✅ Hash-only filtering prevents false positives from TypeScript resolution differences</li>
+                          <li>✅ Git-ignored files automatically filtered from comparison results</li>
+                          <li>✅ Symmetric file exclusion using working directory's <code className="px-1.5 py-0.5 bg-gray-100 dark:bg-gray-800 rounded text-xs font-mono">.stampignore</code></li>
+                        </ul>
+                        <p className="text-sm text-gray-600 dark:text-gray-400 mb-2">
+                          <strong>Known Limitations:</strong>
+                        </p>
+                        <ul className="space-y-1 text-sm text-gray-600 dark:text-gray-400 ml-4 list-disc mb-2">
+                          <li>⚠️ <strong>Type changes skipped in git baseline mode:</strong> Prop and emit type changes (e.g., <code className="px-1 py-0.5 bg-gray-100 dark:bg-gray-800 rounded text-xs font-mono">string</code> → <code className="px-1 py-0.5 bg-gray-100 dark:bg-gray-800 rounded text-xs font-mono">number</code>) are only detected in direct file comparison mode, not in git baseline mode. Only added/removed props and emits are reported in git baseline mode.</li>
+                          <li>⚠️ <strong>Local refs only:</strong> Git baseline only works with local refs that exist in your local repository. Remote branches must be fetched first (e.g., <code className="px-1 py-0.5 bg-gray-100 dark:bg-gray-800 rounded text-xs font-mono">git fetch origin main</code> before using <code className="px-1 py-0.5 bg-gray-100 dark:bg-gray-800 rounded text-xs font-mono">--baseline git:origin/main</code>).</li>
+                        </ul>
+                        <p className="text-sm text-gray-600 dark:text-gray-400 mb-2">
+                          <strong>Determinism:</strong>
+                        </p>
+                        <p className="text-sm text-gray-600 dark:text-gray-400 mb-2">
+                          ✅ <strong>The workflow is deterministic for detecting meaningful changes.</strong> Even when semantic hashes differ between worktree and working directory (due to TypeScript resolution differences), the comparison will always produce the same result (PASS or DRIFT) for identical code. Hash-only differences are filtered out to ensure deterministic results, while hash changes that occur alongside other structural changes are still reported.
+                        </p>
+                        <p className="text-sm text-gray-600 dark:text-gray-400">
+                          <strong>Impact:</strong> Enables meaningful drift detection against stable reference points, making CI integration straightforward. Hash-only filtering prevents false positives while preserving hash information for real structural changes.
+                        </p>
+                        <p className="text-sm text-gray-600 dark:text-gray-400 mt-2">
+                          <strong>Priority:</strong> ~~Medium~~ Complete
+                        </p>
+                      </div>
+
                       <div className="p-4 bg-amber-50 dark:bg-amber-950/20 rounded-lg border border-amber-200 dark:border-amber-800">
                         <div className="flex items-start justify-between gap-3 mb-2">
                           <h4 className="font-semibold text-gray-900 dark:text-white text-sm sm:text-base">
-                            12. Test Files Excluded
+                            13. Test Files Excluded
                           </h4>
                           <span className="px-2 py-1 rounded-full text-xs font-semibold bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-400">
                             Low
@@ -1444,7 +1490,7 @@ export default function BlogPost({ params }: { params: { slug: string } }) {
                       <div className="p-4 bg-amber-50 dark:bg-amber-950/20 rounded-lg border border-amber-200 dark:border-amber-800">
                         <div className="flex items-start justify-between gap-3 mb-2">
                           <h4 className="font-semibold text-gray-900 dark:text-white text-sm sm:text-base">
-                            13. Runtime Behavior
+                            14. Runtime Behavior
                           </h4>
                           <span className="px-2 py-1 rounded-full text-xs font-semibold bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-400">
                             Low
@@ -1463,7 +1509,7 @@ export default function BlogPost({ params }: { params: { slug: string } }) {
                       <div className="p-4 bg-green-50 dark:bg-green-950/20 rounded-lg border-l-4 border-green-500">
                         <div className="flex items-start justify-between gap-3 mb-2">
                           <h4 className="font-semibold text-gray-900 dark:text-white text-sm sm:text-base">
-                            14. Styled JSX CSS Extraction
+                            15. Styled JSX CSS Extraction
                           </h4>
                           <span className="px-2 py-1 rounded-full text-xs font-semibold bg-green-100 dark:bg-green-900/40 text-green-800 dark:text-green-200">
                             ✅ Fixed in v0.3.5
@@ -1601,6 +1647,26 @@ export default function BlogPost({ params }: { params: { slug: string } }) {
                             <td className="px-4 py-3 whitespace-nowrap text-sm font-medium text-gray-900 dark:text-white">v0.7.0</td>
                             <td className="px-4 py-3 text-sm text-gray-600 dark:text-gray-400">File lock consistency</td>
                             <td className="px-4 py-3 text-sm text-gray-600 dark:text-gray-400">Added delay after stale lock removal for improved filesystem consistency on Windows</td>
+                          </tr>
+                          <tr className="hover:bg-gray-50 dark:hover:bg-gray-800/50 transition-colors">
+                            <td className="px-4 py-3 whitespace-nowrap text-sm font-medium text-gray-900 dark:text-white">v0.7.2</td>
+                            <td className="px-4 py-3 text-sm text-gray-600 dark:text-gray-400">Git baseline comparison</td>
+                            <td className="px-4 py-3 text-sm text-gray-600 dark:text-gray-400"><code className="px-1.5 py-0.5 bg-gray-100 dark:bg-gray-800 rounded text-xs font-mono">--baseline git:&lt;ref&gt;</code> option enables comparing current working tree against any local git ref (branch, tag, commit)</td>
+                          </tr>
+                          <tr className="hover:bg-gray-50 dark:hover:bg-gray-800/50 transition-colors">
+                            <td className="px-4 py-3 whitespace-nowrap text-sm font-medium text-gray-900 dark:text-white">v0.7.2</td>
+                            <td className="px-4 py-3 text-sm text-gray-600 dark:text-gray-400">Hash-only filtering</td>
+                            <td className="px-4 py-3 text-sm text-gray-600 dark:text-gray-400">Git baseline mode filters out hash-only differences to prevent false positives from TypeScript resolution differences</td>
+                          </tr>
+                          <tr className="hover:bg-gray-50 dark:hover:bg-gray-800/50 transition-colors">
+                            <td className="px-4 py-3 whitespace-nowrap text-sm font-medium text-gray-900 dark:text-white">v0.7.2</td>
+                            <td className="px-4 py-3 text-sm text-gray-600 dark:text-gray-400">Git-ignored file filtering</td>
+                            <td className="px-4 py-3 text-sm text-gray-600 dark:text-gray-400">Git-ignored files automatically filtered from comparison results in git baseline mode</td>
+                          </tr>
+                          <tr className="hover:bg-gray-50 dark:hover:bg-gray-800/50 transition-colors">
+                            <td className="px-4 py-3 whitespace-nowrap text-sm font-medium text-gray-900 dark:text-white">v0.7.2</td>
+                            <td className="px-4 py-3 text-sm text-gray-600 dark:text-gray-400">Symmetric file exclusion</td>
+                            <td className="px-4 py-3 text-sm text-gray-600 dark:text-gray-400">Both baseline and current context generation use working directory's <code className="px-1.5 py-0.5 bg-gray-100 dark:bg-gray-800 rounded text-xs font-mono">.stampignore</code> for consistent file scanning</td>
                           </tr>
                         </tbody>
                       </table>

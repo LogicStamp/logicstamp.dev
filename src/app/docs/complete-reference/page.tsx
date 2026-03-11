@@ -102,6 +102,15 @@ export default function CompleteReferencePage() {
               
               <div className="text-sm sm:text-base text-gray-600 dark:text-gray-400 mb-4 sm:mb-6 leading-relaxed space-y-3">
                 <p>
+                  <strong className="text-gray-900 dark:text-white">v0.7.2</strong> added git baseline comparison with <code className="px-1.5 py-0.5 bg-gray-100 dark:bg-gray-800 rounded text-xs">--baseline git:&lt;ref&gt;</code> for CI/CD workflows, full contract comparison (state, variables, API signatures, prop/emit type changes), hash-only filtering, and git-ignored file filtering for deterministic comparisons.
+                </p>
+                <p>
+                  <strong className="text-gray-900 dark:text-white">v0.7.1</strong> enhanced strict watch mode with session-level statistics, automatic watch enablement with <code className="px-1.5 py-0.5 bg-gray-100 dark:bg-gray-800 rounded text-xs">--strict-watch</code>, normalized path display, <code className="px-1.5 py-0.5 bg-gray-100 dark:bg-gray-800 rounded text-xs">--verbose</code> flag for detailed output, and improved watch mode file organization.
+                </p>
+                <p>
+                  <strong className="text-gray-900 dark:text-white">v0.7.0</strong> changed style mode default to <code className="px-1.5 py-0.5 bg-gray-100 dark:bg-gray-800 rounded text-xs">lean</code> (breaking change), added security awareness warnings, improved watch mode style caching, and enhanced file lock consistency on Windows.
+                </p>
+                <p>
                   <strong className="text-gray-900 dark:text-white">v0.6.0</strong> added runtime schema validation (AJV-enforced), fail-closed contract loading, path traversal protection, and security updates. Node.js &gt;= 20 now required.
                 </p>
                 <p>
@@ -132,6 +141,42 @@ export default function CompleteReferencePage() {
               
               <div className="grid sm:grid-cols-2 gap-4 sm:gap-6">
                 {[
+                  {
+                    icon: "🔀",
+                    title: "Git Baseline Comparison (v0.7.2)",
+                    desc: "Compare against any git ref (branch, tag, commit) with --baseline git:<ref>. Uses git worktree for clean isolation, enables CI/CD validation without committing context files. Includes hash-only filtering and git-ignored file filtering for deterministic comparisons.",
+                    color: "blue"
+                  },
+                  {
+                    icon: "📊",
+                    title: "Full Contract Comparison (v0.7.2)",
+                    desc: "Compare command now detects state, variables, API signatures, and prop/emit type changes. Comprehensive drift detection across all contract fields, matching watch mode capabilities for consistent behavior.",
+                    color: "purple"
+                  },
+                  {
+                    icon: "👀",
+                    title: "Strict Watch Enhancements (v0.7.1)",
+                    desc: "Session-level statistics for errors, warnings, and resolved violations. --strict-watch automatically enables watch mode. Enhanced summaries with contextual emoji and proper pluralization. Normalized path display across all commands.",
+                    color: "green"
+                  },
+                  {
+                    icon: "🔍",
+                    title: "Verbose Output Flag (v0.7.1)",
+                    desc: "New --verbose flag for detailed per-file bundle output. Default CLI output prioritizes summary messages, with detailed file output moved to verbose mode. Improved watch mode file organization.",
+                    color: "indigo"
+                  },
+                  {
+                    icon: "⚡",
+                    title: "Lean Style Mode Default (v0.7.0)",
+                    desc: "Breaking change: stamp context style now defaults to --style-mode lean for smaller, faster bundles. Use --style-mode full for complete metadata. Watch mode reuses cached style metadata, reducing redundant extraction.",
+                    color: "orange"
+                  },
+                  {
+                    icon: "🛡️",
+                    title: "Security & Reliability (v0.7.0)",
+                    desc: "stamp context warns when no security report is found. Style extraction failures in watch mode log errors when LOGICSTAMP_DEBUG=1. Improved file lock consistency on Windows with delay after stale lock removal.",
+                    color: "yellow"
+                  },
                   {
                     icon: "🔒",
                     title: "Runtime Schema Validation (v0.6.0)",
