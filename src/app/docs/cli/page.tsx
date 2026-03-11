@@ -155,7 +155,7 @@ export default function LogicStampContextDocsPage() {
                   </svg>
                 </div>
                   <p className="text-sm text-gray-600 dark:text-gray-400">
-                  Compare all context files to detect drift across your project. Identify changes in components, props, and dependencies.
+                  Compare all context files to detect drift across your project. Supports git baseline mode (v0.7.2) for CI/CD validation against git refs. Identify changes in components, props, and dependencies.
                 </p>
               </Link>
 

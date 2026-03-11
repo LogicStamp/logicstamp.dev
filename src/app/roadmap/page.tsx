@@ -121,7 +121,24 @@ export default function BetaPage() {
 </div>
                 <div className="space-y-4 text-gray-700 dark:text-gray-300">
                   <div>
-                  <p className="font-bold mb-2">v0.7.1 (Current) - 2026-03-05</p>
+                  <p className="font-bold mb-2">v0.7.2 (Current) - 2026-03-11</p>
+<ul className="list-disc list-inside space-y-1 ml-2">
+  <li>
+    <strong>Git Baseline Mode:</strong> Added <code>--baseline git:&lt;ref&gt;</code> support for comparing against git refs (branches, tags, commits). Uses git worktree for clean isolation and enables CI/CD validation without committing context files. Includes hash-only filtering and git-ignored file filtering for deterministic comparisons.
+  </li>
+  <li>
+    <strong>Hash filtering in git baseline:</strong> Hash-only changes are filtered to prevent false positives from TypeScript resolution differences between worktree and working directory contexts.
+  </li>
+  <li>
+    <strong>Git-ignored file filtering:</strong> Git-ignored files are automatically filtered from comparison results in git baseline mode to prevent false positives.
+  </li>
+  <li>
+    <strong>Symmetric file exclusion:</strong> Both baseline and current context generation use the working directory's <code>.stampignore</code> file for consistent file scanning.
+  </li>
+</ul>
+                  </div>
+                  <div>
+                  <p className="font-bold mb-2">v0.7.1 - 2026-03-05</p>
 <ul className="list-disc list-inside space-y-1 ml-2">
   <li>
     <strong>Strict watch session tracking:</strong> added session-level statistics for errors, warnings, and resolved violations. Status block shows cumulative session metrics and active violations.
@@ -444,11 +461,10 @@ export default function BetaPage() {
                         Git Baseline for Compare
                       </h4>
                       <p className="text-gray-600 dark:text-gray-400 leading-relaxed">
-                        Add git-based baseline support for context comparison, enabling meaningful drift detection against known reference points. Supports <code className="text-sm bg-gray-100 dark:bg-gray-800 px-1 py-0.5 rounded">--baseline git:HEAD</code>, <code className="text-sm bg-gray-100 dark:bg-gray-800 px-1 py-0.5 rounded">git:main</code>, or any git ref. Uses git worktree for clean isolation. Enables CI integration and <code className="text-sm bg-gray-100 dark:bg-gray-800 px-1 py-0.5 rounded">--fail-on-breaking</code> flag for contract drift detection.
+                        Git-based baseline support for context comparison, enabling meaningful drift detection against known reference points. Supports <code className="text-sm bg-gray-100 dark:bg-gray-800 px-1 py-0.5 rounded">--baseline git:HEAD</code>, <code className="text-sm bg-gray-100 dark:bg-gray-800 px-1 py-0.5 rounded">git:main</code>, or any git ref. Uses git worktree for clean isolation. Enables CI integration for contract drift detection.
                       </p>
                       <div className="mt-2">
-                        <span className="px-3 py-1 bg-red-100 dark:bg-red-900/30 text-red-600 dark:text-red-400 rounded-full text-sm font-semibold">🔴 Not Started</span>
-                        <span className="ml-2 px-3 py-1 bg-purple-100 dark:bg-purple-900/30 text-purple-600 dark:text-purple-400 rounded-full text-sm font-semibold">High Priority</span>
+                        <span className="px-3 py-1 bg-green-100 dark:bg-green-900/30 text-green-600 dark:text-green-400 rounded-full text-sm font-semibold">✅ Complete (v0.7.2)</span>
                       </div>
                     </div>
                   </div>
@@ -617,9 +633,9 @@ export default function BetaPage() {
                     <h4 className="font-semibold text-gray-900 dark:text-white mb-3 text-lg">Comparison & Drift Detection</h4>
                     <div className="space-y-4 ml-2">
                       <div className="flex items-start gap-3">
-                        <span className="text-red-600 dark:text-red-400 font-bold">•</span>
+                        <span className="text-green-600 dark:text-green-400 font-bold">✓</span>
                         <div className="text-gray-600 dark:text-gray-400">
-                          <span className="font-semibold text-gray-900 dark:text-white">Git Baseline for Compare</span> - Add git-based baseline support using <code className="text-sm bg-gray-100 dark:bg-gray-800 px-1 py-0.5 rounded">--baseline git:&lt;ref&gt;</code> syntax. Enables CI/CD integration and <code className="text-sm bg-gray-100 dark:bg-gray-800 px-1 py-0.5 rounded">--fail-on-breaking</code> flag for contract drift detection. Uses git worktree for clean isolation.
+                          <span className="font-semibold text-gray-900 dark:text-white">Git Baseline for Compare</span> - <span className="line-through">Add git-based baseline support using <code className="text-sm bg-gray-100 dark:bg-gray-800 px-1 py-0.5 rounded">--baseline git:&lt;ref&gt;</code> syntax. Enables CI/CD integration and <code className="text-sm bg-gray-100 dark:bg-gray-800 px-1 py-0.5 rounded">--fail-on-breaking</code> flag for contract drift detection. Uses git worktree for clean isolation.</span> <strong className="text-green-600 dark:text-green-400">✅ Completed in v0.7.2</strong>
                         </div>
                       </div>
                     </div>
