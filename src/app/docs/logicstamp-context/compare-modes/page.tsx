@@ -676,7 +676,7 @@ stamp context --compare-modes --stats
                   </p>
                 </Link>
                 <Link
-                  href="/docs/logicstamp-context/usage"
+                  href="/docs/guides/usage"
                   className="p-4 border border-gray-200 dark:border-gray-800 rounded-lg md:hover:border-green-500 dark:md:hover:border-green-500 transition-colors"
                 >
                   <h3 className="font-semibold text-gray-900 dark:text-white mb-1">
@@ -695,11 +695,11 @@ stamp context --compare-modes --stats
             variant="green"
             description="Explore best practices or check out the usage guide for more workflows."
             primaryAction={{
-              href: '/docs/best-practices',
+              href: '/docs/guides/best-practices',
               label: 'Best Practices',
             }}
             secondaryAction={{
-              href: '/docs/logicstamp-context/usage',
+              href: '/docs/guides/usage',
               label: 'Usage Guide',
             }}
           />

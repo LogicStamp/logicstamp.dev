@@ -28,14 +28,14 @@ const sections: DocsNavSection[] = [
     title: 'Getting Started',
     items: [
       { title: 'Getting Started', href: '/docs/getting-started' },
-      { title: 'CLI', href: '/docs/cli/getting-started' },
+      { title: 'CLI', href: '/docs/logicstamp-context/cli/getting-started' },
       { title: 'MCP', href: '/docs/mcp/getting-started' },
     ],
   },
   {
     title: 'CLI',
     items: [
-      { title: 'CLI Hub', href: '/docs/cli' },
+      { title: 'CLI Hub', href: '/docs/logicstamp-context/cli' },
       { title: 'CLI Commands', href: '/docs/logicstamp-context/commands' },
       { title: '`security scan` command', href: '/docs/logicstamp-context/security-scan' },
       { title: '`init` command', href: '/docs/logicstamp-context/init' },
@@ -44,7 +44,7 @@ const sections: DocsNavSection[] = [
       { title: 'Watch Mode', href: '/docs/logicstamp-context/watch-mode' },
       { title: 'TOON Format', href: '/docs/logicstamp-context/toon' },
       { title: 'Compare Modes', href: '/docs/logicstamp-context/compare-modes' },
-      { title: '`compare` command', href: '/docs/logicstamp-context/compare-command' },
+      { title: '`compare` command', href: '/docs/logicstamp-context/compare' },
       { title: '`validate` command', href: '/docs/logicstamp-context/validate' },
       { title: '`clean` command', href: '/docs/logicstamp-context/clean' },
     ],
@@ -52,13 +52,13 @@ const sections: DocsNavSection[] = [
   {
     title: 'Frameworks',
     items: [
-      { title: 'TypeScript Support', href: '/docs/logicstamp-context/typescript' },
-      { title: 'React Support', href: '/docs/logicstamp-context/react' },
-      { title: 'Next.js Support', href: '/docs/logicstamp-context/nextjs' },
-      { title: 'Express.js Support', href: '/docs/logicstamp-context/express' },
-      { title: 'NestJS Support', href: '/docs/logicstamp-context/nestjs' },
+      { title: 'TypeScript Support', href: '/docs/logicstamp-context/frameworks/typescript' },
+      { title: 'React Support', href: '/docs/logicstamp-context/frameworks/react' },
+      { title: 'Next.js Support', href: '/docs/logicstamp-context/frameworks/nextjs' },
+      { title: 'Express.js Support', href: '/docs/logicstamp-context/frameworks/express' },
+      { title: 'NestJS Support', href: '/docs/logicstamp-context/frameworks/nestjs' },
       { title: 'UI Frameworks', href: '/docs/logicstamp-context/ui-frameworks' },
-      { title: 'Monorepo Support', href: '/docs/logicstamp-context/monorepo' },
+      { title: 'Monorepo Support', href: '/docs/logicstamp-context/frameworks/monorepo' },
     ],
   },
   {
@@ -76,12 +76,12 @@ const sections: DocsNavSection[] = [
     title: 'Guides',
     items: [
       { title: 'Guides', href: '/docs/guides' },
-      { title: 'Usage Guides', href: '/docs/logicstamp-context/usage' },
-      { title: 'LLM Context Format', href: '/docs/logicstamp-context/llm-context' },
-      { title: 'Best Practices', href: '/docs/best-practices' },
-      { title: 'Hashes', href: '/docs/hashes' },
-      { title: 'bundleHash (uifb)', href: '/docs/uifb' },
-      { title: 'UIF Contracts', href: '/docs/logicstamp-context/uif-contracts' },
+      { title: 'Usage Guides', href: '/docs/guides/usage' },
+      { title: 'LLM Context Format', href: '/docs/guides/llm-context' },
+      { title: 'Best Practices', href: '/docs/guides/best-practices' },
+      { title: 'Hashes', href: '/docs/guides/hashes' },
+      { title: 'bundleHash (uifb)', href: '/docs/guides/uifb' },
+      { title: 'UIF Contracts', href: '/docs/guides/uif-contracts' },
       { title: 'Schema', href: '/docs/logicstamp-context/schema' },
     ],
   },
@@ -207,7 +207,7 @@ function getIcon(href: string): ReactNode {
     )
   }
 
-  if (href === '/docs/cli') {
+  if (href === '/docs/logicstamp-context/cli') {
     // Terminal / CLI icon
     return (
       <svg
@@ -455,7 +455,7 @@ function getIcon(href: string): ReactNode {
     )
   }
 
-  if (href === '/docs/best-practices') {
+  if (href === '/docs/guides/best-practices') {
     // Star / award icon
     return (
       <svg
@@ -472,7 +472,7 @@ function getIcon(href: string): ReactNode {
     )
   }
 
-  if (href === '/docs/hashes') {
+  if (href === '/docs/guides/hashes') {
     // Hash / pound sign icon
     return (
       <svg
@@ -492,7 +492,7 @@ function getIcon(href: string): ReactNode {
     )
   }
 
-  if (href === '/docs/uifb') {
+  if (href === '/docs/guides/uifb') {
     // Bundle / folder icon
     return (
       <svg

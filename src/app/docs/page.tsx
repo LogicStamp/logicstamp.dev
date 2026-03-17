@@ -98,7 +98,7 @@ export default function DocsHomePage() {
                 </p>
               </Link>
               <Link
-                href="/docs/logicstamp-context/uif-contracts"
+                href="/docs/guides/uif-contracts"
                 className="group p-4 border border-gray-200 dark:border-gray-800 rounded-lg md:hover:border-blue-500 dark:md:hover:border-blue-500 transition-colors"
               >
                 <div className="flex items-baseline gap-2 mb-2">
@@ -182,7 +182,7 @@ export default function DocsHomePage() {
               The CLI provides commands for generating, validating, and managing AI-ready context files from your codebase.
             </p>
             <Link
-              href="/docs/cli"
+              href="/docs/logicstamp-context/cli"
               className="inline-flex items-center gap-2 px-4 sm:px-6 py-2.5 sm:py-3 bg-gray-900 dark:bg-white text-white dark:text-gray-900 font-semibold rounded-xl hover:shadow-xl transition-all duration-200 hover:-translate-y-0.5 text-sm sm:text-base"
             >
               CLI Docs Hub
@@ -224,7 +224,7 @@ export default function DocsHomePage() {
               Step-by-step guides for common workflows and best practices.
             </p>
             <Link
-              href="/docs/best-practices"
+              href="/docs/guides/best-practices"
               className="inline-flex items-center gap-2 px-4 sm:px-6 py-2.5 sm:py-3 bg-white dark:bg-gray-800 text-gray-900 dark:text-white font-semibold rounded-xl border-2 border-gray-200 dark:border-gray-700 hover:shadow-xl transition-all duration-200 hover:-translate-y-0.5 text-sm sm:text-base"
             >
               Best Practices

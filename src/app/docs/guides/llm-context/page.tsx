@@ -339,11 +339,11 @@ export default function LlmContextPage() {
         <ReadyToGetStartedCard
           description="Explore best practices or check out the usage guide for practical examples."
           primaryAction={{
-            href: '/docs/best-practices',
+            href: '/docs/guides/best-practices',
             label: 'Best Practices',
           }}
           secondaryAction={{
-            href: '/docs/logicstamp-context/usage',
+            href: '/docs/guides/usage',
             label: 'Usage Guide',
           }}
         />
