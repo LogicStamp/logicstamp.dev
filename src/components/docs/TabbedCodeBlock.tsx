@@ -34,12 +34,8 @@ export default function TabbedCodeBlock({ tabs }: TabbedCodeBlockProps) {
   const tabButtonRefs = useRef<(HTMLButtonElement | null)[]>([])
   const [touchStart, setTouchStart] = useState<number | null>(null)
   const [touchEnd, setTouchEnd] = useState<number | null>(null)
-  // Generate stable ID based on tabs content - stored in ref to ensure it's only computed once
-  const baseIdRef = useRef<string | null>(null)
-  if (!baseIdRef.current) {
-    baseIdRef.current = generateStableId(tabs)
-  }
-  const baseId = baseIdRef.current
+  // Generate stable ID based on tabs content - use lazy useState to compute once without accessing refs during render
+  const [baseId] = useState(() => generateStableId(tabs))
 
   // Initialize refs array
   useEffect(() => {
