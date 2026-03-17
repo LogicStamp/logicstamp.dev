@@ -623,7 +623,7 @@ export function Button({ onClick, label }: ButtonProps) {
               label: 'Schema Reference',
             }}
             secondaryAction={{
-              href: '/docs/best-practices',
+              href: '/docs/guides/best-practices',
               label: 'Best Practices',
             }}
           />

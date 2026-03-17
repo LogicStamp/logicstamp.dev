@@ -1266,7 +1266,7 @@ stamp context compare old/context_main.json new/context_main.json`
                   </p>
                 </Link>
                 <Link
-                  href="/docs/logicstamp-context/compare-command"
+                  href="/docs/logicstamp-context/compare"
                   className="p-4 border border-gray-200 dark:border-gray-800 rounded-lg md:hover:border-green-500 dark:md:hover:border-green-500 transition-colors"
                 >
                   <h3 className="font-semibold text-gray-900 dark:text-white mb-1">
@@ -1284,7 +1284,7 @@ stamp context compare old/context_main.json new/context_main.json`
           variant="green"
           description="Learn how to use it with LLMs or explore watch mode for automatic updates, including style metadata."
           primaryAction={{
-            href: '/docs/logicstamp-context/usage',
+            href: '/docs/guides/usage',
             label: 'Usage Guide',
           }}
           secondaryAction={{

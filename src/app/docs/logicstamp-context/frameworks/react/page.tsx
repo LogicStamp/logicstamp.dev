@@ -446,7 +446,7 @@ stamp context --include-style`
               label: 'Get Started',
             }}
             secondaryAction={{
-              href: '/docs/logicstamp-context/typescript',
+              href: '/docs/logicstamp-context/frameworks/typescript',
               label: 'TypeScript Support',
             }}
           />

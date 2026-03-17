@@ -554,7 +554,7 @@ stamp init --skip-gitignore`
                   </p>
                 </Link>
                 <Link
-                  href="/docs/logicstamp-context/usage"
+                  href="/docs/guides/usage"
                   className="p-4 border border-gray-200 dark:border-gray-800 rounded-lg md:hover:border-green-500 dark:md:hover:border-green-500 transition-colors"
                 >
                   <h3 className="font-semibold text-gray-900 dark:text-white mb-1">

@@ -845,7 +845,7 @@ stamp security scan`
         <ReadyToGetStartedCard
           description="Explore best practices or check out watch mode for automatic context updates."
           primaryAction={{
-            href: '/docs/best-practices',
+            href: '/docs/guides/best-practices',
             label: 'Best Practices',
           }}
           secondaryAction={{

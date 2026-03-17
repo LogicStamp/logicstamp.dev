@@ -1109,7 +1109,7 @@ stamp context validate src/components/context.json`
           <ReadyToGetStartedCard
             description="Explore UIF contracts or check out the complete reference for all features."
             primaryAction={{
-              href: '/docs/logicstamp-context/uif-contracts',
+              href: '/docs/guides/uif-contracts',
               label: 'UIF Contracts',
             }}
             secondaryAction={{

@@ -13,7 +13,7 @@ export const metadata: Metadata = {
 const guidePages = [
   {
     title: 'Usage Guides',
-    href: '/docs/logicstamp-context/usage',
+    href: '/docs/guides/usage',
     description: 'End-to-end walkthroughs for generating context, curating bundles, and using them with LLMs.',
   },
   {
@@ -23,17 +23,17 @@ const guidePages = [
   },
   {
     title: 'LLM Context Format',
-    href: '/docs/logicstamp-context/llm-context',
+    href: '/docs/guides/llm-context',
     description: 'Deep dive into the structure of generated context, how to consume it, and how to customize prompts around it.',
   },
   {
     title: 'Best Practices',
-    href: '/docs/best-practices',
+    href: '/docs/guides/best-practices',
     description: 'Recommended patterns for organizing projects, pruning noise, and getting the most out of LogicStamp with AI tools.',
   },
   {
     title: 'Hashes',
-    href: '/docs/hashes',
+    href: '/docs/guides/hashes',
     description: 'Understand fileHash, semanticHash, and bundleHash and how LogicStamp tracks changes across layers.',
   },
 ]
@@ -141,7 +141,7 @@ export default function GuidesHomePage() {
             </p>
             <div className="grid sm:grid-cols-2 gap-4">
               <Link
-                href="/docs/cli"
+                href="/docs/logicstamp-context/cli"
                 className="group p-4 border border-gray-200 dark:border-gray-800 rounded-lg md:hover:border-blue-500 dark:md:hover:border-blue-500 transition-colors"
               >
                 <div className="flex items-baseline gap-2 mb-2">

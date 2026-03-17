@@ -1211,7 +1211,7 @@ stamp context style --strict-watch`,
                 </Link>
 
                 <Link
-                  href="/docs/logicstamp-context/compare-command"
+                  href="/docs/logicstamp-context/compare"
                   className="p-4 border border-gray-200 dark:border-gray-800 rounded-lg md:hover:border-green-500 dark:md:hover:border-green-500 transition-colors"
                 >
                   <h3 className="font-semibold text-gray-900 dark:text-white mb-1">
@@ -1228,11 +1228,11 @@ stamp context style --strict-watch`,
             variant="green"
             description="Explore best practices, or jump to usage for more workflows (including strict watch during refactors)."
             primaryAction={{
-              href: '/docs/best-practices',
+              href: '/docs/guides/best-practices',
               label: 'Best Practices',
             }}
             secondaryAction={{
-              href: '/docs/logicstamp-context/usage',
+              href: '/docs/guides/usage',
               label: 'Usage Guide',
             }}
           />

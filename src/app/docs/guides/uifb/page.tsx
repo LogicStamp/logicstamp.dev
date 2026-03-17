@@ -459,7 +459,7 @@ export default function UifbPage() {
                   </ul>
                 </div>
                 <p className="text-sm text-gray-600 dark:text-gray-400">
-                  See <a href="/docs/hashes" className="text-green-600 dark:text-green-400 hover:underline">Hashes documentation</a> for
+                  See <a href="/docs/guides/hashes" className="text-green-600 dark:text-green-400 hover:underline">Hashes documentation</a> for
                   detailed information about all hash types and their relationships.
                 </p>
               </div>
@@ -471,7 +471,7 @@ export default function UifbPage() {
         <ReadyToGetStartedCard
           description="Explore other hash types or check out the complete reference for all features."
           primaryAction={{
-            href: '/docs/hashes',
+            href: '/docs/guides/hashes',
             label: 'Hashes Guide',
           }}
           secondaryAction={{

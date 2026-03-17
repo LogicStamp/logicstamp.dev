@@ -399,7 +399,7 @@ stamp context ./app`
               label: 'Get Started',
             }}
             secondaryAction={{
-              href: '/docs/logicstamp-context/react',
+              href: '/docs/logicstamp-context/frameworks/react',
               label: 'React Support',
             }}
           />

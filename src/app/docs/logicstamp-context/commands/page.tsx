@@ -586,7 +586,7 @@ stamp context clean --all --yes`
               </Link>
 
               <Link
-                href="/docs/logicstamp-context/compare-command"
+                href="/docs/logicstamp-context/compare"
                 className="group p-4 bg-amber-50 dark:bg-amber-950/20 rounded-xl border border-amber-200 dark:border-amber-800 hover:border-amber-300 dark:hover:border-amber-700 transition-all"
               >
                 <div className="flex items-start gap-3">

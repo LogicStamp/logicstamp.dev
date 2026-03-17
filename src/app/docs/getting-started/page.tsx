@@ -250,7 +250,7 @@ export default function GettingStartedPage() {
                 <p className="text-sm text-gray-600 dark:text-gray-400">Understand the problem it solves</p>
               </Link>
               <Link
-                href="/docs/cli/getting-started"
+                href="/docs/logicstamp-context/cli/getting-started"
                 className="p-4 border border-gray-200 dark:border-gray-800 rounded-lg md:hover:border-green-500 dark:md:hover:border-green-500 transition-colors"
               >
                 <h3 className="font-semibold text-gray-900 dark:text-white mb-1">CLI Guide →</h3>
@@ -264,7 +264,7 @@ export default function GettingStartedPage() {
                 <p className="text-sm text-gray-600 dark:text-gray-400">MCP server setup and configuration</p>
               </Link>
               <Link
-                href="/docs/best-practices"
+                href="/docs/guides/best-practices"
                 className="p-4 border border-gray-200 dark:border-gray-800 rounded-lg md:hover:border-blue-500 dark:md:hover:border-blue-500 transition-colors"
               >
                 <h3 className="font-semibold text-gray-900 dark:text-white mb-1">Best Practices →</h3>
@@ -277,7 +277,7 @@ export default function GettingStartedPage() {
         <ReadyToGetStartedCard
           description="Explore the complete CLI documentation or learn more about what LogicStamp does."
           primaryAction={{
-            href: '/docs/cli/getting-started',
+            href: '/docs/logicstamp-context/cli/getting-started',
             label: 'CLI Documentation',
           }}
           secondaryAction={{

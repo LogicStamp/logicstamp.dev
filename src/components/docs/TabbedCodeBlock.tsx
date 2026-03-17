@@ -1,6 +1,6 @@
 'use client'
 
-import React, { useState, useRef, useEffect, useId } from 'react'
+import React, { useState, useRef, useEffect } from 'react'
 import CopyButton from '../ui/CopyButton'
 
 interface Tab {
@@ -13,13 +13,29 @@ interface TabbedCodeBlockProps {
   tabs: Tab[]
 }
 
+// Generate a deterministic ID from tabs content
+// This ensures the same tabs always generate the same ID, preventing hydration mismatches
+function generateStableId(tabs: Tab[]): string {
+  // Create a hash from all tabs' labels and code content
+  // Using a combination of label and code ensures uniqueness while maintaining determinism
+  const content = tabs.map(tab => `${tab.label}:${tab.code.substring(0, 50)}`).join('|')
+  let hash = 0
+  for (let i = 0; i < content.length; i++) {
+    const char = content.charCodeAt(i)
+    hash = ((hash << 5) - hash) + char
+    hash = hash & hash // Convert to 32-bit integer
+  }
+  return `tabbed-${Math.abs(hash).toString(36)}`
+}
+
 export default function TabbedCodeBlock({ tabs }: TabbedCodeBlockProps) {
   const [activeTab, setActiveTab] = useState(0)
   const scrollContainerRef = useRef<HTMLDivElement>(null)
   const tabButtonRefs = useRef<(HTMLButtonElement | null)[]>([])
   const [touchStart, setTouchStart] = useState<number | null>(null)
   const [touchEnd, setTouchEnd] = useState<number | null>(null)
-  const baseId = useId()
+  // Generate stable ID based on tabs content - use lazy useState to compute once without accessing refs during render
+  const [baseId] = useState(() => generateStableId(tabs))
 
   // Initialize refs array
   useEffect(() => {

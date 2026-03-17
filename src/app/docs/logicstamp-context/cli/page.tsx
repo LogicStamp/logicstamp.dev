@@ -143,7 +143,7 @@ export default function LogicStampContextDocsPage() {
             </p>
             <div className="grid sm:grid-cols-2 gap-4">
               <Link
-                href="/docs/logicstamp-context/compare-command"
+                href="/docs/logicstamp-context/compare"
                 className="group p-4 border border-gray-200 dark:border-gray-800 rounded-lg hover:border-green-500 dark:hover:border-green-500 transition-colors"
               >
                 <div className="flex items-baseline gap-2 mb-2">
@@ -254,7 +254,7 @@ export default function LogicStampContextDocsPage() {
             </p>
             <div className="grid sm:grid-cols-2 gap-4">
               <Link
-                href="/docs/logicstamp-context/react"
+                href="/docs/logicstamp-context/frameworks/react"
                 className="group p-4 border border-gray-200 dark:border-gray-800 rounded-lg hover:border-green-500 dark:hover:border-green-500 transition-colors"
               >
                 <div className="flex items-baseline gap-2 mb-2">
@@ -271,7 +271,7 @@ export default function LogicStampContextDocsPage() {
               </Link>
 
               <Link
-                href="/docs/logicstamp-context/nextjs"
+                href="/docs/logicstamp-context/frameworks/nextjs"
                 className="group p-4 border border-gray-200 dark:border-gray-800 rounded-lg hover:border-green-500 dark:hover:border-green-500 transition-colors"
               >
                 <div className="flex items-baseline gap-2 mb-2">
@@ -288,7 +288,7 @@ export default function LogicStampContextDocsPage() {
               </Link>
 
               <Link
-                href="/docs/logicstamp-context/express"
+                href="/docs/logicstamp-context/frameworks/express"
                 className="group p-4 border border-gray-200 dark:border-gray-800 rounded-lg hover:border-green-500 dark:hover:border-green-500 transition-colors"
               >
                 <div className="flex items-baseline gap-2 mb-2">
@@ -305,7 +305,7 @@ export default function LogicStampContextDocsPage() {
               </Link>
 
               <Link
-                href="/docs/logicstamp-context/nestjs"
+                href="/docs/logicstamp-context/frameworks/nestjs"
                 className="group p-4 border border-gray-200 dark:border-gray-800 rounded-lg hover:border-green-500 dark:hover:border-green-500 transition-colors"
               >
                 <div className="flex items-baseline gap-2 mb-2">
@@ -369,7 +369,7 @@ export default function LogicStampContextDocsPage() {
               </Link>
 
               <Link
-                href="/docs/logicstamp-context/llm-context"
+                href="/docs/guides/llm-context"
                 className="group p-4 border border-gray-200 dark:border-gray-800 rounded-lg hover:border-green-500 dark:hover:border-green-500 transition-colors"
               >
                 <div className="flex items-baseline gap-2 mb-2">
@@ -386,7 +386,7 @@ export default function LogicStampContextDocsPage() {
               </Link>
 
               <Link
-                href="/docs/logicstamp-context/usage"
+                href="/docs/guides/usage"
                 className="group p-4 border border-gray-200 dark:border-gray-800 rounded-lg hover:border-green-500 dark:hover:border-green-500 transition-colors"
               >
                 <div className="flex items-baseline gap-2 mb-2">
@@ -456,7 +456,7 @@ export default function LogicStampContextDocsPage() {
           variant="green"
           description="Install LogicStamp Context CLI and generate your first AI-ready context bundle in minutes."
           primaryAction={{
-            href: '/docs/cli/getting-started',
+            href: '/docs/logicstamp-context/cli/getting-started',
             label: 'CLI Getting Started',
           }}
           secondaryAction={{
@@ -466,8 +466,8 @@ export default function LogicStampContextDocsPage() {
           delay={400}
         />
       </DocsLayout>
+
       <Footer />
     </>
   )
 }
-
