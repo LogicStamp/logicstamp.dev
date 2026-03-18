@@ -121,7 +121,18 @@ export default function BetaPage() {
 </div>
                 <div className="space-y-4 text-gray-700 dark:text-gray-300">
                   <div>
-                  <p className="font-bold mb-2">v0.7.2 (Current) - 2026-03-11</p>
+                  <p className="font-bold mb-2">v0.8.0 (Current) - Beta</p>
+<ul className="list-disc list-inside space-y-1 ml-2">
+  <li>
+    <strong>--strict flag for compare command:</strong> Shared violation detection with exit code 1 on breaking changes. Enables CI integration for contract drift detection.
+  </li>
+  <li>
+    <strong>Clean command removes TOON format files:</strong> Aligns with gitignore and TOON support. <code>stamp clean</code> now removes TOON format output files.
+  </li>
+</ul>
+                  </div>
+                  <div>
+                  <p className="font-bold mb-2">v0.7.2 - 2026-03-11</p>
 <ul className="list-disc list-inside space-y-1 ml-2">
   <li>
     <strong>Git Baseline Mode:</strong> Added <code>--baseline git:&lt;ref&gt;</code> support for comparing against git refs (branches, tags, commits). Uses git worktree for clean isolation and enables CI/CD validation without committing context files. Includes hash-only filtering and git-ignored file filtering for deterministic comparisons.
@@ -635,7 +646,7 @@ export default function BetaPage() {
                       <div className="flex items-start gap-3">
                         <span className="text-green-600 dark:text-green-400 font-bold">✓</span>
                         <div className="text-gray-600 dark:text-gray-400">
-                          <span className="font-semibold text-gray-900 dark:text-white">Git Baseline for Compare</span> - <span className="line-through">Add git-based baseline support using <code className="text-sm bg-gray-100 dark:bg-gray-800 px-1 py-0.5 rounded">--baseline git:&lt;ref&gt;</code> syntax. Enables CI/CD integration and <code className="text-sm bg-gray-100 dark:bg-gray-800 px-1 py-0.5 rounded">--fail-on-breaking</code> flag for contract drift detection. Uses git worktree for clean isolation.</span> <strong className="text-green-600 dark:text-green-400">✅ Completed in v0.7.2</strong>
+                          <span className="font-semibold text-gray-900 dark:text-white">Git Baseline for Compare</span> - <span className="line-through">Add git-based baseline support using <code className="text-sm bg-gray-100 dark:bg-gray-800 px-1 py-0.5 rounded">--baseline git:&lt;ref&gt;</code> syntax. Enables CI/CD integration and <code className="text-sm bg-gray-100 dark:bg-gray-800 px-1 py-0.5 rounded">--fail-on-breaking</code> flag for contract drift detection.</span> <strong className="text-green-600 dark:text-green-400">✅ Completed in v0.7.2</strong>. <code className="text-sm bg-gray-100 dark:bg-gray-800 px-1 py-0.5 rounded">--fail-on-breaking</code> implemented as <code className="text-sm bg-gray-100 dark:bg-gray-800 px-1 py-0.5 rounded">--strict</code> in v0.8.0.
                         </div>
                       </div>
                     </div>

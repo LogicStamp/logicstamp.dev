@@ -132,6 +132,12 @@ export default function CleanCommandPage() {
                       </tr>
                       <tr className="hover:bg-gray-50 dark:hover:bg-gray-800/50 transition-colors">
                         <td className="px-2 sm:px-6 py-4 whitespace-nowrap">
+                          <code className="px-2 py-1 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 rounded text-xs sm:text-sm font-mono">--quiet</code>, <code className="px-2 py-1 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 rounded text-xs sm:text-sm font-mono">-q</code>
+                        </td>
+                        <td className="px-2 sm:px-6 py-4 text-sm text-gray-600 dark:text-gray-400">Suppress verbose output (show only errors)</td>
+                      </tr>
+                      <tr className="hover:bg-gray-50 dark:hover:bg-gray-800/50 transition-colors">
+                        <td className="px-2 sm:px-6 py-4 whitespace-nowrap">
                           <code className="px-2 py-1 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 rounded text-xs sm:text-sm font-mono">--help</code>, <code className="px-2 py-1 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 rounded text-xs sm:text-sm font-mono">-h</code>
                         </td>
                         <td className="px-2 sm:px-6 py-4 text-sm text-gray-600 dark:text-gray-400">Show help message</td>
@@ -168,7 +174,25 @@ export default function CleanCommandPage() {
                   </svg>
                   <div>
                     <p className="font-semibold text-red-900 dark:text-red-200 text-sm sm:text-base mb-1"><code className="px-1.5 py-0.5 bg-red-100 dark:bg-red-900/40 rounded text-xs font-mono">**/context.json</code></p>
-                    <p className="text-sm text-red-800 dark:text-red-300">All folder context files (recursively)</p>
+                    <p className="text-sm text-red-800 dark:text-red-300">All folder context files (recursively, JSON format)</p>
+                  </div>
+                </div>
+                <div className="flex items-start gap-3 p-4 bg-gradient-to-br from-orange-50 to-amber-50 dark:from-orange-950/20 dark:to-amber-950/10 rounded-xl border border-orange-200 dark:border-orange-800">
+                  <svg className="w-5 h-5 text-orange-600 dark:text-orange-400 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-6l-2-2H5a2 2 0 00-2 2z" />
+                  </svg>
+                  <div>
+                    <p className="font-semibold text-orange-900 dark:text-orange-200 text-sm sm:text-base mb-1"><code className="px-1.5 py-0.5 bg-orange-100 dark:bg-orange-900/40 rounded text-xs font-mono">**/context.toon</code></p>
+                    <p className="text-sm text-orange-800 dark:text-orange-300">All folder TOON format bundles</p>
+                  </div>
+                </div>
+                <div className="flex items-start gap-3 p-4 bg-gradient-to-br from-amber-50 to-yellow-50 dark:from-amber-950/20 dark:to-yellow-950/10 rounded-xl border border-amber-200 dark:border-amber-800">
+                  <svg className="w-5 h-5 text-amber-600 dark:text-amber-400 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-6l-2-2H5a2 2 0 00-2 2z" />
+                  </svg>
+                  <div>
+                    <p className="font-semibold text-amber-900 dark:text-amber-200 text-sm sm:text-base mb-1"><code className="px-1.5 py-0.5 bg-amber-100 dark:bg-amber-900/40 rounded text-xs font-mono">**/context_*.toon</code></p>
+                    <p className="text-sm text-amber-800 dark:text-amber-300">TOON format variants (e.g. context_main.toon)</p>
                   </div>
                 </div>
                 <div className="flex items-start gap-3 p-4 bg-gradient-to-br from-pink-50 to-purple-50 dark:from-pink-950/20 dark:to-purple-950/10 rounded-xl border border-pink-200 dark:border-pink-800">
@@ -209,12 +233,18 @@ stamp context clean`,
 stamp context clean --all --yes
 
 # Clean specific directory
-stamp context clean ./src --all --yes`,
+stamp context clean ./src --all --yes
+
+# Suppress verbose output (quiet mode)
+stamp context clean --all --yes --quiet`,
                     copyText: `# Delete all context files
 stamp context clean --all --yes
 
 # Clean specific directory
-stamp context clean ./src --all --yes`
+stamp context clean ./src --all --yes
+
+# Suppress verbose output (quiet mode)
+stamp context clean --all --yes --quiet`
                   }
                 ]}
               />
