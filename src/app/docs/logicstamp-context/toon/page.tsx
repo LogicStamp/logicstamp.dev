@@ -496,7 +496,7 @@ stamp context --format toon --include-code header`
                     <p className="text-sm text-yellow-800 dark:text-yellow-300"><strong className="text-yellow-900 dark:text-yellow-200">Index file</strong> - The main index (<code className="px-1 py-0.5 bg-yellow-100 dark:bg-yellow-900/40 rounded text-xs font-mono">context_main.json</code>) is always JSON, even when using TOON format for bundles.</p>
                   </div>
                   <div className="p-3 bg-amber-50 dark:bg-amber-950/20 rounded-lg border border-amber-200 dark:border-amber-800">
-                    <p className="text-sm text-amber-800 dark:text-amber-300"><strong className="text-amber-900 dark:text-amber-200">Command support</strong> - Currently, only the <code className="px-1 py-0.5 bg-amber-100 dark:bg-amber-900/40 rounded text-xs font-mono">stamp context</code> command supports TOON format for generation. The <code className="px-1 py-0.5 bg-amber-100 dark:bg-amber-900/40 rounded text-xs font-mono">validate</code>, <code className="px-1 py-0.5 bg-amber-100 dark:bg-amber-900/40 rounded text-xs font-mono">compare</code>, and <code className="px-1 py-0.5 bg-amber-100 dark:bg-amber-900/40 rounded text-xs font-mono">clean</code> commands do not yet support TOON files and will only work with JSON format.</p>
+                    <p className="text-sm text-amber-800 dark:text-amber-300"><strong className="text-amber-900 dark:text-amber-200">Command support</strong> - The <code className="px-1 py-0.5 bg-amber-100 dark:bg-amber-900/40 rounded text-xs font-mono">stamp context</code> command supports TOON format for generation. The <code className="px-1 py-0.5 bg-amber-100 dark:bg-amber-900/40 rounded text-xs font-mono">clean</code> command removes TOON files. The <code className="px-1 py-0.5 bg-amber-100 dark:bg-amber-900/40 rounded text-xs font-mono">validate</code> and <code className="px-1 py-0.5 bg-amber-100 dark:bg-amber-900/40 rounded text-xs font-mono">compare</code> commands do not yet support TOON files and only work with JSON format.</p>
                   </div>
                   <div className="p-3 bg-orange-50 dark:bg-orange-950/20 rounded-lg border border-orange-200 dark:border-orange-800">
                     <p className="text-sm text-orange-800 dark:text-orange-300"><strong className="text-orange-900 dark:text-orange-200">Deeply nested data</strong> - For structures with minimal tabular arrays, JSON-compact may be more token-efficient than TOON.</p>
@@ -655,10 +655,10 @@ bundles.forEach(bundle => {
                 </div>
                 <div className="p-4 bg-blue-50 dark:bg-blue-950/20 border-l-4 border-blue-500 rounded-r-lg mb-4">
                   <p className="text-sm text-gray-700 dark:text-gray-300 mb-2">
-                    <strong className="text-gray-900 dark:text-white">Note:</strong> Currently, TOON format is only supported for generation (<code className="px-1.5 py-0.5 bg-blue-100 dark:bg-blue-900/40 rounded text-xs font-mono">stamp context --format toon</code>). The <code className="px-1.5 py-0.5 bg-blue-100 dark:bg-blue-900/40 rounded text-xs font-mono">validate</code>, <code className="px-1.5 py-0.5 bg-blue-100 dark:bg-blue-900/40 rounded text-xs font-mono">compare</code>, and <code className="px-1.5 py-0.5 bg-blue-100 dark:bg-blue-900/40 rounded text-xs font-mono">clean</code> commands do not yet support TOON format files.
+                    <strong className="text-gray-900 dark:text-white">Note:</strong> The <code className="px-1.5 py-0.5 bg-blue-100 dark:bg-blue-900/40 rounded text-xs font-mono">validate</code> and <code className="px-1.5 py-0.5 bg-blue-100 dark:bg-blue-900/40 rounded text-xs font-mono">compare</code> commands do not yet support TOON format files. The <code className="px-1.5 py-0.5 bg-blue-100 dark:bg-blue-900/40 rounded text-xs font-mono">clean</code> command removes TOON files along with JSON files.
                   </p>
                   <p className="text-sm text-gray-700 dark:text-gray-300">
-                    To work with TOON files using these commands, you'll need to decode them to JSON first:
+                    To work with TOON files using validate/compare, you'll need to decode them to JSON first:
                   </p>
                 </div>
                 <TabbedCodeBlock
@@ -768,7 +768,7 @@ await writeFile('src/components/context.json', jsonContent);
                     <code className="text-sm font-mono">stamp context clean</code> →
                   </h3>
                   <p className="text-sm text-gray-600 dark:text-gray-400">
-                    Clean context files (JSON format only)
+                    Clean context files (removes JSON and TOON files)
                   </p>
                 </Link>
                 <Link

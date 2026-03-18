@@ -44,6 +44,7 @@ const sections: DocsNavSection[] = [
       { title: 'Watch Mode', href: '/docs/logicstamp-context/watch-mode' },
       { title: 'TOON Format', href: '/docs/logicstamp-context/toon' },
       { title: 'Compare Modes', href: '/docs/logicstamp-context/compare-modes' },
+      { title: 'Strict Modes', href: '/docs/logicstamp-context/strict-modes' },
       { title: '`compare` command', href: '/docs/logicstamp-context/compare' },
       { title: '`validate` command', href: '/docs/logicstamp-context/validate' },
       { title: '`clean` command', href: '/docs/logicstamp-context/clean' },
@@ -242,6 +243,24 @@ function getIcon(href: string): ReactNode {
         <rect x="2" y="11" width="20" height="4" rx="1" />
         <rect x="2" y="15" width="20" height="4" rx="1" />
         <rect x="2" y="19" width="20" height="4" rx="1" />
+      </svg>
+    )
+  }
+
+  if (href.includes('/strict-modes')) {
+    // Warning / shield-check icon for strict modes
+    return (
+      <svg
+        className="w-3.5 h-3.5"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth={2}
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      >
+        <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+        <path d="M9 12l2 2 4-4" />
       </svg>
     )
   }

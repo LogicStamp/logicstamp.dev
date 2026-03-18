@@ -102,6 +102,9 @@ export default function CompleteReferencePage() {
               
               <div className="text-sm sm:text-base text-gray-600 dark:text-gray-400 mb-4 sm:mb-6 leading-relaxed space-y-3">
                 <p>
+                  <strong className="text-gray-900 dark:text-white">v0.8.0</strong> added <code className="px-1.5 py-0.5 bg-gray-100 dark:bg-gray-800 rounded text-xs">compare --strict</code> for CI/CD breaking-change detection (shared violation logic with strict watch, exit code 1 on errors), and extended <code className="px-1.5 py-0.5 bg-gray-100 dark:bg-gray-800 rounded text-xs">stamp context clean</code> to remove TOON format files (context.toon) alongside context.json, aligning with gitignore and TOON support.
+                </p>
+                <p>
                   <strong className="text-gray-900 dark:text-white">v0.7.2</strong> added git baseline comparison with <code className="px-1.5 py-0.5 bg-gray-100 dark:bg-gray-800 rounded text-xs">--baseline git:&lt;ref&gt;</code> for CI/CD workflows, full contract comparison (state, variables, API signatures, prop/emit type changes), hash-only filtering, and git-ignored file filtering for deterministic comparisons.
                 </p>
                 <p>
@@ -141,6 +144,18 @@ export default function CompleteReferencePage() {
               
               <div className="grid sm:grid-cols-2 gap-4 sm:gap-6">
                 {[
+                  {
+                    icon: "🛡️",
+                    title: "Compare --strict (v0.8.0)",
+                    desc: "One-time comparison with violation detection. Same logic as --strict-watch but for CI/CD: exit code 1 on breaking changes (contract removed, props/events/functions removed). Use with --baseline git:main for PR validation.",
+                    color: "red"
+                  },
+                  {
+                    icon: "🧹",
+                    title: "Clean TOON Support (v0.8.0)",
+                    desc: "stamp context clean now removes context.toon files alongside context.json, aligning with .gitignore and TOON format support. Ensures all generated artifacts are cleaned consistently.",
+                    color: "indigo"
+                  },
                   {
                     icon: "🔀",
                     title: "Git Baseline Comparison (v0.7.2)",
@@ -511,13 +526,13 @@ export default function CompleteReferencePage() {
                 },
                 {
                   command: "stamp context compare [oldFile] [newFile]",
-                  description: "Compares context files to detect drift across your project. Supports multi-file and single-file modes",
+                  description: "Compares context files to detect drift across your project. Supports multi-file and single-file modes. Use --strict for CI/CD breaking-change detection (exit code 1 on violations).",
                   optional: false,
                   color: "orange"
                 },
                 {
                   command: "stamp context clean [path]",
-                  description: "Removes all generated context artifacts. Safe by default (dry run)",
+                  description: "Removes all generated context artifacts (context.json and context.toon). Safe by default (dry run)",
                   optional: false,
                   color: "red"
                 }
@@ -1161,7 +1176,7 @@ stamp context style --include-code header`
     },
     "meta": {
       "missing": [],
-      "source": "logicstamp-context@0.7.1"
+      "source": "logicstamp-context@0.8.0"
     }
   }
 ]`,
@@ -1202,7 +1217,7 @@ stamp context style --include-code header`
     },
     "meta": {
       "missing": [],
-      "source": "logicstamp-context@0.7.1"
+      "source": "logicstamp-context@0.8.0"
     }
   }
 ]`
@@ -1337,6 +1352,10 @@ stamp context validate context_main.json
 
 # Check for drift across all folders
 stamp context compare --stats
+
+# Fail on breaking changes (CI/CD)
+stamp context compare --strict
+stamp context compare --baseline git:main --strict
 
 # Compare token costs across modes
 stamp context --compare-modes`

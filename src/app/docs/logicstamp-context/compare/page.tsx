@@ -48,50 +48,64 @@ export default function CompareCommandPage() {
               tabs={[
                 {
                   label: 'Quick Start',
-                  code: `# Auto-mode: Compare all context files (multi-file mode)
+                  code: `# Auto-mode: Generate fresh context and compare ALL context files
 stamp context compare
 
 # Auto-approve updates (like jest -u)
 stamp context compare --approve
 
-# Git baseline: Compare against a git ref (v0.7.2)
-stamp context compare --baseline git:main
-stamp context compare --baseline git:v1.0.0
-stamp context compare --baseline git:HEAD
+# Clean up orphaned files automatically
+stamp context compare --approve --clean-orphaned
 
-# Single-file: Compare two specific files
+# Manual mode: Compare two specific files
 stamp context compare old.json new.json
 
-# Multi-file: Compare two indices
+# Multi-file mode: Compare two context_main.json indices
 stamp context compare old/context_main.json new/context_main.json
 
-# Show per-folder token statistics
+# Git baseline: Compare against a git ref (branch, tag, commit)
+stamp context compare --baseline git:main
+stamp context compare --baseline git:HEAD
+stamp context compare --baseline git:v1.0.0
+
+# Strict mode: Detect breaking changes
+stamp context compare --strict
+stamp context compare --baseline git:main --strict
+
+# With token statistics
 stamp context compare --stats
 
-# Clean up orphaned files automatically
-stamp context compare --approve --clean-orphaned`,
-                  copyText: `# Auto-mode: Compare all context files (multi-file mode)
+# Suppress verbose output (show only diffs)
+stamp context compare --quiet`,
+                  copyText: `# Auto-mode: Generate fresh context and compare ALL context files
 stamp context compare
 
 # Auto-approve updates (like jest -u)
 stamp context compare --approve
 
-# Git baseline: Compare against a git ref (v0.7.2)
-stamp context compare --baseline git:main
-stamp context compare --baseline git:v1.0.0
-stamp context compare --baseline git:HEAD
+# Clean up orphaned files automatically
+stamp context compare --approve --clean-orphaned
 
-# Single-file: Compare two specific files
+# Manual mode: Compare two specific files
 stamp context compare old.json new.json
 
-# Multi-file: Compare two indices
+# Multi-file mode: Compare two context_main.json indices
 stamp context compare old/context_main.json new/context_main.json
 
-# Show per-folder token statistics
+# Git baseline: Compare against a git ref (branch, tag, commit)
+stamp context compare --baseline git:main
+stamp context compare --baseline git:HEAD
+stamp context compare --baseline git:v1.0.0
+
+# Strict mode: Detect breaking changes
+stamp context compare --strict
+stamp context compare --baseline git:main --strict
+
+# With token statistics
 stamp context compare --stats
 
-# Clean up orphaned files automatically
-stamp context compare --approve --clean-orphaned`
+# Suppress verbose output (show only diffs)
+stamp context compare --quiet`
                 }
               ]}
             />
@@ -170,7 +184,7 @@ stamp context compare --approve --clean-orphaned`
                     <ul className="space-y-2 text-sm text-blue-800 dark:text-blue-300 ml-4 list-disc">
                       <li>Added components – new components in the new context</li>
                       <li>Removed components – components that existed in the old but not the new context</li>
-                      <li>Changed components – components that exist in both but have differences in semantic hash, imports, hooks, exports, or other signature fields</li>
+                      <li>Changed components – differences in semantic hash, imports, hooks, functions, components, props, emits, exports, variables, state, or API signature</li>
                     </ul>
                   </div>
                 </div>
@@ -678,6 +692,61 @@ jobs:
             </div>
           </AnimatedSection>
 
+          {/* Strict Mode Section */}
+          <AnimatedSection direction="up" delay={425}>
+            <div className="mb-8 sm:mb-12 lg:mb-16">
+              <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white mb-4 sm:mb-6">
+                Strict Mode (Breaking Change Detection)
+              </h2>
+              <p className="text-base sm:text-lg text-gray-600 dark:text-gray-400 mb-4 sm:mb-6 leading-relaxed">
+                Use <code className="px-2 py-1 bg-gray-100 dark:bg-gray-800 text-amber-600 dark:text-amber-400 rounded-md font-mono text-xs sm:text-sm">--strict</code> to detect breaking changes and exit with code 1 if errors are found. Useful for CI pipelines where you want to fail the build if component contracts are broken.
+              </p>
+              <TabbedCodeBlock
+                tabs={[
+                  {
+                    label: 'Strict Mode',
+                    code: `# Detect breaking changes in auto-compare mode
+stamp context compare --strict
+
+# Detect breaking changes against a git baseline
+stamp context compare --baseline git:main --strict`,
+                    copyText: 'stamp context compare --strict'
+                  }
+                ]}
+              />
+              <p className="text-base sm:text-lg text-gray-600 dark:text-gray-400 mt-4 mb-2 leading-relaxed">
+                <strong>What it detects:</strong>
+              </p>
+              <div className="grid sm:grid-cols-2 gap-4 mt-4 mb-4">
+                <div className="p-4 bg-red-50/50 dark:bg-red-950/20 rounded-lg border border-red-200 dark:border-red-800">
+                  <p className="font-semibold text-red-900 dark:text-red-200 text-sm mb-2">Errors (breaking):</p>
+                  <ul className="text-sm text-red-800 dark:text-red-300 ml-4 list-disc space-y-1">
+                    <li>Removed props</li>
+                    <li>Removed events/emits</li>
+                    <li>Removed functions</li>
+                    <li>Contract removed</li>
+                  </ul>
+                </div>
+                <div className="p-4 bg-amber-50/50 dark:bg-amber-950/20 rounded-lg border border-amber-200 dark:border-amber-800">
+                  <p className="font-semibold text-amber-900 dark:text-amber-200 text-sm mb-2">Warnings:</p>
+                  <ul className="text-sm text-amber-800 dark:text-amber-300 ml-4 list-disc space-y-1">
+                    <li>Prop type changes</li>
+                    <li>State removed</li>
+                    <li>Variable removed</li>
+                  </ul>
+                </div>
+              </div>
+              <p className="text-sm text-gray-600 dark:text-gray-400 mb-2">
+                <strong>Exit codes:</strong> Exit 0 if no breaking changes (errors) detected; Exit 1 if any errors detected (even with warnings).
+              </p>
+              <div className="mt-3 p-4 bg-blue-50/50 dark:bg-blue-950/20 border-l-4 border-blue-500 rounded-r-lg">
+                <p className="text-sm text-gray-700 dark:text-gray-300">
+                  <strong className="text-gray-900 dark:text-white">Tip:</strong> For real-time breaking change detection during development, use <code className="px-1.5 py-0.5 bg-blue-100 dark:bg-blue-900/40 rounded text-xs font-mono">stamp context --strict-watch</code> instead.
+                </p>
+              </div>
+            </div>
+          </AnimatedSection>
+
           {/* Orphaned File Cleanup Section */}
           <AnimatedSection direction="up" delay={450}>
             <div className="mb-8 sm:mb-12 lg:mb-16">
@@ -777,6 +846,13 @@ jobs:
                           <td className="px-2 sm:px-6 py-4 whitespace-nowrap">
                             <code className="px-2 py-1 bg-red-100 dark:bg-red-900/40 text-red-900 dark:text-red-100 rounded text-xs sm:text-sm font-mono">1</code>
                           </td>
+                          <td className="px-2 sm:px-6 py-4 text-sm text-gray-600 dark:text-gray-400"><code className="px-1 py-0.5 bg-gray-100 dark:bg-gray-800 rounded text-xs font-mono">--strict</code> – Breaking changes (errors) detected</td>
+                          <td className="px-2 sm:px-6 py-4 text-sm text-gray-600 dark:text-gray-400">Strict mode validation failed</td>
+                        </tr>
+                        <tr className="hover:bg-gray-50 dark:hover:bg-gray-800/50 transition-colors">
+                          <td className="px-2 sm:px-6 py-4 whitespace-nowrap">
+                            <code className="px-2 py-1 bg-red-100 dark:bg-red-900/40 text-red-900 dark:text-red-100 rounded text-xs sm:text-sm font-mono">1</code>
+                          </td>
                           <td className="px-2 sm:px-6 py-4 text-sm text-gray-600 dark:text-gray-400">Error (file not found, invalid JSON, generation failed)</td>
                           <td className="px-2 sm:px-6 py-4 text-sm text-gray-600 dark:text-gray-400">Fatal error occurred</td>
                         </tr>
@@ -788,7 +864,12 @@ jobs:
                       <strong className="text-gray-900 dark:text-white">Key Points:</strong>
                     </p>
                     <ul className="text-sm text-gray-700 dark:text-gray-300 mt-2 ml-4 list-disc space-y-1">
-                      <li>Exit 0 = Success (no drift OR drift was approved/updated)</li>
+                      <li>Exit 0 = Success (no drift OR drift was approved/updated)
+                        <ul className="ml-4 mt-1 list-disc text-xs">
+                          <li><strong>Includes additions only:</strong> New components/folders result in PASS (exit 0)</li>
+                          <li><strong>Only removals/modifications trigger DRIFT:</strong> ORPHANED FILE and DRIFT folders cause exit 1</li>
+                        </ul>
+                      </li>
                       <li>Exit 1 = Failure (drift not approved OR error)</li>
                       <li>This matches Jest snapshot behavior exactly</li>
                     </ul>
@@ -832,7 +913,10 @@ jobs:
                         <li><strong>Regular modes:</strong> Both added/removed and type changes detected</li>
                       </ul>
                     </li>
+                    <li><strong>Variable changes</strong> – module-level variables added/removed or changed</li>
+                    <li><strong>State changes</strong> – component state variables added/removed or changed</li>
                     <li><strong>Export changes</strong> – export type changed (e.g., from <code className="px-1 py-0.5 bg-blue-100 dark:bg-blue-900/40 rounded text-xs font-mono">export default</code> to <code className="px-1 py-0.5 bg-blue-100 dark:bg-blue-900/40 rounded text-xs font-mono">export const</code>)</li>
+                    <li><strong>API signature changes</strong> – backend API signature changed (parameters, return type, request/response types)</li>
                   </ul>
                 </div>
                 <div className="p-5 bg-gradient-to-br from-amber-50 to-orange-50 dark:from-amber-950/20 dark:to-orange-950/10 rounded-xl border border-amber-200 dark:border-amber-800">
