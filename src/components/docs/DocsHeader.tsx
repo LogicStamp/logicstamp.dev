@@ -240,7 +240,7 @@ export default function DocsHeader({ sidebarOpen, onSidebarToggle }: DocsHeaderP
             mounted && tocOpen ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-4 pointer-events-none'
           }`}
           style={{ 
-            top: headerHeight > 0 ? `calc(4.75rem + ${headerHeight}px + 0.25rem)` : 'calc(4.75rem + 2rem + 0.25rem)',
+            top: headerHeight > 0 ? `calc(4.75rem + ${headerHeight}px + 0.1rem)` : 'calc(4.75rem + 2rem + 0.1rem)',
             transition: mounted ? 'opacity 50ms ease-out, transform 300ms ease-out' : 'none',
             willChange: mounted ? 'transform' : 'auto'
           }}
