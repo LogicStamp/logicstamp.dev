@@ -4,7 +4,7 @@ import AnimatedSection from '@/components/common/AnimatedSection'
 import DocsLayout from '@/components/docs/DocsLayout'
 import TabbedCodeBlock from '@/components/docs/TabbedCodeBlock'
 import DocsMarkdown from '@/components/docs/DocsMarkdown'
-import { getDocWithFallback } from '@/lib/docs'
+import { getDocWithFallback, stripMarkdownLeadingH1 } from '@/lib/docs'
 
 export const metadata: Metadata = {
   title: 'Migration to v0.3.2 | LogicStamp Context Documentation',
@@ -16,10 +16,12 @@ const MIGRATION_GITHUB_URL = 'https://github.com/LogicStamp/logicstamp-context/b
 async function getMigrationContent(): Promise<string> {
   try {
     const result = await getDocWithFallback('context', 'MIGRATION_0.3.2.md')
-    return result.content
+    return stripMarkdownLeadingH1(result.content)
   } catch (error) {
     console.error('Error reading migration file:', error)
-    return `# Migration Guide: Upgrading to v0.3.2\n\nUnable to load migration guide. Please check the [migration documentation](${MIGRATION_GITHUB_URL}) on GitHub.\n\nError: ${error instanceof Error ? error.message : 'Unknown error'}`
+    return stripMarkdownLeadingH1(
+      `# Migration Guide: Upgrading to v0.3.2\n\nUnable to load migration guide. Please check the [migration documentation](${MIGRATION_GITHUB_URL}) on GitHub.\n\nError: ${error instanceof Error ? error.message : 'Unknown error'}`
+    )
   }
 }
 
