@@ -102,6 +102,9 @@ export default function CompleteReferencePage() {
               
               <div className="text-sm sm:text-base text-gray-600 dark:text-gray-400 mb-4 sm:mb-6 leading-relaxed space-y-3">
                 <p>
+                  <strong className="text-gray-900 dark:text-white">v0.8.1</strong> fixed numeric CLI argument validation for <code className="px-1.5 py-0.5 bg-gray-100 dark:bg-gray-800 rounded text-xs">--depth</code> and <code className="px-1.5 py-0.5 bg-gray-100 dark:bg-gray-800 rounded text-xs">--max-nodes</code> (invalid values show clear errors and exit), unsafe array access in compare normalization, and token savings calculation bounds (clamps to [0, 100] to prevent Infinity/NaN in stats output).
+                </p>
+                <p>
                   <strong className="text-gray-900 dark:text-white">v0.8.0</strong> added <code className="px-1.5 py-0.5 bg-gray-100 dark:bg-gray-800 rounded text-xs">compare --strict</code> for CI/CD breaking-change detection (shared violation logic with strict watch, exit code 1 on errors), and extended <code className="px-1.5 py-0.5 bg-gray-100 dark:bg-gray-800 rounded text-xs">stamp context clean</code> to remove TOON format files (context.toon) alongside context.json, aligning with gitignore and TOON support.
                 </p>
                 <p>
@@ -144,6 +147,12 @@ export default function CompleteReferencePage() {
               
               <div className="grid sm:grid-cols-2 gap-4 sm:gap-6">
                 {[
+                  {
+                    icon: "✅",
+                    title: "CLI Argument Validation (v0.8.1)",
+                    desc: "Validates --depth and --max-nodes: invalid values (NaN, negative) show clear error messages and exit. Prevents potential infinite loops from bad input. Token savings calculation now clamps to [0, 100] to avoid Infinity/NaN in stats output.",
+                    color: "green"
+                  },
                   {
                     icon: "🛡️",
                     title: "Compare --strict (v0.8.0)",
@@ -1176,7 +1185,7 @@ stamp context style --include-code header`
     },
     "meta": {
       "missing": [],
-      "source": "logicstamp-context@0.8.0"
+      "source": "logicstamp-context@0.8.1"
     }
   }
 ]`,
@@ -1217,7 +1226,7 @@ stamp context style --include-code header`
     },
     "meta": {
       "missing": [],
-      "source": "logicstamp-context@0.8.0"
+      "source": "logicstamp-context@0.8.1"
     }
   }
 ]`
