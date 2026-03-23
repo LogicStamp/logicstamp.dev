@@ -51,6 +51,12 @@ const sections: DocsNavSection[] = [
     ],
   },
   {
+    title: 'Monorepo',
+    items: [
+      { title: 'Monorepo Support', href: '/docs/logicstamp-context/monorepo' },
+    ],
+  },
+  {
     title: 'Frameworks',
     items: [
       { title: 'Frameworks', href: '/docs/logicstamp-context/frameworks' },
@@ -60,7 +66,6 @@ const sections: DocsNavSection[] = [
       { title: 'Vue Support', href: '/docs/logicstamp-context/frameworks/vue' },
       { title: 'Express.js Support', href: '/docs/logicstamp-context/frameworks/express' },
       { title: 'NestJS Support', href: '/docs/logicstamp-context/frameworks/nestjs' },
-      { title: 'Monorepo Support', href: '/docs/logicstamp-context/frameworks/monorepo' },
     ],
   },
   {
@@ -120,7 +125,8 @@ const sections: DocsNavSection[] = [
   },
 ]
 
-function isActive(pathname: string, href: string) {
+function isActive(pathname: string | null, href: string) {
+  if (pathname == null || pathname === '') return false
   if (href === '/docs') return pathname === '/docs'
   // Complete Reference should only match exactly, not sub-paths
   if (href === '/docs/complete-reference') return pathname === '/docs/complete-reference'
@@ -574,6 +580,12 @@ function getIcon(href: string): ReactNode {
 
 export default function DocsSidebar() {
   const pathname = usePathname()
+  /** Avoid hydration mismatches when client pathname/active styles differ from SSR snapshot */
+  const [navMounted, setNavMounted] = useState(false)
+  useEffect(() => {
+    setNavMounted(true)
+  }, [])
+
   const [isCliOpen, setIsCliOpen] = useState(false)
   const [isGuidesOpen, setIsGuidesOpen] = useState(false)
   const [isReferenceOpen, setIsReferenceOpen] = useState(false)
@@ -710,7 +722,7 @@ export default function DocsSidebar() {
                   >
                     <ul className="space-y-1">
                       {section.items.map((item) => {
-                        const active = isActive(pathname, item.href)
+                        const active = navMounted && isActive(pathname, item.href)
                         return (
                           <li key={item.href}>
                             <Link
@@ -760,7 +772,7 @@ export default function DocsSidebar() {
                   >
                     <ul className="space-y-1">
                       {section.items.map((item) => {
-                        const active = isActive(pathname, item.href)
+                        const active = navMounted && isActive(pathname, item.href)
                         return (
                           <li key={item.href}>
                             <Link
@@ -810,7 +822,7 @@ export default function DocsSidebar() {
                   >
                     <ul className="space-y-1">
                       {section.items.map((item) => {
-                        const active = isActive(pathname, item.href)
+                        const active = navMounted && isActive(pathname, item.href)
                         return (
                           <li key={item.href}>
                             <Link
@@ -860,7 +872,7 @@ export default function DocsSidebar() {
                   >
                     <ul className="space-y-1">
                       {section.items.map((item) => {
-                        const active = isActive(pathname, item.href)
+                        const active = navMounted && isActive(pathname, item.href)
                         return (
                           <li key={item.href}>
                             <Link
@@ -910,7 +922,7 @@ export default function DocsSidebar() {
                   >
                     <ul className="space-y-1">
                       {section.items.map((item) => {
-                        const active = isActive(pathname, item.href)
+                        const active = navMounted && isActive(pathname, item.href)
                         return (
                           <li key={item.href}>
                             <Link
@@ -960,7 +972,7 @@ export default function DocsSidebar() {
                   >
                     <ul className="space-y-1">
                       {section.items.map((item) => {
-                        const active = isActive(pathname, item.href)
+                        const active = navMounted && isActive(pathname, item.href)
                         return (
                           <li key={item.href}>
                             <Link
@@ -991,7 +1003,7 @@ export default function DocsSidebar() {
                   </p>
                   <ul className="space-y-1">
                     {section.items.map((item) => {
-                      const active = isActive(pathname, item.href)
+                      const active = navMounted && isActive(pathname, item.href)
                       return (
                         <li key={item.href}>
                           <Link
