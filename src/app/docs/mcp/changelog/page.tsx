@@ -2,40 +2,28 @@ import { Metadata } from 'next'
 import Footer from '@/components/layout/Footer'
 import AnimatedSection from '@/components/common/AnimatedSection'
 import DocsLayout from '@/components/docs/DocsLayout'
-import ReactMarkdown from 'react-markdown'
+import DocsMarkdown from '@/components/docs/DocsMarkdown'
+import { fetchChangelog } from '@/lib/docs/fetch-github-docs'
 
 export const metadata: Metadata = {
   title: 'MCP Changelog | LogicStamp MCP Documentation',
   description: 'Notable changes and release notes for the LogicStamp MCP Server.',
 }
 
-// GitHub raw content URL for the changelog
-const CHANGELOG_URL = 'https://raw.githubusercontent.com/LogicStamp/logicstamp-mcp/main/CHANGELOG.md'
+const CHANGELOG_GITHUB_URL = 'https://github.com/LogicStamp/logicstamp-mcp/blob/main/CHANGELOG.md'
 
-async function fetchChangelog(): Promise<string> {
+async function getChangelogContent(): Promise<string> {
   try {
-    // Fetch with caching - revalidate every hour
-    const response = await fetch(CHANGELOG_URL, {
-      next: { revalidate: 3600 }, // Cache for 1 hour
-      headers: {
-        'Accept': 'text/markdown',
-      },
-    })
-
-    if (!response.ok) {
-      throw new Error(`Failed to fetch changelog: ${response.statusText}`)
-    }
-
-    return await response.text()
+    const { content } = await fetchChangelog('mcp')
+    return content
   } catch (error) {
     console.error('Error fetching changelog from GitHub:', error)
-    // Return a fallback message
-    return `# MCP Changelog\n\nUnable to load changelog from GitHub. Please visit the [MCP GitHub repository](https://github.com/LogicStamp/logicstamp-mcp/blob/main/CHANGELOG.md) to view the latest changes.\n\nError: ${error instanceof Error ? error.message : 'Unknown error'}`
+    return `# MCP Changelog\n\nUnable to load changelog from GitHub. Please visit the [MCP GitHub repository](${CHANGELOG_GITHUB_URL}) to view the latest changes.\n\nError: ${error instanceof Error ? error.message : 'Unknown error'}`
   }
 }
 
 export default async function MCPChangelogPage() {
-  const changelogContent = await fetchChangelog()
+  const changelogContent = await getChangelogContent()
 
   return (
     <>
@@ -52,7 +40,7 @@ export default async function MCPChangelogPage() {
             <p className="text-sm text-gray-600 dark:text-gray-400 mt-2">
               This changelog is automatically fetched from the{' '}
               <a
-                href="https://github.com/LogicStamp/logicstamp-mcp/blob/main/CHANGELOG.md"
+                href={CHANGELOG_GITHUB_URL}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-blue-600 dark:text-blue-400 hover:underline"
@@ -64,48 +52,11 @@ export default async function MCPChangelogPage() {
           </div>
         </AnimatedSection>
 
-        <div className="prose prose-lg dark:prose-invert max-w-none prose-headings:text-gray-900 dark:prose-headings:text-white prose-p:text-gray-900 dark:prose-p:text-white prose-a:text-blue-600 dark:prose-a:text-blue-400 prose-code:text-gray-900 dark:prose-code:text-gray-100 prose-code:bg-gray-100 dark:prose-code:bg-gray-800 prose-code:px-1 prose-code:py-0.5 prose-code:rounded prose-code:text-sm prose-strong:text-gray-900 dark:prose-strong:text-white prose-ul:text-gray-900 dark:prose-ul:text-white prose-li:text-gray-900 dark:prose-li:text-white text-gray-900 dark:text-white">
-          <AnimatedSection direction="up" delay={100}>
-            <ReactMarkdown
-              components={{
-                h2: (props) => (
-                  <h2 className="text-2xl font-bold mt-8 mb-4 text-gray-900 dark:text-white border-b border-gray-200 dark:border-gray-700 pb-2" {...props} />
-                ),
-                h3: (props) => (
-                  <h3 className="text-xl font-semibold mt-6 mb-3 text-gray-900 dark:text-white" {...props} />
-                ),
-                h4: (props) => (
-                  <h4 className="text-lg font-semibold mt-4 mb-2 text-gray-900 dark:text-white" {...props} />
-                ),
-                code: (props: any) => {
-                  const { inline, ...rest } = props
-                  if (inline) {
-                    return (
-                      <code className="px-1.5 py-0.5 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 rounded text-sm font-mono" {...rest} />
-                    )
-                  }
-                  return (
-                    <code className="block p-4 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 rounded-lg text-sm font-mono overflow-x-auto" {...rest} />
-                  )
-                },
-                a: (props: any) => (
-                  <a className="text-blue-600 dark:text-blue-400 hover:underline" target="_blank" rel="noopener noreferrer" {...props} />
-                ),
-                ul: (props) => (
-                  <ul className="list-disc list-inside space-y-2 my-4 ml-4" {...props} />
-                ),
-                li: (props) => (
-                  <li className="text-gray-900 dark:text-white" {...props} />
-                ),
-                hr: (props) => (
-                  <hr className="my-8 border-gray-200 dark:border-gray-700" {...props} />
-                ),
-              }}
-            >
-              {changelogContent}
-            </ReactMarkdown>
-          </AnimatedSection>
-        </div>
+        <AnimatedSection direction="up" delay={100}>
+          <DocsMarkdown source="mcp" currentDocPath="CHANGELOG.md">
+            {changelogContent}
+          </DocsMarkdown>
+        </AnimatedSection>
       </DocsLayout>
       <Footer />
     </>

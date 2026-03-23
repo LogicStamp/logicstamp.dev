@@ -3,24 +3,23 @@ import Footer from '@/components/layout/Footer'
 import AnimatedSection from '@/components/common/AnimatedSection'
 import DocsLayout from '@/components/docs/DocsLayout'
 import TabbedCodeBlock from '@/components/docs/TabbedCodeBlock'
-import ReactMarkdown from 'react-markdown'
+import DocsMarkdown from '@/components/docs/DocsMarkdown'
+import { getDocWithFallback } from '@/lib/docs'
 
 export const metadata: Metadata = {
   title: 'Migration to v0.3.2 | LogicStamp Context Documentation',
   description: 'Guide for upgrading LogicStamp Context to v0.3.2, including breaking changes and migration steps.',
 }
 
-// Read the migration markdown file
+const MIGRATION_GITHUB_URL = 'https://github.com/LogicStamp/logicstamp-context/blob/main/docs/MIGRATION_0.3.2.md'
+
 async function getMigrationContent(): Promise<string> {
   try {
-    const fs = await import('fs/promises')
-    const path = await import('path')
-    const filePath = path.join(process.cwd(), 'docs', 'context', 'MIGRATION_0.3.2.md')
-    const content = await fs.readFile(filePath, 'utf-8')
-    return content
+    const result = await getDocWithFallback('context', 'MIGRATION_0.3.2.md')
+    return result.content
   } catch (error) {
     console.error('Error reading migration file:', error)
-    return `# Migration Guide: Upgrading to v0.3.2\n\nUnable to load migration guide. Please check the [migration documentation](https://github.com/LogicStamp/logicstamp-context/blob/main/docs/MIGRATION_0.3.2.md) on GitHub.\n\nError: ${error instanceof Error ? error.message : 'Unknown error'}`
+    return `# Migration Guide: Upgrading to v0.3.2\n\nUnable to load migration guide. Please check the [migration documentation](${MIGRATION_GITHUB_URL}) on GitHub.\n\nError: ${error instanceof Error ? error.message : 'Unknown error'}`
   }
 }
 
@@ -94,123 +93,14 @@ export default async function MigrationPage() {
           </div>
         </AnimatedSection>
 
-        <div className="prose prose-lg dark:prose-invert max-w-none prose-headings:text-gray-900 dark:prose-headings:text-white prose-p:text-gray-900 dark:prose-p:text-white prose-a:text-blue-600 dark:prose-a:text-blue-400 prose-code:text-gray-900 dark:prose-code:text-gray-100 prose-code:bg-gray-100 dark:prose-code:bg-gray-800 prose-code:px-1 prose-code:py-0.5 prose-code:rounded prose-code:text-sm prose-strong:text-gray-900 dark:prose-strong:text-white prose-ul:text-gray-900 dark:prose-ul:text-white prose-li:text-gray-900 dark:prose-li:text-white text-gray-900 dark:text-white">
-          <AnimatedSection direction="up" delay={100}>
-            <ReactMarkdown
-              components={{
-                h2: (props: any) => {
-                  const isBreaking = props.children?.toString().includes('Breaking')
-                  return (
-                    <div className="relative mt-12 mb-6">
-                      <div className="absolute -inset-1 bg-gradient-to-r from-red-600 to-orange-600 rounded-xl blur opacity-10 dark:opacity-5" />
-                      <h2 className={`relative text-2xl sm:text-3xl font-bold pt-6 pb-3 px-4 rounded-xl border-l-4 ${
-                        isBreaking 
-                          ? 'border-red-500 bg-red-50/50 dark:bg-red-950/20 text-gray-900 dark:text-white' 
-                          : 'border-blue-500 bg-blue-50/50 dark:bg-blue-950/20 text-gray-900 dark:text-white'
-                      }`} {...props} />
-                    </div>
-                  )
-                },
-                h3: (props: any) => (
-                  <div className="mt-8 mb-4">
-                    <h3 className="text-xl sm:text-2xl font-semibold text-gray-900 dark:text-white flex items-center gap-2">
-                      <div className="w-1.5 h-1.5 bg-gradient-to-r from-blue-500 to-indigo-500 rounded-full" />
-                      {props.children}
-                    </h3>
-                  </div>
-                ),
-                h4: (props: any) => (
-                  <h4 className="text-lg sm:text-xl font-semibold mt-6 mb-3 text-gray-900 dark:text-white" {...props} />
-                ),
-                code: (props: any) => {
-                  const { inline, ...rest } = props
-                  if (inline) {
-                    return (
-                      <code className="px-1.5 py-0.5 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 rounded text-sm font-mono" {...rest} />
-                    )
-                  }
-                  return (
-                    <div className="relative my-6">
-                      <div className="absolute -inset-1 bg-gradient-to-r from-purple-600 to-pink-600 rounded-lg blur opacity-10 dark:opacity-5" />
-                      <code className="relative block p-4 bg-gray-50 dark:bg-gray-900 border border-gray-200 dark:border-gray-800 text-gray-900 dark:text-gray-100 rounded-lg text-sm font-mono overflow-x-auto" {...rest} />
-                    </div>
-                  )
-                },
-                a: (props: any) => (
-                  <a className="text-blue-600 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300 underline decoration-2 underline-offset-2 transition-colors" target="_blank" rel="noopener noreferrer" {...props} />
-                ),
-                ul: (props: any) => (
-                  <ul className="list-disc list-outside space-y-3 my-6 ml-6 marker:text-blue-500 dark:marker:text-blue-400" {...props} />
-                ),
-                ol: (props: any) => (
-                  <ol className="list-decimal list-outside space-y-3 my-6 ml-6 marker:text-blue-500 dark:marker:text-blue-400 marker:font-semibold" {...props} />
-                ),
-                li: (props: any) => (
-                  <li className="text-gray-700 dark:text-gray-300 leading-relaxed pl-2" {...props} />
-                ),
-                hr: (props: any) => (
-                  <div className="relative my-12">
-                    <div className="absolute inset-0 flex items-center">
-                      <div className="w-full border-t border-gray-200 dark:border-gray-700" />
-                    </div>
-                    <div className="relative flex justify-center">
-                      <span className="px-4 bg-white dark:bg-gray-900 text-gray-500 dark:text-gray-400 text-sm">
-                        <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
-                          <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
-                        </svg>
-                      </span>
-                    </div>
-                  </div>
-                ),
-                blockquote: (props: any) => (
-                  <div className="relative my-6">
-                    <div className="absolute -inset-1 bg-gradient-to-r from-blue-600 to-indigo-600 rounded-lg blur opacity-10 dark:opacity-5" />
-                    <blockquote className="relative border-l-4 border-blue-500 pl-6 pr-4 py-4 bg-blue-50/50 dark:bg-blue-950/20 rounded-r-lg italic text-gray-700 dark:text-gray-300" {...props} />
-                  </div>
-                ),
-                p: (props: any) => {
-                  const text = props.children?.toString() || ''
-                  const isImportant = text.includes('✅') || text.includes('⚠️') || text.includes('🧹')
-                  
-                  if (isImportant) {
-                    const isSuccess = text.includes('✅')
-                    const isWarning = text.includes('⚠️')
-                    const isInfo = text.includes('🧹')
-                    
-                    return (
-                      <div className={`relative my-6 p-4 rounded-xl border-l-4 ${
-                        isSuccess 
-                          ? 'bg-green-50/50 dark:bg-green-950/20 border-green-500' 
-                          : isWarning
-                          ? 'bg-yellow-50/50 dark:bg-yellow-950/20 border-yellow-500'
-                          : 'bg-blue-50/50 dark:bg-blue-950/20 border-blue-500'
-                      }`}>
-                        <p className={`text-sm sm:text-base leading-relaxed ${
-                          isSuccess 
-                            ? 'text-green-800 dark:text-green-200' 
-                            : isWarning
-                            ? 'text-yellow-800 dark:text-yellow-200'
-                            : 'text-blue-800 dark:text-blue-200'
-                        }`} {...props} />
-                      </div>
-                    )
-                  }
-                  
-                  return (
-                    <p className="mb-4 text-gray-700 dark:text-gray-300 leading-relaxed" {...props} />
-                  )
-                },
-                strong: (props: any) => (
-                  <strong className="font-bold text-gray-900 dark:text-white" {...props} />
-                ),
-              }}
-            >
-              {migrationContent}
-            </ReactMarkdown>
-          </AnimatedSection>
+        <AnimatedSection direction="up" delay={100}>
+          <DocsMarkdown source="context" currentDocPath="MIGRATION_0.3.2.md">
+            {migrationContent}
+          </DocsMarkdown>
+        </AnimatedSection>
 
-          {/* Style Metadata Migration Section */}
-          <AnimatedSection direction="up" delay={200}>
+        {/* Style Metadata Migration Section */}
+        <AnimatedSection direction="up" delay={200}>
             <div className="relative mb-8 sm:mb-12 lg:mb-16">
               <div className="absolute -inset-1 bg-gradient-to-r from-violet-600 via-purple-600 to-indigo-600 rounded-2xl blur opacity-20 dark:opacity-10" />
               <div className="relative bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded-2xl p-4 sm:p-6 lg:p-8 shadow-xl">
@@ -488,7 +378,6 @@ export default async function MigrationPage() {
               </div>
             </div>
           </AnimatedSection>
-        </div>
       </DocsLayout>
       <Footer />
     </>
