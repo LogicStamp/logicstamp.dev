@@ -40,7 +40,7 @@ export default function FrameworksIndexPage() {
               </h1>
 
               <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-gray-600 dark:text-gray-400 leading-relaxed max-w-3xl">
-                LogicStamp Context supports TypeScript, React, Next.js, Vue, Express.js, and NestJS. Documentation is synced from the{' '}
+                LogicStamp Context supports TypeScript, React, Next.js, Vue, Express.js, and NestJS. Framework guides are synced from{' '}
                 <a
                   href="https://github.com/LogicStamp/logicstamp-context/tree/main/docs/frameworks"
                   target="_blank"
@@ -48,8 +48,17 @@ export default function FrameworksIndexPage() {
                   className="text-blue-600 dark:text-blue-400 hover:underline"
                 >
                   logicstamp-context/docs/frameworks
-                </a>{' '}
-                repository.
+                </a>
+                ; monorepo layout and workflows are documented separately in{' '}
+                <a
+                  href="https://github.com/LogicStamp/logicstamp-context/blob/main/docs/monorepo.md"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-blue-600 dark:text-blue-400 hover:underline"
+                >
+                  docs/monorepo.md
+                </a>
+                .
               </p>
             </div>
           </div>
@@ -82,7 +91,7 @@ export default function FrameworksIndexPage() {
               LogicStamp Context works seamlessly with monorepos containing both backend and frontend code.
             </p>
             <Link
-              href="/docs/logicstamp-context/frameworks/monorepo"
+              href="/docs/logicstamp-context/monorepo"
               className="inline-flex items-center gap-2 text-cyan-600 dark:text-cyan-400 hover:underline font-medium"
             >
               Learn about monorepo support →
