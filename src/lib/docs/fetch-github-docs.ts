@@ -72,6 +72,14 @@ export function getRawChangelogUrl(source: DocSource, ref = 'main'): string {
 }
 
 /**
+ * Build the raw GitHub URL for ROADMAP.md at repo root.
+ */
+export function getRawRoadmapUrl(source: DocSource, ref = 'main'): string {
+  const { owner, repo } = REPO_CONFIG[source]
+  return `${GITHUB_RAW_BASE}/${owner}/${repo}/${ref}/ROADMAP.md`
+}
+
+/**
  * Fetch CHANGELOG.md from a LogicStamp GitHub repo (root of repo, not docs/).
  *
  * @param source - 'context' (logicstamp-context/CLI) or 'mcp' (logicstamp-mcp)
@@ -96,6 +104,33 @@ export async function fetchChangelog(
 
   const content = await res.text()
   return { content, source, path: 'CHANGELOG.md', url }
+}
+
+/**
+ * Fetch ROADMAP.md from a LogicStamp GitHub repo (root of repo).
+ *
+ * @param source - 'context' (logicstamp-context/CLI) or 'mcp' (logicstamp-mcp)
+ * @param ref - Git ref (default: 'main')
+ * @returns Fetched content or throws on failure
+ */
+export async function fetchRoadmap(
+  source: DocSource,
+  ref = 'main'
+): Promise<FetchDocResult> {
+  const url = getRawRoadmapUrl(source, ref)
+  const res = await fetch(url, {
+    next: { revalidate: 3600 }, // ISR: revalidate every hour
+    headers: { Accept: 'text/plain' },
+  })
+
+  if (!res.ok) {
+    throw new Error(
+      `Failed to fetch roadmap: ${res.status} ${res.statusText} for ${url}`
+    )
+  }
+
+  const content = await res.text()
+  return { content, source, path: 'ROADMAP.md', url }
 }
 
 /**
