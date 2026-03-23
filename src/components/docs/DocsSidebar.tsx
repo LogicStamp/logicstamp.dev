@@ -53,9 +53,11 @@ const sections: DocsNavSection[] = [
   {
     title: 'Frameworks',
     items: [
+      { title: 'Frameworks', href: '/docs/logicstamp-context/frameworks' },
       { title: 'TypeScript Support', href: '/docs/logicstamp-context/frameworks/typescript' },
       { title: 'React Support', href: '/docs/logicstamp-context/frameworks/react' },
       { title: 'Next.js Support', href: '/docs/logicstamp-context/frameworks/nextjs' },
+      { title: 'Vue Support', href: '/docs/logicstamp-context/frameworks/vue' },
       { title: 'Express.js Support', href: '/docs/logicstamp-context/frameworks/express' },
       { title: 'NestJS Support', href: '/docs/logicstamp-context/frameworks/nestjs' },
       { title: 'Monorepo Support', href: '/docs/logicstamp-context/frameworks/monorepo' },
@@ -128,6 +130,8 @@ function isActive(pathname: string, href: string) {
   if (href === '/docs/mcp') return pathname === '/docs/mcp'
   // UI Frameworks index should only match exactly, not sub-paths (e.g. /radix, /tailwind)
   if (href === '/docs/logicstamp-context/ui-frameworks') return pathname === '/docs/logicstamp-context/ui-frameworks'
+  // Frameworks index should only match exactly, not sub-paths (e.g. /react, /express)
+  if (href === '/docs/logicstamp-context/frameworks') return pathname === '/docs/logicstamp-context/frameworks'
   return pathname === href || pathname.startsWith(href + '/')
 }
 
@@ -545,7 +549,7 @@ function getIcon(href: string): ReactNode {
     )
   }
 
-  if (href.includes('/nextjs') || href.includes('/nestjs') || href.includes('/react') || href.includes('/express') || href.includes('/typescript') || href.includes('/logicstamp-context/ui-frameworks') || href.includes('/monorepo')) {
+  if (href.includes('/nextjs') || href.includes('/nestjs') || href.includes('/react') || href.includes('/express') || href.includes('/typescript') || href.includes('/vue') || href.includes('/logicstamp-context/ui-frameworks') || href.includes('/monorepo')) {
     // Framework / code icon
     return (
       <svg
