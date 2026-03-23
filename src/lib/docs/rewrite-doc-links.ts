@@ -48,6 +48,7 @@ function resolveTarget(currentDocPath: string, href: string): string {
 
 /** Explicit path overrides (GitHub docs path, lowercase → website URL) for non-obvious mappings */
 const PATH_OVERRIDES: Record<string, string> = {
+  'docs/limitations.md': '/docs/complete-reference/known-limitations',
   'cli/style.md': '/docs/logicstamp-context/style',
   'cli/init.md': '/docs/logicstamp-context/init',
   'cli/context.md': '/docs/logicstamp-context/context',
