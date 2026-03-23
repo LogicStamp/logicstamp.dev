@@ -58,8 +58,22 @@ const sections: DocsNavSection[] = [
       { title: 'Next.js Support', href: '/docs/logicstamp-context/frameworks/nextjs' },
       { title: 'Express.js Support', href: '/docs/logicstamp-context/frameworks/express' },
       { title: 'NestJS Support', href: '/docs/logicstamp-context/frameworks/nestjs' },
-      { title: 'UI Frameworks', href: '/docs/logicstamp-context/ui-frameworks' },
       { title: 'Monorepo Support', href: '/docs/logicstamp-context/frameworks/monorepo' },
+    ],
+  },
+  {
+    title: 'UI Frameworks',
+    items: [
+      { title: 'UI Frameworks', href: '/docs/logicstamp-context/ui-frameworks' },
+      { title: 'Tailwind CSS', href: '/docs/logicstamp-context/ui-frameworks/tailwind' },
+      { title: 'Material UI', href: '/docs/logicstamp-context/ui-frameworks/material-ui' },
+      { title: 'ShadCN/UI', href: '/docs/logicstamp-context/ui-frameworks/shadcn' },
+      { title: 'Radix UI', href: '/docs/logicstamp-context/ui-frameworks/radix' },
+      { title: 'Ant Design', href: '/docs/logicstamp-context/ui-frameworks/antd' },
+      { title: 'Chakra UI', href: '/docs/logicstamp-context/ui-frameworks/chakra' },
+      { title: 'Styled Components', href: '/docs/logicstamp-context/ui-frameworks/styled-components' },
+      { title: 'CSS & SCSS', href: '/docs/logicstamp-context/ui-frameworks/css-scss' },
+      { title: 'Framer Motion', href: '/docs/logicstamp-context/ui-frameworks/framer-motion' },
     ],
   },
   {
@@ -112,6 +126,8 @@ function isActive(pathname: string, href: string) {
   if (href === '/docs/reference') return pathname === '/docs/reference'
   // MCP Overview should only match exactly, not sub-paths
   if (href === '/docs/mcp') return pathname === '/docs/mcp'
+  // UI Frameworks index should only match exactly, not sub-paths (e.g. /radix, /tailwind)
+  if (href === '/docs/logicstamp-context/ui-frameworks') return pathname === '/docs/logicstamp-context/ui-frameworks'
   return pathname === href || pathname.startsWith(href + '/')
 }
 
@@ -529,7 +545,7 @@ function getIcon(href: string): ReactNode {
     )
   }
 
-  if (href.includes('/nextjs') || href.includes('/nestjs') || href.includes('/react') || href.includes('/express') || href.includes('/typescript') || href.includes('/ui-frameworks') || href.includes('/monorepo')) {
+  if (href.includes('/nextjs') || href.includes('/nestjs') || href.includes('/react') || href.includes('/express') || href.includes('/typescript') || href.includes('/logicstamp-context/ui-frameworks') || href.includes('/monorepo')) {
     // Framework / code icon
     return (
       <svg
@@ -558,6 +574,7 @@ export default function DocsSidebar() {
   const [isGuidesOpen, setIsGuidesOpen] = useState(false)
   const [isReferenceOpen, setIsReferenceOpen] = useState(false)
   const [isFrameworksOpen, setIsFrameworksOpen] = useState(false)
+  const [isUiFrameworksOpen, setIsUiFrameworksOpen] = useState(false)
   const [isMcpOpen, setIsMcpOpen] = useState(false)
 
   // Auto-open CLI section if any CLI item is active
@@ -600,6 +617,17 @@ export default function DocsSidebar() {
       const hasActiveFrameworksItem = frameworksSection.items.some((item) => isActive(pathname, item.href))
       if (hasActiveFrameworksItem) {
         setIsFrameworksOpen(true)
+      }
+    }
+  }, [pathname])
+
+  // Auto-open UI Frameworks section if any UI framework item is active
+  useEffect(() => {
+    const uiFrameworksSection = sections.find((s) => s.title === 'UI Frameworks')
+    if (uiFrameworksSection) {
+      const hasActiveUiFrameworksItem = uiFrameworksSection.items.some((item) => isActive(pathname, item.href))
+      if (hasActiveUiFrameworksItem) {
+        setIsUiFrameworksOpen(true)
       }
     }
   }, [pathname])
@@ -647,6 +675,7 @@ export default function DocsSidebar() {
           const isGuidesSection = section.title === 'Guides'
           const isReferenceSection = section.title === 'Reference'
           const isFrameworksSection = section.title === 'Frameworks'
+          const isUiFrameworksSection = section.title === 'UI Frameworks'
           const isMcpSection = section.title === 'MCP'
           
           return (
@@ -823,6 +852,56 @@ export default function DocsSidebar() {
                   <div
                     className={`overflow-hidden transition-all duration-300 ease-in-out ${
                       isFrameworksOpen ? 'max-h-[500px] opacity-100' : 'max-h-0 opacity-0'
+                    }`}
+                  >
+                    <ul className="space-y-1">
+                      {section.items.map((item) => {
+                        const active = isActive(pathname, item.href)
+                        return (
+                          <li key={item.href}>
+                            <Link
+                              href={item.href}
+                              className={`block rounded-md border-l-2 px-2 py-1.5 transition-colors ${
+                                active
+                                  ? 'border-blue-500 bg-blue-50 text-blue-700 font-semibold dark:border-blue-400 dark:bg-blue-900/40 dark:text-blue-200'
+                                  : 'border-transparent text-gray-700 hover:border-gray-300 hover:bg-gray-100 hover:text-blue-700 dark:border-transparent dark:text-gray-300 dark:hover:border-gray-700 dark:hover:bg-gray-800 dark:hover:text-blue-200'
+                              }`}
+                            >
+                              <span className="flex items-center gap-2">
+                                <span className="inline-flex items-center justify-center text-gray-400 dark:text-gray-500">
+                                  {getIcon(item.href)}
+                                </span>
+                                <span>{item.title}</span>
+                              </span>
+                            </Link>
+                          </li>
+                        )
+                      })}
+                    </ul>
+                  </div>
+                </>
+              ) : isUiFrameworksSection ? (
+                <>
+                  <div className="mb-2 flex items-center gap-2">
+                    <button
+                      onClick={() => setIsUiFrameworksOpen(!isUiFrameworksOpen)}
+                      className="flex items-center justify-center w-6 h-6 rounded border border-gray-300 dark:border-gray-600 text-gray-600 dark:text-gray-400 text-sm font-normal transition-colors hover:border-gray-400 dark:hover:border-gray-500 focus:outline-none"
+                      aria-expanded={isUiFrameworksOpen}
+                      aria-label={isUiFrameworksOpen ? 'Collapse UI Frameworks section' : 'Expand UI Frameworks section'}
+                    >
+                      {isUiFrameworksOpen ? '−' : '+'}
+                    </button>
+                    <button
+                      onClick={() => setIsUiFrameworksOpen(!isUiFrameworksOpen)}
+                      className="text-xs font-semibold uppercase tracking-wide text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-300 cursor-pointer focus:outline-none"
+                      aria-label={isUiFrameworksOpen ? 'Collapse UI Frameworks section' : 'Expand UI Frameworks section'}
+                    >
+                      {section.title}
+                    </button>
+                  </div>
+                  <div
+                    className={`overflow-hidden transition-all duration-300 ease-in-out ${
+                      isUiFrameworksOpen ? 'max-h-[600px] opacity-100' : 'max-h-0 opacity-0'
                     }`}
                   >
                     <ul className="space-y-1">
