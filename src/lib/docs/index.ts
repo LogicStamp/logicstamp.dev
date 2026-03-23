@@ -1,6 +1,7 @@
 export {
   fetchGitHubDoc,
   fetchChangelog,
+  fetchRoadmap,
   getDocWithFallback,
   getRawDocUrl,
   type DocSource,
