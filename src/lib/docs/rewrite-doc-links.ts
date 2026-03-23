@@ -53,9 +53,12 @@ const PATH_OVERRIDES: Record<string, string> = {
   'cli/init.md': '/docs/logicstamp-context/init',
   'cli/context.md': '/docs/logicstamp-context/context',
   'cli/compare.md': '/docs/logicstamp-context/compare',
+  'cli/compare-modes.md': '/docs/logicstamp-context/compare-modes',
   'cli/validate.md': '/docs/logicstamp-context/validate',
   'cli/clean.md': '/docs/logicstamp-context/clean',
   'cli/watch.md': '/docs/logicstamp-context/watch-mode',
+  'cli/security-scan.md': '/docs/logicstamp-context/security-scan',
+  'cli/ignore.md': '/docs/guides/usage',
   'cli/getting-started.md': '/docs/logicstamp-context/cli/getting-started',
 }
 
@@ -89,6 +92,28 @@ export interface RewriteDocLinksOptions {
 }
 
 /**
+ * Resolve a relative .md link from a doc page to a site URL, or null if unchanged.
+ */
+export function resolveMdDocHref(
+  source: DocSource,
+  currentDocPath: string,
+  href: string
+): string | null {
+  if (!href) return null
+  if (/^(https?:|\/\/)/.test(href)) return null
+  if (href.startsWith('#')) return null
+
+  const mdMatch = href.match(/^([^#]+\.md)(#.*)?$/)
+  if (!mdMatch) return null
+
+  const pathPart = mdMatch[1]
+  const hash = mdMatch[2] ?? ''
+  const resolved = resolveTarget(currentDocPath, pathPart)
+  const url = docPathToUrl(source, resolved)
+  return url ? url + hash : null
+}
+
+/**
  * Remark plugin that rewrites relative .md links to website URLs.
  * Only transforms links that look like internal doc references (relative, end in .md).
  */
@@ -99,25 +124,8 @@ export function remarkRewriteDocLinks(options: RewriteDocLinksOptions) {
     visit(tree, 'link', (node) => {
       const href = node.url
       if (!href) return
-
-      // Skip absolute URLs (http, https, //)
-      if (/^(https?:|\/\/)/.test(href)) return
-
-      // Skip anchor-only or hash links
-      if (href.startsWith('#')) return
-
-      // Only rewrite .md links (with optional hash)
-      const mdMatch = href.match(/^([^#]+\.md)(#.*)?$/)
-      if (!mdMatch) return
-
-      const pathPart = mdMatch[1]
-      const hash = mdMatch[2] ?? ''
-
-      const resolved = resolveTarget(currentDocPath, pathPart)
-      const url = docPathToUrl(source, resolved)
-      if (url) {
-        node.url = url + hash
-      }
+      const next = resolveMdDocHref(source, currentDocPath, href)
+      if (next) node.url = next
     })
   }
 }
