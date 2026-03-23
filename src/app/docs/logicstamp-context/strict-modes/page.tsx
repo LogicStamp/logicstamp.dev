@@ -1,10 +1,10 @@
 import { Metadata } from 'next'
-import Link from 'next/link'
 import Footer from '@/components/layout/Footer'
 import AnimatedSection from '@/components/common/AnimatedSection'
 import DocsLayout from '@/components/docs/DocsLayout'
 import TabbedCodeBlock from '@/components/docs/TabbedCodeBlock'
 import ReadyToGetStartedCard from '@/components/docs/ReadyToGetStartedCard'
+import LogicStampContextRelatedCliNav from '@/components/docs/LogicStampContextRelatedCliNav'
 
 export const metadata: Metadata = {
   title: 'Strict Modes | LogicStamp Context Documentation',
@@ -294,37 +294,8 @@ stamp context --watch --strict-watch  # Equivalent`,
             </div>
           </AnimatedSection>
 
-          {/* Related Commands */}
           <AnimatedSection direction="up" delay={550}>
-            <div className="mb-8 sm:mb-12 lg:mb-16">
-              <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white mb-6">
-                Related Commands
-              </h2>
-              <div className="grid sm:grid-cols-2 gap-4">
-                <Link
-                  href="/docs/logicstamp-context/compare"
-                  className="p-4 border border-gray-200 dark:border-gray-800 rounded-lg md:hover:border-green-500 dark:md:hover:border-green-500 transition-colors"
-                >
-                  <h3 className="font-semibold text-gray-900 dark:text-white mb-1">
-                    <code className="text-sm font-mono">stamp context compare</code> →
-                  </h3>
-                  <p className="text-sm text-gray-600 dark:text-gray-400">
-                    Drift detection with <code className="text-xs font-mono">--strict</code> flag
-                  </p>
-                </Link>
-                <Link
-                  href="/docs/logicstamp-context/watch-mode"
-                  className="p-4 border border-gray-200 dark:border-gray-800 rounded-lg md:hover:border-green-500 dark:md:hover:border-green-500 transition-colors"
-                >
-                  <h3 className="font-semibold text-gray-900 dark:text-white mb-1">
-                    Watch Mode →
-                  </h3>
-                  <p className="text-sm text-gray-600 dark:text-gray-400">
-                    Incremental rebuilds with <code className="text-xs font-mono">--strict-watch</code>
-                  </p>
-                </Link>
-              </div>
-            </div>
+            <LogicStampContextRelatedCliNav currentHref="/docs/logicstamp-context/strict-modes" />
           </AnimatedSection>
         </div>
 
