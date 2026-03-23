@@ -1,7 +1,7 @@
 import { Metadata } from 'next'
 import Footer from '@/components/layout/Footer'
 import AnimatedSection from '@/components/common/AnimatedSection'
-import ReactMarkdown from 'react-markdown'
+import DocsMarkdown from '@/components/docs/DocsMarkdown'
 
 export const metadata: Metadata = {
   title: 'Code of Conduct | LogicStamp',
@@ -63,38 +63,9 @@ export default async function CodeOfConductPage() {
               Our commitment to fostering an open, welcoming, diverse, inclusive, and healthy community
             </p>
             
-            <div className="prose prose-lg dark:prose-invert max-w-none prose-headings:text-gray-900 dark:prose-headings:text-white prose-p:text-gray-700 dark:prose-p:text-gray-300 prose-a:text-blue-600 dark:prose-a:text-blue-400 prose-code:text-gray-900 dark:prose-code:text-gray-100 prose-code:bg-gray-100 dark:prose-code:bg-gray-800 prose-code:px-1 prose-code:py-0.5 prose-code:rounded prose-code:text-sm prose-strong:text-gray-900 dark:prose-strong:text-white prose-ul:text-gray-700 dark:prose-ul:text-gray-300 prose-li:text-gray-700 dark:prose-li:text-gray-300 prose-ol:text-gray-700 dark:prose-ol:text-gray-300">
-              <ReactMarkdown
-                components={{
-                  h2: (props) => (
-                    <h2 className="text-2xl font-bold mt-8 mb-4 text-gray-900 dark:text-white border-t border-gray-200 dark:border-gray-700 pt-8 first:border-t-0 first:pt-0" {...props} />
-                  ),
-                  h3: (props) => (
-                    <h3 className="text-xl font-semibold mt-6 mb-3 text-gray-900 dark:text-white" {...props} />
-                  ),
-                  p: (props) => (
-                    <p className="text-gray-700 dark:text-gray-300 mb-4 break-words" {...props} />
-                  ),
-                  a: (props: any) => (
-                    <a className="text-blue-600 dark:text-blue-400 hover:underline break-words" target="_blank" rel="noopener noreferrer" {...props} />
-                  ),
-                  ol: (props) => (
-                    <ol className="list-decimal pl-6 mb-4 text-gray-700 dark:text-gray-300 space-y-4" {...props} />
-                  ),
-                  ul: (props) => (
-                    <ul className="list-disc pl-6 mt-2 space-y-1 text-gray-700 dark:text-gray-300" {...props} />
-                  ),
-                  li: (props) => (
-                    <li className="text-gray-700 dark:text-gray-300" {...props} />
-                  ),
-                  strong: (props) => (
-                    <strong className="font-semibold text-gray-900 dark:text-white" {...props} />
-                  ),
-                }}
-              >
-                {cocContent}
-              </ReactMarkdown>
-            </div>
+            <DocsMarkdown className="prose prose-lg dark:prose-invert max-w-none prose-headings:text-gray-900 dark:prose-headings:text-white prose-p:text-gray-700 dark:prose-p:text-gray-300 prose-a:text-blue-600 dark:prose-a:text-blue-400 prose-code:text-gray-900 dark:prose-code:text-gray-100 prose-code:bg-gray-100 dark:prose-code:bg-gray-800 prose-code:px-1 prose-code:py-0.5 prose-code:rounded prose-code:text-sm prose-strong:text-gray-900 dark:prose-strong:text-white prose-ul:text-gray-700 dark:prose-ul:text-gray-300 prose-li:text-gray-700 dark:prose-li:text-gray-300 prose-ol:text-gray-700 dark:prose-ol:text-gray-300">
+              {cocContent}
+            </DocsMarkdown>
 
             {/* Related Repositories Section */}
             <div className="mt-12 pt-8 border-t border-gray-200 dark:border-gray-700">
