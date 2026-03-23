@@ -3,8 +3,8 @@ import Footer from '@/components/layout/Footer'
 import AnimatedSection from '@/components/common/AnimatedSection'
 import DocsLayout from '@/components/docs/DocsLayout'
 import TabbedCodeBlock from '@/components/docs/TabbedCodeBlock'
-import Link from 'next/link'
 import ReadyToGetStartedCard from '@/components/docs/ReadyToGetStartedCard'
+import LogicStampContextRelatedCliNav from '@/components/docs/LogicStampContextRelatedCliNav'
 
 export const metadata: Metadata = {
   title: 'TOON Format | LogicStamp Context Documentation',
@@ -720,70 +720,8 @@ await writeFile('src/components/context.json', jsonContent);
             </div>
           </AnimatedSection>
 
-          {/* Related Commands Section */}
           <AnimatedSection direction="up" delay={700}>
-            <div className="mb-8 sm:mb-12 lg:mb-16">
-              <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white mb-4 sm:mb-6">
-                Related Commands
-              </h2>
-              <div className="grid sm:grid-cols-2 gap-4">
-                <Link
-                  href="/docs/logicstamp-context/context"
-                  className="p-4 border border-gray-200 dark:border-gray-800 rounded-lg md:hover:border-green-500 dark:md:hover:border-green-500 transition-colors"
-                >
-                  <h3 className="font-semibold text-gray-900 dark:text-white mb-1">
-                    <code className="text-sm font-mono">stamp context</code> →
-                  </h3>
-                  <p className="text-sm text-gray-600 dark:text-gray-400">
-                    Generate context files (supports all formats including TOON)
-                  </p>
-                </Link>
-                <Link
-                  href="/docs/logicstamp-context/validate"
-                  className="p-4 border border-gray-200 dark:border-gray-800 rounded-lg md:hover:border-green-500 dark:md:hover:border-green-500 transition-colors"
-                >
-                  <h3 className="font-semibold text-gray-900 dark:text-white mb-1">
-                    <code className="text-sm font-mono">stamp context validate</code> →
-                  </h3>
-                  <p className="text-sm text-gray-600 dark:text-gray-400">
-                    Validate context files (JSON format only)
-                  </p>
-                </Link>
-                <Link
-                  href="/docs/logicstamp-context/compare"
-                  className="p-4 border border-gray-200 dark:border-gray-800 rounded-lg md:hover:border-green-500 dark:md:hover:border-green-500 transition-colors"
-                >
-                  <h3 className="font-semibold text-gray-900 dark:text-white mb-1">
-                    <code className="text-sm font-mono">stamp context compare</code> →
-                  </h3>
-                  <p className="text-sm text-gray-600 dark:text-gray-400">
-                    Compare context files (JSON format only)
-                  </p>
-                </Link>
-                <Link
-                  href="/docs/logicstamp-context/clean"
-                  className="p-4 border border-gray-200 dark:border-gray-800 rounded-lg md:hover:border-green-500 dark:md:hover:border-green-500 transition-colors"
-                >
-                  <h3 className="font-semibold text-gray-900 dark:text-white mb-1">
-                    <code className="text-sm font-mono">stamp context clean</code> →
-                  </h3>
-                  <p className="text-sm text-gray-600 dark:text-gray-400">
-                    Clean context files (removes JSON and TOON files)
-                  </p>
-                </Link>
-                <Link
-                  href="/docs/logicstamp-context/init"
-                  className="p-4 border border-gray-200 dark:border-gray-800 rounded-lg md:hover:border-green-500 dark:md:hover:border-green-500 transition-colors"
-                >
-                  <h3 className="font-semibold text-gray-900 dark:text-white mb-1">
-                    <code className="text-sm font-mono">stamp init</code> →
-                  </h3>
-                  <p className="text-sm text-gray-600 dark:text-gray-400">
-                    Set up <code className="px-1 py-0.5 bg-gray-100 dark:bg-gray-800 rounded text-xs font-mono">.gitignore</code> patterns for TOON files
-                  </p>
-                </Link>
-              </div>
-            </div>
+            <LogicStampContextRelatedCliNav currentHref="/docs/logicstamp-context/toon" />
           </AnimatedSection>
         </div>
 

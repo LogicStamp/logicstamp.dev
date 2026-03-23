@@ -1,10 +1,10 @@
 import { Metadata } from 'next'
-import Link from 'next/link'
 import Footer from '@/components/layout/Footer'
 import AnimatedSection from '@/components/common/AnimatedSection'
 import DocsLayout from '@/components/docs/DocsLayout'
 import TabbedCodeBlock from '@/components/docs/TabbedCodeBlock'
 import ReadyToGetStartedCard from '@/components/docs/ReadyToGetStartedCard'
+import LogicStampContextRelatedCliNav from '@/components/docs/LogicStampContextRelatedCliNav'
 
 export const metadata: Metadata = {
   title: 'Watch Mode | LogicStamp Context Documentation',
@@ -1167,60 +1167,8 @@ stamp context style --strict-watch`,
             </div>
           </AnimatedSection>
 
-          {/* Related Commands Section */}
           <AnimatedSection direction="up" delay={585}>
-            <div className="mb-8 sm:mb-12 lg:mb-16">
-              <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white mb-4 sm:mb-6">See Also</h2>
-              <div className="grid sm:grid-cols-2 gap-4">
-                <Link
-                  href="/docs/logicstamp-context/context"
-                  className="p-4 border border-gray-200 dark:border-gray-800 rounded-lg md:hover:border-green-500 dark:md:hover:border-green-500 transition-colors"
-                >
-                  <h3 className="font-semibold text-gray-900 dark:text-white mb-1">
-                    <code className="text-sm font-mono">stamp context</code> →
-                  </h3>
-                  <p className="text-sm text-gray-600 dark:text-gray-400">Generate context files (one-time)</p>
-                </Link>
-
-                <Link
-                  href="/docs/mcp/reference"
-                  className="p-4 border border-gray-200 dark:border-gray-800 rounded-lg md:hover:border-green-500 dark:md:hover:border-green-500 transition-colors"
-                >
-                  <h3 className="font-semibold text-gray-900 dark:text-white mb-1">MCP Tools →</h3>
-                  <p className="text-sm text-gray-600 dark:text-gray-400">MCP server tool reference</p>
-                </Link>
-
-                <Link
-                  href="/docs/logicstamp-context/context"
-                  className="p-4 border border-gray-200 dark:border-gray-800 rounded-lg md:hover:border-green-500 dark:md:hover:border-green-500 transition-colors"
-                >
-                  <h3 className="font-semibold text-gray-900 dark:text-white mb-1">
-                    <code className="text-sm font-mono">context.md</code> →
-                  </h3>
-                  <p className="text-sm text-gray-600 dark:text-gray-400">Complete <code className="text-xs font-mono">stamp context</code> command reference</p>
-                </Link>
-
-                <Link
-                  href="/docs/logicstamp-context/style"
-                  className="p-4 border border-gray-200 dark:border-gray-800 rounded-lg md:hover:border-green-500 dark:md:hover:border-green-500 transition-colors"
-                >
-                  <h3 className="font-semibold text-gray-900 dark:text-white mb-1">
-                    <code className="text-sm font-mono">style.md</code> →
-                  </h3>
-                  <p className="text-sm text-gray-600 dark:text-gray-400">Style metadata extraction guide</p>
-                </Link>
-
-                <Link
-                  href="/docs/logicstamp-context/compare"
-                  className="p-4 border border-gray-200 dark:border-gray-800 rounded-lg md:hover:border-green-500 dark:md:hover:border-green-500 transition-colors"
-                >
-                  <h3 className="font-semibold text-gray-900 dark:text-white mb-1">
-                    <code className="text-sm font-mono">compare.md</code> →
-                  </h3>
-                  <p className="text-sm text-gray-600 dark:text-gray-400">Context drift detection</p>
-                </Link>
-              </div>
-            </div>
+            <LogicStampContextRelatedCliNav currentHref="/docs/logicstamp-context/watch-mode" />
           </AnimatedSection>
 
           {/* Next Steps */}
