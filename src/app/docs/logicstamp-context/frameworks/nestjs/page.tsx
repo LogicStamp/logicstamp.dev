@@ -4,7 +4,7 @@ import AnimatedSection from '@/components/common/AnimatedSection'
 import DocsLayout from '@/components/docs/DocsLayout'
 import DocsMarkdown from '@/components/docs/DocsMarkdown'
 import ReadyToGetStartedCard from '@/components/docs/ReadyToGetStartedCard'
-import { getDocWithFallback } from '@/lib/docs'
+import { getDocWithFallback, stripMarkdownLeadingH1 } from '@/lib/docs'
 import { FRAMEWORK_DOCS } from '@/lib/docs/framework-pages'
 
 const config = FRAMEWORK_DOCS.nestjs
@@ -18,10 +18,12 @@ export const metadata: Metadata = {
 async function getContent() {
   try {
     const result = await getDocWithFallback('context', `frameworks/${config.mdFile}`)
-    return result.content
+    return stripMarkdownLeadingH1(result.content)
   } catch (error) {
     console.error('Error fetching nestjs doc:', error)
-    return `# ${config.title}\n\nUnable to load documentation. Please check the [source on GitHub](${GITHUB_URL}).\n\nError: ${error instanceof Error ? error.message : 'Unknown'}`
+    return stripMarkdownLeadingH1(
+      `# ${config.title}\n\nUnable to load documentation. Please check the [source on GitHub](${GITHUB_URL}).\n\nError: ${error instanceof Error ? error.message : 'Unknown'}`
+    )
   }
 }
 

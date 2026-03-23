@@ -17,4 +17,8 @@ export {
   type ParsedCliCommandsDoc,
   type SeeAlsoLink,
 } from './parse-cli-commands-doc'
-export { docsMarkdownComponents } from './markdown-components'
+
+/** Remove first ATX `#` heading when the page hero already shows the title. */
+export function stripMarkdownLeadingH1(markdown: string): string {
+  return markdown.replace(/^#\s[^\n]*\n+/, '')
+}
