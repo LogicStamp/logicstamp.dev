@@ -51,12 +51,12 @@ export default function FrameworksIndexPage() {
                 </a>
                 ; monorepo layout and workflows are documented separately in{' '}
                 <a
-                  href="https://github.com/LogicStamp/logicstamp-context/blob/main/docs/monorepo.md"
+                  href="https://github.com/LogicStamp/logicstamp-context/blob/main/docs/guides/monorepo.md"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="text-blue-600 dark:text-blue-400 hover:underline"
                 >
-                  docs/monorepo.md
+                  docs/guides/monorepo.md
                 </a>
                 .
               </p>
@@ -91,7 +91,7 @@ export default function FrameworksIndexPage() {
               LogicStamp Context works seamlessly with monorepos containing both backend and frontend code.
             </p>
             <Link
-              href="/docs/logicstamp-context/monorepo"
+              href="/docs/guides/monorepo"
               className="inline-flex items-center gap-2 text-cyan-600 dark:text-cyan-400 hover:underline font-medium"
             >
               Learn about monorepo support →

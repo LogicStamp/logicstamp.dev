@@ -128,7 +128,7 @@ export default async function BetaPage() {
                 MCP ROADMAP.md
               </a>
               . For known limitations with code evidence, see{' '}
-              <a href="/docs/complete-reference/known-limitations" className="text-blue-600 dark:text-blue-400 hover:underline font-semibold">
+              <a href="/docs/reference/limitations" className="text-blue-600 dark:text-blue-400 hover:underline font-semibold">
                 Known Limitations
               </a>
               .

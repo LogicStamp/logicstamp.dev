@@ -12,6 +12,11 @@ export const metadata: Metadata = {
 
 const guidePages = [
   {
+    title: 'Monorepo Support',
+    href: '/docs/guides/monorepo',
+    description: 'Work with multi-package repositories where frontend, backend, and shared packages live together.',
+  },
+  {
     title: 'Usage Guides',
     href: '/docs/guides/usage',
     description: 'End-to-end walkthroughs for generating context, curating bundles, and using them with LLMs.',
@@ -158,7 +163,7 @@ export default function GuidesHomePage() {
               </Link>
 
               <Link
-                href="/docs/complete-reference"
+                href="/docs/reference/complete"
                 className="group p-4 border border-gray-200 dark:border-gray-800 rounded-lg md:hover:border-blue-500 dark:md:hover:border-blue-500 transition-colors"
               >
                 <div className="flex items-baseline gap-2 mb-2">

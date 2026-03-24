@@ -473,7 +473,7 @@ stamp context validate`,
               label: 'Get Started',
             }}
             secondaryAction={{
-              href: '/docs/complete-reference',
+              href: '/docs/reference/complete',
               label: 'Complete Reference',
             }}
           />

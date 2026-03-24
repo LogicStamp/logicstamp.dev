@@ -4,22 +4,26 @@ import AnimatedSection from '@/components/common/AnimatedSection'
 import DocsLayout from '@/components/docs/DocsLayout'
 import DocsMarkdown from '@/components/docs/DocsMarkdown'
 import ReadyToGetStartedCard from '@/components/docs/ReadyToGetStartedCard'
-import { fetchGitHubDoc } from '@/lib/docs'
+import { getDocWithFallback, stripMarkdownLeadingH1 } from '@/lib/docs'
+import { docsBodyTypographyClass } from '@/lib/docs/markdown-styles'
 
 export const metadata: Metadata = {
   title: 'Known Limitations | LogicStamp Context Documentation',
   description: 'Learn about current limitations in LogicStamp Context extraction, including dynamic class parsing, CSS-in-JS support, and TypeScript type extraction.',
 }
 
-const GITHUB_URL = 'https://github.com/LogicStamp/logicstamp-context/blob/main/docs/limitations.md'
+const MD_PATH = 'reference/limitations.md'
+const GITHUB_URL = 'https://github.com/LogicStamp/logicstamp-context/blob/main/docs/reference/limitations.md'
 
 async function getContent() {
   try {
-    const result = await fetchGitHubDoc('context', 'limitations.md')
-    return result.content
+    const result = await getDocWithFallback('context', MD_PATH)
+    return stripMarkdownLeadingH1(result.content)
   } catch (error) {
     console.error('Error fetching limitations doc:', error)
-    return `# Known Limitations\n\nUnable to load documentation. Please check the [source on GitHub](${GITHUB_URL}).\n\nError: ${error instanceof Error ? error.message : 'Unknown'}`
+    return stripMarkdownLeadingH1(
+      `# Known Limitations\n\nUnable to load documentation. Please check the [source on GitHub](${GITHUB_URL}).\n\nError: ${error instanceof Error ? error.message : 'Unknown'}`
+    )
   }
 }
 
@@ -59,8 +63,8 @@ export default async function KnownLimitationsPage() {
             <div className="relative bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded-2xl p-4 sm:p-6 lg:p-8 shadow-xl">
               <DocsMarkdown
                 source="context"
-                currentDocPath="limitations.md"
-                className="prose prose-lg dark:prose-invert max-w-none prose-headings:text-gray-900 dark:prose-headings:text-white prose-p:text-gray-700 dark:prose-p:text-gray-300 prose-a:text-blue-600 dark:prose-a:text-blue-400 prose-code:text-gray-900 dark:prose-code:text-gray-100 prose-code:bg-gray-100 dark:prose-code:bg-gray-800 prose-strong:text-gray-900 dark:prose-strong:text-white prose-ul:text-gray-700 dark:prose-ul:text-gray-300 prose-li:text-gray-700 dark:prose-li:text-gray-300 prose-table:text-gray-700 dark:prose-table:text-gray-300"
+                currentDocPath={MD_PATH}
+                className={docsBodyTypographyClass}
               >
                 {content}
               </DocsMarkdown>

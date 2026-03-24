@@ -28,6 +28,25 @@ const nextConfig = {
       exclude: ['error', 'warn'],
     } : false,
   },
+  async redirects() {
+    return [
+      {
+        source: '/docs/complete-reference',
+        destination: '/docs/reference/complete',
+        permanent: true,
+      },
+      {
+        source: '/docs/complete-reference/known-limitations',
+        destination: '/docs/reference/limitations',
+        permanent: true,
+      },
+      {
+        source: '/docs/logicstamp-context/monorepo',
+        destination: '/docs/guides/monorepo',
+        permanent: true,
+      },
+    ]
+  },
 }
 
 module.exports = nextConfig
