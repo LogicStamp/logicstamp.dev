@@ -179,7 +179,7 @@ export default function Header() {
               <ThemeToggle compact />
             </div>
             <div className="h-5 w-px bg-gray-300/50 dark:bg-gray-600/50" style={{ minWidth: '1px', transform: 'translateZ(0)' }} />
-            <GetStartedButton size="sm" />
+            <GetStartedButton size="sm" variant="inverted" />
           </div>
         </nav>
         </div>
@@ -219,7 +219,7 @@ export default function Header() {
           {/* Get Started button */}
           <div className="mt-5 pt-5 border-t border-gray-200/50 dark:border-gray-700/50">
             <div onClick={() => setMobileMenuOpen(false)}>
-              <GetStartedButton size="sm" className="w-full justify-center" />
+              <GetStartedButton size="sm" variant="inverted" className="w-full justify-center" />
             </div>
           </div>
         </div>

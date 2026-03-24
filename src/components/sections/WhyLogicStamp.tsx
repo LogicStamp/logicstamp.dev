@@ -399,10 +399,9 @@ export default function WhyLogicStamp() {
           benefitsInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
         }`}>
           <div className="relative max-w-5xl mx-auto">
-            <div className="relative rounded-3xl bg-gradient-to-r from-blue-50 via-purple-50 to-pink-50 dark:from-blue-900/20 dark:via-purple-900/20 dark:to-pink-900/20 p-8 sm:p-10 border border-purple-200/50 dark:border-purple-800/50 overflow-hidden">
-              <div className="absolute inset-0 bg-gradient-to-r from-blue-500/5 via-purple-500/5 to-pink-500/5" />
-              <div className="relative z-10 flex flex-col sm:flex-row items-center gap-4">
-                <div className="flex-shrink-0 p-3 sm:p-4 rounded-2xl bg-gradient-to-br from-blue-500 to-purple-500">
+            <div className="relative rounded-3xl p-8 sm:p-10 border border-gray-200/50 dark:border-gray-700/50 overflow-hidden">
+              <div className="relative flex flex-col sm:flex-row items-center gap-4">
+                <div className="flex-shrink-0 p-3 sm:p-4 rounded-2xl bg-gradient-to-br from-emerald-500 to-teal-600">
                   <svg className="w-8 h-8 sm:w-10 sm:h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path
                       strokeLinecap="round"

@@ -40,6 +40,24 @@ describe('GetStartedButton Component', () => {
     expect(button).toHaveClass('ring-1', 'ring-gray-300')
   })
 
+  it('applies frosted variant (Read the Docs–style panel)', () => {
+    render(<GetStartedButton variant="frosted" />)
+
+    const button = screen.getByRole('link', { name: /get started/i })
+    expect(button).toHaveClass('bg-white/80', 'dark:bg-gray-900/80')
+    expect(button).toHaveClass('backdrop-blur-xl', 'backdrop-saturate-150')
+    expect(button).toHaveClass('font-semibold')
+  })
+
+  it('applies inverted variant (StarGitHubButton primary – inverted frosted)', () => {
+    render(<GetStartedButton variant="inverted" />)
+
+    const button = screen.getByRole('link', { name: /get started/i })
+    expect(button).toHaveClass('bg-gray-950/95', 'dark:bg-white/95')
+    expect(button).toHaveClass('text-white', 'dark:text-gray-950')
+    expect(button).toHaveClass('font-semibold')
+  })
+
   it('applies small size classes', () => {
     render(<GetStartedButton size="sm" />)
 

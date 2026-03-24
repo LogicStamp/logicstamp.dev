@@ -1,3 +1,7 @@
+/** Matches ReadTheDocsButton `variant="secondary"` (frosted panel + ring). */
+const secondaryCtaClassName =
+  'inline-flex items-center gap-2 px-4 sm:px-6 py-2.5 sm:py-3 rounded-lg text-sm sm:text-base font-semibold bg-white/80 dark:bg-gray-900/80 text-gray-900 dark:text-white shadow-lg hover:shadow-xl ring-1 ring-gray-300 dark:ring-gray-700 backdrop-blur-xl backdrop-saturate-150 transition-all duration-200 whitespace-nowrap focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-purple-600'
+
 export default function CommunityCTA() {
   return (
     <div className="mt-16 sm:mt-24">
@@ -25,7 +29,7 @@ export default function CommunityCTA() {
               <a
                 href="/docs/what-is-logicstamp"
                 aria-label="Learn more about LogicStamp"
-                className="group inline-flex items-center gap-2 px-4 sm:px-6 py-2.5 sm:py-3 rounded-lg bg-white/80 dark:bg-gray-900/80 text-gray-900 dark:text-white text-sm sm:text-base font-semibold shadow-lg hover:shadow-xl ring-1 ring-gray-300 dark:ring-gray-700 backdrop-blur-xl backdrop-saturate-150 transition-all duration-200 whitespace-nowrap"
+                className={secondaryCtaClassName}
               >
                 Learn More →
               </a>
@@ -33,7 +37,7 @@ export default function CommunityCTA() {
                 href="https://github.com/LogicStamp/logicstamp-context/issues"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="group inline-flex items-center gap-2 px-4 sm:px-6 py-2.5 sm:py-3 rounded-lg bg-gradient-to-r from-blue-600 to-purple-600 text-white text-sm sm:text-base font-semibold shadow-lg hover:shadow-xl transition-all duration-200 whitespace-nowrap"
+                className={secondaryCtaClassName}
               >
                 <svg className="w-4 h-4 sm:w-5 sm:h-5" fill="currentColor" viewBox="0 0 20 20">
                   <path fillRule="evenodd" d="M10 3a1 1 0 011 1v5h5a1 1 0 110 2h-5v5a1 1 0 11-2 0v-5H4a1 1 0 110-2h5V4a1 1 0 011-1z" clipRule="evenodd" />
