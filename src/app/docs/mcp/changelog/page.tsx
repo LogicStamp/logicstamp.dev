@@ -3,7 +3,9 @@ import Footer from '@/components/layout/Footer'
 import AnimatedSection from '@/components/common/AnimatedSection'
 import DocsLayout from '@/components/docs/DocsLayout'
 import DocsMarkdown from '@/components/docs/DocsMarkdown'
+import { stripMarkdownBeforeFirstH2, stripMarkdownLeadingH1 } from '@/lib/docs'
 import { fetchChangelog } from '@/lib/docs/fetch-github-docs'
+import { docsBodyTypographyClass } from '@/lib/docs/markdown-styles'
 
 export const metadata: Metadata = {
   title: 'MCP Changelog | LogicStamp MCP Documentation',
@@ -12,13 +14,19 @@ export const metadata: Metadata = {
 
 const CHANGELOG_GITHUB_URL = 'https://github.com/LogicStamp/logicstamp-mcp/blob/main/CHANGELOG.md'
 
+function normalizeChangelogMarkdown(markdown: string): string {
+  return stripMarkdownBeforeFirstH2(stripMarkdownLeadingH1(markdown))
+}
+
 async function getChangelogContent(): Promise<string> {
   try {
     const { content } = await fetchChangelog('mcp')
-    return content
+    return normalizeChangelogMarkdown(content)
   } catch (error) {
     console.error('Error fetching changelog from GitHub:', error)
-    return `# MCP Changelog\n\nUnable to load changelog from GitHub. Please visit the [MCP GitHub repository](${CHANGELOG_GITHUB_URL}) to view the latest changes.\n\nError: ${error instanceof Error ? error.message : 'Unknown error'}`
+    return normalizeChangelogMarkdown(
+      `# MCP Changelog\n\nUnable to load changelog from GitHub. Please visit the [MCP GitHub repository](${CHANGELOG_GITHUB_URL}) to view the latest changes.\n\nError: ${error instanceof Error ? error.message : 'Unknown error'}`
+    )
   }
 }
 
@@ -33,11 +41,7 @@ export default async function MCPChangelogPage() {
             <h1 className="text-3xl lg:text-4xl font-semibold text-gray-900 dark:text-white mb-3">
               MCP Changelog
             </h1>
-            <p className="text-lg text-gray-900 dark:text-white">
-              All notable user-facing changes to LogicStamp MCP Server are tracked here. The project follows Semantic
-              Versioning and a Keep a Changelog-style format.
-            </p>
-            <p className="text-sm text-gray-600 dark:text-gray-400 mt-2">
+            <p className="text-sm text-gray-600 dark:text-gray-400">
               This changelog is automatically fetched from the{' '}
               <a
                 href={CHANGELOG_GITHUB_URL}
@@ -53,7 +57,11 @@ export default async function MCPChangelogPage() {
         </AnimatedSection>
 
         <AnimatedSection direction="up" delay={100}>
-          <DocsMarkdown source="mcp" currentDocPath="CHANGELOG.md">
+          <DocsMarkdown
+            source="mcp"
+            currentDocPath="CHANGELOG.md"
+            className={docsBodyTypographyClass}
+          >
             {changelogContent}
           </DocsMarkdown>
         </AnimatedSection>
