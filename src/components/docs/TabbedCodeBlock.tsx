@@ -210,11 +210,11 @@ export default function TabbedCodeBlock({ tabs }: TabbedCodeBlockProps) {
         <CopyButton text={tabs[activeTab].copyText} className="absolute top-2 right-2 lg:right-6 z-10" />
         {highlightedHtml ? (
           <div
-            className="tabbed-code-shiki max-w-full overflow-x-auto [&_pre.shiki]:!bg-transparent [&_pre.shiki]:m-0 [&_pre.shiki]:p-0 [&_pre.shiki]:text-[0.8125rem] [&_pre.shiki]:leading-relaxed"
+            className="tabbed-code-shiki max-w-full overflow-x-auto max-lg:pb-4 [&_pre.shiki]:!bg-transparent [&_pre.shiki]:m-0 [&_pre.shiki]:p-0 [&_pre.shiki]:text-[0.8125rem] [&_pre.shiki]:leading-relaxed"
             dangerouslySetInnerHTML={{ __html: highlightedHtml }}
           />
         ) : (
-          <code className="text-gray-900 dark:text-gray-100 whitespace-pre-wrap break-words max-w-full block overflow-x-auto">
+          <code className="text-gray-900 dark:text-gray-100 whitespace-pre-wrap break-words max-w-full block overflow-x-auto max-lg:pb-4">
             {tabs[activeTab].code}
           </code>
         )}
