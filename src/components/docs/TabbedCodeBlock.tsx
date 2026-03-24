@@ -2,11 +2,15 @@
 
 import React, { useState, useRef, useEffect } from 'react'
 import CopyButton from '../ui/CopyButton'
-
+import { useTheme } from '@/contexts/ThemeContext'
+import { guessTabCodeLang } from '@/lib/docs/guess-tab-code-lang'
+import { getTabbedCodeHighlighter } from '@/lib/docs/tabbed-code-shiki'
 interface Tab {
   label: string
   code: string
   copyText: string
+  /** Shiki language id (e.g. `json`, `typescript`). When omitted, language is inferred from the label and code. */
+  language?: string
 }
 
 interface TabbedCodeBlockProps {
@@ -29,13 +33,49 @@ function generateStableId(tabs: Tab[]): string {
 }
 
 export default function TabbedCodeBlock({ tabs }: TabbedCodeBlockProps) {
+  const { isDarkMode } = useTheme()
   const [activeTab, setActiveTab] = useState(0)
   const scrollContainerRef = useRef<HTMLDivElement>(null)
   const tabButtonRefs = useRef<(HTMLButtonElement | null)[]>([])
   const [touchStart, setTouchStart] = useState<number | null>(null)
   const [touchEnd, setTouchEnd] = useState<number | null>(null)
+  const [highlightedHtml, setHighlightedHtml] = useState<string | null>(null)
   // Generate stable ID based on tabs content - use lazy useState to compute once without accessing refs during render
   const [baseId] = useState(() => generateStableId(tabs))
+
+  const active = tabs[activeTab]
+  const theme = isDarkMode ? 'one-dark-pro' : 'github-light'
+
+  useEffect(() => {
+    let cancelled = false
+    const code = active.code
+    const lang = guessTabCodeLang(code, active.label, active.language)
+
+    ;(async () => {
+      try {
+        const highlighter = await getTabbedCodeHighlighter()
+        let html = highlighter.codeToHtml(code, {
+          lang,
+          theme,
+        })
+        if (cancelled) return
+        setHighlightedHtml(html)
+      } catch {
+        if (cancelled) return
+        try {
+          const highlighter = await getTabbedCodeHighlighter()
+          const html = highlighter.codeToHtml(code, { lang: 'bash', theme })
+          if (!cancelled) setHighlightedHtml(html)
+        } catch {
+          if (!cancelled) setHighlightedHtml(null)
+        }
+      }
+    })()
+
+    return () => {
+      cancelled = true
+    }
+  }, [active.code, active.label, active.language, theme])
 
   // Initialize refs array
   useEffect(() => {
@@ -167,10 +207,17 @@ export default function TabbedCodeBlock({ tabs }: TabbedCodeBlockProps) {
         aria-labelledby={`${baseId}-tab-${activeTab}`}
         className="relative bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 border border-gray-200 dark:border-gray-700 border-t-0 p-5 rounded-b-lg font-mono text-sm overflow-x-auto max-w-full"
       >
-        <CopyButton text={tabs[activeTab].copyText} className="absolute top-2 right-2 lg:right-6" />
-        <code className="text-gray-900 dark:text-gray-100 whitespace-pre-wrap break-words max-w-full block overflow-x-auto">
-          {tabs[activeTab].code}
-        </code>
+        <CopyButton text={tabs[activeTab].copyText} className="absolute top-2 right-2 lg:right-6 z-10" />
+        {highlightedHtml ? (
+          <div
+            className="tabbed-code-shiki max-w-full overflow-x-auto [&_pre.shiki]:!bg-transparent [&_pre.shiki]:m-0 [&_pre.shiki]:p-0 [&_pre.shiki]:text-[0.8125rem] [&_pre.shiki]:leading-relaxed"
+            dangerouslySetInnerHTML={{ __html: highlightedHtml }}
+          />
+        ) : (
+          <code className="text-gray-900 dark:text-gray-100 whitespace-pre-wrap break-words max-w-full block overflow-x-auto">
+            {tabs[activeTab].code}
+          </code>
+        )}
       </div>
     </div>
   )
