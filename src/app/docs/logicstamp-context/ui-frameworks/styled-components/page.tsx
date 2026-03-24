@@ -5,6 +5,7 @@ import DocsLayout from '@/components/docs/DocsLayout'
 import DocsMarkdown from '@/components/docs/DocsMarkdown'
 import ReadyToGetStartedCard from '@/components/docs/ReadyToGetStartedCard'
 import { getDocWithFallback, stripMarkdownLeadingH1 } from '@/lib/docs'
+import { docsBodyTypographyClass } from '@/lib/docs/markdown-styles'
 import { UI_FRAMEWORK_DOCS } from '@/lib/docs/ui-framework-pages'
 
 const config = UI_FRAMEWORK_DOCS['styled-components']
@@ -50,7 +51,11 @@ export default async function StyledComponentsPage() {
           </div>
         </AnimatedSection>
         <AnimatedSection direction="up" delay={100}>
-          <DocsMarkdown source="context" currentDocPath={`ui-frameworks/${config.mdFile}`}>
+          <DocsMarkdown
+            source="context"
+            currentDocPath={`ui-frameworks/${config.mdFile}`}
+            className={docsBodyTypographyClass}
+          >
             {content}
           </DocsMarkdown>
         </AnimatedSection>
