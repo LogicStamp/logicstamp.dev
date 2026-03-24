@@ -205,16 +205,16 @@ export default function TabbedCodeBlock({ tabs }: TabbedCodeBlockProps) {
         role="tabpanel"
         id={`${baseId}-panel-${activeTab}`}
         aria-labelledby={`${baseId}-tab-${activeTab}`}
-        className="relative bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 border border-gray-200 dark:border-gray-700 border-t-0 p-5 rounded-b-lg font-mono text-sm overflow-x-auto max-w-full"
+        className="relative bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 border border-gray-200 dark:border-gray-700 border-t-0 p-5 rounded-b-lg font-mono text-sm max-w-full min-w-0"
       >
         <CopyButton text={tabs[activeTab].copyText} className="absolute top-2 right-2 lg:right-6 z-10" />
         {highlightedHtml ? (
           <div
-            className="tabbed-code-shiki max-w-full overflow-x-auto max-lg:pb-4 [&_pre.shiki]:!bg-transparent [&_pre.shiki]:m-0 [&_pre.shiki]:p-0 [&_pre.shiki]:text-[0.8125rem] [&_pre.shiki]:leading-relaxed"
+            className="tabbed-code-shiki max-w-full min-w-0 overflow-x-auto [&_pre.shiki]:!bg-transparent [&_pre.shiki]:m-0 [&_pre.shiki]:p-0 [&_pre.shiki]:text-[0.8125rem] [&_pre.shiki]:leading-relaxed"
             dangerouslySetInnerHTML={{ __html: highlightedHtml }}
           />
         ) : (
-          <code className="text-gray-900 dark:text-gray-100 whitespace-pre-wrap break-words max-w-full block overflow-x-auto max-lg:pb-4">
+          <code className="text-gray-900 dark:text-gray-100 whitespace-pre-wrap break-words max-w-full min-w-0 block overflow-x-auto max-lg:pb-10">
             {tabs[activeTab].code}
           </code>
         )}
