@@ -28,3 +28,14 @@ export {
 export function stripMarkdownLeadingH1(markdown: string): string {
   return markdown.replace(/^#\s[^\n]*\n+/, '')
 }
+
+/**
+ * Remove everything before the first `##` heading. Use with stripMarkdownLeadingH1 when the page
+ * hero already shows the title and intro (e.g. Keep a Changelog boilerplate before version sections).
+ */
+export function stripMarkdownBeforeFirstH2(markdown: string): string {
+  const lines = markdown.split(/\r?\n/)
+  const idx = lines.findIndex((line) => /^##\s/.test(line))
+  if (idx === -1) return markdown.trimStart()
+  return lines.slice(idx).join('\n').replace(/^\n+/, '')
+}
