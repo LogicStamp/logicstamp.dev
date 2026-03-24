@@ -243,13 +243,13 @@ export default function DocsHomePage() {
               Reference
             </h2>
             <p className="text-base sm:text-lg text-gray-700 dark:text-gray-300 mb-4 sm:mb-6 leading-relaxed">
-              Complete documentation for all commands, options, and features.
+              Schema, UIF contracts, hashes, stampignore, and known limitations.
             </p>
             <Link
-              href="/docs/reference/complete"
+              href="/docs/reference"
               className="inline-flex items-center gap-2 px-4 sm:px-6 py-2.5 sm:py-3 bg-white dark:bg-gray-800 text-gray-900 dark:text-white font-semibold rounded-xl border-2 border-gray-200 dark:border-gray-700 hover:shadow-xl transition-all duration-200 hover:-translate-y-0.5 text-sm sm:text-base"
             >
-              Complete Reference
+              Reference
               <svg className="w-4 h-4 sm:w-5 sm:h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
               </svg>

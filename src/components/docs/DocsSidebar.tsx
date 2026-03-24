@@ -102,7 +102,6 @@ const sections: DocsNavSection[] = [
     title: 'Reference',
     items: [
       { title: 'Reference', href: '/docs/reference' },
-      { title: 'Complete Reference', href: '/docs/reference/complete' },
       { title: 'Hashes', href: '/docs/reference/hashes' },
       { title: 'Schema', href: '/docs/reference/schema' },
       { title: 'UIF Contracts', href: '/docs/reference/uif-contracts' },
@@ -123,8 +122,6 @@ const sections: DocsNavSection[] = [
 function isActive(pathname: string | null, href: string) {
   if (pathname == null || pathname === '') return false
   if (href === '/docs') return pathname === '/docs'
-  // Complete Reference should only match exactly, not sub-paths
-  if (href === '/docs/reference/complete') return pathname === '/docs/reference/complete'
   // Reference page should match exactly
   if (href === '/docs/reference') return pathname === '/docs/reference'
   // MCP Overview should only match exactly, not sub-paths
@@ -176,24 +173,6 @@ function getIcon(href: string): ReactNode {
 
   if (href === '/docs/reference') {
     // Reference / book icon
-    return (
-      <svg
-        className="w-3.5 h-3.5"
-        viewBox="0 0 24 24"
-        fill="none"
-        stroke="currentColor"
-        strokeWidth={2}
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      >
-        <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20" />
-        <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z" />
-      </svg>
-    )
-  }
-
-  if (href === '/docs/reference/complete') {
-    // Book / reference icon
     return (
       <svg
         className="w-3.5 h-3.5"

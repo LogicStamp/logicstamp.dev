@@ -467,14 +467,14 @@ stamp context validate`,
 
           {/* Next Steps */}
           <ReadyToGetStartedCard
-            description="Get started with LogicStamp Context or explore the complete reference for all features."
+            description="Get started with LogicStamp Context or open the reference for schema, contracts, and limitations."
             primaryAction={{
               href: '/docs/getting-started',
               label: 'Get Started',
             }}
             secondaryAction={{
-              href: '/docs/reference/complete',
-              label: 'Complete Reference',
+              href: '/docs/reference',
+              label: 'Reference',
             }}
           />
         </div>
