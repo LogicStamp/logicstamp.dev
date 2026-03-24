@@ -214,7 +214,7 @@ export default function TabbedCodeBlock({ tabs }: TabbedCodeBlockProps) {
             dangerouslySetInnerHTML={{ __html: highlightedHtml }}
           />
         ) : (
-          <code className="text-gray-900 dark:text-gray-100 whitespace-pre-wrap break-words max-w-full min-w-0 block overflow-x-auto max-lg:pb-10">
+          <code className="text-gray-900 dark:text-gray-100 whitespace-pre-wrap break-words max-w-full min-w-0 block overflow-x-auto max-lg:pb-4">
             {tabs[activeTab].code}
           </code>
         )}

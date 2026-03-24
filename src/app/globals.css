@@ -266,7 +266,7 @@ html, body {
 @media (max-width: 1023px) {
   .docs-markdown-shiki,
   .tabbed-code-block-wrapper .tabbed-code-shiki {
-    padding-bottom: 2.5rem !important;
+    padding-bottom: 1rem !important;
   }
 
   .docs-markdown-shiki pre.shiki,
