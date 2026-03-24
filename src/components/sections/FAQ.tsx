@@ -31,12 +31,12 @@ function useInView(threshold = 0.1) {
 
 // Essential FAQs - the most common questions users ask
 const faqs = [
-    {
-        id: 1,
-        question: 'How does LogicStamp Context work?',
-        answer:
-          'LogicStamp Context is a context compiler that compiles your TypeScript codebase into structured context bundles optimized for AI consumption.\nIt uses the TypeScript compiler API (via ts-morph) to extract deterministic architectural contracts from your source code — component props, state variables, event handlers, exported functions — and builds dependency graphs showing how components connect.\nThe result is machine-readable JSON bundles with built-in token optimization.\nNo configuration required — just run `stamp context` and generate AI-ready context instantly.',
-      },
+  {
+    id: 1,
+    question: 'How does LogicStamp Context work?',
+    answer:
+      'LogicStamp Context is a context compiler: it parses your TypeScript codebase and compiles it into deterministic, structured JSON bundles for AI tools.\nIt extracts architectural contracts like props, state, hooks, events, exports, and dependencies, then organizes them into stable, diffable, token-efficient context.\nThis gives AI assistants a more accurate view of your project without relying on guesswork.\nRun `stamp context` to generate the bundles.',
+  },
   {
     id: 2,
     question: 'Why not just paste code into AI chats?',
