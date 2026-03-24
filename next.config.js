@@ -32,7 +32,12 @@ const nextConfig = {
     return [
       {
         source: '/docs/complete-reference',
-        destination: '/docs/reference/complete',
+        destination: '/docs/reference',
+        permanent: true,
+      },
+      {
+        source: '/docs/reference/complete',
+        destination: '/docs/reference',
         permanent: true,
       },
       {

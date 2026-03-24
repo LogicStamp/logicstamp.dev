@@ -406,7 +406,7 @@ stamp context compare`
 
         <ReadyToGetStartedCard
           variant="green"
-          description="Explore other commands or check out the complete reference."
+          description="Explore other commands or browse the Reference section for schema and contracts."
           primaryAction={{
             href: '/docs/logicstamp-context/commands',
             label: 'All Commands',

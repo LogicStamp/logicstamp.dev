@@ -142,7 +142,7 @@ export default function GuidesHomePage() {
               Reference Documentation
             </h2>
             <p className="text-gray-600 dark:text-gray-400 mb-4">
-              Need detailed command reference or complete API documentation?
+              Need detailed command docs or schema and contract reference?
             </p>
             <div className="grid sm:grid-cols-2 gap-4">
               <Link
@@ -163,19 +163,19 @@ export default function GuidesHomePage() {
               </Link>
 
               <Link
-                href="/docs/reference/complete"
+                href="/docs/reference"
                 className="group p-4 border border-gray-200 dark:border-gray-800 rounded-lg md:hover:border-blue-500 dark:md:hover:border-blue-500 transition-colors"
               >
                 <div className="flex items-baseline gap-2 mb-2">
                   <h3 className="text-lg font-semibold text-gray-900 dark:text-white">
-                    Complete Reference
+                    Reference
                   </h3>
                   <svg className="w-5 h-5 text-gray-400 md:group-hover:text-blue-500 transition-transform md:group-hover:translate-x-1 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
                   </svg>
                 </div>
                 <p className="text-sm text-gray-600 dark:text-gray-400">
-                  Comprehensive reference for all commands, options, formats, and advanced features.
+                  Schema, UIF contracts, hashes, stampignore, and known limitations.
                 </p>
               </Link>
             </div>
