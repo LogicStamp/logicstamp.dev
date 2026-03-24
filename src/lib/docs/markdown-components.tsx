@@ -6,6 +6,8 @@
 
 import Link from 'next/link'
 import type { Components } from 'react-markdown'
+import MarkdownShikiFenced from '@/components/docs/MarkdownShikiFenced'
+import { resolveMarkdownFenceLang } from '@/lib/docs/markdown-fence-lang'
 
 export const docsMarkdownComponents: Components = {
   h2: (props) => (
@@ -20,10 +22,13 @@ export const docsMarkdownComponents: Components = {
   h4: (props) => (
     <h4 className="text-lg font-semibold mt-4 mb-2 text-gray-900 dark:text-white" {...props} />
   ),
+  // Fenced blocks are `<pre><code class="language-…">`; unwrap `pre` so Shiki’s own `<pre>` is not nested.
+  pre: ({ children }) => <>{children}</>,
   code: (props) => {
     const { className, children, ...rest } = props
+    const text = String(children).replace(/\n$/, '')
     // react-markdown v10 removed `inline` prop - detect block via language-* class or newlines
-    const isBlock = className?.includes('language-') || String(children).includes('\n')
+    const isBlock = Boolean(className?.includes('language-')) || text.includes('\n')
     if (!isBlock) {
       return (
         <code
@@ -34,14 +39,8 @@ export const docsMarkdownComponents: Components = {
         </code>
       )
     }
-    return (
-      <code
-        className="block p-4 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 rounded-lg text-sm font-mono overflow-x-auto my-4"
-        {...rest}
-      >
-        {children}
-      </code>
-    )
+    const lang = resolveMarkdownFenceLang(className, text)
+    return <MarkdownShikiFenced code={text} lang={lang} />
   },
   a: ({ href, children, ...rest }) => {
     const url = href ?? ''
