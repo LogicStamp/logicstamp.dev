@@ -258,6 +258,23 @@ html, body {
   overflow-y: visible !important;
 }
 
+/*
+ * Shiki blocks: @tailwindcss/typography applies overflow-x: auto to .prose pre, so the
+ * horizontal scrollbar sits on <pre> and ignores padding on the wrapper. Move scroll to
+ * the wrapper and reserve bottom space on small screens (global dark scrollbar is 8px tall).
+ */
+@media (max-width: 1023px) {
+  .docs-markdown-shiki,
+  .tabbed-code-block-wrapper .tabbed-code-shiki {
+    padding-bottom: 2.5rem !important;
+  }
+
+  .docs-markdown-shiki pre.shiki,
+  .tabbed-code-block-wrapper .tabbed-code-shiki pre.shiki {
+    overflow-x: visible !important;
+  }
+}
+
 /* Prevent layout shifts */
 * {
   box-sizing: border-box;
