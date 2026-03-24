@@ -12,7 +12,7 @@ import { resolveMarkdownFenceLang } from '@/lib/docs/markdown-fence-lang'
 export const docsMarkdownComponents: Components = {
   h2: (props) => (
     <h2
-      className="text-2xl font-bold mt-8 mb-4 text-gray-900 dark:text-white border-b border-gray-200 dark:border-gray-700 pb-2"
+      className="text-2xl font-bold mt-8 mb-4 text-gray-900 dark:text-white"
       {...props}
     />
   ),
