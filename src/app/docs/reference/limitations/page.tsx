@@ -46,30 +46,21 @@ export default async function KnownLimitationsPage() {
                 Known Limitations
               </div>
 
-              <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black text-transparent bg-clip-text bg-gradient-to-r from-gray-900 to-gray-700 dark:from-white dark:to-gray-300 mb-4 sm:mb-6 tracking-tight leading-[1.1]">
+              <h1 className="text-3xl sm:text-4xl md:text-5xl font-black text-transparent bg-clip-text bg-gradient-to-r from-gray-900 to-gray-700 dark:from-white dark:to-gray-300 mb-4 tracking-tight">
                 Known Limitations
               </h1>
-
-              <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-gray-600 dark:text-gray-400 leading-relaxed max-w-3xl">
-                Things that don&apos;t work perfectly yet. We&apos;re working on improving these areas.
-              </p>
             </div>
           </div>
         </AnimatedSection>
 
         <AnimatedSection direction="up" delay={100}>
-          <div className="relative mb-8 sm:mb-12 lg:mb-16">
-            <div className="absolute -inset-1 bg-gradient-to-r from-amber-600 to-orange-600 rounded-2xl blur opacity-20 dark:opacity-10" />
-            <div className="relative bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded-2xl p-4 sm:p-6 lg:p-8 shadow-xl">
-              <DocsMarkdown
-                source="context"
-                currentDocPath={MD_PATH}
-                className={docsBodyTypographyClass}
-              >
-                {content}
-              </DocsMarkdown>
-            </div>
-          </div>
+          <DocsMarkdown
+            source="context"
+            currentDocPath={MD_PATH}
+            className={docsBodyTypographyClass}
+          >
+            {content}
+          </DocsMarkdown>
         </AnimatedSection>
 
         <ReadyToGetStartedCard
