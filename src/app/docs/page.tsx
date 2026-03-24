@@ -99,7 +99,7 @@ export default function DocsHomePage() {
                 </p>
               </Link>
               <Link
-                href="/docs/guides/uif-contracts"
+                href="/docs/reference/uif-contracts"
                 className="group p-4 border border-gray-200 dark:border-gray-800 rounded-lg md:hover:border-blue-500 dark:md:hover:border-blue-500 transition-colors"
               >
                 <div className="flex items-baseline gap-2 mb-2">

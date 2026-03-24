@@ -45,6 +45,26 @@ const nextConfig = {
         destination: '/docs/guides/monorepo',
         permanent: true,
       },
+      {
+        source: '/docs/guides/hashes',
+        destination: '/docs/reference/hashes',
+        permanent: true,
+      },
+      {
+        source: '/docs/guides/uifb',
+        destination: '/docs/reference/hashes',
+        permanent: true,
+      },
+      {
+        source: '/docs/guides/uif-contracts',
+        destination: '/docs/reference/uif-contracts',
+        permanent: true,
+      },
+      {
+        source: '/docs/logicstamp-context/schema',
+        destination: '/docs/reference/schema',
+        permanent: true,
+      },
     ]
   },
 }

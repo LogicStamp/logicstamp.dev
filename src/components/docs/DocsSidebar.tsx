@@ -96,10 +96,6 @@ const sections: DocsNavSection[] = [
       { title: 'Usage Guides', href: '/docs/guides/usage' },
       { title: 'LLM Context Format', href: '/docs/guides/llm-context' },
       { title: 'Best Practices', href: '/docs/guides/best-practices' },
-      { title: 'Hashes', href: '/docs/guides/hashes' },
-      { title: 'bundleHash (uifb)', href: '/docs/guides/uifb' },
-      { title: 'UIF Contracts', href: '/docs/guides/uif-contracts' },
-      { title: 'Schema', href: '/docs/logicstamp-context/schema' },
     ],
   },
   {
@@ -107,6 +103,10 @@ const sections: DocsNavSection[] = [
     items: [
       { title: 'Reference', href: '/docs/reference' },
       { title: 'Complete Reference', href: '/docs/reference/complete' },
+      { title: 'Hashes', href: '/docs/reference/hashes' },
+      { title: 'Schema', href: '/docs/reference/schema' },
+      { title: 'UIF Contracts', href: '/docs/reference/uif-contracts' },
+      { title: 'Stampignore', href: '/docs/reference/stampignore' },
       { title: 'Known Limitations', href: '/docs/reference/limitations' },
     ],
   },
@@ -512,7 +512,7 @@ function getIcon(href: string): ReactNode {
     )
   }
 
-  if (href === '/docs/guides/hashes') {
+  if (href.includes('/reference/hashes')) {
     // Hash / pound sign icon
     return (
       <svg
@@ -528,24 +528,6 @@ function getIcon(href: string): ReactNode {
         <line x1="4" y1="15" x2="20" y2="15" />
         <line x1="10" y1="3" x2="8" y2="21" />
         <line x1="16" y1="3" x2="14" y2="21" />
-      </svg>
-    )
-  }
-
-  if (href === '/docs/guides/uifb') {
-    // Bundle / folder icon
-    return (
-      <svg
-        className="w-3.5 h-3.5"
-        viewBox="0 0 24 24"
-        fill="none"
-        stroke="currentColor"
-        strokeWidth={2}
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      >
-        <path d="M3 7h4l2-3h6l2 3h4v11H3z" />
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 7h18" />
       </svg>
     )
   }
