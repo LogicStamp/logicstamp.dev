@@ -475,7 +475,7 @@ export default function UifbPage() {
             label: 'Hashes Guide',
           }}
           secondaryAction={{
-            href: '/docs/complete-reference',
+            href: '/docs/reference/complete',
             label: 'Complete Reference',
           }}
         />

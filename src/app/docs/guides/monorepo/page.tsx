@@ -7,14 +7,14 @@ import ReadyToGetStartedCard from '@/components/docs/ReadyToGetStartedCard'
 import { getDocWithFallback, stripMarkdownLeadingH1 } from '@/lib/docs'
 import { docsBodyTypographyClass } from '@/lib/docs/markdown-styles'
 
-const MD_PATH = 'monorepo.md'
+const MD_PATH = 'guides/monorepo.md'
 const GITHUB_URL =
-  'https://github.com/LogicStamp/logicstamp-context/blob/main/docs/monorepo.md'
+  'https://github.com/LogicStamp/logicstamp-context/blob/main/docs/guides/monorepo.md'
 
 export const metadata: Metadata = {
-  title: 'Monorepo Support | LogicStamp Context Documentation',
+  title: 'Monorepo Support | LogicStamp Documentation',
   description:
-    'Learn how LogicStamp Context works seamlessly with monorepos containing both backend and frontend code.',
+    'Learn how LogicStamp works seamlessly with monorepos containing both backend and frontend code.',
 }
 
 async function getContent() {

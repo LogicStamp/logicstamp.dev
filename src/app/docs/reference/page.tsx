@@ -64,7 +64,7 @@ export default function ReferencePage() {
                   </div>
 
                   <Link
-                    href="/docs/complete-reference"
+                    href="/docs/reference/complete"
                     className="inline-flex items-center gap-2 px-4 py-2 bg-blue-600 hover:bg-blue-700 dark:bg-blue-500 dark:hover:bg-blue-600 text-white font-semibold rounded-lg transition-colors"
                   >
                     View Full Complete Reference
@@ -120,7 +120,7 @@ export default function ReferencePage() {
                   </div>
 
                   <Link
-                    href="/docs/complete-reference/known-limitations"
+                    href="/docs/reference/limitations"
                     className="inline-flex items-center gap-2 px-4 py-2 bg-amber-600 hover:bg-amber-700 dark:bg-amber-500 dark:hover:bg-amber-600 text-white font-semibold rounded-lg transition-colors"
                   >
                     View Full Known Limitations

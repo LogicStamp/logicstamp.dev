@@ -556,7 +556,7 @@ export default function HashesPage() {
             label: 'bundleHash (uifb)',
           }}
           secondaryAction={{
-            href: '/docs/complete-reference',
+            href: '/docs/reference/complete',
             label: 'Complete Reference',
           }}
         />

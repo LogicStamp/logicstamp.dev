@@ -196,7 +196,7 @@ export default function WhatIsLogicStampPage() {
               label: 'Installation & Quick Start',
             }}
             secondaryAction={{
-              href: '/docs/complete-reference',
+              href: '/docs/reference/complete',
               label: 'Complete Reference',
             }}
             delay={400}

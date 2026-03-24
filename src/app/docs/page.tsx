@@ -246,7 +246,7 @@ export default function DocsHomePage() {
               Complete documentation for all commands, options, and features.
             </p>
             <Link
-              href="/docs/complete-reference"
+              href="/docs/reference/complete"
               className="inline-flex items-center gap-2 px-4 sm:px-6 py-2.5 sm:py-3 bg-white dark:bg-gray-800 text-gray-900 dark:text-white font-semibold rounded-xl border-2 border-gray-200 dark:border-gray-700 hover:shadow-xl transition-all duration-200 hover:-translate-y-0.5 text-sm sm:text-base"
             >
               Complete Reference

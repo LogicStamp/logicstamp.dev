@@ -1113,7 +1113,7 @@ stamp context validate src/components/context.json`
               label: 'UIF Contracts',
             }}
             secondaryAction={{
-              href: '/docs/complete-reference',
+              href: '/docs/reference/complete',
               label: 'Complete Reference',
             }}
           />

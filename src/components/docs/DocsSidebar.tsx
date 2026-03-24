@@ -51,12 +51,6 @@ const sections: DocsNavSection[] = [
     ],
   },
   {
-    title: 'Monorepo',
-    items: [
-      { title: 'Monorepo Support', href: '/docs/logicstamp-context/monorepo' },
-    ],
-  },
-  {
     title: 'Frameworks',
     items: [
       { title: 'Frameworks', href: '/docs/logicstamp-context/frameworks' },
@@ -98,6 +92,7 @@ const sections: DocsNavSection[] = [
     title: 'Guides',
     items: [
       { title: 'Guides', href: '/docs/guides' },
+      { title: 'Monorepo Support', href: '/docs/guides/monorepo' },
       { title: 'Usage Guides', href: '/docs/guides/usage' },
       { title: 'LLM Context Format', href: '/docs/guides/llm-context' },
       { title: 'Best Practices', href: '/docs/guides/best-practices' },
@@ -111,8 +106,8 @@ const sections: DocsNavSection[] = [
     title: 'Reference',
     items: [
       { title: 'Reference', href: '/docs/reference' },
-      { title: 'Complete Reference', href: '/docs/complete-reference' },
-      { title: 'Known Limitations', href: '/docs/complete-reference/known-limitations' },
+      { title: 'Complete Reference', href: '/docs/reference/complete' },
+      { title: 'Known Limitations', href: '/docs/reference/limitations' },
     ],
   },
   {
@@ -129,7 +124,7 @@ function isActive(pathname: string | null, href: string) {
   if (pathname == null || pathname === '') return false
   if (href === '/docs') return pathname === '/docs'
   // Complete Reference should only match exactly, not sub-paths
-  if (href === '/docs/complete-reference') return pathname === '/docs/complete-reference'
+  if (href === '/docs/reference/complete') return pathname === '/docs/reference/complete'
   // Reference page should match exactly
   if (href === '/docs/reference') return pathname === '/docs/reference'
   // MCP Overview should only match exactly, not sub-paths
@@ -197,7 +192,7 @@ function getIcon(href: string): ReactNode {
     )
   }
 
-  if (href === '/docs/complete-reference') {
+  if (href === '/docs/reference/complete') {
     // Book / reference icon
     return (
       <svg
@@ -215,7 +210,7 @@ function getIcon(href: string): ReactNode {
     )
   }
 
-  if (href.includes('/known-limitations')) {
+  if (href.includes('/limitations')) {
     // Warning / exclamation icon
     return (
       <svg
