@@ -2,7 +2,7 @@ import Link from 'next/link'
 import ReactMarkdown from 'react-markdown'
 import type { Components } from 'react-markdown'
 import { docsMarkdownComponents } from '@/lib/docs/markdown-components'
-import { logicStampContextCliNavExcept } from '@/lib/docs/logicstamp-context-cli-nav'
+import { logicStampContextRelatedCliNavExcept } from '@/lib/docs/logicstamp-context-cli-nav'
 
 /** Titles match hand-written Related Commands (`text-sm font-mono`, no pill). */
 const mdInline: Partial<Components> = {
@@ -27,7 +27,7 @@ export default function LogicStampContextRelatedCliNav({
   currentHref,
   heading = 'Related Commands',
 }: Props) {
-  const items = logicStampContextCliNavExcept(currentHref)
+  const items = logicStampContextRelatedCliNavExcept(currentHref)
 
   return (
     <div className="mb-8 sm:mb-12 lg:mb-16">

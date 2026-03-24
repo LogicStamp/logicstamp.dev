@@ -1,6 +1,6 @@
 /**
  * CLI subsection nav (matches DocsSidebar "CLI" items after CLI Commands).
- * Used for consistent Related Commands grids on logicstamp-context doc pages.
+ * Related Commands grids use {@link logicStampContextRelatedCliNavExcept} (subset of six).
  */
 export type LogicStampContextCliNavItem = {
   href: string
@@ -67,6 +67,20 @@ export const LOGICSTAMP_CONTEXT_CLI_NAV: readonly LogicStampContextCliNavItem[] 
   },
 ] as const
 
-export function logicStampContextCliNavExcept(currentHref: string): LogicStampContextCliNavItem[] {
-  return LOGICSTAMP_CONTEXT_CLI_NAV.filter((item) => item.href !== currentHref)
+/** Subset shown in Related Commands (init → context → watch → style → validate → compare). */
+const RELATED_CLI_NAV_HREFS: readonly string[] = [
+  '/docs/logicstamp-context/init',
+  '/docs/logicstamp-context/context',
+  '/docs/logicstamp-context/watch-mode',
+  '/docs/logicstamp-context/style',
+  '/docs/logicstamp-context/validate',
+  '/docs/logicstamp-context/compare',
+]
+
+export function logicStampContextRelatedCliNavExcept(currentHref: string): LogicStampContextCliNavItem[] {
+  const byHref = new Map(LOGICSTAMP_CONTEXT_CLI_NAV.map((item) => [item.href, item]))
+  return RELATED_CLI_NAV_HREFS.map((href) => byHref.get(href)).filter(
+    (item): item is LogicStampContextCliNavItem =>
+      item != null && item.href !== currentHref,
+  )
 }
