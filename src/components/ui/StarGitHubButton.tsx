@@ -1,3 +1,5 @@
+import { ctaInvertedPrimaryClasses } from './ctaInvertedPrimaryClasses'
+
 interface StarGitHubButtonProps {
   href?: string
   variant?: 'primary' | 'secondary'
@@ -22,8 +24,7 @@ export default function StarGitHubButton({
   }
 
   const variantClasses = {
-    primary:
-      'bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 text-white shadow-xl hover:shadow-2xl focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-purple-600',
+    primary: ctaInvertedPrimaryClasses,
     secondary:
       'bg-white dark:bg-gray-800 text-gray-900 dark:text-white shadow-lg hover:shadow-xl ring-1 ring-gray-300 dark:ring-gray-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-purple-600',
   }
@@ -35,7 +36,7 @@ export default function StarGitHubButton({
       href={href}
       target="_blank"
       rel="noopener noreferrer"
-      className={`group inline-flex items-center gap-2 sm:gap-3 rounded-lg font-bold transition-all duration-200 whitespace-nowrap ${sizeClasses[size]} ${variantClasses[variant]} ${className}`}
+      className={`group inline-flex items-center gap-2 sm:gap-3 rounded-lg font-semibold transition-all duration-200 whitespace-nowrap ${sizeClasses[size]} ${variantClasses[variant]} ${className}`}
     >
       <svg className={iconSize} fill="currentColor" viewBox="0 0 24 24">
         <path

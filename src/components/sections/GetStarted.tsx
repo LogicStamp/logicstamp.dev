@@ -2,6 +2,7 @@
 
 import { useRef, useState, useEffect } from 'react'
 import ReadTheDocsButton from '../ui/ReadTheDocsButton'
+import { ctaInvertedPrimaryClasses } from '../ui/ctaInvertedPrimaryClasses'
 
 // Custom hook for intersection observer
 function useInView(threshold = 0.1) {
@@ -55,7 +56,7 @@ export default function GetStarted() {
                 href="https://www.npmjs.com/package/logicstamp-context"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 rounded-lg bg-gray-800 dark:bg-white text-white dark:text-gray-900 shadow-lg hover:shadow-xl ring-1 ring-gray-700 dark:ring-gray-300 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-purple-600 transition-all duration-200 whitespace-nowrap px-6 py-3 sm:px-8 sm:py-4 text-sm sm:text-base lg:text-lg font-semibold"
+                className={`group inline-flex items-center gap-2 rounded-lg font-semibold transition-all duration-200 whitespace-nowrap px-6 py-3 sm:px-8 sm:py-4 text-sm sm:text-base lg:text-lg ${ctaInvertedPrimaryClasses}`}
               >
                 <svg className="w-4 h-4 sm:w-5 sm:h-5" fill="currentColor" viewBox="0 0 24 24">
                   <path d="M0 0h24v24H0z" fill="none"/>
