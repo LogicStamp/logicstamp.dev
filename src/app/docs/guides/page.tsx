@@ -38,7 +38,7 @@ const guidePages = [
   },
   {
     title: 'Hashes',
-    href: '/docs/guides/hashes',
+    href: '/docs/reference/hashes',
     description: 'Understand fileHash, semanticHash, and bundleHash and how LogicStamp tracks changes across layers.',
   },
 ]
