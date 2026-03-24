@@ -6,6 +6,7 @@ import DocsMarkdown from '@/components/docs/DocsMarkdown'
 import ReadyToGetStartedCard from '@/components/docs/ReadyToGetStartedCard'
 import LogicStampContextRelatedCliNav from '@/components/docs/LogicStampContextRelatedCliNav'
 import { getDocWithFallback, stripMarkdownLeadingH1 } from '@/lib/docs'
+import { docsBodyTypographyClass } from '@/lib/docs/markdown-styles'
 
 const MD_PATH = 'cli/compare-modes.md'
 const CURRENT_DOC_PATH = MD_PATH
@@ -76,7 +77,11 @@ export default async function CompareModesPage() {
         </AnimatedSection>
 
         <AnimatedSection direction="up" delay={100}>
-          <DocsMarkdown source="context" currentDocPath={CURRENT_DOC_PATH}>
+          <DocsMarkdown
+            source="context"
+            currentDocPath={CURRENT_DOC_PATH}
+            className={docsBodyTypographyClass}
+          >
             {body}
           </DocsMarkdown>
         </AnimatedSection>
