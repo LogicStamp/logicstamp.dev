@@ -5,6 +5,7 @@ import AnimatedSection from '@/components/common/AnimatedSection'
 import TabbedCodeBlock from '@/components/docs/TabbedCodeBlock'
 import DocsLayout from '@/components/docs/DocsLayout'
 import ReadyToGetStartedCard from '@/components/docs/ReadyToGetStartedCard'
+import { docsBodyTextClass, docsMutedTextClass } from '@/lib/docs/text-styles'
 
 export const metadata: Metadata = {
   title: 'CLI Getting Started | LogicStamp Context',
@@ -21,7 +22,7 @@ export default function QuickStartPage() {
             <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black text-transparent bg-clip-text bg-gradient-to-r from-gray-900 to-gray-700 dark:from-white dark:to-gray-300 mb-4 sm:mb-6 tracking-tight leading-[1.1]">
               CLI Getting Started
             </h1>
-            <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-gray-600 dark:text-gray-400 mb-8 max-w-3xl leading-relaxed">
+            <p className={`text-base sm:text-lg md:text-xl lg:text-2xl ${docsBodyTextClass} mb-8 max-w-3xl leading-relaxed`}>
             Install the LogicStamp Context CLI to compile your TypeScript codebase into deterministic architectural contracts and dependency graphs.
             </p>
 
@@ -29,15 +30,15 @@ export default function QuickStartPage() {
             <div className="flex flex-wrap gap-4 sm:gap-6 mt-6 sm:mt-8">
               <div className="flex items-center gap-2">
                 <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse" />
-                <span className="text-xs sm:text-sm font-medium text-gray-600 dark:text-gray-400">Quick start</span>
+                <span className="text-xs sm:text-sm font-medium text-gray-700 dark:text-gray-300">Quick start</span>
               </div>
               <div className="flex items-center gap-2">
                 <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse" />
-                <span className="text-xs sm:text-sm font-medium text-gray-600 dark:text-gray-400">Global install</span>
+                <span className="text-xs sm:text-sm font-medium text-gray-700 dark:text-gray-300">Global install</span>
               </div>
               <div className="flex items-center gap-2">
                 <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse" />
-                <span className="text-xs sm:text-sm font-medium text-gray-600 dark:text-gray-400">CLI Tool</span>
+                <span className="text-xs sm:text-sm font-medium text-gray-700 dark:text-gray-300">CLI Tool</span>
               </div>
             </div>
           </div>
@@ -68,7 +69,7 @@ export default function QuickStartPage() {
                     <span className="text-2xl">{item.icon}</span>
                     <div>
                       <p className="font-semibold text-gray-900 dark:text-white text-sm">{item.title}</p>
-                      <p className="text-xs text-gray-600 dark:text-gray-400 mt-0.5">{item.desc}</p>
+                      <p className="text-xs text-gray-700 dark:text-gray-300 mt-0.5">{item.desc}</p>
                     </div>
                   </div>
                 ))}
@@ -81,7 +82,7 @@ export default function QuickStartPage() {
         <AnimatedSection direction="up" delay={200}>
           <div className="mb-12">
             <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white mb-4">Install LogicStamp Context</h2>
-            <p className="text-sm sm:text-base text-gray-600 dark:text-gray-400 mb-4">
+            <p className="text-sm sm:text-base text-gray-700 dark:text-gray-300 mb-4">
               Install the CLI globally to use the <code className="px-1.5 py-0.5 bg-gray-100 dark:bg-gray-800 rounded text-xs">stamp</code> command from anywhere on your system.
             </p>
             <TabbedCodeBlock
@@ -118,7 +119,7 @@ export default function QuickStartPage() {
               Initialize Your Project
               <span className="ml-2 text-sm font-normal px-2 py-1 bg-blue-100 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300 rounded-full">Recommended</span>
             </h2>
-            <p className="text-sm sm:text-base text-gray-600 dark:text-gray-400 mb-4">
+            <p className="text-sm sm:text-base text-gray-700 dark:text-gray-300 mb-4">
               Set up <code className="px-1.5 py-0.5 bg-gray-100 dark:bg-gray-800 rounded text-xs">.gitignore</code> patterns and <code className="px-1.5 py-0.5 bg-gray-100 dark:bg-gray-800 rounded text-xs">LLM_CONTEXT.md</code>. If you skip this step, <code className="px-1.5 py-0.5 bg-gray-100 dark:bg-gray-800 rounded text-xs">stamp context</code> uses safe defaults (CI-friendly, never prompts).
             </p>
             
@@ -130,7 +131,7 @@ export default function QuickStartPage() {
 
             <div className="bg-gray-50 dark:bg-gray-800/50 rounded-lg p-4 mb-4 border border-gray-200 dark:border-gray-700">
               <p className="text-sm font-semibold text-gray-900 dark:text-white mb-2">What <code className="px-1.5 py-0.5 bg-gray-100 dark:bg-gray-800 rounded text-xs">stamp init</code> does:</p>
-              <ul className="space-y-1 text-sm text-gray-600 dark:text-gray-400 list-disc list-inside">
+              <ul className="space-y-1 text-sm text-gray-700 dark:text-gray-300 list-disc list-inside">
                 <li>Sets up <code className="px-1 bg-gray-100 dark:bg-gray-800 rounded text-xs">.gitignore</code> patterns for generated files</li>
                 <li>Runs security scan for secrets (API keys, passwords, tokens)</li>
                 <li>Generates <code className="px-1 bg-gray-100 dark:bg-gray-800 rounded text-xs">LLM_CONTEXT.md</code> guide</li>
@@ -169,7 +170,7 @@ export default function QuickStartPage() {
         <AnimatedSection direction="up" delay={400}>
           <div className="mb-12">
             <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white mb-4">Generate AI Context</h2>
-            <p className="text-sm sm:text-base text-gray-600 dark:text-gray-400 mb-4">
+            <p className="text-sm sm:text-base text-gray-700 dark:text-gray-300 mb-4">
               Run the context generator to analyze your codebase and create structured bundles optimized for AI assistants.
             </p>
             <TabbedCodeBlock
@@ -191,7 +192,7 @@ export default function QuickStartPage() {
                 }
               ]}
             />
-            <p className="text-sm text-gray-500 dark:text-gray-500 mt-3">
+            <p className={`text-sm ${docsMutedTextClass} mt-3`}>
               <strong>With Style</strong> extracts Tailwind CSS classes, SCSS modules, Material UI themes, styled-components, and framer-motion animations.
             </p>
           </div>
@@ -201,10 +202,10 @@ export default function QuickStartPage() {
         <AnimatedSection direction="up" delay={500}>
           <div className="mb-12">
             <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white mb-4">What You Get</h2>
-            <p className="text-sm sm:text-base text-gray-600 dark:text-gray-400 mb-4">
+            <p className="text-sm sm:text-base text-gray-700 dark:text-gray-300 mb-4">
               LogicStamp generates structured context files in your project:
             </p>
-            <ul className="space-y-2 text-sm sm:text-base text-gray-600 dark:text-gray-400 mb-6">
+            <ul className="space-y-2 text-sm sm:text-base text-gray-700 dark:text-gray-300 mb-6">
               <li className="flex items-start gap-2">
                 <span className="text-blue-600 dark:text-blue-400 mt-1">•</span>
                 <span><code className="px-1.5 py-0.5 bg-gray-100 dark:bg-gray-800 rounded text-xs">context_main.json</code> in your project root with an overview</span>
@@ -214,11 +215,11 @@ export default function QuickStartPage() {
                 <span><code className="px-1.5 py-0.5 bg-gray-100 dark:bg-gray-800 rounded text-xs">context.json</code> files in each folder with component contracts</span>
               </li>
             </ul>
-            <p className="text-sm text-gray-500 dark:text-gray-500 mb-4">
+            <p className={`text-sm ${docsMutedTextClass} mb-4`}>
               These files describe your components' props, hooks, dependencies, and relationships—optimized for AI consumption.
             </p>
             <div className="bg-gray-50 dark:bg-gray-800/50 rounded-lg p-4 border border-gray-200 dark:border-gray-700">
-              <p className="text-xs font-mono text-gray-600 dark:text-gray-400 whitespace-pre-wrap overflow-x-auto">{`your-project/
+              <p className="text-xs font-mono text-gray-700 dark:text-gray-300 whitespace-pre-wrap overflow-x-auto">{`your-project/
 ├── context_main.json          # Main index
 ├── context.json               # Root folder bundles
 ├── src/
@@ -240,7 +241,7 @@ export default function QuickStartPage() {
                 <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">
                   Keep Context Fresh (Watch Mode)
                 </h3>
-                <p className="text-sm sm:text-base text-gray-600 dark:text-gray-400 mb-4">
+                <p className="text-sm sm:text-base text-gray-700 dark:text-gray-300 mb-4">
                   Automatically regenerate context as you code:
                 </p>
                 <TabbedCodeBlock
@@ -262,7 +263,7 @@ export default function QuickStartPage() {
                     }
                   ]}
                 />
-                <p className="text-sm text-gray-500 dark:text-gray-500 mt-3">
+                <p className={`text-sm ${docsMutedTextClass} mt-3`}>
                   <strong>Strict Watch</strong> detects breaking changes (removed props/events) and tracks violations during refactors.{' '}
                   <Link href="/docs/logicstamp-context/watch-mode" className="text-blue-600 dark:text-blue-400 hover:underline">
                     Learn more about watch mode →
@@ -275,7 +276,7 @@ export default function QuickStartPage() {
                 <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">
                   Advanced Options
                 </h3>
-                <p className="text-sm sm:text-base text-gray-600 dark:text-gray-400 mb-4">
+                <p className="text-sm sm:text-base text-gray-700 dark:text-gray-300 mb-4">
                   Customize output and optimize token usage:
                 </p>
                 <TabbedCodeBlock
@@ -307,7 +308,7 @@ export default function QuickStartPage() {
                     }
                   ]}
                 />
-                <p className="text-xs text-gray-500 dark:text-gray-500 mt-3">
+                <p className={`text-xs ${docsMutedTextClass} mt-3`}>
                   Profiles: <code className="px-1 bg-gray-100 dark:bg-gray-800 rounded">llm-chat</code> (default), <code className="px-1 bg-gray-100 dark:bg-gray-800 rounded">llm-safe</code> (30 nodes max), <code className="px-1 bg-gray-100 dark:bg-gray-800 rounded">ci-strict</code> (contracts only)
                 </p>
               </div>
@@ -326,7 +327,7 @@ export default function QuickStartPage() {
                 <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">
                   Exclude Files
                 </h3>
-                <p className="text-sm text-gray-600 dark:text-gray-400 mb-4">
+                <p className="text-sm text-gray-700 dark:text-gray-300 mb-4">
                   Add files to <code className="px-1.5 py-0.5 bg-gray-100 dark:bg-gray-800 rounded text-xs">.stampignore</code>:
                 </p>
                 <TabbedCodeBlock
@@ -350,7 +351,7 @@ export default function QuickStartPage() {
                 <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">
                   Validate Context
                 </h3>
-                <p className="text-sm text-gray-600 dark:text-gray-400 mb-4">
+                <p className="text-sm text-gray-700 dark:text-gray-300 mb-4">
                   Check context files for errors:
                 </p>
                 <TabbedCodeBlock
@@ -374,7 +375,7 @@ export default function QuickStartPage() {
                 <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">
                   Compare Context
                 </h3>
-                <p className="text-sm text-gray-600 dark:text-gray-400 mb-4">
+                <p className="text-sm text-gray-700 dark:text-gray-300 mb-4">
                   Detect changes (drift detection):
                 </p>
                 <TabbedCodeBlock
@@ -398,7 +399,7 @@ export default function QuickStartPage() {
                 <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">
                   Security Scan
                 </h3>
-                <p className="text-sm text-gray-600 dark:text-gray-400 mb-4">
+                <p className="text-sm text-gray-700 dark:text-gray-300 mb-4">
                   Scan for secrets in your codebase:
                 </p>
                 <TabbedCodeBlock
@@ -410,7 +411,7 @@ export default function QuickStartPage() {
                     }
                   ]}
                 />
-                <p className="text-xs text-gray-500 dark:text-gray-500 mt-3">
+                <p className={`text-xs ${docsMutedTextClass} mt-3`}>
                   Context generation automatically sanitizes detected secrets.
                 </p>
               </div>
@@ -465,21 +466,21 @@ export default function QuickStartPage() {
             <div className="space-y-4">
               <div className="border-l-4 border-blue-500 bg-blue-50/50 dark:bg-blue-950/20 p-4 rounded-r-lg">
                 <p className="text-sm font-semibold text-gray-900 dark:text-white mb-1">Context files not generating?</p>
-                <p className="text-sm text-gray-600 dark:text-gray-400">
+                <p className="text-sm text-gray-700 dark:text-gray-300">
                   Check Node.js version (requires &gt;= 20), verify TypeScript files exist, or run with <code className="px-1 bg-gray-100 dark:bg-gray-800 rounded text-xs">LOGICSTAMP_DEBUG=1</code> for detailed logs.
                 </p>
               </div>
 
               <div className="border-l-4 border-amber-500 bg-amber-50/50 dark:bg-amber-950/20 p-4 rounded-r-lg">
                 <p className="text-sm font-semibold text-gray-900 dark:text-white mb-1">Large bundle sizes?</p>
-                <p className="text-sm text-gray-600 dark:text-gray-400">
+                <p className="text-sm text-gray-700 dark:text-gray-300">
                   Reduce depth with <code className="px-1 bg-gray-100 dark:bg-gray-800 rounded text-xs">--depth 1</code>, use <code className="px-1 bg-gray-100 dark:bg-gray-800 rounded text-xs">--profile llm-safe</code>, or exclude files with <code className="px-1 bg-gray-100 dark:bg-gray-800 rounded text-xs">.stampignore</code>.
                 </p>
               </div>
 
               <div className="border-l-4 border-purple-500 bg-purple-50/50 dark:bg-purple-950/20 p-4 rounded-r-lg">
                 <p className="text-sm font-semibold text-gray-900 dark:text-white mb-1">Missing dependencies?</p>
-                <p className="text-sm text-gray-600 dark:text-gray-400">
+                <p className="text-sm text-gray-700 dark:text-gray-300">
                   External packages (React, lodash) are expected. Use <code className="px-1 bg-gray-100 dark:bg-gray-800 rounded text-xs">--strict-missing</code> in CI to catch unexpected missing dependencies.
                 </p>
               </div>
@@ -540,14 +541,14 @@ export default function QuickStartPage() {
                 className="p-4 border border-gray-200 dark:border-gray-800 rounded-lg md:hover:border-green-500 dark:md:hover:border-green-500 transition-colors"
               >
                 <h3 className="font-semibold text-gray-900 dark:text-white mb-1">CLI Commands →</h3>
-                <p className="text-sm text-gray-600 dark:text-gray-400">Complete command reference</p>
+                <p className="text-sm text-gray-700 dark:text-gray-300">Complete command reference</p>
               </Link>
               <Link
                 href="/docs/getting-started"
                 className="p-4 border border-gray-200 dark:border-gray-800 rounded-lg md:hover:border-green-500 dark:md:hover:border-green-500 transition-colors"
               >
                 <h3 className="font-semibold text-gray-900 dark:text-white mb-1">Main Getting Started →</h3>
-                <p className="text-sm text-gray-600 dark:text-gray-400">Quick start guide</p>
+                <p className="text-sm text-gray-700 dark:text-gray-300">Quick start guide</p>
               </Link>
             </div>
           </div>

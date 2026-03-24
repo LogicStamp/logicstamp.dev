@@ -3,6 +3,7 @@ import Link from 'next/link'
 import Footer from '@/components/layout/Footer'
 import AnimatedSection from '@/components/common/AnimatedSection'
 import DocsLayout from '@/components/docs/DocsLayout'
+import { docsBodyTextClass } from '@/lib/docs/text-styles'
 
 export const metadata: Metadata = {
   title: 'Documentation | LogicStamp Context',
@@ -32,7 +33,7 @@ export default function DocsHomePage() {
                 Documentation
               </h1>
               
-              <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-gray-600 dark:text-gray-400 leading-relaxed max-w-3xl">
+              <p className={`text-base sm:text-lg md:text-xl lg:text-2xl ${docsBodyTextClass} leading-relaxed max-w-3xl`}>
                 The Context Compiler for TypeScript. Compile AI-ready context from your codebase. CI-friendly, zero prompts, built-in token optimization.
               </p>
 
@@ -47,15 +48,15 @@ export default function DocsHomePage() {
               <div className="flex flex-wrap gap-4 sm:gap-6 mt-6 sm:mt-8">
                 <div className="flex items-center gap-2">
                   <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse" />
-                  <span className="text-xs sm:text-sm font-medium text-gray-600 dark:text-gray-400">One-time setup</span>
+                  <span className="text-xs sm:text-sm font-medium text-gray-700 dark:text-gray-300">One-time setup</span>
                 </div>
                 <div className="flex items-center gap-2">
                   <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse" />
-                  <span className="text-xs sm:text-sm font-medium text-gray-600 dark:text-gray-400">up to 70% token reduction</span>
+                  <span className="text-xs sm:text-sm font-medium text-gray-700 dark:text-gray-300">up to 70% token reduction</span>
                 </div>
                 <div className="flex items-center gap-2">
                   <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse" />
-                  <span className="text-xs sm:text-sm font-medium text-gray-600 dark:text-gray-400">AI-optimized output</span>
+                  <span className="text-xs sm:text-sm font-medium text-gray-700 dark:text-gray-300">AI-optimized output</span>
                 </div>
               </div>
             </div>
@@ -76,7 +77,7 @@ export default function DocsHomePage() {
               </h2>
             </div>
             
-            <p className="text-base sm:text-lg text-gray-600 dark:text-gray-400 mb-4 sm:mb-6 leading-relaxed">
+            <p className="text-base sm:text-lg text-gray-700 dark:text-gray-300 mb-4 sm:mb-6 leading-relaxed">
               Understand LogicStamp Context at a high level before you dive into the CLI.
             </p>
 
@@ -93,7 +94,7 @@ export default function DocsHomePage() {
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
                   </svg>
                 </div>
-                <p className="text-sm text-gray-600 dark:text-gray-400">
+                <p className="text-sm text-gray-700 dark:text-gray-300">
                   Learn about this open-source CLI, the problems it solves, and how to use it with AI tools.
                 </p>
               </Link>
@@ -109,7 +110,7 @@ export default function DocsHomePage() {
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
                   </svg>
                 </div>
-                <p className="text-sm text-gray-600 dark:text-gray-400">
+                <p className="text-sm text-gray-700 dark:text-gray-300">
                   Understand component contracts, props, hooks, and how LogicStamp structures context.
                 </p>
               </Link>
@@ -131,7 +132,7 @@ export default function DocsHomePage() {
               </h2>
             </div>
             
-            <p className="text-base sm:text-lg text-gray-600 dark:text-gray-400 mb-4 sm:mb-6 leading-relaxed">
+            <p className="text-base sm:text-lg text-gray-700 dark:text-gray-300 mb-4 sm:mb-6 leading-relaxed">
               Installation & setup for LogicStamp Context CLI and MCP Server.
             </p>
 
@@ -148,7 +149,7 @@ export default function DocsHomePage() {
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
                   </svg>
                 </div>
-                <p className="text-sm text-gray-600 dark:text-gray-400">
+                <p className="text-sm text-gray-700 dark:text-gray-300">
                   Install the CLI globally and set up your project with <code className="px-1.5 py-0.5 bg-gray-100 dark:bg-gray-800 rounded font-mono text-xs">stamp init</code>, then generate your first <code className="px-1.5 py-0.5 bg-gray-100 dark:bg-gray-800 rounded font-mono text-xs">context.json</code>.
                 </p>
               </Link>
@@ -164,7 +165,7 @@ export default function DocsHomePage() {
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
                   </svg>
                 </div>
-                <p className="text-sm text-gray-600 dark:text-gray-400">
+                <p className="text-sm text-gray-700 dark:text-gray-300">
                   Set up the MCP server for native integration with Claude Desktop, Claude Code, and Cursor.
                 </p>
               </Link>
@@ -178,7 +179,7 @@ export default function DocsHomePage() {
             <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white mb-4 sm:mb-6">
               LogicStamp Context CLI
             </h2>
-            <p className="text-base sm:text-lg text-gray-600 dark:text-gray-400 mb-4 sm:mb-6 leading-relaxed">
+            <p className="text-base sm:text-lg text-gray-700 dark:text-gray-300 mb-4 sm:mb-6 leading-relaxed">
               The CLI provides commands for generating, validating, and managing AI-ready context files from your codebase.
             </p>
             <Link
@@ -199,7 +200,7 @@ export default function DocsHomePage() {
             <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white mb-4 sm:mb-6">
               MCP Server
             </h2>
-            <p className="text-base sm:text-lg text-gray-600 dark:text-gray-400 mb-4 sm:mb-6 leading-relaxed">
+            <p className="text-base sm:text-lg text-gray-700 dark:text-gray-300 mb-4 sm:mb-6 leading-relaxed">
               Native Model Context Protocol (MCP) server enables AI assistants like Claude Desktop and Claude Code to analyze your codebase directly.
             </p>
             <Link
@@ -220,7 +221,7 @@ export default function DocsHomePage() {
             <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white mb-4 sm:mb-6">
               Guides
             </h2>
-            <p className="text-base sm:text-lg text-gray-600 dark:text-gray-400 mb-4 sm:mb-6 leading-relaxed">
+            <p className="text-base sm:text-lg text-gray-700 dark:text-gray-300 mb-4 sm:mb-6 leading-relaxed">
               Step-by-step guides for common workflows and best practices.
             </p>
             <Link
@@ -241,7 +242,7 @@ export default function DocsHomePage() {
             <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white mb-4 sm:mb-6">
               Reference
             </h2>
-            <p className="text-base sm:text-lg text-gray-600 dark:text-gray-400 mb-4 sm:mb-6 leading-relaxed">
+            <p className="text-base sm:text-lg text-gray-700 dark:text-gray-300 mb-4 sm:mb-6 leading-relaxed">
               Complete documentation for all commands, options, and features.
             </p>
             <Link
@@ -265,7 +266,7 @@ export default function DocsHomePage() {
               <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white mb-4 sm:mb-6">
                 Open Source & Community
               </h2>
-              <p className="text-base sm:text-lg text-gray-600 dark:text-gray-400 mb-6 sm:mb-8 leading-relaxed">
+              <p className="text-base sm:text-lg text-gray-700 dark:text-gray-300 mb-6 sm:mb-8 leading-relaxed">
                 LogicStamp Context is open source and community-driven. Contribute, report issues, or get help.
               </p>
               

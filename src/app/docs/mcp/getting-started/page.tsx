@@ -5,6 +5,7 @@ import DocsLayout from '@/components/docs/DocsLayout'
 import TabbedCodeBlock from '@/components/docs/TabbedCodeBlock'
 import Link from 'next/link'
 import ReadyToGetStartedCard from '@/components/docs/ReadyToGetStartedCard'
+import { docsBodyTextClass, docsMutedTextClass } from '@/lib/docs/text-styles'
 
 export const metadata: Metadata = {
   title: 'MCP Getting Started | LogicStamp Context',
@@ -21,7 +22,7 @@ export default function MCPInstallationPage() {
             <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black text-transparent bg-clip-text bg-gradient-to-r from-gray-900 to-gray-700 dark:from-white dark:to-gray-300 mb-4 sm:mb-6 tracking-tight leading-[1.1]">
               MCP Getting Started
             </h1>
-            <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-gray-600 dark:text-gray-400 mb-8 max-w-3xl leading-relaxed">
+            <p className={`text-base sm:text-lg md:text-xl lg:text-2xl ${docsBodyTextClass} mb-8 max-w-3xl leading-relaxed`}>
               Install LogicStamp Context MCP server to give Claude Desktop, Claude Code, or Cursor direct access to your codebase.
             </p>
           </div>
@@ -42,7 +43,7 @@ export default function MCPInstallationPage() {
                 </h2>
               </div>
               
-              <ul className="space-y-2 text-sm sm:text-base text-gray-600 dark:text-gray-400 ml-4">
+              <ul className="space-y-2 text-sm sm:text-base text-gray-700 dark:text-gray-300 ml-4">
                 <li className="flex items-start gap-2">
                   <span className="text-blue-600 dark:text-blue-400 mt-1">•</span>
                   <span><strong>Node.js</strong> {'>='} 20</span>
@@ -71,7 +72,7 @@ export default function MCPInstallationPage() {
         <AnimatedSection direction="up" delay={200}>
           <div className="mb-12">
             <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white mb-4">Installation</h2>
-            <p className="text-sm sm:text-base text-gray-600 dark:text-gray-400 mb-6">
+            <p className="text-sm sm:text-base text-gray-700 dark:text-gray-300 mb-6">
               Install the MCP server globally:
             </p>
             <TabbedCodeBlock
@@ -97,7 +98,7 @@ export default function MCPInstallationPage() {
                 <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-3">
                   For Claude Code
                 </h3>
-                <p className="text-sm sm:text-base text-gray-600 dark:text-gray-400 mb-4">
+                <p className="text-sm sm:text-base text-gray-700 dark:text-gray-300 mb-4">
                   Add to your global configuration (available in all projects):
                 </p>
                 <TabbedCodeBlock
@@ -123,7 +124,7 @@ export default function MCPInstallationPage() {
                     }
                   ]}
                 />
-                <p className="text-sm text-gray-500 dark:text-gray-500 mt-3">
+                <p className={`text-sm ${docsMutedTextClass} mt-3`}>
                   <strong>Per-project setup:</strong> Use <code className="px-1.5 py-0.5 bg-gray-100 dark:bg-gray-800 rounded text-xs">claude mcp add --scope project</code> to create <code className="px-1.5 py-0.5 bg-gray-100 dark:bg-gray-800 rounded text-xs">.mcp.json</code> in your project root (can be committed to git for team collaboration).
                 </p>
               </div>
@@ -133,7 +134,7 @@ export default function MCPInstallationPage() {
                 <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-3">
                   For Claude Desktop
                 </h3>
-                <p className="text-sm sm:text-base text-gray-600 dark:text-gray-400 mb-4">
+                <p className="text-sm sm:text-base text-gray-700 dark:text-gray-300 mb-4">
                   Add to your Claude Desktop config (<code className="px-1.5 py-0.5 bg-gray-100 dark:bg-gray-800 rounded text-xs">~/Library/Application Support/Claude/claude_desktop_config.json</code> on macOS):
                 </p>
                 <TabbedCodeBlock
@@ -152,7 +153,7 @@ export default function MCPInstallationPage() {
                 <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-3">
                   For Cursor
                 </h3>
-                <p className="text-sm sm:text-base text-gray-600 dark:text-gray-400 mb-4">
+                <p className="text-sm sm:text-base text-gray-700 dark:text-gray-300 mb-4">
                   Add to your Cursor MCP config (<code className="px-1.5 py-0.5 bg-gray-100 dark:bg-gray-800 rounded text-xs">~/.cursor/mcp.json</code> on macOS/Linux or <code className="px-1.5 py-0.5 bg-gray-100 dark:bg-gray-800 rounded text-xs">%USERPROFILE%\.cursor\mcp.json</code> on Windows):
                 </p>
                 <TabbedCodeBlock
@@ -164,7 +165,7 @@ export default function MCPInstallationPage() {
                     }
                   ]}
                 />
-                <p className="text-sm text-gray-500 dark:text-gray-500 mt-3">
+                <p className={`text-sm ${docsMutedTextClass} mt-3`}>
                   After adding the config, fully quit and restart Cursor (not just close the window) for changes to take effect.
                 </p>
               </div>
@@ -176,7 +177,7 @@ export default function MCPInstallationPage() {
         <AnimatedSection direction="up" delay={400}>
           <div className="mb-12">
             <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white mb-4">Verify Installation</h2>
-            <p className="text-sm sm:text-base text-gray-600 dark:text-gray-400 mb-4">
+            <p className="text-sm sm:text-base text-gray-700 dark:text-gray-300 mb-4">
               For Claude Code, verify the server is configured:
             </p>
             <TabbedCodeBlock
@@ -188,7 +189,7 @@ export default function MCPInstallationPage() {
                 }
               ]}
             />
-            <p className="text-sm text-gray-500 dark:text-gray-500 mt-3">
+            <p className={`text-sm ${docsMutedTextClass} mt-3`}>
               You should see <code className="px-1.5 py-0.5 bg-gray-100 dark:bg-gray-800 rounded text-xs">logicstamp: npx logicstamp-mcp - ✓ Connected</code>
             </p>
           </div>
@@ -198,10 +199,10 @@ export default function MCPInstallationPage() {
         <AnimatedSection direction="up" delay={500}>
           <div className="mb-12">
             <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white mb-4">Quick Start</h2>
-            <p className="text-sm sm:text-base text-gray-600 dark:text-gray-400 mb-4">
+            <p className="text-sm sm:text-base text-gray-700 dark:text-gray-300 mb-4">
               Once installed, start using LogicStamp in your TypeScript project. The 7 LogicStamp tools will be available:
             </p>
-            <ul className="space-y-2 text-sm sm:text-base text-gray-600 dark:text-gray-400 mb-6 ml-4">
+            <ul className="space-y-2 text-sm sm:text-base text-gray-700 dark:text-gray-300 mb-6 ml-4">
               <li className="flex items-start gap-2">
                 <span className="text-blue-600 dark:text-blue-400 mt-1">•</span>
                 <span><code className="px-1.5 py-0.5 bg-gray-100 dark:bg-gray-800 rounded text-xs">logicstamp_refresh_snapshot</code> - Analyze project structure</span>
@@ -223,7 +224,7 @@ export default function MCPInstallationPage() {
                 <span><code className="px-1.5 py-0.5 bg-gray-100 dark:bg-gray-800 rounded text-xs">logicstamp_watch_status</code> - Check watch mode status</span>
               </li>
             </ul>
-            <p className="text-sm text-gray-500 dark:text-gray-500">
+            <p className={`text-sm ${docsMutedTextClass}`}>
               Ask your AI assistant: "Use LogicStamp to analyze the components in src/components"
             </p>
           </div>
@@ -239,14 +240,14 @@ export default function MCPInstallationPage() {
                 className="p-4 border border-gray-200 dark:border-gray-800 rounded-lg md:hover:border-purple-500 dark:md:hover:border-purple-500 transition-colors"
               >
                 <h3 className="font-semibold text-gray-900 dark:text-white mb-1">MCP Reference →</h3>
-                <p className="text-sm text-gray-600 dark:text-gray-400">Complete tool documentation</p>
+                <p className="text-sm text-gray-700 dark:text-gray-300">Complete tool documentation</p>
               </Link>
               <Link
                 href="/docs/mcp"
                 className="p-4 border border-gray-200 dark:border-gray-800 rounded-lg md:hover:border-purple-500 dark:md:hover:border-purple-500 transition-colors"
               >
                 <h3 className="font-semibold text-gray-900 dark:text-white mb-1">MCP Overview →</h3>
-                <p className="text-sm text-gray-600 dark:text-gray-400">How MCP works</p>
+                <p className="text-sm text-gray-700 dark:text-gray-300">How MCP works</p>
               </Link>
             </div>
           </div>

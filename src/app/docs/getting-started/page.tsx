@@ -6,6 +6,7 @@ import TabbedCodeBlock from '@/components/docs/TabbedCodeBlock'
 import DocsLayout from '@/components/docs/DocsLayout'
 import CopyButton from '@/components/ui/CopyButton'
 import ReadyToGetStartedCard from '@/components/docs/ReadyToGetStartedCard'
+import { docsBodyTextClass, docsMutedTextClass } from '@/lib/docs/text-styles'
 
 export const metadata: Metadata = {
   title: 'Getting Started | LogicStamp Context',
@@ -22,7 +23,7 @@ export default function GettingStartedPage() {
             <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black text-transparent bg-clip-text bg-gradient-to-r from-gray-900 to-gray-700 dark:from-white dark:to-gray-300 mb-4 sm:mb-6 tracking-tight leading-[1.1]">
               Getting Started
             </h1>
-            <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-gray-600 dark:text-gray-400 mb-8 max-w-3xl leading-relaxed">
+            <p className={`text-base sm:text-lg md:text-xl lg:text-2xl ${docsBodyTextClass} mb-8 max-w-3xl leading-relaxed`}>
               Compile AI-ready context from your TypeScript codebase.
             </p>
           </div>
@@ -53,7 +54,7 @@ export default function GettingStartedPage() {
                     <span className="text-2xl">{item.icon}</span>
                     <div>
                       <p className="font-semibold text-gray-900 dark:text-white text-sm">{item.title}</p>
-                      <p className="text-xs text-gray-600 dark:text-gray-400 mt-0.5">{item.desc}</p>
+                      <p className="text-xs text-gray-700 dark:text-gray-300 mt-0.5">{item.desc}</p>
                     </div>
                   </div>
                 ))}
@@ -66,14 +67,14 @@ export default function GettingStartedPage() {
         <AnimatedSection direction="up" delay={200}>
           <div className="mb-12">
             <div className="bg-gray-50 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl p-6 mb-6">
-              <p className="text-sm text-gray-600 dark:text-gray-400 mb-3">Try it now (no install required):</p>
+              <p className={`text-sm ${docsBodyTextClass} mb-3`}>Try it now (no install required):</p>
               <div className="relative">
                 <CopyButton text="npx logicstamp-context context" className="absolute top-2 right-2" />
                 <code className="block text-gray-900 dark:text-gray-100 font-mono text-sm p-4 bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-700 rounded-lg">
                   npx logicstamp-context context
                 </code>
               </div>
-              <p className="text-xs text-gray-600 dark:text-gray-400 mt-3">
+              <p className="text-xs text-gray-700 dark:text-gray-300 mt-3">
                 This compiles your repo into <code className="px-1 py-0.5 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded text-gray-900 dark:text-gray-100">context.json</code> files.
               </p>
             </div>
@@ -84,10 +85,10 @@ export default function GettingStartedPage() {
         <AnimatedSection direction="up" delay={300}>
           <div className="mb-12">
             <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white mb-4">What happened?</h2>
-            <p className="text-sm sm:text-base text-gray-600 dark:text-gray-400 mb-4">
+            <p className="text-sm sm:text-base text-gray-700 dark:text-gray-300 mb-4">
               LogicStamp compiled your TypeScript files into structured context bundles:
             </p>
-            <ul className="space-y-2 text-sm sm:text-base text-gray-600 dark:text-gray-400 mb-6">
+            <ul className="space-y-2 text-sm sm:text-base text-gray-700 dark:text-gray-300 mb-6">
               <li className="flex items-start gap-2">
                 <span className="text-blue-600 dark:text-blue-400 mt-1">•</span>
                 <span><code className="px-1.5 py-0.5 bg-gray-100 dark:bg-gray-800 rounded text-xs">context.json</code> files in each folder with component contracts</span>
@@ -97,7 +98,7 @@ export default function GettingStartedPage() {
                 <span><code className="px-1.5 py-0.5 bg-gray-100 dark:bg-gray-800 rounded text-xs">context_main.json</code> in your project root with an overview</span>
               </li>
             </ul>
-            <p className="text-sm text-gray-500 dark:text-gray-500">
+              <p className={`text-sm ${docsMutedTextClass}`}>
               These files describe your components' props, hooks, dependencies, and relationships—optimized for AI consumption.
             </p>
           </div>
@@ -114,7 +115,7 @@ export default function GettingStartedPage() {
                 <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">
                   1. Install for regular use
                 </h3>
-                <p className="text-sm sm:text-base text-gray-600 dark:text-gray-400 mb-4">
+                <p className="text-sm sm:text-base text-gray-700 dark:text-gray-300 mb-4">
                   Install globally to use the <code className="px-1.5 py-0.5 bg-gray-100 dark:bg-gray-800 rounded text-xs">stamp</code> command:
                 </p>
                 <TabbedCodeBlock
@@ -136,7 +137,7 @@ export default function GettingStartedPage() {
                     }
                   ]}
                 />
-                <p className="text-sm text-gray-600 dark:text-gray-400 mt-4 mb-3">
+                <p className="text-sm text-gray-700 dark:text-gray-300 mt-4 mb-3">
                   Initialize your project (recommended):
                 </p>
                 <TabbedCodeBlock
@@ -156,7 +157,7 @@ export default function GettingStartedPage() {
                 <p className="text-xs text-gray-500 dark:text-gray-500 mt-2 mb-3">
                   Sets up <code className="px-1 py-0.5 bg-gray-100 dark:bg-gray-800 rounded">.gitignore</code> patterns, runs security scan, and creates <code className="px-1 py-0.5 bg-gray-100 dark:bg-gray-800 rounded">LLM_CONTEXT.md</code>. You can skip this and go straight to generating context.
                 </p>
-                <p className="text-sm text-gray-600 dark:text-gray-400 mt-4 mb-3">
+                <p className="text-sm text-gray-700 dark:text-gray-300 mt-4 mb-3">
                   Then compile context:
                 </p>
                 <TabbedCodeBlock
@@ -183,7 +184,7 @@ export default function GettingStartedPage() {
                 <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">
                   2. Use with AI assistants (MCP)
                 </h3>
-                <p className="text-sm sm:text-base text-gray-600 dark:text-gray-400 mb-4">
+                <p className="text-sm sm:text-base text-gray-700 dark:text-gray-300 mb-4">
                   Install the MCP server to give Claude Desktop, Claude Code, or Cursor direct access to your codebase:
                 </p>
                 <div className="relative mb-4">
@@ -192,7 +193,7 @@ export default function GettingStartedPage() {
                     npm install -g logicstamp-mcp
                   </code>
                 </div>
-                <p className="text-sm text-gray-500 dark:text-gray-500">
+                <p className={`text-sm ${docsMutedTextClass}`}>
                   <Link href="/docs/mcp/getting-started" className="text-blue-600 dark:text-blue-400 hover:underline">
                     See MCP setup guide →
                   </Link>
@@ -204,7 +205,7 @@ export default function GettingStartedPage() {
                 <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">
                   3. Keep context fresh (Watch Mode)
                 </h3>
-                <p className="text-sm sm:text-base text-gray-600 dark:text-gray-400 mb-4">
+                <p className="text-sm sm:text-base text-gray-700 dark:text-gray-300 mb-4">
                   Automatically regenerate context as you code:
                 </p>
                 <TabbedCodeBlock
@@ -226,7 +227,7 @@ export default function GettingStartedPage() {
                     }
                   ]}
                 />
-                <p className="text-sm text-gray-500 dark:text-gray-500 mt-4">
+                <p className={`text-sm ${docsMutedTextClass} mt-4`}>
                   <strong>Strict Watch</strong> detects breaking changes (removed props/events) and tracks violations during refactors.{' '}
                   <Link href="/docs/logicstamp-context/watch-mode" className="text-blue-600 dark:text-blue-400 hover:underline">
                     Learn more about watch mode →
@@ -247,28 +248,28 @@ export default function GettingStartedPage() {
                 className="p-4 border border-gray-200 dark:border-gray-800 rounded-lg md:hover:border-blue-500 dark:md:hover:border-blue-500 transition-colors"
               >
                 <h3 className="font-semibold text-gray-900 dark:text-white mb-1">What is LogicStamp? →</h3>
-                <p className="text-sm text-gray-600 dark:text-gray-400">Understand the problem it solves</p>
+                <p className="text-sm text-gray-700 dark:text-gray-300">Understand the problem it solves</p>
               </Link>
               <Link
                 href="/docs/logicstamp-context/cli/getting-started"
                 className="p-4 border border-gray-200 dark:border-gray-800 rounded-lg md:hover:border-green-500 dark:md:hover:border-green-500 transition-colors"
               >
                 <h3 className="font-semibold text-gray-900 dark:text-white mb-1">CLI Guide →</h3>
-                <p className="text-sm text-gray-600 dark:text-gray-400">Complete CLI documentation</p>
+                <p className="text-sm text-gray-700 dark:text-gray-300">Complete CLI documentation</p>
               </Link>
               <Link
                 href="/docs/mcp/getting-started"
                 className="p-4 border border-gray-200 dark:border-gray-800 rounded-lg md:hover:border-purple-500 dark:md:hover:border-purple-500 transition-colors"
               >
                 <h3 className="font-semibold text-gray-900 dark:text-white mb-1">MCP Guide →</h3>
-                <p className="text-sm text-gray-600 dark:text-gray-400">MCP server setup and configuration</p>
+                <p className="text-sm text-gray-700 dark:text-gray-300">MCP server setup and configuration</p>
               </Link>
               <Link
                 href="/docs/guides/best-practices"
                 className="p-4 border border-gray-200 dark:border-gray-800 rounded-lg md:hover:border-blue-500 dark:md:hover:border-blue-500 transition-colors"
               >
                 <h3 className="font-semibold text-gray-900 dark:text-white mb-1">Best Practices →</h3>
-                <p className="text-sm text-gray-600 dark:text-gray-400">Tips for using LogicStamp effectively</p>
+                <p className="text-sm text-gray-700 dark:text-gray-300">Tips for using LogicStamp effectively</p>
               </Link>
             </div>
           </div>
