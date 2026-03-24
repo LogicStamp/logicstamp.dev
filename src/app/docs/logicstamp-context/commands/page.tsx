@@ -10,6 +10,8 @@ import TabbedCodeBlock from '@/components/docs/TabbedCodeBlock'
 import ReadyToGetStartedCard from '@/components/docs/ReadyToGetStartedCard'
 import { getDocWithFallback, parseCliCommandsDoc, resolveMdDocHref, type CommandsTableRow } from '@/lib/docs'
 import { docsMarkdownComponents } from '@/lib/docs/markdown-components'
+import { docsBodyTypographyClass } from '@/lib/docs/markdown-styles'
+import { docsBodyTextClass, docsMutedTextClass } from '@/lib/docs/text-styles'
 
 const MD_PATH = 'cli/commands.md'
 const CURRENT_DOC_PATH = MD_PATH
@@ -273,14 +275,14 @@ export default async function LogicStampCommandsPage() {
             </h1>
             {parsed.introMarkdown ? (
               <DocsMarkdown
-                className="prose prose-lg dark:prose-invert max-w-3xl prose-p:text-base prose-p:sm:text-lg prose-p:md:text-xl prose-p:lg:text-2xl prose-p:text-gray-600 dark:prose-p:text-gray-400 prose-p:leading-relaxed prose-p:mb-0 max-w-3xl"
+                className={`${docsBodyTypographyClass} max-w-3xl [&_p]:mb-0`}
                 source="context"
                 currentDocPath={CURRENT_DOC_PATH}
               >
                 {parsed.introMarkdown}
               </DocsMarkdown>
             ) : (
-              <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-gray-600 dark:text-gray-400 max-w-3xl leading-relaxed">
+              <p className={`text-base sm:text-lg md:text-xl lg:text-2xl max-w-3xl leading-relaxed ${docsMutedTextClass}`}>
                 LogicStamp Context ships as a single CLI entry point,{' '}
                 <code className="px-1.5 py-0.5 bg-gray-100 dark:bg-gray-800 rounded text-xs">stamp</code>
                 , with{' '}
@@ -324,7 +326,7 @@ export default async function LogicStampCommandsPage() {
                 </h2>
               </div>
 
-              <p className="text-sm sm:text-base text-gray-600 dark:text-gray-400 mb-4 sm:mb-6">
+              <p className={`text-sm sm:text-base mb-4 sm:mb-6 ${docsMutedTextClass}`}>
                 These options are available at the top level (before any subcommand):
               </p>
 
@@ -480,7 +482,7 @@ export default async function LogicStampCommandsPage() {
                   </table>
                 </div>
               ) : (
-                <p className="text-sm text-gray-600 dark:text-gray-400">
+                <p className={`text-sm ${docsMutedTextClass}`}>
                   No command table found in the source doc. See{' '}
                   <a
                     href={GITHUB_URL}
@@ -519,7 +521,7 @@ export default async function LogicStampCommandsPage() {
                         >
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d={card.path} />
                         </svg>
-                        <div className="text-sm sm:text-base text-gray-700 dark:text-gray-300 min-w-0 [&_code]:px-1.5 [&_code]:py-0.5 [&_code]:rounded [&_code]:text-xs [&_code]:font-mono [&_strong]:text-gray-900 [&_strong]:dark:text-white">
+                        <div className={`text-sm sm:text-base min-w-0 ${docsBodyTextClass} [&_code]:px-1.5 [&_code]:py-0.5 [&_code]:rounded [&_code]:text-xs [&_code]:font-mono [&_strong]:text-gray-900 [&_strong]:dark:text-white`}>
                           <ReactMarkdown components={mdInline as Components}>{bullet}</ReactMarkdown>
                         </div>
                       </div>
@@ -552,7 +554,7 @@ export default async function LogicStampCommandsPage() {
             <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white mb-4 sm:mb-6">
               See Also
             </h2>
-            <p className="text-sm sm:text-base text-gray-600 dark:text-gray-400 mb-6">
+            <p className={`text-sm sm:text-base mb-6 ${docsMutedTextClass}`}>
               For detailed documentation on specific features and commands:
             </p>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
