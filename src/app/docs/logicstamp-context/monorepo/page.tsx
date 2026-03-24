@@ -5,6 +5,7 @@ import DocsLayout from '@/components/docs/DocsLayout'
 import DocsMarkdown from '@/components/docs/DocsMarkdown'
 import ReadyToGetStartedCard from '@/components/docs/ReadyToGetStartedCard'
 import { getDocWithFallback, stripMarkdownLeadingH1 } from '@/lib/docs'
+import { docsBodyTypographyClass } from '@/lib/docs/markdown-styles'
 
 const MD_PATH = 'monorepo.md'
 const GITHUB_URL =
@@ -51,7 +52,11 @@ export default async function MonorepoPage() {
           </div>
         </AnimatedSection>
         <AnimatedSection direction="up" delay={100}>
-          <DocsMarkdown source="context" currentDocPath={MD_PATH}>
+          <DocsMarkdown
+            source="context"
+            currentDocPath={MD_PATH}
+            className={docsBodyTypographyClass}
+          >
             {content}
           </DocsMarkdown>
         </AnimatedSection>
