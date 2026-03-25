@@ -8,8 +8,8 @@ import { getDocWithFallback, stripMarkdownLeadingH1 } from '@/lib/docs'
 import { docsBodyTypographyClass } from '@/lib/docs/markdown-styles'
 import { FRAMEWORK_DOCS } from '@/lib/docs/framework-pages'
 
-const config = FRAMEWORK_DOCS.nestjs
-const GITHUB_URL = 'https://github.com/LogicStamp/logicstamp-context/blob/main/docs/frameworks/nestjs.md'
+const config = FRAMEWORK_DOCS.react
+const GITHUB_URL = 'https://github.com/LogicStamp/logicstamp-context/blob/main/docs/frameworks/react.md'
 
 export const metadata: Metadata = {
   title: `${config.title} | LogicStamp Context Documentation`,
@@ -21,14 +21,14 @@ async function getContent() {
     const result = await getDocWithFallback('context', `frameworks/${config.mdFile}`)
     return stripMarkdownLeadingH1(result.content)
   } catch (error) {
-    console.error('Error fetching nestjs doc:', error)
+    console.error('Error fetching react doc:', error)
     return stripMarkdownLeadingH1(
       `# ${config.title}\n\nUnable to load documentation. Please check the [source on GitHub](${GITHUB_URL}).\n\nError: ${error instanceof Error ? error.message : 'Unknown'}`
     )
   }
 }
 
-export default async function NestJSPage() {
+export default async function ReactPage() {
   const content = await getContent()
 
   return (
@@ -38,7 +38,7 @@ export default async function NestJSPage() {
           <div className="relative mb-8 sm:mb-12 lg:mb-16">
             <div className="absolute inset-0 bg-gradient-to-br from-slate-50 via-gray-50/30 to-zinc-50/20 dark:from-slate-950/20 dark:via-gray-950/10 dark:to-zinc-950/5 rounded-3xl -m-4 sm:-m-6 lg:-m-8 blur-3xl opacity-70" />
             <div className="relative">
-              <div className="inline-flex items-center gap-2 px-3 py-1.5 bg-gradient-to-r from-red-100 to-pink-100 dark:from-red-900/40 dark:to-pink-900/40 text-red-700 dark:text-red-300 text-sm font-semibold rounded-full mb-4 sm:mb-6 backdrop-blur-sm border border-red-200/50 dark:border-red-700/50">
+              <div className="inline-flex items-center gap-2 px-3 py-1.5 bg-gradient-to-r from-cyan-100 to-blue-100 dark:from-cyan-900/40 dark:to-blue-900/40 text-cyan-700 dark:text-cyan-300 text-sm font-semibold rounded-full mb-4 sm:mb-6 backdrop-blur-sm border border-cyan-200/50 dark:border-cyan-700/50">
                 <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
                   <path fillRule="evenodd" d="M4 4a2 2 0 012-2h4.586A2 2 0 0112 2.586L15.414 6A2 2 0 0116 7.414V16a2 2 0 01-2 2H6a2 2 0 01-2-2V4z" clipRule="evenodd" />
                 </svg>
@@ -63,7 +63,7 @@ export default async function NestJSPage() {
         <ReadyToGetStartedCard
           description="Explore other frameworks or learn about the CLI."
           primaryAction={{
-            href: '/docs/logicstamp-context/frameworks',
+            href: '/docs/frameworks',
             label: 'All Frameworks',
           }}
           secondaryAction={{

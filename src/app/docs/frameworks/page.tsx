@@ -69,7 +69,7 @@ export default function FrameworksIndexPage() {
             {FRAMEWORKS.map(({ slug, name, color }) => (
               <Link
                 key={slug}
-                href={`/docs/logicstamp-context/frameworks/${slug}`}
+                href={`/docs/frameworks/${slug}`}
                 className="group relative block p-4 sm:p-6 bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded-2xl shadow-lg hover:shadow-xl transition-shadow"
               >
                 <div className={`w-3 h-3 rounded-full bg-gradient-to-r ${color} mb-3`} />

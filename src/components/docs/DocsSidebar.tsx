@@ -53,13 +53,13 @@ const sections: DocsNavSection[] = [
   {
     title: 'Frameworks',
     items: [
-      { title: 'Frameworks', href: '/docs/logicstamp-context/frameworks' },
-      { title: 'TypeScript Support', href: '/docs/logicstamp-context/frameworks/typescript' },
-      { title: 'React Support', href: '/docs/logicstamp-context/frameworks/react' },
-      { title: 'Next.js Support', href: '/docs/logicstamp-context/frameworks/nextjs' },
-      { title: 'Vue Support', href: '/docs/logicstamp-context/frameworks/vue' },
-      { title: 'Express.js Support', href: '/docs/logicstamp-context/frameworks/express' },
-      { title: 'NestJS Support', href: '/docs/logicstamp-context/frameworks/nestjs' },
+      { title: 'Frameworks', href: '/docs/frameworks' },
+      { title: 'TypeScript Support', href: '/docs/frameworks/typescript' },
+      { title: 'React Support', href: '/docs/frameworks/react' },
+      { title: 'Next.js Support', href: '/docs/frameworks/nextjs' },
+      { title: 'Vue Support', href: '/docs/frameworks/vue' },
+      { title: 'Express.js Support', href: '/docs/frameworks/express' },
+      { title: 'NestJS Support', href: '/docs/frameworks/nestjs' },
     ],
   },
   {
@@ -129,7 +129,7 @@ function isActive(pathname: string | null, href: string) {
   // UI Frameworks index should only match exactly, not sub-paths (e.g. /radix, /tailwind)
   if (href === '/docs/logicstamp-context/ui-frameworks') return pathname === '/docs/logicstamp-context/ui-frameworks'
   // Frameworks index should only match exactly, not sub-paths (e.g. /react, /express)
-  if (href === '/docs/logicstamp-context/frameworks') return pathname === '/docs/logicstamp-context/frameworks'
+  if (href === '/docs/frameworks') return pathname === '/docs/frameworks'
   return pathname === href || pathname.startsWith(href + '/')
 }
 

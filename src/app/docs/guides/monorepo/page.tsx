@@ -64,7 +64,7 @@ export default async function MonorepoPage() {
         <ReadyToGetStartedCard
           description="Explore framework guides or initialize LogicStamp from your monorepo root."
           primaryAction={{
-            href: '/docs/logicstamp-context/frameworks',
+            href: '/docs/frameworks',
             label: 'Framework guides',
           }}
           secondaryAction={{
