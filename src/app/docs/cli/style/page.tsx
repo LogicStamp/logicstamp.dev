@@ -351,7 +351,7 @@ export default function StyleCommandPage() {
                         <td className="px-2 sm:px-6 py-4 whitespace-nowrap">
                           <code className="px-1.5 py-0.5 bg-blue-100 dark:bg-blue-900/40 text-blue-900 dark:text-blue-100 rounded text-xs font-mono">2</code>
                         </td>
-                        <td className="px-2 sm:px-6 py-4 text-sm text-gray-600 dark:text-gray-400">Dependency traversal depth (<code className="px-1 py-0.5 bg-gray-100 dark:bg-gray-800 rounded text-xs font-mono">0</code> = entry only, <code className="px-1 py-0.5 bg-gray-100 dark:bg-gray-800 rounded text-xs font-mono">1</code> = direct deps, <code className="px-1 py-0.5 bg-gray-100 dark:bg-gray-800 rounded text-xs font-mono">2</code> = nested components, etc.). See <a href="/docs/logicstamp-context/context#depth-parameter" className="text-blue-600 dark:text-blue-400 hover:underline">context.md</a> for details.</td>
+                        <td className="px-2 sm:px-6 py-4 text-sm text-gray-600 dark:text-gray-400">Dependency traversal depth (<code className="px-1 py-0.5 bg-gray-100 dark:bg-gray-800 rounded text-xs font-mono">0</code> = entry only, <code className="px-1 py-0.5 bg-gray-100 dark:bg-gray-800 rounded text-xs font-mono">1</code> = direct deps, <code className="px-1 py-0.5 bg-gray-100 dark:bg-gray-800 rounded text-xs font-mono">2</code> = nested components, etc.). See <a href="/docs/cli/context#depth-parameter" className="text-blue-600 dark:text-blue-400 hover:underline">context.md</a> for details.</td>
                       </tr>
                       <tr className="hover:bg-gray-50 dark:hover:bg-gray-800/50 transition-colors bg-green-50/30 dark:bg-green-950/20">
                         <td className="px-2 sm:px-6 py-4 whitespace-nowrap">
@@ -1095,7 +1095,7 @@ stamp context compare old/context_main.json new/context_main.json`
                     <li><strong>Savings percentages</strong> compared to both raw source and full context</li>
                   </ul>
                   <p className="text-sm text-violet-800 dark:text-violet-300">
-                    See <a href="/docs/logicstamp-context/compare-modes" className="text-violet-600 dark:text-violet-400 hover:underline">COMPARE-MODES.md</a> for a comprehensive guide to token cost analysis and mode comparison.
+                    See <a href="/docs/cli/compare-modes" className="text-violet-600 dark:text-violet-400 hover:underline">COMPARE-MODES.md</a> for a comprehensive guide to token cost analysis and mode comparison.
                   </p>
                 </div>
               </div>
@@ -1237,7 +1237,7 @@ stamp context compare old/context_main.json new/context_main.json`
           </AnimatedSection>
 
           <AnimatedSection direction="up" delay={750}>
-            <LogicStampContextRelatedCliNav currentHref="/docs/logicstamp-context/style" />
+            <LogicStampContextRelatedCliNav currentHref="/docs/cli/style" />
           </AnimatedSection>
         </div>
         <ReadyToGetStartedCard
@@ -1248,7 +1248,7 @@ stamp context compare old/context_main.json new/context_main.json`
             label: 'Usage Guide',
           }}
           secondaryAction={{
-            href: '/docs/logicstamp-context/watch-mode',
+            href: '/docs/cli/watch-mode',
             label: 'Watch Mode',
           }}
           delay={650}

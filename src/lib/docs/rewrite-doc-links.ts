@@ -54,25 +54,25 @@ const PATH_OVERRIDES: Record<string, string> = {
   'reference/schema.md': '/docs/reference/schema',
   'reference/uif-contracts.md': '/docs/reference/uif-contracts',
   'reference/stampignore.md': '/docs/reference/stampignore',
-  /** Canonical schema doc (legacy site path was /docs/logicstamp-context/schema) */
+  /** Canonical schema doc (legacy site path was /docs/cli/schema → /docs/reference/schema) */
   'schema.md': '/docs/reference/schema',
   'docs/schema.md': '/docs/reference/schema',
-  'cli/style.md': '/docs/logicstamp-context/style',
-  'cli/init.md': '/docs/logicstamp-context/init',
-  'cli/context.md': '/docs/logicstamp-context/context',
-  'cli/compare.md': '/docs/logicstamp-context/compare',
-  'cli/compare-modes.md': '/docs/logicstamp-context/compare-modes',
-  'cli/validate.md': '/docs/logicstamp-context/validate',
-  'cli/clean.md': '/docs/logicstamp-context/clean',
-  'cli/watch.md': '/docs/logicstamp-context/watch-mode',
-  'cli/security-scan.md': '/docs/logicstamp-context/security-scan',
+  'cli/style.md': '/docs/cli/style',
+  'cli/init.md': '/docs/cli/init',
+  'cli/context.md': '/docs/cli/context',
+  'cli/compare.md': '/docs/cli/compare',
+  'cli/compare-modes.md': '/docs/cli/compare-modes',
+  'cli/validate.md': '/docs/cli/validate',
+  'cli/clean.md': '/docs/cli/clean',
+  'cli/watch.md': '/docs/cli/watch-mode',
+  'cli/security-scan.md': '/docs/cli/security-scan',
   'cli/ignore.md': '/docs/guides/usage',
-  'cli/getting-started.md': '/docs/logicstamp-context/cli/getting-started',
+  'cli/getting-started.md': '/docs/cli/getting-started',
 }
 
 /** Map resolved doc path to website URL. Handles special cases (CHANGELOG, ui-frameworks, etc.) */
 function docPathToUrl(source: DocSource, resolvedPath: string): string | null {
-  const base = source === 'context' ? '/docs/logicstamp-context' : '/docs/mcp'
+  const base = source === 'context' ? '/docs/cli' : '/docs/mcp'
 
   // Check explicit overrides first
   const override = PATH_OVERRIDES[resolvedPath.toLowerCase()]

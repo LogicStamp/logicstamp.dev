@@ -183,7 +183,7 @@ export default function DocsHomePage() {
               The CLI provides commands for generating, validating, and managing AI-ready context files from your codebase.
             </p>
             <Link
-              href="/docs/logicstamp-context/cli"
+              href="/docs/cli"
               className="inline-flex items-center gap-2 px-4 sm:px-6 py-2.5 sm:py-3 bg-gray-900 dark:bg-white text-white dark:text-gray-900 font-semibold rounded-xl hover:shadow-xl transition-all duration-200 hover:-translate-y-0.5 text-sm sm:text-base"
             >
               CLI Docs Hub

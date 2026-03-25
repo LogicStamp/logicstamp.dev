@@ -471,7 +471,7 @@ export default function MCPReferencePage() {
     "forLLMs": "# LogicStamp for LLMs\\n..."
   },
   "canonicalDocs": {
-    "landingPage": "https://logicstamp.dev/docs/logicstamp-context/context",
+    "landingPage": "https://logicstamp.dev/docs/cli/context",
     "cliRepo": "https://github.com/LogicStamp/logicstamp-context",
     "usage": { "primary": "https://logicstamp.dev/docs/...", "fallback": "https://github.com/..." },
     // ... more canonical links
@@ -493,7 +493,7 @@ export default function MCPReferencePage() {
     ]
   }
 }`,
-                      copyText: JSON.stringify({ type: "LogicStampDocs", version: "1.0", docs: { forLLMs: "# LogicStamp for LLMs..." }, canonicalDocs: { landingPage: "https://logicstamp.dev/docs/logicstamp-context/context", cliRepo: "https://github.com/LogicStamp/logicstamp-context" }, summary: { purpose: "LogicStamp is a CLI tool + MCP server...", howToUse: ["1. Call logicstamp_refresh_snapshot...", "2. Call logicstamp_list_bundles...", "3. Call logicstamp_read_bundle..."], keyConcepts: ["Bundles are pre-parsed summaries", "context_main.json is the main index"] } }, null, 2)
+                      copyText: JSON.stringify({ type: "LogicStampDocs", version: "1.0", docs: { forLLMs: "# LogicStamp for LLMs..." }, canonicalDocs: { landingPage: "https://logicstamp.dev/docs/cli/context", cliRepo: "https://github.com/LogicStamp/logicstamp-context" }, summary: { purpose: "LogicStamp is a CLI tool + MCP server...", howToUse: ["1. Call logicstamp_refresh_snapshot...", "2. Call logicstamp_list_bundles...", "3. Call logicstamp_read_bundle..."], keyConcepts: ["Bundles are pre-parsed summaries", "context_main.json is the main index"] } }, null, 2)
                     }
                   ]}
                 />

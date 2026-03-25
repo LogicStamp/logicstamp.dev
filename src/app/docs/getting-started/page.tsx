@@ -229,7 +229,7 @@ export default function GettingStartedPage() {
                 />
                 <p className={`text-sm ${docsMutedTextClass} mt-4`}>
                   <strong>Strict Watch</strong> detects breaking changes (removed props/events) and tracks violations during refactors.{' '}
-                  <Link href="/docs/logicstamp-context/watch-mode" className="text-blue-600 dark:text-blue-400 hover:underline">
+                  <Link href="/docs/cli/watch-mode" className="text-blue-600 dark:text-blue-400 hover:underline">
                     Learn more about watch mode →
                   </Link>
                 </p>
@@ -251,7 +251,7 @@ export default function GettingStartedPage() {
                 <p className="text-sm text-gray-700 dark:text-gray-300">Understand the problem it solves</p>
               </Link>
               <Link
-                href="/docs/logicstamp-context/cli/getting-started"
+                href="/docs/cli/getting-started"
                 className="p-4 border border-gray-200 dark:border-gray-800 rounded-lg md:hover:border-green-500 dark:md:hover:border-green-500 transition-colors"
               >
                 <h3 className="font-semibold text-gray-900 dark:text-white mb-1">CLI Guide →</h3>
@@ -278,7 +278,7 @@ export default function GettingStartedPage() {
         <ReadyToGetStartedCard
           description="Explore the complete CLI documentation or learn more about what LogicStamp does."
           primaryAction={{
-            href: '/docs/logicstamp-context/cli/getting-started',
+            href: '/docs/cli/getting-started',
             label: 'CLI Documentation',
           }}
           secondaryAction={{

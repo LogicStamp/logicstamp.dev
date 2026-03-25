@@ -68,7 +68,7 @@ export default async function MonorepoPage() {
             label: 'Framework guides',
           }}
           secondaryAction={{
-            href: '/docs/logicstamp-context/init',
+            href: '/docs/cli/init',
             label: '`stamp init`',
           }}
         />

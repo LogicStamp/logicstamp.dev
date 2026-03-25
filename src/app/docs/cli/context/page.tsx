@@ -752,7 +752,7 @@ stamp context --watch --strict-watch`,
                 <div className="p-4 bg-indigo-50/50 dark:bg-indigo-950/20 border-l-4 border-indigo-500 rounded-r-lg">
                   <p className="text-sm text-gray-700 dark:text-gray-300">
                     <strong className="text-gray-900 dark:text-white">Learn more:</strong>{' '}
-                    <Link href="/docs/logicstamp-context/watch-mode" className="text-indigo-600 dark:text-indigo-400 hover:text-indigo-700 dark:hover:text-indigo-300 underline font-medium">
+                    <Link href="/docs/cli/watch-mode" className="text-indigo-600 dark:text-indigo-400 hover:text-indigo-700 dark:hover:text-indigo-300 underline font-medium">
                       Read the complete watch mode documentation →
                     </Link>
                   </p>
@@ -815,7 +815,7 @@ stamp context --format toon
                   </svg>
                   <p className="text-sm text-gray-700 dark:text-gray-300">
                     <strong className="text-gray-900 dark:text-white">Learn more:</strong>{' '}
-                    <Link href="/docs/logicstamp-context/toon" className="text-blue-600 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300 underline font-medium">
+                    <Link href="/docs/cli/toon" className="text-blue-600 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300 underline font-medium">
                       Read the complete TOON format documentation →
                     </Link>
                   </p>
@@ -920,7 +920,7 @@ const password = 'EXAMPLE_PRIVATE_DATA';"
           </AnimatedSection>
 
           <AnimatedSection direction="up" delay={600}>
-            <LogicStampContextRelatedCliNav currentHref="/docs/logicstamp-context/context" />
+            <LogicStampContextRelatedCliNav currentHref="/docs/cli/context" />
           </AnimatedSection>
         </div>
 
@@ -932,7 +932,7 @@ const password = 'EXAMPLE_PRIVATE_DATA';"
             label: 'Usage Guide',
           }}
           secondaryAction={{
-            href: '/docs/logicstamp-context/watch-mode',
+            href: '/docs/cli/watch-mode',
             label: 'Watch Mode',
           }}
           delay={650}

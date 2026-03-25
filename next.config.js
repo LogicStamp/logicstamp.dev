@@ -90,6 +90,26 @@ const nextConfig = {
         destination: '/docs/ui-frameworks/:path*',
         permanent: true,
       },
+      {
+        source: '/docs/logicstamp-context/cli/getting-started',
+        destination: '/docs/cli/getting-started',
+        permanent: true,
+      },
+      {
+        source: '/docs/logicstamp-context/cli',
+        destination: '/docs/cli',
+        permanent: true,
+      },
+      {
+        source: '/docs/logicstamp-context/:path*',
+        destination: '/docs/cli/:path*',
+        permanent: true,
+      },
+      {
+        source: '/docs/logicstamp-context',
+        destination: '/docs/cli',
+        permanent: true,
+      },
     ]
   },
 }

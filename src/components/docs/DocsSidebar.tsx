@@ -28,26 +28,26 @@ const sections: DocsNavSection[] = [
     title: 'Getting Started',
     items: [
       { title: 'Getting Started', href: '/docs/getting-started' },
-      { title: 'CLI', href: '/docs/logicstamp-context/cli/getting-started' },
+      { title: 'CLI', href: '/docs/cli/getting-started' },
       { title: 'MCP', href: '/docs/mcp/getting-started' },
     ],
   },
   {
     title: 'CLI',
     items: [
-      { title: 'CLI Hub', href: '/docs/logicstamp-context/cli' },
-      { title: 'CLI Commands', href: '/docs/logicstamp-context/commands' },
-      { title: '`security scan` command', href: '/docs/logicstamp-context/security-scan' },
-      { title: '`init` command', href: '/docs/logicstamp-context/init' },
-      { title: '`context` command', href: '/docs/logicstamp-context/context' },
-      { title: '`style` command', href: '/docs/logicstamp-context/style' },
-      { title: 'Watch Mode', href: '/docs/logicstamp-context/watch-mode' },
-      { title: 'TOON Format', href: '/docs/logicstamp-context/toon' },
-      { title: 'Compare Modes', href: '/docs/logicstamp-context/compare-modes' },
-      { title: 'Strict Modes', href: '/docs/logicstamp-context/strict-modes' },
-      { title: '`compare` command', href: '/docs/logicstamp-context/compare' },
-      { title: '`validate` command', href: '/docs/logicstamp-context/validate' },
-      { title: '`clean` command', href: '/docs/logicstamp-context/clean' },
+      { title: 'CLI Hub', href: '/docs/cli' },
+      { title: 'CLI Commands', href: '/docs/cli/commands' },
+      { title: '`security scan` command', href: '/docs/cli/security-scan' },
+      { title: '`init` command', href: '/docs/cli/init' },
+      { title: '`context` command', href: '/docs/cli/context' },
+      { title: '`style` command', href: '/docs/cli/style' },
+      { title: 'Watch Mode', href: '/docs/cli/watch-mode' },
+      { title: 'TOON Format', href: '/docs/cli/toon' },
+      { title: 'Compare Modes', href: '/docs/cli/compare-modes' },
+      { title: 'Strict Modes', href: '/docs/cli/strict-modes' },
+      { title: '`compare` command', href: '/docs/cli/compare' },
+      { title: '`validate` command', href: '/docs/cli/validate' },
+      { title: '`clean` command', href: '/docs/cli/clean' },
     ],
   },
   {
@@ -112,9 +112,9 @@ const sections: DocsNavSection[] = [
   {
     title: 'Meta',
     items: [
-      { title: 'CLI Changelog', href: '/docs/logicstamp-context/changelog' },
+      { title: 'CLI Changelog', href: '/docs/cli/changelog' },
       { title: 'MCP Changelog', href: '/docs/mcp/changelog' },
-      { title: 'Migration to v0.3.2', href: '/docs/logicstamp-context/migration-0-3-2' },
+      { title: 'Migration to v0.3.2', href: '/docs/cli/migration-0-3-2' },
     ],
   },
 ]
@@ -130,6 +130,8 @@ function isActive(pathname: string | null, href: string) {
   if (href === '/docs/ui-frameworks') return pathname === '/docs/ui-frameworks'
   // Frameworks index should only match exactly, not sub-paths (e.g. /react, /express)
   if (href === '/docs/frameworks') return pathname === '/docs/frameworks'
+  // CLI hub is /docs/cli; command pages live at /docs/cli/commands etc. — match hub only
+  if (href === '/docs/cli') return pathname === '/docs/cli'
   return pathname === href || pathname.startsWith(href + '/')
 }
 
@@ -208,7 +210,7 @@ function getIcon(href: string): ReactNode {
     )
   }
 
-  if (href === '/docs/logicstamp-context/cli') {
+  if (href === '/docs/cli') {
     // Terminal / CLI icon
     return (
       <svg

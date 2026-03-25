@@ -721,7 +721,7 @@ await writeFile('src/components/context.json', jsonContent);
           </AnimatedSection>
 
           <AnimatedSection direction="up" delay={700}>
-            <LogicStampContextRelatedCliNav currentHref="/docs/logicstamp-context/toon" />
+            <LogicStampContextRelatedCliNav currentHref="/docs/cli/toon" />
           </AnimatedSection>
         </div>
 
@@ -729,11 +729,11 @@ await writeFile('src/components/context.json', jsonContent);
           variant="green"
           description="Explore other commands or browse the Reference section for schema and contracts."
           primaryAction={{
-            href: '/docs/logicstamp-context/commands',
+            href: '/docs/cli/commands',
             label: 'All Commands',
           }}
           secondaryAction={{
-            href: '/docs/logicstamp-context/context',
+            href: '/docs/cli/context',
             label: 'Generate Context',
           }}
           delay={650}

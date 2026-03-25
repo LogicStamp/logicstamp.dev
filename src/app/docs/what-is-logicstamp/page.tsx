@@ -141,7 +141,7 @@ export default function WhatIsLogicStampPage() {
                 <li>• <strong>CI-friendly</strong> - No prompts, deterministic output</li>
               </ul>
               <p className={`text-sm ${docsMutedTextClass}`}>
-                <Link href="/docs/logicstamp-context/commands" className="text-blue-600 dark:text-blue-400 hover:underline">
+                <Link href="/docs/cli/commands" className="text-blue-600 dark:text-blue-400 hover:underline">
                   See all CLI commands →
                 </Link>
               </p>
