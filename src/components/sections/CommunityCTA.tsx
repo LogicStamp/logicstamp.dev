@@ -17,7 +17,7 @@ export default function CommunityCTA() {
             </div>
 
             <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 dark:text-white mb-4">
-              Built by Developers, for Developers
+              Open Source, Built for Developers
             </h2>
 
             <p className="text-lg text-gray-600 dark:text-gray-300 mb-8 max-w-2xl mx-auto">

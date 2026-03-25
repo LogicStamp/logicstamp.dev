@@ -90,9 +90,9 @@ export default function Footer() {
   }
 
   return (
-    <footer data-testid="footer" className="border-t border-gray-200/70 dark:border-gray-800/80 bg-gradient-bg-section">
-      {/* Faint gradient accent line */}
-      <div className="h-px w-full bg-gradient-to-r from-transparent via-primary-200/60 dark:via-secondary-700/60 to-transparent" />
+    <footer data-testid="footer" className="border-t border-gray-200/70 dark:border-gray-600/55 bg-gradient-bg-section">
+      {/* Soft gray fade along the top edge (reads clearly in dark mode) */}
+      <div className="h-px w-full bg-gradient-to-r from-transparent via-gray-300/50 dark:via-gray-500/45 to-transparent" />
 
       <div className="mx-auto max-w-[1440px] px-4 sm:px-6 lg:px-6 py-12 md:py-16">
         <AnimatedSection direction="up" delay={0}>
