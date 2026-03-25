@@ -200,7 +200,7 @@ export default function WhyLogicStamp() {
                       The Manual Grind
                     </h3>
                     <p className="text-gray-600 dark:text-gray-300">
-                      30+ minutes of copying, pasting, and explaining your codebase
+                      10+ minutes of copying, pasting, and explaining your codebase
                     </p>
                   </div>
                 </div>
