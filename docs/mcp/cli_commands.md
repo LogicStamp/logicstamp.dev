@@ -1,7 +1,7 @@
 # CLI Commands Reference
 
 > **📚 For complete CLI documentation:**  
-> - **Primary:** [logicstamp.dev/docs/logicstamp-context/context](https://logicstamp.dev/docs/logicstamp-context/context) (landing page)  
+> - **Primary:** [logicstamp.dev/docs/cli/context](https://logicstamp.dev/docs/cli/context) (landing page)  
 > - **Fallback:** [GitHub CLI docs](https://github.com/LogicStamp/logicstamp-context/blob/main/docs/cli/context.md) (always available)  
 > **See also:** [Tool Description](tool_description.md) for LogicStamp Context capabilities | [MCP Integration Guide](mcp_integration.md) for MCP server usage | [Quick Start](quickstart.md) for setup
 

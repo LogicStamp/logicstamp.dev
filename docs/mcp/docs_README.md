@@ -23,7 +23,7 @@ Platform-specific installation and configuration:
 ## Canonical Documentation
 
 **Redundant Sources (Primary + Fallback):** Full LogicStamp Context documentation is maintained in:
-- **Primary:** [logicstamp.dev/docs/logicstamp-context/context](https://logicstamp.dev/docs/logicstamp-context/context) - Landing page with complete docs (best UX)
+- **Primary:** [logicstamp.dev/docs/cli/context](https://logicstamp.dev/docs/cli/context) - Landing page with complete docs (best UX)
 - **Fallback:** [CLI Repository](https://github.com/LogicStamp/logicstamp-context) - GitHub docs (always available, versioned)
 
 **This MCP repo contains:**
@@ -61,14 +61,14 @@ docs/
     └── cursor.md
 ```
 
-**Note:** Full CLI documentation lives at [logicstamp.dev/docs/logicstamp-context/context](https://logicstamp.dev/docs/logicstamp-context/context) and in the [CLI repository](https://github.com/LogicStamp/logicstamp-context). This MCP repo only contains MCP-specific docs and an embedded LLM doc snapshot.
+**Note:** Full CLI documentation lives at [logicstamp.dev/docs/cli/context](https://logicstamp.dev/docs/cli/context) and in the [CLI repository](https://github.com/LogicStamp/logicstamp-context). This MCP repo only contains MCP-specific docs and an embedded LLM doc snapshot.
 
 ## Finding What You Need
 
 - **New to LogicStamp?** → Start with [Quick Start](quickstart.md)
 - **Setting up an MCP client?** → Check [Integration Guides](integrations/)
 - **Understanding the architecture?** → Read [MCP Integration Guide](mcp_integration.md)
-- **Using LogicStamp with AI?** → See [LogicStamp for LLMs](logicstamp-for-llms.md) (embedded snapshot) or [Full Docs](https://logicstamp.dev/docs/logicstamp-context/context)
-- **Looking for CLI commands?** → See [Canonical CLI Docs](https://logicstamp.dev/docs/logicstamp-context/context)
+- **Using LogicStamp with AI?** → See [LogicStamp for LLMs](logicstamp-for-llms.md) (embedded snapshot) or [Full Docs](https://logicstamp.dev/docs/cli/context)
+- **Looking for CLI commands?** → See [Canonical CLI Docs](https://logicstamp.dev/docs/cli/context)
 - **Contributing to the project?** → Review [Contributing Guide](../CONTRIBUTING.md) and [MCP Integration Guide](mcp_integration.md)
 

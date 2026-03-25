@@ -662,7 +662,7 @@ stamp context style --strict-watch`,
               </div>
               <div className="mt-6 p-4 bg-cyan-50 dark:bg-cyan-950/20 rounded-lg border border-cyan-200 dark:border-cyan-800">
                 <p className="text-sm text-cyan-800 dark:text-cyan-200">
-                  <Link href="/docs/logicstamp-context/watch-mode" className="text-cyan-600 dark:text-cyan-400 hover:underline font-semibold">
+                  <Link href="/docs/cli/watch-mode" className="text-cyan-600 dark:text-cyan-400 hover:underline font-semibold">
                     Learn more about watch mode →
                   </Link>
                 </p>
@@ -849,7 +849,7 @@ stamp security scan`
             label: 'Best Practices',
           }}
           secondaryAction={{
-            href: '/docs/logicstamp-context/watch-mode',
+            href: '/docs/cli/watch-mode',
             label: 'Watch Mode',
           }}
         />

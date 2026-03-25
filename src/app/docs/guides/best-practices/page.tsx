@@ -127,7 +127,7 @@ export default function BestPracticesPage() {
                   <p className="text-xs sm:text-sm text-gray-800 dark:text-cyan-100">
                     <span className="font-semibold text-cyan-900 dark:text-cyan-200">💡 Best Practice:</span>{' '}
                     For active development, use <code className="px-1.5 py-0.5 bg-cyan-100 dark:bg-cyan-900/40 rounded text-xs font-mono">stamp context --watch</code> to automatically regenerate context as you code. Watch mode keeps context fresh without manual regeneration and dramatically improves MCP response times. See{' '}
-                    <Link href="/docs/logicstamp-context/watch-mode" className="text-cyan-600 dark:text-cyan-400 hover:underline">
+                    <Link href="/docs/cli/watch-mode" className="text-cyan-600 dark:text-cyan-400 hover:underline">
                       watch mode documentation
                     </Link> for details.
                   </p>

@@ -289,7 +289,7 @@ export default function MCPStyleMetadataPage() {
             title="Learn More"
             description="Explore comparison workflows, best practices, and troubleshooting guides."
             primaryAction={{
-              href: '/docs/logicstamp-context/compare-modes',
+              href: '/docs/cli/compare-modes',
               label: 'Compare Modes',
             }}
             secondaryAction={{

@@ -87,7 +87,7 @@ export default async function CompareModesPage() {
         </AnimatedSection>
 
         <AnimatedSection direction="up" delay={200}>
-          <LogicStampContextRelatedCliNav currentHref="/docs/logicstamp-context/compare-modes" />
+          <LogicStampContextRelatedCliNav currentHref="/docs/cli/compare-modes" />
         </AnimatedSection>
 
         <ReadyToGetStartedCard

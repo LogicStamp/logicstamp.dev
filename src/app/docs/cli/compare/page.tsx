@@ -934,7 +934,7 @@ stamp context compare --baseline git:main --strict`,
           </AnimatedSection>
 
           <AnimatedSection direction="up" delay={600}>
-            <LogicStampContextRelatedCliNav currentHref="/docs/logicstamp-context/compare" />
+            <LogicStampContextRelatedCliNav currentHref="/docs/cli/compare" />
           </AnimatedSection>
         </div>
 
@@ -942,11 +942,11 @@ stamp context compare --baseline git:main --strict`,
           variant="green"
           description="Explore other commands or browse the Reference section for schema and contracts."
           primaryAction={{
-            href: '/docs/logicstamp-context/commands',
+            href: '/docs/cli/commands',
             label: 'All Commands',
           }}
           secondaryAction={{
-            href: '/docs/logicstamp-context/compare-modes',
+            href: '/docs/cli/compare-modes',
             label: 'Compare Modes',
           }}
           delay={650}

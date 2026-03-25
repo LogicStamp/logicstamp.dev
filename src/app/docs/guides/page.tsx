@@ -23,7 +23,7 @@ const guidePages = [
   },
   {
     title: 'Watch Mode',
-    href: '/docs/logicstamp-context/watch-mode',
+    href: '/docs/cli/watch-mode',
     description: 'Keep context files fresh automatically with incremental rebuilds. Perfect for active development and MCP workflows.',
   },
   {
@@ -146,7 +146,7 @@ export default function GuidesHomePage() {
             </p>
             <div className="grid sm:grid-cols-2 gap-4">
               <Link
-                href="/docs/logicstamp-context/cli"
+                href="/docs/cli"
                 className="group p-4 border border-gray-200 dark:border-gray-800 rounded-lg md:hover:border-blue-500 dark:md:hover:border-blue-500 transition-colors"
               >
                 <div className="flex items-baseline gap-2 mb-2">
@@ -189,7 +189,7 @@ export default function GuidesHomePage() {
             label: 'Getting Started',
           }}
           secondaryAction={{
-            href: '/docs/logicstamp-context/init',
+            href: '/docs/cli/init',
             label: 'Initialize Project',
           }}
           delay={650}

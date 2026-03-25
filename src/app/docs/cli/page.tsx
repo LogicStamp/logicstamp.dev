@@ -47,7 +47,7 @@ export default function LogicStampContextDocsPage() {
               </p>
 
               <Link
-                href="/docs/logicstamp-context/init"
+                href="/docs/cli/init"
                 className="group relative flex items-start gap-4 p-4 sm:p-6 bg-gradient-to-br from-green-50 to-indigo-50 dark:from-green-950/20 dark:to-indigo-950/10 rounded-xl border border-green-200 dark:border-green-800 hover:shadow-lg transition-all duration-200"
               >
                 <div className="flex-1 min-w-0">
@@ -79,7 +79,7 @@ export default function LogicStampContextDocsPage() {
             </p>
             <div className="grid sm:grid-cols-2 gap-4">
               <Link
-                href="/docs/logicstamp-context/context"
+                href="/docs/cli/context"
                 className="group p-4 border border-gray-200 dark:border-gray-800 rounded-lg hover:border-green-500 dark:hover:border-green-500 transition-colors"
               >
                 <div className="flex items-baseline gap-2 mb-2">
@@ -96,7 +96,7 @@ export default function LogicStampContextDocsPage() {
               </Link>
 
               <Link
-                href="/docs/logicstamp-context/style"
+                href="/docs/cli/style"
                 className="group p-4 border border-gray-200 dark:border-gray-800 rounded-lg hover:border-green-500 dark:hover:border-green-500 transition-colors"
               >
                 <div className="flex items-baseline gap-2 mb-2">
@@ -113,7 +113,7 @@ export default function LogicStampContextDocsPage() {
               </Link>
 
               <Link
-                href="/docs/logicstamp-context/watch-mode"
+                href="/docs/cli/watch-mode"
                 className="group p-4 border border-gray-200 dark:border-gray-800 rounded-lg hover:border-green-500 dark:hover:border-green-500 transition-colors"
               >
                 <div className="flex items-baseline gap-2 mb-2">
@@ -143,7 +143,7 @@ export default function LogicStampContextDocsPage() {
             </p>
             <div className="grid sm:grid-cols-2 gap-4">
               <Link
-                href="/docs/logicstamp-context/compare"
+                href="/docs/cli/compare"
                 className="group p-4 border border-gray-200 dark:border-gray-800 rounded-lg hover:border-green-500 dark:hover:border-green-500 transition-colors"
               >
                 <div className="flex items-baseline gap-2 mb-2">
@@ -160,7 +160,7 @@ export default function LogicStampContextDocsPage() {
               </Link>
 
               <Link
-                href="/docs/logicstamp-context/compare-modes"
+                href="/docs/cli/compare-modes"
                 className="group p-4 border border-gray-200 dark:border-gray-800 rounded-lg hover:border-green-500 dark:hover:border-green-500 transition-colors"
               >
                 <div className="flex items-baseline gap-2 mb-2">
@@ -177,7 +177,7 @@ export default function LogicStampContextDocsPage() {
               </Link>
 
               <Link
-                href="/docs/logicstamp-context/validate"
+                href="/docs/cli/validate"
                 className="group p-4 border border-gray-200 dark:border-gray-800 rounded-lg hover:border-green-500 dark:hover:border-green-500 transition-colors"
               >
                 <div className="flex items-baseline gap-2 mb-2">
@@ -207,7 +207,7 @@ export default function LogicStampContextDocsPage() {
             </p>
             <div className="grid sm:grid-cols-2 gap-4">
               <Link
-                href="/docs/logicstamp-context/clean"
+                href="/docs/cli/clean"
                 className="group p-4 border border-gray-200 dark:border-gray-800 rounded-lg hover:border-green-500 dark:hover:border-green-500 transition-colors"
               >
                 <div className="flex items-baseline gap-2 mb-2">
@@ -224,7 +224,7 @@ export default function LogicStampContextDocsPage() {
               </Link>
 
               <Link
-                href="/docs/logicstamp-context/ignore"
+                href="/docs/cli/ignore"
                 className="group p-4 border border-gray-200 dark:border-gray-800 rounded-lg hover:border-green-500 dark:hover:border-green-500 transition-colors"
               >
                 <div className="flex items-baseline gap-2 mb-2">
@@ -352,7 +352,7 @@ export default function LogicStampContextDocsPage() {
             </p>
             <div className="grid sm:grid-cols-2 gap-4">
               <Link
-                href="/docs/logicstamp-context/commands"
+                href="/docs/cli/commands"
                 className="group p-4 border border-gray-200 dark:border-gray-800 rounded-lg hover:border-green-500 dark:hover:border-green-500 transition-colors"
               >
                 <div className="flex items-baseline gap-2 mb-2">
@@ -403,7 +403,7 @@ export default function LogicStampContextDocsPage() {
               </Link>
 
               <Link
-                href="/docs/logicstamp-context/toon"
+                href="/docs/cli/toon"
                 className="group p-4 border border-gray-200 dark:border-gray-800 rounded-lg hover:border-green-500 dark:hover:border-green-500 transition-colors"
               >
                 <div className="flex items-baseline gap-2 mb-2">
@@ -426,7 +426,7 @@ export default function LogicStampContextDocsPage() {
           variant="green"
           description="Install LogicStamp Context CLI and generate your first AI-ready context bundle in minutes."
           primaryAction={{
-            href: '/docs/logicstamp-context/cli/getting-started',
+            href: '/docs/cli/getting-started',
             label: 'CLI Getting Started',
           }}
           secondaryAction={{

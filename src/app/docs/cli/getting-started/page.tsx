@@ -265,7 +265,7 @@ export default function QuickStartPage() {
                 />
                 <p className={`text-sm ${docsMutedTextClass} mt-3`}>
                   <strong>Strict Watch</strong> detects breaking changes (removed props/events) and tracks violations during refactors.{' '}
-                  <Link href="/docs/logicstamp-context/watch-mode" className="text-blue-600 dark:text-blue-400 hover:underline">
+                  <Link href="/docs/cli/watch-mode" className="text-blue-600 dark:text-blue-400 hover:underline">
                     Learn more about watch mode →
                   </Link>
                 </p>
@@ -537,7 +537,7 @@ export default function QuickStartPage() {
             <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white mb-4">Learn More</h2>
             <div className="grid sm:grid-cols-2 gap-4">
               <Link
-                href="/docs/logicstamp-context/commands"
+                href="/docs/cli/commands"
                 className="p-4 border border-gray-200 dark:border-gray-800 rounded-lg md:hover:border-green-500 dark:md:hover:border-green-500 transition-colors"
               >
                 <h3 className="font-semibold text-gray-900 dark:text-white mb-1">CLI Commands →</h3>
@@ -558,7 +558,7 @@ export default function QuickStartPage() {
           variant="green"
           description="Explore the complete command reference or learn about advanced features."
           primaryAction={{
-            href: '/docs/logicstamp-context/commands',
+            href: '/docs/cli/commands',
             label: 'Command Reference',
           }}
           secondaryAction={{

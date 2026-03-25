@@ -641,7 +641,7 @@ stamp init --no-secure`
           </AnimatedSection>
 
           <AnimatedSection direction="up" delay={1400}>
-            <LogicStampContextRelatedCliNav currentHref="/docs/logicstamp-context/security-scan" />
+            <LogicStampContextRelatedCliNav currentHref="/docs/cli/security-scan" />
           </AnimatedSection>
         </div>
 
@@ -649,7 +649,7 @@ stamp init --no-secure`
           variant="green"
           description="Explore other commands or check out best practices."
           primaryAction={{
-            href: '/docs/logicstamp-context/commands',
+            href: '/docs/cli/commands',
             label: 'All Commands',
           }}
           secondaryAction={{

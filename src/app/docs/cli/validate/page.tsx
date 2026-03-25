@@ -325,7 +325,7 @@ stamp context validate`
           </AnimatedSection>
 
           <AnimatedSection direction="up" delay={400}>
-            <LogicStampContextRelatedCliNav currentHref="/docs/logicstamp-context/validate" />
+            <LogicStampContextRelatedCliNav currentHref="/docs/cli/validate" />
           </AnimatedSection>
         </div>
 
@@ -333,11 +333,11 @@ stamp context validate`
           variant="green"
           description="Explore other commands or browse the Reference section for schema and contracts."
           primaryAction={{
-            href: '/docs/logicstamp-context/commands',
+            href: '/docs/cli/commands',
             label: 'All Commands',
           }}
           secondaryAction={{
-            href: '/docs/logicstamp-context/context',
+            href: '/docs/cli/context',
             label: 'Generate Context',
           }}
           delay={650}

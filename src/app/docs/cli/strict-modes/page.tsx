@@ -295,7 +295,7 @@ stamp context --watch --strict-watch  # Equivalent`,
           </AnimatedSection>
 
           <AnimatedSection direction="up" delay={550}>
-            <LogicStampContextRelatedCliNav currentHref="/docs/logicstamp-context/strict-modes" />
+            <LogicStampContextRelatedCliNav currentHref="/docs/cli/strict-modes" />
           </AnimatedSection>
         </div>
 
@@ -303,11 +303,11 @@ stamp context --watch --strict-watch  # Equivalent`,
           variant="green"
           description="Explore compare command or watch mode for breaking change detection."
           primaryAction={{
-            href: '/docs/logicstamp-context/compare',
+            href: '/docs/cli/compare',
             label: 'Compare Command',
           }}
           secondaryAction={{
-            href: '/docs/logicstamp-context/watch-mode',
+            href: '/docs/cli/watch-mode',
             label: 'Watch Mode',
           }}
           delay={600}

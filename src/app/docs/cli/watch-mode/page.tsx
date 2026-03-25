@@ -1168,7 +1168,7 @@ stamp context style --strict-watch`,
           </AnimatedSection>
 
           <AnimatedSection direction="up" delay={585}>
-            <LogicStampContextRelatedCliNav currentHref="/docs/logicstamp-context/watch-mode" />
+            <LogicStampContextRelatedCliNav currentHref="/docs/cli/watch-mode" />
           </AnimatedSection>
 
           {/* Next Steps */}

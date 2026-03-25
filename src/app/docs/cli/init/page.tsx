@@ -525,7 +525,7 @@ stamp init --skip-gitignore`
           </AnimatedSection>
 
           <AnimatedSection direction="up" delay={600}>
-            <LogicStampContextRelatedCliNav currentHref="/docs/logicstamp-context/init" />
+            <LogicStampContextRelatedCliNav currentHref="/docs/cli/init" />
           </AnimatedSection>
         </div>
 
@@ -533,7 +533,7 @@ stamp init --skip-gitignore`
           variant="green"
           description="Generate your first AI-ready context bundle."
           primaryAction={{
-            href: '/docs/logicstamp-context/context',
+            href: '/docs/cli/context',
             label: 'Generate Context',
           }}
           secondaryAction={{

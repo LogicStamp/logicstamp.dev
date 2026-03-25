@@ -67,7 +67,7 @@ export default async function MaterialUIPage() {
             label: 'All UI Frameworks',
           }}
           secondaryAction={{
-            href: '/docs/logicstamp-context/style',
+            href: '/docs/cli/style',
             label: 'Style Metadata',
           }}
         />

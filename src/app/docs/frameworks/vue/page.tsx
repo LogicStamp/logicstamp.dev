@@ -67,7 +67,7 @@ export default async function VuePage() {
             label: 'All Frameworks',
           }}
           secondaryAction={{
-            href: '/docs/logicstamp-context/cli',
+            href: '/docs/cli',
             label: 'CLI Commands',
           }}
         />
