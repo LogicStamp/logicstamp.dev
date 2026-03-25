@@ -8,8 +8,8 @@ import { getDocWithFallback, stripMarkdownLeadingH1 } from '@/lib/docs'
 import { docsBodyTypographyClass } from '@/lib/docs/markdown-styles'
 import { UI_FRAMEWORK_DOCS } from '@/lib/docs/ui-framework-pages'
 
-const config = UI_FRAMEWORK_DOCS.tailwind
-const GITHUB_URL = 'https://github.com/LogicStamp/logicstamp-context/blob/main/docs/ui-frameworks/tailwind.md'
+const config = UI_FRAMEWORK_DOCS.radix
+const GITHUB_URL = 'https://github.com/LogicStamp/logicstamp-context/blob/main/docs/ui-frameworks/radix.md'
 
 export const metadata: Metadata = {
   title: `${config.title} | LogicStamp Context Documentation`,
@@ -21,14 +21,14 @@ async function getContent() {
     const result = await getDocWithFallback('context', `ui-frameworks/${config.mdFile}`)
     return stripMarkdownLeadingH1(result.content)
   } catch (error) {
-    console.error('Error fetching tailwind doc:', error)
+    console.error('Error fetching radix doc:', error)
     return stripMarkdownLeadingH1(
       `# ${config.title}\n\nUnable to load documentation. Please check the [source on GitHub](${GITHUB_URL}).\n\nError: ${error instanceof Error ? error.message : 'Unknown'}`
     )
   }
 }
 
-export default async function TailwindPage() {
+export default async function RadixPage() {
   const content = await getContent()
 
   return (
@@ -36,7 +36,7 @@ export default async function TailwindPage() {
       <DocsLayout>
         <AnimatedSection direction="up" delay={0}>
           <div className="relative mb-8 sm:mb-12 lg:mb-16">
-            <div className="absolute inset-0 bg-gradient-to-br from-cyan-50 via-blue-50/30 to-sky-50/20 dark:from-cyan-950/20 dark:via-blue-950/10 dark:to-sky-950/5 rounded-3xl -m-4 sm:-m-6 lg:-m-8 blur-3xl opacity-70" />
+            <div className="absolute inset-0 bg-gradient-to-br from-purple-50 via-violet-50/30 to-fuchsia-50/20 dark:from-purple-950/20 dark:via-violet-950/10 dark:to-fuchsia-950/5 rounded-3xl -m-4 sm:-m-6 lg:-m-8 blur-3xl opacity-70" />
             <div className="relative">
               <div className="inline-flex items-center gap-2 px-3 py-1.5 bg-gradient-to-r from-purple-100 to-pink-100 dark:from-purple-900/40 dark:to-pink-900/40 text-purple-700 dark:text-purple-300 text-sm font-semibold rounded-full mb-4 sm:mb-6 backdrop-blur-sm border border-purple-200/50 dark:border-purple-700/50">
                 <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
@@ -63,7 +63,7 @@ export default async function TailwindPage() {
         <ReadyToGetStartedCard
           description="Explore other UI frameworks or learn about style metadata extraction."
           primaryAction={{
-            href: '/docs/logicstamp-context/ui-frameworks',
+            href: '/docs/ui-frameworks',
             label: 'All UI Frameworks',
           }}
           secondaryAction={{

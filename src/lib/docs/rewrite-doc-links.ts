@@ -83,10 +83,14 @@ function docPathToUrl(source: DocSource, resolvedPath: string): string | null {
     return `${base}/changelog`
   }
 
-  // ui-frameworks live under logicstamp-context
+  if (resolvedPath.startsWith('frameworks/')) {
+    const slug = pathToSlug(resolvedPath.replace('frameworks/', ''))
+    return `/docs/frameworks/${slug}`
+  }
+
   if (resolvedPath.startsWith('ui-frameworks/')) {
     const slug = pathToSlug(resolvedPath.replace('ui-frameworks/', ''))
-    return `/docs/logicstamp-context/ui-frameworks/${slug}`
+    return `/docs/ui-frameworks/${slug}`
   }
 
   // Regular docs under context/mcp

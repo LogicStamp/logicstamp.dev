@@ -65,16 +65,16 @@ const sections: DocsNavSection[] = [
   {
     title: 'UI Frameworks',
     items: [
-      { title: 'UI Frameworks', href: '/docs/logicstamp-context/ui-frameworks' },
-      { title: 'Tailwind CSS', href: '/docs/logicstamp-context/ui-frameworks/tailwind' },
-      { title: 'Material UI', href: '/docs/logicstamp-context/ui-frameworks/material-ui' },
-      { title: 'ShadCN/UI', href: '/docs/logicstamp-context/ui-frameworks/shadcn' },
-      { title: 'Radix UI', href: '/docs/logicstamp-context/ui-frameworks/radix' },
-      { title: 'Ant Design', href: '/docs/logicstamp-context/ui-frameworks/antd' },
-      { title: 'Chakra UI', href: '/docs/logicstamp-context/ui-frameworks/chakra' },
-      { title: 'Styled Components', href: '/docs/logicstamp-context/ui-frameworks/styled-components' },
-      { title: 'CSS & SCSS', href: '/docs/logicstamp-context/ui-frameworks/css-scss' },
-      { title: 'Framer Motion', href: '/docs/logicstamp-context/ui-frameworks/framer-motion' },
+      { title: 'UI Frameworks', href: '/docs/ui-frameworks' },
+      { title: 'Tailwind CSS', href: '/docs/ui-frameworks/tailwind' },
+      { title: 'Material UI', href: '/docs/ui-frameworks/material-ui' },
+      { title: 'ShadCN/UI', href: '/docs/ui-frameworks/shadcn' },
+      { title: 'Radix UI', href: '/docs/ui-frameworks/radix' },
+      { title: 'Ant Design', href: '/docs/ui-frameworks/antd' },
+      { title: 'Chakra UI', href: '/docs/ui-frameworks/chakra' },
+      { title: 'Styled Components', href: '/docs/ui-frameworks/styled-components' },
+      { title: 'CSS & SCSS', href: '/docs/ui-frameworks/css-scss' },
+      { title: 'Framer Motion', href: '/docs/ui-frameworks/framer-motion' },
     ],
   },
   {
@@ -127,7 +127,7 @@ function isActive(pathname: string | null, href: string) {
   // MCP Overview should only match exactly, not sub-paths
   if (href === '/docs/mcp') return pathname === '/docs/mcp'
   // UI Frameworks index should only match exactly, not sub-paths (e.g. /radix, /tailwind)
-  if (href === '/docs/logicstamp-context/ui-frameworks') return pathname === '/docs/logicstamp-context/ui-frameworks'
+  if (href === '/docs/ui-frameworks') return pathname === '/docs/ui-frameworks'
   // Frameworks index should only match exactly, not sub-paths (e.g. /react, /express)
   if (href === '/docs/frameworks') return pathname === '/docs/frameworks'
   return pathname === href || pathname.startsWith(href + '/')
@@ -511,7 +511,7 @@ function getIcon(href: string): ReactNode {
     )
   }
 
-  if (href.includes('/nextjs') || href.includes('/nestjs') || href.includes('/react') || href.includes('/express') || href.includes('/typescript') || href.includes('/vue') || href.includes('/logicstamp-context/ui-frameworks') || href.includes('/monorepo')) {
+  if (href.includes('/nextjs') || href.includes('/nestjs') || href.includes('/react') || href.includes('/express') || href.includes('/typescript') || href.includes('/vue') || href.includes('/docs/ui-frameworks') || href.includes('/monorepo')) {
     // Framework / code icon
     return (
       <svg

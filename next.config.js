@@ -80,6 +80,16 @@ const nextConfig = {
         destination: '/docs/frameworks/:path*',
         permanent: true,
       },
+      {
+        source: '/docs/logicstamp-context/ui-frameworks',
+        destination: '/docs/ui-frameworks',
+        permanent: true,
+      },
+      {
+        source: '/docs/logicstamp-context/ui-frameworks/:path*',
+        destination: '/docs/ui-frameworks/:path*',
+        permanent: true,
+      },
     ]
   },
 }

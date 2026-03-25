@@ -322,7 +322,7 @@ export default function LogicStampContextDocsPage() {
               </Link>
 
               <Link
-                href="/docs/logicstamp-context/ui-frameworks"
+                href="/docs/ui-frameworks"
                 className="group p-4 border border-gray-200 dark:border-gray-800 rounded-lg hover:border-green-500 dark:hover:border-green-500 transition-colors"
               >
                 <div className="flex items-baseline gap-2 mb-2">
