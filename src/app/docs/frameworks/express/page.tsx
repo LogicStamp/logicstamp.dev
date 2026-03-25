@@ -63,7 +63,7 @@ export default async function ExpressPage() {
         <ReadyToGetStartedCard
           description="Explore other frameworks or learn about the CLI."
           primaryAction={{
-            href: '/docs/logicstamp-context/frameworks',
+            href: '/docs/frameworks',
             label: 'All Frameworks',
           }}
           secondaryAction={{

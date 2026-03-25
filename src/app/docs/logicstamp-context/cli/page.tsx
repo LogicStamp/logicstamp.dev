@@ -254,7 +254,7 @@ export default function LogicStampContextDocsPage() {
             </p>
             <div className="grid sm:grid-cols-2 gap-4">
               <Link
-                href="/docs/logicstamp-context/frameworks/react"
+                href="/docs/frameworks/react"
                 className="group p-4 border border-gray-200 dark:border-gray-800 rounded-lg hover:border-green-500 dark:hover:border-green-500 transition-colors"
               >
                 <div className="flex items-baseline gap-2 mb-2">
@@ -271,7 +271,7 @@ export default function LogicStampContextDocsPage() {
               </Link>
 
               <Link
-                href="/docs/logicstamp-context/frameworks/nextjs"
+                href="/docs/frameworks/nextjs"
                 className="group p-4 border border-gray-200 dark:border-gray-800 rounded-lg hover:border-green-500 dark:hover:border-green-500 transition-colors"
               >
                 <div className="flex items-baseline gap-2 mb-2">
@@ -288,7 +288,7 @@ export default function LogicStampContextDocsPage() {
               </Link>
 
               <Link
-                href="/docs/logicstamp-context/frameworks/express"
+                href="/docs/frameworks/express"
                 className="group p-4 border border-gray-200 dark:border-gray-800 rounded-lg hover:border-green-500 dark:hover:border-green-500 transition-colors"
               >
                 <div className="flex items-baseline gap-2 mb-2">
@@ -305,7 +305,7 @@ export default function LogicStampContextDocsPage() {
               </Link>
 
               <Link
-                href="/docs/logicstamp-context/frameworks/nestjs"
+                href="/docs/frameworks/nestjs"
                 className="group p-4 border border-gray-200 dark:border-gray-800 rounded-lg hover:border-green-500 dark:hover:border-green-500 transition-colors"
               >
                 <div className="flex items-baseline gap-2 mb-2">

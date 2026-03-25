@@ -70,6 +70,16 @@ const nextConfig = {
         destination: '/docs/reference/schema',
         permanent: true,
       },
+      {
+        source: '/docs/logicstamp-context/frameworks',
+        destination: '/docs/frameworks',
+        permanent: true,
+      },
+      {
+        source: '/docs/logicstamp-context/frameworks/:path*',
+        destination: '/docs/frameworks/:path*',
+        permanent: true,
+      },
     ]
   },
 }
