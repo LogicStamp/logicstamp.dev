@@ -43,14 +43,35 @@ export default function Hero() {
   const { ref: communityRef, inView: communityInView } = useInView(0.1)
   const { ref: workflowGifRef, inView: workflowGifInView } = useInView(0.1)
   return (
-    <section className="relative overflow-hidden bg-theme-primary pt-28 pb-20 sm:pt-36 sm:pb-32 min-h-screen">
-      {/* Decorative background elements */}
-      <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute top-1/4 -left-20 w-96 h-96 bg-blue-500/5 dark:bg-blue-500/[0.015] rounded-full blur-3xl"></div>
-        <div className="absolute bottom-1/4 -right-20 w-96 h-96 bg-purple-500/5 dark:bg-purple-500/[0.015] rounded-full blur-3xl"></div>
-      </div>
+    <section className="relative">
+      {/* Upper hero: same canvas as GetStarted (gradient + grid); ends above LogicStamp in Action */}
+      <div className="relative w-full min-h-screen overflow-hidden bg-gradient-to-b from-slate-100 via-white to-sky-50/70 dark:from-[#0b0d10] dark:via-[#111418] dark:to-[#0b0d10] pt-28 sm:pt-36 pb-0">
+        <div className="absolute inset-0 overflow-hidden pointer-events-none">
+          <div
+            className="absolute inset-0 opacity-[0.09] dark:hidden"
+            style={{
+              backgroundImage: `
+                linear-gradient(to right, rgb(100 116 139) 1px, transparent 1px),
+                linear-gradient(to bottom, rgb(100 116 139) 1px, transparent 1px)
+              `,
+              backgroundSize: '40px 40px'
+            }}
+          />
+          <div
+            className="absolute inset-0 hidden dark:block opacity-[0.085]"
+            style={{
+              backgroundImage: `
+                linear-gradient(to right, rgb(148 163 184) 1px, transparent 1px),
+                linear-gradient(to bottom, rgb(148 163 184) 1px, transparent 1px)
+              `,
+              backgroundSize: '40px 40px'
+            }}
+          />
+          <div className="absolute top-1/4 -left-20 w-96 h-96 rounded-full blur-3xl bg-sky-400/[0.22] dark:bg-blue-500/[0.028]" />
+          <div className="absolute bottom-1/4 -right-20 w-96 h-96 rounded-full blur-3xl bg-violet-400/[0.2] dark:bg-purple-500/[0.028]" />
+        </div>
 
-      <div className="mx-auto max-w-[1440px] px-4 lg:px-6 relative z-10">
+        <div className="mx-auto max-w-[1440px] px-4 lg:px-6 relative z-10 pb-20 sm:pb-24">
         {/* Desktop: Split layout with headline left, visualization right */}
         <div className="hidden lg:grid lg:grid-cols-2 lg:gap-12 lg:items-start lg:min-h-[80vh]">
           {/* Left: Headline and CTA */}
@@ -444,7 +465,12 @@ export default function Hero() {
             </a>
           </div>
         </div>
+        </div>
+      </div>
 
+      {/* Demo + stats + community on flat theme (grid/gradient stops above) */}
+      <div className="relative w-full overflow-hidden bg-theme-primary pb-20 sm:pb-32">
+        <div className="mx-auto max-w-[1440px] px-4 lg:px-6 relative z-10">
         {/* Workflow Video - Desktop Only */}
         <div 
           ref={workflowGifRef}
@@ -488,6 +514,7 @@ export default function Hero() {
           }`}
         >
           <CommunityCTA />
+        </div>
         </div>
       </div>
     </section>

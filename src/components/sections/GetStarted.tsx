@@ -30,25 +30,35 @@ function useInView(threshold = 0.1) {
   return { ref, inView }
 }
 
-// AST-style node component tuned for neutral light/dark canvases
+// Node box geometry (viewBox coordinates; graph is widened for side spread)
+const NODE_HALF_W = 48
+const NODE_HALF_H = 16
+
+// AST nodes: slate/sky/indigo family to match GetStarted canvas (slate grid + sky-50 band)
 function ASTNode({
   x, y, label, type, delay = 0, inView
 }: {
   x: number; y: number; label: string; type: 'component' | 'props' | 'state' | 'fn' | 'type'; delay?: number; inView: boolean
 }) {
   const colors = {
-    component: 'stroke-violet-500/40 fill-violet-500/5 dark:stroke-violet-400/35 dark:fill-violet-400/8',
-    props: 'stroke-blue-500/40 fill-blue-500/5 dark:stroke-blue-400/35 dark:fill-blue-400/8',
-    state: 'stroke-cyan-500/40 fill-cyan-500/5 dark:stroke-cyan-400/35 dark:fill-cyan-400/8',
-    fn: 'stroke-pink-500/40 fill-pink-500/5 dark:stroke-pink-400/35 dark:fill-pink-400/8',
-    type: 'stroke-purple-500/40 fill-purple-500/5 dark:stroke-purple-400/35 dark:fill-purple-400/8',
+    component:
+      'stroke-indigo-500/52 fill-indigo-500/[0.07] dark:stroke-indigo-400/48 dark:fill-indigo-400/[0.11]',
+    props:
+      'stroke-sky-600/50 fill-sky-500/[0.09] dark:stroke-sky-400/45 dark:fill-sky-400/[0.09]',
+    state:
+      'stroke-cyan-600/48 fill-cyan-500/[0.08] dark:stroke-cyan-400/42 dark:fill-cyan-400/[0.09]',
+    fn:
+      'stroke-blue-600/48 fill-blue-500/[0.08] dark:stroke-blue-400/42 dark:fill-blue-400/[0.09]',
+    type:
+      'stroke-violet-600/46 fill-violet-500/[0.07] dark:stroke-violet-400/40 dark:fill-violet-400/[0.09]',
   }
+  // Dark: near-white fills so SVG text never inherits dark `color` from ancestors
   const textColors = {
-    component: 'fill-violet-700/60 dark:fill-violet-300/60',
-    props: 'fill-blue-700/60 dark:fill-blue-300/60',
-    state: 'fill-cyan-700/60 dark:fill-cyan-300/60',
-    fn: 'fill-pink-700/60 dark:fill-pink-300/60',
-    type: 'fill-purple-700/60 dark:fill-purple-300/60',
+    component: 'fill-slate-800 dark:fill-slate-50',
+    props: 'fill-sky-950 dark:fill-sky-100',
+    state: 'fill-cyan-950 dark:fill-cyan-100',
+    fn: 'fill-blue-950 dark:fill-blue-100',
+    type: 'fill-violet-950 dark:fill-violet-100',
   }
 
   return (
@@ -57,18 +67,19 @@ function ASTNode({
       style={{ transitionDelay: `${delay}ms` }}
     >
       <rect
-        x={x - 32}
-        y={y - 12}
-        width={64}
-        height={24}
-        rx={4}
-        className={`${colors[type]} stroke-[1.5]`}
+        x={x - NODE_HALF_W}
+        y={y - NODE_HALF_H}
+        width={NODE_HALF_W * 2}
+        height={NODE_HALF_H * 2}
+        rx={5}
+        className={`${colors[type]} stroke-[1.75]`}
       />
       <text
         x={x}
-        y={y + 4}
+        y={y}
         textAnchor="middle"
-        className={`text-[10px] font-mono ${textColors[type]}`}
+        dominantBaseline="middle"
+        className={`text-[12px] font-mono ${textColors[type]}`}
       >
         {label}
       </text>
@@ -89,8 +100,8 @@ function ASTEdge({
     <path
       d={path}
       fill="none"
-      className={`stroke-slate-600/45 dark:stroke-slate-300/35 transition-all duration-1000 ${inView ? 'opacity-100' : 'opacity-0'}`}
-      strokeWidth={1.75}
+      className={`stroke-slate-500/65 dark:stroke-slate-400/60 transition-all duration-1000 ${inView ? 'opacity-100' : 'opacity-0'}`}
+      strokeWidth={2}
       strokeDasharray="3 3"
       style={{ transitionDelay: `${delay}ms` }}
     />
@@ -103,61 +114,71 @@ export default function GetStarted() {
   return (
     <section
       id="get-started"
-      className="relative py-24 sm:py-32 bg-gradient-to-b from-gray-50 via-white to-gray-50 dark:from-[#0b0d10] dark:via-[#111418] dark:to-[#0b0d10] overflow-hidden"
+      className="relative w-full py-24 sm:py-32 bg-gradient-to-b from-slate-100 via-white to-sky-50/70 dark:from-[#0b0d10] dark:via-[#111418] dark:to-[#0b0d10] overflow-hidden"
     >
-      {/* AST/Dependency Graph Background - constrained to content width */}
-      <div className="absolute inset-0 flex justify-center overflow-hidden pointer-events-none">
-        <div className="relative w-full max-w-[1320px]">
-          {/* Subtle grid pattern */}
-          <div
-            className="absolute inset-0 opacity-[0.03] dark:opacity-[0.05]"
-            style={{
-              backgroundImage: `
-                linear-gradient(to right, rgb(148 163 184) 1px, transparent 1px),
-                linear-gradient(to bottom, rgb(148 163 184) 1px, transparent 1px)
-              `,
-              backgroundSize: '40px 40px'
-            }}
-          />
-
+      {/* Full-bleed grid; AST art aligned to content column */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        <div
+          className="absolute inset-0 opacity-[0.09] dark:hidden"
+          style={{
+            backgroundImage: `
+              linear-gradient(to right, rgb(100 116 139) 1px, transparent 1px),
+              linear-gradient(to bottom, rgb(100 116 139) 1px, transparent 1px)
+            `,
+            backgroundSize: '40px 40px'
+          }}
+        />
+        <div
+          className="absolute inset-0 hidden dark:block opacity-[0.085]"
+          style={{
+            backgroundImage: `
+              linear-gradient(to right, rgb(148 163 184) 1px, transparent 1px),
+              linear-gradient(to bottom, rgb(148 163 184) 1px, transparent 1px)
+            `,
+            backgroundSize: '40px 40px'
+          }}
+        />
+        <div className="relative mx-auto h-full w-full max-w-[1320px]">
           {/* Left side AST tree - positioned at left edge of content container */}
           <svg
-            className="absolute left-0 top-1/2 -translate-y-1/2 w-96 h-[480px] -translate-x-16 hidden xl:block"
-            viewBox="0 0 320 384"
+            className="absolute left-0 top-1/2 -translate-y-1/2 w-[28rem] max-w-[36vw] h-[min(34rem,52vh)] -translate-x-[14%] min-[1400px]:-translate-x-[20%] 2xl:w-[32rem] 2xl:max-w-[42vw] 2xl:h-[min(38rem,56vh)] 2xl:-translate-x-[28%] hidden xl:block"
+            viewBox="0 0 440 480"
+            aria-hidden
           >
-            <ASTEdge x1={200} y1={60} x2={140} y2={140} delay={200} inView={contentInView} />
-            <ASTEdge x1={200} y1={60} x2={280} y2={140} delay={300} inView={contentInView} />
-            <ASTEdge x1={140} y1={164} x2={100} y2={220} delay={400} inView={contentInView} />
-            <ASTEdge x1={140} y1={164} x2={180} y2={220} delay={500} inView={contentInView} />
-            <ASTEdge x1={280} y1={164} x2={260} y2={220} delay={400} inView={contentInView} />
-            <ASTEdge x1={100} y1={244} x2={100} y2={300} delay={600} inView={contentInView} />
+            <ASTEdge x1={220} y1={60} x2={128} y2={148} delay={200} inView={contentInView} />
+            <ASTEdge x1={220} y1={60} x2={312} y2={148} delay={300} inView={contentInView} />
+            <ASTEdge x1={128} y1={180} x2={82} y2={250} delay={400} inView={contentInView} />
+            <ASTEdge x1={128} y1={180} x2={220} y2={250} delay={500} inView={contentInView} />
+            <ASTEdge x1={312} y1={180} x2={358} y2={250} delay={400} inView={contentInView} />
+            <ASTEdge x1={82} y1={282} x2={82} y2={362} delay={600} inView={contentInView} />
 
-            <ASTNode x={200} y={48} label="Module" type="component" delay={100} inView={contentInView} />
-            <ASTNode x={140} y={152} label="Component" type="component" delay={200} inView={contentInView} />
-            <ASTNode x={280} y={152} label="Type" type="type" delay={300} inView={contentInView} />
-            <ASTNode x={100} y={232} label="Props" type="props" delay={400} inView={contentInView} />
-            <ASTNode x={180} y={232} label="State" type="state" delay={500} inView={contentInView} />
-            <ASTNode x={260} y={232} label="Interface" type="type" delay={400} inView={contentInView} />
-            <ASTNode x={100} y={312} label="Handler" type="fn" delay={600} inView={contentInView} />
+            <ASTNode x={220} y={44} label="Module" type="component" delay={100} inView={contentInView} />
+            <ASTNode x={128} y={164} label="Component" type="component" delay={200} inView={contentInView} />
+            <ASTNode x={312} y={164} label="Type" type="type" delay={300} inView={contentInView} />
+            <ASTNode x={82} y={266} label="Props" type="props" delay={400} inView={contentInView} />
+            <ASTNode x={220} y={266} label="State" type="state" delay={500} inView={contentInView} />
+            <ASTNode x={358} y={266} label="Interface" type="type" delay={400} inView={contentInView} />
+            <ASTNode x={82} y={378} label="Handler" type="fn" delay={600} inView={contentInView} />
           </svg>
 
           {/* Right side AST tree - positioned at right edge of content container */}
           <svg
-            className="absolute right-0 top-1/2 -translate-y-1/2 w-96 h-[480px] translate-x-16 hidden xl:block"
-            viewBox="0 0 320 384"
+            className="absolute right-0 top-1/2 -translate-y-1/2 w-[28rem] max-w-[36vw] h-[min(34rem,52vh)] translate-x-[14%] min-[1400px]:translate-x-[20%] 2xl:w-[32rem] 2xl:max-w-[42vw] 2xl:h-[min(38rem,56vh)] 2xl:translate-x-[28%] hidden xl:block"
+            viewBox="0 0 440 480"
+            aria-hidden
           >
-            <ASTEdge x1={120} y1={80} x2={60} y2={160} delay={300} inView={contentInView} />
-            <ASTEdge x1={120} y1={80} x2={180} y2={160} delay={400} inView={contentInView} />
-            <ASTEdge x1={60} y1={184} x2={34} y2={250} delay={500} inView={contentInView} />
-            <ASTEdge x1={60} y1={184} x2={106} y2={250} delay={600} inView={contentInView} />
-            <ASTEdge x1={180} y1={184} x2={200} y2={250} delay={500} inView={contentInView} />
+            <ASTEdge x1={220} y1={74} x2={118} y2={164} delay={300} inView={contentInView} />
+            <ASTEdge x1={220} y1={74} x2={322} y2={164} delay={400} inView={contentInView} />
+            <ASTEdge x1={118} y1={196} x2={82} y2={266} delay={500} inView={contentInView} />
+            <ASTEdge x1={118} y1={196} x2={220} y2={266} delay={600} inView={contentInView} />
+            <ASTEdge x1={322} y1={196} x2={358} y2={266} delay={500} inView={contentInView} />
 
-            <ASTNode x={120} y={68} label="Context" type="component" delay={200} inView={contentInView} />
-            <ASTNode x={60} y={172} label="Function" type="fn" delay={400} inView={contentInView} />
-            <ASTNode x={180} y={172} label="Hooks" type="state" delay={500} inView={contentInView} />
-            <ASTNode x={34} y={262} label="Params" type="props" delay={600} inView={contentInView} />
-            <ASTNode x={106} y={262} label="Return" type="type" delay={700} inView={contentInView} />
-            <ASTNode x={200} y={262} label="Effect" type="fn" delay={600} inView={contentInView} />
+            <ASTNode x={220} y={58} label="Context" type="component" delay={200} inView={contentInView} />
+            <ASTNode x={118} y={180} label="Function" type="fn" delay={400} inView={contentInView} />
+            <ASTNode x={322} y={180} label="Hooks" type="state" delay={500} inView={contentInView} />
+            <ASTNode x={82} y={282} label="Params" type="props" delay={600} inView={contentInView} />
+            <ASTNode x={220} y={282} label="Return" type="type" delay={700} inView={contentInView} />
+            <ASTNode x={358} y={282} label="Effect" type="fn" delay={600} inView={contentInView} />
           </svg>
 
         </div>
