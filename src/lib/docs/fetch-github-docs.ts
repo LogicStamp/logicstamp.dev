@@ -134,31 +134,38 @@ export async function fetchRoadmap(
 }
 
 /**
- * Fetch doc with local fallback. Tries docs/{context|mcp}/ locally first, then GitHub.
- * Useful when you have a local mirror and want offline / faster builds.
+ * Fetch doc from GitHub with local fallback under docs/{context|mcp}/.
+ * GitHub is canonical so the site tracks logicstamp-context / logicstamp-mcp on main;
+ * local files are used when the remote fetch fails (offline, outage, or missing on main).
  */
 export async function getDocWithFallback(
   source: DocSource,
   path: string,
   options?: { ref?: string; localBase?: string }
 ): Promise<FetchDocResult> {
-  const localBase = options?.localBase ?? process.cwd()
-  const fs = await import('fs/promises')
-  const pathModule = await import('path')
-
-  const localDir = source === 'context' ? 'context' : 'mcp'
-  const localPath = pathModule.join(localBase, 'docs', localDir, path.replace(/^docs\//, ''))
-
   try {
-    const content = await fs.readFile(localPath, 'utf-8')
-    return {
-      content,
-      source,
-      path,
-      url: getRawDocUrl(source, path, options?.ref ?? 'main'),
+    return await fetchGitHubDoc(source, path, options?.ref)
+  } catch (githubError) {
+    const localBase = options?.localBase ?? process.cwd()
+    const fs = await import('fs/promises')
+    const pathModule = await import('path')
+
+    const localDir = source === 'context' ? 'context' : 'mcp'
+    const localPath = pathModule.join(localBase, 'docs', localDir, path.replace(/^docs\//, ''))
+
+    try {
+      const content = await fs.readFile(localPath, 'utf-8')
+      return {
+        content,
+        source,
+        path,
+        url: getRawDocUrl(source, path, options?.ref ?? 'main'),
+      }
+    } catch {
+      const ghMsg = githubError instanceof Error ? githubError.message : String(githubError)
+      throw new Error(
+        `Doc unavailable: GitHub fetch failed (${ghMsg}) and local file missing at ${localPath}`
+      )
     }
-  } catch {
-    // Local file not found, fetch from GitHub
-    return fetchGitHubDoc(source, path, options?.ref)
   }
 }
