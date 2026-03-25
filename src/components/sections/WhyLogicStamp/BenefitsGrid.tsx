@@ -21,7 +21,7 @@ export default function BenefitsGrid({ benefitsRef, benefitsInView }: BenefitsGr
           What you get
         </h3>
         <p className="text-base sm:text-xl text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
-          Static analysis outputs you can regenerate and diff—not one-off prompts
+          Static analysis outputs you can regenerate and diff - not one-off prompts
         </p>
       </div>
 
