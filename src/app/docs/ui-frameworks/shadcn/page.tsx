@@ -63,7 +63,7 @@ export default async function ShadcnPage() {
         <ReadyToGetStartedCard
           description="Explore other UI frameworks or learn about style metadata extraction."
           primaryAction={{
-            href: '/docs/logicstamp-context/ui-frameworks',
+            href: '/docs/ui-frameworks',
             label: 'All UI Frameworks',
           }}
           secondaryAction={{
