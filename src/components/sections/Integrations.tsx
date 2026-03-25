@@ -362,7 +362,7 @@ export default function Integrations() {
               mcpInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
             }`}
           >
-            <div className="relative max-w-5xl mx-auto">
+            <div className="relative max-w-4xl mx-auto">
               <div className="relative rounded-3xl p-8 sm:p-10 lg:p-12 shadow-xl border border-gray-200/50 dark:border-gray-700/50 bg-transparent overflow-hidden">
                 
                 <div className="relative z-10">
@@ -384,7 +384,7 @@ export default function Integrations() {
                           Featured
                         </span>
                       </div>
-                      <p className="text-base sm:text-lg text-gray-600 dark:text-gray-300 leading-relaxed mb-6">
+                      <p className="text-base sm:text-lg text-gray-600 dark:text-gray-300 leading-relaxed mb-6 max-w-full xl:max-w-[39rem]">
                         Use LogicStamp Context as an MCP server for AI assistants like Claude Desktop. Get real-time codebase analysis, component contracts, and structured context bundles directly in your AI workflow.
                       </p>
                       <ul className="space-y-2.5 mb-6">
@@ -405,7 +405,7 @@ export default function Integrations() {
                           </li>
                         ))}
                       </ul>
-                      <div className="flex flex-nowrap gap-2 sm:gap-3">
+                      <div className="flex flex-nowrap justify-center gap-2 sm:gap-3">
                         <GetStartedButton
                           href="/docs/mcp/getting-started"
                           variant="inverted"
@@ -420,7 +420,7 @@ export default function Integrations() {
                           size="md"
                           className="text-xs sm:text-sm md:text-base"
                         >
-                          Learn More About MCP
+                          Learn More
                         </ReadTheDocsButton>
                       </div>
                     </div>
