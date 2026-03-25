@@ -1,3 +1,5 @@
+import { ctaInvertedPrimaryClasses } from '../ui/ctaInvertedPrimaryClasses'
+
 /** Matches ReadTheDocsButton `variant="secondary"` (frosted panel + ring). */
 const secondaryCtaClassName =
   'inline-flex items-center gap-2 px-4 sm:px-6 py-2.5 sm:py-3 rounded-lg text-sm sm:text-base font-semibold bg-white/80 dark:bg-gray-900/80 text-gray-900 dark:text-white shadow-lg hover:shadow-xl ring-1 ring-gray-300 dark:ring-gray-700 backdrop-blur-xl backdrop-saturate-150 transition-all duration-200 whitespace-nowrap focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-purple-600'
@@ -8,17 +10,14 @@ export default function CommunityCTA() {
         <div className="mx-auto max-w-4xl">
           <div className="text-center">
             <div className="inline-flex items-center gap-2 mb-4 px-4 py-2 rounded-full bg-white/60 dark:bg-gray-800/60 backdrop-blur-sm">
-              <svg className="w-5 h-5 text-purple-600 dark:text-purple-400" fill="currentColor" viewBox="0 0 20 20">
+              <svg className="w-5 h-5 text-emerald-600 dark:text-emerald-400" fill="currentColor" viewBox="0 0 20 20">
                 <path d="M13 6a3 3 0 11-6 0 3 3 0 016 0zM18 8a2 2 0 11-4 0 2 2 0 014 0zM14 15a4 4 0 00-8 0v3h8v-3zM6 8a2 2 0 11-4 0 2 2 0 014 0zM16 18v-3a5.972 5.972 0 00-.75-2.906A3.005 3.005 0 0119 15v3h-3zM4.75 12.094A5.973 5.973 0 004 15v3H1v-3a3 3 0 013.75-2.906z" />
               </svg>
               <span className="text-sm font-semibold text-gray-700 dark:text-gray-300">Join the Movement</span>
             </div>
 
             <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 dark:text-white mb-4">
-              Built by Developers,{' '}
-              <span className="bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 bg-clip-text text-transparent">
-                for Developers
-              </span>
+              Built by Developers, for Developers
             </h2>
 
             <p className="text-lg text-gray-600 dark:text-gray-300 mb-8 max-w-2xl mx-auto">
@@ -37,7 +36,7 @@ export default function CommunityCTA() {
                 href="https://github.com/LogicStamp/logicstamp-context/issues"
                 target="_blank"
                 rel="noopener noreferrer"
-                className={secondaryCtaClassName}
+                className={`inline-flex items-center gap-2 px-4 sm:px-6 py-2.5 sm:py-3 rounded-lg text-sm sm:text-base font-semibold transition-all duration-200 whitespace-nowrap ${ctaInvertedPrimaryClasses}`}
               >
                 <svg className="w-4 h-4 sm:w-5 sm:h-5" fill="currentColor" viewBox="0 0 20 20">
                   <path fillRule="evenodd" d="M10 3a1 1 0 011 1v5h5a1 1 0 110 2h-5v5a1 1 0 11-2 0v-5H4a1 1 0 110-2h5V4a1 1 0 011-1z" clipRule="evenodd" />

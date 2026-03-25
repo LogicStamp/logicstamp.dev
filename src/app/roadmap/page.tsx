@@ -18,12 +18,9 @@ export default async function BetaPage() {
   return (
     <main className="min-h-screen">
       {/* Hero + Signup Section - Combined */}
-      <section className="relative overflow-hidden bg-gradient-to-br from-white via-gray-50 to-white dark:from-gray-950 dark:via-gray-900 dark:to-gray-950 pt-24 pb-32 sm:pt-32 sm:pb-40">
+      <section className="relative overflow-hidden bg-theme-primary pt-24 pb-32 sm:pt-32 sm:pb-40">
         {/* Decorative background elements */}
         <div className="absolute inset-0 overflow-hidden pointer-events-none">
-          <div className="absolute top-1/4 -left-20 w-96 h-96 bg-blue-500/5 dark:bg-blue-500/3 rounded-full blur-3xl animate-pulse"></div>
-          <div className="absolute bottom-1/4 -right-20 w-96 h-96 bg-purple-500/5 dark:bg-purple-500/3 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '2s' }}></div>
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-gradient-to-r from-indigo-500/3 to-purple-500/3 dark:from-indigo-500/2 dark:to-purple-500/2 rounded-full blur-3xl"></div>
         </div>
 
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 relative z-10">
@@ -44,20 +41,15 @@ export default async function BetaPage() {
               </div>
 
               {/* Badge */}
-              <div className="inline-flex items-center gap-2 px-5 py-2.5 bg-gradient-to-r from-blue-100 to-indigo-100 dark:from-blue-900/40 dark:to-indigo-900/40 text-blue-700 dark:text-blue-300 text-sm font-bold rounded-full mb-8 sm:mb-10 backdrop-blur-sm border border-blue-200/50 dark:border-blue-700/50 shadow-lg">
+              <div className="inline-flex items-center gap-2 px-5 py-2.5 bg-white/90 dark:bg-gray-900/90 text-gray-700 dark:text-gray-300 text-sm font-bold rounded-full mb-8 sm:mb-10 border border-gray-200/70 dark:border-gray-700/70 shadow-lg">
                 <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
                   <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.857-9.809a.75.75 0 00-1.214-.882l-3.483 4.79-1.88-1.88a.75.75 0 10-1.06 1.061l2.5 2.5a.75.75 0 001.137-.089l4-5.5z" clipRule="evenodd" />
                 </svg>
                 Early Access
               </div>
 
-              <h1 className="text-4xl sm:text-5xl lg:text-6xl font-black text-transparent bg-clip-text bg-gradient-to-r from-gray-900 to-gray-700 dark:from-white dark:to-gray-300 mb-8 sm:mb-10 tracking-tight leading-[1.1]">
-                <span className="relative inline-block">
-                  <span className="bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 bg-clip-text text-transparent">
-                    Help Us Build This
-                  </span>
-                  <span className="absolute inset-0 bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 blur-2xl -z-10 opacity-20 animate-pulse"></span>
-                </span>
+              <h1 className="text-4xl sm:text-5xl lg:text-6xl font-black text-gray-900 dark:text-white mb-8 sm:mb-10 tracking-tight leading-[1.1]">
+                Help Us Build This
               </h1>
             </div>
           </AnimatedSection>
@@ -297,15 +289,14 @@ export default async function BetaPage() {
       </section>
 
       {/* Final CTA Section */}
-      <section className="relative py-20 sm:py-28 bg-gradient-to-br from-blue-600 via-purple-600 to-pink-600">
-        <div className="absolute inset-0 bg-gradient-to-br from-blue-500/20 via-purple-500/20 to-pink-500/20"></div>
+      <section className="relative py-20 sm:py-28 bg-theme-primary">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 relative z-10">
           <AnimatedSection direction="up" delay={0}>
             <div className="text-center">
-              <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-6">
+              <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 dark:text-white mb-6">
                 Want to Help Us Build This?
               </h2>
-              <p className="text-xl sm:text-2xl text-blue-100 mb-8 max-w-3xl mx-auto">
+              <p className="text-xl sm:text-2xl text-gray-600 dark:text-gray-300 mb-8 max-w-3xl mx-auto">
                 We're just getting started. Your feedback will help us figure out what to build next.
               </p>
               <div className="flex flex-row gap-2 sm:gap-4 justify-center items-center mb-8 flex-wrap">
@@ -320,12 +311,12 @@ export default async function BetaPage() {
                   href="https://github.com/LogicStamp/logicstamp-context/blob/main/CONTRIBUTING.md"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 rounded-lg bg-white/10 dark:bg-white/10 text-white shadow-lg hover:shadow-xl ring-1 ring-white/20 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white transition-all duration-200 whitespace-nowrap px-5 py-3 sm:px-8 sm:py-4 text-sm sm:text-base lg:text-lg font-semibold backdrop-blur-sm mt-4 sm:mt-0"
+                  className="inline-flex items-center gap-2 rounded-lg bg-white dark:bg-gray-800 text-gray-900 dark:text-white shadow-lg hover:shadow-xl ring-1 ring-gray-300 dark:ring-gray-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-purple-600 transition-all duration-200 whitespace-nowrap px-5 py-3 sm:px-8 sm:py-4 text-sm sm:text-base lg:text-lg font-semibold mt-4 sm:mt-0"
                 >
                   Contribute
                 </a>
               </div>
-              <p className="text-blue-100 text-sm">
+              <p className="text-gray-500 dark:text-gray-400 text-sm">
                 Open source CLI • Free to use • Built with your feedback • Looking for contributors
               </p>
             </div>

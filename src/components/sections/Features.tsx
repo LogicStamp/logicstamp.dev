@@ -3,6 +3,10 @@
 import { useEffect, useState, useRef, useMemo } from 'react'
 import { useTheme } from '../../contexts/ThemeContext'
 import { ChevronRight } from 'lucide-react'
+import {
+  brandGradientBackgroundClasses
+} from '../ui/brandGradientClasses'
+import { ctaInvertedPrimaryClasses } from '../ui/ctaInvertedPrimaryClasses'
 
 // Custom hook for intersection observer
 function useInView(threshold = 0.1) {
@@ -789,7 +793,7 @@ $ stamp context clean
               onClick={() => handleDemoSwitch(index)}
               className={`px-4 py-2 text-xs sm:text-sm lg:text-base rounded-full transition-all duration-300 whitespace-nowrap flex-shrink-0 font-medium ${
                 currentDemo === index
-                  ? 'bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 text-white shadow-lg shadow-purple-500/50 scale-105'
+                ? `${ctaInvertedPrimaryClasses} scale-105`
                   : 'bg-white/80 dark:bg-gray-900/80 backdrop-blur-sm text-gray-700 dark:text-gray-300 border border-gray-200/50 dark:border-gray-700/50'
               }`}
             >
@@ -847,10 +851,7 @@ export default function HowItWorks() {
           }`}
         >
           <h2 className="text-4xl font-bold tracking-tight text-gray-900 dark:text-white sm:text-5xl lg:text-7xl">
-            How it{' '}
-            <span className="bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 bg-clip-text text-transparent">
-              works
-            </span>
+            How it works
           </h2>
           <div className={`mt-8 flex items-center justify-center space-x-4 text-lg lg:text-xl text-gray-600 dark:text-gray-300 transition-all duration-1000 delay-200 ${
             titleInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'

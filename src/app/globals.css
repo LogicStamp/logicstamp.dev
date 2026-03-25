@@ -32,13 +32,13 @@
 }
 
 html {
-  background: var(--gradient-bg-hero) !important;
+  background: var(--color-bg-primary) !important;
   min-height: 100vh !important;
 }
 
 body {
   color: rgb(var(--foreground-rgb));
-  background: var(--gradient-bg-hero) !important;
+  background: var(--color-bg-primary) !important;
   min-height: 100vh;
   margin: 0 !important;
   width: 100%;
@@ -51,21 +51,21 @@ body {
 /* Override for explicit dark theme (via class or data attribute on <html>) */
 html.dark,
 html[data-theme="dark"] {
-  background: var(--gradient-bg-hero) !important;
+  background: var(--color-bg-primary) !important;
 }
 
 html.dark body,
 html[data-theme="dark"] body {
-  background: var(--gradient-bg-hero) !important;
+  background: var(--color-bg-primary) !important;
 }
 
 /* Light theme is default, no need for complex selectors */
 html[data-theme="light"] {
-  background: var(--gradient-bg-hero) !important;
+  background: var(--color-bg-primary) !important;
 }
 
 html[data-theme="light"] body {
-  background: var(--gradient-bg-hero) !important;
+  background: var(--color-bg-primary) !important;
 }
 
 /* Remove broad transitions - they cause performance issues */

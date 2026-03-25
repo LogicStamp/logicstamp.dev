@@ -5,6 +5,10 @@ import CopyButton from '../ui/CopyButton'
 import GitHubStats from '../common/GitHubStats'
 import StarGitHubButton from '../ui/StarGitHubButton'
 import ReadTheDocsButton from '../ui/ReadTheDocsButton'
+import {
+  brandGradientGlowClasses,
+  brandGradientTextClasses
+} from '../ui/brandGradientClasses'
 import EnhancedVisualization from '../features/HeroVisualization/EnhancedVisualization'
 import CommunityCTA from './CommunityCTA'
 
@@ -39,11 +43,11 @@ export default function Hero() {
   const { ref: communityRef, inView: communityInView } = useInView(0.1)
   const { ref: workflowGifRef, inView: workflowGifInView } = useInView(0.1)
   return (
-    <section className="relative overflow-hidden bg-gradient-to-br from-white via-gray-50 to-white dark:from-gray-950 dark:via-gray-900 dark:to-gray-950 pt-28 pb-20 sm:pt-36 sm:pb-32 min-h-screen">
+    <section className="relative overflow-hidden bg-theme-primary pt-28 pb-20 sm:pt-36 sm:pb-32 min-h-screen">
       {/* Decorative background elements */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute top-1/4 -left-20 w-96 h-96 bg-blue-500/5 dark:bg-blue-500/3 rounded-full blur-3xl"></div>
-        <div className="absolute bottom-1/4 -right-20 w-96 h-96 bg-purple-500/5 dark:bg-purple-500/3 rounded-full blur-3xl"></div>
+        <div className="absolute top-1/4 -left-20 w-96 h-96 bg-blue-500/5 dark:bg-blue-500/[0.015] rounded-full blur-3xl"></div>
+        <div className="absolute bottom-1/4 -right-20 w-96 h-96 bg-purple-500/5 dark:bg-purple-500/[0.015] rounded-full blur-3xl"></div>
       </div>
 
       <div className="mx-auto max-w-[1440px] px-4 lg:px-6 relative z-10">
@@ -61,11 +65,12 @@ export default function Hero() {
               <h1 className="text-4xl xl:text-5xl 2xl:text-6xl font-extrabold tracking-tight text-gray-900 dark:text-white text-left leading-tight">
                 <span className="whitespace-nowrap">Turn TypeScript Into</span>
                 <br />
+                <span className="whitespace-nowrap">AI-Ready</span>{' '}
                 <span className="relative inline-block">
-                  <span className="bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 bg-clip-text text-transparent">
-                    AI-Ready Context
+                  <span className={brandGradientTextClasses}>
+                    Context
                   </span>
-                  <span className="absolute inset-0 bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 blur-xl -z-10 opacity-20 animate-pulse"></span>
+                  <span className={brandGradientGlowClasses}></span>
                 </span>
               </h1>
             </div>
@@ -119,10 +124,9 @@ export default function Hero() {
                 </div>
                 
                 {/* Install command */}
-                <div className="relative group">
-                  <div className="absolute -inset-1 bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 rounded-2xl blur opacity-25 group-hover:opacity-40 transition duration-300"></div>
+                <div className="relative">
                   <div className="relative inline-flex items-center gap-3 rounded-xl bg-white dark:bg-gray-900 px-8 py-4 shadow-xl ring-1 ring-gray-300/50 dark:ring-gray-700/50">
-                    <span className="text-base font-bold text-purple-600 dark:text-purple-400" aria-label="Command prompt">
+                    <span className="text-base font-bold text-emerald-600 dark:text-emerald-400" aria-label="Command prompt">
                       $
                     </span>
                     <code className="text-base font-mono font-semibold text-gray-900 dark:text-gray-100" aria-label="Installation command">
@@ -166,9 +170,9 @@ export default function Hero() {
                 >
                   <a
                     href="/docs/mcp"
-                    className="inline-flex items-center gap-2 lg:gap-2.5 rounded-full bg-white/80 dark:bg-gray-900/80 px-5 py-2 lg:px-7 lg:py-3 text-base lg:text-lg font-semibold text-gray-900 dark:text-white shadow-lg lg:hover:shadow-xl ring-1 ring-gray-300 dark:ring-gray-700 lg:hover:ring-purple-500 dark:lg:hover:ring-purple-400 backdrop-blur-xl backdrop-saturate-150 transition-all duration-200 lg:hover:-translate-y-0.5"
+                  className="inline-flex items-center gap-2 lg:gap-2.5 rounded-full bg-white/80 dark:bg-gray-900/80 px-5 py-2 lg:px-7 lg:py-3 text-base lg:text-lg font-semibold text-gray-900 dark:text-white shadow-lg lg:hover:shadow-xl ring-1 ring-gray-300 dark:ring-gray-700 lg:hover:ring-gray-400 dark:lg:hover:ring-gray-500 backdrop-blur-xl backdrop-saturate-150 transition-all duration-200 lg:hover:-translate-y-0.5"
                   >
-                    <svg className={`h-5 w-5 lg:h-6 lg:w-6 text-purple-600 dark:text-purple-400 transition-transform duration-200 ${mcpHovered ? 'lg:rotate-[15deg]' : ''}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <svg className={`h-5 w-5 lg:h-6 lg:w-6 text-gray-700 dark:text-gray-300 transition-transform duration-200 ${mcpHovered ? 'lg:rotate-[15deg]' : ''}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1" />
                     </svg>
                     MCP Server Ready
@@ -184,11 +188,9 @@ export default function Hero() {
                       {/* Arrow - pointing left */}
                       <div className="absolute -top-2 left-8 w-4 h-4 bg-white dark:bg-gray-900 border-t border-l rotate-45 border-gray-200 dark:border-gray-700 rotate-45"></div>
                       <div className="relative bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-700 rounded-xl shadow-2xl p-4 backdrop-blur-xl">
-                        <div className="absolute inset-0 bg-gradient-to-br from-purple-50/50 via-blue-50/50 to-pink-50/50 dark:from-purple-950/20 dark:via-blue-950/20 dark:to-pink-950/20 rounded-xl -z-10"></div>
-                        
                         <div className="flex items-start gap-3">
-                          <div className="flex-shrink-0 p-2 bg-gradient-to-br from-purple-100 to-blue-100 dark:from-purple-900/40 dark:to-blue-900/40 rounded-lg">
-                            <svg className="w-5 h-5 text-purple-600 dark:text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <div className="flex-shrink-0 p-2 bg-gray-100 dark:bg-gray-800 rounded-lg">
+                            <svg className="w-5 h-5 text-gray-700 dark:text-gray-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1" />
                             </svg>
                           </div>
@@ -237,22 +239,24 @@ export default function Hero() {
               <span className="block sm:hidden">
                 <span className="block whitespace-nowrap">Turn TypeScript Into</span>
                 <span className="block whitespace-nowrap">
+                  AI-Ready{' '}
                   <span className="relative inline-block">
-                    <span className="bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 bg-clip-text text-transparent">
-                      AI-Ready Context
+                    <span className={brandGradientTextClasses}>
+                      Context
                     </span>
-                    <span className="absolute inset-0 bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 blur-xl -z-10 opacity-20 animate-pulse"></span>
+                    <span className={brandGradientGlowClasses}></span>
                   </span>
                 </span>
               </span>
               {/* Desktop: single line */}
               <span className="hidden sm:inline">
                 Turn TypeScript Into{' '}
+                AI-Ready{' '}
                 <span className="relative inline-block">
-                  <span className="bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 bg-clip-text text-transparent">
-                    AI-Ready Context
+                  <span className={brandGradientTextClasses}>
+                    Context
                   </span>
-                  <span className="absolute inset-0 bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 blur-xl -z-10 opacity-20 animate-pulse"></span>
+                  <span className={brandGradientGlowClasses}></span>
                 </span>
               </span>
             </h1>
@@ -307,10 +311,9 @@ export default function Hero() {
               </div>
               
               {/* Install command */}
-              <div className="relative group">
-                <div className="absolute -inset-1 bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 rounded-2xl blur opacity-25 group-hover:opacity-40 transition duration-300"></div>
+              <div className="relative">
                 <div className="relative inline-flex items-center gap-3 rounded-xl bg-white dark:bg-gray-900 px-6 sm:px-8 lg:px-10 py-4 sm:py-5 shadow-xl ring-1 ring-gray-300/50 dark:ring-gray-700/50">
-                  <span className="hidden sm:inline text-sm sm:text-base font-bold text-purple-600 dark:text-purple-400" aria-label="Command prompt">
+                  <span className="hidden sm:inline text-sm sm:text-base font-bold text-emerald-600 dark:text-emerald-400" aria-label="Command prompt">
                     $
                   </span>
                   <code className="text-sm sm:text-base lg:text-lg font-mono font-semibold text-gray-900 dark:text-gray-100" aria-label="Installation command">
@@ -354,9 +357,9 @@ export default function Hero() {
               >
                 <a
                   href="/docs/mcp"
-                  className="inline-flex items-center gap-2 lg:gap-2.5 rounded-full bg-white/80 dark:bg-gray-900/80 px-5 py-2 lg:px-7 lg:py-3 text-base lg:text-lg font-semibold text-gray-900 dark:text-white shadow-lg lg:hover:shadow-xl ring-1 ring-gray-300 dark:ring-gray-700 lg:hover:ring-purple-500 dark:lg:hover:ring-purple-400 backdrop-blur-xl backdrop-saturate-150 transition-all duration-200 lg:hover:-translate-y-0.5"
+                  className="inline-flex items-center gap-2 lg:gap-2.5 rounded-full bg-white/80 dark:bg-gray-900/80 px-5 py-2 lg:px-7 lg:py-3 text-base lg:text-lg font-semibold text-gray-900 dark:text-white shadow-lg lg:hover:shadow-xl ring-1 ring-gray-300 dark:ring-gray-700 lg:hover:ring-gray-400 dark:lg:hover:ring-gray-500 backdrop-blur-xl backdrop-saturate-150 transition-all duration-200 lg:hover:-translate-y-0.5"
                 >
-                  <svg className={`h-5 w-5 lg:h-6 lg:w-6 text-purple-600 dark:text-purple-400 transition-transform duration-200 ${mcpHovered ? 'lg:rotate-[15deg]' : ''}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <svg className={`h-5 w-5 lg:h-6 lg:w-6 text-gray-700 dark:text-gray-300 transition-transform duration-200 ${mcpHovered ? 'lg:rotate-[15deg]' : ''}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1" />
                   </svg>
                   MCP Server Ready
@@ -374,11 +377,9 @@ export default function Hero() {
                     
                     {/* Tooltip content */}
                     <div className="relative bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-700 rounded-xl shadow-2xl p-4 backdrop-blur-xl">
-                      <div className="absolute inset-0 bg-gradient-to-br from-purple-50/50 via-blue-50/50 to-pink-50/50 dark:from-purple-950/20 dark:via-blue-950/20 dark:to-pink-950/20 rounded-xl -z-10"></div>
-                      
                       <div className="flex items-start gap-3">
-                        <div className="flex-shrink-0 p-2 bg-gradient-to-br from-purple-100 to-blue-100 dark:from-purple-900/40 dark:to-blue-900/40 rounded-lg">
-                          <svg className="w-5 h-5 text-purple-600 dark:text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <div className="flex-shrink-0 p-2 bg-gray-100 dark:bg-gray-800 rounded-lg">
+                          <svg className="w-5 h-5 text-gray-700 dark:text-gray-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1" />
                           </svg>
                         </div>
@@ -424,8 +425,8 @@ export default function Hero() {
               {/* Subtle gradient overlay */}
               <div className="absolute inset-0 bg-gradient-to-br from-white/40 via-transparent to-transparent dark:from-white/5 dark:via-transparent dark:to-transparent pointer-events-none" />
               <div className="relative z-10 flex items-center gap-3">
-                <div className="flex-shrink-0 inline-flex items-center justify-center rounded-full bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 p-2">
-                  <svg className="h-5 w-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <div className="flex-shrink-0 inline-flex items-center justify-center rounded-full p-2 bg-gray-900 dark:bg-gray-100">
+                  <svg className="h-5 w-5 text-white dark:text-gray-900" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z" />
                   </svg>
                 </div>
@@ -453,12 +454,7 @@ export default function Hero() {
         >
           <div className="relative mx-auto max-w-[1440px] -mx-4 lg:-mx-6 px-4 lg:px-6 mt-32 lg:mt-32">
             <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-gray-900 dark:text-white text-center mb-6 sm:mb-8">
-              LogicStamp in <span className="relative inline-block">
-                <span className="bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 bg-clip-text text-transparent">
-                  Action
-                </span>
-                <span className="absolute inset-0 bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 blur-xl -z-10 opacity-20 animate-pulse"></span>
-              </span>
+              LogicStamp in Action
             </h2>
             <div className="relative rounded-2xl overflow-hidden shadow-2xl ring-1 ring-gray-200/50 dark:ring-gray-700/50 bg-gray-900">
               <video 

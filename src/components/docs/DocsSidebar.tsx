@@ -4,6 +4,7 @@ import React, { useState, useEffect, type ReactNode } from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
 import { usePathname } from 'next/navigation'
+import { brandGradientTextClasses } from '../ui/brandGradientClasses'
 
 type DocsNavItem = {
   title: string
@@ -636,7 +637,7 @@ export default function DocsSidebar() {
         </Link>
         <p className="mt-3 text-center text-sm font-medium text-gray-600 dark:text-gray-400">
           Meet the Logic{' '}
-          <span className="bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 bg-clip-text text-transparent">
+          <span className={brandGradientTextClasses}>
             Fox
           </span>
         </p>
