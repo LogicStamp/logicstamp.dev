@@ -3,6 +3,7 @@
 import React, { useState, useEffect, useRef } from 'react'
 import { ChevronRight, Upload, Play, FileCode2, Zap, Package, Code2, Terminal, GitBranch } from 'lucide-react'
 import CopyButton from '../ui/CopyButton'
+import { ctaInvertedPrimaryClasses } from '../ui/ctaInvertedPrimaryClasses'
 
 // Custom hook for intersection observer
 function useInView(threshold = 0.1, resetTrigger?: any) {
@@ -919,11 +920,9 @@ export default function Demo() {
   }
 
   return (
-    <section className="min-h-screen bg-gradient-to-br from-white via-gray-50 to-white dark:from-gray-950 dark:via-gray-900 dark:to-gray-950 pt-28 pb-20 overflow-x-hidden">
+    <section className="min-h-screen bg-theme-primary pt-28 pb-20 overflow-x-hidden">
       {/* Decorative background elements */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute top-1/4 -left-20 w-96 h-96 bg-blue-500/5 dark:bg-blue-500/3 rounded-full blur-3xl"></div>
-        <div className="absolute bottom-1/4 -right-20 w-96 h-96 bg-purple-500/5 dark:bg-purple-500/3 rounded-full blur-3xl"></div>
       </div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
@@ -935,10 +934,7 @@ export default function Demo() {
           }`}
         >
           <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-gray-900 dark:text-white mb-4">
-            Try{' '}
-            <span className="bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 bg-clip-text text-transparent">
-              LogicStamp
-            </span>
+            Try LogicStamp
           </h1>
           <p className="text-lg sm:text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto px-4">
             {activeTab === 'cli' 
@@ -963,7 +959,7 @@ export default function Demo() {
             }}
             className={`px-6 py-3 rounded-xl font-semibold transition-all flex items-center gap-2 ${
               activeTab === 'cli'
-                ? 'bg-gradient-to-r from-blue-600 to-purple-600 text-white shadow-lg scale-105'
+                ? `${ctaInvertedPrimaryClasses} scale-105`
                 : 'bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:shadow-md'
             }`}
           >
@@ -979,7 +975,7 @@ export default function Demo() {
             }}
             className={`px-6 py-3 rounded-xl font-semibold transition-all flex items-center gap-2 ${
               activeTab === 'workflow'
-                ? 'bg-gradient-to-r from-purple-600 to-pink-600 text-white shadow-lg scale-105'
+                ? `${ctaInvertedPrimaryClasses} scale-105`
                 : 'bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:shadow-md'
             }`}
           >
@@ -1003,7 +999,7 @@ export default function Demo() {
               onClick={() => handleExampleSelect(key as keyof typeof codeExamples)}
               className={`px-4 py-2 rounded-full font-medium transition-all ${
                 selectedExample === key
-                  ? 'bg-gradient-to-r from-blue-600 to-purple-600 text-white shadow-lg'
+                  ? ctaInvertedPrimaryClasses
                   : 'bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:shadow-md'
               }`}
             >
@@ -1109,10 +1105,10 @@ export default function Demo() {
               <button
                 onClick={() => handleGenerate(false)}
                 disabled={isProcessing || !userCode.trim()}
-                className={`w-full py-4 rounded-xl font-semibold text-white shadow-xl transition-all flex items-center justify-center gap-3 active:scale-95 ${
+                className={`w-full py-4 rounded-xl font-semibold shadow-xl transition-all flex items-center justify-center gap-3 active:scale-95 ${
                   isProcessing 
                     ? 'bg-gray-400 cursor-not-allowed' 
-                    : 'bg-gradient-to-r from-blue-600 to-purple-600'
+                    : ctaInvertedPrimaryClasses
                 }`}
               >
                 {isProcessing ? (
@@ -1291,10 +1287,10 @@ export default function Demo() {
               <button
                 onClick={handleStartAnalysis}
                 disabled={workflowIsProcessing}
-                className={`px-8 py-4 rounded-xl font-semibold text-white shadow-xl transition-all flex items-center gap-3 active:scale-95 ${
+                className={`px-8 py-4 rounded-xl font-semibold shadow-xl transition-all flex items-center gap-3 active:scale-95 ${
                   workflowIsProcessing 
                     ? 'bg-gray-400 cursor-not-allowed' 
-                    : 'bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 hover:shadow-2xl'
+                    : `${ctaInvertedPrimaryClasses} hover:shadow-2xl`
                 }`}
               >
                 {workflowIsProcessing ? (
@@ -1355,7 +1351,9 @@ export default function Demo() {
                 ))}
                 {workflowOutput.length === 0 && (
                   <div className="text-gray-400">
-                    <p className="mb-4 text-white font-semibold">How it works:</p>
+                    <p className="mb-4 text-white font-semibold">
+                      How it <span className="text-purple-400">works</span>:
+                    </p>
                     <p className="mb-4">When you ask an AI assistant to analyze your project using LogicStamp MCP, it automatically:</p>
                     <ol className="list-decimal list-inside space-y-2 text-gray-300">
                       <li><strong className="text-white">Refreshes the snapshot</strong> - Generates context bundles from your codebase</li>
@@ -1371,7 +1369,7 @@ export default function Demo() {
             {/* Workflow Info */}
             <div className="mt-6 bg-white dark:bg-gray-900 rounded-xl p-6 shadow-lg">
               <div className="flex items-start gap-4">
-                <div className="w-12 h-12 bg-gradient-to-r from-blue-600 to-purple-600 rounded-lg flex items-center justify-center flex-shrink-0">
+                <div className="w-12 h-12 bg-purple-600 rounded-lg flex items-center justify-center flex-shrink-0">
                   <GitBranch className="w-6 h-6 text-white" />
                 </div>
                 <div>
@@ -1415,10 +1413,9 @@ export default function Demo() {
               Install LogicStamp Context CLI and start generating AI-ready context bundles in seconds
             </p>
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-              <div className="relative group">
-                <div className="absolute -inset-1 bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 rounded-2xl blur opacity-25 group-hover:opacity-40 transition duration-300"></div>
+              <div className="relative">
                 <div className="relative inline-flex items-center gap-3 rounded-xl bg-white dark:bg-gray-900 px-6 sm:px-8 lg:px-10 py-4 sm:py-5 shadow-xl ring-1 ring-gray-300/50 dark:ring-gray-700/50">
-                  <span className="hidden sm:inline text-sm sm:text-base font-bold text-purple-600 dark:text-purple-400" aria-label="Command prompt">
+                  <span className="hidden sm:inline text-sm sm:text-base font-bold text-emerald-600 dark:text-emerald-400" aria-label="Command prompt">
                     $
                   </span>
                   <code className="text-sm sm:text-base lg:text-lg font-mono font-semibold text-gray-900 dark:text-gray-100" aria-label="Installation command">
@@ -1454,10 +1451,9 @@ export default function Demo() {
             </p>
             <div className="flex flex-col items-center justify-center gap-4 mb-6">
               {/* CLI Installation */}
-              <div className="relative group">
-                <div className="absolute -inset-1 bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 rounded-2xl blur opacity-25 group-hover:opacity-40 transition duration-300"></div>
+              <div className="relative">
                 <div className="relative inline-flex items-center gap-3 rounded-xl bg-white dark:bg-gray-900 px-6 sm:px-8 lg:px-10 py-4 sm:py-5 shadow-xl ring-1 ring-gray-300/50 dark:ring-gray-700/50">
-                  <span className="hidden sm:inline text-sm sm:text-base font-bold text-purple-600 dark:text-purple-400" aria-label="Command prompt">
+                  <span className="hidden sm:inline text-sm sm:text-base font-bold text-emerald-600 dark:text-emerald-400" aria-label="Command prompt">
                     $
                   </span>
                   <code className="text-sm sm:text-base lg:text-lg font-mono font-semibold text-gray-900 dark:text-gray-100" aria-label="Installation command">
@@ -1467,10 +1463,9 @@ export default function Demo() {
                 </div>
               </div>
               {/* MCP Installation */}
-              <div className="relative group">
-                <div className="absolute -inset-1 bg-gradient-to-r from-purple-600 via-pink-600 to-purple-600 rounded-2xl blur opacity-25 group-hover:opacity-40 transition duration-300"></div>
+              <div className="relative">
                 <div className="relative inline-flex items-center gap-3 rounded-xl bg-white dark:bg-gray-900 px-6 sm:px-8 lg:px-10 py-4 sm:py-5 shadow-xl ring-1 ring-gray-300/50 dark:ring-gray-700/50">
-                  <span className="hidden sm:inline text-sm sm:text-base font-bold text-purple-600 dark:text-purple-400" aria-label="Command prompt">
+                  <span className="hidden sm:inline text-sm sm:text-base font-bold text-emerald-600 dark:text-emerald-400" aria-label="Command prompt">
                     $
                   </span>
                   <code className="text-sm sm:text-base lg:text-lg font-mono font-semibold text-gray-900 dark:text-gray-100" aria-label="Installation command">

@@ -1,6 +1,7 @@
 'use client'
 
 import { useState, FormEvent } from 'react'
+import { ctaInvertedPrimaryClasses } from './ui/ctaInvertedPrimaryClasses'
 
 export default function BetaSignup() {
   // Beta signup form state
@@ -85,7 +86,11 @@ export default function BetaSignup() {
           <button
             type="submit"
             disabled={isSubmittingBeta}
-            className="px-10 py-4 rounded-xl bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 text-white font-bold shadow-xl disabled:opacity-70 disabled:cursor-not-allowed whitespace-nowrap text-lg"
+            className={`px-10 py-4 rounded-xl font-bold shadow-xl whitespace-nowrap text-lg ${
+              isSubmittingBeta
+                ? 'bg-gray-400 text-white disabled:opacity-70 disabled:cursor-not-allowed'
+                : ctaInvertedPrimaryClasses
+            }`}
           >
             {isSubmittingBeta ? 'Signing up...' : 'Join Beta'}
           </button>

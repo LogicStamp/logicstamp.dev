@@ -2,6 +2,9 @@
 
 import { useEffect, useRef, useState } from 'react'
 import AnimatedSection from '../common/AnimatedSection'
+import GetStartedButton from '../ui/GetStartedButton'
+import ReadTheDocsButton from '../ui/ReadTheDocsButton'
+import { ctaInvertedPrimaryClasses } from '../ui/ctaInvertedPrimaryClasses'
 
 // Framework logos as SVG components
 const ReactIcon = () => (
@@ -344,10 +347,7 @@ export default function Integrations() {
           }`}
         >
           <h2 className="text-4xl font-bold tracking-tight text-gray-900 dark:text-white sm:text-5xl lg:text-6xl">
-            <span className="bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 bg-clip-text text-transparent">
-              Works
-            </span>{' '}
-            with your favorite tools
+            Works with your favorite tools
           </h2>
           <p className="mt-6 text-lg sm:text-xl leading-8 text-gray-600 dark:text-gray-300">
             Seamlessly integrate with your existing development workflow and boost productivity
@@ -362,10 +362,8 @@ export default function Integrations() {
               mcpInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
             }`}
           >
-            <div className="relative max-w-4xl mx-auto">
-              <div className="relative rounded-3xl p-8 sm:p-10 lg:p-12 shadow-2xl border border-gray-200/50 dark:border-gray-700/50 bg-gradient-to-br from-blue-50/20 via-purple-50/10 to-indigo-50/20 dark:from-blue-950/10 dark:via-purple-950/5 dark:to-indigo-950/10 overflow-hidden">
-                {/* Featured Glow Effect */}
-                <div className="absolute inset-0 bg-gradient-to-r from-blue-500/5 via-purple-500/5 to-indigo-500/5 dark:from-blue-500/3 dark:via-purple-500/3 dark:to-indigo-500/3 rounded-3xl blur-xl opacity-30 animate-pulse" />
+            <div className="relative max-w-5xl mx-auto">
+              <div className="relative rounded-3xl p-8 sm:p-10 lg:p-12 shadow-xl border border-gray-200/50 dark:border-gray-700/50 bg-transparent overflow-hidden">
                 
                 <div className="relative z-10">
                   <div className="flex flex-col sm:flex-row items-start gap-6 sm:gap-8">
@@ -382,7 +380,7 @@ export default function Integrations() {
                         <h3 className="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white">
                           Model Context Protocol
                         </h3>
-                        <span className="inline-flex items-center px-3 py-1 rounded-full text-xs font-bold bg-gradient-to-r from-blue-600 to-purple-600 text-white w-fit">
+                        <span className={`inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold w-fit ${ctaInvertedPrimaryClasses}`}>
                           Featured
                         </span>
                       </div>
@@ -408,21 +406,22 @@ export default function Integrations() {
                         ))}
                       </ul>
                       <div className="flex flex-nowrap gap-2 sm:gap-3">
-                        <a
+                        <GetStartedButton
                           href="/docs/mcp/getting-started"
-                          className="inline-flex items-center gap-1 sm:gap-2 px-3 py-2 sm:px-4 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-lg font-medium text-xs sm:text-sm md:text-base whitespace-nowrap"
+                          variant="inverted"
+                          size="md"
+                          className="text-xs sm:text-sm md:text-base"
                         >
                           Get Started
-                          <svg className="w-3 h-3 sm:w-4 sm:h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                          </svg>
-                        </a>
-                        <a
+                        </GetStartedButton>
+                        <ReadTheDocsButton
                           href="/docs/mcp"
-                          className="inline-flex items-center gap-1 sm:gap-2 px-3 py-2 sm:px-4 border-2 border-blue-500/60 dark:border-blue-400/40 text-blue-700 dark:text-blue-300 rounded-lg font-medium text-xs sm:text-sm md:text-base whitespace-nowrap"
+                          variant="secondary"
+                          size="md"
+                          className="text-xs sm:text-sm md:text-base"
                         >
                           Learn More About MCP
-                        </a>
+                        </ReadTheDocsButton>
                       </div>
                     </div>
                   </div>

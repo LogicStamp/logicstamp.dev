@@ -6,6 +6,7 @@ import DocsLayout from '@/components/docs/DocsLayout'
 import TabbedCodeBlock from '@/components/docs/TabbedCodeBlock'
 import ReadyToGetStartedCard from '@/components/docs/ReadyToGetStartedCard'
 import LogicStampContextRelatedCliNav from '@/components/docs/LogicStampContextRelatedCliNav'
+import { brandGradientTextClasses } from '@/components/ui/brandGradientClasses'
 
 export const metadata: Metadata = {
   title: '`context` Command | LogicStamp Context Documentation',
@@ -844,7 +845,9 @@ stamp context --format toon
                 </p>
                 <div className="space-y-4 mb-4">
                   <div>
-                    <h3 className="text-lg font-semibold text-purple-900 dark:text-purple-200 mb-2">How it works</h3>
+                    <h3 className="text-lg font-semibold text-purple-900 dark:text-purple-200 mb-2">
+                      How it <span className={brandGradientTextClasses}>works</span>
+                    </h3>
                     <ul className="space-y-2 text-sm text-gray-700 dark:text-gray-300 ml-4 list-disc">
                       <li>If <code className="px-1.5 py-0.5 bg-purple-100 dark:bg-purple-900/40 rounded text-xs font-mono">stamp_security_report.json</code> exists in your project root, it's automatically used</li>
                       <li>Secrets detected in the security report are replaced with <code className="px-1.5 py-0.5 bg-purple-100 dark:bg-purple-900/40 rounded text-xs font-mono">"PRIVATE_DATA"</code> in generated JSON files</li>

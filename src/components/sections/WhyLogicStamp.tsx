@@ -150,9 +150,7 @@ export default function WhyLogicStamp() {
           <h2 className="text-4xl font-bold tracking-tight text-gray-900 dark:text-white sm:text-5xl lg:text-6xl">
             Stop Pasting Code.{' '}
             <br />
-            <span className="bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 bg-clip-text text-transparent">
-              Start Stamping Context.
-            </span>
+            Start Stamping Context.
           </h2>
           <p className="mt-6 text-lg sm:text-xl leading-8 text-gray-600 dark:text-gray-300">
             One command. Instant AI-ready context bundles. Zero manual work.{' '}
@@ -376,7 +374,7 @@ export default function WhyLogicStamp() {
                             )}
                           </div>
                           <div className="flex flex-col items-end">
-                            <span className="text-lg sm:text-xl font-bold font-mono bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+                            <span className="text-lg sm:text-xl font-bold font-mono text-emerald-600 dark:text-emerald-400">
                               {benefit.stat}
                             </span>
                             <span className="text-xs sm:text-sm text-gray-500 dark:text-gray-400">{benefit.statLabel}</span>
@@ -401,7 +399,7 @@ export default function WhyLogicStamp() {
           <div className="relative max-w-5xl mx-auto">
             <div className="relative rounded-3xl p-8 sm:p-10 border border-gray-200/50 dark:border-gray-700/50 overflow-hidden">
               <div className="relative flex flex-col sm:flex-row items-center gap-4">
-                <div className="flex-shrink-0 p-3 sm:p-4 rounded-2xl bg-gradient-to-br from-emerald-500 to-teal-600">
+                <div className="flex-shrink-0 p-3 sm:p-4 rounded-2xl bg-gradient-to-br from-green-500 via-emerald-600 to-emerald-500">
                   <svg className="w-8 h-8 sm:w-10 sm:h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path
                       strokeLinecap="round"
