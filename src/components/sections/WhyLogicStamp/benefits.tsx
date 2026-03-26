@@ -17,11 +17,11 @@ export const whyLogicStampBenefits: WhyBenefit[] = [
         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
       </svg>
     ),
-    title: 'Smaller bundles vs raw source',
+    title: 'Smaller bundles',
     description:
       'Header-oriented modes drop imports and implementation noise and keep contracts and signatures - often a large token reduction compared to pasting whole files.',
     stat: '~70%',
-    statLabel: 'Header mode (typ.)',
+    statLabel: 'Header mode',
     statBreakdown: 'Header mode: ~70% • Header+style: ~30%',
     iconBg: 'from-blue-500/10 to-indigo-600/10',
   },
@@ -36,7 +36,7 @@ export const whyLogicStampBenefits: WhyBenefit[] = [
         />
       </svg>
     ),
-    title: 'Dependency graphs in the output',
+    title: 'Built-in dependency graphs',
     description:
       'Bundles include how components and modules connect: imports and relationships - so context reflects structure, not a single isolated file.',
     stat: 'Graph',
@@ -54,7 +54,7 @@ export const whyLogicStampBenefits: WhyBenefit[] = [
         />
       </svg>
     ),
-    title: 'Watch mode for fresh bundles',
+    title: 'Watch mode',
     description:
       'Regenerate context when files change, with incremental rebuilds. Optional strict watch can flag breaking contract changes while you refactor.',
     stat: 'Auto',
@@ -67,7 +67,7 @@ export const whyLogicStampBenefits: WhyBenefit[] = [
         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 9l3 3-3 3m5 0h3M5 20h14a2 2 0 002-2V6a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
       </svg>
     ),
-    title: 'MCP server for compatible clients',
+    title: 'MCP server',
     description:
       'Expose bundles and project context to Cursor, Claude Desktop, Claude CLI, and other MCP-capable tools instead of manually assembling prompts.',
     stat: '7',
