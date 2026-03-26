@@ -3,101 +3,230 @@ import Link from 'next/link'
 import Footer from '@/components/layout/Footer'
 import AnimatedSection from '@/components/common/AnimatedSection'
 import DocsLayout from '@/components/docs/DocsLayout'
-import { FRAMEWORK_DOCS } from '@/lib/docs/framework-pages'
+import ReadyToGetStartedCard from '@/components/docs/ReadyToGetStartedCard'
+import { FRAMEWORK_DOCS, type FrameworkSlug } from '@/lib/docs/framework-pages'
 
 export const metadata: Metadata = {
   title: 'Frameworks | LogicStamp Context Documentation',
   description: 'Learn how LogicStamp Context works with TypeScript, React, Next.js, Vue, Express.js, NestJS, and monorepos.',
 }
 
-const FRAMEWORKS = [
-  { slug: 'typescript' as const, name: 'TypeScript', color: 'from-blue-500 to-indigo-600' },
-  { slug: 'react' as const, name: 'React', color: 'from-cyan-500 to-blue-600' },
-  { slug: 'nextjs' as const, name: 'Next.js', color: 'from-gray-600 to-slate-700' },
-  { slug: 'vue' as const, name: 'Vue', color: 'from-emerald-500 to-green-600' },
-  { slug: 'express' as const, name: 'Express.js', color: 'from-green-500 to-emerald-600' },
-  { slug: 'nestjs' as const, name: 'NestJS', color: 'from-red-500 to-pink-600' },
-] as const
+const FRAMEWORK_ORDER: FrameworkSlug[] = ['typescript', 'react', 'nextjs', 'vue', 'express', 'nestjs']
+
+const frameworkPages = [
+  ...FRAMEWORK_ORDER.map((slug) => ({
+    title: FRAMEWORK_DOCS[slug].title,
+    href: `/docs/frameworks/${slug}` as const,
+    description: FRAMEWORK_DOCS[slug].description,
+  })),
+  {
+    title: 'Monorepo Support',
+    href: '/docs/guides/monorepo',
+    description:
+      'Work with multi-package repositories where frontend, backend, and shared packages live together.',
+  },
+]
 
 export default function FrameworksIndexPage() {
   return (
     <>
       <DocsLayout>
         <AnimatedSection direction="up" delay={0}>
-          <div className="relative mb-8 sm:mb-12 lg:mb-16">
-            <div className="absolute inset-0 bg-gradient-to-br from-cyan-50 via-blue-50/30 to-indigo-50/20 dark:from-cyan-950/20 dark:via-blue-950/10 dark:to-indigo-950/5 rounded-3xl -m-4 sm:-m-6 lg:-m-8 blur-3xl opacity-70" />
-
-            <div className="relative">
-              <div className="inline-flex items-center gap-2 px-3 py-1.5 bg-gradient-to-r from-cyan-100 to-blue-100 dark:from-cyan-900/40 dark:to-blue-900/40 text-cyan-700 dark:text-cyan-300 text-sm font-semibold rounded-full mb-4 sm:mb-6 backdrop-blur-sm border border-cyan-200/50 dark:border-cyan-700/50">
-                <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
-                  <path fillRule="evenodd" d="M4 4a2 2 0 012-2h4.586A2 2 0 0112 2.586L15.414 6A2 2 0 0116 7.414V16a2 2 0 01-2 2H6a2 2 0 01-2-2V4z" clipRule="evenodd" />
-                </svg>
-                Framework Support
-              </div>
-
-              <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black text-transparent bg-clip-text bg-gradient-to-r from-gray-900 to-gray-700 dark:from-white dark:to-gray-300 mb-4 sm:mb-6 tracking-tight leading-[1.1]">
-                Frameworks
-              </h1>
-
-              <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-gray-600 dark:text-gray-400 leading-relaxed max-w-3xl">
-                LogicStamp Context supports TypeScript, React, Next.js, Vue, Express.js, and NestJS. Framework guides are synced from{' '}
-                <a
-                  href="https://github.com/LogicStamp/logicstamp-context/tree/main/docs/frameworks"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-blue-600 dark:text-blue-400 hover:underline"
-                >
-                  logicstamp-context/docs/frameworks
-                </a>
-                ; monorepo layout and workflows are documented separately in{' '}
-                <a
-                  href="https://github.com/LogicStamp/logicstamp-context/blob/main/docs/guides/monorepo.md"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-blue-600 dark:text-blue-400 hover:underline"
-                >
-                  docs/guides/monorepo.md
-                </a>
-                .
-              </p>
-            </div>
+          <div className="mb-12">
+            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black text-transparent bg-clip-text bg-gradient-to-r from-gray-900 to-gray-700 dark:from-white dark:to-gray-300 mb-4 sm:mb-6 tracking-tight leading-[1.1]">
+              Frameworks
+            </h1>
+            <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-gray-600 dark:text-gray-400 max-w-3xl leading-relaxed">
+              How LogicStamp analyzes TypeScript, React, Next.js, Vue, Express.js, and NestJS. Guides are synced from{' '}
+              <a
+                href="https://github.com/LogicStamp/logicstamp-context/tree/main/docs/frameworks"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-blue-600 dark:text-blue-400 hover:underline"
+              >
+                logicstamp-context/docs/frameworks
+              </a>
+              .
+            </p>
           </div>
         </AnimatedSection>
 
         <AnimatedSection direction="up" delay={100}>
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
-            {FRAMEWORKS.map(({ slug, name, color }) => (
+          <div className="relative mb-8 sm:mb-12">
+            <div className="absolute -inset-1 bg-gradient-to-r from-blue-600 to-indigo-600 rounded-2xl blur opacity-20 dark:opacity-10" />
+            <div className="relative bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded-2xl p-4 sm:p-6 lg:p-8 shadow-xl">
+              <div className="flex items-baseline gap-3 mb-4 sm:mb-6">
+                <div className="p-2 bg-blue-100 dark:bg-blue-900/30 rounded-lg flex-shrink-0 -mt-0.5">
+                  <svg className="w-5 h-5 sm:w-6 sm:h-6 text-blue-600 dark:text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
+                  </svg>
+                </div>
+                <h2 className="text-xl sm:text-2xl font-bold text-gray-900 dark:text-white m-0">Quick Start</h2>
+              </div>
+
+              <p className="text-base sm:text-lg text-gray-600 dark:text-gray-400 mb-4 sm:mb-6 leading-relaxed">
+                New to LogicStamp? Install the CLI and generate your first context bundle, then open the framework guide that matches your stack.
+              </p>
+
               <Link
-                key={slug}
-                href={`/docs/frameworks/${slug}`}
-                className="group relative block p-4 sm:p-6 bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded-2xl shadow-lg hover:shadow-xl transition-shadow"
+                href="/docs/getting-started"
+                className="group relative flex items-start gap-4 p-4 sm:p-6 bg-gradient-to-br from-blue-50 to-indigo-50 dark:from-blue-950/20 dark:to-indigo-950/10 rounded-xl border border-blue-200 dark:border-blue-800 md:hover:shadow-lg transition-all duration-200"
               >
-                <div className={`w-3 h-3 rounded-full bg-gradient-to-r ${color} mb-3`} />
-                <h3 className="text-lg font-bold text-gray-900 dark:text-white group-hover:text-cyan-600 dark:group-hover:text-cyan-400 transition-colors">
-                  {name}
-                </h3>
-                <p className="text-sm text-gray-600 dark:text-gray-400 mt-1">
-                  {FRAMEWORK_DOCS[slug].description}
-                </p>
+                <div className="flex-1 min-w-0">
+                  <div className="flex items-baseline gap-2 mb-2">
+                    <h3 className="text-lg sm:text-xl font-semibold text-gray-900 dark:text-white">Getting Started</h3>
+                    <svg
+                      className="w-5 h-5 text-blue-600 dark:text-blue-400 transition-transform md:group-hover:translate-x-1 flex-shrink-0 mt-0.5"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
+                    </svg>
+                  </div>
+                  <p className="text-sm sm:text-base text-gray-600 dark:text-gray-400 leading-relaxed">
+                    Install the CLI with <code className="px-1.5 py-0.5 bg-blue-100 dark:bg-blue-900/40 rounded font-mono text-xs">stamp init</code>, then run{' '}
+                    <code className="px-1.5 py-0.5 bg-blue-100 dark:bg-blue-900/40 rounded font-mono text-xs">stamp context</code> for your first AI-ready bundle.
+                  </p>
+                </div>
               </Link>
-            ))}
+            </div>
+          </div>
+        </AnimatedSection>
+
+        <AnimatedSection direction="up" delay={150}>
+          <div className="mb-12">
+            <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">Framework guides</h2>
+            <p className="text-gray-600 dark:text-gray-400 mb-4">
+              Deep dives for each supported framework and for monorepo layouts.
+            </p>
+            <div className="grid sm:grid-cols-2 gap-4">
+              {frameworkPages.map((page) => (
+                <Link
+                  key={page.href}
+                  href={page.href}
+                  className="group p-4 border border-gray-200 dark:border-gray-800 rounded-lg md:hover:border-blue-500 dark:md:hover:border-blue-500 transition-colors"
+                >
+                  <div className="flex items-baseline gap-2 mb-2">
+                    <h3 className="text-lg font-semibold text-gray-900 dark:text-white">{page.title}</h3>
+                    <svg
+                      className="w-5 h-5 text-gray-400 md:group-hover:text-blue-500 transition-transform md:group-hover:translate-x-1 flex-shrink-0 mt-0.5"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
+                    </svg>
+                  </div>
+                  <p className="text-sm text-gray-600 dark:text-gray-400">{page.description}</p>
+                </Link>
+              ))}
+            </div>
           </div>
         </AnimatedSection>
 
         <AnimatedSection direction="up" delay={200}>
-          <div className="mt-8 p-4 sm:p-6 bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded-2xl">
-            <h3 className="text-lg font-bold text-gray-900 dark:text-white mb-2">Monorepo Support</h3>
+          <div className="mb-12">
+            <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">Related documentation</h2>
             <p className="text-gray-600 dark:text-gray-400 mb-4">
-              LogicStamp Context works seamlessly with monorepos containing both backend and frontend code.
+              Style extraction, CLI commands, and broader guides.
             </p>
-            <Link
-              href="/docs/guides/monorepo"
-              className="inline-flex items-center gap-2 text-cyan-600 dark:text-cyan-400 hover:underline font-medium"
-            >
-              Learn about monorepo support →
-            </Link>
+            <div className="grid sm:grid-cols-2 gap-4">
+              <Link
+                href="/docs/ui-frameworks"
+                className="group p-4 border border-gray-200 dark:border-gray-800 rounded-lg md:hover:border-blue-500 dark:md:hover:border-blue-500 transition-colors"
+              >
+                <div className="flex items-baseline gap-2 mb-2">
+                  <h3 className="text-lg font-semibold text-gray-900 dark:text-white">UI frameworks</h3>
+                  <svg
+                    className="w-5 h-5 text-gray-400 md:group-hover:text-blue-500 transition-transform md:group-hover:translate-x-1 flex-shrink-0 mt-0.5"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
+                  </svg>
+                </div>
+                <p className="text-sm text-gray-600 dark:text-gray-400">
+                  Tailwind, MUI, Radix, styled-components, and other UI stacks—style metadata in context.
+                </p>
+              </Link>
+
+              <Link
+                href="/docs/cli"
+                className="group p-4 border border-gray-200 dark:border-gray-800 rounded-lg md:hover:border-blue-500 dark:md:hover:border-blue-500 transition-colors"
+              >
+                <div className="flex items-baseline gap-2 mb-2">
+                  <h3 className="text-lg font-semibold text-gray-900 dark:text-white">CLI documentation hub</h3>
+                  <svg
+                    className="w-5 h-5 text-gray-400 md:group-hover:text-blue-500 transition-transform md:group-hover:translate-x-1 flex-shrink-0 mt-0.5"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
+                  </svg>
+                </div>
+                <p className="text-sm text-gray-600 dark:text-gray-400">
+                  Commands, watch mode, compare, validate, and maintenance workflows.
+                </p>
+              </Link>
+
+              <Link
+                href="/docs/guides"
+                className="group p-4 border border-gray-200 dark:border-gray-800 rounded-lg md:hover:border-blue-500 dark:md:hover:border-blue-500 transition-colors"
+              >
+                <div className="flex items-baseline gap-2 mb-2">
+                  <h3 className="text-lg font-semibold text-gray-900 dark:text-white">Guides</h3>
+                  <svg
+                    className="w-5 h-5 text-gray-400 md:group-hover:text-blue-500 transition-transform md:group-hover:translate-x-1 flex-shrink-0 mt-0.5"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
+                  </svg>
+                </div>
+                <p className="text-sm text-gray-600 dark:text-gray-400">
+                  Usage walkthroughs, LLM context format, and best practices.
+                </p>
+              </Link>
+
+              <Link
+                href="/docs/reference"
+                className="group p-4 border border-gray-200 dark:border-gray-800 rounded-lg md:hover:border-blue-500 dark:md:hover:border-blue-500 transition-colors"
+              >
+                <div className="flex items-baseline gap-2 mb-2">
+                  <h3 className="text-lg font-semibold text-gray-900 dark:text-white">Reference</h3>
+                  <svg
+                    className="w-5 h-5 text-gray-400 md:group-hover:text-blue-500 transition-transform md:group-hover:translate-x-1 flex-shrink-0 mt-0.5"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
+                  </svg>
+                </div>
+                <p className="text-sm text-gray-600 dark:text-gray-400">
+                  Schema, UIF contracts, hashes, stampignore, and limitations.
+                </p>
+              </Link>
+            </div>
           </div>
         </AnimatedSection>
+
+        <ReadyToGetStartedCard
+          description="Initialize your project and generate context tailored to your framework."
+          primaryAction={{
+            href: '/docs/getting-started',
+            label: 'Getting Started',
+          }}
+          secondaryAction={{
+            href: '/docs/cli/context',
+            label: '`context` command',
+          }}
+          delay={250}
+        />
       </DocsLayout>
       <Footer />
     </>
