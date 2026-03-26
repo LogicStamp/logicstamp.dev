@@ -19,7 +19,7 @@ export const whyLogicStampBenefits: WhyBenefit[] = [
     ),
     title: 'Smaller bundles vs raw source',
     description:
-      'Header-oriented modes drop imports and implementation noise and keep contracts and signatures—often a large token reduction compared to pasting whole files.',
+      'Header-oriented modes drop imports and implementation noise and keep contracts and signatures - often a large token reduction compared to pasting whole files.',
     stat: '~70%',
     statLabel: 'Header mode (typ.)',
     statBreakdown: 'Header mode: ~70% • Header+style: ~30%',
@@ -38,7 +38,7 @@ export const whyLogicStampBenefits: WhyBenefit[] = [
     ),
     title: 'Dependency graphs in the output',
     description:
-      'Bundles include how components and modules connect—imports and relationships—so context reflects structure, not a single isolated file.',
+      'Bundles include how components and modules connect: imports and relationships - so context reflects structure, not a single isolated file.',
     stat: 'Graph',
     statLabel: 'In bundle',
     iconBg: 'from-purple-500/10 to-pink-600/10',
