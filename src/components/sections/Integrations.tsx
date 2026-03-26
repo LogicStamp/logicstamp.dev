@@ -405,7 +405,7 @@ export default function Integrations() {
                           </li>
                         ))}
                       </ul>
-                      <div className="flex flex-nowrap justify-center gap-2 sm:gap-3">
+                      <div className="flex flex-nowrap justify-start gap-2 sm:gap-3">
                         <GetStartedButton
                           href="/docs/mcp/getting-started"
                           variant="inverted"
@@ -413,6 +413,20 @@ export default function Integrations() {
                           className="text-xs sm:text-sm md:text-base"
                         >
                           Get Started
+                          <svg
+                            className="w-4 h-4 sm:w-5 sm:h-5"
+                            fill="none"
+                            stroke="currentColor"
+                            viewBox="0 0 24 24"
+                            aria-hidden="true"
+                          >
+                            <path
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                              strokeWidth={2}
+                              d="M14 5l7 7m0 0l-7 7m7-7H3"
+                            />
+                          </svg>
                         </GetStartedButton>
                         <ReadTheDocsButton
                           href="/docs/mcp"
