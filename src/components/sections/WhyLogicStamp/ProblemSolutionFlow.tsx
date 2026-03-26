@@ -21,8 +21,8 @@ export default function ProblemSolutionFlow() {
           <div className="absolute inset-0 bg-gradient-to-br from-red-50/50 to-red-100/30 dark:from-red-900/20 dark:to-red-800/10 opacity-60" />
 
           <div className="relative z-10">
-            <div className="flex items-start gap-4 mb-6">
-              <div className="inline-flex items-center justify-center w-12 h-12 rounded-xl bg-red-100 dark:bg-red-900/50">
+            <div className="mb-6 grid grid-cols-[auto_minmax(0,1fr)] gap-x-4 gap-y-4 sm:gap-y-2 sm:items-start">
+              <div className="row-start-1 col-start-1 inline-flex shrink-0 items-center justify-center self-start w-12 h-12 rounded-xl bg-red-100 dark:bg-red-900/50">
                 <svg className="w-6 h-6 text-red-600 dark:text-red-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path
                     strokeLinecap="round"
@@ -32,12 +32,12 @@ export default function ProblemSolutionFlow() {
                   />
                 </svg>
               </div>
-              <div className="flex-1">
-                <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-2">Manual context in chat</h3>
-                <p className="text-gray-600 dark:text-gray-300">
-                  Pasting large files and re-explaining how pieces connect for every task
-                </p>
-              </div>
+              <h3 className="row-start-1 col-start-2 min-w-0 self-start text-2xl font-bold text-gray-900 dark:text-white">
+                Manual context in chat
+              </h3>
+              <p className="row-start-2 col-span-2 min-w-0 text-gray-600 dark:text-gray-300 sm:col-span-1 sm:col-start-2">
+                Pasting large files and re-explaining how pieces connect for every task
+              </p>
             </div>
 
             <div
@@ -101,18 +101,18 @@ export default function ProblemSolutionFlow() {
           <div className="absolute inset-0 bg-gradient-to-br from-emerald-50/50 to-green-100/30 dark:from-emerald-900/20 dark:to-green-800/10 opacity-60" />
 
           <div className="relative z-10">
-            <div className="flex items-start gap-4 mb-6">
-              <div className="inline-flex items-center justify-center w-12 h-12 rounded-xl bg-gradient-to-br from-emerald-500/10 to-green-600/10">
+            <div className="mb-6 grid grid-cols-[auto_minmax(0,1fr)] gap-x-4 gap-y-4 sm:gap-y-2 sm:items-start">
+              <div className="row-start-1 col-start-1 inline-flex shrink-0 items-center justify-center self-start w-12 h-12 rounded-xl bg-gradient-to-br from-emerald-500/10 to-green-600/10">
                 <svg className="w-6 h-6 text-emerald-600 dark:text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
                 </svg>
               </div>
-              <div className="flex-1">
-                <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-2">Generated context artifacts</h3>
-                <p className="text-gray-600 dark:text-gray-300">
-                  Run the CLI once (or in watch mode). Typical mid-sized repos finish in seconds; exact time depends on size, mode, and hardware.
-                </p>
-              </div>
+              <h3 className="row-start-1 col-start-2 min-w-0 self-start text-2xl font-bold text-gray-900 dark:text-white">
+                Generated context artifacts
+              </h3>
+              <p className="row-start-2 col-span-2 min-w-0 text-gray-600 dark:text-gray-300 sm:col-span-1 sm:col-start-2">
+                Run the CLI once (or in watch mode). Typical mid-sized repos finish in seconds. exact time depends on size, mode, and hardware.
+              </p>
             </div>
 
             <div
@@ -148,7 +148,7 @@ export default function ProblemSolutionFlow() {
               }`}
             >
               <p className="text-sm font-medium text-emerald-900 dark:text-emerald-300">
-                <code className="text-xs font-mono bg-emerald-200 dark:bg-emerald-900/50 px-1.5 py-0.5 rounded">$ stamp context</code> emits bundle files with dependency metadata. Header-oriented modes typically use fewer tokens than pasting raw source; savings depend on your project and configuration.
+                <code className="text-xs font-mono bg-emerald-200 dark:bg-emerald-900/50 px-1.5 py-0.5 rounded">$ stamp context</code> emits bundle files with dependency metadata. Header-oriented modes typically use fewer tokens than pasting raw source. savings depend on your project and configuration.
               </p>
             </div>
           </div>
