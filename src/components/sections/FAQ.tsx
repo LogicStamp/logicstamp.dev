@@ -143,7 +143,7 @@ export default function FAQ() {
   }
 
   return (
-    <section id="faq" className="relative pt-24 sm:pt-32 overflow-hidden pb-0 bg-white dark:bg-gray-900">
+    <section id="faq" className="relative pt-24 sm:pt-32 overflow-hidden pb-0 bg-theme-primary">
       <div className="relative mx-auto max-w-[1440px] px-4 lg:px-6">
         {/* Two-column layout */}
         <div 
