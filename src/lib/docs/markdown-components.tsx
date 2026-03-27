@@ -71,6 +71,29 @@ export const docsMarkdownComponents: Components = {
   ol: (props) => (
     <ol className="list-decimal list-outside space-y-2 my-4 ml-6" {...props} />
   ),
+  table: (props) => (
+    <div className="my-0 w-full overflow-x-auto rounded-xl border border-gray-200 dark:border-gray-700">
+      <table className="w-full min-w-[640px] border-collapse text-sm" {...props} />
+    </div>
+  ),
+  thead: (props) => (
+    <thead className="bg-gray-50 dark:bg-gray-800" {...props} />
+  ),
+  tbody: (props) => (
+    <tbody className="bg-white dark:bg-gray-900" {...props} />
+  ),
+  tr: (props) => (
+    <tr className="border-t border-gray-200 dark:border-gray-700" {...props} />
+  ),
+  th: (props) => (
+    <th
+      className="px-4 py-2 text-left text-xs font-semibold uppercase tracking-wide text-gray-600 dark:text-gray-300"
+      {...props}
+    />
+  ),
+  td: (props) => (
+    <td className="px-4 py-2 align-top text-gray-700 dark:text-gray-300" {...props} />
+  ),
   li: (props) => (
     <li className="text-gray-700 dark:text-gray-300 leading-relaxed" {...props} />
   ),

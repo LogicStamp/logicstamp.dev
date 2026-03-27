@@ -2,6 +2,7 @@ import ReactMarkdown from 'react-markdown'
 import { docsMarkdownComponents } from '@/lib/docs/markdown-components'
 import { remarkRewriteDocLinks } from '@/lib/docs/rewrite-doc-links'
 import type { DocSource } from '@/lib/docs'
+import remarkGfm from 'remark-gfm'
 
 interface DocsMarkdownProps {
   children: string
@@ -17,10 +18,10 @@ export default function DocsMarkdown({
   source,
   currentDocPath,
 }: DocsMarkdownProps) {
-  const remarkPlugins =
-    source != null && currentDocPath != null
-      ? [[remarkRewriteDocLinks, { source, currentDocPath }]]
-      : undefined
+  const remarkPlugins: any[] = [remarkGfm]
+  if (source != null && currentDocPath != null) {
+    remarkPlugins.push([remarkRewriteDocLinks, { source, currentDocPath }])
+  }
 
   const proseClasses =
     className ??
@@ -28,7 +29,7 @@ export default function DocsMarkdown({
 
   return (
     <div
-      className={`min-w-0 max-w-full break-words [&_a]:break-all ${proseClasses}`}
+      className={`min-w-0 max-w-full break-words [&_a]:break-all [&_table]:my-0 [&_table]:!my-0 [&_thead_th]:py-2 [&_tbody_td]:py-2 ${proseClasses}`}
     >
       <ReactMarkdown
         remarkPlugins={remarkPlugins as any}
