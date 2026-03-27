@@ -110,7 +110,7 @@ export default function DocsLayout({ children }: { children: React.ReactNode }) 
     <DisableAnimationsContext.Provider value={true}>
       <DocsHeader sidebarOpen={sidebarOpen} onSidebarToggle={() => setSidebarOpen(!sidebarOpen)} />
       <div className="min-h-screen bg-white dark:bg-gray-900 pt-[6.5rem] lg:pt-24">
-        <div className="max-w-[1440px] mx-auto px-4 lg:px-6 py-8 lg:py-10 w-full">
+        <div className="max-w-[1280px] 2xl:max-w-[1440px] mx-auto px-4 lg:px-6 py-8 lg:py-10 w-full">
         {/* Mobile sidebar toggle button - hidden, now integrated into DocsHeader */}
         <button
           ref={toggleButtonRef}
@@ -133,7 +133,7 @@ export default function DocsLayout({ children }: { children: React.ReactNode }) 
           </svg>
         </button>
 
-        <div className="flex flex-col lg:flex-row lg:items-start lg:gap-8 w-full min-w-0">
+        <div className="flex flex-col lg:flex-row lg:items-start lg:gap-5 xl:gap-8 w-full min-w-0">
           {/* Mobile sidebar - slides in from left */}
           <aside
             ref={sidebarRef}
@@ -169,8 +169,8 @@ export default function DocsLayout({ children }: { children: React.ReactNode }) 
             />
           )}
 
-          <main className="flex-1 min-w-0 max-w-full overflow-x-hidden">
-            <div className="max-w-3xl xl:max-w-[800px] space-y-12 lg:ml-4 docs-content min-w-0 w-full">{children}</div>
+          <main className="flex-1 min-w-0 max-w-full overflow-x-hidden xl:pr-6 2xl:pr-0">
+            <div className="max-w-3xl lg:max-w-[620px] xl:max-w-[680px] 2xl:max-w-[800px] space-y-12 xl:ml-4 docs-content min-w-0 w-full">{children}</div>
           </main>
 
           {/* Right TOC - only visible on XL+ screens */}
