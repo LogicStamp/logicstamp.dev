@@ -7,6 +7,7 @@ import {
   brandGradientBackgroundClasses
 } from '../ui/brandGradientClasses'
 import { ctaInvertedPrimaryClasses } from '../ui/ctaInvertedPrimaryClasses'
+import { colorizeTerminalText } from '@/lib/terminal-colorize'
 
 // Custom hook for intersection observer
 function useInView(threshold = 0.1) {
@@ -677,104 +678,6 @@ $ stamp context clean
     } catch (error) {
       console.error('Error switching demo:', error)
     }
-  }
-
-  // Colorize terminal output
-  const colorizeTerminalText = (text: string) => {
-    if (!text) return null
-    
-    const lines = text.split('\n')
-    return lines.map((line, lineIndex) => {
-      const parts: JSX.Element[] = []
-      
-      // Match patterns
-      const patterns = [
-        // Command prompt ($)
-        { regex: /^\$\s+/g, color: 'text-green-400' },
-        // Commands (stamp, npm, etc.)
-        { regex: /\b(stamp|npm|i|install|-g|context|style|compare|validate|init|clean|security|scan|--stats|--compare-modes|--approve|--clean-orphaned|--include-style|--format|--watch|toon|--hard-reset)\b/g, color: 'text-blue-400' },
-        // Numbers
-        { regex: /\b\d+\b/g, color: 'text-yellow-400' },
-        // Paths and URLs
-        { regex: /(\/[\w\/\.-]+|https?:\/\/[^\s]+)/g, color: 'text-cyan-400' },
-        // Success messages (✅)
-        { regex: /✅/g, color: 'text-green-400' },
-        // Warning messages (⚠️)
-        { regex: /⚠️/g, color: 'text-orange-400' },
-        // Emojis (🔍, 🔨, 📊, etc.)
-        { regex: /[🔍🔨📊📋📦🔍✅📝⏱🔄🎨👀🔒]/g, color: 'text-yellow-400' },
-        // Status words
-        { regex: /\b(PASS|FAIL|Completed|found|Analyzed|Scanning|Generating|Validating|Writing|Summary|Comparison|Mode|Tokens|Savings|Estimates|Extracting|detected|Tailwind|Material UI|SCSS|CSS|Animations|Watch|Watching|Incremental|rebuild|TOON|Format|enabled|changed|Updated|Security|secrets|Secret|API Key|Password|Token|Severity|high|medium|low|Report|remediation)\b/gi, color: 'text-purple-400' },
-        // Percentages and special numbers
-        { regex: /(~|%|\+|-)\d+/g, color: 'text-orange-400' },
-      ]
-      
-      // Process line with patterns
-      const matches: Array<{ start: number; end: number; color: string; text: string }> = []
-      
-      patterns.forEach(({ regex, color }) => {
-        let match
-        regex.lastIndex = 0
-        while ((match = regex.exec(line)) !== null) {
-          matches.push({
-            start: match.index,
-            end: match.index + match[0].length,
-            color,
-            text: match[0]
-          })
-        }
-      })
-      
-      // Sort matches by start position
-      matches.sort((a, b) => a.start - b.start)
-      
-      // Remove overlapping matches (keep first)
-      const nonOverlapping: typeof matches = []
-      matches.forEach(match => {
-        const overlaps = nonOverlapping.some(existing => 
-          (match.start < existing.end && match.end > existing.start)
-        )
-        if (!overlaps) {
-          nonOverlapping.push(match)
-        }
-      })
-      
-      // Build parts
-      let currentIndex = 0
-      nonOverlapping.forEach(match => {
-        // Add text before match
-        if (match.start > currentIndex) {
-          parts.push(
-            <span key={`${lineIndex}-${currentIndex}`} className="text-gray-100">
-              {line.substring(currentIndex, match.start)}
-            </span>
-          )
-        }
-        // Add colored match
-        parts.push(
-          <span key={`${lineIndex}-${match.start}`} className={match.color}>
-            {match.text}
-          </span>
-        )
-        currentIndex = match.end
-      })
-      
-      // Add remaining text
-      if (currentIndex < line.length) {
-        parts.push(
-          <span key={`${lineIndex}-${currentIndex}`} className="text-gray-100">
-            {line.substring(currentIndex)}
-          </span>
-        )
-      }
-      
-      return (
-        <span key={lineIndex}>
-          {parts.length > 0 ? parts : <span className="text-gray-100">{line}</span>}
-          {lineIndex < lines.length - 1 && '\n'}
-        </span>
-      )
-    })
   }
 
   return (

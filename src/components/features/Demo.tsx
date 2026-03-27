@@ -1,9 +1,11 @@
 'use client'
 
-import React, { useState, useEffect, useRef } from 'react'
+import React, { useState, useEffect, useRef, useMemo } from 'react'
 import { ChevronRight, Upload, Play, FileCode2, Zap, Package, Code2, Terminal, GitBranch } from 'lucide-react'
 import CopyButton from '../ui/CopyButton'
 import { ctaInvertedPrimaryClasses } from '../ui/ctaInvertedPrimaryClasses'
+import { colorizeTerminalText } from '@/lib/terminal-colorize'
+import { DemoShikiEditor, DemoShikiStatic, inferDemoLang } from './DemoShiki'
 
 // Custom hook for intersection observer
 function useInView(threshold = 0.1, resetTrigger?: any) {
@@ -632,6 +634,20 @@ export default function Demo() {
   const [workflowIsProcessing, setWorkflowIsProcessing] = useState(false)
   const workflowScrollRef = useRef<HTMLDivElement>(null)
 
+  const displayContextJson = useMemo(() => {
+    const data =
+      activeContextView === 'main'
+        ? contextMain
+        : activeContextView === 'folder' && contextJsons
+          ? Object.values(contextJsons)[0]
+          : contextBundle
+    try {
+      return JSON.stringify(data, null, 2)
+    } catch {
+      return ''
+    }
+  }, [activeContextView, contextMain, contextJsons, contextBundle])
+
   // Intersection observer hooks for animations
   // Reset contentRef and ctaRef animation when switching tabs
   const { ref: headerRef, inView: headerInView } = useInView(0.1)
@@ -1087,14 +1103,13 @@ export default function Demo() {
                 </div>
               )}
               <div className="relative overflow-hidden">
-                <textarea
+                <DemoShikiEditor
                   value={userCode}
-                  onChange={(e) => setUserCode(e.target.value)}
-                  className="w-full h-[400px] lg:h-[350px] p-6 bg-gray-50 dark:bg-gray-900 text-gray-900 dark:text-gray-100 font-mono text-sm resize-none focus:outline-none overflow-x-auto"
+                  onChange={setUserCode}
+                  lang={inferDemoLang(fileName)}
                   placeholder="Paste your React/TypeScript code here..."
-                  spellCheck={false}
                 />
-                <div className="absolute top-4 right-4">
+                <div className="absolute top-4 right-4 z-[2]">
                   <CopyButton text={userCode} />
                 </div>
               </div>
@@ -1157,23 +1172,18 @@ export default function Demo() {
                 ref={terminalScrollRef}
                 className="h-[280px] overflow-y-auto overflow-x-auto p-6 font-mono text-sm bg-gray-900 sidebar-scrollable"
               >
-                {terminalOutput.map((line, index) => (
-                  <div
-                    key={index}
-                    className={`break-words transition-all duration-200 ${
-                      line.type === 'command' ? 'text-white font-semibold' :
-                      line.type === 'info' ? 'text-blue-400' :
-                      line.type === 'success' ? 'text-green-400' :
-                      line.type === 'result' ? 'text-yellow-400' :
-                      line.type === 'progress' ? 'text-purple-400' :
-                      line.type === 'detail' ? 'text-gray-400' :
-                      line.type === 'tip' ? 'text-cyan-400' :
-                      'text-gray-400'
-                    } ${line.type === 'empty' ? 'h-4' : ''}`}
-                  >
-                    {line.text}
-                  </div>
-                ))}
+                {terminalOutput.map((line, index) =>
+                  line.type === 'empty' ? (
+                    <div key={index} className="h-4" />
+                  ) : (
+                    <div
+                      key={index}
+                      className="break-words transition-all duration-200 leading-5 sm:leading-6"
+                    >
+                      {colorizeTerminalText(line.text)}
+                    </div>
+                  )
+                )}
                 {terminalOutput.length === 0 && (
                   <div className="text-gray-500">Ready to process your code...</div>
                 )}
@@ -1199,12 +1209,7 @@ export default function Demo() {
                       </span>
                     </div>
                     <div className="flex-shrink-0">
-                      <CopyButton text={JSON.stringify(
-                        activeContextView === 'main' ? contextMain :
-                        activeContextView === 'folder' && contextJsons ? Object.values(contextJsons)[0] :
-                        contextBundle,
-                        null, 2
-                      )} />
+                      <CopyButton text={displayContextJson} />
                     </div>
                   </div>
 
@@ -1235,14 +1240,12 @@ export default function Demo() {
                   )}
 
                   <div className="h-[280px] overflow-y-auto overflow-x-auto p-3 sm:p-6 bg-gray-50 dark:bg-gray-900 sidebar-scrollable w-full">
-                    <pre className="text-xs sm:text-sm text-gray-800 dark:text-gray-100 font-mono leading-6 whitespace-pre-wrap break-all max-w-full">
-                      {JSON.stringify(
-                        activeContextView === 'main' ? contextMain :
-                        activeContextView === 'folder' && contextJsons ? Object.values(contextJsons)[0] :
-                        contextBundle,
-                        null, 2
-                      )}
-                    </pre>
+                    <DemoShikiStatic
+                      code={displayContextJson}
+                      lang="json"
+                      className="max-w-full text-[13px] leading-6 sm:text-sm sm:leading-6 [&_pre.shiki]:!text-[13px] sm:[&_pre.shiki]:!text-sm"
+                      fallbackClassName="text-xs sm:text-sm leading-6"
+                    />
                   </div>
                 </div>
               )}
@@ -1324,31 +1327,46 @@ export default function Demo() {
                 ref={workflowScrollRef}
                 className="h-[500px] overflow-y-auto overflow-x-auto p-6 font-mono text-sm bg-gray-900 sidebar-scrollable"
               >
-                {workflowOutput.map((line: any, index: number) => (
-                  <div
-                    key={index}
-                    className={`break-words transition-all duration-200 mb-2 ${
-                      line.type === 'user' ? 'text-blue-300 font-semibold mb-3' :
-                      line.type === 'ai' ? 'text-green-300 font-semibold mb-3' :
-                      line.type === 'ai-action' ? 'text-cyan-400 italic' :
-                      line.type === 'ai-response' ? 'text-green-200 whitespace-pre-wrap mb-3' :
-                      line.type === 'command' ? 'text-white font-semibold' :
-                      line.type === 'info' ? 'text-blue-400' :
-                      line.type === 'success' ? 'text-green-400' :
-                      line.type === 'result' ? 'text-yellow-400' :
-                      line.type === 'progress' ? 'text-purple-400' :
-                      line.type === 'detail' ? 'text-gray-400' :
-                      line.type === 'folder' ? 'text-cyan-400 font-semibold' :
-                      line.type === 'bundle' ? 'text-purple-400' :
-                      line.type === 'main' ? 'text-yellow-400 font-semibold' :
-                      line.type === 'json' ? 'text-green-400 whitespace-pre-wrap bg-gray-800 p-4 rounded-lg my-2' :
-                      line.type === 'tip' ? 'text-cyan-400' :
-                      'text-gray-400'
-                    } ${line.type === 'empty' ? 'h-4' : ''}`}
-                  >
-                    {line.text}
-                  </div>
-                ))}
+                {workflowOutput.map((line: any, index: number) => {
+                  if (line.type === 'empty') {
+                    return <div key={index} className="h-4" />
+                  }
+                  if (
+                    line.type === 'user' ||
+                    line.type === 'ai' ||
+                    line.type === 'ai-action' ||
+                    line.type === 'ai-response'
+                  ) {
+                    return (
+                      <div
+                        key={index}
+                        className={`break-words transition-all duration-200 mb-2 ${
+                          line.type === 'user'
+                            ? 'text-blue-300 font-semibold mb-3'
+                            : line.type === 'ai'
+                              ? 'text-green-300 font-semibold mb-3'
+                              : line.type === 'ai-action'
+                                ? 'text-cyan-400 italic'
+                                : 'text-green-200 whitespace-pre-wrap mb-3'
+                        }`}
+                      >
+                        {line.text}
+                      </div>
+                    )
+                  }
+                  return (
+                    <div
+                      key={index}
+                      className={`break-words transition-all duration-200 mb-2 leading-5 sm:leading-6 ${
+                        line.type === 'json'
+                          ? 'whitespace-pre-wrap bg-gray-800 p-4 rounded-lg my-2'
+                          : ''
+                      }`}
+                    >
+                      {colorizeTerminalText(line.text)}
+                    </div>
+                  )
+                })}
                 {workflowOutput.length === 0 && (
                   <div className="text-gray-400">
                     <p className="mb-4 text-white font-semibold">
