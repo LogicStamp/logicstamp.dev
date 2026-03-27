@@ -263,9 +263,12 @@ html, body {
  * horizontal scrollbar sits on <pre> and ignores padding on the wrapper. Move scroll to
  * the wrapper and reserve bottom space on small screens (global dark scrollbar is 8px tall).
  */
+.tabbed-code-block-wrapper .tabbed-code-shiki {
+  padding-bottom: 2rem;
+}
+
 @media (max-width: 1023px) {
-  .docs-markdown-shiki,
-  .tabbed-code-block-wrapper .tabbed-code-shiki {
+  .docs-markdown-shiki {
     padding-bottom: 1rem !important;
   }
 
