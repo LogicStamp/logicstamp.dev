@@ -90,7 +90,7 @@ export default function Footer() {
   }
 
   return (
-    <footer data-testid="footer" className="border-t border-gray-200/70 dark:border-gray-600/55 bg-gradient-bg-section">
+    <footer data-testid="footer" className="border-t border-gray-200/70 dark:border-gray-600/55 bg-white dark:bg-gray-900">
       {/* Soft gray fade along the top edge (reads clearly in dark mode) */}
       <div className="h-px w-full bg-gradient-to-r from-transparent via-gray-300/50 dark:via-gray-500/45 to-transparent" />
 
