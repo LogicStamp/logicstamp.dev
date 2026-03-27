@@ -1,6 +1,7 @@
 /**
  * CLI subsection nav (matches DocsSidebar "CLI" items after CLI Commands).
- * Related Commands grids use {@link logicStampContextRelatedCliNavExcept} (subset of six).
+ * Individual doc pages use {@link logicStampContextRelatedCliNavExcept} (curated six).
+ * The commands index uses {@link logicStampContextAllCliNavExcept} for the full list.
  */
 export type LogicStampContextCliNavItem = {
   href: string
@@ -83,4 +84,9 @@ export function logicStampContextRelatedCliNavExcept(currentHref: string): Logic
     (item): item is LogicStampContextCliNavItem =>
       item != null && item.href !== currentHref,
   )
+}
+
+/** Every CLI command/topic page (sidebar order), excluding the current route — for the commands reference index. */
+export function logicStampContextAllCliNavExcept(currentHref: string): LogicStampContextCliNavItem[] {
+  return LOGICSTAMP_CONTEXT_CLI_NAV.filter((item) => item.href !== currentHref)
 }
