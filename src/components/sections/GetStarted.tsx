@@ -89,27 +89,61 @@ function ASTNode({
 
 // Connection edge between nodes with light/dark theme support
 function ASTEdge({
-  x1, y1, x2, y2, delay = 0, inView
+  x1, y1, x2, y2, delay = 0, inView, motionEnabled
 }: {
-  x1: number; y1: number; x2: number; y2: number; delay?: number; inView: boolean
+  x1: number; y1: number; x2: number; y2: number; delay?: number; inView: boolean; motionEnabled: boolean
 }) {
   const midY = (y1 + y2) / 2
   const path = `M ${x1} ${y1} C ${x1} ${midY}, ${x2} ${midY}, ${x2} ${y2}`
+  const animationDuration = `${3.5 + (delay % 3) * 0.4}s`
+  const pulseDuration = `${4.2 + (delay % 4) * 0.4}s`
+  const pulseDelay = `${(delay % 7) * 0.22}s`
 
   return (
-    <path
-      d={path}
-      fill="none"
-      className={`stroke-slate-500/65 dark:stroke-slate-400/60 transition-all duration-1000 ${inView ? 'opacity-100' : 'opacity-0'}`}
-      strokeWidth={2}
-      strokeDasharray="3 3"
-      style={{ transitionDelay: `${delay}ms` }}
-    />
+    <g>
+      <path
+        d={path}
+        fill="none"
+        className={`stroke-slate-500/65 dark:stroke-slate-400/60 transition-all duration-1000 ${inView ? 'opacity-100' : 'opacity-0'}`}
+        strokeWidth={2}
+        strokeDasharray="3 3"
+        style={{
+          transitionDelay: `${delay}ms`,
+          animation: motionEnabled ? `ast-edge-flow ${animationDuration} linear infinite` : undefined,
+        }}
+      />
+      <path
+        d={path}
+        fill="none"
+        className={`stroke-sky-500/30 dark:stroke-sky-300/25 transition-opacity duration-1000 ${inView ? 'opacity-100' : 'opacity-0'}`}
+        strokeWidth={2.6}
+        strokeDasharray="3 3"
+        style={{
+          transitionDelay: `${delay}ms`,
+          animation: motionEnabled
+            ? `ast-edge-flow ${animationDuration} linear infinite, ast-edge-pulse ${pulseDuration} ease-in-out infinite ${pulseDelay}`
+            : undefined,
+          opacity: 0,
+        }}
+      />
+    </g>
   )
 }
 
 export default function GetStarted() {
   const { ref: contentRef, inView: contentInView } = useInView(0.1)
+  const [prefersReducedMotion, setPrefersReducedMotion] = useState(false)
+
+  useEffect(() => {
+    const mediaQuery = window.matchMedia('(prefers-reduced-motion: reduce)')
+    const updatePreference = () => setPrefersReducedMotion(mediaQuery.matches)
+    updatePreference()
+    mediaQuery.addEventListener('change', updatePreference)
+
+    return () => mediaQuery.removeEventListener('change', updatePreference)
+  }, [])
+
+  const motionEnabled = contentInView && !prefersReducedMotion
 
   return (
     <section
@@ -141,16 +175,16 @@ export default function GetStarted() {
         <div className="relative mx-auto h-full w-full max-w-[1320px]">
           {/* Left side AST tree - positioned at left edge of content container */}
           <svg
-            className="absolute left-0 top-1/2 -translate-y-1/2 w-[28rem] max-w-[36vw] h-[min(34rem,52vh)] -translate-x-[14%] min-[1400px]:-translate-x-[20%] 2xl:w-[32rem] 2xl:max-w-[42vw] 2xl:h-[min(38rem,56vh)] 2xl:-translate-x-[28%] hidden xl:block"
+            className="absolute left-0 top-1/2 -translate-y-1/2 w-[31rem] max-w-[40vw] h-[min(37rem,56vh)] -translate-x-[14%] min-[1400px]:-translate-x-[20%] 2xl:w-[35rem] 2xl:max-w-[45vw] 2xl:h-[min(41rem,60vh)] 2xl:-translate-x-[28%] hidden xl:block"
             viewBox="0 0 440 480"
             aria-hidden
           >
-            <ASTEdge x1={220} y1={60} x2={128} y2={148} delay={200} inView={contentInView} />
-            <ASTEdge x1={220} y1={60} x2={312} y2={148} delay={300} inView={contentInView} />
-            <ASTEdge x1={128} y1={180} x2={82} y2={250} delay={400} inView={contentInView} />
-            <ASTEdge x1={128} y1={180} x2={220} y2={250} delay={500} inView={contentInView} />
-            <ASTEdge x1={312} y1={180} x2={358} y2={250} delay={400} inView={contentInView} />
-            <ASTEdge x1={82} y1={282} x2={82} y2={362} delay={600} inView={contentInView} />
+            <ASTEdge x1={220} y1={60} x2={128} y2={148} delay={200} inView={contentInView} motionEnabled={motionEnabled} />
+            <ASTEdge x1={220} y1={60} x2={312} y2={148} delay={300} inView={contentInView} motionEnabled={motionEnabled} />
+            <ASTEdge x1={128} y1={180} x2={82} y2={250} delay={400} inView={contentInView} motionEnabled={motionEnabled} />
+            <ASTEdge x1={128} y1={180} x2={220} y2={250} delay={500} inView={contentInView} motionEnabled={motionEnabled} />
+            <ASTEdge x1={312} y1={180} x2={358} y2={250} delay={400} inView={contentInView} motionEnabled={motionEnabled} />
+            <ASTEdge x1={82} y1={282} x2={82} y2={362} delay={600} inView={contentInView} motionEnabled={motionEnabled} />
 
             <ASTNode x={220} y={44} label="Module" type="component" delay={100} inView={contentInView} />
             <ASTNode x={128} y={164} label="Component" type="component" delay={200} inView={contentInView} />
@@ -163,15 +197,15 @@ export default function GetStarted() {
 
           {/* Right side AST tree - positioned at right edge of content container */}
           <svg
-            className="absolute right-0 top-1/2 -translate-y-1/2 w-[28rem] max-w-[36vw] h-[min(34rem,52vh)] translate-x-[14%] min-[1400px]:translate-x-[20%] 2xl:w-[32rem] 2xl:max-w-[42vw] 2xl:h-[min(38rem,56vh)] 2xl:translate-x-[28%] hidden xl:block"
+            className="absolute right-0 top-1/2 -translate-y-1/2 w-[31rem] max-w-[40vw] h-[min(37rem,56vh)] translate-x-[14%] min-[1400px]:translate-x-[20%] 2xl:w-[35rem] 2xl:max-w-[45vw] 2xl:h-[min(41rem,60vh)] 2xl:translate-x-[28%] hidden xl:block"
             viewBox="0 0 440 480"
             aria-hidden
           >
-            <ASTEdge x1={220} y1={74} x2={118} y2={164} delay={300} inView={contentInView} />
-            <ASTEdge x1={220} y1={74} x2={322} y2={164} delay={400} inView={contentInView} />
-            <ASTEdge x1={118} y1={196} x2={82} y2={266} delay={500} inView={contentInView} />
-            <ASTEdge x1={118} y1={196} x2={220} y2={266} delay={600} inView={contentInView} />
-            <ASTEdge x1={322} y1={196} x2={358} y2={266} delay={500} inView={contentInView} />
+            <ASTEdge x1={220} y1={74} x2={118} y2={164} delay={300} inView={contentInView} motionEnabled={motionEnabled} />
+            <ASTEdge x1={220} y1={74} x2={322} y2={164} delay={400} inView={contentInView} motionEnabled={motionEnabled} />
+            <ASTEdge x1={118} y1={196} x2={82} y2={266} delay={500} inView={contentInView} motionEnabled={motionEnabled} />
+            <ASTEdge x1={118} y1={196} x2={220} y2={266} delay={600} inView={contentInView} motionEnabled={motionEnabled} />
+            <ASTEdge x1={322} y1={196} x2={358} y2={266} delay={500} inView={contentInView} motionEnabled={motionEnabled} />
 
             <ASTNode x={220} y={58} label="Context" type="component" delay={200} inView={contentInView} />
             <ASTNode x={118} y={180} label="Function" type="fn" delay={400} inView={contentInView} />
@@ -226,6 +260,17 @@ export default function GetStarted() {
             </div>
         </div>
       </div>
+      <style jsx>{`
+        @keyframes ast-edge-flow {
+          from { stroke-dashoffset: 0; }
+          to { stroke-dashoffset: -24; }
+        }
+        @keyframes ast-edge-pulse {
+          0%, 72%, 100% { opacity: 0; }
+          80% { opacity: 0.32; }
+          88% { opacity: 0.12; }
+        }
+      `}</style>
     </section>
   )
 }
