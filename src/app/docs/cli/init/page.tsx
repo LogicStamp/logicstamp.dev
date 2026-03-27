@@ -2,543 +2,111 @@ import { Metadata } from 'next'
 import Footer from '@/components/layout/Footer'
 import AnimatedSection from '@/components/common/AnimatedSection'
 import DocsLayout from '@/components/docs/DocsLayout'
-import TabbedCodeBlock from '@/components/docs/TabbedCodeBlock'
+import DocsMarkdown from '@/components/docs/DocsMarkdown'
 import ReadyToGetStartedCard from '@/components/docs/ReadyToGetStartedCard'
 import LogicStampContextRelatedCliNav from '@/components/docs/LogicStampContextRelatedCliNav'
+import { getDocWithFallback, stripMarkdownLeadingH1 } from '@/lib/docs'
+import { docsBodyTypographyClass } from '@/lib/docs/markdown-styles'
 
 export const metadata: Metadata = {
   title: '`stamp init` Command | LogicStamp Context Documentation',
-  description: 'Initialize LogicStamp in your project by setting up .gitignore patterns and other project configuration.',
+  description:
+    'Initialize LogicStamp in your project by setting up .gitignore patterns and other project configuration.',
 }
 
-export default function InitCommandPage() {
+const MD_PATH = 'cli/init.md'
+const CURRENT_DOC_PATH = MD_PATH
+const GITHUB_URL = 'https://github.com/LogicStamp/logicstamp-context/blob/main/docs/cli/init.md'
+
+const PAGE_DESCRIPTION =
+  'Set up `.gitignore` patterns and project defaults so LogicStamp can generate context safely.'
+
+async function getContent() {
+  try {
+    const result = await getDocWithFallback('context', MD_PATH)
+    return { body: stripMarkdownLeadingH1(result.content), error: null as string | null }
+  } catch (error) {
+    console.error('Error fetching init doc:', error)
+    const msg = error instanceof Error ? error.message : 'Unknown'
+    const fallback = `# Stamp Init Command\n\nUnable to load documentation. Please check the [source on GitHub](${GITHUB_URL}).\n\nError: ${msg}`
+    return { body: stripMarkdownLeadingH1(fallback), error: msg }
+  }
+}
+
+export default async function InitCommandPage() {
+  const { body, error } = await getContent()
+
   return (
     <>
       <DocsLayout>
-        {/* Hero Section */}
+        {error ? (
+          <AnimatedSection direction="up" delay={0}>
+            <div className="mb-6 rounded-xl border border-amber-200 bg-amber-50 px-4 py-3 text-sm text-amber-900 dark:border-amber-800 dark:bg-amber-950/30 dark:text-amber-200">
+              Could not load the latest doc from GitHub ({error}). Showing fallback content.{' '}
+              <a
+                href={GITHUB_URL}
+                className="font-medium text-amber-950 underline dark:text-amber-100"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                View on GitHub
+              </a>
+              .
+            </div>
+          </AnimatedSection>
+        ) : null}
+
         <AnimatedSection direction="up" delay={0}>
           <div className="relative mb-8 sm:mb-12 lg:mb-16">
-            {/* Background gradient */}
             <div className="absolute inset-0 bg-gradient-to-br from-blue-50 via-indigo-50/30 to-purple-50/20 dark:from-blue-950/20 dark:via-indigo-950/10 dark:to-purple-950/5 rounded-3xl -m-4 sm:-m-6 lg:-m-8 blur-3xl opacity-70" />
-            
             <div className="relative">
-              {/* Badge */}
               <div className="inline-flex items-center gap-2 px-3 py-1.5 bg-gradient-to-r from-blue-100 to-indigo-100 dark:from-blue-900/40 dark:to-indigo-900/40 text-blue-700 dark:text-blue-300 text-sm font-semibold rounded-full mb-4 sm:mb-6 backdrop-blur-sm border border-blue-200/50 dark:border-blue-700/50">
                 <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
-                  <path fillRule="evenodd" d="M11.3 1.046A1 1 0 0112 2v5h4a1 1 0 01.82 1.573l-7 10A1 1 0 018 18v-5H4a1 1 0 01-.82-1.573l7-10a1 1 0 011.12-.38z" clipRule="evenodd" />
+                  <path
+                    fillRule="evenodd"
+                    d="M11.3 1.046A1 1 0 0112 2v5h4a1 1 0 01.82 1.573l-7 10A1 1 0 018 18v-5H4a1 1 0 01-.82-1.573l7-10a1 1 0 011.12-.38z"
+                    clipRule="evenodd"
+                  />
                 </svg>
                 Initialization Command
               </div>
-
               <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black text-transparent bg-clip-text bg-gradient-to-r from-gray-900 to-gray-700 dark:from-white dark:to-gray-300 mb-4 sm:mb-6 tracking-tight leading-[1.1]">
-                <code className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-600 dark:from-blue-400 dark:to-indigo-400 font-mono text-2xl sm:text-3xl md:text-4xl lg:text-5xl">stamp init</code> Command
+                <code className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-600 dark:from-blue-400 dark:to-indigo-400 font-mono text-2xl sm:text-3xl md:text-4xl lg:text-5xl">
+                  stamp init
+                </code>{' '}
+                Command
               </h1>
-              
               <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-gray-600 dark:text-gray-400 leading-relaxed max-w-3xl">
-                Initialize LogicStamp in your project by setting up <code className="px-2 py-1 bg-gray-100 dark:bg-gray-800 text-blue-600 dark:text-blue-400 rounded-md font-mono text-xs sm:text-sm">.gitignore</code> patterns and other project configuration.
+                {PAGE_DESCRIPTION}
               </p>
             </div>
           </div>
         </AnimatedSection>
 
-        <div className="space-y-8 sm:space-y-12 lg:space-y-16">
-          {/* Syntax Section */}
-          <AnimatedSection direction="up" delay={100}>
-            <div className="relative">
-              <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white mb-4 sm:mb-6">
-                Syntax
-              </h2>
-              <TabbedCodeBlock
-                tabs={[
-                  {
-                    label: 'Syntax',
-                    code: 'stamp init [path] [options]',
-                    copyText: 'stamp init [path] [options]'
-                  }
-                ]}
-              />
-              <div className="mt-4 p-4 bg-gray-50 dark:bg-gray-800/50 rounded-lg border border-gray-200 dark:border-gray-700">
-                <p className="text-sm text-gray-700 dark:text-gray-300">
-                  <strong className="text-gray-900 dark:text-white">[path]</strong> – Target directory to initialize (default: current directory)
-                </p>
-              </div>
-            </div>
-          </AnimatedSection>
+        <AnimatedSection direction="up" delay={100}>
+          <DocsMarkdown
+            source="context"
+            currentDocPath={CURRENT_DOC_PATH}
+            className={docsBodyTypographyClass}
+          >
+            {body}
+          </DocsMarkdown>
+        </AnimatedSection>
 
-          {/* Options Section */}
-          <AnimatedSection direction="up" delay={200}>
-            <div className="relative mb-8 sm:mb-12 lg:mb-16">
-              <div className="absolute -inset-1 bg-gradient-to-r from-purple-600 to-pink-600 rounded-2xl blur opacity-20 dark:opacity-10" />
-              <div className="relative bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded-2xl p-4 sm:p-6 lg:p-8 shadow-xl">
-                <div className="flex items-baseline gap-3 mb-4 sm:mb-6">
-                  <div className="p-2 bg-purple-100 dark:bg-purple-900/30 rounded-lg flex-shrink-0 -mt-0.5">
-                    <svg className="w-5 h-5 sm:w-6 sm:h-6 text-purple-600 dark:text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4" />
-                    </svg>
-                  </div>
-                  <h2 className="text-xl sm:text-2xl font-bold text-gray-900 dark:text-white m-0">
-                    Options
-                  </h2>
-                </div>
-                <div className="overflow-x-auto -mx-4 sm:mx-0 px-4 sm:px-0">
-                  <table className="w-full min-w-full divide-y divide-gray-200 dark:divide-gray-700">
-                    <thead className="bg-gray-50 dark:bg-gray-800">
-                      <tr>
-                        <th className="px-2 sm:px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">Option</th>
-                        <th className="px-2 sm:px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">Description</th>
-                      </tr>
-                    </thead>
-                    <tbody className="bg-white dark:bg-gray-900 divide-y divide-gray-200 dark:divide-gray-700">
-                      <tr className="hover:bg-gray-50 dark:hover:bg-gray-800/50 transition-colors">
-                        <td className="px-2 sm:px-6 py-4 whitespace-nowrap">
-                          <code className="px-2 py-1 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 rounded text-xs sm:text-sm font-mono">--no-secure</code>
-                        </td>
-                        <td className="px-2 sm:px-6 py-4 text-sm text-gray-600 dark:text-gray-400">Skip security scan (security scan runs by default in v0.3.0+)</td>
-                      </tr>
-                      <tr className="hover:bg-gray-50 dark:hover:bg-gray-800/50 transition-colors">
-                        <td className="px-2 sm:px-6 py-4 whitespace-nowrap">
-                          <code className="px-2 py-1 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 rounded text-xs sm:text-sm font-mono">-y, --yes</code>
-                        </td>
-                        <td className="px-2 sm:px-6 py-4 text-sm text-gray-600 dark:text-gray-400">Skip all prompts (non-interactive mode)</td>
-                      </tr>
-                      <tr className="hover:bg-gray-50 dark:hover:bg-gray-800/50 transition-colors">
-                        <td className="px-2 sm:px-6 py-4 whitespace-nowrap">
-                          <code className="px-2 py-1 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 rounded text-xs sm:text-sm font-mono">--skip-gitignore</code>
-                        </td>
-                        <td className="px-2 sm:px-6 py-4 text-sm text-gray-600 dark:text-gray-400">Skip <code className="px-1 py-0.5 bg-gray-100 dark:bg-gray-800 rounded text-xs font-mono">.gitignore</code> setup</td>
-                      </tr>
-                      <tr className="hover:bg-gray-50 dark:hover:bg-gray-800/50 transition-colors">
-                        <td className="px-2 sm:px-6 py-4 whitespace-nowrap">
-                          <code className="px-2 py-1 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 rounded text-xs sm:text-sm font-mono">-h, --help</code>
-                        </td>
-                        <td className="px-2 sm:px-6 py-4 text-sm text-gray-600 dark:text-gray-400">Show help</td>
-                      </tr>
-                    </tbody>
-                  </table>
-                </div>
-              </div>
-            </div>
-          </AnimatedSection>
-
-          {/* What It Does Section */}
-          <AnimatedSection direction="up" delay={300}>
-            <div className="mb-8 sm:mb-12 lg:mb-16">
-              <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white mb-4 sm:mb-6">
-                What It Does
-              </h2>
-              <p className="text-base sm:text-lg text-gray-600 dark:text-gray-400 mb-4 sm:mb-6 leading-relaxed">
-                The <code className="px-2 py-1 bg-gray-100 dark:bg-gray-800 text-blue-600 dark:text-blue-400 rounded-md font-mono text-xs sm:text-sm">stamp init</code> command sets up LogicStamp in your project by:
-              </p>
-              <div className="space-y-4">
-                <div className="flex items-start gap-4 p-5 bg-gradient-to-br from-blue-50 to-indigo-50 dark:from-blue-950/20 dark:to-indigo-950/10 rounded-xl border border-blue-200 dark:border-blue-800">
-                  <div className="flex-shrink-0 w-8 h-8 rounded-full bg-blue-600 text-white font-bold flex items-center justify-center text-sm">1</div>
-                  <div className="flex-1">
-                    <p className="font-semibold text-blue-900 dark:text-blue-200 mb-2 text-base sm:text-lg">
-                      Creating or updating <code className="px-1.5 py-0.5 bg-blue-100 dark:bg-blue-900/40 rounded text-xs font-mono">.gitignore</code> with LogicStamp-specific patterns:
-                    </p>
-                    <ul className="space-y-2 text-sm text-blue-800 dark:text-blue-300 ml-4">
-                      <li>• <code className="px-1 py-0.5 bg-blue-100 dark:bg-blue-900/40 rounded text-xs font-mono">context.json</code> – Context files generated per folder</li>
-                      <li>• <code className="px-1 py-0.5 bg-blue-100 dark:bg-blue-900/40 rounded text-xs font-mono">context_*.json</code> – Main index and other context variants</li>
-                      <li>• <code className="px-1 py-0.5 bg-blue-100 dark:bg-blue-900/40 rounded text-xs font-mono">*.uif.json</code> – UIF contract files</li>
-                      <li>• <code className="px-1 py-0.5 bg-blue-100 dark:bg-blue-900/40 rounded text-xs font-mono">logicstamp.manifest.json</code> – Dependency manifest files</li>
-                      <li>• <code className="px-1 py-0.5 bg-blue-100 dark:bg-blue-900/40 rounded text-xs font-mono">.logicstamp/</code> – Configuration directory</li>
-                      <li>• <code className="px-1 py-0.5 bg-blue-100 dark:bg-blue-900/40 rounded text-xs font-mono">stamp_security_report.json</code> – 🔒 Security scan report file (contains sensitive information about detected secrets in <code className="px-1 py-0.5 bg-blue-100 dark:bg-blue-900/40 rounded text-xs font-mono">.ts</code>, <code className="px-1 py-0.5 bg-blue-100 dark:bg-blue-900/40 rounded text-xs font-mono">.tsx</code>, <code className="px-1 py-0.5 bg-blue-100 dark:bg-blue-900/40 rounded text-xs font-mono">.js</code>, <code className="px-1 py-0.5 bg-blue-100 dark:bg-blue-900/40 rounded text-xs font-mono">.jsx</code>, and <code className="px-1 py-0.5 bg-blue-100 dark:bg-blue-900/40 rounded text-xs font-mono">.json</code> files). <strong className="text-red-600 dark:text-red-400">Note:</strong> Secrets should never be hardcoded in source files - use environment variables instead.</li>
-                    </ul>
-                  </div>
-                </div>
-                <div className="flex items-start gap-4 p-5 bg-gradient-to-br from-green-50 to-emerald-50 dark:from-green-950/20 dark:to-emerald-950/10 rounded-xl border border-green-200 dark:border-green-800">
-                  <div className="flex-shrink-0 w-8 h-8 rounded-full bg-green-600 text-white font-bold flex items-center justify-center text-sm">2</div>
-                  <div className="flex-1">
-                    <p className="font-semibold text-green-900 dark:text-green-200 mb-2 text-base sm:text-lg">
-                      Generating <code className="px-1.5 py-0.5 bg-green-100 dark:bg-green-900/40 rounded text-xs font-mono">LLM_CONTEXT.md</code> in the project root
-                    </p>
-                    <p className="text-sm text-green-800 dark:text-green-300">
-                      A guide that helps AI assistants understand your project structure and how to work with LogicStamp context files (if it doesn't already exist)
-                    </p>
-                  </div>
-                </div>
-                <div className="flex items-start gap-4 p-5 bg-gradient-to-br from-purple-50 to-pink-50 dark:from-purple-950/20 dark:to-pink-950/10 rounded-xl border border-purple-200 dark:border-purple-800">
-                  <div className="flex-shrink-0 w-8 h-8 rounded-full bg-purple-600 text-white font-bold flex items-center justify-center text-sm">3</div>
-                  <div className="flex-1">
-                    <p className="font-semibold text-purple-900 dark:text-purple-200 mb-2 text-base sm:text-lg">
-                      Creating <code className="px-1.5 py-0.5 bg-purple-100 dark:bg-purple-900/40 rounded text-xs font-mono">.logicstamp/config.json</code>
-                    </p>
-                    <p className="text-sm text-purple-800 dark:text-purple-300">
-                      Saves your preferences so <code className="px-1 py-0.5 bg-purple-100 dark:bg-purple-900/40 rounded text-xs font-mono">stamp context</code> respects them (CI-friendly, never prompts)
-                    </p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </AnimatedSection>
-
-          {/* Examples Section */}
-          <AnimatedSection direction="up" delay={400}>
-            <div className="mb-8 sm:mb-12 lg:mb-16">
-              <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white mb-4 sm:mb-6">
-                Examples
-              </h2>
-              <TabbedCodeBlock
-                tabs={[
-                  {
-                    label: 'Basic initialization',
-                    code: `# Initialize LogicStamp in the current directory
-# Non-interactive by default (security scan runs automatically)
-stamp init
-
-# Explicitly skip prompts (redundant - already non-interactive by default)
-stamp init --yes
-
-# Skip security scan (enables interactive prompts in TTY mode)
-stamp init --no-secure
-
-# Initialize a specific directory
-stamp init ./my-project
-
-# Initialize without security scan for a specific directory
-stamp init ./my-project --no-secure
-
-# Skip .gitignore setup
-stamp init --skip-gitignore`,
-                    copyText: `# Initialize LogicStamp in the current directory
-# Non-interactive by default (security scan runs automatically)
-stamp init
-
-# Explicitly skip prompts (redundant - already non-interactive by default)
-stamp init --yes
-
-# Skip security scan (enables interactive prompts in TTY mode)
-stamp init --no-secure
-
-# Initialize a specific directory
-stamp init ./my-project
-
-# Initialize without security scan for a specific directory
-stamp init ./my-project --no-secure
-
-# Skip .gitignore setup
-stamp init --skip-gitignore`
-                  }
-                ]}
-              />
-            </div>
-          </AnimatedSection>
-
-          {/* Behavior Section */}
-          <AnimatedSection direction="up" delay={450}>
-            <div className="mb-8 sm:mb-12 lg:mb-16">
-              <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white mb-4 sm:mb-6">
-                Behavior
-              </h2>
-              <div className="space-y-6">
-                <div className="p-5 bg-gradient-to-br from-green-50 to-emerald-50 dark:from-green-950/20 dark:to-emerald-950/10 rounded-xl border border-green-200 dark:border-green-800">
-                  <h3 className="font-semibold text-green-900 dark:text-green-200 mb-3 text-base sm:text-lg">
-                    When .gitignore doesn't exist
-                  </h3>
-                  <p className="text-sm text-green-800 dark:text-green-300 mb-2">
-                    Creates a new <code className="px-1.5 py-0.5 bg-green-100 dark:bg-green-900/40 rounded text-xs font-mono">.gitignore</code> file with LogicStamp patterns:
-                  </p>
-                  <TabbedCodeBlock
-                    tabs={[
-                      {
-                        label: 'Output',
-                        code: `✅ Created .gitignore with LogicStamp patterns
-
-   The following patterns were added/verified:
-   - context.json
-   - context_*.json
-   - *.uif.json
-   - logicstamp.manifest.json`,
-                        copyText: `✅ Created .gitignore with LogicStamp patterns
-
-   The following patterns were added/verified:
-   - context.json
-   - context_*.json
-   - *.uif.json
-   - logicstamp.manifest.json`
-                      }
-                    ]}
-                  />
-                </div>
-                <div className="p-5 bg-gradient-to-br from-blue-50 to-indigo-50 dark:from-blue-950/20 dark:to-indigo-950/10 rounded-xl border border-blue-200 dark:border-blue-800">
-                  <h3 className="font-semibold text-blue-900 dark:text-blue-200 mb-3 text-base sm:text-lg">
-                    When .gitignore exists but doesn't have LogicStamp patterns
-                  </h3>
-                  <p className="text-sm text-blue-800 dark:text-blue-300 mb-2">
-                    Adds LogicStamp patterns to the existing <code className="px-1.5 py-0.5 bg-blue-100 dark:bg-blue-900/40 rounded text-xs font-mono">.gitignore</code>:
-                  </p>
-                  <TabbedCodeBlock
-                    tabs={[
-                      {
-                        label: 'Output',
-                        code: `✅ Added LogicStamp patterns to existing .gitignore
-
-   The following patterns were added/verified:
-   - context.json
-   - context_*.json
-   - *.uif.json
-   - logicstamp.manifest.json`,
-                        copyText: `✅ Added LogicStamp patterns to existing .gitignore
-
-   The following patterns were added/verified:
-   - context.json
-   - context_*.json
-   - *.uif.json
-   - logicstamp.manifest.json`
-                      }
-                    ]}
-                  />
-                </div>
-                <div className="p-5 bg-gradient-to-br from-purple-50 to-pink-50 dark:from-purple-950/20 dark:to-pink-950/10 rounded-xl border border-purple-200 dark:border-purple-800">
-                  <h3 className="font-semibold text-purple-900 dark:text-purple-200 mb-3 text-base sm:text-lg">
-                    When .gitignore already has LogicStamp patterns
-                  </h3>
-                  <p className="text-sm text-purple-800 dark:text-purple-300 mb-2">
-                    No changes are made:
-                  </p>
-                  <TabbedCodeBlock
-                    tabs={[
-                      {
-                        label: 'Output',
-                        code: `ℹ️  .gitignore already contains LogicStamp patterns
-
-   The following patterns were added/verified:
-   - context.json
-   - context_*.json
-   - *.uif.json
-   - logicstamp.manifest.json`,
-                        copyText: `ℹ️  .gitignore already contains LogicStamp patterns
-
-   The following patterns were added/verified:
-   - context.json
-   - context_*.json
-   - *.uif.json
-   - logicstamp.manifest.json`
-                      }
-                    ]}
-                  />
-                </div>
-                <div className="p-5 bg-gradient-to-br from-amber-50 to-orange-50 dark:from-amber-950/20 dark:to-orange-950/10 rounded-xl border border-amber-200 dark:border-amber-800">
-                  <h3 className="font-semibold text-amber-900 dark:text-amber-200 mb-3 text-base sm:text-lg">
-                    LLM_context.md Generation
-                  </h3>
-                  <p className="text-sm text-amber-800 dark:text-amber-300 mb-2">
-                    <code className="px-1.5 py-0.5 bg-amber-100 dark:bg-amber-900/40 rounded text-xs font-mono">stamp init</code> also generates <code className="px-1.5 py-0.5 bg-amber-100 dark:bg-amber-900/40 rounded text-xs font-mono">LLM_context.md</code> in your project root:
-                  </p>
-                  <TabbedCodeBlock
-                    tabs={[
-                      {
-                        label: 'Output',
-                        code: `✅ Created LLM_context.md
-
-# If LLM_context.md already exists:
-ℹ️  LLM_context.md already exists`,
-                        copyText: `✅ Created LLM_context.md
-
-# If LLM_context.md already exists:
-ℹ️  LLM_context.md already exists`
-                      }
-                    ]}
-                  />
-                  <p className="text-sm text-amber-800 dark:text-amber-300 mt-3">
-                    This file provides guidance for AI assistants on how to understand and work with your LogicStamp context files. It includes information about project structure, context file organization, bundle structure, and interpreting missing dependencies.
-                  </p>
-                </div>
-              </div>
-            </div>
-          </AnimatedSection>
-
-          {/* Smart Detection Section */}
-          <AnimatedSection direction="up" delay={500}>
-            <div className="relative mb-8 sm:mb-12 lg:mb-16">
-              <div className="absolute -inset-1 bg-gradient-to-r from-amber-600 to-orange-600 rounded-2xl blur opacity-20 dark:opacity-10" />
-              <div className="relative bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded-2xl p-4 sm:p-6 lg:p-8 shadow-xl">
-                <h2 className="text-xl sm:text-2xl font-bold text-gray-900 dark:text-white mb-4 sm:mb-6">
-                  Smart Detection in <code className="px-2 py-1 bg-gray-100 dark:bg-gray-800 text-blue-600 dark:text-blue-400 rounded-md font-mono text-xs sm:text-sm">stamp context</code>
-                </h2>
-                <p className="text-base sm:text-lg text-gray-600 dark:text-gray-400 mb-4 sm:mb-6 leading-relaxed">
-                  The <code className="px-2 py-1 bg-gray-100 dark:bg-gray-800 text-blue-600 dark:text-blue-400 rounded-md font-mono text-xs sm:text-sm">stamp context</code> command includes smart setup management for both <code className="px-2 py-1 bg-gray-100 dark:bg-gray-800 text-blue-600 dark:text-blue-400 rounded-md font-mono text-xs sm:text-sm">.gitignore</code> and <code className="px-2 py-1 bg-gray-100 dark:bg-gray-800 text-blue-600 dark:text-blue-400 rounded-md font-mono text-xs sm:text-sm">LLM_CONTEXT.md</code> with the following behavior:
-                </p>
-                
-                <div className="space-y-4 mb-6">
-                  <div className="p-4 bg-green-50 dark:bg-green-950/20 rounded-xl border border-green-200 dark:border-green-800">
-                    <h3 className="font-semibold text-green-900 dark:text-green-200 mb-2 text-base sm:text-lg">CI-Friendly Behavior</h3>
-                    <p className="text-sm text-green-800 dark:text-green-300 mb-2">
-                      <code className="px-1.5 py-0.5 bg-green-100 dark:bg-green-900/40 rounded text-xs font-mono">stamp context</code> is <strong>CI-friendly</strong> and <strong>never prompts</strong>. It respects preferences saved in <code className="px-1.5 py-0.5 bg-green-100 dark:bg-green-900/40 rounded text-xs font-mono">.logicstamp/config.json</code> from <code className="px-1.5 py-0.5 bg-green-100 dark:bg-green-900/40 rounded text-xs font-mono">stamp init</code>.
-                    </p>
-                    <ul className="space-y-1 text-sm text-green-800 dark:text-green-300 ml-4 list-disc">
-                      <li>Never prompts (works in CI/CD environments)</li>
-                      <li>Respects preferences from <code className="px-1 py-0.5 bg-green-100 dark:bg-green-900/40 rounded text-xs font-mono">stamp init</code></li>
-                      <li>On first run (no config), defaults to skipping both <code className="px-1 py-0.5 bg-green-100 dark:bg-green-900/40 rounded text-xs font-mono">.gitignore</code> and <code className="px-1 py-0.5 bg-green-100 dark:bg-green-900/40 rounded text-xs font-mono">LLM_CONTEXT.md</code> setup</li>
-                      <li>Use <code className="px-1 py-0.5 bg-green-100 dark:bg-green-900/40 rounded text-xs font-mono">--skip-gitignore</code> flag to skip <code className="px-1 py-0.5 bg-green-100 dark:bg-green-900/40 rounded text-xs font-mono">.gitignore</code> setup on a per-run basis</li>
-                    </ul>
-                  </div>
-                  <div className="p-4 bg-blue-50 dark:bg-blue-950/20 rounded-xl border border-blue-200 dark:border-blue-800">
-                    <h3 className="font-semibold text-blue-900 dark:text-blue-200 mb-2 text-base sm:text-lg">Default Behavior (Non-Interactive)</h3>
-                    <p className="text-sm text-blue-800 dark:text-blue-300 mb-2">
-                      By default, <code className="px-1.5 py-0.5 bg-blue-100 dark:bg-blue-900/40 rounded text-xs font-mono">stamp init</code> is <strong>non-interactive</strong> because the security scan runs automatically:
-                    </p>
-                    <ul className="space-y-1 text-sm text-blue-800 dark:text-blue-300 ml-4 list-disc">
-                      <li>No prompts are shown</li>
-                      <li>All operations are performed automatically</li>
-                      <li>Preferences are saved to config</li>
-                      <li>Security scan runs by default (v0.3.0+)</li>
-                    </ul>
-                    <p className="text-xs text-blue-700 dark:text-blue-400 mt-2">
-                      <strong>To enable interactive mode:</strong> Use <code className="px-1 py-0.5 bg-blue-100 dark:bg-blue-900/40 rounded text-xs font-mono">--no-secure</code> to skip the security scan, which will enable interactive prompts (when running in a TTY environment).
-                    </p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </AnimatedSection>
-
-          {/* Secure Initialization Section */}
-          <AnimatedSection direction="up" delay={550}>
-            <div className="relative mb-8 sm:mb-12 lg:mb-16">
-              <div className="absolute -inset-1 bg-gradient-to-r from-red-600 to-orange-600 rounded-2xl blur opacity-20 dark:opacity-10" />
-              <div className="relative bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded-2xl p-4 sm:p-6 lg:p-8 shadow-xl">
-                <div className="flex items-baseline gap-3 mb-4 sm:mb-6">
-                  <div className="p-2 bg-red-100 dark:bg-red-900/30 rounded-lg flex-shrink-0 -mt-0.5">
-                    <svg className="w-5 h-5 sm:w-6 sm:h-6 text-red-600 dark:text-red-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
-                    </svg>
-                  </div>
-                  <h2 className="text-xl sm:text-2xl font-bold text-gray-900 dark:text-white m-0">
-                    Security Scan (Default Behavior)
-                  </h2>
-                </div>
-                <p className="text-base sm:text-lg text-gray-600 dark:text-gray-400 mb-4 sm:mb-6 leading-relaxed">
-                  By default, <code className="px-2 py-1 bg-gray-100 dark:bg-gray-800 text-blue-600 dark:text-blue-400 rounded-md font-mono text-xs sm:text-sm">stamp init</code> is <strong>non-interactive</strong> because the security scan runs automatically. This:
-                </p>
-                <div className="space-y-3 mb-4">
-                  <div className="flex items-start gap-3 p-3 bg-blue-50 dark:bg-blue-950/20 rounded-lg border border-blue-200 dark:border-blue-800">
-                    <svg className="w-5 h-5 text-blue-600 dark:text-blue-400 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                    </svg>
-                    <p className="text-sm text-blue-800 dark:text-blue-300">Sets up <code className="px-1.5 py-0.5 bg-blue-100 dark:bg-blue-900/40 rounded text-xs font-mono">.gitignore</code> patterns</p>
-                  </div>
-                  <div className="flex items-start gap-3 p-3 bg-green-50 dark:bg-green-950/20 rounded-lg border border-green-200 dark:border-green-800">
-                    <svg className="w-5 h-5 text-green-600 dark:text-green-400 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                    </svg>
-                    <p className="text-sm text-green-800 dark:text-green-300">Generates <code className="px-1.5 py-0.5 bg-green-100 dark:bg-green-900/40 rounded text-xs font-mono">LLM_CONTEXT.md</code> automatically (non-interactive by default)</p>
-                  </div>
-                  <div className="flex items-start gap-3 p-3 bg-purple-50 dark:bg-purple-950/20 rounded-lg border border-purple-200 dark:border-purple-800">
-                    <svg className="w-5 h-5 text-purple-600 dark:text-purple-400 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                    </svg>
-                    <div>
-                      <p className="text-sm text-purple-800 dark:text-purple-300 mb-1">Runs <code className="px-1.5 py-0.5 bg-purple-100 dark:bg-purple-900/40 rounded text-xs font-mono">stamp security scan</code> to scan for secrets (API keys, passwords, tokens)</p>
-                      <p className="text-xs text-purple-700 dark:text-purple-400">Scans only: <code className="px-1 py-0.5 bg-purple-100 dark:bg-purple-900/40 rounded text-xs font-mono">.ts</code>, <code className="px-1 py-0.5 bg-purple-100 dark:bg-purple-900/40 rounded text-xs font-mono">.tsx</code>, <code className="px-1 py-0.5 bg-purple-100 dark:bg-purple-900/40 rounded text-xs font-mono">.js</code>, <code className="px-1 py-0.5 bg-purple-100 dark:bg-purple-900/40 rounded text-xs font-mono">.jsx</code>, and <code className="px-1 py-0.5 bg-purple-100 dark:bg-purple-900/40 rounded text-xs font-mono">.json</code> files</p>
-                    </div>
-                  </div>
-                </div>
-                <div className="p-4 bg-red-50 dark:bg-red-950/20 border-l-4 border-red-500 rounded-r-lg mb-4">
-                  <p className="text-sm text-red-800 dark:text-red-300 mb-2">
-                    <strong className="text-red-900 dark:text-red-200">⚠️ Security Best Practice:</strong> Never hardcode secrets (API keys, passwords, tokens) in your source code files. Use environment variables or secret management systems instead.
-                  </p>
-                  <p className="text-xs text-red-700 dark:text-red-400">
-                    The security scan helps detect accidental exposure, but secrets should never be committed to version control in the first place.
-                  </p>
-                </div>
-                <div className="p-4 bg-blue-50/50 dark:bg-blue-950/20 border-l-4 border-blue-500 rounded-r-lg mb-4">
-                  <p className="text-sm text-gray-700 dark:text-gray-300">
-                    <strong className="text-gray-900 dark:text-white">Note:</strong> Use <code className="px-1.5 py-0.5 bg-blue-100 dark:bg-blue-900/40 rounded text-xs font-mono">--no-secure</code> to skip the security scan and enable interactive prompts (when running in a TTY environment).
-                  </p>
-                </div>
-                <p className="text-base sm:text-lg text-gray-600 dark:text-gray-400 mb-4 sm:mb-6 leading-relaxed">
-                  <strong className="text-gray-900 dark:text-white">Runs 100% locally — nothing is uploaded or sent anywhere.</strong>
-                </p>
-              </div>
-            </div>
-          </AnimatedSection>
-
-          {/* When to Use Section */}
-          <AnimatedSection direction="up" delay={600}>
-            <div className="mb-8 sm:mb-12 lg:mb-16">
-              <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white mb-4 sm:mb-6">
-                When to Use <code className="px-2 py-1 bg-gray-100 dark:bg-gray-800 text-blue-600 dark:text-blue-400 rounded-md font-mono text-xs sm:text-sm">stamp init</code>
-              </h2>
-              <div className="grid sm:grid-cols-2 gap-4 sm:gap-6">
-                <div className="p-5 bg-gradient-to-br from-blue-50 to-indigo-50 dark:from-blue-950/20 dark:to-indigo-950/10 rounded-xl border border-blue-200 dark:border-blue-800">
-                  <h3 className="font-semibold text-blue-900 dark:text-blue-200 mb-3 text-base sm:text-lg">Use <code className="px-1.5 py-0.5 bg-blue-100 dark:bg-blue-900/40 rounded text-xs font-mono">stamp init</code> when:</h3>
-                  <ul className="space-y-2 text-sm text-blue-800 dark:text-blue-300 ml-4 list-disc">
-                    <li>Setting up LogicStamp in a new project</li>
-                    <li>You want explicit control over initialization</li>
-                    <li>You want to set up <code className="px-1 py-0.5 bg-blue-100 dark:bg-blue-900/40 rounded text-xs font-mono">.gitignore</code> before generating context files</li>
-                    <li>Non-interactive by default (security scan runs automatically; use <code className="px-1 py-0.5 bg-blue-100 dark:bg-blue-900/40 rounded text-xs font-mono">--no-secure</code> to enable interactive mode)</li>
-                  </ul>
-                </div>
-                <div className="p-5 bg-gradient-to-br from-gray-50 to-slate-50 dark:from-gray-950/20 dark:to-slate-950/10 rounded-xl border border-gray-200 dark:border-gray-800">
-                  <h3 className="font-semibold text-gray-900 dark:text-gray-200 mb-3 text-base sm:text-lg">You don't need <code className="px-1.5 py-0.5 bg-gray-100 dark:bg-gray-800 rounded text-xs font-mono">stamp init</code> if:</h3>
-                  <ul className="space-y-2 text-sm text-gray-700 dark:text-gray-400 ml-4 list-disc">
-                    <li>You want <code className="px-1 py-0.5 bg-gray-100 dark:bg-gray-800 rounded text-xs font-mono">stamp context</code> to respect your preferences (CI-friendly, never prompts)</li>
-                    <li>Your <code className="px-1 py-0.5 bg-gray-100 dark:bg-gray-800 rounded text-xs font-mono">.gitignore</code> already has the necessary patterns</li>
-                    <li>You prefer to manually manage <code className="px-1 py-0.5 bg-gray-100 dark:bg-gray-800 rounded text-xs font-mono">.gitignore</code></li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-          </AnimatedSection>
-
-          {/* Safety Section */}
-          <AnimatedSection direction="up" delay={700}>
-            <div className="relative mb-8 sm:mb-12 lg:mb-16">
-              <div className="absolute -inset-1 bg-gradient-to-r from-green-600 to-emerald-600 rounded-2xl blur opacity-20 dark:opacity-10" />
-              <div className="relative bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded-2xl p-4 sm:p-6 lg:p-8 shadow-xl">
-                <div className="flex items-baseline gap-3 mb-4 sm:mb-6">
-                  <div className="p-2 bg-green-100 dark:bg-green-900/30 rounded-lg flex-shrink-0 -mt-0.5">
-                    <svg className="w-5 h-5 sm:w-6 sm:h-6 text-green-600 dark:text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
-                    </svg>
-                  </div>
-                  <h2 className="text-xl sm:text-2xl font-bold text-gray-900 dark:text-white m-0">
-                    Safety
-                  </h2>
-                </div>
-                <p className="text-base sm:text-lg text-gray-600 dark:text-gray-400 mb-4 leading-relaxed">
-                  The <code className="px-2 py-1 bg-gray-100 dark:bg-gray-800 text-blue-600 dark:text-blue-400 rounded-md font-mono text-xs sm:text-sm">stamp init</code> command is:
-                </p>
-                <div className="space-y-3">
-                  <div className="flex items-start gap-3">
-                    <svg className="w-5 h-5 text-green-600 dark:text-green-400 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                    </svg>
-                    <p className="text-sm sm:text-base text-gray-700 dark:text-gray-300"><strong className="text-gray-900 dark:text-white">Idempotent</strong> – Safe to run multiple times without duplicating patterns</p>
-                  </div>
-                  <div className="flex items-start gap-3">
-                    <svg className="w-5 h-5 text-green-600 dark:text-green-400 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                    </svg>
-                    <p className="text-sm sm:text-base text-gray-700 dark:text-gray-300"><strong className="text-gray-900 dark:text-white">Non-destructive</strong> – Preserves existing <code className="px-1.5 py-0.5 bg-gray-100 dark:bg-gray-800 rounded text-xs font-mono">.gitignore</code> content</p>
-                  </div>
-                  <div className="flex items-start gap-3">
-                    <svg className="w-5 h-5 text-green-600 dark:text-green-400 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                    </svg>
-                    <p className="text-sm sm:text-base text-gray-700 dark:text-gray-300"><strong className="text-gray-900 dark:text-white">Safe by default</strong> – Only adds patterns, never removes anything</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </AnimatedSection>
-
-          <AnimatedSection direction="up" delay={600}>
-            <LogicStampContextRelatedCliNav currentHref="/docs/cli/init" />
-          </AnimatedSection>
-        </div>
+        <AnimatedSection direction="up" delay={200}>
+          <LogicStampContextRelatedCliNav currentHref="/docs/cli/init" />
+        </AnimatedSection>
 
         <ReadyToGetStartedCard
           variant="green"
-          description="Generate your first AI-ready context bundle."
+          description="Generate context next, or review the full command reference."
           primaryAction={{
             href: '/docs/cli/context',
             label: 'Generate Context',
           }}
           secondaryAction={{
-            href: '/docs/getting-started',
-            label: 'Getting Started Guide',
+            href: '/docs/cli/commands',
+            label: 'All Commands',
           }}
           delay={650}
         />
@@ -547,18 +115,3 @@ stamp init --skip-gitignore`
     </>
   )
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
