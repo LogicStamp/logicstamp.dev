@@ -109,7 +109,7 @@ export default function DocsLayout({ children }: { children: React.ReactNode }) 
   return (
     <DisableAnimationsContext.Provider value={true}>
       <DocsHeader sidebarOpen={sidebarOpen} onSidebarToggle={() => setSidebarOpen(!sidebarOpen)} />
-      <div className="min-h-screen bg-gradient-bg-section pt-[6.5rem] lg:pt-24">
+      <div className="min-h-screen bg-white dark:bg-gray-900 pt-[6.5rem] lg:pt-24">
         <div className="max-w-[1440px] mx-auto px-4 lg:px-6 py-8 lg:py-10 w-full">
         {/* Mobile sidebar toggle button - hidden, now integrated into DocsHeader */}
         <button
@@ -142,7 +142,7 @@ export default function DocsLayout({ children }: { children: React.ReactNode }) 
             aria-modal="true"
             aria-labelledby="mobile-sidebar-title"
             className={`
-              lg:hidden fixed left-0 z-30 w-64 bg-gradient-bg-section pt-6 pb-8 px-4 overflow-y-auto
+              lg:hidden fixed left-0 z-30 w-64 bg-white dark:bg-gray-900 pt-6 pb-8 px-4 overflow-y-auto
               transition-all duration-300 ease-in-out
               top-[7.16rem]
               ${sidebarOpen ? 'translate-x-0' : '-translate-x-full'}

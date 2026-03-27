@@ -330,7 +330,7 @@ export default function Integrations() {
   const { ref: toolsRef, inView: toolsInView } = useInView(0.1)
 
   return (
-    <section id="integrations" className="relative py-24 sm:py-32 overflow-hidden bg-gradient-to-b from-gray-50/50 via-white to-gray-50/50 dark:from-gray-900/50 dark:via-gray-950 dark:to-gray-900/50">
+    <section id="integrations" className="relative py-24 sm:py-32 overflow-hidden bg-white dark:bg-gray-900">
       {/* Ambient background effects */}
       <div className="absolute inset-0 overflow-hidden">
         <div className="absolute -top-40 -right-40 w-80 h-80 bg-blue-500/5 rounded-full blur-3xl animate-pulse" />

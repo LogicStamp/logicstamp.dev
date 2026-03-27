@@ -69,7 +69,7 @@ export default function Stats() {
   }, [hasTriggered])
 
   return (
-    <section ref={sectionRef} className="py-24 sm:py-32 bg-stats-section">
+    <section ref={sectionRef} className="py-24 sm:py-32 bg-white dark:bg-gray-900">
       <div className="mx-auto max-w-[1320px] px-6 lg:px-8">
         <AnimatedSection direction="up" delay={0}>
           <div className="mx-auto max-w-2xl text-center">
