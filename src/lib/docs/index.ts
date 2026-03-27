@@ -20,6 +20,7 @@ export {
 
 export {
   LOGICSTAMP_CONTEXT_CLI_NAV,
+  logicStampContextAllCliNavExcept,
   logicStampContextRelatedCliNavExcept,
   type LogicStampContextCliNavItem,
 } from './logicstamp-context-cli-nav'

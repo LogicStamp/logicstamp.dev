@@ -2,7 +2,10 @@ import Link from 'next/link'
 import ReactMarkdown from 'react-markdown'
 import type { Components } from 'react-markdown'
 import { docsMarkdownComponents } from '@/lib/docs/markdown-components'
-import { logicStampContextRelatedCliNavExcept } from '@/lib/docs/logicstamp-context-cli-nav'
+import {
+  logicStampContextAllCliNavExcept,
+  logicStampContextRelatedCliNavExcept,
+} from '@/lib/docs/logicstamp-context-cli-nav'
 
 /** Titles match hand-written Related Commands (`text-sm font-mono`, no pill). */
 const mdInline: Partial<Components> = {
@@ -21,18 +24,29 @@ type Props = {
   /** Path of the current doc page; excluded from the grid */
   currentHref: string
   heading?: string
+  /**
+   * `related` — six curated links for individual command pages.
+   * `all` — every CLI topic in sidebar order (commands reference index).
+   */
+  mode?: 'related' | 'all'
 }
 
 export default function LogicStampContextRelatedCliNav({
   currentHref,
-  heading = 'Related Commands',
+  heading,
+  mode = 'related',
 }: Props) {
-  const items = logicStampContextRelatedCliNavExcept(currentHref)
+  const items =
+    mode === 'all'
+      ? logicStampContextAllCliNavExcept(currentHref)
+      : logicStampContextRelatedCliNavExcept(currentHref)
+  const resolvedHeading =
+    heading ?? (mode === 'all' ? 'All CLI topics' : 'Related Commands')
 
   return (
     <div className="mb-8 sm:mb-12 lg:mb-16">
       <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white mb-4 sm:mb-6">
-        {heading}
+        {resolvedHeading}
       </h2>
       <div className="grid sm:grid-cols-2 gap-4">
         {items.map((item) => (
