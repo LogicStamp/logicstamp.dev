@@ -1,8 +1,7 @@
 'use client'
 
 import React, { useState, useEffect, useRef, useMemo } from 'react'
-import { ChevronRight, Upload, Play, FileCode2, Zap, Package, Code2, Terminal, GitBranch } from 'lucide-react'
-import CopyButton from '../ui/CopyButton'
+import { ChevronLeft, ChevronRight, Upload, Play, FileCode2, Zap, Package, Code2, Terminal, GitBranch } from 'lucide-react'
 import { ctaInvertedPrimaryClasses } from '../ui/ctaInvertedPrimaryClasses'
 import { colorizeTerminalText } from '@/lib/terminal-colorize'
 import { DemoShikiEditor, DemoShikiStatic, inferDemoLang } from './DemoShiki'
@@ -648,6 +647,34 @@ export default function Demo() {
     }
   }, [activeContextView, contextMain, contextJsons, contextBundle])
 
+  type ContextViewTab = 'bundle' | 'folder' | 'main'
+
+  const contextViewOrder = useMemo((): ContextViewTab[] => {
+    const order: ContextViewTab[] = []
+    if (contextBundle) order.push('bundle')
+    if (contextJsons) order.push('folder')
+    if (contextMain) order.push('main')
+    return order
+  }, [contextBundle, contextJsons, contextMain])
+
+  const showContextViewTabs = contextViewOrder.length > 1
+
+  const cycleContextView = (direction: -1 | 1) => {
+    if (contextViewOrder.length === 0) return
+    const i = contextViewOrder.indexOf(activeContextView as ContextViewTab)
+    const from = i >= 0 ? i : 0
+    const next =
+      (from + direction + contextViewOrder.length) % contextViewOrder.length
+    setActiveContextView(contextViewOrder[next])
+  }
+
+  useEffect(() => {
+    if (contextViewOrder.length === 0) return
+    if (!contextViewOrder.includes(activeContextView as ContextViewTab)) {
+      setActiveContextView(contextViewOrder[0])
+    }
+  }, [contextViewOrder, activeContextView])
+
   // Intersection observer hooks for animations
   // Reset contentRef and ctaRef animation when switching tabs
   const { ref: headerRef, inView: headerInView } = useInView(0.1)
@@ -695,15 +722,33 @@ export default function Demo() {
     await new Promise(resolve => setTimeout(resolve, 200))
 
     if (uploadedFiles.length > 1) {
-      // Generate multi-file context bundles
+      // Generate multi-file context bundles + first file’s component bundle (same tab UX as single-file)
       const { contextJsons: folderContexts, contextMain: projectContext } = generateMultiFileContextBundle(uploadedFiles, includeStyle)
       setContextJsons(folderContexts)
       setContextMain(projectContext)
+      setContextBundle(generateContextBundle(uploadedFiles[0].content, includeStyle))
       setActiveContextView('main')
     } else {
-      // Single file - use original generation
+      // Single file — component bundle plus project/folder views so tabs match multi-file demo
       const bundle = generateContextBundle(userCode, includeStyle)
       setContextBundle(bundle)
+      const demoRelPath =
+        uploadedFiles.length === 1
+          ? uploadedFiles[0].path.includes('/')
+            ? uploadedFiles[0].path
+            : `src/components/${uploadedFiles[0].name}`
+          : fileName === 'page.tsx'
+            ? 'src/app/dashboard/page.tsx'
+            : fileName.endsWith('.ts') && !fileName.endsWith('.tsx')
+              ? `src/services/${fileName}`
+              : `src/components/${fileName}`
+      const { contextJsons: folderContexts, contextMain: projectContext } =
+        generateMultiFileContextBundle(
+          [{ name: fileName, content: userCode, path: demoRelPath }],
+          includeStyle
+        )
+      setContextJsons(folderContexts)
+      setContextMain(projectContext)
       setActiveContextView('bundle')
     }
 
@@ -717,6 +762,8 @@ export default function Demo() {
     setShowOutput(false)
     setTerminalOutput([])
     setContextBundle(null)
+    setContextJsons(null)
+    setContextMain(null)
 
     // Update filename based on example
     if (example === 'react') {
@@ -760,6 +807,8 @@ export default function Demo() {
     setShowOutput(false)
     setTerminalOutput([])
     setContextBundle(null)
+    setContextJsons(null)
+    setContextMain(null)
   }
 
   // Workflow handler - runs all steps automatically
@@ -1040,12 +1089,12 @@ export default function Demo() {
         {/* Main content area */}
         <div 
           ref={contentRef}
-          className={`grid lg:grid-cols-2 gap-6 transition-all duration-1000 delay-300 ${
+          className={`grid min-w-0 max-w-full lg:grid-cols-2 gap-6 transition-all duration-1000 delay-300 ${
             contentInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
           }`}
         >
           {/* Code editor panel */}
-          <div className="relative">
+          <div className="relative min-w-0">
             {/* Files ready for context generation indicator */}
             {filesReadyForContextGeneration && uploadedFiles.length > 0 && (
               <div
@@ -1060,7 +1109,7 @@ export default function Demo() {
               </div>
             )}
 
-            <div className="bg-white dark:bg-gray-900 rounded-2xl shadow-2xl ring-1 ring-gray-200/50 dark:ring-gray-800/50 overflow-hidden">
+            <div className="min-w-0 bg-white dark:bg-gray-900 rounded-2xl shadow-2xl ring-1 ring-gray-200/50 dark:ring-gray-800/50 overflow-hidden">
               <div className="bg-gray-50 dark:bg-gray-800 px-6 py-3 flex items-center justify-between border-b border-gray-200 dark:border-gray-700">
                 <div className="flex items-center gap-3">
                   <Code2 className="w-4 h-4 text-green-400 flex-shrink-0" />
@@ -1102,16 +1151,13 @@ export default function Demo() {
                   ))}
                 </div>
               )}
-              <div className="relative overflow-hidden">
+              <div className="relative min-h-0 min-w-0">
                 <DemoShikiEditor
                   value={userCode}
                   onChange={setUserCode}
                   lang={inferDemoLang(fileName)}
                   placeholder="Paste your React/TypeScript code here..."
                 />
-                <div className="absolute top-4 right-4 z-[2]">
-                  <CopyButton text={userCode} />
-                </div>
               </div>
             </div>
 
@@ -1170,7 +1216,7 @@ export default function Demo() {
               </div>
               <div
                 ref={terminalScrollRef}
-                className="h-[280px] overflow-y-auto overflow-x-auto p-6 font-mono text-sm bg-gray-900 sidebar-scrollable"
+                className="h-[280px] lg:h-[420px] overflow-y-auto overflow-x-auto p-6 font-mono text-sm bg-gray-900 sidebar-scrollable"
               >
                 {terminalOutput.map((line, index) =>
                   line.type === 'empty' ? (
@@ -1208,38 +1254,72 @@ export default function Demo() {
                          'context.json'}
                       </span>
                     </div>
-                    <div className="flex-shrink-0">
-                      <CopyButton text={displayContextJson} />
-                    </div>
                   </div>
 
-                  {/* Context view toggle buttons */}
-                  {contextMain && contextJsons && (
-                    <div className="bg-gray-100 dark:bg-gray-800/50 px-2 sm:px-4 py-2 flex items-center gap-1.5 sm:gap-2 overflow-x-auto border-b border-gray-200 dark:border-gray-700">
+                  {/* Context view: tabs + side chevrons to cycle bundle / folder / project */}
+                  {showContextViewTabs && (
+                    <div className="bg-gray-100 dark:bg-gray-800/50 px-2 sm:px-3 py-2 flex items-center gap-1 sm:gap-2 border-b border-gray-200 dark:border-gray-700">
                       <button
-                        onClick={() => setActiveContextView('main')}
-                        className={`px-2 sm:px-3 py-1.5 rounded-lg text-[10px] sm:text-xs font-medium transition-all whitespace-nowrap flex-shrink-0 ${
-                          activeContextView === 'main'
-                            ? 'bg-white dark:bg-gray-700 text-gray-900 dark:text-white shadow-sm'
-                            : 'text-gray-600 dark:text-gray-400 hover:bg-gray-200 dark:hover:bg-gray-700/50'
-                        }`}
+                        type="button"
+                        onClick={() => cycleContextView(-1)}
+                        className="flex-shrink-0 p-1.5 rounded-lg text-gray-600 dark:text-gray-400 hover:bg-gray-200 dark:hover:bg-gray-700/50 transition-colors"
+                        aria-label="Previous context view"
                       >
-                        context_main.json
+                        <ChevronLeft className="w-4 h-4 sm:w-5 sm:h-5" />
                       </button>
+                      <div className="flex flex-1 items-center gap-1.5 sm:gap-2 overflow-x-auto min-w-0">
+                        {contextBundle && (
+                          <button
+                            type="button"
+                            onClick={() => setActiveContextView('bundle')}
+                            className={`px-2 sm:px-3 py-1.5 rounded-lg text-[10px] sm:text-xs font-medium transition-all whitespace-nowrap flex-shrink-0 ${
+                              activeContextView === 'bundle'
+                                ? 'bg-white dark:bg-gray-700 text-gray-900 dark:text-white shadow-sm'
+                                : 'text-gray-600 dark:text-gray-400 hover:bg-gray-200 dark:hover:bg-gray-700/50'
+                            }`}
+                          >
+                            context.json
+                          </button>
+                        )}
+                        {contextJsons && (
+                          <button
+                            type="button"
+                            onClick={() => setActiveContextView('folder')}
+                            className={`px-2 sm:px-3 py-1.5 rounded-lg text-[10px] sm:text-xs font-medium transition-all whitespace-nowrap flex-shrink-0 ${
+                              activeContextView === 'folder'
+                                ? 'bg-white dark:bg-gray-700 text-gray-900 dark:text-white shadow-sm'
+                                : 'text-gray-600 dark:text-gray-400 hover:bg-gray-200 dark:hover:bg-gray-700/50'
+                            }`}
+                          >
+                            context.json (per folder)
+                          </button>
+                        )}
+                        {contextMain && (
+                          <button
+                            type="button"
+                            onClick={() => setActiveContextView('main')}
+                            className={`px-2 sm:px-3 py-1.5 rounded-lg text-[10px] sm:text-xs font-medium transition-all whitespace-nowrap flex-shrink-0 ${
+                              activeContextView === 'main'
+                                ? 'bg-white dark:bg-gray-700 text-gray-900 dark:text-white shadow-sm'
+                                : 'text-gray-600 dark:text-gray-400 hover:bg-gray-200 dark:hover:bg-gray-700/50'
+                            }`}
+                          >
+                            context_main.json
+                          </button>
+                        )}
+                      </div>
                       <button
-                        onClick={() => setActiveContextView('folder')}
-                        className={`px-2 sm:px-3 py-1.5 rounded-lg text-[10px] sm:text-xs font-medium transition-all whitespace-nowrap flex-shrink-0 ${
-                          activeContextView === 'folder'
-                            ? 'bg-white dark:bg-gray-700 text-gray-900 dark:text-white shadow-sm'
-                            : 'text-gray-600 dark:text-gray-400 hover:bg-gray-200 dark:hover:bg-gray-700/50'
-                        }`}
+                        type="button"
+                        onClick={() => cycleContextView(1)}
+                        className="flex-shrink-0 p-1.5 rounded-lg text-gray-600 dark:text-gray-400 hover:bg-gray-200 dark:hover:bg-gray-700/50 transition-colors"
+                        aria-label="Next context view"
                       >
-                        context.json (per folder)
+                        <ChevronRight className="w-4 h-4 sm:w-5 sm:h-5" />
                       </button>
                     </div>
                   )}
 
-                  <div className="h-[280px] overflow-y-auto overflow-x-auto p-3 sm:p-6 bg-gray-50 dark:bg-gray-900 sidebar-scrollable w-full">
+                  <div className="h-[280px] lg:h-[420px] overflow-y-auto overflow-x-auto p-3 sm:p-6 bg-gray-50 dark:bg-gray-900 sidebar-scrollable w-full">
                     <DemoShikiStatic
                       code={displayContextJson}
                       lang="json"
@@ -1325,7 +1405,7 @@ export default function Demo() {
               </div>
               <div
                 ref={workflowScrollRef}
-                className="h-[500px] overflow-y-auto overflow-x-auto p-6 font-mono text-sm bg-gray-900 sidebar-scrollable"
+                className="h-[500px] lg:h-[600px] overflow-y-auto overflow-x-auto p-6 font-mono text-sm bg-gray-900 sidebar-scrollable"
               >
                 {workflowOutput.map((line: any, index: number) => {
                   if (line.type === 'empty') {
@@ -1439,7 +1519,6 @@ export default function Demo() {
                   <code className="text-sm sm:text-base lg:text-lg font-mono font-semibold text-gray-900 dark:text-gray-100" aria-label="Installation command">
                     npm install -g logicstamp-context
                   </code>
-                  <CopyButton text="npm install -g logicstamp-context" className="ml-2" />
                 </div>
               </div>
               <a
@@ -1477,7 +1556,6 @@ export default function Demo() {
                   <code className="text-sm sm:text-base lg:text-lg font-mono font-semibold text-gray-900 dark:text-gray-100" aria-label="Installation command">
                     npm install -g logicstamp-context
                   </code>
-                  <CopyButton text="npm install -g logicstamp-context" className="ml-2" />
                 </div>
               </div>
               {/* MCP Installation */}
@@ -1489,7 +1567,6 @@ export default function Demo() {
                   <code className="text-sm sm:text-base lg:text-lg font-mono font-semibold text-gray-900 dark:text-gray-100" aria-label="Installation command">
                     npm install -g logicstamp-mcp
                   </code>
-                  <CopyButton text="npm install -g logicstamp-mcp" className="ml-2" />
                 </div>
               </div>
             </div>
