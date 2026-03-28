@@ -77,8 +77,13 @@ type EditorProps = {
   disabled?: boolean
 }
 
-const EDITOR_LAYER =
-  'absolute inset-0 h-full w-full overflow-auto p-6 font-mono text-sm leading-6 [tab-size:2]'
+/** Highlight mirror: no scrollbars — scroll position is synced from the textarea only. */
+const HIGHLIGHT_LAYER =
+  'pointer-events-none absolute inset-0 h-full w-full overflow-hidden p-6 font-mono text-sm leading-6 [tab-size:2]'
+
+/** Single scroll container for both axes (avoids stacked scrollbars from two overflow:auto layers). */
+const TEXTAREA_LAYER =
+  'absolute inset-0 z-[1] h-full w-full min-h-0 min-w-0 resize-none overflow-auto overscroll-contain border-0 bg-transparent p-6 font-mono text-sm leading-6 whitespace-pre [tab-size:2] [-webkit-overflow-scrolling:touch] text-transparent caret-zinc-900 focus:outline-none focus:ring-0 dark:caret-zinc-100 selection:bg-sky-500/25 dark:selection:bg-sky-400/30 placeholder:text-gray-400 dark:placeholder:text-gray-500'
 
 /** Editable textarea with Shiki highlight layer (synced scroll). */
 export function DemoShikiEditor({
@@ -120,15 +125,15 @@ export function DemoShikiEditor({
   }, [])
 
   return (
-    <div className="relative h-[400px] lg:h-[350px] w-full">
+    <div className="relative h-[min(400px,_70vh)] min-h-[240px] w-full min-w-0 lg:h-[min(350px,_65vh)]">
       <div
         ref={highlightRef}
-        className={`pointer-events-none ${EDITOR_LAYER} bg-gray-50 dark:bg-gray-900`}
+        className={`${HIGHLIGHT_LAYER} bg-gray-50 dark:bg-gray-900`}
         aria-hidden
       >
         {html ? (
           <div
-            className={`min-h-full min-w-max ${shikiPreReset} [&_pre.shiki]:text-sm [&_pre.shiki]:leading-6`}
+            className={`min-h-full min-w-max ${shikiPreReset} [&_pre.shiki]:!overflow-hidden [&_pre.shiki]:text-sm [&_pre.shiki]:leading-6`}
             dangerouslySetInnerHTML={{ __html: html }}
           />
         ) : (
@@ -143,7 +148,9 @@ export function DemoShikiEditor({
         disabled={disabled}
         placeholder={placeholder}
         spellCheck={false}
-        className={`z-[1] ${EDITOR_LAYER} resize-none border-0 bg-transparent text-transparent caret-zinc-900 focus:outline-none focus:ring-0 dark:caret-zinc-100 selection:bg-sky-500/25 dark:selection:bg-sky-400/30 placeholder:text-gray-400 dark:placeholder:text-gray-500`}
+        autoCapitalize="off"
+        autoCorrect="off"
+        className={TEXTAREA_LAYER}
       />
     </div>
   )
