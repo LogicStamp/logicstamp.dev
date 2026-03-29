@@ -3,6 +3,7 @@
 import React, { useState, useEffect, useRef, useMemo } from 'react'
 import { ChevronLeft, ChevronRight, Upload, Play, FileCode2, Zap, Package, Code2, Terminal, GitBranch } from 'lucide-react'
 import { ctaInvertedPrimaryClasses } from '../ui/ctaInvertedPrimaryClasses'
+import CopyButton from '../ui/CopyButton'
 import { colorizeTerminalText } from '@/lib/terminal-colorize'
 import { DemoShikiEditor, DemoShikiStatic, inferDemoLang } from './DemoShiki'
 
@@ -1519,6 +1520,7 @@ export default function Demo() {
                   <code className="text-sm sm:text-base lg:text-lg font-mono font-semibold text-gray-900 dark:text-gray-100" aria-label="Installation command">
                     npm install -g logicstamp-context
                   </code>
+                  <CopyButton text="npm install -g logicstamp-context" className="ml-2 flex-shrink-0" />
                 </div>
               </div>
               <a
@@ -1556,6 +1558,7 @@ export default function Demo() {
                   <code className="text-sm sm:text-base lg:text-lg font-mono font-semibold text-gray-900 dark:text-gray-100" aria-label="Installation command">
                     npm install -g logicstamp-context
                   </code>
+                  <CopyButton text="npm install -g logicstamp-context" className="ml-2 flex-shrink-0" />
                 </div>
               </div>
               {/* MCP Installation */}
@@ -1567,6 +1570,7 @@ export default function Demo() {
                   <code className="text-sm sm:text-base lg:text-lg font-mono font-semibold text-gray-900 dark:text-gray-100" aria-label="Installation command">
                     npm install -g logicstamp-mcp
                   </code>
+                  <CopyButton text="npm install -g logicstamp-mcp" className="ml-2 flex-shrink-0" />
                 </div>
               </div>
             </div>
