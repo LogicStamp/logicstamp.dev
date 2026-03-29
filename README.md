@@ -1,9 +1,9 @@
 <div align="center">
   <a href="https://logicstamp.dev">
     <picture>
-      <source media="(prefers-color-scheme: dark)" srcset="public/logicstamp-woodmark-dark.png">
-      <source media="(prefers-color-scheme: light)" srcset="public/logicstamp-woodmark-light.png">
-      <img src="public/logicstamp-woodmark-light.png" alt="LogicStamp" width="400" height="auto">
+      <source media="(prefers-color-scheme: dark)" srcset="public/logicstamp-wordmark-dark.png">
+      <source media="(prefers-color-scheme: light)" srcset="public/logicstamp-wordmark-light.png">
+      <img src="public/logicstamp-wordmark-light.png" alt="LogicStamp" width="400" height="auto">
     </picture>
   </a>
 
