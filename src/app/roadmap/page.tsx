@@ -23,17 +23,17 @@ export default async function BetaPage() {
         <div className="absolute inset-0 overflow-hidden pointer-events-none">
         </div>
 
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 relative z-10">
+        <div className="relative z-10 mx-auto max-w-[1440px] px-4 lg:px-6">
           <AnimatedSection direction="up" delay={0}>
             <div className="text-center">
               {/* Fox Mascot */}
               <div className="flex justify-center mb-4 sm:mb-6">
-                <div className="w-20 h-20 sm:w-24 sm:h-24 animate-bounce bg-transparent">
+                <div className="w-28 h-28 sm:w-32 sm:h-32 animate-bounce bg-transparent">
                   <Image
                     src="/mascot/logicstamp-fox.svg"
                     alt="LogicStamp Fox Mascot"
-                    width={96}
-                    height={96}
+                    width={128}
+                    height={128}
                     priority
                     className="w-full h-full drop-shadow-2xl bg-transparent"
                   />
@@ -42,7 +42,7 @@ export default async function BetaPage() {
 
               {/* Badge */}
               <div className="inline-flex items-center gap-2 px-5 py-2.5 bg-white/90 dark:bg-gray-900/90 text-gray-700 dark:text-gray-300 text-sm font-bold rounded-full mb-8 sm:mb-10 border border-gray-200/70 dark:border-gray-700/70 shadow-lg">
-                <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                <svg className="h-7 w-7 sm:h-8 sm:w-8" fill="currentColor" viewBox="0 0 20 20">
                   <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.857-9.809a.75.75 0 00-1.214-.882l-3.483 4.79-1.88-1.88a.75.75 0 10-1.06 1.061l2.5 2.5a.75.75 0 001.137-.089l4-5.5z" clipRule="evenodd" />
                 </svg>
                 Early Access
@@ -81,8 +81,8 @@ export default async function BetaPage() {
       </section>
 
       {/* Roadmap Section */}
-      <section className="relative py-20 sm:py-28 bg-white dark:bg-gray-900">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <section className="relative py-20 sm:py-28 bg-theme-primary">
+        <div className="mx-auto max-w-[1440px] px-4 lg:px-6">
           <AnimatedSection direction="up" delay={0}>
             <div className="text-center mb-16">
               <h2 className="text-4xl sm:text-5xl font-bold text-gray-900 dark:text-white mb-6">
@@ -95,14 +95,34 @@ export default async function BetaPage() {
           </AnimatedSection>
 
           <AnimatedSection direction="up" delay={100}>
-            <div className="max-w-5xl mx-auto rounded-2xl p-8 sm:p-10 shadow-xl border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800">
-              <DocsMarkdown
-                source="context"
-                currentDocPath="ROADMAP.md"
-                className="prose prose-lg dark:prose-invert max-w-none prose-headings:text-gray-900 dark:prose-headings:text-white prose-p:text-gray-700 dark:prose-p:text-gray-300 prose-a:text-blue-600 dark:prose-a:text-blue-400 prose-code:text-gray-900 dark:prose-code:text-gray-100 prose-code:bg-gray-100 dark:prose-code:bg-gray-800 prose-strong:text-gray-900 dark:prose-strong:text-white prose-ul:text-gray-700 dark:prose-ul:text-gray-300 prose-li:text-gray-700 dark:prose-li:text-gray-300"
+            <div className="w-full">
+              <div
+                className="flex items-center gap-0 font-mono text-lg leading-none text-gray-500 select-none sm:text-xl dark:text-gray-400"
+                aria-hidden
               >
-                {roadmapContent}
-              </DocsMarkdown>
+                <span>+</span>
+                <div className="h-px min-w-0 flex-1 bg-gray-300/80 dark:bg-gray-600/70" />
+                <span>+</span>
+              </div>
+              <div className="border-l border-r border-gray-300/80 dark:border-gray-600/70">
+                <div className="px-6 pb-8 pt-2 sm:px-8 sm:pb-10 sm:pt-3">
+                  <DocsMarkdown
+                    source="context"
+                    currentDocPath="ROADMAP.md"
+                    className="prose prose-lg dark:prose-invert max-w-none prose-headings:text-gray-900 dark:prose-headings:text-white prose-p:text-gray-700 dark:prose-p:text-gray-300 prose-a:text-blue-600 dark:prose-a:text-blue-400 prose-code:text-gray-900 dark:prose-code:text-gray-100 prose-code:bg-gray-100 dark:prose-code:bg-gray-800 prose-strong:text-gray-900 dark:prose-strong:text-white prose-ul:text-gray-700 dark:prose-ul:text-gray-300 prose-li:text-gray-700 dark:prose-li:text-gray-300"
+                  >
+                    {roadmapContent}
+                  </DocsMarkdown>
+                </div>
+              </div>
+              <div
+                className="flex items-center gap-0 font-mono text-lg leading-none text-gray-500 select-none sm:text-xl dark:text-gray-400"
+                aria-hidden
+              >
+                <span>+</span>
+                <div className="h-px min-w-0 flex-1 bg-gray-300/80 dark:bg-gray-600/70" />
+                <span>+</span>
+              </div>
             </div>
           </AnimatedSection>
 
@@ -147,8 +167,8 @@ export default async function BetaPage() {
       </section>
 
       {/* Ideal Beta Candidates */}
-      <section className="relative py-20 sm:py-28 bg-gradient-to-b from-gray-50 to-white dark:from-gray-950 dark:to-gray-900">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <section className="relative py-20 sm:py-28 bg-theme-primary">
+        <div className="mx-auto max-w-[1440px] px-4 lg:px-6">
           <AnimatedSection direction="up" delay={0}>
             <div className="text-center mb-16">
               <h2 className="text-4xl sm:text-5xl font-bold text-gray-900 dark:text-white mb-6">
@@ -165,7 +185,7 @@ export default async function BetaPage() {
               <div className="bg-white dark:bg-gray-800 rounded-xl p-6 shadow-sm border-2 border-blue-200 dark:border-blue-800">
                 <div className="flex items-start gap-4">
                   <div className="flex-shrink-0">
-                    <svg className="w-6 h-6 text-blue-600 dark:text-blue-400" fill="currentColor" viewBox="0 0 20 20">
+                    <svg className="h-9 w-9 shrink-0 text-blue-600 sm:h-10 sm:w-10 dark:text-blue-400" fill="currentColor" viewBox="0 0 20 20">
                       <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.857-9.809a.75.75 0 00-1.214-.882l-3.483 4.79-1.88-1.88a.75.75 0 10-1.06 1.061l2.5 2.5a.75.75 0 001.137-.089l4-5.5z" clipRule="evenodd" />
                     </svg>
                   </div>
@@ -185,7 +205,7 @@ export default async function BetaPage() {
               <div className="bg-white dark:bg-gray-800 rounded-xl p-6 shadow-sm border-2 border-purple-200 dark:border-purple-800">
                 <div className="flex items-start gap-4">
                   <div className="flex-shrink-0">
-                    <svg className="w-6 h-6 text-purple-600 dark:text-purple-400" fill="currentColor" viewBox="0 0 20 20">
+                    <svg className="h-9 w-9 shrink-0 text-purple-600 sm:h-10 sm:w-10 dark:text-purple-400" fill="currentColor" viewBox="0 0 20 20">
                       <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.857-9.809a.75.75 0 00-1.214-.882l-3.483 4.79-1.88-1.88a.75.75 0 10-1.06 1.061l2.5 2.5a.75.75 0 001.137-.089l4-5.5z" clipRule="evenodd" />
                     </svg>
                   </div>
@@ -205,7 +225,7 @@ export default async function BetaPage() {
               <div className="bg-white dark:bg-gray-800 rounded-xl p-6 shadow-sm border-2 border-emerald-200 dark:border-emerald-800">
                 <div className="flex items-start gap-4">
                   <div className="flex-shrink-0">
-                    <svg className="w-6 h-6 text-emerald-600 dark:text-emerald-400" fill="currentColor" viewBox="0 0 20 20">
+                    <svg className="h-9 w-9 shrink-0 text-emerald-600 sm:h-10 sm:w-10 dark:text-emerald-400" fill="currentColor" viewBox="0 0 20 20">
                       <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.857-9.809a.75.75 0 00-1.214-.882l-3.483 4.79-1.88-1.88a.75.75 0 10-1.06 1.061l2.5 2.5a.75.75 0 001.137-.089l4-5.5z" clipRule="evenodd" />
                     </svg>
                   </div>
@@ -225,7 +245,7 @@ export default async function BetaPage() {
               <div className="bg-white dark:bg-gray-800 rounded-xl p-6 shadow-sm border-2 border-pink-200 dark:border-pink-800">
                 <div className="flex items-start gap-4">
                   <div className="flex-shrink-0">
-                    <svg className="w-6 h-6 text-pink-600 dark:text-pink-400" fill="currentColor" viewBox="0 0 20 20">
+                    <svg className="h-9 w-9 shrink-0 text-pink-600 sm:h-10 sm:w-10 dark:text-pink-400" fill="currentColor" viewBox="0 0 20 20">
                       <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.857-9.809a.75.75 0 00-1.214-.882l-3.483 4.79-1.88-1.88a.75.75 0 10-1.06 1.061l2.5 2.5a.75.75 0 001.137-.089l4-5.5z" clipRule="evenodd" />
                     </svg>
                   </div>
@@ -245,7 +265,7 @@ export default async function BetaPage() {
               <div className="bg-white dark:bg-gray-800 rounded-xl p-6 shadow-sm border-2 border-indigo-200 dark:border-indigo-800">
                 <div className="flex items-start gap-4">
                   <div className="flex-shrink-0">
-                    <svg className="w-6 h-6 text-indigo-600 dark:text-indigo-400" fill="currentColor" viewBox="0 0 20 20">
+                    <svg className="h-9 w-9 shrink-0 text-indigo-600 sm:h-10 sm:w-10 dark:text-indigo-400" fill="currentColor" viewBox="0 0 20 20">
                       <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
                     </svg>
                   </div>
@@ -269,7 +289,7 @@ export default async function BetaPage() {
               <div className="bg-white dark:bg-gray-800 rounded-xl p-6 shadow-sm border-2 border-amber-200 dark:border-amber-800">
                 <div className="flex items-start gap-4">
                   <div className="flex-shrink-0">
-                    <svg className="w-6 h-6 text-amber-600 dark:text-amber-400" fill="currentColor" viewBox="0 0 20 20">
+                    <svg className="h-9 w-9 shrink-0 text-amber-600 sm:h-10 sm:w-10 dark:text-amber-400" fill="currentColor" viewBox="0 0 20 20">
                       <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.857-9.809a.75.75 0 00-1.214-.882l-3.483 4.79-1.88-1.88a.75.75 0 10-1.06 1.061l2.5 2.5a.75.75 0 001.137-.089l4-5.5z" clipRule="evenodd" />
                     </svg>
                   </div>
@@ -290,7 +310,7 @@ export default async function BetaPage() {
 
       {/* Final CTA Section */}
       <section className="relative py-20 sm:py-28 bg-theme-primary">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 relative z-10">
+        <div className="relative z-10 mx-auto max-w-[1440px] px-4 lg:px-6">
           <AnimatedSection direction="up" delay={0}>
             <div className="text-center">
               <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 dark:text-white mb-6">
