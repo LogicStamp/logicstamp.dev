@@ -4,121 +4,11 @@ import React, { useState, useEffect, type ReactNode } from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
 import { usePathname } from 'next/navigation'
+import { Search } from 'lucide-react'
+import { docsNavSections } from '@/lib/docs/docs-nav'
 import { brandGradientTextClasses } from '../ui/brandGradientClasses'
 
-type DocsNavItem = {
-  title: string
-  href: string
-}
-
-type DocsNavSection = {
-  title: string
-  items: DocsNavItem[]
-}
-
-const sections: DocsNavSection[] = [
-  {
-    title: 'Overview',
-    items: [
-      { title: 'Docs Home', href: '/docs' },
-      { title: 'What is LogicStamp?', href: '/docs/what-is-logicstamp' },
-      // { title: 'MCP Overview (Beta)', href: '/docs/mcp' },
-    ],
-  },
-  {
-    title: 'Getting Started',
-    items: [
-      { title: 'Getting Started', href: '/docs/getting-started' },
-      { title: 'CLI', href: '/docs/cli/getting-started' },
-      { title: 'MCP', href: '/docs/mcp/getting-started' },
-    ],
-  },
-  {
-    title: 'CLI',
-    items: [
-      { title: 'CLI Hub', href: '/docs/cli' },
-      { title: 'CLI Commands', href: '/docs/cli/commands' },
-      { title: '`security scan` command', href: '/docs/cli/security-scan' },
-      { title: '`init` command', href: '/docs/cli/init' },
-      { title: '`context` command', href: '/docs/cli/context' },
-      { title: '`style` command', href: '/docs/cli/style' },
-      { title: 'Watch Mode', href: '/docs/cli/watch-mode' },
-      { title: 'TOON Format', href: '/docs/cli/toon' },
-      { title: 'Compare Modes', href: '/docs/cli/compare-modes' },
-      { title: 'Strict Modes', href: '/docs/cli/strict-modes' },
-      { title: '`compare` command', href: '/docs/cli/compare' },
-      { title: '`validate` command', href: '/docs/cli/validate' },
-      { title: '`clean` command', href: '/docs/cli/clean' },
-    ],
-  },
-  {
-    title: 'Frameworks',
-    items: [
-      { title: 'Frameworks', href: '/docs/frameworks' },
-      { title: 'TypeScript Support', href: '/docs/frameworks/typescript' },
-      { title: 'React Support', href: '/docs/frameworks/react' },
-      { title: 'Next.js Support', href: '/docs/frameworks/nextjs' },
-      { title: 'Vue Support', href: '/docs/frameworks/vue' },
-      { title: 'Express.js Support', href: '/docs/frameworks/express' },
-      { title: 'NestJS Support', href: '/docs/frameworks/nestjs' },
-    ],
-  },
-  {
-    title: 'UI Frameworks',
-    items: [
-      { title: 'UI Frameworks', href: '/docs/ui-frameworks' },
-      { title: 'Tailwind CSS', href: '/docs/ui-frameworks/tailwind' },
-      { title: 'Material UI', href: '/docs/ui-frameworks/material-ui' },
-      { title: 'ShadCN/UI', href: '/docs/ui-frameworks/shadcn' },
-      { title: 'Radix UI', href: '/docs/ui-frameworks/radix' },
-      { title: 'Ant Design', href: '/docs/ui-frameworks/antd' },
-      { title: 'Chakra UI', href: '/docs/ui-frameworks/chakra' },
-      { title: 'Styled Components', href: '/docs/ui-frameworks/styled-components' },
-      { title: 'CSS & SCSS', href: '/docs/ui-frameworks/css-scss' },
-      { title: 'Framer Motion', href: '/docs/ui-frameworks/framer-motion' },
-    ],
-  },
-  {
-    title: 'MCP',
-    items: [
-      { title: 'MCP Overview (Beta)', href: '/docs/mcp' },
-      { title: 'MCP Reference', href: '/docs/mcp/reference' },
-      { title: 'Usage Examples', href: '/docs/mcp/usage' },
-      { title: 'Best Practices', href: '/docs/mcp/best-practices' },
-      { title: 'Profiles Guide', href: '/docs/mcp/profiles' },
-      { title: 'Style Metadata', href: '/docs/mcp/style-metadata' },
-    ],
-  },
-  {
-    title: 'Guides',
-    items: [
-      { title: 'Guides', href: '/docs/guides' },
-      { title: 'Monorepo Support', href: '/docs/guides/monorepo' },
-      { title: 'Usage Guides', href: '/docs/guides/usage' },
-      { title: 'LLM Context Format', href: '/docs/guides/llm-context' },
-      { title: 'Best Practices', href: '/docs/guides/best-practices' },
-    ],
-  },
-  {
-    title: 'Reference',
-    items: [
-      { title: 'Reference', href: '/docs/reference' },
-      { title: 'Hashes', href: '/docs/reference/hashes' },
-      { title: 'Schema', href: '/docs/reference/schema' },
-      { title: 'UIF Contracts', href: '/docs/reference/uif-contracts' },
-      { title: 'Stampignore', href: '/docs/reference/stampignore' },
-      { title: 'Known Limitations', href: '/docs/reference/limitations' },
-    ],
-  },
-  {
-    title: 'Meta',
-    items: [
-      { title: 'CLI Changelog', href: '/docs/cli/changelog' },
-      { title: 'MCP Changelog', href: '/docs/mcp/changelog' },
-      { title: 'Migration to v0.3.2', href: '/docs/cli/migration-0-3-2' },
-    ],
-  },
-]
+const sections = docsNavSections
 
 function isActive(pathname: string | null, href: string) {
   if (pathname == null || pathname === '') return false
@@ -537,7 +427,11 @@ function getIcon(href: string): ReactNode {
   )
 }
 
-export default function DocsSidebar() {
+type DocsSidebarProps = {
+  onOpenSearch?: () => void
+}
+
+export default function DocsSidebar({ onOpenSearch }: DocsSidebarProps = {}) {
   const pathname = usePathname()
   /** Avoid hydration mismatches when client pathname/active styles differ from SSR snapshot */
   const [navMounted, setNavMounted] = useState(false)
@@ -641,6 +535,19 @@ export default function DocsSidebar() {
             Fox
           </span>
         </p>
+        {onOpenSearch && (
+          <button
+            type="button"
+            onClick={onOpenSearch}
+            className="mt-4 w-full flex items-center gap-2 rounded-lg border border-gray-200 dark:border-gray-600 bg-gray-50/80 dark:bg-gray-800/50 px-3 py-2 text-left text-sm text-gray-600 dark:text-gray-400 hover:border-gray-300 dark:hover:border-gray-500 hover:bg-gray-100/80 dark:hover:bg-gray-800 transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-500"
+          >
+            <Search className="w-4 h-4 shrink-0 opacity-70" aria-hidden />
+            <span className="flex-1 truncate">Search docs…</span>
+            <kbd className="hidden sm:inline text-[10px] font-sans text-gray-400 dark:text-gray-500 px-1 rounded border border-gray-200 dark:border-gray-600 bg-white dark:bg-gray-900">
+              ⌘K
+            </kbd>
+          </button>
+        )}
       </div>
       
       {/* Scrollable content starting from Overview */}

@@ -3,6 +3,7 @@
 import { useState, useEffect, useRef, createContext, useContext } from 'react'
 import { usePathname } from 'next/navigation'
 import DocsSidebar from './DocsSidebar'
+import DocsSearchPalette from './DocsSearchPalette'
 import DocsTOC from './DocsTOC'
 import DocsHeader from './DocsHeader'
 
@@ -11,6 +12,7 @@ export const DisableAnimationsContext = createContext(false)
 export const useDisableAnimations = () => useContext(DisableAnimationsContext)
 
 export default function DocsLayout({ children }: { children: React.ReactNode }) {
+  const [docsSearchOpen, setDocsSearchOpen] = useState(false)
   const [sidebarOpen, setSidebarOpen] = useState(false)
   const [isVisible, setIsVisible] = useState(true)
   const [lastScrollY, setLastScrollY] = useState(0)
@@ -108,7 +110,13 @@ export default function DocsLayout({ children }: { children: React.ReactNode }) 
 
   return (
     <DisableAnimationsContext.Provider value={true}>
-      <DocsHeader sidebarOpen={sidebarOpen} onSidebarToggle={() => setSidebarOpen(!sidebarOpen)} />
+      <DocsSearchPalette open={docsSearchOpen} onOpenChange={setDocsSearchOpen} />
+      <DocsHeader
+        sidebarOpen={sidebarOpen}
+        onSidebarToggle={() => setSidebarOpen(!sidebarOpen)}
+        onOpenSearch={() => setDocsSearchOpen(true)}
+        searchOpen={docsSearchOpen}
+      />
       <div className="min-h-screen bg-theme-primary pt-[6.5rem] lg:pt-24">
         <div className="max-w-[1280px] 2xl:max-w-[1440px] mx-auto px-4 lg:px-6 py-8 lg:py-10 w-full">
         {/* Mobile sidebar toggle button - hidden, now integrated into DocsHeader */}
@@ -152,12 +160,12 @@ export default function DocsLayout({ children }: { children: React.ReactNode }) 
             }}
           >
             <h2 id="mobile-sidebar-title" className="sr-only">Documentation navigation</h2>
-            <DocsSidebar />
+            <DocsSidebar onOpenSearch={() => setDocsSearchOpen(true)} />
           </aside>
 
           {/* Desktop sidebar - always visible, scrollable with styled scrollbar */}
           <aside className="hidden lg:block w-64 shrink-0 sticky top-24 self-start max-h-[calc(100vh-8rem)]">
-            <DocsSidebar />
+            <DocsSidebar onOpenSearch={() => setDocsSearchOpen(true)} />
           </aside>
 
           {/* Overlay for mobile when sidebar is open */}
