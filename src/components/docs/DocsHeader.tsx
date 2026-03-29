@@ -2,7 +2,7 @@
 
 import { useState, useEffect, useRef } from 'react'
 import { usePathname } from 'next/navigation'
-import { ChevronDown } from 'lucide-react'
+import { ChevronDown, Search } from 'lucide-react'
 
 type Heading = {
   id: string
@@ -13,9 +13,16 @@ type Heading = {
 type DocsHeaderProps = {
   sidebarOpen?: boolean
   onSidebarToggle?: () => void
+  onOpenSearch?: () => void
+  searchOpen?: boolean
 }
 
-export default function DocsHeader({ sidebarOpen, onSidebarToggle }: DocsHeaderProps = {}) {
+export default function DocsHeader({
+  sidebarOpen,
+  onSidebarToggle,
+  onOpenSearch,
+  searchOpen,
+}: DocsHeaderProps = {}) {
   const pathname = usePathname()
   const [tocOpen, setTocOpen] = useState(false)
   const [headings, setHeadings] = useState<Heading[]>([])
@@ -45,20 +52,20 @@ export default function DocsHeader({ sidebarOpen, onSidebarToggle }: DocsHeaderP
     }
   }, [])
 
-  // Keep header visible when sidebar is open
+  // Keep header visible when sidebar or docs search is open
   useEffect(() => {
-    if (sidebarOpen) {
+    if (sidebarOpen || searchOpen) {
       setIsVisible(true)
     }
-  }, [sidebarOpen])
+  }, [sidebarOpen, searchOpen])
 
   // Show/hide header on scroll (mobile only)
   useEffect(() => {
     if (typeof window === 'undefined') return
 
     const handleScroll = () => {
-      // Always show header if TOC is open or sidebar is open
-      if (tocOpen || sidebarOpen) {
+      // Always show header if TOC, sidebar, or docs search is open
+      if (tocOpen || sidebarOpen || searchOpen) {
         setIsVisible(true)
         return
       }
@@ -79,7 +86,7 @@ export default function DocsHeader({ sidebarOpen, onSidebarToggle }: DocsHeaderP
 
     window.addEventListener('scroll', handleScroll, { passive: true })
     return () => window.removeEventListener('scroll', handleScroll)
-  }, [lastScrollY, tocOpen, sidebarOpen])
+  }, [lastScrollY, tocOpen, sidebarOpen, searchOpen])
 
   // Extract headings from the main content
   useEffect(() => {
@@ -181,25 +188,37 @@ export default function DocsHeader({ sidebarOpen, onSidebarToggle }: DocsHeaderP
           <div className="relative overflow-hidden bg-white/60 dark:bg-gray-900/60 rounded-2xl border border-gray-200/50 dark:border-white/5 backdrop-blur-xl backdrop-saturate-150 shadow-[0_8px_32px_rgba(0,0,0,0.04)] dark:shadow-[0_8px_32px_rgba(0,0,0,0.3)]">
             {/* Subtle gradient overlay */}
             <div className="absolute inset-0 bg-gradient-to-br from-white/40 via-transparent to-transparent dark:from-white/5 dark:via-transparent dark:to-transparent pointer-events-none" />
-            <div className="relative flex items-center justify-between gap-2 py-1 px-4">
-            {/* Left side: Docs sidebar toggle button */}
-            {onSidebarToggle && (
-              <button
-                onClick={onSidebarToggle}
-                className="flex-shrink-0 p-1.5 rounded-lg text-gray-700 dark:text-gray-300 hover:bg-gray-100/60 dark:hover:bg-gray-800/60 transition-all duration-200 active:scale-95"
-                aria-label={sidebarOpen ? 'Close docs navigation' : 'Open docs navigation'}
-                aria-expanded={sidebarOpen}
-              >
-                <div className={`docs-sidebar-icon ${sidebarOpen ? 'open' : ''}`}>
-                  <div className="docs-sidebar-panel"></div>
-                  <div className="docs-sidebar-lines">
-                    <div className="docs-sidebar-line"></div>
-                    <div className="docs-sidebar-line"></div>
-                    <div className="docs-sidebar-line"></div>
+            <div className="relative flex items-center gap-2 py-1 px-4">
+            <div className="flex items-center gap-2 shrink-0">
+              {onSidebarToggle && (
+                <button
+                  type="button"
+                  onClick={onSidebarToggle}
+                  className="flex-shrink-0 p-1.5 rounded-lg text-gray-700 dark:text-gray-300 hover:bg-gray-100/60 dark:hover:bg-gray-800/60 transition-all duration-200 active:scale-95"
+                  aria-label={sidebarOpen ? 'Close docs navigation' : 'Open docs navigation'}
+                  aria-expanded={sidebarOpen}
+                >
+                  <div className={`docs-sidebar-icon ${sidebarOpen ? 'open' : ''}`}>
+                    <div className="docs-sidebar-panel"></div>
+                    <div className="docs-sidebar-lines">
+                      <div className="docs-sidebar-line"></div>
+                      <div className="docs-sidebar-line"></div>
+                      <div className="docs-sidebar-line"></div>
+                    </div>
                   </div>
-                </div>
-              </button>
-            )}
+                </button>
+              )}
+              {onOpenSearch && (
+                <button
+                  type="button"
+                  onClick={onOpenSearch}
+                  className="flex-shrink-0 p-1.5 rounded-lg text-gray-700 dark:text-gray-300 hover:bg-gray-100/60 dark:hover:bg-gray-800/60 transition-all duration-200 active:scale-95"
+                  aria-label="Search documentation"
+                >
+                  <Search className="w-[1.15rem] h-[1.15rem]" strokeWidth={2} aria-hidden />
+                </button>
+              )}
+            </div>
 
             {/* Center: Current section name (clickable to toggle TOC) */}
             {headings.length > 0 && (
