@@ -121,7 +121,7 @@ export default function Hero() {
             >
               <div className="flex flex-col items-start">
                 {/* Tabs */}
-                <div className="mb-4 flex items-center gap-2 bg-white/50 dark:bg-gray-900/50 rounded-lg p-1 ring-1 ring-gray-300/50 dark:ring-gray-700/50">
+                <div className="mb-4 flex items-center gap-2 bg-theme-primary-opacity-50 rounded-lg p-1 ring-1 ring-gray-300/50 dark:ring-gray-700/50">
                   <button
                     onClick={() => setActiveTab('cli')}
                     className={`px-4 py-2 rounded-md text-sm font-medium transition-all duration-200 ${
@@ -146,7 +146,7 @@ export default function Hero() {
                 
                 {/* Install command */}
                 <div className="relative">
-                  <div className="relative inline-flex items-center gap-3 rounded-xl bg-white dark:bg-gray-900 px-8 py-4 shadow-xl ring-1 ring-gray-300/50 dark:ring-gray-700/50">
+                  <div className="relative inline-flex items-center gap-3 rounded-xl bg-theme-primary px-8 py-4 shadow-xl ring-1 ring-gray-300/50 dark:ring-gray-700/50">
                     <span className="text-base font-bold text-emerald-600 dark:text-emerald-400" aria-label="Command prompt">
                       $
                     </span>
@@ -191,7 +191,7 @@ export default function Hero() {
                 >
                   <a
                     href="/docs/mcp"
-                  className="inline-flex items-center gap-2 lg:gap-2.5 rounded-full bg-white/80 dark:bg-gray-900/80 px-5 py-2 lg:px-7 lg:py-3 text-base lg:text-lg font-semibold text-gray-900 dark:text-white shadow-lg lg:hover:shadow-xl ring-1 ring-gray-300 dark:ring-gray-700 lg:hover:ring-gray-400 dark:lg:hover:ring-gray-500 backdrop-blur-xl backdrop-saturate-150 transition-all duration-200 lg:hover:-translate-y-0.5"
+                  className="inline-flex items-center gap-2 lg:gap-2.5 rounded-full bg-theme-primary-opacity-80 px-5 py-2 lg:px-7 lg:py-3 text-base lg:text-lg font-semibold text-gray-900 dark:text-white shadow-lg lg:hover:shadow-xl ring-1 ring-gray-300 dark:ring-gray-700 lg:hover:ring-gray-400 dark:lg:hover:ring-gray-500 backdrop-blur-xl backdrop-saturate-150 transition-all duration-200 lg:hover:-translate-y-0.5"
                   >
                     <svg className={`h-5 w-5 lg:h-6 lg:w-6 text-gray-700 dark:text-gray-300 transition-transform duration-200 ${mcpHovered ? 'lg:rotate-[15deg]' : ''}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1" />
@@ -207,8 +207,8 @@ export default function Hero() {
                   >
                     <div className="relative">
                       {/* Arrow - pointing left */}
-                      <div className="absolute -top-2 left-8 w-4 h-4 bg-white dark:bg-gray-900 border-t border-l rotate-45 border-gray-200 dark:border-gray-700 rotate-45"></div>
-                      <div className="relative bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-700 rounded-xl shadow-2xl p-4 backdrop-blur-xl">
+                      <div className="absolute -top-2 left-8 w-4 h-4 bg-theme-primary border-t border-l rotate-45 border-gray-200 dark:border-gray-700 rotate-45"></div>
+                      <div className="relative bg-theme-primary border border-gray-200 dark:border-gray-700 rounded-xl shadow-2xl p-4 backdrop-blur-xl">
                         <div className="flex items-start gap-3">
                           <div className="flex-shrink-0 p-2 bg-gray-100 dark:bg-gray-800 rounded-lg">
                             <svg className="w-5 h-5 text-gray-700 dark:text-gray-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -308,7 +308,7 @@ export default function Hero() {
           >
             <div className="mt-10 sm:mt-12 flex flex-col items-center">
               {/* Tabs */}
-              <div className="mb-4 flex items-center gap-2 bg-white/50 dark:bg-gray-900/50 rounded-lg p-1 ring-1 ring-gray-300/50 dark:ring-gray-700/50">
+              <div className="mb-4 flex items-center gap-2 bg-theme-primary-opacity-50 rounded-lg p-1 ring-1 ring-gray-300/50 dark:ring-gray-700/50">
                 <button
                   onClick={() => setActiveTab('cli')}
                   className={`px-4 py-2 rounded-md text-xs sm:text-sm font-medium transition-all duration-200 ${
@@ -333,7 +333,7 @@ export default function Hero() {
               
               {/* Install command */}
               <div className="relative">
-                <div className="relative inline-flex items-center gap-3 rounded-xl bg-white dark:bg-gray-900 px-6 sm:px-8 lg:px-10 py-4 sm:py-5 shadow-xl ring-1 ring-gray-300/50 dark:ring-gray-700/50">
+                <div className="relative inline-flex items-center gap-3 rounded-xl bg-theme-primary px-6 sm:px-8 lg:px-10 py-4 sm:py-5 shadow-xl ring-1 ring-gray-300/50 dark:ring-gray-700/50">
                   <span className="hidden sm:inline text-sm sm:text-base font-bold text-emerald-600 dark:text-emerald-400" aria-label="Command prompt">
                     $
                   </span>
@@ -378,7 +378,7 @@ export default function Hero() {
               >
                 <a
                   href="/docs/mcp"
-                  className="inline-flex items-center gap-2 lg:gap-2.5 rounded-full bg-white/80 dark:bg-gray-900/80 px-5 py-2 lg:px-7 lg:py-3 text-base lg:text-lg font-semibold text-gray-900 dark:text-white shadow-lg lg:hover:shadow-xl ring-1 ring-gray-300 dark:ring-gray-700 lg:hover:ring-gray-400 dark:lg:hover:ring-gray-500 backdrop-blur-xl backdrop-saturate-150 transition-all duration-200 lg:hover:-translate-y-0.5"
+                  className="inline-flex items-center gap-2 lg:gap-2.5 rounded-full bg-theme-primary-opacity-80 px-5 py-2 lg:px-7 lg:py-3 text-base lg:text-lg font-semibold text-gray-900 dark:text-white shadow-lg lg:hover:shadow-xl ring-1 ring-gray-300 dark:ring-gray-700 lg:hover:ring-gray-400 dark:lg:hover:ring-gray-500 backdrop-blur-xl backdrop-saturate-150 transition-all duration-200 lg:hover:-translate-y-0.5"
                 >
                   <svg className={`h-5 w-5 lg:h-6 lg:w-6 text-gray-700 dark:text-gray-300 transition-transform duration-200 ${mcpHovered ? 'lg:rotate-[15deg]' : ''}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1" />
@@ -394,10 +394,10 @@ export default function Hero() {
                 >
                   <div className="relative">
                     {/* Arrow - pointing down */}
-                    <div className="absolute -top-2 left-1/2 -translate-x-1/2 w-4 h-4 bg-white dark:bg-gray-900 border-t border-l border-gray-200 dark:border-gray-700 rotate-45"></div>
+                    <div className="absolute -top-2 left-1/2 -translate-x-1/2 w-4 h-4 bg-theme-primary border-t border-l border-gray-200 dark:border-gray-700 rotate-45"></div>
                     
                     {/* Tooltip content */}
-                    <div className="relative bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-700 rounded-xl shadow-2xl p-4 backdrop-blur-xl">
+                    <div className="relative bg-theme-primary border border-gray-200 dark:border-gray-700 rounded-xl shadow-2xl p-4 backdrop-blur-xl">
                       <div className="flex items-start gap-3">
                         <div className="flex-shrink-0 p-2 bg-gray-100 dark:bg-gray-800 rounded-lg">
                           <svg className="w-5 h-5 text-gray-700 dark:text-gray-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -441,7 +441,7 @@ export default function Hero() {
               href="https://raw.githubusercontent.com/LogicStamp/logicstamp.dev/main/public/logicstamp-workflow.gif"
               target="_blank"
               rel="noopener noreferrer"
-              className="group relative block w-full rounded-2xl bg-white/60 dark:bg-gray-900/60 border border-gray-200/50 dark:border-white/5 backdrop-blur-xl backdrop-saturate-150 shadow-[0_8px_32px_rgba(0,0,0,0.04)] dark:shadow-[0_8px_32px_rgba(0,0,0,0.3)] p-4 transition-all duration-300 overflow-hidden"
+              className="group relative block w-full rounded-2xl bg-theme-primary-opacity-60 border border-gray-200/50 dark:border-white/5 backdrop-blur-xl backdrop-saturate-150 shadow-[0_8px_32px_rgba(0,0,0,0.04)] dark:shadow-[0_8px_32px_rgba(0,0,0,0.3)] p-4 transition-all duration-300 overflow-hidden"
             >
               {/* Subtle gradient overlay */}
               <div className="absolute inset-0 bg-gradient-to-br from-white/40 via-transparent to-transparent dark:from-white/5 dark:via-transparent dark:to-transparent pointer-events-none" />

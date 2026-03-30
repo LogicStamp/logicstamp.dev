@@ -17,7 +17,7 @@ export default function ProblemSolutionFlow() {
           problemInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
         }`}
       >
-        <div className="group relative rounded-2xl bg-white/80 dark:bg-gray-900/80 backdrop-blur-xl p-8 shadow-sm hover:shadow-xl transition-all duration-500 border border-red-200/50 dark:border-red-900/50 overflow-hidden">
+        <div className="group relative rounded-2xl bg-theme-primary-opacity-80 backdrop-blur-xl p-8 shadow-sm hover:shadow-xl transition-all duration-500 border border-red-200/50 dark:border-red-900/50 overflow-hidden">
           <div className="absolute inset-0 bg-gradient-to-br from-red-50/50 to-red-100/30 dark:from-red-900/20 dark:to-red-800/10 opacity-60" />
 
           <div className="relative z-10">
@@ -97,7 +97,7 @@ export default function ProblemSolutionFlow() {
           solutionInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
         }`}
       >
-        <div className="relative rounded-2xl bg-white/80 dark:bg-gray-900/80 backdrop-blur-xl p-8 shadow-sm transition-all duration-500 border border-emerald-200/50 dark:border-emerald-900/50 overflow-hidden">
+        <div className="relative rounded-2xl bg-theme-primary-opacity-80 backdrop-blur-xl p-8 shadow-sm transition-all duration-500 border border-emerald-200/50 dark:border-emerald-900/50 overflow-hidden">
           <div className="absolute inset-0 bg-gradient-to-br from-emerald-50/50 to-green-100/30 dark:from-emerald-900/20 dark:to-green-800/10 opacity-60" />
 
           <div className="relative z-10">

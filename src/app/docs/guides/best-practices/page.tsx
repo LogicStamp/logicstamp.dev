@@ -32,7 +32,7 @@ export default function BestPracticesPage() {
           <AnimatedSection direction="up" delay={100}>
             <div className="relative">
               <div className="absolute -inset-1 bg-gradient-to-r from-amber-500 to-pink-500 rounded-2xl blur opacity-20 dark:opacity-10" />
-              <div className="relative bg-white dark:bg-gray-900 border border-amber-200 dark:border-amber-800 rounded-2xl p-4 sm:p-6 lg:p-8 shadow-xl">
+              <div className="relative bg-theme-primary border border-amber-200 dark:border-amber-800 rounded-2xl p-4 sm:p-6 lg:p-8 shadow-xl">
                 <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white mb-3 sm:mb-4">
                   Use the Right Context Files in Prompts
                 </h2>
@@ -84,7 +84,7 @@ export default function BestPracticesPage() {
           <AnimatedSection direction="up" delay={200}>
             <div className="relative">
               <div className="absolute -inset-1 bg-gradient-to-r from-indigo-600 to-blue-600 rounded-2xl blur opacity-20 dark:opacity-10" />
-              <div className="relative bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded-2xl p-4 sm:p-6 lg:p-8 shadow-xl">
+              <div className="relative bg-theme-primary border border-gray-200 dark:border-gray-800 rounded-2xl p-4 sm:p-6 lg:p-8 shadow-xl">
                 <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white mb-3 sm:mb-4">
                   Keep Context Fresh After Refactors
                 </h2>
@@ -140,7 +140,7 @@ export default function BestPracticesPage() {
           <AnimatedSection direction="up" delay={300}>
             <div className="relative">
               <div className="absolute -inset-1 bg-gradient-to-r from-emerald-600 to-teal-600 rounded-2xl blur opacity-20 dark:opacity-10" />
-              <div className="relative bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded-2xl p-4 sm:p-6 lg:p-8 shadow-xl">
+              <div className="relative bg-theme-primary border border-gray-200 dark:border-gray-800 rounded-2xl p-4 sm:p-6 lg:p-8 shadow-xl">
                 <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white mb-3 sm:mb-4">
                   Choose the Right Code Inclusion Mode
                 </h2>
@@ -251,7 +251,7 @@ export default function BestPracticesPage() {
           <AnimatedSection direction="up" delay={325}>
             <div className="relative mb-8 sm:mb-12 lg:mb-16">
               <div className="absolute -inset-1 bg-gradient-to-r from-blue-600 to-cyan-600 rounded-2xl blur opacity-20 dark:opacity-10" />
-              <div className="relative bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded-2xl p-4 sm:p-6 lg:p-8 shadow-xl">
+              <div className="relative bg-theme-primary border border-gray-200 dark:border-gray-800 rounded-2xl p-4 sm:p-6 lg:p-8 shadow-xl">
                 <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white mb-3 sm:mb-4">
                   Use Compare Modes Before Generating Context
                 </h2>
@@ -315,7 +315,7 @@ export default function BestPracticesPage() {
           <AnimatedSection direction="up" delay={400}>
             <div className="relative mb-8 sm:mb-12 lg:mb-16">
               <div className="absolute -inset-1 bg-gradient-to-r from-red-600 to-orange-600 rounded-2xl blur opacity-20 dark:opacity-10" />
-              <div className="relative bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded-2xl p-4 sm:p-6 lg:p-8 shadow-xl">
+              <div className="relative bg-theme-primary border border-gray-200 dark:border-gray-800 rounded-2xl p-4 sm:p-6 lg:p-8 shadow-xl">
                 <div className="flex items-baseline gap-3 mb-4 sm:mb-6">
                   <div className="p-2 bg-red-100 dark:bg-red-900/30 rounded-lg flex-shrink-0 -mt-0.5">
                     <svg className="w-5 h-5 sm:w-6 sm:h-6 text-red-600 dark:text-red-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -407,7 +407,7 @@ export default function BestPracticesPage() {
           <AnimatedSection direction="up" delay={500}>
             <div className="relative mb-8 sm:mb-12 lg:mb-16">
               <div className="absolute -inset-1 bg-gradient-to-r from-purple-600 to-pink-600 rounded-2xl blur opacity-20 dark:opacity-10" />
-              <div className="relative bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded-2xl p-4 sm:p-6 lg:p-8 shadow-xl">
+              <div className="relative bg-theme-primary border border-gray-200 dark:border-gray-800 rounded-2xl p-4 sm:p-6 lg:p-8 shadow-xl">
                 <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white mb-3 sm:mb-4">
                   Integrate LogicStamp Into Your Workflow
                 </h2>

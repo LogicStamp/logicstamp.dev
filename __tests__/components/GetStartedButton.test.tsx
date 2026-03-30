@@ -44,7 +44,7 @@ describe('GetStartedButton Component', () => {
     render(<GetStartedButton variant="frosted" />)
 
     const button = screen.getByRole('link', { name: /get started/i })
-    expect(button).toHaveClass('bg-white/80', 'dark:bg-gray-900/80')
+    expect(button).toHaveClass('bg-theme-primary-opacity-80')
     expect(button).toHaveClass('backdrop-blur-xl', 'backdrop-saturate-150')
     expect(button).toHaveClass('font-semibold')
   })

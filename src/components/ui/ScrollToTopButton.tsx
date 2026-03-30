@@ -52,7 +52,7 @@ export default function ScrollToTopButton() {
   return (
     <button
       onClick={scrollToTop}
-      className={`fixed right-6 z-50 p-3 rounded-xl bg-white/80 dark:bg-gray-900/80 border border-gray-200/20 dark:border-white/10 shadow-lg shadow-black/15 backdrop-blur-md transition-all duration-200 focus:outline-none ${
+      className={`fixed right-6 z-50 p-3 rounded-xl bg-theme-primary-opacity-80 border border-gray-200/20 dark:border-white/10 shadow-lg shadow-black/15 backdrop-blur-md transition-all duration-200 focus:outline-none ${
         isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4 pointer-events-none'
       }`}
       style={{

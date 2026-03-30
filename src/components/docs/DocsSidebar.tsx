@@ -543,7 +543,7 @@ export default function DocsSidebar({ onOpenSearch }: DocsSidebarProps = {}) {
           >
             <Search className="w-4 h-4 shrink-0 opacity-70" aria-hidden />
             <span className="flex-1 truncate">Search docs…</span>
-            <kbd className="hidden sm:inline text-[10px] font-sans text-gray-400 dark:text-gray-500 px-1 rounded border border-gray-200 dark:border-gray-600 bg-white dark:bg-gray-900">
+            <kbd className="hidden sm:inline text-[10px] font-sans text-gray-400 dark:text-gray-500 px-1 rounded border border-gray-200 dark:border-gray-600 bg-theme-primary">
               ⌘K
             </kbd>
           </button>

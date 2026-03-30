@@ -41,7 +41,7 @@ export default async function BetaPage() {
               </div>
 
               {/* Badge */}
-              <div className="inline-flex items-center gap-2 px-5 py-2.5 bg-white/90 dark:bg-gray-900/90 text-gray-700 dark:text-gray-300 text-sm font-bold rounded-full mb-8 sm:mb-10 border border-gray-200/70 dark:border-gray-700/70 shadow-lg">
+              <div className="inline-flex items-center gap-2 px-5 py-2.5 bg-theme-primary-opacity-90 text-gray-700 dark:text-gray-300 text-sm font-bold rounded-full mb-8 sm:mb-10 border border-gray-200/70 dark:border-gray-700/70 shadow-lg">
                 <svg className="h-7 w-7 sm:h-8 sm:w-8" fill="currentColor" viewBox="0 0 20 20">
                   <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.857-9.809a.75.75 0 00-1.214-.882l-3.483 4.79-1.88-1.88a.75.75 0 10-1.06 1.061l2.5 2.5a.75.75 0 001.137-.089l4-5.5z" clipRule="evenodd" />
                 </svg>

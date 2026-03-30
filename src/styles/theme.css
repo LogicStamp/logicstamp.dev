@@ -193,6 +193,10 @@
 
 /* Utility Classes for Theme Colors */
 .bg-theme-primary { background-color: var(--color-bg-primary); }
+.bg-theme-primary-opacity-50 { background-color: color-mix(in srgb, var(--color-bg-primary) 50%, transparent); }
+.bg-theme-primary-opacity-60 { background-color: color-mix(in srgb, var(--color-bg-primary) 60%, transparent); }
+.bg-theme-primary-opacity-80 { background-color: color-mix(in srgb, var(--color-bg-primary) 80%, transparent); }
+.bg-theme-primary-opacity-90 { background-color: color-mix(in srgb, var(--color-bg-primary) 90%, transparent); }
 .bg-theme-secondary { background-color: var(--color-bg-secondary); }
 .bg-theme-tertiary { background-color: var(--color-bg-tertiary); }
 .bg-theme-muted { background-color: var(--color-bg-muted); }
