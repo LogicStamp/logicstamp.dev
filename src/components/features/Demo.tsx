@@ -100,7 +100,7 @@ export const UserProfile: React.FC<UserProfileProps> = ({ userId, onUpdate }) =>
   }, [userId, isAuthenticated]);
   
   return (
-    <div className="flex flex-col gap-4 p-6 bg-white dark:bg-gray-900 rounded-lg shadow-md">
+    <div className="flex flex-col gap-4 p-6 bg-theme-primary rounded-lg shadow-md">
       {user && (
         <div className="flex items-center gap-3">
           <div className="w-12 h-12 bg-blue-500 rounded-full flex items-center justify-center">
@@ -1110,7 +1110,7 @@ export default function Demo() {
               </div>
             )}
 
-            <div className="min-w-0 bg-white dark:bg-gray-900 rounded-2xl shadow-2xl ring-1 ring-gray-200/50 dark:ring-gray-800/50 overflow-hidden">
+            <div className="min-w-0 bg-theme-primary rounded-2xl shadow-2xl ring-1 ring-gray-200/50 dark:ring-gray-800/50 overflow-hidden">
               <div className="bg-gray-50 dark:bg-gray-800 px-6 py-3 flex items-center justify-between border-b border-gray-200 dark:border-gray-700">
                 <div className="flex items-center gap-3">
                   <Code2 className="w-4 h-4 text-green-400 flex-shrink-0" />
@@ -1336,17 +1336,17 @@ export default function Demo() {
               <div
                 className="grid grid-cols-3 gap-1.5 sm:gap-4 w-full max-w-full transition-all duration-500"
               >
-                <div className="bg-white dark:bg-gray-900 rounded-xl p-2 sm:p-4 text-center shadow-lg min-w-0 overflow-hidden">
+                <div className="bg-theme-primary rounded-xl p-2 sm:p-4 text-center shadow-lg min-w-0 overflow-hidden">
                   <Zap className="w-5 h-5 sm:w-8 sm:h-8 text-yellow-500 mx-auto mb-1 sm:mb-2" />
                   <div className="text-lg sm:text-2xl font-bold text-gray-900 dark:text-white truncate">78%</div>
                   <div className="text-[10px] sm:text-sm text-gray-600 dark:text-gray-400 truncate">Size Reduction</div>
                 </div>
-                <div className="bg-white dark:bg-gray-900 rounded-xl p-2 sm:p-4 text-center shadow-lg min-w-0 overflow-hidden">
+                <div className="bg-theme-primary rounded-xl p-2 sm:p-4 text-center shadow-lg min-w-0 overflow-hidden">
                   <Package className="w-5 h-5 sm:w-8 sm:h-8 text-blue-500 mx-auto mb-1 sm:mb-2" />
                   <div className="text-lg sm:text-2xl font-bold text-gray-900 dark:text-white truncate">2.4KB</div>
                   <div className="text-[10px] sm:text-sm text-gray-600 dark:text-gray-400 truncate">Bundle Size</div>
                 </div>
-                <div className="bg-white dark:bg-gray-900 rounded-xl p-2 sm:p-4 text-center shadow-lg min-w-0 overflow-hidden">
+                <div className="bg-theme-primary rounded-xl p-2 sm:p-4 text-center shadow-lg min-w-0 overflow-hidden">
                   <FileCode2 className="w-5 h-5 sm:w-8 sm:h-8 text-purple-500 mx-auto mb-1 sm:mb-2" />
                   <div className="text-lg sm:text-2xl font-bold text-gray-900 dark:text-white truncate">1,200</div>
                   <div className="text-[10px] sm:text-sm text-gray-600 dark:text-gray-400 truncate">Tokens Saved</div>
@@ -1466,7 +1466,7 @@ export default function Demo() {
             </div>
 
             {/* Workflow Info */}
-            <div className="mt-6 bg-white dark:bg-gray-900 rounded-xl p-6 shadow-lg">
+            <div className="mt-6 bg-theme-primary rounded-xl p-6 shadow-lg">
               <div className="flex items-start gap-4">
                 <div className="w-12 h-12 bg-purple-600 rounded-lg flex items-center justify-center flex-shrink-0">
                   <GitBranch className="w-6 h-6 text-white" />
@@ -1513,7 +1513,7 @@ export default function Demo() {
             </p>
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
               <div className="relative">
-                <div className="relative inline-flex items-center gap-3 rounded-xl bg-white dark:bg-gray-900 px-6 sm:px-8 lg:px-10 py-4 sm:py-5 shadow-xl ring-1 ring-gray-300/50 dark:ring-gray-700/50">
+                <div className="relative inline-flex items-center gap-3 rounded-xl bg-theme-primary px-6 sm:px-8 lg:px-10 py-4 sm:py-5 shadow-xl ring-1 ring-gray-300/50 dark:ring-gray-700/50">
                   <span className="hidden sm:inline text-sm sm:text-base font-bold text-emerald-600 dark:text-emerald-400" aria-label="Command prompt">
                     $
                   </span>
@@ -1551,7 +1551,7 @@ export default function Demo() {
             <div className="flex flex-col items-center justify-center gap-4 mb-6">
               {/* CLI Installation */}
               <div className="relative">
-                <div className="relative inline-flex items-center gap-3 rounded-xl bg-white dark:bg-gray-900 px-6 sm:px-8 lg:px-10 py-4 sm:py-5 shadow-xl ring-1 ring-gray-300/50 dark:ring-gray-700/50">
+                <div className="relative inline-flex items-center gap-3 rounded-xl bg-theme-primary px-6 sm:px-8 lg:px-10 py-4 sm:py-5 shadow-xl ring-1 ring-gray-300/50 dark:ring-gray-700/50">
                   <span className="hidden sm:inline text-sm sm:text-base font-bold text-emerald-600 dark:text-emerald-400" aria-label="Command prompt">
                     $
                   </span>
@@ -1563,7 +1563,7 @@ export default function Demo() {
               </div>
               {/* MCP Installation */}
               <div className="relative">
-                <div className="relative inline-flex items-center gap-3 rounded-xl bg-white dark:bg-gray-900 px-6 sm:px-8 lg:px-10 py-4 sm:py-5 shadow-xl ring-1 ring-gray-300/50 dark:ring-gray-700/50">
+                <div className="relative inline-flex items-center gap-3 rounded-xl bg-theme-primary px-6 sm:px-8 lg:px-10 py-4 sm:py-5 shadow-xl ring-1 ring-gray-300/50 dark:ring-gray-700/50">
                   <span className="hidden sm:inline text-sm sm:text-base font-bold text-emerald-600 dark:text-emerald-400" aria-label="Command prompt">
                     $
                   </span>

@@ -697,7 +697,7 @@ $ stamp context clean
               className={`px-4 py-2 text-xs sm:text-sm lg:text-base rounded-full transition-all duration-300 whitespace-nowrap flex-shrink-0 font-medium ${
                 currentDemo === index
                 ? `${ctaInvertedPrimaryClasses} scale-105`
-                  : 'bg-white/80 dark:bg-gray-900/80 backdrop-blur-sm text-gray-700 dark:text-gray-300 border border-gray-200/50 dark:border-gray-700/50'
+                  : 'bg-theme-primary-opacity-80 backdrop-blur-sm text-gray-700 dark:text-gray-300 border border-gray-200/50 dark:border-gray-700/50'
               }`}
             >
               {demo.title}

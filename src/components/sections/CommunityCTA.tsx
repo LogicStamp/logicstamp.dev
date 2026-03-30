@@ -2,7 +2,7 @@ import { ctaInvertedPrimaryClasses } from '../ui/ctaInvertedPrimaryClasses'
 
 /** Matches ReadTheDocsButton `variant="secondary"` (frosted panel + ring). */
 const secondaryCtaClassName =
-  'inline-flex items-center gap-2 px-4 sm:px-6 py-2.5 sm:py-3 rounded-lg text-sm sm:text-base font-semibold bg-white/80 dark:bg-gray-900/80 text-gray-900 dark:text-white shadow-lg hover:shadow-xl ring-1 ring-gray-300 dark:ring-gray-700 backdrop-blur-xl backdrop-saturate-150 transition-all duration-200 whitespace-nowrap focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-purple-600'
+  'inline-flex items-center gap-2 px-4 sm:px-6 py-2.5 sm:py-3 rounded-lg text-sm sm:text-base font-semibold bg-theme-primary-opacity-80 text-gray-900 dark:text-white shadow-lg hover:shadow-xl ring-1 ring-gray-300 dark:ring-gray-700 backdrop-blur-xl backdrop-saturate-150 transition-all duration-200 whitespace-nowrap focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-purple-600'
 
 export default function CommunityCTA() {
   return (

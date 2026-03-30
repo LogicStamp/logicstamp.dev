@@ -185,7 +185,7 @@ export default function DocsHeader({
         }`}
       >
         <div className="mx-auto max-w-[1440px] px-4 lg:px-6">
-          <div className="relative overflow-hidden bg-white/60 dark:bg-gray-900/60 rounded-2xl border border-gray-200/50 dark:border-white/5 backdrop-blur-xl backdrop-saturate-150 shadow-[0_8px_32px_rgba(0,0,0,0.04)] dark:shadow-[0_8px_32px_rgba(0,0,0,0.3)]">
+          <div className="relative overflow-hidden bg-theme-primary-opacity-60 rounded-2xl border border-gray-200/50 dark:border-white/5 backdrop-blur-xl backdrop-saturate-150 shadow-[0_8px_32px_rgba(0,0,0,0.04)] dark:shadow-[0_8px_32px_rgba(0,0,0,0.3)]">
             {/* Subtle gradient overlay */}
             <div className="absolute inset-0 bg-gradient-to-br from-white/40 via-transparent to-transparent dark:from-white/5 dark:via-transparent dark:to-transparent pointer-events-none" />
             <div className="relative flex items-center gap-2 py-1 px-4">
@@ -265,7 +265,7 @@ export default function DocsHeader({
           }}
         >
           <div className="mx-auto max-w-[1440px] px-4 lg:px-6">
-            <div className="relative overflow-hidden bg-white/80 dark:bg-gray-900/80 rounded-2xl shadow-[0_8px_32px_rgba(0,0,0,0.08)] dark:shadow-[0_8px_32px_rgba(0,0,0,0.4)] border border-gray-200/50 dark:border-white/5 backdrop-blur-xl backdrop-saturate-150 max-h-[50vh] overflow-y-auto">
+            <div className="relative overflow-hidden bg-theme-primary-opacity-80 rounded-2xl shadow-[0_8px_32px_rgba(0,0,0,0.08)] dark:shadow-[0_8px_32px_rgba(0,0,0,0.4)] border border-gray-200/50 dark:border-white/5 backdrop-blur-xl backdrop-saturate-150 max-h-[50vh] overflow-y-auto">
               {/* Subtle gradient overlay */}
               <div className="absolute inset-0 bg-gradient-to-br from-white/40 via-transparent to-transparent dark:from-white/5 dark:via-transparent dark:to-transparent pointer-events-none" />
               <nav className="relative px-4 py-3 space-y-1">

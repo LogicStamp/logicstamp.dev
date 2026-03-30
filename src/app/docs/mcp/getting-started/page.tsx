@@ -31,7 +31,7 @@ export default function MCPInstallationPage() {
         {/* Prerequisites */}
         <AnimatedSection direction="up" delay={100}>
           <div className="mb-12">
-            <div className="border border-gray-200 dark:border-gray-800 rounded-xl p-6 bg-white dark:bg-gray-900">
+            <div className="border border-gray-200 dark:border-gray-800 rounded-xl p-6 bg-theme-primary">
               <div className="flex items-baseline gap-3 mb-4">
                 <div className="p-2 bg-blue-100 dark:bg-blue-900/30 rounded-lg flex-shrink-0">
                   <svg className="w-5 h-5 text-blue-600 dark:text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">

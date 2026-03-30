@@ -20,7 +20,7 @@ export default function ExpandableSection({
   return (
     <div className="relative mb-8 sm:mb-12 lg:mb-16">
       <div className="absolute -inset-1 bg-gradient-to-r from-blue-600 to-indigo-600 rounded-2xl blur opacity-20 dark:opacity-10" />
-      <div className="relative bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded-2xl p-4 sm:p-6 lg:p-8 shadow-xl">
+      <div className="relative bg-theme-primary border border-gray-200 dark:border-gray-800 rounded-2xl p-4 sm:p-6 lg:p-8 shadow-xl">
         <button
           onClick={() => setIsOpen(!isOpen)}
           className="w-full flex items-center justify-between gap-3 mb-4 sm:mb-6 focus:outline-none group"

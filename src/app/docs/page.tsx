@@ -262,7 +262,7 @@ export default function DocsHomePage() {
           <div className="relative mb-8 sm:mb-12">
             <div className="absolute inset-0 bg-gradient-to-br from-green-100 via-emerald-50 to-teal-50 dark:from-green-950/20 dark:via-emerald-950/10 dark:to-teal-950/5 rounded-3xl blur-2xl opacity-50" />
             
-            <div className="relative bg-white dark:bg-gray-900 border-2 border-green-200 dark:border-green-800 rounded-3xl p-6 sm:p-8 lg:p-10 shadow-2xl">
+            <div className="relative bg-theme-primary border-2 border-green-200 dark:border-green-800 rounded-3xl p-6 sm:p-8 lg:p-10 shadow-2xl">
               <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white mb-4 sm:mb-6">
                 Open Source & Community
               </h2>

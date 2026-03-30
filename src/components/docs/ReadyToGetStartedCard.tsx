@@ -60,7 +60,7 @@ export default function ReadyToGetStartedCard({
   return (
     <AnimatedSection direction="up" delay={delay}>
       <div className="relative mt-8 sm:mt-10 lg:mt-12 mb-6 sm:mb-8 lg:mb-10">
-        <div className="relative bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded-2xl p-4 sm:p-6 lg:p-8 shadow-lg">
+        <div className="relative bg-theme-primary border border-gray-200 dark:border-gray-800 rounded-2xl p-4 sm:p-6 lg:p-8 shadow-lg">
           <div className="flex flex-col lg:flex-row items-start lg:items-center gap-4 sm:gap-6">
             <div className="flex-shrink-0">
               <div className={`w-12 h-12 sm:w-14 sm:h-14 rounded-full bg-gradient-to-br ${styles.iconBg} flex items-center justify-center shadow-md`}>

@@ -80,7 +80,7 @@ export const docsMarkdownComponents: Components = {
     <thead className="bg-gray-50 dark:bg-gray-800" {...props} />
   ),
   tbody: (props) => (
-    <tbody className="bg-white dark:bg-gray-900" {...props} />
+    <tbody className="bg-theme-primary" {...props} />
   ),
   tr: (props) => (
     <tr className="border-t border-gray-200 dark:border-gray-700" {...props} />

@@ -47,7 +47,7 @@ export default function MCPReferencePage() {
           <AnimatedSection direction="up" delay={100}>
             <div className="relative mb-8 sm:mb-12 lg:mb-16">
               <div className="absolute -inset-1 bg-gradient-to-r from-indigo-600 to-violet-600 rounded-2xl blur opacity-20 dark:opacity-10" />
-              <div className="relative bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded-2xl p-4 sm:p-6 lg:p-8 shadow-xl">
+              <div className="relative bg-theme-primary border border-gray-200 dark:border-gray-800 rounded-2xl p-4 sm:p-6 lg:p-8 shadow-xl">
                 <h2 className="text-xl sm:text-2xl font-bold text-gray-900 dark:text-white mb-4">
                   Overview
                 </h2>
@@ -510,7 +510,7 @@ export default function MCPReferencePage() {
           <AnimatedSection direction="up" delay={600}>
             <div className="relative mb-8 sm:mb-12 lg:mb-16">
               <div className="absolute -inset-1 bg-gradient-to-r from-indigo-600 to-violet-600 rounded-2xl blur opacity-20 dark:opacity-10" />
-              <div className="relative bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded-2xl p-4 sm:p-6 lg:p-8 shadow-xl">
+              <div className="relative bg-theme-primary border border-gray-200 dark:border-gray-800 rounded-2xl p-4 sm:p-6 lg:p-8 shadow-xl">
                 <h2 className="text-xl sm:text-2xl font-bold text-gray-900 dark:text-white mb-4 sm:mb-6">
                   Parameters Reference
                 </h2>

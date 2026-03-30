@@ -31,7 +31,7 @@ export default function GetStartedButton({
     secondary:
       'bg-white dark:bg-gray-800 text-gray-900 dark:text-white shadow-lg hover:shadow-xl ring-1 ring-gray-300 dark:ring-gray-700 hover:ring-purple-500 dark:hover:ring-purple-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-purple-600',
     frosted:
-      'bg-white/80 dark:bg-gray-900/80 text-gray-900 dark:text-white shadow-lg hover:shadow-xl ring-1 ring-gray-300 dark:ring-gray-700 backdrop-blur-xl backdrop-saturate-150 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-purple-600',
+      'bg-theme-primary-opacity-80 text-gray-900 dark:text-white shadow-lg hover:shadow-xl ring-1 ring-gray-300 dark:ring-gray-700 backdrop-blur-xl backdrop-saturate-150 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-purple-600',
     inverted: ctaInvertedPrimaryClasses,
   }
 

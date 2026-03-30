@@ -101,7 +101,7 @@ export default function Testimonials() {
   const duplicatedTestimonials = [...testimonials, ...testimonials]
 
   return (
-    <section id="testimonials" className="py-24 sm:py-32 bg-white dark:bg-gray-900 overflow-hidden">
+    <section id="testimonials" className="py-24 sm:py-32 bg-theme-primary overflow-hidden">
       <div className="mx-auto max-w-[1320px] px-6 lg:px-8">
         <AnimatedSection direction="up" delay={0}>
           <div className="mx-auto max-w-2xl text-center">
