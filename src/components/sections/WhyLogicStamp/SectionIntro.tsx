@@ -19,7 +19,7 @@ export default function SectionIntro({ titleRef, titleInView }: SectionIntroProp
         Structured context
       </h2>
       <p className="mt-6 text-lg sm:text-xl leading-8 text-gray-600 dark:text-gray-300">
-      Generated from your TypeScript codebase. LogicStamp turns your project into structured JSON: contracts, dependencies, and optional style metadata - so tools can use real context instead of copy-paste.
+        LogicStamp turns your project into structured JSON: contracts, dependencies, and optional style metadata - so tools can use real context instead of copy-paste.
       </p>
       <p className="mt-4 flex items-center justify-center">
         <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-gradient-to-r from-amber-500/10 to-orange-500/10 text-amber-700 dark:text-amber-400 border border-amber-500/20 whitespace-nowrap">
