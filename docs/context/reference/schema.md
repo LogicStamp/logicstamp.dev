@@ -64,6 +64,7 @@ interface StyleMetadata {
   layout?: LayoutMetadata;
   visual?: VisualMetadata;
   animation?: AnimationMetadata;
+  /** Reserved: allowed by schema; not populated by `stamp context` style extraction today */
   pageLayout?: PageLayoutMetadata;
 }
 
@@ -197,6 +198,7 @@ interface AnimationMetadata {
   trigger?: string; // Trigger type (e.g., "inView", "hover")
 }
 
+/** Shape for optional page-level layout metadata (schema-reserved; CLI does not emit yet). */
 interface PageLayoutMetadata {
   pageRole?: string;
   sections?: string[];
@@ -331,7 +333,9 @@ Animation and motion information:
 
 #### Page Layout Metadata (`style.pageLayout`)
 
-Page-level layout information:
+**Not populated by `stamp context` today.** Present in the schema and TypeScript types for forward compatibility and manual or future tooling.
+
+When present, the intended fields are:
 
 - **`pageRole`** - Page role (e.g., "landing", "dashboard")
 - **`sections`** - Array of page sections
@@ -339,7 +343,7 @@ Page-level layout information:
 
 **Note:** Style metadata is only included when style information is detected. Components without style usage will not have a `style` field.
 
-See [style.md](./cli/style.md) for comprehensive documentation on style metadata extraction.
+See [style.md](../cli/style.md) for comprehensive documentation on style metadata extraction.
 
 ### Next.js Metadata (Optional)
 
@@ -355,7 +359,7 @@ The `nextjs` field is only included for Next.js App Router files. It provides Ne
 
 **Note:** Next.js metadata is only included for files in Next.js projects. Non-Next.js files will not have a `nextjs` field.
 
-See [nextjs.md](./frameworks/nextjs.md) for comprehensive documentation on Next.js support.
+See [nextjs.md](../frameworks/nextjs.md) for comprehensive documentation on Next.js support.
 
 ## LogicStampBundle Schema
 
@@ -708,8 +712,8 @@ This enables:
 
 ## See Also
 
-- [uif_contracts.md](./uif_contracts.md) – Detailed UIF contract documentation
+- [uif_contracts.md](./uif-contracts.md) – Detailed UIF contract documentation
 - [hashes.md](./hashes.md) – Hash computation and formats
-- [validate.md](./cli/validate.md) – Schema validation guide
-- [usage.md](./usage.md) – How to generate context files
+- [validate.md](../cli/validate.md) – Schema validation guide
+- [usage.md](../guides/usage.md) – How to generate context files
 

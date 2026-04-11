@@ -2,14 +2,18 @@
 
 LogicStamp Context is built with TypeScript in mind and provides comprehensive support for TypeScript features, type extraction, and type-safe patterns.
 
+**Works alongside `tsc`:** LogicStamp uses the TypeScript compiler API (via ts-morph) to **extract** contracts. It complements **`tsc --noEmit`** (or equivalent) in CI—extraction does **not** mirror your full-project **`tsconfig`** typecheck. **Strict** compare/watch modes detect **contract** breaking changes vs a baseline, not every TS error. See [Known limitations](../reference/limitations.md#typescript-compiler-tsc).
+
+**Extends beyond `.d.ts` surfaces:** `.d.ts` files describe type surfaces for consumers. LogicStamp adds semantic contracts, dependency graphs (`graph.nodes`/`graph.edges`), and diffable change hashes (`semanticHash`/`bundleHash`) for LLM workflows. Prop types from third-party `.d.ts` in `node_modules` are [partially supported](../reference/limitations.md#third-party-components) (Phase 2 pending).
+
 ## TypeScript Detection
 
 LogicStamp automatically works with TypeScript projects:
 
 - **File extensions**: `.ts` and `.tsx` files
-- **TypeScript configuration**: Reads `tsconfig.json` for compiler options
-- **Type system**: Uses TypeScript's AST for accurate type extraction
-- **Type definitions**: Extracts interfaces, types, and type aliases
+- **Parsing**: Each file is loaded with `ts-morph` using fixed compiler options (ESNext target, JSX enabled for `.tsx`). Your repo’s **`tsconfig.json` is not loaded** for this per-file project, so workspace settings like `paths`, `baseUrl`, `strict`, or custom `jsx` mode are not applied automatically during extraction.
+- **Type system**: Uses TypeScript’s AST (and the type checker within that isolated project) for extraction
+- **Type definitions**: Extracts interfaces, types, and type aliases from the parsed source
 
 ## What Gets Extracted
 
@@ -213,26 +217,14 @@ stamp context
 stamp context --include-code full
 ```
 
-## TypeScript Configuration
+## TypeScript configuration
 
-LogicStamp respects your `tsconfig.json`:
+LogicStamp does **not** currently merge your project’s `tsconfig.json` into the parser `Project`. That means:
 
-```json
-{
-  "compilerOptions": {
-    "jsx": "react-jsx",
-    "target": "ES2020",
-    "module": "ESNext",
-    "strict": true
-  }
-}
-```
+- **`compilerOptions.paths` / `baseUrl`**: Path aliases may not resolve the same way they do under `tsc`; prefer relative imports in files you care about if resolution matters for extracted types.
+- **Strictness and JSX**: Extraction uses a built-in option set, not your repo’s `strict` or `jsx` compiler choice.
 
-**Respected settings:**
-- JSX mode
-- Target and module settings
-- Path mappings (`paths` in `tsconfig.json`)
-- Base URL
+Your `tsconfig.json` remains important for building and editing the app; it just is not the source of truth for how LogicStamp configures `ts-morph` today.
 
 ## Best Practices
 
@@ -248,10 +240,11 @@ LogicStamp respects your `tsconfig.json`:
 - Type-level computations are not executed
 - Some advanced TypeScript features may have limited extraction
 - Circular type references may not be fully resolved
+- Project `tsconfig` options (including path aliases) are not applied to the extraction `Project` unless behavior changes in a future release
 
 ## Related Documentation
 
 - [React Support](./react.md) - TypeScript with React
 - [Next.js Support](./nextjs.md) - TypeScript with Next.js
-- [UIF Contracts](../uif_contracts.md) - Component contract types
+- [UIF Contracts](../reference/uif-contracts.md) - Component contract types
 

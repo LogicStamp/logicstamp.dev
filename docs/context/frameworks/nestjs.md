@@ -194,6 +194,10 @@ LogicStamp categorizes NestJS files into different kinds:
 - **`node:api`** - NestJS controller files with route definitions
 - **`ts:module`** - TypeScript modules/utilities (non-controller files)
 
+## Routes and `tsc`
+
+The same idea applies as with Express: changing **`@Controller('users')`** to **`@Controller('user')`**, or a route segment on **`@Get()` / `@Post()`**, can leave **method signatures and DTO types** unchanged so **`tsc` stays quiet**, while the **public HTTP surface** changes. Those paths feed the extracted contract and **`semanticHash`**, so **`stamp context compare`** can show the change. **Strict** violation rules for HTTP are narrower; see [API signature handling](../cli/strict-modes.md#api-signature-handling).
+
 ## NestJS-Specific Features
 
 ### Controller Detection
@@ -821,7 +825,7 @@ export class PostsController { }   // ❌ Not extracted
 - [Express.js Support](./express.md) - Express.js framework features
 - [TypeScript Support](./typescript.md) - TypeScript-specific features
 - [CLI Reference](../cli/context.md) - Command-line usage
-- [Contract Schema](../schema.md) - UIFContract format
+- [Contract Schema](../reference/schema.md) - UIFContract format
 
 ## NestJS Ecosystem Support
 

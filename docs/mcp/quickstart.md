@@ -48,12 +48,15 @@ Create a config file for your platform and add this configuration:
 - **Claude Desktop:** `~/Library/Application Support/Claude/claude_desktop_config.json` (macOS) or `%APPDATA%\Claude\claude_desktop_config.json` (Windows)
 
 **Configuration to add:**
+
+**`npx` and `-y`:** Use `"args": ["-y", "logicstamp-mcp"]` so `npx` does not block on install prompts when the client starts the server without a terminal. See [MCP getting started](getting-started.md#configuration) for a fuller explanation.
+
 ```json
 {
   "mcpServers": {
     "logicstamp": {
       "command": "npx",
-      "args": ["logicstamp-mcp"]
+      "args": ["-y", "logicstamp-mcp"]
     }
   }
 }
@@ -66,7 +69,7 @@ Create a config file for your platform and add this configuration:
     "logicstamp": {
       "type": "stdio",
       "command": "npx",
-      "args": ["logicstamp-mcp"]
+      "args": ["-y", "logicstamp-mcp"]
     }
   }
 }
