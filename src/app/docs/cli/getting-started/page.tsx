@@ -120,6 +120,17 @@ export default function QuickStartPage() {
                 }
               ]}
             />
+            <p className={`text-xs ${docsMutedTextClass} mt-4`}>
+              The <strong>Try (no install)</strong> tab uses <code className="px-1 py-0.5 bg-gray-100 dark:bg-gray-800 rounded text-[0.65rem]">npx -y</code> so package installs do not block on prompts—especially in CI or when a host starts <code className="px-1 py-0.5 bg-gray-100 dark:bg-gray-800 rounded text-[0.65rem]">npx</code> without a terminal. Full explanation:{' '}
+              <Link href="/docs/getting-started#npx-and-y" className="text-blue-600 dark:text-blue-400 hover:underline">
+                Getting started
+              </Link>
+              {' · '}
+              <Link href="/docs/mcp/getting-started#configuration" className="text-blue-600 dark:text-blue-400 hover:underline">
+                MCP configuration
+              </Link>
+              .
+            </p>
           </div>
         </AnimatedSection>
 

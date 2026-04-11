@@ -152,7 +152,33 @@ export default function MCPInstallationPage() {
         {/* Configuration — order matches docs/mcp/getting-started.md */}
         <AnimatedSection direction="up" delay={300}>
           <div className="mb-12">
-            <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white mb-6">Configuration</h2>
+            <h2
+              id="configuration"
+              className="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white mb-4 scroll-mt-24"
+            >
+              Configuration
+            </h2>
+
+            <div className="mb-6 rounded-lg border border-blue-200 dark:border-blue-900/40 bg-blue-50/50 dark:bg-blue-950/20 p-4">
+              <p className="text-sm font-semibold text-gray-900 dark:text-white mb-2">
+                <code className="px-1.5 py-0.5 bg-white/80 dark:bg-gray-900 rounded text-xs">npx</code> and{' '}
+                <code className="px-1.5 py-0.5 bg-white/80 dark:bg-gray-900 rounded text-xs">-y</code>
+              </p>
+              <p className={`text-sm ${docsBodyTextClass} leading-relaxed`}>
+                Include <code className="px-1 py-0.5 bg-white/60 dark:bg-gray-900 rounded text-xs">-y</code> in{' '}
+                <code className="px-1 py-0.5 bg-white/60 dark:bg-gray-900 rounded text-xs">&quot;args&quot;</code> before the package name so{' '}
+                <code className="px-1 py-0.5 bg-white/60 dark:bg-gray-900 rounded text-xs">npx</code> does not wait for interactive confirmation (for example when it needs to install or fetch the package). MCP clients usually start the server without a terminal, so a prompt can hang or fail. If{' '}
+                <code className="px-1 py-0.5 bg-white/60 dark:bg-gray-900 rounded text-xs">logicstamp-mcp</code> is already installed globally,{' '}
+                <code className="px-1 py-0.5 bg-white/60 dark:bg-gray-900 rounded text-xs">npx</code> often works without{' '}
+                <code className="px-1 py-0.5 bg-white/60 dark:bg-gray-900 rounded text-xs">-y</code>, but keeping{' '}
+                <code className="px-1 py-0.5 bg-white/60 dark:bg-gray-900 rounded text-xs">-y</code> in config files is recommended. Some clients may require{' '}
+                <code className="px-1 py-0.5 bg-white/60 dark:bg-gray-900 rounded text-xs">&quot;type&quot;: &quot;stdio&quot;</code>—see the{' '}
+                <Link href="/docs/mcp" className="text-blue-600 dark:text-blue-400 hover:underline">
+                  MCP docs
+                </Link>{' '}
+                and integration guides if the minimal config does not connect.
+              </p>
+            </div>
             
             <div className="space-y-8">
               {/* Claude Desktop */}
@@ -188,8 +214,7 @@ export default function MCPInstallationPage() {
                 </h3>
                 <p className="text-sm sm:text-base text-gray-700 dark:text-gray-300 mb-4">
                   Add to your Cursor MCP config (<code className="px-1.5 py-0.5 bg-gray-100 dark:bg-gray-800 rounded text-xs">~/.cursor/mcp.json</code> on macOS/Linux or{' '}
-                  <code className="px-1.5 py-0.5 bg-gray-100 dark:bg-gray-800 rounded text-xs">%USERPROFILE%\.cursor\mcp.json</code> on Windows). Use the same shape as Claude Desktop:{' '}
-                  <code className="px-1.5 py-0.5 bg-gray-100 dark:bg-gray-800 rounded text-xs">npx</code> with <code className="px-1.5 py-0.5 bg-gray-100 dark:bg-gray-800 rounded text-xs">args: [&quot;-y&quot;, &quot;logicstamp-mcp&quot;]</code>.
+                  <code className="px-1.5 py-0.5 bg-gray-100 dark:bg-gray-800 rounded text-xs">%USERPROFILE%\.cursor\mcp.json</code> on Windows). Use the same JSON as Claude Desktop below.
                 </p>
                 <TabbedCodeBlock
                   tabs={[
@@ -211,7 +236,8 @@ export default function MCPInstallationPage() {
                   Claude Code
                 </h3>
                 <p className="text-sm sm:text-base text-gray-700 dark:text-gray-300 mb-4">
-                  Optional: register the server with Claude Code MCP CLI or <code className="px-1.5 py-0.5 bg-gray-100 dark:bg-gray-800 rounded text-xs">~/.claude.json</code> (same <code className="px-1.5 py-0.5 bg-gray-100 dark:bg-gray-800 rounded text-xs">-y</code> + package args as above).
+                  Optional: register the server with Claude Code MCP CLI or <code className="px-1.5 py-0.5 bg-gray-100 dark:bg-gray-800 rounded text-xs">~/.claude.json</code> using the same <code className="px-1.5 py-0.5 bg-gray-100 dark:bg-gray-800 rounded text-xs">npx</code> /{' '}
+                  <code className="px-1.5 py-0.5 bg-gray-100 dark:bg-gray-800 rounded text-xs">-y</code> pattern as in the callout above.
                 </p>
                 <TabbedCodeBlock
                   tabs={[

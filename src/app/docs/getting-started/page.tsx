@@ -80,6 +80,21 @@ export default function GettingStartedPage() {
                 <code className="px-1 py-0.5 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded text-gray-900 dark:text-gray-100">context.json</code> and root{' '}
                 <code className="px-1 py-0.5 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded text-gray-900 dark:text-gray-100">context_main.json</code>.
               </p>
+              <div
+                id="npx-and-y"
+                className="mt-4 scroll-mt-24 rounded-lg border border-blue-200 dark:border-blue-900/40 bg-blue-50/50 dark:bg-blue-950/20 p-4"
+              >
+                <p className="text-xs font-semibold text-gray-900 dark:text-white mb-1.5">
+                  Why <code className="px-1 py-0.5 bg-white/80 dark:bg-gray-900 rounded text-[0.7rem]">-y</code> with <code className="px-1 py-0.5 bg-white/80 dark:bg-gray-900 rounded text-[0.7rem]">npx</code>?
+                </p>
+                <p className={`text-xs ${docsMutedTextClass} leading-relaxed`}>
+                  <code className="px-1 py-0.5 bg-white/60 dark:bg-gray-900 rounded text-[0.65rem]">-y</code> tells <code className="px-1 py-0.5 bg-white/60 dark:bg-gray-900 rounded text-[0.65rem]">npx</code> not to wait on interactive install or confirmation prompts. That matters in CI, scripts, or any environment without a proper TTY, where a prompt can hang. If the package is already cached or installed globally, <code className="px-1 py-0.5 bg-white/60 dark:bg-gray-900 rounded text-[0.65rem]">npx</code> may run without <code className="px-1 py-0.5 bg-white/60 dark:bg-gray-900 rounded text-[0.65rem]">-y</code>, but keeping <code className="px-1 py-0.5 bg-white/60 dark:bg-gray-900 rounded text-[0.65rem]">-y</code> in copy-paste commands and MCP config is recommended. Same idea for the MCP server:{' '}
+                  <Link href="/docs/mcp/getting-started#configuration" className="text-blue-600 dark:text-blue-400 hover:underline">
+                    MCP configuration
+                  </Link>
+                  .
+                </p>
+              </div>
             </div>
           </div>
         </AnimatedSection>

@@ -85,6 +85,8 @@ stamp context --watch
 
 ## Configuration
 
+**`npx` and `-y`:** Include `-y` in `"args"` before the package name so `npx` does not wait for interactive confirmation (for example when it needs to install or fetch the package). MCP clients usually start the server without a terminal, so a prompt can hang or fail. If `logicstamp-mcp` is already installed globally, `npx` often works without `-y`, but keeping `-y` in config files is recommended.
+
 ### Claude Desktop Configuration
 
 Configure Claude Desktop to use the LogicStamp MCP Server:
