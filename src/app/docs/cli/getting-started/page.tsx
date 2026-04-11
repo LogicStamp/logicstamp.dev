@@ -4,6 +4,7 @@ import Footer from '@/components/layout/Footer'
 import AnimatedSection from '@/components/common/AnimatedSection'
 import TabbedCodeBlock from '@/components/docs/TabbedCodeBlock'
 import DocsLayout from '@/components/docs/DocsLayout'
+import CopyButton from '@/components/ui/CopyButton'
 import ReadyToGetStartedCard from '@/components/docs/ReadyToGetStartedCard'
 import { docsBodyTextClass, docsMutedTextClass } from '@/lib/docs/text-styles'
 
@@ -106,9 +107,30 @@ export default function QuickStartPage() {
                   label: 'Verify',
                   code: 'stamp --version',
                   copyText: 'stamp --version'
+                },
+                {
+                  label: 'Local project',
+                  code: 'npm install logicstamp-context\nnpx stamp context',
+                  copyText: 'npm install logicstamp-context\nnpx stamp context'
+                },
+                {
+                  label: 'Try (no install)',
+                  code: 'npx -y logicstamp-context@latest context',
+                  copyText: 'npx -y logicstamp-context@latest context'
                 }
               ]}
             />
+            <p className={`text-xs ${docsMutedTextClass} mt-4`}>
+              The <strong>Try (no install)</strong> tab uses <code className="px-1 py-0.5 bg-gray-100 dark:bg-gray-800 rounded text-[0.65rem]">npx -y</code> so package installs do not block on prompts—especially in CI or when a host starts <code className="px-1 py-0.5 bg-gray-100 dark:bg-gray-800 rounded text-[0.65rem]">npx</code> without a terminal. Full explanation:{' '}
+              <Link href="/docs/getting-started#npx-and-y" className="text-blue-600 dark:text-blue-400 hover:underline">
+                Getting started
+              </Link>
+              {' · '}
+              <Link href="/docs/mcp/getting-started#configuration" className="text-blue-600 dark:text-blue-400 hover:underline">
+                MCP configuration
+              </Link>
+              .
+            </p>
           </div>
         </AnimatedSection>
 
@@ -132,10 +154,18 @@ export default function QuickStartPage() {
             <div className="bg-gray-50 dark:bg-gray-800/50 rounded-lg p-4 mb-4 border border-gray-200 dark:border-gray-700">
               <p className="text-sm font-semibold text-gray-900 dark:text-white mb-2">What <code className="px-1.5 py-0.5 bg-gray-100 dark:bg-gray-800 rounded text-xs">stamp init</code> does:</p>
               <ul className="space-y-1 text-sm text-gray-700 dark:text-gray-300 list-disc list-inside">
-                <li>Sets up <code className="px-1 bg-gray-100 dark:bg-gray-800 rounded text-xs">.gitignore</code> patterns for generated files</li>
+                <li>
+                  Updates <code className="px-1 bg-gray-100 dark:bg-gray-800 rounded text-xs">.gitignore</code> for{' '}
+                  <code className="px-1 bg-gray-100 dark:bg-gray-800 rounded text-xs">context.json</code>,{' '}
+                  <code className="px-1 bg-gray-100 dark:bg-gray-800 rounded text-xs">context_*.json</code>,{' '}
+                  <code className="px-1 bg-gray-100 dark:bg-gray-800 rounded text-xs">context.toon</code>,{' '}
+                  <code className="px-1 bg-gray-100 dark:bg-gray-800 rounded text-xs">*.uif.json</code>,{' '}
+                  <code className="px-1 bg-gray-100 dark:bg-gray-800 rounded text-xs">.logicstamp/</code>,{' '}
+                  <code className="px-1 bg-gray-100 dark:bg-gray-800 rounded text-xs">stamp_security_report.json</code>
+                </li>
                 <li>Runs security scan for secrets (API keys, passwords, tokens)</li>
-                <li>Generates <code className="px-1 bg-gray-100 dark:bg-gray-800 rounded text-xs">LLM_CONTEXT.md</code> guide</li>
-                <li>Creates <code className="px-1 bg-gray-100 dark:bg-gray-800 rounded text-xs">.logicstamp/config.json</code> for preferences</li>
+                <li>Generates <code className="px-1 bg-gray-100 dark:bg-gray-800 rounded text-xs">LLM_CONTEXT.md</code></li>
+                <li>Creates <code className="px-1 bg-gray-100 dark:bg-gray-800 rounded text-xs">.logicstamp/config.json</code> so <code className="px-1 bg-gray-100 dark:bg-gray-800 rounded text-xs">stamp context</code> stays non-interactive (CI-friendly)</li>
               </ul>
             </div>
 
@@ -160,6 +190,16 @@ export default function QuickStartPage() {
                   label: 'Skip & Use Defaults',
                   code: 'cd your-react-project\nstamp context',
                   copyText: 'cd your-react-project\nstamp context'
+                },
+                {
+                  label: 'Skip .gitignore',
+                  code: 'cd your-react-project\nstamp init --skip-gitignore',
+                  copyText: 'cd your-react-project\nstamp init --skip-gitignore'
+                },
+                {
+                  label: 'Init subfolder',
+                  code: 'stamp init ./my-project',
+                  copyText: 'stamp init ./my-project'
                 }
               ]}
             />
@@ -193,7 +233,16 @@ export default function QuickStartPage() {
               ]}
             />
             <p className={`text-sm ${docsMutedTextClass} mt-3`}>
-              <strong>With Style</strong> extracts Tailwind CSS classes, SCSS modules, Material UI themes, styled-components, and framer-motion animations.
+              <strong>With Style</strong> extracts Tailwind CSS classes, SCSS modules, Material UI themes, styled-components, and framer-motion animations. LogicStamp analyzes{' '}
+              <code className="px-1.5 py-0.5 bg-gray-100 dark:bg-gray-800 rounded text-xs">.ts</code> and{' '}
+              <code className="px-1.5 py-0.5 bg-gray-100 dark:bg-gray-800 rounded text-xs">.tsx</code> only.
+            </p>
+            <p className={`text-sm ${docsMutedTextClass} mt-2`}>
+              LogicStamp runs <strong>alongside</strong> <code className="px-1.5 py-0.5 bg-gray-100 dark:bg-gray-800 rounded text-xs">tsc</code>—it does not replace your typechecker. See{' '}
+              <Link href="/docs/frameworks/typescript" className="text-blue-600 dark:text-blue-400 hover:underline">
+                TypeScript support
+              </Link>
+              .
             </p>
           </div>
         </AnimatedSection>
@@ -293,8 +342,8 @@ export default function QuickStartPage() {
                     },
                     {
                       label: 'Custom Output',
-                      code: 'stamp context --output ./ai-context',
-                      copyText: 'stamp context --output ./ai-context'
+                      code: 'stamp context --out ./output',
+                      copyText: 'stamp context --out ./output'
                     },
                     {
                       label: 'Profiles',
@@ -432,9 +481,14 @@ export default function QuickStartPage() {
                 <TabbedCodeBlock
                   tabs={[
                     {
-                      label: 'Setup',
+                      label: 'Watch',
                       code: 'stamp init\nstamp context --watch',
                       copyText: 'stamp init\nstamp context --watch'
+                    },
+                    {
+                      label: 'Strict watch',
+                      code: 'stamp init\nstamp context --strict-watch',
+                      copyText: 'stamp init\nstamp context --strict-watch'
                     }
                   ]}
                 />
@@ -448,8 +502,8 @@ export default function QuickStartPage() {
                   tabs={[
                     {
                       label: 'CI',
-                      code: 'stamp context --profile ci-strict --strict-missing\nstamp context validate',
-                      copyText: 'stamp context --profile ci-strict --strict-missing\nstamp context validate'
+                      code: 'stamp context --profile ci-strict --strict-missing\nstamp context validate\nstamp context compare',
+                      copyText: 'stamp context --profile ci-strict --strict-missing\nstamp context validate\nstamp context compare'
                     }
                   ]}
                 />
@@ -467,7 +521,25 @@ export default function QuickStartPage() {
               <div className="border-l-4 border-blue-500 bg-blue-50/50 dark:bg-blue-950/20 p-4 rounded-r-lg">
                 <p className="text-sm font-semibold text-gray-900 dark:text-white mb-1">Context files not generating?</p>
                 <p className="text-sm text-gray-700 dark:text-gray-300">
-                  Check Node.js version (requires &gt;= 20), verify TypeScript files exist, or run with <code className="px-1 bg-gray-100 dark:bg-gray-800 rounded text-xs">LOGICSTAMP_DEBUG=1</code> for detailed logs.
+                  Check Node.js version (requires &gt;= 20), verify <code className="px-1 bg-gray-100 dark:bg-gray-800 rounded text-xs">.ts</code> /{' '}
+                  <code className="px-1 bg-gray-100 dark:bg-gray-800 rounded text-xs">.tsx</code> files exist, or run{' '}
+                  <code className="px-1 bg-gray-100 dark:bg-gray-800 rounded text-xs">LOGICSTAMP_DEBUG=1 stamp context</code> (Unix) for detailed logs.
+                </p>
+              </div>
+
+              <div className="border-l-4 border-gray-500 bg-gray-50/50 dark:bg-gray-900/40 p-4 rounded-r-lg">
+                <p className="text-sm font-semibold text-gray-900 dark:text-white mb-1"><code className="px-1 bg-gray-100 dark:bg-gray-800 rounded text-xs">npx</code> vs global <code className="px-1 bg-gray-100 dark:bg-gray-800 rounded text-xs">stamp</code></p>
+                <p className="text-sm text-gray-700 dark:text-gray-300 mb-2">
+                  If one works and the other fails, remove conflicting globals and pick a single workflow:
+                </p>
+                <div className="relative">
+                  <CopyButton text="npm uninstall -g logicstamp-context" className="absolute top-2 right-2" />
+                  <code className="block text-gray-900 dark:text-gray-100 font-mono text-sm p-4 pr-24 bg-gray-100 dark:bg-gray-800 rounded-lg">
+                    npm uninstall -g logicstamp-context
+                  </code>
+                </div>
+                <p className={`text-xs ${docsMutedTextClass} mt-2`}>
+                  Then reinstall globally or use <code className="px-1 bg-gray-100 dark:bg-gray-800 rounded text-xs">npx -y logicstamp-context@latest context</code> only.
                 </p>
               </div>
 

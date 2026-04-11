@@ -53,6 +53,8 @@ Install globally to use LogicStamp in **all your projects**.
 
 **Important:** This setup is done **once** (globally). After configuring the MCP server globally, it will be available in every project you open in Cursor. You don't need to set it up again for each project. However, when you actually analyze a project, you'll call `logicstamp_refresh_snapshot` for that specific project - the analysis itself is per-project, but the MCP server setup is global.
 
+**`npx` and `-y`:** Use `"args": ["-y", "logicstamp-mcp"]` so `npx` does not block on prompts when Cursor starts the server without a terminal. See [MCP getting started](../getting-started.md#configuration) for details.
+
 ### Manual Configuration
 
 **On macOS/Linux:**
@@ -74,7 +76,7 @@ Add the following configuration:
   "mcpServers": {
     "logicstamp": {
       "command": "npx",
-      "args": ["logicstamp-mcp"]
+      "args": ["-y", "logicstamp-mcp"]
     }
   }
 }
@@ -87,7 +89,7 @@ Add the following configuration:
     "logicstamp": {
       "type": "stdio",
       "command": "npx",
-      "args": ["logicstamp-mcp"]
+      "args": ["-y", "logicstamp-mcp"]
     }
   }
 }
@@ -132,7 +134,7 @@ If you're developing the MCP server locally or testing before publishing, use ab
 
 | Approach | Command | Path | Use Case |
 |----------|---------|------|----------|
-| **Global Install** (Recommended) | `npx` | Package name only | Production use, team sharing |
+| **Global Install** (Recommended) | `npx` | `["-y", "logicstamp-mcp"]` in `args` | Production use, team sharing |
 | **Local Development** | `node` | Absolute path to `dist/index.js` | Contributing, testing before publish |
 
 **Benefits of Global Install:**
@@ -174,7 +176,7 @@ Create `.cursor/mcp.json` with this content:
   "mcpServers": {
     "logicstamp": {
       "command": "npx",
-      "args": ["logicstamp-mcp"]
+      "args": ["-y", "logicstamp-mcp"]
     }
   }
 }

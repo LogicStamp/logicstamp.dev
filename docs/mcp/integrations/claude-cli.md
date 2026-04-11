@@ -67,6 +67,8 @@ Install globally to use LogicStamp in **all your projects**.
 
 **Important:** This setup is done **once** (globally). After configuring the MCP server globally, it will be available in every project. You don't need to set it up again for each project. However, when you actually analyze a project, you'll call `logicstamp_refresh_snapshot` for that specific project - the analysis itself is per-project, but the MCP server setup is global.
 
+**`npx` and `-y`:** Use `"args": ["-y", "logicstamp-mcp"]` (or `npx -y logicstamp-mcp` in CLI examples) so `npx` does not block on prompts when Claude Code starts the server without a terminal. See [MCP getting started](../getting-started.md#configuration) for details.
+
 ### Manual Configuration
 
 **On macOS/Linux:**
@@ -87,7 +89,7 @@ Add the following configuration:
     "logicstamp": {
       "type": "stdio",
       "command": "npx",
-      "args": ["logicstamp-mcp"]
+      "args": ["-y", "logicstamp-mcp"]
     }
   }
 }
@@ -96,7 +98,7 @@ Add the following configuration:
 ### Using CLI Command (Alternative)
 
 ```bash
-claude mcp add --scope user --transport stdio logicstamp -- npx logicstamp-mcp
+claude mcp add --scope user --transport stdio logicstamp -- npx -y logicstamp-mcp
 ```
 
 This automatically adds LogicStamp to `~/.claude.json` and makes it available in all your projects.
@@ -134,7 +136,7 @@ Create `.mcp.json` with this content:
     "logicstamp": {
       "type": "stdio",
       "command": "npx",
-      "args": ["logicstamp-mcp"]
+      "args": ["-y", "logicstamp-mcp"]
     }
   }
 }
@@ -144,7 +146,7 @@ Create `.mcp.json` with this content:
 
 ```bash
 cd /path/to/your/project
-claude mcp add --scope project --transport stdio logicstamp -- npx logicstamp-mcp
+claude mcp add --scope project --transport stdio logicstamp -- npx -y logicstamp-mcp
 ```
 
 This automatically creates `.mcp.json` in your project root.
@@ -198,7 +200,7 @@ Or edit `~/.claude.json` manually:
 
 | Approach | Configuration | Use Case |
 |----------|---------------|----------|
-| **Global Install** (Recommended) | `"command": "npx", "args": ["logicstamp-mcp"]` | Production use, team sharing |
+| **Global Install** (Recommended) | `"command": "npx", "args": ["-y", "logicstamp-mcp"]` | Production use, team sharing |
 | **Local Development** | `"command": "node", "args": ["/absolute/path/to/dist/index.js"]` | Contributing, testing before publish |
 
 **Why prefer global install?**
@@ -282,7 +284,7 @@ The 7 LogicStamp tools will be available:
 claude mcp list
 
 # If not listed, add it
-claude mcp add --scope user --transport stdio logicstamp -- npx logicstamp-mcp
+claude mcp add --scope user --transport stdio logicstamp -- npx -y logicstamp-mcp
 
 # Restart Claude Code or start a new conversation
 ```

@@ -50,6 +50,8 @@ Claude Desktop only supports **global configuration** (no project-specific confi
 
 **Important:** This setup is done **once** (globally). After configuring the MCP server globally, it will be available in every project. You don't need to set it up again for each project. However, when you actually analyze a project, you'll call `logicstamp_refresh_snapshot` for that specific project - the analysis itself is per-project, but the MCP server setup is global.
 
+**`npx` and `-y`:** Use `"args": ["-y", "logicstamp-mcp"]` so `npx` does not block on prompts when Claude Desktop starts the server without a terminal. See [MCP getting started](../getting-started.md#configuration) for details.
+
 #### On macOS
 
 Edit `~/Library/Application Support/Claude/claude_desktop_config.json`:
@@ -65,7 +67,7 @@ Add the following configuration:
   "mcpServers": {
     "logicstamp": {
       "command": "npx",
-      "args": ["logicstamp-mcp"]
+      "args": ["-y", "logicstamp-mcp"]
     }
   }
 }
@@ -78,7 +80,7 @@ Add the following configuration:
     "logicstamp": {
       "type": "stdio",
       "command": "npx",
-      "args": ["logicstamp-mcp"]
+      "args": ["-y", "logicstamp-mcp"]
     }
   }
 }
@@ -99,7 +101,7 @@ Add the following configuration:
   "mcpServers": {
     "logicstamp": {
       "command": "npx",
-      "args": ["logicstamp-mcp"]
+      "args": ["-y", "logicstamp-mcp"]
     }
   }
 }
@@ -152,7 +154,7 @@ The recommended approach is to use `npx` with the globally installed package:
   "mcpServers": {
     "logicstamp": {
       "command": "npx",
-      "args": ["logicstamp-mcp"]
+      "args": ["-y", "logicstamp-mcp"]
     }
   }
 }

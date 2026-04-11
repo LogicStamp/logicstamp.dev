@@ -65,7 +65,7 @@ This sets up:
 - Security scanning
 - Project configuration
 
-📋 **See [CLI Getting Started Guide](../cli/getting-started.md)** for details.
+📋 **See [CLI getting started](https://github.com/LogicStamp/logicstamp-context/blob/main/docs/getting-started.md)** for details.
 
 ### Step 3: Generate Initial Context
 
@@ -84,6 +84,8 @@ stamp context --watch
 **Recommended:** Use watch mode so context stays synchronized with your code changes.
 
 ## Configuration
+
+**`npx` and `-y`:** Include `-y` in `"args"` before the package name so `npx` does not wait for interactive confirmation (for example when it needs to install or fetch the package). MCP clients usually start the server without a terminal, so a prompt can hang or fail. If `logicstamp-mcp` is already installed globally, `npx` often works without `-y`, but keeping `-y` in config files is recommended.
 
 ### Claude Desktop Configuration
 
@@ -557,10 +559,10 @@ When you modify a component:
 
 ## Next Steps
 
-- **[CLI Getting Started Guide](../cli/getting-started.md)** - Understand the underlying CLI
-- **[Watch Mode Documentation](../cli/watch.md)** - Learn about watch mode features
-- **[Schema Documentation](../schema.md)** - Understand context bundle format
-- **[Usage Guide](../usage.md)** - Comprehensive CLI reference
+- **[CLI getting started](https://github.com/LogicStamp/logicstamp-context/blob/main/docs/getting-started.md)** — install and first steps for LogicStamp Context
+- **[Watch mode (`docs/cli/watch.md`)](https://github.com/LogicStamp/logicstamp-context/blob/main/docs/cli/watch.md)** — `stamp context --watch`
+- **[Schema reference (`docs/reference/schema.md`)](https://github.com/LogicStamp/logicstamp-context/blob/main/docs/reference/schema.md)** — context bundle format
+- **[Usage guide (`docs/guides/usage.md`)](https://github.com/LogicStamp/logicstamp-context/blob/main/docs/guides/usage.md)** — comprehensive CLI reference
 
 ## Quick Reference
 
