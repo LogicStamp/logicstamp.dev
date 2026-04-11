@@ -39,8 +39,18 @@ npx stamp context
 You can also try LogicStamp Context without installing:
 
 ```bash
-npx logicstamp-context context
+npx -y logicstamp-context@latest context
 ```
+
+### Troubleshooting: `npx` vs global `stamp`
+
+If `npx` misbehaves but `stamp` works (or the opposite), an outdated or conflicting global install may be involved. Remove it and stick to one workflow:
+
+```bash
+npm uninstall -g logicstamp-context
+```
+
+Then either reinstall globally (`npm install -g logicstamp-context`) or run via `npx` only (for example `npx -y logicstamp-context@latest context`).
 
 ## Step 1: Initialize Your Project (Recommended)
 
@@ -90,6 +100,8 @@ Now generate context files for your project:
 ```bash
 stamp context
 ```
+
+> **Stack fit:** LogicStamp runs **alongside** `tsc` and your build—it compiles AI-oriented contracts and graphs, not a full-program typecheck. See [Relationship to TypeScript](../getting-started.md#relationship-to-typescript-tsc).
 
 **What you get:**
 
@@ -171,7 +183,7 @@ Each folder's `context.json` contains component contracts:
 }
 ```
 
-📋 **See [Schema Documentation](../schema.md)** for complete format details.
+📋 **See [Schema Documentation](../reference/schema.md)** for complete format details.
 
 ## Common Options
 
@@ -339,6 +351,8 @@ stamp init
 
 # 2. Start watch mode (keeps context fresh)
 stamp context --watch
+# Or strict watch: breaking changes + violations (implies watch)
+stamp context --strict-watch
 
 # 3. Code normally - context regenerates automatically
 ```
@@ -421,11 +435,11 @@ stamp context --strict-missing || exit 1
 
 ## Next Steps
 
-- **[Usage Guide](../usage.md)** - Comprehensive command reference
+- **[Usage Guide](../guides/usage.md)** - Comprehensive command reference
 - **[Watch Mode](watch.md)** - Auto-regenerate context as you code
-- **[Schema Documentation](../schema.md)** - Understanding output format
+- **[Schema Documentation](../reference/schema.md)** - Understanding output format
 - **[Framework Guides](../frameworks/)** - Framework-specific documentation
-- **[Troubleshooting](../usage.md#troubleshooting)** - Common issues and solutions
+- **[Troubleshooting](../guides/usage.md#troubleshooting)** - Common issues and solutions
 
 ## Quick Reference
 
@@ -441,6 +455,9 @@ stamp context
 
 # Watch mode
 stamp context --watch
+
+# Watch + breaking-change detection (implies --watch)
+stamp context --strict-watch
 
 # With style metadata
 stamp context style
@@ -460,4 +477,4 @@ stamp ignore <file>
 
 ---
 
-**Ready to dive deeper?** Check out the [Usage Guide](../usage.md) for comprehensive documentation on all commands and options.
+**Ready to dive deeper?** Check out the [Usage Guide](../guides/usage.md) for comprehensive documentation on all commands and options.

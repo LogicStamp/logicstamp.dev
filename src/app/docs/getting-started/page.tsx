@@ -24,7 +24,7 @@ export default function GettingStartedPage() {
               Getting Started
             </h1>
             <p className={`text-base sm:text-lg md:text-xl lg:text-2xl ${docsBodyTextClass} mb-8 max-w-3xl leading-relaxed`}>
-              Compile AI-ready context from your TypeScript codebase.
+              Compile your TypeScript codebase into deterministic architectural contracts for AI workflows.
             </p>
           </div>
         </AnimatedSection>
@@ -69,13 +69,16 @@ export default function GettingStartedPage() {
             <div className="bg-gray-50 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl p-6 mb-6">
               <p className={`text-sm ${docsBodyTextClass} mb-3`}>Try it now (no install required):</p>
               <div className="relative">
-                <CopyButton text="npx logicstamp-context context" className="absolute top-2 right-2" />
+                <CopyButton text="npx -y logicstamp-context@latest context" className="absolute top-2 right-2" />
                 <code className="block text-gray-900 dark:text-gray-100 font-mono text-sm p-4 bg-theme-primary border border-gray-200 dark:border-gray-700 rounded-lg">
-                  npx logicstamp-context context
+                  npx -y logicstamp-context@latest context
                 </code>
               </div>
               <p className="text-xs text-gray-700 dark:text-gray-300 mt-3">
-                This compiles your repo into <code className="px-1 py-0.5 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded text-gray-900 dark:text-gray-100">context.json</code> files.
+                Scans <code className="px-1 py-0.5 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded text-gray-900 dark:text-gray-100">.ts</code> /{' '}
+                <code className="px-1 py-0.5 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded text-gray-900 dark:text-gray-100">.tsx</code> only, writes per-folder{' '}
+                <code className="px-1 py-0.5 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded text-gray-900 dark:text-gray-100">context.json</code> and root{' '}
+                <code className="px-1 py-0.5 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded text-gray-900 dark:text-gray-100">context_main.json</code>.
               </p>
             </div>
           </div>
@@ -155,7 +158,16 @@ export default function GettingStartedPage() {
                   ]}
                 />
                 <p className="text-xs text-gray-500 dark:text-gray-500 mt-2 mb-3">
-                  Sets up <code className="px-1 py-0.5 bg-gray-100 dark:bg-gray-800 rounded">.gitignore</code> patterns, runs security scan, and creates <code className="px-1 py-0.5 bg-gray-100 dark:bg-gray-800 rounded">LLM_CONTEXT.md</code>. You can skip this and go straight to generating context.
+                  Adds <code className="px-1 py-0.5 bg-gray-100 dark:bg-gray-800 rounded">.gitignore</code> entries for{' '}
+                  <code className="px-1 py-0.5 bg-gray-100 dark:bg-gray-800 rounded">context.json</code>,{' '}
+                  <code className="px-1 py-0.5 bg-gray-100 dark:bg-gray-800 rounded">context_*.json</code>,{' '}
+                  <code className="px-1 py-0.5 bg-gray-100 dark:bg-gray-800 rounded">context.toon</code>,{' '}
+                  <code className="px-1 py-0.5 bg-gray-100 dark:bg-gray-800 rounded">*.uif.json</code>,{' '}
+                  <code className="px-1 py-0.5 bg-gray-100 dark:bg-gray-800 rounded">.logicstamp/</code>, and{' '}
+                  <code className="px-1 py-0.5 bg-gray-100 dark:bg-gray-800 rounded">stamp_security_report.json</code>; runs a security scan; writes{' '}
+                  <code className="px-1 py-0.5 bg-gray-100 dark:bg-gray-800 rounded">LLM_CONTEXT.md</code> and{' '}
+                  <code className="px-1 py-0.5 bg-gray-100 dark:bg-gray-800 rounded">.logicstamp/config.json</code>. You can skip init and run{' '}
+                  <code className="px-1 py-0.5 bg-gray-100 dark:bg-gray-800 rounded">stamp context</code> with safe defaults.
                 </p>
                 <p className="text-sm text-gray-700 dark:text-gray-300 mt-4 mb-3">
                   Then compile context:

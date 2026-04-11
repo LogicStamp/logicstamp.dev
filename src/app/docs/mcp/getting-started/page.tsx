@@ -7,6 +7,23 @@ import Link from 'next/link'
 import ReadyToGetStartedCard from '@/components/docs/ReadyToGetStartedCard'
 import { docsBodyTextClass, docsMutedTextClass } from '@/lib/docs/text-styles'
 
+/** Matches docs/mcp/getting-started.md (Claude Desktop / Cursor examples). */
+const MCP_DESKTOP_OR_CURSOR_JSON = JSON.stringify(
+  {
+    mcpServers: {
+      logicstamp: {
+        command: 'npx',
+        args: ['-y', 'logicstamp-mcp'],
+        env: {
+          PROJECT_PATH: '/absolute/path/to/your/project',
+        },
+      },
+    },
+  },
+  null,
+  2
+)
+
 export const metadata: Metadata = {
   title: 'MCP Getting Started | LogicStamp Context',
   description: 'Install and configure LogicStamp Context MCP server for Claude Desktop, Claude Code, and other AI assistants.',
@@ -50,7 +67,21 @@ export default function MCPInstallationPage() {
                 </li>
                 <li className="flex items-start gap-2">
                   <span className="text-blue-600 dark:text-blue-400 mt-1">•</span>
-                  <span><strong>LogicStamp Context CLI</strong> - The <code className="px-1.5 py-0.5 bg-gray-100 dark:bg-gray-800 rounded text-xs">stamp</code> command must be installed</span>
+                  <span>
+                    <strong>LogicStamp CLI</strong> — <code className="px-1.5 py-0.5 bg-gray-100 dark:bg-gray-800 rounded text-xs">stamp</code> on your{' '}
+                    <code className="px-1.5 py-0.5 bg-gray-100 dark:bg-gray-800 rounded text-xs">PATH</code> (the MCP server shells out to it)
+                  </span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <span className="text-blue-600 dark:text-blue-400 mt-1">•</span>
+                  <span><strong>MCP-capable assistant</strong> — Claude Desktop, Cursor, Claude Code, or another MCP client</span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <span className="text-blue-600 dark:text-blue-400 mt-1">•</span>
+                  <span>
+                    <strong>TypeScript project</strong> — LogicStamp analyzes <code className="px-1.5 py-0.5 bg-gray-100 dark:bg-gray-800 rounded text-xs">.ts</code> /{' '}
+                    <code className="px-1.5 py-0.5 bg-gray-100 dark:bg-gray-800 rounded text-xs">.tsx</code> only
+                  </span>
                 </li>
               </ul>
               <div className="mt-4">
@@ -87,26 +118,107 @@ export default function MCPInstallationPage() {
           </div>
         </AnimatedSection>
 
-        {/* Configuration */}
+        {/* Prepare project (docs/mcp/getting-started.md steps 2–3) */}
+        <AnimatedSection direction="up" delay={250}>
+          <div className="mb-12">
+            <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white mb-4">Prepare your project</h2>
+            <p className="text-sm sm:text-base text-gray-700 dark:text-gray-300 mb-4">
+              Before tools return useful data, initialize LogicStamp and generate context (same as the MCP guide):
+            </p>
+            <TabbedCodeBlock
+              tabs={[
+                {
+                  label: 'Init + context',
+                  code: 'cd /path/to/your/project\nstamp init\nstamp context',
+                  copyText: 'cd /path/to/your/project\nstamp init\nstamp context'
+                },
+                {
+                  label: 'Watch (recommended)',
+                  code: 'stamp context --watch',
+                  copyText: 'stamp context --watch'
+                }
+              ]}
+            />
+            <p className={`text-sm ${docsMutedTextClass} mt-3`}>
+              Details:{' '}
+              <Link href="/docs/cli/getting-started" className="text-blue-600 dark:text-blue-400 hover:underline">
+                CLI getting started
+              </Link>
+              .
+            </p>
+          </div>
+        </AnimatedSection>
+
+        {/* Configuration — order matches docs/mcp/getting-started.md */}
         <AnimatedSection direction="up" delay={300}>
           <div className="mb-12">
             <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white mb-6">Configuration</h2>
             
             <div className="space-y-8">
+              {/* Claude Desktop */}
+              <div className="border border-gray-200 dark:border-gray-800 rounded-lg p-6">
+                <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-3">
+                  Claude Desktop
+                </h3>
+                <p className="text-sm sm:text-base text-gray-700 dark:text-gray-300 mb-4">
+                  Edit <code className="px-1.5 py-0.5 bg-gray-100 dark:bg-gray-800 rounded text-xs">claude_desktop_config.json</code>: macOS{' '}
+                  <code className="px-1.5 py-0.5 bg-gray-100 dark:bg-gray-800 rounded text-xs">~/Library/Application Support/Claude/claude_desktop_config.json</code>, Windows{' '}
+                  <code className="px-1.5 py-0.5 bg-gray-100 dark:bg-gray-800 rounded text-xs">%APPDATA%\Claude\claude_desktop_config.json</code>. Merge the block below into{' '}
+                  <code className="px-1.5 py-0.5 bg-gray-100 dark:bg-gray-800 rounded text-xs">mcpServers</code>, then restart Claude Desktop.
+                </p>
+                <TabbedCodeBlock
+                  tabs={[
+                    {
+                      label: 'Config',
+                      code: MCP_DESKTOP_OR_CURSOR_JSON,
+                      copyText: MCP_DESKTOP_OR_CURSOR_JSON
+                    }
+                  ]}
+                />
+                <p className={`text-sm ${docsMutedTextClass} mt-3`}>
+                  Replace <code className="px-1.5 py-0.5 bg-gray-100 dark:bg-gray-800 rounded text-xs">PROJECT_PATH</code> with your project root. Most tool calls pass{' '}
+                  <code className="px-1.5 py-0.5 bg-gray-100 dark:bg-gray-800 rounded text-xs">projectPath</code> explicitly, so this env var is optional fallback (e.g. compare tools).
+                </p>
+              </div>
+
+              {/* Cursor */}
+              <div className="border border-gray-200 dark:border-gray-800 rounded-lg p-6">
+                <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-3">
+                  Cursor
+                </h3>
+                <p className="text-sm sm:text-base text-gray-700 dark:text-gray-300 mb-4">
+                  Add to your Cursor MCP config (<code className="px-1.5 py-0.5 bg-gray-100 dark:bg-gray-800 rounded text-xs">~/.cursor/mcp.json</code> on macOS/Linux or{' '}
+                  <code className="px-1.5 py-0.5 bg-gray-100 dark:bg-gray-800 rounded text-xs">%USERPROFILE%\.cursor\mcp.json</code> on Windows). Use the same shape as Claude Desktop:{' '}
+                  <code className="px-1.5 py-0.5 bg-gray-100 dark:bg-gray-800 rounded text-xs">npx</code> with <code className="px-1.5 py-0.5 bg-gray-100 dark:bg-gray-800 rounded text-xs">args: [&quot;-y&quot;, &quot;logicstamp-mcp&quot;]</code>.
+                </p>
+                <TabbedCodeBlock
+                  tabs={[
+                    {
+                      label: 'Config',
+                      code: MCP_DESKTOP_OR_CURSOR_JSON,
+                      copyText: MCP_DESKTOP_OR_CURSOR_JSON
+                    }
+                  ]}
+                />
+                <p className={`text-sm ${docsMutedTextClass} mt-3`}>
+                  Fully quit and restart Cursor (not just close the window) after saving.
+                </p>
+              </div>
+
               {/* Claude Code */}
               <div className="border border-gray-200 dark:border-gray-800 rounded-lg p-6">
                 <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-3">
-                  For Claude Code
+                  Claude Code
                 </h3>
                 <p className="text-sm sm:text-base text-gray-700 dark:text-gray-300 mb-4">
-                  Add to your global configuration (available in all projects):
+                  Optional: register the server with Claude Code MCP CLI or <code className="px-1.5 py-0.5 bg-gray-100 dark:bg-gray-800 rounded text-xs">~/.claude.json</code> (same <code className="px-1.5 py-0.5 bg-gray-100 dark:bg-gray-800 rounded text-xs">-y</code> + package args as above).
                 </p>
                 <TabbedCodeBlock
                   tabs={[
                     {
                       label: 'Using CLI',
-                      code: 'claude mcp add --scope user --transport stdio logicstamp -- npx logicstamp-mcp',
-                      copyText: 'claude mcp add --scope user --transport stdio logicstamp -- npx logicstamp-mcp'
+                      code: 'claude mcp add --scope user --transport stdio logicstamp -- npx -y logicstamp-mcp',
+                      copyText: 'claude mcp add --scope user --transport stdio logicstamp -- npx -y logicstamp-mcp'
                     },
                     {
                       label: 'Manual Config',
@@ -116,59 +228,34 @@ export default function MCPInstallationPage() {
     "logicstamp": {
       "type": "stdio",
       "command": "npx",
-      "args": ["logicstamp-mcp"]
+      "args": ["-y", "logicstamp-mcp"]
     }
   }
 }`,
-                      copyText: JSON.stringify({ mcpServers: { logicstamp: { type: "stdio", command: "npx", args: ["logicstamp-mcp"] } } }, null, 2)
+                      copyText: JSON.stringify(
+                        { mcpServers: { logicstamp: { type: 'stdio', command: 'npx', args: ['-y', 'logicstamp-mcp'] } } },
+                        null,
+                        2
+                      )
                     }
                   ]}
                 />
                 <p className={`text-sm ${docsMutedTextClass} mt-3`}>
-                  <strong>Per-project setup:</strong> Use <code className="px-1.5 py-0.5 bg-gray-100 dark:bg-gray-800 rounded text-xs">claude mcp add --scope project</code> to create <code className="px-1.5 py-0.5 bg-gray-100 dark:bg-gray-800 rounded text-xs">.mcp.json</code> in your project root (can be committed to git for team collaboration).
+                  <strong>Per-project:</strong>{' '}
+                  <code className="px-1.5 py-0.5 bg-gray-100 dark:bg-gray-800 rounded text-xs">claude mcp add --scope project</code> writes <code className="px-1.5 py-0.5 bg-gray-100 dark:bg-gray-800 rounded text-xs">.mcp.json</code> in the repo.
                 </p>
               </div>
+            </div>
 
-              {/* Claude Desktop */}
-              <div className="border border-gray-200 dark:border-gray-800 rounded-lg p-6">
-                <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-3">
-                  For Claude Desktop
-                </h3>
-                <p className="text-sm sm:text-base text-gray-700 dark:text-gray-300 mb-4">
-                  Add to your Claude Desktop config (<code className="px-1.5 py-0.5 bg-gray-100 dark:bg-gray-800 rounded text-xs">~/Library/Application Support/Claude/claude_desktop_config.json</code> on macOS):
-                </p>
-                <TabbedCodeBlock
-                  tabs={[
-                    {
-                      label: 'Config',
-                      code: JSON.stringify({ mcpServers: { logicstamp: { command: "npx", args: ["logicstamp-mcp"] } } }, null, 2),
-                      copyText: JSON.stringify({ mcpServers: { logicstamp: { command: "npx", args: ["logicstamp-mcp"] } } }, null, 2)
-                    }
-                  ]}
-                />
-              </div>
-
-              {/* Cursor */}
-              <div className="border border-gray-200 dark:border-gray-800 rounded-lg p-6">
-                <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-3">
-                  For Cursor
-                </h3>
-                <p className="text-sm sm:text-base text-gray-700 dark:text-gray-300 mb-4">
-                  Add to your Cursor MCP config (<code className="px-1.5 py-0.5 bg-gray-100 dark:bg-gray-800 rounded text-xs">~/.cursor/mcp.json</code> on macOS/Linux or <code className="px-1.5 py-0.5 bg-gray-100 dark:bg-gray-800 rounded text-xs">%USERPROFILE%\.cursor\mcp.json</code> on Windows):
-                </p>
-                <TabbedCodeBlock
-                  tabs={[
-                    {
-                      label: 'Config',
-                      code: JSON.stringify({ mcpServers: { logicstamp: { command: "npx", args: ["logicstamp-mcp"] } } }, null, 2),
-                      copyText: JSON.stringify({ mcpServers: { logicstamp: { command: "npx", args: ["logicstamp-mcp"] } } }, null, 2)
-                    }
-                  ]}
-                />
-                <p className={`text-sm ${docsMutedTextClass} mt-3`}>
-                  After adding the config, fully quit and restart Cursor (not just close the window) for changes to take effect.
-                </p>
-              </div>
+            <div className="mt-8 rounded-lg border border-gray-200 dark:border-gray-800 bg-gray-50 dark:bg-gray-900/30 p-4">
+              <p className="text-sm font-semibold text-gray-900 dark:text-white mb-2">Environment (from the MCP guide)</p>
+              <p className={`text-sm ${docsMutedTextClass}`}>
+                <code className="px-1.5 py-0.5 bg-gray-100 dark:bg-gray-800 rounded text-xs">PROJECT_PATH</code> is optional fallback when a tool omits{' '}
+                <code className="px-1.5 py-0.5 bg-gray-100 dark:bg-gray-800 rounded text-xs">projectPath</code> (especially{' '}
+                <code className="px-1.5 py-0.5 bg-gray-100 dark:bg-gray-800 rounded text-xs">logicstamp_compare_snapshot</code> and{' '}
+                <code className="px-1.5 py-0.5 bg-gray-100 dark:bg-gray-800 rounded text-xs">logicstamp_compare_modes</code>). The server expects{' '}
+                <code className="px-1.5 py-0.5 bg-gray-100 dark:bg-gray-800 rounded text-xs">stamp</code> on <code className="px-1.5 py-0.5 bg-gray-100 dark:bg-gray-800 rounded text-xs">PATH</code>.
+              </p>
             </div>
           </div>
         </AnimatedSection>
@@ -176,56 +263,75 @@ export default function MCPInstallationPage() {
         {/* Verify */}
         <AnimatedSection direction="up" delay={400}>
           <div className="mb-12">
-            <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white mb-4">Verify Installation</h2>
-            <p className="text-sm sm:text-base text-gray-700 dark:text-gray-300 mb-4">
-              For Claude Code, verify the server is configured:
-            </p>
+            <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white mb-4">Verify installation</h2>
             <TabbedCodeBlock
               tabs={[
                 {
-                  label: 'Verify',
+                  label: 'which (Unix)',
+                  code: 'which logicstamp-mcp',
+                  copyText: 'which logicstamp-mcp'
+                },
+                {
+                  label: 'Claude Code',
                   code: 'claude mcp list',
                   copyText: 'claude mcp list'
                 }
               ]}
             />
             <p className={`text-sm ${docsMutedTextClass} mt-3`}>
-              You should see <code className="px-1.5 py-0.5 bg-gray-100 dark:bg-gray-800 rounded text-xs">logicstamp: npx logicstamp-mcp - ✓ Connected</code>
+              In Claude Code you should see LogicStamp listed as connected (exact wording varies by client version).
             </p>
           </div>
         </AnimatedSection>
 
-        {/* Quick Start */}
+        {/* Quick Start — tool order per docs/mcp/getting-started.md */}
         <AnimatedSection direction="up" delay={500}>
           <div className="mb-12">
-            <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white mb-4">Quick Start</h2>
+            <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white mb-4">Using the tools</h2>
+            <div className="mb-4 rounded-lg border border-amber-200 dark:border-amber-900/50 bg-amber-50/50 dark:bg-amber-950/20 p-4">
+              <p className="text-sm text-gray-800 dark:text-gray-200">
+                <span className="font-semibold">Call <code className="px-1 py-0.5 bg-white/80 dark:bg-gray-900 rounded text-xs">logicstamp_watch_status</code> first.</span> If watch mode is already active, skip refresh and go straight to list/read bundles; otherwise refresh snapshot before reading context.
+              </p>
+            </div>
             <p className="text-sm sm:text-base text-gray-700 dark:text-gray-300 mb-4">
-              Once installed, start using LogicStamp in your TypeScript project. The 7 LogicStamp tools will be available:
+              Seven tools (names match the MCP getting started doc):
             </p>
             <ul className="space-y-2 text-sm sm:text-base text-gray-700 dark:text-gray-300 mb-6 ml-4">
               <li className="flex items-start gap-2">
-                <span className="text-blue-600 dark:text-blue-400 mt-1">•</span>
-                <span><code className="px-1.5 py-0.5 bg-gray-100 dark:bg-gray-800 rounded text-xs">logicstamp_refresh_snapshot</code> - Analyze project structure</span>
+                <span className="text-blue-600 dark:text-blue-400 mt-1">1.</span>
+                <span><code className="px-1.5 py-0.5 bg-gray-100 dark:bg-gray-800 rounded text-xs">logicstamp_watch_status</code> — Is <code className="px-1.5 py-0.5 bg-gray-100 dark:bg-gray-800 rounded text-xs">stamp context --watch</code> running?</span>
               </li>
               <li className="flex items-start gap-2">
-                <span className="text-blue-600 dark:text-blue-400 mt-1">•</span>
-                <span><code className="px-1.5 py-0.5 bg-gray-100 dark:bg-gray-800 rounded text-xs">logicstamp_list_bundles</code> - List available components</span>
+                <span className="text-blue-600 dark:text-blue-400 mt-1">2.</span>
+                <span><code className="px-1.5 py-0.5 bg-gray-100 dark:bg-gray-800 rounded text-xs">logicstamp_list_bundles</code> — Catalog available bundles</span>
               </li>
               <li className="flex items-start gap-2">
-                <span className="text-blue-600 dark:text-blue-400 mt-1">•</span>
-                <span><code className="px-1.5 py-0.5 bg-gray-100 dark:bg-gray-800 rounded text-xs">logicstamp_read_bundle</code> - Read component contracts</span>
+                <span className="text-blue-600 dark:text-blue-400 mt-1">3.</span>
+                <span><code className="px-1.5 py-0.5 bg-gray-100 dark:bg-gray-800 rounded text-xs">logicstamp_read_bundle</code> — Read a bundle / contract</span>
               </li>
               <li className="flex items-start gap-2">
-                <span className="text-blue-600 dark:text-blue-400 mt-1">•</span>
-                <span><code className="px-1.5 py-0.5 bg-gray-100 dark:bg-gray-800 rounded text-xs">logicstamp_compare_snapshot</code> - Detect changes after edits</span>
+                <span className="text-blue-600 dark:text-blue-400 mt-1">4.</span>
+                <span><code className="px-1.5 py-0.5 bg-gray-100 dark:bg-gray-800 rounded text-xs">logicstamp_refresh_snapshot</code> — Regenerate context on demand</span>
               </li>
               <li className="flex items-start gap-2">
-                <span className="text-blue-600 dark:text-blue-400 mt-1">•</span>
-                <span><code className="px-1.5 py-0.5 bg-gray-100 dark:bg-gray-800 rounded text-xs">logicstamp_watch_status</code> - Check watch mode status</span>
+                <span className="text-blue-600 dark:text-blue-400 mt-1">5.</span>
+                <span><code className="px-1.5 py-0.5 bg-gray-100 dark:bg-gray-800 rounded text-xs">logicstamp_compare_snapshot</code> — Diff architectural snapshots</span>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="text-blue-600 dark:text-blue-400 mt-1">6.</span>
+                <span><code className="px-1.5 py-0.5 bg-gray-100 dark:bg-gray-800 rounded text-xs">logicstamp_compare_modes</code> — Compare include-code / token modes</span>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="text-blue-600 dark:text-blue-400 mt-1">7.</span>
+                <span><code className="px-1.5 py-0.5 bg-gray-100 dark:bg-gray-800 rounded text-xs">logicstamp_read_logicstamp_docs</code> — Fetch LogicStamp documentation snippets</span>
               </li>
             </ul>
             <p className={`text-sm ${docsMutedTextClass}`}>
-              Ask your AI assistant: "Use LogicStamp to analyze the components in src/components"
+              Full behavior and schemas:{' '}
+              <Link href="/docs/mcp/reference" className="text-blue-600 dark:text-blue-400 hover:underline">
+                MCP reference
+              </Link>
+              .
             </p>
           </div>
         </AnimatedSection>

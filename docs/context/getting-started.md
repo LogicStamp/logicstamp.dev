@@ -20,6 +20,18 @@ LogicStamp Context compiles TypeScript codebases into **deterministic architectu
 - ✅ **Strict watch** - Detects breaking changes during development
 - ✅ **MCP-ready** - Works seamlessly with AI assistants via MCP protocol
 
+## Relationship to TypeScript (`tsc`)
+
+LogicStamp is **additive**: it produces **architectural contracts** and graphs for AI workflows and diffs, **alongside** your normal toolchain. Keep **`tsc --noEmit`** (or your CI typecheck) for **program-wide** type errors—your **`tsconfig`** and compiler pipeline stay the authority there.
+
+**Beyond `.d.ts`:** Declaration files capture surfaces for consumers; LogicStamp adds semantic contracts, dependency relationships, and change hashes (`semanticHash`/`bundleHash`) for diffable LLM context.
+
+**Strict** modes (`stamp context compare --strict`, `stamp context --strict-watch`) detect **contract-level** breaking changes (e.g. removed props) against a baseline—they do not replicate the full TypeScript checker.
+
+**Backend (Express / NestJS) vs `tsc`:** The compiler checks types in handlers and DTOs, not HTTP wiring. Renaming a path or method while types stay the same often produces **no `tsc` error**, but it **does** break external callers. LogicStamp records routes, methods, and related metadata in contracts and in **`semanticHash`**, so **`stamp context compare`** (and watch) can show that drift in diffs. **Strict** modes today focus on removals like props, events, exported functions, or whole contracts; **route and API-signature changes** usually appear in **compare output** and hashes first—see [API signature handling in strict modes](cli/strict-modes.md#api-signature-handling).
+
+For how extraction differs from your project compiler settings (e.g. path aliases), see **[TypeScript support](frameworks/typescript.md)**.
+
 ## Choose Your Path
 
 LogicStamp Context can be used in two ways:
@@ -110,11 +122,11 @@ LogicStamp Context generates structured JSON bundles:
 }
 ```
 
-📋 **See [Schema Documentation](schema.md)** for complete format details.
+📋 **See [Schema Documentation](reference/schema.md)** for complete format details.
 
 ## Requirements
 
-- **Node.js** >= 18.18.0 (Node 20+ recommended)
+- **Node.js** >= 20
 - **TypeScript codebase** (React, Next.js, Vue, Express, or NestJS)
 
 ## Framework Support
@@ -124,7 +136,7 @@ LogicStamp Context generates structured JSON bundles:
 | **React** | Full | Components, hooks, props, styles |
 | **Next.js** | Full | App Router roles, segment paths, metadata |
 | **Vue 3** | Partial | Composition API (TS/TSX only, not .vue SFC) |
-| **Express.js** | Full | Routes, middleware, API signatures |
+| **Express.js** | Full | Routes, API signatures (middleware not extracted; see [limitations](reference/limitations.md)) |
 | **NestJS** | Full | Controllers, decorators, API signatures |
 | **UI Libraries** | Full | Material UI, ShadCN, Radix, Tailwind, Styled Components, SCSS, Chakra UI, Ant Design |
 
@@ -134,9 +146,9 @@ LogicStamp Context generates structured JSON bundles:
 
 ### For CLI Users
 1. **[CLI Getting Started Guide](cli/getting-started.md)** - Complete CLI setup and usage
-2. **[Usage Guide](usage.md)** - Comprehensive command reference
+2. **[Usage Guide](guides/usage.md)** - Comprehensive command reference
 3. **[Watch Mode](cli/watch.md)** - Auto-regenerate context as you code (includes strict watch mode)
-4. **[Schema Documentation](schema.md)** - Understanding output format
+4. **[Schema Documentation](reference/schema.md)** - Understanding output format
 
 ### For MCP Users
 1. **[MCP Getting Started Guide](mcp/getting-started.md)** - MCP server setup
@@ -201,8 +213,8 @@ LogicStamp Context includes **automatic secret protection**:
 
 - **New to LogicStamp?** → Start with [CLI Getting Started](cli/getting-started.md)
 - **Using AI Assistants?** → Check out [MCP Getting Started](https://logicstamp.dev/docs/mcp/getting-started)
-- **Want to understand output?** → Read [Schema Documentation](schema.md)
-- **Need command reference?** → See [Usage Guide](usage.md)
+- **Want to understand output?** → Read [Schema Documentation](reference/schema.md)
+- **Need command reference?** → See [Usage Guide](guides/usage.md)
 
 ---
 
