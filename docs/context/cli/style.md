@@ -10,7 +10,7 @@ stamp context style [path] [options]
 
 **Note:** The `stamp context style` command is equivalent to `stamp context --include-style`. Both syntaxes produce identical output.
 
-**File Exclusion:** `stamp context style` respects `.stampignore`, just like `stamp context`. `.stampignore` is completely optional and independent of security scanning. See [stampignore.md](../stampignore.md) for details.
+**File Exclusion:** `stamp context style` respects `.stampignore`, just like `stamp context`. `.stampignore` is completely optional and independent of security scanning. See [stampignore.md](../reference/stampignore.md) for details.
 
 ## Overview
 
@@ -261,14 +261,14 @@ stamp context --include-style
 
 ## Style Mode: Lean vs Full
 
-The `--style-mode` flag controls how style metadata is formatted in the output:
+The `--style-mode` flag controls how style metadata is formatted in the output. **Both modes extract the same data**; the difference is how much is included in the output.
 
-- **`lean` (default)** – Compact format with counts and flags:
+- **`lean` (default)** – Compact format: drops arrays, keeps counts and flags:
   - Tailwind: `classCount` instead of full class arrays
   - Component libraries: Top N components with counts
   - More token-efficient, suitable for most use cases
   
-- **`full`** – Verbose format with arrays and detailed information:
+- **`full`** – Verbose format: keeps all extracted data (arrays of classes, selectors, components, etc.):
   - Tailwind: Full arrays of classes in each category
   - Component libraries: Complete component lists with all details
   - More comprehensive, useful for detailed design analysis

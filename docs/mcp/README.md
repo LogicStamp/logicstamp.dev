@@ -2,9 +2,9 @@
 
   <a href="https://logicstamp.dev">
     <picture>
-      <source media="(prefers-color-scheme: dark)" srcset="assets/logicstamp-woodmark-dark.png">
-      <source media="(prefers-color-scheme: light)" srcset="assets/logicstamp-woodmark-light.png">
-      <img src="assets/logicstamp-woodmark-light.png" alt="LogicStamp" width="400" height="auto">
+      <source media="(prefers-color-scheme: dark)" srcset="assets/logicstamp-wordmark-dark.png">
+      <source media="(prefers-color-scheme: light)" srcset="assets/logicstamp-wordmark-light.png">
+      <img src="assets/logicstamp-wordmark-light.png" alt="LogicStamp" width="400" height="auto">
     </picture>
   </a>
 
@@ -115,13 +115,13 @@ This MCP server provides AI assistants with structured access to your codebase t
      "mcpServers": {
        "logicstamp": {
          "command": "npx",
-         "args": ["logicstamp-mcp"]
+         "args": ["-y", "logicstamp-mcp"]
        }
      }
    }
    ```
    
-   **Note:** Some clients may require `"type": "stdio"` - if the above doesn't work, add it to the config. See [integration guides](docs/integrations/) for platform-specific details:
+   **Note:** `-y` tells `npx` not to prompt (MCP clients often run the server without a terminal, so prompts can hang). Some clients may require `"type": "stdio"` — if the above does not work, add it to the config. See [integration guides](docs/integrations/) for platform-specific details:
    - [Claude CLI Integration](docs/integrations/claude-cli.md) - For Claude Code users
    - [Claude Desktop Integration](docs/integrations/claude-desktop.md) - For Claude Desktop users
    - [Cursor Integration](docs/integrations/cursor.md) - For Cursor IDE users
